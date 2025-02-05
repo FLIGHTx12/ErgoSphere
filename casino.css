@@ -1,0 +1,91 @@
+/* Inherit styles from the main stylesheet */
+
+@import "style.css";
+
+/* Casino-specific styles */
+
+#betting-system {
+    padding: 20px;
+}
+
+#bet-container {
+    border: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.bet-entry {
+    margin-bottom: 10px;
+}
+
+.bet-entry label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bet-entry select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#receipt {
+    border: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: black; /* Added to ensure background is black */
+    color: white; /* Added to ensure text is white */
+    width: auto;
+}
+
+#receipt h2 {
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+#receipt .matchup {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#receipt .divider {
+    border-bottom: 1px solid #0f0;
+    margin: 10px 0;
+}
+
+#receipt .bet-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#receipt .wager-total {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: right;
+    color: #FFD700;
+}
+
+#receipt:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 15px #0f0;
+}
+
+/* Styles specific for the receipt-content to avoid inheritance */
+.receipt-content {
+    /* Override styles from style.css or add specific styles */
+    background-color: white; /* Example */
+    color: black; /* Example */
+    /* Add any other specific styles needed for .receipt-content */
+}
