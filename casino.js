@@ -1,250 +1,272 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    updateTeamsAndLines();
-  });
+const teams = {
+    nfl: [
+      "Minnesota Vikings", "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills", 
+      "Carolina Panthers", "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns",
+      "Dallas Cowboys", "Denver Broncos", "Detroit Lions", "Green Bay Packers",
+      "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars", "Kansas City Chiefs",
+      "Las Vegas Raiders", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins",
+      "New England Patriots", "New Orleans Saints", "New York Giants",
+      "New York Jets", "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers",
+      "Seattle Seahawks", "Tampa Bay Buccaneers", "Tennessee Titans", "Washington Commanders"
+    ],
+    nba: [
+      "Minnesota Timberwolves", "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
+      "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
+      "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
+      "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat",
+      "Milwaukee Bucks",  "New Orleans Pelicans", "New York Knicks",
+      "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
+      "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
+      "Utah Jazz", "Washington Wizards"
+    ],
+    wnba: [
+      "Minnesota Lynx", "Atlanta Dream", "Chicago Sky", "Connecticut Sun", "Dallas Wings",
+      "Indiana Fever", "Las Vegas Aces", "Los Angeles Sparks", 
+      "New York Liberty", "Phoenix Mercury", "Seattle Storm", "Washington Mystics"
+    ]
+  };
   
-  const teams = {
-    "NFL": {
-      "name": "Minnesota Vikings",
-      "lines": {
-        "INDIVIDUAL": [
-          {"text": "(10/50) Pick Most catches:", "value": "40"},
-          {"text": "(10/50) Pick Most TDs Scored (non QB):", "value": "40"},
-          {"text": "(20/70) Pick Most INTs:", "value": "50"},
-          {"text": "(20/70) Pick Most Sacs:", "value": "50"},
-          {"text": "(30/100) Pick Most yards Overall:", "value": "70"},
-          {"text": "(30/100) Pick Most Tackles:", "value": "70"}
+  const teamsData = {
+    NFL: {
+      teams: teams.nfl,
+      categories: {
+        INDIVIDUAL: [
+          {text: "Pick Most catches", value: "10/50"},
+          {text: "Pick Most TDs Scored (non QB)", value: "10/50"},
+          {text: "Pick Most INTs", value: "20/70"},
+          {text: "Pick Most Sacs", value: "20/70"},
+          {text: "Pick Most yards Overall", value: "30/100"},
+          {text: "Pick Most Tackles", value: "30/100"}
         ],
-        "STAT HUNTING": [
-          {"text": "(10/30) Reach 220 Passing:", "value": "20"},
-          {"text": "(10/30) Reach 50 Rushing:", "value": "20"},
-          {"text": "(20/50) Reach 2 FG made (non extra point):", "value": "30"},
-          {"text": "(20/70) Reach 1 Sack:", "value": "50"},
-          {"text": "(20/70) Reach 1 INT:", "value": "50"},
-          {"text": "(15/80) Reach 320 Passing:", "value": "65"},
-          {"text": "(15/80) Reach 100 Rushing:", "value": "65"},
-          {"text": "(10/85) Reach 4 FG made:", "value": "75"},
-          {"text": "(10/90) Reach 2 Sacks:", "value": "80"},
-          {"text": "(10/110) Reach 2 INT:", "value": "100"}
+        STAT_HUNTING: [
+          {text: "Reach 220 Passing", value: "10/30"},
+          {text: "Reach 50 Rushing", value: "10/30"},
+          {text: "Reach 2 FG made (non extra point)", value: "20/50"},
+          {text: "Reach 1 Sack", value: "20/70"},
+          {text: "Reach 1 INT", value: "20/70"},
+          {text: "Reach 320 Passing", value: "15/80"},
+          {text: "Reach 100 Rushing", value: "15/80"},
+          {text: "Reach 4 FG made", value: "10/85"},
+          {text: "Reach 2 Sacks", value: "10/90"},
+          {text: "Reach 2 INT", value: "10/110"}
         ],
-        "TEAM": [
-          {"text": "(20/40) Team Running Yards", "value": "20"},
-          {"text": "(20/40) Team Passing Yards", "value": "20"},
-          {"text": "(20/50) Team Yards Overall", "value": "30"},
-          {"text": "(20/50) Team Interceptions (def)", "value": "30"},
-          {"text": "(30/70) Team Sacks (def)", "value": "40"},
-          {"text": "(30/70) Team Most Possession Time", "value": "40"},
-          {"text": "(40/90) Team 4th down conversions (0/0 tie is a loss)", "value": "50"}
+        TEAM: [
+          {text: "Team Running Yards", value: "20/40"},
+          {text: "Team Passing Yards", value: "20/40"},
+          {text: "Team Yards Overall", value: "20/50"},
+          {text: "Team Interceptions (def)", value: "20/50"},
+          {text: "Team Sacks (def)", value: "30/70"},
+          {text: "Team Most Possession Time", value: "30/70"}
         ],
-        "WILD CARD": [
-          {"text": "(2/30) Other team misses a Field goal in the 4th", "value": "28"},
-          {"text": "(15/30) 1st TD is a run play", "value": "15"},
-          {"text": "(20/50) Other team does the Griddy at some point during game (on tv)", "value": "30"},
-          {"text": "(10/50) First Vikings possession is a TD or FG", "value": "40"},
-          {"text": "(10/60) QB touchdown for Vikings", "value": "50"},
-          {"text": "(30/70) Vikings lead going into halftime", "value": "40"},
-          {"text": "(20/90) Defensive TD Vikings", "value": "70"},
-          {"text": "(10/100) Kick return for a TD", "value": "90"}
+        WILD_CARD: [
+          {text: "Other team misses a Field goal in the 4th", value: "2/30"},
+          {text: "1st TD is a run play", value: "15/30"},
+          {text: "Other team does the Griddy at some point during game (on tv)", value: "20/50"},
+          {text: "First Vikings possession is a TD or FG", value: "10/50"},
+          {text: "QB touchdown for Vikings", value: "10/60"},
+          {text: "Vikings lead going into halftime", value: "30/70"},
+          {text: "Defensive TD Vikings", value: "20/90"},
+          {text: "Kick return for a TD", value: "10/100"}
         ]
       },
-      "players": ["Kirk Cousins", "Justin Jefferson", "Dalvin Cook", "Danielle Hunter", "Harrison Smith"]
+      players: ["Player1", "Player2", "Player3"]
     },
-    "WNBA": {
-      "name": "Minnesota Lynx",
-      "lines": {
-        "INDIVIDUAL": [
-          {"text": "(2/5) Pick FG attempted:", "value": "3"},
-          {"text": "(2/10) Pick FG made:", "value": "8"},
-          {"text": "(5/10) Pick blocks:", "value": "5"},
-          {"text": "(10/20) Pick Most Points:", "value": "10"},
-          {"text": "(20/40) Pick Most Assist:", "value": "20"},
-          {"text": "(20/40) Pick Most Rebounds:", "value": "20"},
-          {"text": "(30/60) Pick Most Steals:", "value": "30"},
-          {"text": "(40/90) Pick Most Threes Made:", "value": "50"}
+    WNBA: {
+      teams: teams.wnba,
+      categories: {
+        INDIVIDUAL: [
+          {text: "Pick FG attempted", value: "2/5"},
+          {text: "Pick FG made", value: "2/10"},
+          {text: "Pick blocks", value: "5/10"},
+          {text: "Pick Most Points", value: "10/20"},
+          {text: "Pick Most Assist", value: "20/40"},
+          {text: "Pick Most Rebounds", value: "20/40"},
+          {text: "Pick Most Steals", value: "30/60"},
+          {text: "Pick Most Threes Made", value: "40/90"}
         ],
-        "STAT HUNTING": [
-          {"text": "(10/30) Reach 20 points:", "value": "20"},
-          {"text": "(10/30) Reach 6 rebounds:", "value": "20"},
-          {"text": "(10/30) Reach 3 Three Pointers Made:", "value": "20"},
-          {"text": "(20/50) Reach 6 assists:", "value": "30"},
-          {"text": "(20/50) Reach 2 Blocks:", "value": "30"},
-          {"text": "(20/50) Reach +/- over 10:", "value": "30"},
-          {"text": "(30/70) Reach 2 Steals:", "value": "40"},
-          {"text": "(40/90) Reach 30 points:", "value": "50"},
-          {"text": "(40/90) Reach 11 rebounds:", "value": "50"},
-          {"text": "(40/90) Reach 4 Three Pointers Made:", "value": "50"},
-          {"text": "(50/110) Reach +/- over 20:", "value": "60"},
-          {"text": "(50/110) Reach 10 assists:", "value": "60"},
-          {"text": "(50/110) Reach 3 Blocks:", "value": "60"},
-          {"text": "(50/120) Reach 3 Steals:", "value": "70"}
+        STAT_HUNTING: [
+          {text: "Reach 20 points", value: "10/30"},
+          {text: "Reach 6 rebounds", value: "10/30"},
+          {text: "Reach 3 Three Pointers Made", value: "10/30"},
+          {text: "Reach 6 assists", value: "20/50"},
+          {text: "Reach 2 Blocks", value: "20/50"},
+          {text: "Reach +/- over 10", value: "20/50"},
+          {text: "Reach 2 Steals", value: "30/70"},
+          {text: "Reach 30 points", value: "40/90"},
+          {text: "Reach 11 rebounds", value: "40/90"},
+          {text: "Reach 4 Three Pointers Made", value: "40/90"},
+          {text: "Reach +/- over 20", value: "50/110"},
+          {text: "Reach 10 assists", value: "50/110"},
+          {text: "Reach 3 Blocks", value: "50/110"},
+          {text: "Reach 3 Steals", value: "50/120"}
         ],
-        "TEAM": [
-          {"text": "(2/10) Team Field goal attempts", "value": "8"},
-          {"text": "(10/20) Team Field Goal %", "value": "10"},
-          {"text": "(10/20) Team Def. Rebounds", "value": "10"},
-          {"text": "(20/40) Team Off. Rebounds", "value": "20"},
-          {"text": "(20/40) Team Free-throws taken", "value": "20"},
-          {"text": "(20/40) Team steals", "value": "20"},
-          {"text": "(20/40) Team blocks", "value": "20"},
-          {"text": "(30/60) Team assists", "value": "30"},
-          {"text": "(30/60) Team Points in the Paint", "value": "30"},
-          {"text": "(30/60) Team Points off Turnovers", "value": "30"},
-          {"text": "(40/90) Team Fast Break Points", "value": "50"},
-          {"text": "(40/90) Team Turnovers (less wins)", "value": "50"},
-          {"text": "(40/90) Team fouls (less wins)", "value": "50"}
+        TEAM: [
+          {text: "Team Field goal attempts", value: "2/10"},
+          {text: "Team Field Goal %", value: "10/20"},
+          {text: "Team Def. Rebounds", value: "10/20"},
+          {text: "Team Off. Rebounds", value: "20/40"},
+          {text: "Team Free-throws taken", value: "20/40"},
+          {text: "Team steals", value: "20/40"},
+          {text: "Team blocks", value: "20/40"},
+          {text: "Team assists", value: "30/60"},
+          {text: "Team Points in the Paint", value: "30/60"},
+          {text: "Team Points off Turnovers", value: "30/60"},
+          {text: "Team Fast Break Points", value: "40/90"},
+          {text: "Team Turnovers (less wins)", value: "40/90"},
+          {text: "Team fouls (less wins)", value: "40/90"}
         ],
-        "WILD CARD": [
-          {"text": "(2/10) MN has most fast break points", "value": "8"},
-          {"text": "(10/30) MN win tip off", "value": "20"},
-          {"text": "(20/50) Other team misses 2 free-throws in a row", "value": "30"},
-          {"text": "(20/50) MN has the biggest lead of the game", "value": "30"},
-          {"text": "(40/80) First MN FG is a 2 pointer.", "value": "40"},
-          {"text": "(40/100) First MN FG is a 3 pointer", "value": "60"},
-          {"text": "(40/120) Technical foul is called this game (either team)", "value": "80"},
-          {"text": "(50/150) Flagrant foul is called this game (either team)", "value": "100"},
-          {"text": "(50/250) Half court shot made (either team)", "value": "200"}
+        WILD_CARD: [
+          {text: "MN has most fast break points", value: "2/10"},
+          {text: "MN win tip off", value: "10/30"},
+          {text: "Other team misses 2 free-throws in a row", value: "20/50"},
+          {text: "MN has the biggest lead of the game", value: "20/50"},
+          {text: "First MN FG is a 2 pointer.", value: "40/80"},
+          {text: "First MN FG is a 3 pointer", value: "40/100"},
+          {text: "Technical foul is called this game (either team)", value: "40/120"},
+          {text: "Flagrant foul is called this game (either team)", value: "50/150"},
+          {text: "Half court shot made (either team)", value: "50/250"}
         ]
       },
-      "players": ["Napheesa Collier", "Kayla McBride", "Diamond Miller", "Aerial Powers", "Jessica Shepard"]
+      players: ["Player1", "Player2", "Player3"]
     },
-    "NBA": {
-      "name": "Minnesota Timberwolves",
-      "lines": {
-        "INDIVIDUAL": [
-          {"text": "(2/5) Pick FG attempted:", "value": "3"},
-          {"text": "(2/10) Pick FG made:", "value": "8"},
-          {"text": "(5/10) Pick blocks:", "value": "5"},
-          {"text": "(10/20) Pick Most Points:", "value": "10"},
-          {"text": "(20/40) Pick Most Assist:", "value": "20"},
-          {"text": "(20/40) Pick Most Rebounds:", "value": "20"},
-          {"text": "(30/60) Pick Most Steals:", "value": "30"},
-          {"text": "(40/90) Pick Most Threes Made:", "value": "50"}
+    NBA: {
+      teams: teams.nba,
+      categories: {
+        INDIVIDUAL: [
+          {text: "Pick FG attempted", value: "2/5"},
+          {text: "Pick FG made", value: "2/10"},
+          {text: "Pick blocks", value: "5/10"},
+          {text: "Pick Most Points", value: "10/20"},
+          {text: "Pick Most Assist", value: "20/40"},
+          {text: "Pick Most Rebounds", value: "20/40"},
+          {text: "Pick Most Steals", value: "30/60"},
+          {text: "Pick Most Threes Made", value: "40/90"}
         ],
-        "STAT HUNTING": [
-          {"text": "(10/30) Reach 20 points:", "value": "20"},
-          {"text": "(10/30) Reach 6 rebounds:", "value": "20"},
-          {"text": "(10/30) Reach 3 Three Pointers Made:", "value": "20"},
-          {"text": "(20/50) Reach 6 assists:", "value": "30"},
-          {"text": "(20/50) Reach 2 Blocks:", "value": "30"},
-          {"text": "(20/50) Reach +/- over 10:", "value": "30"},
-          {"text": "(30/70) Reach 2 Steals:", "value": "40"},
-          {"text": "(40/90) Reach 30 points:", "value": "50"},
-          {"text": "(40/90) Reach 11 rebounds:", "value": "50"},
-          {"text": "(40/90) Reach 4 Three Pointers Made:", "value": "50"},
-          {"text": "(50/110) Reach +/- over 20:", "value": "60"},
-          {"text": "(50/110) Reach 10 assists:", "value": "60"},
-          {"text": "(50/110) Reach 3 Blocks:", "value": "60"},
-          {"text": "(50/120) Reach 3 Steals:", "value": "70"}
+        STAT_HUNTING: [
+          {text: "Reach 20 points", value: "10/30"},
+          {text: "Reach 6 rebounds", value: "10/30"},
+          {text: "Reach 3 Three Pointers Made", value: "10/30"},
+          {text: "Reach 6 assists", value: "20/50"},
+          {text: "Reach 2 Blocks", value: "20/50"},
+          {text: "Reach +/- over 10", value: "20/50"},
+          {text: "Reach 2 Steals", value: "30/70"},
+          {text: "Reach 30 points", value: "40/90"},
+          {text: "Reach 11 rebounds", value: "40/90"},
+          {text: "Reach 4 Three Pointers Made", value: "40/90"},
+          {text: "Reach +/- over 20", value: "50/110"},
+          {text: "Reach 10 assists", value: "50/110"},
+          {text: "Reach 3 Blocks", value: "50/110"},
+          {text: "Reach 3 Steals", value: "50/120"}
         ],
-        "TEAM": [
-          {"text": "(2/10) Team Field goal attempts", "value": "8"},
-          {"text": "(10/20) Team Field Goal %", "value": "10"},
-          {"text": "(10/20) Team Def. Rebounds", "value": "10"},
-          {"text": "(20/40) Team Off. Rebounds", "value": "20"},
-          {"text": "(20/40) Team Free-throws taken", "value": "20"},
-          {"text": "(20/40) Team steals", "value": "20"},
-          {"text": "(20/40) Team blocks", "value": "20"},
-          {"text": "(30/60) Team assists", "value": "30"},
-          {"text": "(30/60) Team Points in the Paint", "value": "30"},
-          {"text": "(30/60) Team Points off Turnovers", "value": "30"},
-          {"text": "(40/90) Team Fast Break Points", "value": "50"},
-          {"text": "(40/90) Team Turnovers (less wins)", "value": "50"},
-          {"text": "(40/90) Team fouls (less wins)", "value": "50"}
+        TEAM: [
+          {text: "Team Field goal attempts", value: "2/10"},
+          {text: "Team Field Goal %", value: "10/20"},
+          {text: "Team Def. Rebounds", value: "10/20"},
+          {text: "Team Off. Rebounds", value: "20/40"},
+          {text: "Team Free-throws taken", value: "20/40"},
+          {text: "Team steals", value: "20/40"},
+          {text: "Team blocks", value: "20/40"},
+          {text: "Team assists", value: "30/60"},
+          {text: "Team Points in the Paint", value: "30/60"},
+          {text: "Team Points off Turnovers", value: "30/60"},
+          {text: "Team Fast Break Points", value: "40/90"},
+          {text: "Team Turnovers (less wins)", value: "40/90"},
+          {text: "Team fouls (less wins)", value: "40/90"}
         ],
-        "WILD CARD": [
-          {"text": "(2/10) MN has most fast break points", "value": "8"},
-          {"text": "(10/30) MN win tip off", "value": "20"},
-          {"text": "(20/50) Other team misses 2 free-throws in a row", "value": "30"},
-          {"text": "(20/50) MN has the biggest lead of the game", "value": "30"},
-          {"text": "(40/80) First MN FG is a 2 pointer.", "value": "40"},
-          {"text": "(40/100) First MN FG is a 3 pointer", "value": "60"},
-          {"text": "(40/120) Technical foul is called this game (either team)", "value": "80"},
-          {"text": "(50/150) Flagrant foul is called this game (either team)", "value": "100"},
-          {"text": "(50/250) Half court shot made (either team)", "value": "200"}
+        WILD_CARD: [
+          {text: "MN has most fast break points", value: "2/10"},
+          {text: "MN win tip off", value: "10/30"},
+          {text: "Other team misses 2 free-throws in a row", value: "20/50"},
+          {text: "MN has the biggest lead of the game", value: "20/50"},
+          {text: "First MN FG is a 2 pointer.", value: "40/80"},
+          {text: "First MN FG is a 3 pointer", value: "40/100"},
+          {text: "Technical foul is called this game (either team)", value: "40/120"},
+          {text: "Flagrant foul is called this game (either team)", value: "50/150"},
+          {text: "Half court shot made (either team)", value: "50/250"}
         ]
       },
-      "players": ["Anthony Edwards", "Rudy Gobert", "Karl-Anthony Towns", "Kyle Anderson", "Mike Conley"]
+      players: ["Player1", "Player2", "Player3"]
     }
   };
   
-  function updateTeamsAndLines() {
-    const leagueSelect = document.getElementById("league");
-    const ourTeamSelect = document.getElementById("ourTeam");
-    const categorySelects = document.querySelectorAll(".category-select");
-    const lineSelects = document.querySelectorAll(".line-select");
+  function updateBets() {
+    const league = document.getElementById("league").value;
+    const categories = teamsData[league]?.categories;
+    const players = teamsData[league]?.players;
+    const leagueTeams = teamsData[league]?.teams || [];
   
-    ourTeamSelect.innerHTML = '<option value="">Select Team</option>';
-    categorySelects.forEach(select => (select.innerHTML = '<option value="">Select Category</option>'));
-    lineSelects.forEach(select => (select.innerHTML = '<option value="">Select Line</option>'));
+    const awayTeamSelect = document.getElementById("awayTeam");
+    const homeTeamSelect = document.getElementById("homeTeam");
   
-    const league = leagueSelect.value;
-    if (league) {
-      const ourTeam = teams[league].name;
-      ourTeamSelect.innerHTML = `<option value="${ourTeam}">${ourTeam}</option>`;
-      updateLines(); // This line is crucial! It triggers the update of the lines based on the selected team
+    awayTeamSelect.innerHTML = '<option value="">Select Away Team</option>';
+    homeTeamSelect.innerHTML = '<option value="">Select Home Team</option>';
+  
+    leagueTeams.forEach(team => {
+      awayTeamSelect.innerHTML += `<option value="${team}">${team}</option>`;
+      homeTeamSelect.innerHTML += `<option value="${team}">${team}</option>`;
+    });
+  
+    if (categories) {
+      for (let i = 1; i <= 3; i++) {
+        const categorySelect = document.getElementById(`category${i}`);
+        categorySelect.innerHTML = '<option value="">Select Category</option>';
+        Object.keys(categories).forEach(category => {
+          categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
+        });
+      }
     }
   }
   
-  function updateLines() {
-    const league = document.getElementById("league").value;
-    const categorySelects = document.querySelectorAll(".category-select"); 
-    const lineSelects = document.querySelectorAll(".line-select");
-  
-    categorySelects.forEach(select => {
-      select.innerHTML = '<option value="">Select Category</option>';
-      if (league) {
-        Object.keys(teams[league].lines).forEach(category => {
-          select.innerHTML += `<option value="${category}">${category}</option>`;
-        });
-      }
-    });
-  
-    lineSelects.forEach((select, index) => {
-      const category = categorySelects[index].value; // Access the correct category value
-      select.innerHTML = '<option value="">Select Line</option>';
-      if (league && category) {
-        teams[league].lines[category].forEach(line => {
-          select.innerHTML += `<option value="${line.value}">${line.text}</option>`;
-        });
-      }
-    });
-  }
-  
-  function updatePlayerOptions(betNum) {
+  function updateLines(betNum) {
     const league = document.getElementById("league").value;
     const category = document.getElementById(`category${betNum}`).value;
+    const lineSelect = document.getElementById(`line${betNum}`);
     const playerSelect = document.getElementById(`player${betNum}`);
   
+    const lines = teamsData[league]?.categories[category];
     playerSelect.innerHTML = '<option value="">Select Player</option>';
   
-    if (league && category && ["INDIVIDUAL", "STAT HUNTING"].includes(category)) {
-      teams[league].players.forEach(player => {
+    if (lines) {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      lines.forEach(line => {
+        lineSelect.innerHTML += `<option value="${line.value}">${line.text}</option>`;
+      });
+    }
+  
+    if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players) {
+      teamsData[league].players.forEach(player => {
         playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
       });
+    } else {
+      playerSelect.innerHTML = '<option value="">N/A</option>';
     }
   }
   
   function submitBets() {
     const league = document.getElementById("league").value;
-    const ourTeam = document.getElementById("ourTeam").value;
-    const bets = []; // Initialize bets array correctly
+    const awayTeam = document.getElementById("awayTeam").value;
+    const homeTeam = document.getElementById("homeTeam").value;
+    const bets = [];
+    let totalCost = 0;
   
     for (let i = 1; i <= 3; i++) {
       const category = document.getElementById(`category${i}`).value;
       const line = document.getElementById(`line${i}`).value;
       const player = document.getElementById(`player${i}`).value;
+  
       if (category && line) {
-        if (["INDIVIDUAL", "STAT HUNTING"].includes(category) && !player) {
-          alert("Please select a player for INDIVIDUAL and STAT HUNTING categories.");
-          return;
-        }
-        bets.push({ category, line, player });
+        const [cost, payout] = line.split('/');
+        totalCost += parseInt(cost);
+        bets.push({ category, line, player: player || 'N/A' });
       }
     }
   
-    if (league && ourTeam && bets.length === 3) {
-      const receiptContent = `League: ${league}\nOur Team: ${ourTeam}\n\nBets:\n${bets
-      .map(bet => `${bet.category} - ${bet.line} ${bet.player ? `- ${bet.player}` : ""}`)
-      .join("\n")}`;
+    if (league && awayTeam && homeTeam && bets.length === 3) {
+      const receiptContent = `
+      ${awayTeam} @ ${homeTeam}\n
+      ${bets.map(bet => `(${bet.line}) ${bet.category}: ${bet.player !== 'N/A' ? `${bet.player}` : ''}`).join("\n")}
+      Wager: ${totalCost}
+      `;
       document.getElementById("receipt-content").textContent = receiptContent;
     } else {
       alert("Please complete all selections before submitting.");
