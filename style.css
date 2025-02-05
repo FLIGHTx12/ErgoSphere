@@ -212,6 +212,17 @@ li {
   text-decoration: underline;
 }
 
+.quantity-input{
+  width: 2em;
+  height: 2em;
+  font-size: 16px;
+  color: #0f0; /* Neon green */
+  background-color: #222; /* Dark background */
+  border: 2px solid #0f0; /* Neon green border */
+  padding: 0.2em;
+  text-align: center;
+}
+
 .action-button {
   margin: -15px 30px 30px 0px;
   padding: 10px;

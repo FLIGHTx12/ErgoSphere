@@ -1,87 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Betting</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ErgoSphere Sportsbook</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav id="navbar">
-  <button><a href="index.html">HOME</a></button>
-  <button><a href="refreshments.html">REFRESHMENTS</a></button>
-  <button><a href="MODS.html">MODS</a></button>
-  <button><a href="casino.html">CASINO</a></button>
-  <button><a href="contracts.html">CONTRACTS</a></button>
-</nav>
-<hr>
-<header>
-  <h1>Friendly Sports Betting</h1>
-</header>
-<hr>
-
-<main>
+  <nav id="navbar">
+    <button><a href="index.html">HOME</a></button>
+    <button><a href="refreshments.html">REFRESHMENTS</a></button>
+    <button><a href="MODS.html">MODS</a></button>
+    <button><a href="casino.html">CASINO</a></button>
+    <button><a href="contracts.html">CONTRACTS</a></button>
+  </nav>
+  <hr>
+  <header>
+    <h1>ErgoSphere Sportsbook</h1>
+  </header>
+  <hr>
+  <main>
+    <div id="league-selection">
+      <label for="league">League:</label>
+      <select id="league" onchange="updateTeamsAndLines()">
+        <option value="">Select League</option>
+        <option value="NFL">NFL</option>
+        <option value="WNBA">WNBA</option>
+        <option value="NBA">NBA</option>
+      </select>
+    </div>
     <div id="team-selection">
-        <label for="homeTeam">Home Team:</label>
-        <select id="homeTeam" onchange="populateOpponentOptions('home')">
-            <option value="">Select Team</option>
-            <option value="TIMBERWOLVES">Timberwolves</option>
-            <option value="LYNX">Lynx</option>
-            <option value="VIKINGS">Vikings</option>
-        </select>
-        <br>
-        <label for="awayTeam">Away Team:</label>
-        <select id="awayTeam" onchange="populateOpponentOptions('away')">
-            <option value="">Select Team</option>
-            <option value="TIMBERWOLVES">Timberwolves</option>
-            <option value="LYNX">Lynx</option>
-            <option value="VIKINGS">Vikings</option>
-        </select>
-        <br>
-        <label for="opponent">Opponent:</label>
-        <select id="opponent">
-            <option value="">Select Opponent</option>
-        </select>
+      <label for="ourTeam">Our Team:</label>
+      <select id="ourTeam" onchange="updateLines()">
+        <option value="">Select Team</option>
+      </select>
     </div>
-
     <div id="bet-selection">
-        <h2>Bets</h2>
-        <div id="bet-lines">
-            <div class="bet-entry">
-                <label for="category1">Category:</label>
-                <select id="category1" class="category-select" onchange="populateBetLines(1)"></select>
-                <label for="line1">Bet Line:</label>
-                <select id="line1" class="line-select"></select>
-                <label for="player1">Player:</label>
-                <input type="text" id="player1" class="player-input">
-            </div>
-            <div class="bet-entry">
-                <label for="category2">Category:</label>
-                <select id="category2" class="category-select" onchange="populateBetLines(2)"></select>
-                <label for="line2">Bet Line:</label>
-                <select id="line2" class="line-select"></select>
-                <label for="player2">Player:</label>
-                <input type="text" id="player2" class="player-input">
-            </div>
-            <div class="bet-entry">
-                <label for="category3">Category:</label>
-                <select id="category3" class="category-select" onchange="populateBetLines(3)"></select>
-                <label for="line3">Bet Line:</label>
-                <select id="line3" class="line-select"></select>
-                <label for="player3">Player:</label>
-                <input type="text" id="player3" class="player-input">
-            </div>
+      <h2>Bets</h2>
+      <div id="bet-lines">
+        <div class="bet-entry">
+          <label for="category1">Category:</label>
+          <select id="category1" class="category-select" onchange="updatePlayerOptions(1)">
+            <option value="">Select Category</option>
+          </select>
+          <label for="line1">Bet Line:</label>
+          <select id="line1" class="line-select">
+            <option value="">Select Line</option>
+          </select>
+          <label for="player1">Player:</label>
+          <select id="player1" class="player-input">
+            <option value="">Select Player</option>
+          </select>
         </div>
+        <div class="bet-entry">
+          </div>
+        <div class="bet-entry">
+          </div>
+      </div>
     </div>
-
     <button id="submit-bets" onclick="submitBets()">Submit Bets</button>
-
     <div id="receipt">
-        <h2>Receipt</h2>
-        <pre id="receipt-content"></pre>
+      <h2>Receipt</h2>
+      <pre id="receipt-content"></pre>
     </div>
-</main>
-
-<script src="script.js"></script>
+  </main>
+  <script src="casino.js"></script>
 </body>
 </html>

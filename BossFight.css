@@ -4,8 +4,10 @@ body {
     margin: 0;
     padding: 0;
     background-image: url("https://i.ibb.co/wKZgsqP/star-sky.jpg");
+    background-size: cover;
+    background-attachment: fixed;
     transition: transform 0.3s ease-in-out;
-    animation: pan-body 650s linear infinite;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body.page-transition {
@@ -14,13 +16,11 @@ body.page-transition {
 
 button {
     background-color: purple;
-    background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
     color: black;
     cursor: pointer;
     font-weight: 900;
     font-size: large;
     font-style: normal;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: center;
     text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
     margin: 5px 0;
@@ -29,69 +29,100 @@ button {
     max-width: auto;
     max-height: 200px;
     padding: auto;
+    border: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+    border-radius: 10px;
+}
+
+button:hover {
+    box-shadow: 0 0 15px #0f0;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 20px #0f0;
 }
 
 @keyframes zoomInOut {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 #navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-  box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
-  background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
-  background-color: rgb(14, 13, 13);
-  transition: top 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+    background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+    background-color: rgb(14, 13, 13);
+    transition: top 0.3s;
 }
 
 #navbar.hidden {
-  top: -100px;
+    top: -100px;
 }
 
 @keyframes slideIn {
-  from { right: -100%; }
-  to { right: 0; }
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0;
+    }
 }
 
 #navbar a {
-  color: rgb(12, 12, 12);
-  text-decoration: none;
+    color: rgb(12, 12, 12);
+    text-decoration: none;
 }
 
 @keyframes pan-navbar {
-  from { background-position: center top; }
-  to { background-position: bottom; }
+    from {
+        background-position: center top;
+    }
+
+    to {
+        background-position: bottom;
+    }
 }
 
 #navbar {
-  animation: pan-navbar 90s linear infinite;
+    animation: pan-navbar 90s linear infinite;
 }
 
 #navbar button {
-  background-color: purple;
-  color: white;
-  text-align: center;
-  display: inline-block;
-  font-size: 14px;
-  margin: 2px;
-  cursor: pointer;
-  border-radius: 12px;
-  transition: background-color 0.5s ease;
-  width: auto;
-  min-width: 100px;
-  height: auto;
-  box-sizing: border-box;
+    background-color: purple;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.5s ease;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    box-sizing: border-box;
 }
 
 #content-container #monster,
@@ -100,12 +131,12 @@ button {
 #content-container #lifeBarText,
 #content-container #hitCount,
 #content-container #flavor-text {
-    background: none; /* Remove any inherited background styles */
-    box-shadow: none; /* Remove any inherited box shadows */
+    background: none;
+    box-shadow: none;
 }
 
 #content-container #monster {
-    width: 100%; /* Responsive width */
+    width: 100%;
     height: 40px;
     background-color: #f0f0f0;
     border-radius: 20px;
@@ -113,7 +144,7 @@ button {
     position: relative;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     border: 2px solid #ccc;
-    margin: 0 auto; /* Center the life bar */
+    margin: 0 auto;
 }
 
 #content-container #lifeBar {
@@ -124,7 +155,7 @@ button {
 }
 
 #content-container #lifeBarGreen {
-    background: linear-gradient(to right, #00b050, #00f050);
+    background: linear-gradient(to right, #f00, #ff0, #0f0);
     height: 100%;
     width: 100%;
     border-radius: 20px;
@@ -148,56 +179,114 @@ button {
     margin-top: 5px;
 }
 
-#content-container .flavor-text {
+#content-container.flavor-text {
     margin-bottom: 10px;
     font-style: italic;
     color: #f0f0f0;
-}
-
-.game-container {
+}.game-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.monster-container {
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}.monster-container {
     width: 350px;
     margin: 30px;
     text-align: center;
-    display: none; /* Hide monsters initially */
-    max-width: 100%; /* Ensure the container fits on a phone screen */
-}
-
-.monster-image {
+    display: none;
+    max-width: 100%;
+    margin-bottom: 20px;
+}.monster-image {
     position: relative;
     margin-bottom: 30px;
-    width: 100%; /* Ensure the image container fits within the monster container */
-    height: auto; /* Flexible height based on aspect ratio */
+    width: 100%;
+    height: auto;
+}.monster-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    animation: glitch 10s infinite linear alternate;
+    transform: rotateY(10deg) scale(1.1);
+    transition: transform 1.3s ease;
+}.monster-image img:hover {
+    transform: rotateY(0deg) scale(1.2);
 }
 
-.monster-image img {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image covers the container without distortion */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(-2px, 2px);
+    }
+
+    50% {
+        transform: translate(2px, -2px);
+    }
+
+    75% {
+        transform: translate(-2px, -2px);
+    }
+
+    100% {
+        transform: translate(2px, 2px);
+    }
 }
 
 #historyContainer {
     max-height: 200px;
     overflow-y: auto;
-    background-color: black; /* Set background color to black */
+    background-color: black;
     border: 1px solid white;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-#attackInputs select,
-#attackInputs input[type="number"] {
-    width: 5ch; /* Set a wider width for the dropdown */
-    background-color: white; /* Set background color to white for all attack inputs */
+#attackInput1, #attackInput2 {
+    width: 2px; /* Adjust the value as needed */
+  }
+
+#attackInputs {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-#attackInputs select.initial,
-#attackInputs input[type="number"].initial {
-    background-color: red; /* Specifically set the initial attack input background color to red */
+#attackInputs input[type="number"] {
+    width: 1ch;
+    background-color: #222;
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 8px;
+    box-shadow: 0 0 5px #0f0;
+    text-align: center;
+    line-height: 1.5em;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* Remove default spinner arrows */
+#attackInputs input[type="number"]::-webkit-inner-spin-button,
+#attackInputs input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Add a subtle animation to the numbers */
+#attackInputs input[type="number"] {
+    animation: diceRoll 3.5s infinite alternate;
+}
+
+@keyframes diceRoll {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
 }

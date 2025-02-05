@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EregoSphere</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap"
-      rel="stylesheet"/>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EregoSphere</title>
+  <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
 <nav id="navbar">
-  <button><a href="index.html">HOME</a></button>
-  <button><a href="refreshments.html">REFRESHMENTS</a></button>
-  <button><a href="MODS.html">MODS</a></button>
-  <button><a href="casino.html">CASINO</a></button>  
-  <button><a href="contracts.html">CONTRACTS</a></button>  
+  <button><a href="index.html">HOME</a></button>
+  <button><a href="refreshments.html">REFRESHMENTS</a></button>
+  <button><a href="MODS.html">MODS</a></button>
+  <button><a href="casino.html">CASINO</a></button>
+  <button><a href="contracts.html">CONTRACTS</a></button>
 </nav>
 
 <hr>
@@ -31,81 +26,106 @@
 <hr>
 
 <main>
-    <div id="snacks">
-      <ul>
-        <li>
-        <h2>Excellent Rated Snacks </h2>
-        <select id="excelentSnack" class="custom-select"></select>
-        <select id="excelentSnack2" class="custom-select"></select>
-        </li>
-        <br>
-        <hr>
-        <li>
-        <h2>Good Rated Snacks </h2>
-        <select id="goodSnack" class="custom-select"></select>
-        <select id="goodSnack2" class="custom-select"></select>
-        </li>
-        <br>
-        <hr>
-        <li>
-        <h2>Poor Rated Snacks </h2>
-        <select id="poorSnack" class="custom-select"></select>
-        <select id="poorSnack2" class="custom-select"></select>
-        </li>
-        <br>
-        <hr>
-        <li>
-        <h2>Bad Rated Snacks </h2>
-        <select id="badSnack" class="custom-select"></select>
-        <select id="badSnack2" class="custom-select"></select>
-        </li>
-        
-      </ul>
-    </div>
-    <br>
-    <div id="drinks">
-      <ul>
-        <li>
-        <h2>Drinks </h2>
-        <select id="drinksList" class="custom-select"></select>
-        <select id="drinksList2" class="custom-select"></select>
-        </li>
-        <br>
-      </ul>
-    </div>
-    <br>
-    <div id="mealMods">
-      <ul>
-        <li>
-        <h2>Meal Mods </h2>
-        <select id="mealModList" class="custom-select"></select>
-        <select id="mealModList2" class="custom-select"></select>
-        </li>
-        <br>
-      </ul>
-    </div>
-<button type="button" class="action-button" onclick="submitSelection()">Submit</button>
-<br>
-<div id="summary" class="summary" onclick="screenshotDiv()"></div>
-<br>
-<button type="button" class="action-button copy-clear" onclick="clearSelection()">Clear</button>
-<button type="button" class="action-button copy-clear" onclick="copySummary()">Copy</button>
-<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+  <div id="snacks">
+    <ul>
+      <li>
+        <h2>Excellent Rated Snacks</h2>
+        <div id="excellentSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Good Rated Snacks</h2>
+        <div id="goodSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Poor Rated Snacks</h2>
+        <div id="poorSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Bad Rated Snacks</h2>
+        <div id="badSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <br>
+  <div id="drinks">
+    <ul>
+      <li>
+        <h2>Drinks</h2>
+        <div id="drinksContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+    </ul>
+  </div>
+  <br>
+  <div id="mealMods">
+    <ul>
+      <li>
+        <h2>Meal Mods</h2>
+        <div id="mealModsContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+    </ul>
+  </div>
+  <button type="button" class="action-button" onclick="submitSelection()">Submit</button>
+  <br>
+  <div id="summary" class="summary" onclick="screenshotDiv()"></div>
+  <br>
+  <button type="button" class="action-button copy-clear" onclick="clearSelection()">Clear</button>
+  <button type="button" class="action-button copy-clear" onclick="copySummary()">Copy</button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </main>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

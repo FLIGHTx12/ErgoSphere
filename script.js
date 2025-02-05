@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   setDateAndTimeInputs();
   populateSelectOptions();
 
-  document.querySelectorAll('.mod .take-screenshot').forEach(button => {
+  document.querySelectorAll('.mod.take-screenshot').forEach(button => {
     button.addEventListener('click', handleScreenshotButtonClick);
   });
 
@@ -23,32 +23,30 @@ function setDateAndTimeInputs() {
   });
 }
 
-const selectIds = [
-  "gameSelect1", "gameSelect2", "gameSelect3", "gameSelect4", "gameSelect5",
-  "excelentSnack", "excelentSnack2", "goodSnack", "goodSnack2",
-  "poorSnack", "poorSnack2", "badSnack", "badSnack2",
-  "drinksList", "drinksList2", "mealModList", "mealModList2"
+const selectContainers = [
+  "excellentSnackContainer", "goodSnackContainer", "poorSnackContainer", "badSnackContainer",
+  "drinksContainer", "mealModsContainer"
 ];
 
 const games = [
-  "Select", "🏸Badminton", "🏀Basketball - 1 game 2-on-2", "🏀Basketball - best of 3 shooting game", "🎳Bowling - 1 special game", 
-  "🎳Bowling - 1 standard game", "Brawlhalla", "Brawlout", "Clash", "Dead or Alive 5", "Destiny 2 Crucible", "Escape Academy",
-  "Fallguys", "Fight Night Champion", "Guilty Gear Strive", "⛳Golf", "Halo Infinite", "Injustice 2", "Killer Instinct",
-  "Killer Instinct 2", "Killer Instinct Classic", "Marvel Vs. Capcom 3", "Marvel Vs. Capcom Infinite", "Mortal Kombat 1",
-  "Mortal Kombat 11", "Mortal Kombat 2011", "Mortal Kombat X", "Nidhogg 2", "⚽Soccer", "Smash Brothers", "Super Street Fighter IV",
-  "Tekken 6", "Tekken 7", "Tekken Tag Tournament 2", "🎾Tennis", "Tetris", "The King Of Fighters XIII", "UFC", "Virtua Fighters 5",
-  "🏐Volleyball"
+  "Select", "🏸Badminton - 0", "🏀Basketball - 1 game 2-on-2 - 0", "🏀Basketball - best of 3 shooting game - 0", "🎳Bowling - 1 special game - 0",
+  "🎳Bowling - 1 standard game - 0", "Brawlhalla - 0", "Brawlout - 0", "Clash - 0", "Dead or Alive 5 - 0", "Destiny 2 Crucible - 0", "Escape Academy - 0",
+  "Fallguys - 0", "Fight Night Champion - 0", "Guilty Gear Strive - 0", "⛳Golf - 0", "Halo Infinite - 0", "Injustice 2 - 0", "Killer Instinct - 0",
+  "Killer Instinct 2 - 0", "Killer Instinct Classic - 0", "Marvel Vs. Capcom 3 - 0", "Marvel Vs. Capcom Infinite - 0", "Mortal Kombat 1 - 0",
+  "Mortal Kombat 11 - 0", "Mortal Kombat 2011 - 0", "Mortal Kombat X - 0", "Nidhogg 2 - 0", "⚽Soccer - 0", "Smash Brothers - 0", "Super Street Fighter IV - 0",
+  "Tekken 6 - 0", "Tekken 7 - 0", "Tekken Tag Tournament 2 - 0", "🎾Tennis - 0", "Tetris - 0", "The King Of Fighters XIII - 0", "UFC - 0", "Virtua Fighters 5 - 0",
+  "🏐Volleyball - 0"
 ];
 
 const excellentSnacks = [
   "Select", "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "🌿Roasted Seaweed - 10💷", "🔺Tortilla Chips (Donkey/El Milagro) - 10💷"
 ];
 const goodSnacks = [
-  "Select", "🍨Breyers Mango Ice cream - 20💷", "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "🍕Jacks Pizza Bois - 20💷", 
+  "Select", "🍨Breyers Mango Ice cream - 20💷", "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "🍕Jacks Pizza Bois - 20💷",
   "🍿Popcorn (Boom chicka/Skinny pop) - 20💷"
 ];
 const poorSnacks = [
-  "Select", "🧀Cheez-it - 30💷", "🐻Chocolate Teddy Graham Snacks - 30💷", "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", 
+  "Select", "🧀Cheez-it - 30💷", "🐻Chocolate Teddy Graham Snacks - 30💷", "🍫Dark Chocolate Covered Almonds/Raisins - 30💷",
   "🧀Simply Cheetos Puffs White Cheddar - 30💷", "🍕Totinos Pizza rolls - 30💷"
 ];
 const badSnacks = [
@@ -59,54 +57,104 @@ const drinks = [
   "Select", "🍺Beer - 50💷", "☕VJ Hot Cocoa 500ml - 20💷", "🥃Mixed Drink 500ml - 100💷", "🍷Wine Glass 500ml - 100💷", "🍾Wine Bottle 750ml - 150💷"
 ];
 const mealMods = [
-  "Select", "🍔Fast Food Cheat Meal - 60💷" , "🍴Lunch Snack - 2💷"
+  "Select", "🍔Fast Food Cheat Meal - 60💷", "🍴Lunch Snack - 2💷"
 ];
 
 const optionsMap = {
-  "gameSelect1": games, "gameSelect2": games, "gameSelect3": games, "gameSelect4": games, "gameSelect5": games,
-  "excelentSnack": excellentSnacks, "excelentSnack2": excellentSnacks, "goodSnack": goodSnacks, "goodSnack2": goodSnacks,
-  "poorSnack": poorSnacks, "poorSnack2": poorSnacks, "badSnack": badSnacks, "badSnack2": badSnacks, "drinksList": drinks,
-  "drinksList2": drinks, "mealModList": mealMods, "mealModList2": mealMods
+  "excellentSnackContainer": excellentSnacks,
+  "goodSnackContainer": goodSnacks,
+  "poorSnackContainer": poorSnacks,
+  "badSnackContainer": badSnacks,
+  "drinksContainer": drinks,
+  "mealModsContainer": mealMods
 };
 
 function populateSelectOptions() {
-  selectIds.forEach(selectId => {
-    const selectElement = document.getElementById(selectId);
-    if (selectElement) {
-      const optionsArray = optionsMap[selectId];
-      optionsArray.forEach((optionText) => {
-        const option = document.createElement("option");
-        option.value = optionText.split('- ')[1]?.slice(0, -1) || 0; // Corrected missing )
-        option.text = optionText;
-        selectElement.appendChild(option);
+  selectContainers.forEach(selectContainerId => {
+    const selectContainer = document.getElementById(selectContainerId);
+    if (selectContainer) { // Add this check
+      const selectElement = selectContainer.querySelector('.custom-select');
+      if (selectElement) {
+        const optionsArray = optionsMap[selectContainerId];
+        optionsArray.forEach((optionText) => {
+          const option = document.createElement("option");
+          const match = optionText.match(/(\d+)💷/);
+          option.value = match ? match[1] : 0;
+          option.text = optionText;
+          selectElement.appendChild(option);
+        });
+      }
+    }
+  });
+}
+
+// Add event listeners to the "+" buttons
+selectContainers.forEach(selectContainerId => {
+  const selectContainer = document.getElementById(selectContainerId);
+  if (selectContainer) { // Add this check
+    const addButton = selectContainer.querySelector('.add-button');
+    if (addButton) {
+      addButton.addEventListener('click', () => {
+        addNewSelection(selectContainerId);
       });
     }
+  }
+});
+
+function addNewSelection(selectContainerId) {
+  const selectContainer = document.getElementById(selectContainerId);
+  if (selectContainer) { // Add this check
+    const addButton = selectContainer.querySelector('.add-button');
+    if (addButton) {
+      const newSelect = document.createElement('select');
+      newSelect.classList.add('custom-select');
+      const newQuantityInput = document.createElement('input');
+      newQuantityInput.type = 'number';
+      newQuantityInput.classList.add('quantity-input');
+      newQuantityInput.value = 1;
+      newQuantityInput.min = 0;
+      selectContainer.insertBefore(newSelect, addButton);
+      selectContainer.insertBefore(newQuantityInput, addButton);
+      populateSelect(newSelect, optionsMap[selectContainerId]);
+    }
+  }
+}
+
+function populateSelect(selectElement, optionsArray) {
+  optionsArray.forEach((optionText) => {
+    const option = document.createElement("option");
+    const match = optionText.match(/(\d+)💷/);
+    option.value = match ? match[1] : 0;
+    option.text = optionText;
+    selectElement.appendChild(option);
   });
 }
 
 function handleScreenshotButtonClick(event) {
   const modDiv = event.target.closest('.mod');
-  const selectedOptions = modDiv.querySelectorAll('.custom-select');
+  if (modDiv) { // Add this check
+    const selectedOptions = modDiv.querySelectorAll('.custom-select');
 
-  // Temporarily hide non-selected options
-  selectedOptions.forEach(select => {
-    Array.from(select.options).forEach(option => {
-      if (!option.selected && option.value !== '0') {
-        option.style.display = 'none';
-      }
-    });
-  });
-
-  animateClick(modDiv);
-
-  captureScreenshot(modDiv).finally(() => {
-    // Restore all options
+    // Temporarily hide non-selected options
     selectedOptions.forEach(select => {
       Array.from(select.options).forEach(option => {
-        option.style.display = '';
+        if (!option.selected && option.value !== '0') {
+          option.style.display = 'none';
+        }
       });
     });
-  });
+
+    animateClick(modDiv);
+
+    captureScreenshot(modDiv).finally(() => {
+      // Restore all options
+      selectedOptions.forEach(select => {
+        Array.from(select.options).forEach(option => {
+          option.style.display = '';
+        });
+      });
+    });
+  }
 }
 
 function animateClick(element) {
@@ -134,18 +182,27 @@ function submitSelection() {
   let selectedItems = [];
   let totalValue = 0;
 
-  selectIds.forEach(selectId => {
-    const selectElement = document.getElementById(selectId);
-    if (selectElement && selectElement.value !== '0') {
-      selectedItems.push(selectElement.options[selectElement.selectedIndex].text);
-      totalValue += parseInt(selectElement.value, 10);
+  selectContainers.forEach(selectContainerId => {
+    const selectContainer = document.getElementById(selectContainerId);
+    if (selectContainer) { // Add this check
+      const selectElements = selectContainer.querySelectorAll('.custom-select');
+      const quantityInputs = selectContainer.querySelectorAll('.quantity-input');
+
+      selectElements.forEach((selectElement, index) => {
+        const quantity = parseInt(quantityInputs[index].value, 10);
+        if (selectElement.value !== '0' && selectElement.value !== 'Select') {
+          const itemName = selectElement.options[selectElement.selectedIndex].text;
+          selectedItems.push(itemName + ' x ' + quantity);
+          totalValue += parseInt(selectElement.value, 10) * quantity;
+        }
+      });
     }
   });
 
   document.getElementById('summary').innerHTML = `
-    <h2>Receipt:</h2>
-    <ul>${selectedItems.map(item => `<li>${item}</li>`).join('')}</ul>
-    <p>Total: ${totalValue} 💷</p>
+      <h2>Receipt:</h2>
+      <ul>${selectedItems.map(item => `<li>${item}</li>`).join('')}</ul>
+      <p>Total: ${totalValue} 💷</p>
   `;
 
   document.getElementById('summary').style.display = 'block';
@@ -207,7 +264,7 @@ function addGlobalEventListeners() {
   });
 
   const pages = [
-    "index.html", "refreshments.html", "MODS.html", 
+    "index.html", "refreshments.html", "MODS.html",
     "casino.html", "contracts.html"
   ];
 
@@ -225,7 +282,7 @@ function addGlobalEventListeners() {
     document.body.classList.add('page-transition');
     const currentPage = window.location.pathname.split("/").pop();
     const currentIndex = pages.indexOf(currentPage);
-    
+
     setTimeout(() => {
       if (touchendX < touchstartX) {
         window.location.href = pages[(currentIndex + 1) % pages.length];
