@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ErgoSphere Sportsbook</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="casino.css">
+    <style>
+        .bet-entry {
+            max-width: 80%;
+        }
+    </style>
 </head>
 <body>
 <nav id="navbar">
@@ -36,6 +41,8 @@
             <select id="awayTeam"></select>
             <label for="homeTeam">Select Home Team:</label>
             <select id="homeTeam"></select>
+            
+            <hr>
 
             <div class="bet-entry">
                 <label for="category1">Category:</label>
@@ -43,9 +50,7 @@
                     <option value="">Select Category</option>
                 </select>
                 <label for="line1">Bet Line:</label>
-                <select id="line1">
-                    <option value="">Select Line</option>
-                </select>
+                <select id="line1"></select>
                 <label for="player1">Player (if applicable):</label>
                 <select id="player1">
                     <option value="">Select Player</option>
@@ -57,9 +62,7 @@
                     <option value="">Select Category</option>
                 </select>
                 <label for="line2">Bet Line:</label>
-                <select id="line2">
-                    <option value="">Select Line</option>
-                </select>
+                <select id="line2"></select>
                 <label for="player2">Player (if applicable):</label>
                 <select id="player2">
                     <option value="">Select Player</option>
@@ -71,9 +74,7 @@
                     <option value="">Select Category</option>
                 </select>
                 <label for="line3">Bet Line:</label>
-                <select id="line3">
-                    <option value="">Select Line</option>
-                </select>
+                <select id="line3"></select>
                 <label for="player3">Player (if applicable):</label>
                 <select id="player3">
                     <option value="">Select Player</option>
@@ -81,12 +82,12 @@
             </div>
         </div>
 
-        <button onclick="submitBets()">Submit Bets</button>
+ <button onclick="submitBets()">Submit Bets</button>
+    </div> <!-- Add the closing tag for the #betting-system div here -->
 
-        <div id="receipt">
-            <h2>Bet Receipt</h2>
-            <pre id="receipt-content"></pre>
-        </div>
+    <div id="receipt">
+        <h2>Bet Receipt</h2>
+        <div id="receipt-content"></div>
     </div>
 </main>
 
