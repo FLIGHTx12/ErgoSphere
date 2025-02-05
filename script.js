@@ -3,10 +3,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   populateSelectOptions();
 
   document.querySelectorAll('.mod.take-screenshot').forEach(button => {
-    button.addEventListener('click', handleScreenshotButtonClick);
+      button.addEventListener('click', handleScreenshotButtonClick);
   });
 
   addGlobalEventListeners();
+
+  // Add event listener to the summary div to take a screenshot when clicked
+  const summaryDiv = document.getElementById('summary');
+  if (summaryDiv) {
+      summaryDiv.addEventListener('click', screenshotDiv);
+  }
 });
 
 function setDateAndTimeInputs() {
@@ -15,11 +21,11 @@ function setDateAndTimeInputs() {
   const formattedTime = currentDate.toTimeString().substr(0, 5);
 
   document.querySelectorAll('input[type="date"]').forEach(dateInput => {
-    dateInput.value = formattedDate;
+      dateInput.value = formattedDate;
   });
 
   document.querySelectorAll('input[type="time"]').forEach(timeInput => {
-    timeInput.value = formattedTime;
+      timeInput.value = formattedTime;
   });
 }
 
@@ -71,110 +77,110 @@ const optionsMap = {
 
 function populateSelectOptions() {
   selectContainers.forEach(selectContainerId => {
-    const selectContainer = document.getElementById(selectContainerId);
-    if (selectContainer) { // Add this check
-      const selectElement = selectContainer.querySelector('.custom-select');
-      if (selectElement) {
-        const optionsArray = optionsMap[selectContainerId];
-        optionsArray.forEach((optionText) => {
-          const option = document.createElement("option");
-          const match = optionText.match(/(\d+)💷/);
-          option.value = match ? match[1] : 0;
-          option.text = optionText;
-          selectElement.appendChild(option);
-        });
+      const selectContainer = document.getElementById(selectContainerId);
+      if (selectContainer) {
+          const selectElement = selectContainer.querySelector('.custom-select');
+          if (selectElement) {
+              const optionsArray = optionsMap[selectContainerId];
+              optionsArray.forEach((optionText) => {
+                  const option = document.createElement("option");
+                  const match = optionText.match(/(\d+)💷/);
+                  option.value = match ? match[1] : 0;
+                  option.text = optionText;
+                  selectElement.appendChild(option);
+              });
+          }
       }
-    }
   });
 }
 
 // Add event listeners to the "+" buttons
 selectContainers.forEach(selectContainerId => {
   const selectContainer = document.getElementById(selectContainerId);
-  if (selectContainer) { // Add this check
-    const addButton = selectContainer.querySelector('.add-button');
-    if (addButton) {
-      addButton.addEventListener('click', () => {
-        addNewSelection(selectContainerId);
-      });
-    }
+  if (selectContainer) {
+      const addButton = selectContainer.querySelector('.add-button');
+      if (addButton) {
+          addButton.addEventListener('click', () => {
+              addNewSelection(selectContainerId);
+          });
+      }
   }
 });
 
 function addNewSelection(selectContainerId) {
   const selectContainer = document.getElementById(selectContainerId);
-  if (selectContainer) { // Add this check
-    const addButton = selectContainer.querySelector('.add-button');
-    if (addButton) {
-      const newSelect = document.createElement('select');
-      newSelect.classList.add('custom-select');
-      const newQuantityInput = document.createElement('input');
-      newQuantityInput.type = 'number';
-      newQuantityInput.classList.add('quantity-input');
-      newQuantityInput.value = 1;
-      newQuantityInput.min = 0;
-      selectContainer.insertBefore(newSelect, addButton);
-      selectContainer.insertBefore(newQuantityInput, addButton);
-      populateSelect(newSelect, optionsMap[selectContainerId]);
-    }
+  if (selectContainer) {
+      const addButton = selectContainer.querySelector('.add-button');
+      if (addButton) {
+          const newSelect = document.createElement('select');
+          newSelect.classList.add('custom-select');
+          const newQuantityInput = document.createElement('input');
+          newQuantityInput.type = 'number';
+          newQuantityInput.classList.add('quantity-input');
+          newQuantityInput.value = 1;
+          newQuantityInput.min = 0;
+          selectContainer.insertBefore(newSelect, addButton);
+          selectContainer.insertBefore(newQuantityInput, addButton);
+          populateSelect(newSelect, optionsMap[selectContainerId]);
+      }
   }
 }
 
 function populateSelect(selectElement, optionsArray) {
   optionsArray.forEach((optionText) => {
-    const option = document.createElement("option");
-    const match = optionText.match(/(\d+)💷/);
-    option.value = match ? match[1] : 0;
-    option.text = optionText;
-    selectElement.appendChild(option);
+      const option = document.createElement("option");
+      const match = optionText.match(/(\d+)💷/);
+      option.value = match ? match[1] : 0;
+      option.text = optionText;
+      selectElement.appendChild(option);
   });
 }
 
 function handleScreenshotButtonClick(event) {
   const modDiv = event.target.closest('.mod');
-  if (modDiv) { // Add this check
-    const selectedOptions = modDiv.querySelectorAll('.custom-select');
+  if (modDiv) {
+      const selectedOptions = modDiv.querySelectorAll('.custom-select');
 
-    // Temporarily hide non-selected options
-    selectedOptions.forEach(select => {
-      Array.from(select.options).forEach(option => {
-        if (!option.selected && option.value !== '0') {
-          option.style.display = 'none';
-        }
-      });
-    });
-
-    animateClick(modDiv);
-
-    captureScreenshot(modDiv).finally(() => {
-      // Restore all options
+      // Temporarily hide non-selected options
       selectedOptions.forEach(select => {
-        Array.from(select.options).forEach(option => {
-          option.style.display = '';
-        });
+          Array.from(select.options).forEach(option => {
+              if (!option.selected && option.value !== '0') {
+                  option.style.display = 'none';
+              }
+          });
       });
-    });
+
+      animateClick(modDiv);
+
+      captureScreenshot(modDiv).finally(() => {
+          // Restore all options
+          selectedOptions.forEach(select => {
+              Array.from(select.options).forEach(option => {
+                  option.style.display = '';
+              });
+          });
+      });
   }
 }
 
 function animateClick(element) {
   element.classList.add('clicked');
   setTimeout(() => {
-    element.classList.remove('clicked');
+      element.classList.remove('clicked');
   }, 300);
 }
 
 function captureScreenshot(element) {
   return html2canvas(element).then(canvas => {
-    return canvas.toBlob(blob => {
-      return navigator.clipboard.write([
-        new ClipboardItem({ 'image/png': blob })
-      ]);
-    });
+      return canvas.toBlob(blob => {
+          return navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+          ]);
+      });
   }).then(() => {
-    alert('Selected options screenshot copied to clipboard!');
+      alert('Selected options screenshot copied to clipboard!');
   }).catch(err => {
-    console.error('Failed to capture screenshot:', err);
+      console.error('Failed to capture screenshot:', err);
   });
 }
 
@@ -183,20 +189,20 @@ function submitSelection() {
   let totalValue = 0;
 
   selectContainers.forEach(selectContainerId => {
-    const selectContainer = document.getElementById(selectContainerId);
-    if (selectContainer) { // Add this check
-      const selectElements = selectContainer.querySelectorAll('.custom-select');
-      const quantityInputs = selectContainer.querySelectorAll('.quantity-input');
+      const selectContainer = document.getElementById(selectContainerId);
+      if (selectContainer) {
+          const selectElements = selectContainer.querySelectorAll('.custom-select');
+          const quantityInputs = selectContainer.querySelectorAll('.quantity-input');
 
-      selectElements.forEach((selectElement, index) => {
-        const quantity = parseInt(quantityInputs[index].value, 10);
-        if (selectElement.value !== '0' && selectElement.value !== 'Select') {
-          const itemName = selectElement.options[selectElement.selectedIndex].text;
-          selectedItems.push(itemName + ' x ' + quantity);
-          totalValue += parseInt(selectElement.value, 10) * quantity;
-        }
-      });
-    }
+          selectElements.forEach((selectElement, index) => {
+              const quantity = parseInt(quantityInputs[index].value, 10);
+              if (selectElement.value !== '0' && selectElement.value !== 'Select') {
+                  const itemName = selectElement.options[selectElement.selectedIndex].text;
+                  selectedItems.push(itemName + ' x ' + quantity);
+                  totalValue += parseInt(selectElement.value, 10) * quantity;
+              }
+          });
+      }
   });
 
   document.getElementById('summary').innerHTML = `
@@ -207,7 +213,7 @@ function submitSelection() {
 
   document.getElementById('summary').style.display = 'block';
   document.querySelectorAll('.action-button.copy-clear').forEach(button => {
-    button.style.display = 'inline-block';
+      button.style.display = 'inline-block';
   });
 }
 
@@ -223,29 +229,30 @@ function copySummary() {
   window.getSelection().addRange(range);
 
   try {
-    document.execCommand('copy');
-    alert('Summary copied to clipboard!');
+      document.execCommand('copy');
+      alert('Summary copied to clipboard!');
   } catch (err) {
-    console.error('Failed to copy:', err);
+      console.error('Failed to copy:', err);
   }
 
   window.getSelection().removeAllRanges();
 }
 
 function screenshotDiv() {
+  console.log("screenshotDiv function called!"); // Debugging line: Check if function is called
   const summary = document.querySelector("#summary");
   html2canvas(summary).then(canvas => {
-    canvas.toBlob(blob => {
-      navigator.clipboard.write([
-        new ClipboardItem({
-          'image/png': blob
-        })
-      ]).then(() => {
-        alert('Screenshot copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy:', err);
+      canvas.toBlob(blob => {
+          navigator.clipboard.write([
+              new ClipboardItem({
+                  'image/png': blob
+              })
+          ]).then(() => {
+              alert('Screenshot copied to clipboard!');
+          }).catch(err => {
+              console.error('Failed to copy:', err);
+          });
       });
-    });
   });
 }
 
@@ -254,18 +261,18 @@ function addGlobalEventListeners() {
   const navbar = document.getElementById('navbar');
 
   window.addEventListener('scroll', function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) {
-      navbar.classList.add('hidden');
-    } else {
-      navbar.classList.remove('hidden');
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+          navbar.classList.add('hidden');
+      } else {
+          navbar.classList.remove('hidden');
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
 
   const pages = [
-    "index.html", "refreshments.html", "MODS.html",
-    "casino.html", "contracts.html"
+      "index.html", "refreshments.html", "MODS.html",
+      "casino.html", "contracts.html"
   ];
 
   let touchstartX = 0;
@@ -275,31 +282,31 @@ function addGlobalEventListeners() {
   const minSwipeDistance = 100;
 
   function handleGesture() {
-    const horizontalSwipe = Math.abs(touchendX - touchstartX) > Math.abs(touchendY - touchstartY);
-    const swipeDistance = Math.abs(touchendX - touchstartX);
-    if (!horizontalSwipe || swipeDistance < minSwipeDistance) return;
+      const horizontalSwipe = Math.abs(touchendX - touchstartX) > Math.abs(touchendY - touchstartY);
+      const swipeDistance = Math.abs(touchendX - touchstartX);
+      if (!horizontalSwipe || swipeDistance < minSwipeDistance) return;
 
-    document.body.classList.add('page-transition');
-    const currentPage = window.location.pathname.split("/").pop();
-    const currentIndex = pages.indexOf(currentPage);
+      document.body.classList.add('page-transition');
+      const currentPage = window.location.pathname.split("/").pop();
+      const currentIndex = pages.indexOf(currentPage);
 
-    setTimeout(() => {
-      if (touchendX < touchstartX) {
-        window.location.href = pages[(currentIndex + 1) % pages.length];
-      } else if (touchendX > touchstartX) {
-        window.location.href = pages[(currentIndex - 1 + pages.length) % pages.length];
-      }
-    }, 300);
+      setTimeout(() => {
+          if (touchendX < touchstartX) {
+              window.location.href = pages[(currentIndex + 1) % pages.length];
+          } else if (touchendX > touchstartX) {
+              window.location.href = pages[(currentIndex - 1 + pages.length) % pages.length];
+          }
+      }, 300);
   }
 
   document.addEventListener('touchstart', e => {
-    touchstartX = e.changedTouches[0].screenX;
-    touchstartY = e.changedTouches[0].screenY;
+      touchstartX = e.changedTouches[0].screenX;
+      touchstartY = e.changedTouches[0].screenY;
   });
 
   document.addEventListener('touchend', e => {
-    touchendX = e.changedTouches[0].screenX;
-    touchendY = e.changedTouches[0].screenY;
-    handleGesture();
+      touchendX = e.changedTouches[0].screenX;
+      touchendY = e.changedTouches[0].screenY;
+      handleGesture();
   });
 }

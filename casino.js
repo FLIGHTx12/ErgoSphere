@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const selectElements = document.querySelectorAll('select');
+    const receiptDiv = document.getElementById('receipt');
+
+    if (receiptDiv) {
+        receiptDiv.addEventListener('click', screenshotDiv);
+    }
+});
+
+
 const teams = {
     nfl: [
       " 📯Minnesota Vikings", "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills", 
@@ -427,11 +437,13 @@ function updateLines(betNum) {  // This function was missing
     }
 }
 
+
+
 function submitBets() {
     const league = document.getElementById("league").value;
     const awayTeam = document.getElementById("awayTeam").value;
     const homeTeam = document.getElementById("homeTeam").value;
-    const bets = [];
+    let bets = [];
     let totalCost = 0;
 
     for (let i = 1; i <= 3; i++) {
@@ -442,22 +454,70 @@ function submitBets() {
 
         if (line) {
             const [cost] = line.split('/');
-            totalCost += parseInt(cost);
+            totalCost += parseInt(cost, 10);
             bets.push({ line, lineText, player: player || 'N/A' });
         }
     }
 
-    if (league && awayTeam && homeTeam && bets.length === 3) {
+    if (league && awayTeam && homeTeam && bets.length > 0) {
         const receiptContent = `
         <div class="matchup">
           ${awayTeam} @ ${homeTeam}
         </div>
-        <div class="divider"></div>
         ${bets.map(bet => `<div class="bet-line">(${bet.line}) ${bet.lineText}: ${bet.player !== 'N/A' ? `${bet.player}` : ''}</div>`).join("")}
-        <div class="wager-total">Wager: ${totalCost}</div>
+        <div class="wager-total">Wager: ${totalCost} 💷</div>
         `;
         document.getElementById("receipt-content").innerHTML = receiptContent;
     } else {
-        alert("Please complete all selections before submitting.");
+        alert("Please complete at least one bet before submitting.");
     }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const receiptDiv = document.getElementById('receipt');
+    
+    if (receiptDiv) {
+        receiptDiv.addEventListener('click', captureReceiptScreenshot);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const receiptDiv = document.getElementById('receipt');
+    
+    if (receiptDiv) {
+        receiptDiv.addEventListener('click', captureReceiptScreenshot);
+    }
+});
+
+function captureReceiptScreenshot() {
+    const receiptElement = document.getElementById('receipt');
+
+    html2canvas(receiptElement).then(canvas => {
+        canvas.toBlob(blob => {
+            navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+            ]).then(() => {
+                alert('Receipt screenshot copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        });
+    });
+}
+
+function screenshotDiv() {
+    const summary = document.querySelector("#summary"); // Make sure you have an element with id "summary"
+    html2canvas(summary).then(canvas => {
+        canvas.toBlob(blob => {
+            navigator.clipboard.write([
+                new ClipboardItem({
+                    'image/png': blob
+                })
+            ]).then(() => {
+                alert('Screenshot copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        });
+    });
+}
 }
