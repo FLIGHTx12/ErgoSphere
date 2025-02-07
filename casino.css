@@ -195,6 +195,7 @@ body {
       border-radius: 10px;
       padding: 20px;
       margin-top: 20px;
+      max-width: 900px;
   }
   
   .bet-entry {
@@ -222,7 +223,8 @@ body {
       margin-top: 20px;
       background-color: black; /* Added to ensure background is black */
       color: white; /* Added to ensure text is white */
-      width: auto;
+      width: ;
+      max-width: 500px;
   }
   
   #receipt h2 {
@@ -248,6 +250,7 @@ body {
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
+      max-width: 800px;
   }
   
   #receipt .wager-total {
@@ -256,6 +259,7 @@ body {
       margin-top: 10px;
       text-align: right;
       color: #FFD700;
+      
   }
   
     #receipt:active {
