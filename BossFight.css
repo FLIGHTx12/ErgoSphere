@@ -14,6 +14,17 @@ body.page-transition {
     transform: translateX(-100%);
 }
 
+@keyframes zoomInOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+body {
+  animation: pan-body 50s linear infinite;
+}
+
+
 button {
     background-color: purple;
     color: black;
@@ -148,14 +159,14 @@ button:focus {
 }
 
 #content-container #lifeBar {
-    background-color: #c00000;
+    background-color: #473a3a;
     height: 100%;
     width: 100%;
     border-radius: 20px;
 }
 
 #content-container #lifeBarGreen {
-    background: linear-gradient(to right, #f00, #ff0, #0f0);
+    background: linear-gradient(to right, rgb(88, 129, 206), rgb(14, 32, 133), rgb(1, 14, 70));
     height: 100%;
     width: 100%;
     border-radius: 20px;
@@ -177,17 +188,22 @@ button:focus {
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 2.5);
     margin-top: 5px;
+    
 }
+
+
 
 #content-container.flavor-text {
     margin-bottom: 10px;
     font-style: italic;
     color: #f0f0f0;
+    border: #0f0 2px solid;
 }.game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    
 }.monster-container {
     width: 350px;
     margin: 30px;
@@ -195,42 +211,18 @@ button:focus {
     display: none;
     max-width: 100%;
     margin-bottom: 20px;
+    
 }.monster-image {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: -30px;
     width: 100%;
     height: auto;
 }.monster-image img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    animation: glitch 10s infinite linear alternate;
-    transform: rotateY(10deg) scale(1.1);
-    transition: transform 1.3s ease;
-}.monster-image img:hover {
-    transform: rotateY(0deg) scale(1.2);
-}
-
-@keyframes glitch {
-    0% {
-        transform: translate(0);
-    }
-
-    25% {
-        transform: translate(-2px, 2px);
-    }
-
-    50% {
-        transform: translate(2px, -2px);
-    }
-
-    75% {
-        transform: translate(-2px, -2px);
-    }
-
-    100% {
-        transform: translate(2px, 2px);
-    }
+    z-index: -100;
+    border: rgb(13, 19, 13) 3px solid;
 }
 
 #historyContainer {
@@ -238,13 +230,13 @@ button:focus {
     overflow-y: auto;
     background-color: black;
     border: 1px solid white;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 #attackInput1, #attackInput2 {
-    width: 2px; /* Adjust the value as needed */
+    width: 100px; /* Adjust the value as needed */
   }
 
 #attackInputs {
@@ -269,15 +261,42 @@ button:focus {
     -moz-appearance: textfield;
 }
 
-/* Remove default spinner arrows */
-#attackInputs input[type="number"]::-webkit-inner-spin-button,
-#attackInputs input[type="number"]::-webkit-outer-spin-button {
+#attackInputs {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 30px;
+    
+    
+}
+
+/* Target the number inputs more specifically */
+#attackInputs > div > input[type="number"] {
+    width: 1ch;
+    background-color: #222;
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 8px;
+    box-shadow: 0 0 5px #0f0;
+    text-align: center;
+    line-height: 1.5em;
+    /* Use appearance: none; for wider browser compatibility */
+    appearance: none; 
+    -moz-appearance: textfield; /* For Firefox */
+}
+
+/* Remove default spinner arrows (more specific selector) */
+#attackInputs > div > input[type="number"]::-webkit-inner-spin-button,
+#attackInputs > div > input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-/* Add a subtle animation to the numbers */
-#attackInputs input[type="number"] {
+/* Add a subtle animation to the numbers (more specific selector) */
+#attackInputs > div > input[type="number"] {
     animation: diceRoll 3.5s infinite alternate;
 }
 
@@ -285,7 +304,6 @@ button:focus {
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(5deg);
     }
