@@ -8,6 +8,12 @@ body {
     background-attachment: fixed;
     transition: transform 0.3s ease-in-out;
     font-family: 'Courier New', Courier, monospace;
+    animation: pan-body 550s linear infinite;
+}
+
+@keyframes pan-body {
+  from { background-position: 0 0; }
+  to { background-position: -500px 0; } /* Adjust value as needed */
 }
 
 body.page-transition {
@@ -19,11 +25,6 @@ body.page-transition {
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
-
-body {
-  animation: pan-body 50s linear infinite;
-}
-
 
 button {
     background-color: purple;
@@ -46,7 +47,7 @@ button {
 }
 
 button:hover {
-    box-shadow: 0 0 15px #0f0;
+    box-shadow: 0 0 35px #0f0;
     transform: scale(1.05);
 }
 
@@ -122,6 +123,7 @@ button:focus {
 
 #navbar button {
     background-color: purple;
+    background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
     color: white;
     text-align: center;
     display: inline-block;
@@ -148,7 +150,7 @@ button:focus {
 
 #content-container #monster {
     width: 100%;
-    height: 40px;
+    height: 20px;
     background-color: #f0f0f0;
     border-radius: 20px;
     overflow: hidden;
@@ -205,6 +207,7 @@ button:focus {
     height: 100vh;
     
 }.monster-container {
+    position: relative;
     width: 350px;
     margin: 30px;
     text-align: center;
@@ -214,26 +217,56 @@ button:focus {
     
 }.monster-image {
     position: relative;
-    margin-bottom: -30px;
+    object-fit: cover;
+    margin-bottom: -1px;
     width: 100%;
     height: auto;
 }.monster-image img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    z-index: -100;
+    z-index: 1;
     border: rgb(13, 19, 13) 3px solid;
 }
 
 #historyContainer {
-    max-height: 200px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: 400px;
     overflow-y: auto;
-    background-color: black;
     border: 1px solid white;
     padding: 0px;
-    margin-top: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     margin-bottom: 30px;
 }
+
+.attack-button {
+    position: absolute;
+    bottom: 10px;
+    height: 25px;
+    transform: translateX(-50%);
+    font-weight: bold;
+    background-color: #000000; /* Default color */
+    font-size: small;
+    color: rgb(223, 27, 27);
+    text-decoration:overline;
+    border: 2px solid rgb(152, 177, 152);
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.attack-button:hover {
+    transform: translateX(-50%);
+    /* Keep additional properties consistent */
+}
+
+
 
 #attackInput1, #attackInput2 {
     width: 100px; /* Adjust the value as needed */
@@ -246,9 +279,9 @@ button:focus {
 }
 
 #attackInputs input[type="number"] {
-    width: 1ch;
+    width: 2ch;
     background-color: #222;
-    color: #0f0;
+    color: rgb(0, 0, 0);
     border: 2px solid #0f0;
     border-radius: 10px;
     font-size: 30px;
@@ -266,6 +299,7 @@ button:focus {
     justify-content: center;
     margin-top: 20px;
     font-size: 30px;
+    color: rgb(209, 180, 180);
     
     
 }
@@ -274,8 +308,8 @@ button:focus {
 #attackInputs > div > input[type="number"] {
     width: 1ch;
     background-color: #222;
-    color: #0f0;
-    border: 2px solid #0f0;
+    color: rgb(206, 188, 188);
+    border: 2px solid rgb(184, 168, 168);
     border-radius: 10px;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
@@ -307,4 +341,41 @@ button:focus {
     100% {
         transform: rotate(5deg);
     }
+}
+
+#attackContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Optional: adjust spacing between the button and inputs */
+}
+
+#removeAttackButton {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: large;
+    text-align: center;
+    margin: 5px 0;
+    padding: auto;
+    border: 2px solid rgb(243, 247, 243);
+    box-shadow: 0 0 30px rgb(17, 172, 56);
+    border-radius: 10px;
+}
+
+#removeAttackButton:hover {
+    box-shadow: 0 0 35px #f00;
+    transform: scale(1.05);
+}
+
+#removeAttackButton:focus {
+    outline: none;
+    box-shadow: 0 0 20px #f00;
+}
+
+@media (min-width: 1200px) {
+  .game-container {
+    transform: scale(1.5);
+    transform-origin: top center;
+  }
 }

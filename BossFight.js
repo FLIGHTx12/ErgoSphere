@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: "PURSCERx17",
         attackType: "C",
         health: 400,
-        hitNumbers: [16, 1, 8, 12, 5],
+        hitNumbers: [17, 1, 8, 12, 5],
         imageSrc: "https://i.ibb.co/mFDZz1p3/PURSCERx17-Ergo-Villian.jpg",
         defeatedImageSrc: "https://i.ibb.co/mFDZz1p3/PURSCERx17-Ergo-Villian.jpg",
       },
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "https://i.ibb.co/j9PBJZdy/Dulguun-Bolor-Ergo-Villian.jpg",
       },
       {
-        name: "Dulguun Bolor",
+        name: "Bennu",
         attackType: "",
         health: 400,
         hitNumbers: [11, 14, 4, 1, 12],
@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const gameContainer = document.querySelector(".game-container");
     const monsterButtonsContainer = document.getElementById("monsterButtons");
+    const navbar = document.getElementById("navbar");
     let currentPlayer = 1;
   
     if (!document.getElementById("chooseOpponentBtn")) {
@@ -78,6 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
       chooseOpponentBtn.id = "chooseOpponentBtn";
       chooseOpponentBtn.textContent = "Choose Opponent";
       monsterButtonsContainer.appendChild(chooseOpponentBtn);
+  
+      const addAttackButton = document.createElement("button");
+      addAttackButton.id = "addAttackButton";
+      addAttackButton.textContent = "Add Attack";
+      navbar.appendChild(addAttackButton);
+  
+      const removeAttackButton = document.createElement("button");
+      removeAttackButton.id = "removeAttackButton";
+      removeAttackButton.textContent = "Remove Attack";
+      navbar.appendChild(removeAttackButton);
   
       const monsterDropdown = document.createElement("select");
       monsterDropdown.id = "monsterDropdown";
@@ -120,9 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
         container2.id = "attackInputs2";
         container2.style.display = "none"; // initially hide FLIGHTx12!'s inputs
   
-        const addAttackButton = document.createElement("button");
-        addAttackButton.id = "addAttackButton";
-        addAttackButton.textContent = "Add Attack";
         const attackButtonContainer = document.createElement("div");
         attackButtonContainer.classList.add("attack-button-container"); // Container for the button
         const attackButton = document.createElement("button");
@@ -155,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
         monsterImage.appendChild(image);
         monsterContainer.appendChild(container1);
         monsterContainer.appendChild(container2);
-        monsterContainer.appendChild(addAttackButton);
         monsterContainer.appendChild(historyContainer);
   
         let monsterLife = monster.health;
@@ -188,6 +195,14 @@ document.addEventListener("DOMContentLoaded", () => {
             input.max = "20";
             currentContainer.appendChild(input);
             numAttacks[currentPlayer]++;
+          }
+        });
+  
+        removeAttackButton.addEventListener("click", () => {
+          const currentContainer = currentPlayer === 1 ? container1 : container2;
+          if (currentContainer.children.length > 1) {
+            currentContainer.removeChild(currentContainer.lastChild);
+            numAttacks[currentPlayer]--;
           }
         });
   
@@ -265,10 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
     if (player === 1) {
       attackButton.style.backgroundColor = "purple";
-      attackButton.style.color = "purple";
+      attackButton.style.color = "white";
     } else {
       attackButton.style.backgroundColor = "green";
-      attackButton.style.color = "green";
+      attackButton.style.color = "white";
     }
   }
-  

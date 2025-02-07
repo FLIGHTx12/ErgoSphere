@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (receiptDiv) {
         receiptDiv.addEventListener('click', screenshotDiv);
     }
+    const receiptContent = document.getElementById('receipt-content');
+    if (receiptContent) {
+        receiptContent.addEventListener('click', captureReceiptContentScreenshot);
+    }
 });
 
 
@@ -486,6 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (receiptDiv) {
         receiptDiv.addEventListener('click', captureReceiptScreenshot);
     }
+    const receiptContent = document.getElementById('receipt-content');
+    if (receiptContent) {
+        receiptContent.addEventListener('click', captureReceiptContentScreenshot);
+    }
 });
 
 function captureReceiptScreenshot() {
@@ -499,6 +507,21 @@ function captureReceiptScreenshot() {
                 alert('Receipt screenshot copied to clipboard!');
             }).catch(err => {
                 console.error('Failed to copy:', err);
+            });
+        });
+    });
+}
+
+function captureReceiptContentScreenshot() {
+    const receiptContent = document.getElementById('receipt-content');
+    html2canvas(receiptContent).then(canvas => {
+        canvas.toBlob(blob => {
+            navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+            ]).then(() => {
+                alert('Screenshot of receipt content copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy screenshot:', err);
             });
         });
     });
