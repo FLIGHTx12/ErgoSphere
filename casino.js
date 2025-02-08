@@ -512,35 +512,20 @@ function captureReceiptScreenshot() {
     });
 }
 
-function captureReceiptContentScreenshot() {
-    const receiptContent = document.getElementById('receipt-content');
-    html2canvas(receiptContent).then(canvas => {
-        canvas.toBlob(blob => {
-            navigator.clipboard.write([
-                new ClipboardItem({ 'image/png': blob })
-            ]).then(() => {
-                alert('Screenshot of receipt content copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy screenshot:', err);
-            });
-        });
-    });
-}
+
 
 function screenshotDiv() {
-    const summary = document.querySelector("#summary"); // Make sure you have an element with id "summary"
+    const summary = document.getElementById('receipt');
     html2canvas(summary).then(canvas => {
-        canvas.toBlob(blob => {
-            navigator.clipboard.write([
-                new ClipboardItem({
-                    'image/png': blob
-                })
-            ]).then(() => {
-                alert('Screenshot copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
+      canvas.toBlob(blob => {
+        navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]).then(() => {
+          alert('Screenshot copied to clipboard!');
+        }).catch(err => {
+          console.error('Failed to copy:', err);
         });
+      });
     });
-}
+  }
 }
