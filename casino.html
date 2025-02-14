@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErgoSphere Sportsbook</title>
+    <link rel="stylesheet" href="casino.css">
+    <style>
+        .bet-entry {
+            max-width: 80%;
+        }
+    </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+<nav id="navbar">
+    <button><a href="index.html">HOME</a></button>
+    <button><a href="refreshments.html">REFRESHMENTS</a></button>
+    <button><a href="MODS.html">MODS</a></button>
+    <button><a href="casino.html">CASINO</a></button>
+    <button><a href="contracts.html">CONTRACTS</a></button>
+    <button><a href="ErgoShop.html">ErgoShop</a></button>
+    
+</nav>
+<hr>
+<header>
+    <h1>ErgoSphere Sportsbook</h1>
+</header>
+<hr>
+
+<main>
+    <div id="betting-system">
+        <label for="league">Select League:</label>
+        <select id="league" onchange="updateBets()">
+            <option value="">Select League</option>
+            <option value="NFL">NFL</option>
+            <option value="WNBA">WNBA</option>
+            <option value="NBA">NBA</option>
+        </select>
+
+        <div id="bet-container">
+            <h2>Place Your Bets</h2>
+            <label for="awayTeam">Select Away Team:</label>
+            <select id="awayTeam"></select>
+            <label for="homeTeam">Select Home Team:</label>
+            <select id="homeTeam"></select>
+            
+            <hr>
+
+            <div class="bet-entry">
+                <label for="category1">Category:</label>
+                <select id="category1" onchange="updateLines(1)">
+                    <option value="">Select Category</option>
+                </select>
+                <label for="line1">Bet Line:</label>
+                <select id="line1"></select>
+                <label for="player1">Player (if applicable):</label>
+                <select id="player1">
+                    <option value="">Select Player</option>
+                </select>
+            </div>
+            <div class="bet-entry">
+                <label for="category2">Category:</label>
+                <select id="category2" onchange="updateLines(2)">
+                    <option value="">Select Category</option>
+                </select>
+                <label for="line2">Bet Line:</label>
+                <select id="line2"></select>
+                <label for="player2">Player (if applicable):</label>
+                <select id="player2">
+                    <option value="">Select Player</option>
+                </select>
+            </div>
+            <div class="bet-entry">
+                <label for="category3">Category:</label>
+                <select id="category3" onchange="updateLines(3)">
+                    <option value="">Select Category</option>
+                </select>
+                <label for="line3">Bet Line:</label>
+                <select id="line3"></select>
+                <label for="player3">Player (if applicable):</label>
+                <select id="player3">
+                    <option value="">Select Player</option>
+                </select>
+            </div>
+        </div>
+
+ <button onclick="submitBets()">Submit Bets</button>
+    </div> <!-- Add the closing tag for the #betting-system div here -->
+
+<div id="receipt" class="receipt" onclick="screenshotDiv()">
+  <h2>Bet Receipt</h2>
+  <div id="receipt-content"></div>
+</div>
+      
+
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</main>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="utils.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+<script src="casino.js"></script>
+</body>
+</html>

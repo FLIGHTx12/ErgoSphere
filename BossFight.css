@@ -1,0 +1,427 @@
+body {
+  background-color: rgb(7, 7, 7);
+  color: white;
+  margin: 0;
+  padding-left: 50px;
+  padding: 0;
+  background-image: url("https://i.redd.it/qaevyh08hsx51.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  transition: transform 0.3s ease-in-out;
+  font-family: 'Courier New', Courier, monospace;
+  animation: pan-body 550s linear infinite;
+}
+
+@keyframes pan-body {
+  from { background-position: 0 0; }
+  to { background-position: -500px 0; } /* Adjust value as needed */
+}
+
+body.page-transition {
+  transform: translateX(-100%);
+}
+
+button {
+  background-color: purple;
+  color: black;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: large;
+  font-style: normal;
+  text-align: center;
+  text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+  margin: 5px 0;
+  box-sizing: border-box;
+  white-space: normal;
+  max-width: auto;
+  max-height: 200px;
+  padding: auto;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 10px #0f0;
+  border-radius: 10px;
+}
+
+button:hover {
+  box-shadow: 0 0 35px #0f0;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 20px #0f0;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+  background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+  background-color: rgb(14, 13, 13);
+  transition: top 0.3s;
+  animation: pan-navbar 90s linear infinite;
+}
+
+#navbar.hidden {
+  top: 0;
+}
+
+#navbar a {
+  color: rgb(12, 12, 12);
+  text-decoration: none;
+}
+
+@keyframes pan-navbar {
+  from {
+    background-position: center top;
+  }
+  to {
+    background-position: bottom;
+  }
+}
+
+#navbar button {
+  background-color: purple;
+  background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.5s ease;
+  width: auto;
+  min-width: 100px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+#content-container {
+  margin-left: 100px;
+  margin-top: -80px;
+  padding-left: 320px;
+  padding-right: 320px;
+}
+
+#content-container #monster,
+#content-container #lifeBar,
+#content-container #lifeBarGreen,
+#content-container #lifeBarText,
+#content-container #hitCount,
+#content-container #flavor-text {
+  background: none;
+  box-shadow: none;
+}
+
+#content-container #monster {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ccc;
+  margin: 0 auto;
+}
+
+#content-container #lifeBar {
+  background-color: #473a3a;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+}
+
+#content-container #lifeBarGreen {
+  background: linear-gradient(to right, rgb(88, 129, 206), rgb(14, 32, 133), rgb(1, 14, 70));
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+}
+
+#content-container #lifeBarText {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#content-container #hitCount {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 2.5);
+  margin-top: 5px;
+}
+
+#content-container.flavor-text {
+  margin-bottom: 10px;
+  font-style: italic;
+  color: #f0f0f0;
+  border: #0f0 2px solid;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.monster-container {
+  position: relative;
+  width: 350px;
+  min-width: 320px; /* Added to ensure minimum phone screen width */
+  margin: 30px;
+  text-align: center;
+  display: none;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.monster-image {
+  position: relative;
+  object-fit: cover;
+  margin-bottom: -1px;
+  width: 100%;
+  height: auto;
+  min-width: 250px; /* Added to ensure visibility on small screens */
+}
+
+.monster-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+  border: rgb(13, 19, 13) 3px solid;
+}
+
+#historyContainer {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.20); /* Adjust this value to change transparency */
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid white;
+  padding: 0px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  /* Reset #historyContainer to remain absolutely to the right */
+  #historyContainer {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+    width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Ensure .monster-container remains a positioned container */
+  .monster-container {
+    position: relative;
+    display: flex;
+    flex-direction: row; /* Elements laid out in a row */
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  /* Reset #historyContainer positioning */
+  #historyContainer {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+    max-width: 300px;
+  }
+}
+
+.attack-button {
+  position: absolute;
+  bottom: 10px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-weight: bold;
+  background-color: #000000; /* Default color */
+  font-size: small;
+  color: rgb(223, 27, 27);
+  text-decoration: overline;
+  border: 2px solid rgb(152, 177, 152);
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.attack-button:hover {
+  transform: translateX(-50%);
+  /* Keep additional properties consistent */
+}
+
+#attackInput1, #attackInput2 {
+  width: 100px; /* Adjust the value as needed */
+}
+
+#attackInputs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#attackInputs input[type="number"] {
+  width: 1ch; /* originally 2ch, now halved */
+  background-color: #222;
+  color: rgb(0, 0, 0);
+  border: none; /* remove native border */
+  box-shadow: 0 0 0 2px #0f0; /* simulate border */
+  overflow: hidden;
+  border-radius: 0; /* remove rounded corners */
+  font-size: 15px; /* originally 30px */
+  font-family: 'Courier New', Courier, monospace;
+  padding: 4px; /* originally 8px */
+  box-shadow: 0 0 5px #0f0;
+  text-align: center;
+  line-height: 1.5em;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+#attackInputs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 30px;
+  color: rgb(209, 180, 180);
+}
+
+/* Target the number inputs more specifically */
+#attackInputs > div > input[type="number"] {
+  width: 0.5ch; /* originally 1ch, now halved */
+  background-color: #222;
+  color: rgb(206, 188, 188);
+  border: none; /* remove native border */
+  box-shadow: 0 0 0 2px rgb(184, 168, 168); /* simulate border */
+  overflow: hidden;
+  border-radius: 0; /* remove rounded corners */
+  font-size: 15px; /* originally 30px */
+  font-family: 'Courier New', Courier, monospace;
+  padding: 4px; /* originally 8px */
+  box-shadow: 0 0 5px #0f0;
+  text-align: center;
+  line-height: 1.5em;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  /* Use appearance: none; for wider browser compatibility */
+  appearance: none;
+  -moz-appearance: textfield; /* For Firefox */
+}
+
+/* Remove default spinner arrows (more specific selector) */
+#attackInputs > div > input[type="number"]::-webkit-inner-spin-button,
+#attackInputs > div > input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Add a subtle animation to the numbers (more specific selector) */
+#attackInputs > div > input[type="number"] {
+  animation: diceRoll 3.5s infinite alternate;
+}
+
+@keyframes diceRoll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+#infoContainer {
+  background-color: rgba(0, 0, 0, 0.80); /* Adjust this value to change transparency */
+  gap: 10px;
+  margin-top: 20px;
+  position: absolute;
+  top: 50px;
+  left: -320px;
+  width: 300px;
+  border: 1px solid white;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+#historyContainer {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, .80); /* Adjust this value to change transparency */
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid white;
+  padding: 0px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#attackContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Optional: adjust spacing between the button and inputs */
+}
+
+#removeAttackButton {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: large;
+  text-align: center;
+  margin: 5px 0;
+  padding: auto;
+  border: 2px solid rgb(243, 247, 243);
+  box-shadow: 0 0 30px rgb(17, 172, 56);
+  border-radius: 10px;
+}
+
+#removeAttackButton:hover {
+  box-shadow: 0 0 35px #f00;
+  transform: scale(1.05);
+}
+
+#removeAttackButton:focus {
+  outline: none;
+  box-shadow: 0 0 20px #f00;
+}
+
+@media (min-width: 1200px) {
+  .game-container {
+    transform: scale(1.5);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 1920px) {
+  .game-container {
+    transform: scale(1.25); /* Adjust scale as needed for larger displays */
+    transform-origin: top center;
+  }
+}

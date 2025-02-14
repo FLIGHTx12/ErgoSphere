@@ -1,0 +1,56 @@
+@keyframes goldShadowBounce {
+  0% {
+    box-shadow: 0 0 2px 2px gold;
+  }
+  50% {
+    box-shadow: 0 0 50px 50px gold;
+  }
+  100% {
+    box-shadow: 0 0 2px 2px gold;
+  }
+}
+
+body.bingwa-theme #user-type-selector,
+body.bingwa-theme #ent-summary,
+body.bingwa-theme #cashout,
+body.bingwa-theme #entertainment {
+  animation: goldShadowBounce 5s ease-in-out;
+}
+
+body.bingwa-theme .category {
+  box-shadow: 0 0 10px 5px gold;
+}
+
+body.bingwa-theme select, body.bingwa-theme .ent-select {
+  background-color: gold;
+  border-color: gold;
+  color: black;
+}
+
+#ent-summary li strong {
+  font-size: calc(100% + 5px);
+}
+
+@media only screen and (max-width: 600px) {
+  #ent-summary li {
+    font-size: 10px;
+  }
+  #ent-summary {
+    width: calc(100% + 20px);
+  }
+  .ent-select {
+    width: calc(100% + 10px);
+  }
+  #ent-summary li strong {
+    font-size: calc(10px + 5px);
+  }
+  #entertainment {
+    width: calc(100% + 10px);
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .category {
+    width: calc(100% - 10px);
+  }
+}
