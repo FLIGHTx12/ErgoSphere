@@ -64,6 +64,7 @@ window.monsters = [
       ],
       "21-35": [
         "Sparks fly from the EtchWraith Swarm as it recoils from the blow!",
+        "wings and legs fly everywhere as you strike the EtchWraith Swarm!",
         "EtchWraith Swarm grunts from the moderate blow."],
       "36-75": [
         "You take out 4 bugs with one swing! Their bodies fall to the ground with a thud.",
@@ -115,12 +116,12 @@ window.monsters = [
     About:"The EtchWraith Swarm is a group of ErgoBugs that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The EtchWraith Swarm is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "EtchWraith Swarm says: Ready for action, Jaybers8?",
-        "EtchWraith Swarm roars: Your move, Jaybers8!"
+        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm says: Ready for action, Jaybers8?</span>",
+        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm roars: Your move, Jaybers8!</span>"
       ],
       player2: [
-        "EtchWraith Swarm says: Ready for action, FLIGHTx12!",
-        "EtchWraith Swarm roars: Your move, FLIGHTx12!"
+        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm says: Ready for action, FLIGHTx12!</span>",
+        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm roars: Your move, FLIGHTx12!</span>"
       ]
     }
   },
@@ -188,13 +189,13 @@ window.monsters = [
     About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The CyberBadger Cete is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "The CyberBadger Cete snarls at Jaybers8!",
-        "The CyberBadger Clan barks loudly and charge at Jaybers8!"
+        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Cete snarls at Jaybers8!</span>",
+        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Clan barks loudly and charge at Jaybers8!</span>"
       ],
       player2: [
-        "The CyberBadger Cete snarls at FLIGHTx12!",
-        "The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!",
-        "The CyberBadger Clan barks loudly and charge at FLIGHTx12"
+        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Cete snarls at FLIGHTx12!</span>",
+        "<span style='color:lightblue; font-style:italic;'>The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!</span>",
+        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Clan barks loudly and charge at FLIGHTx12</span>"
       ]
     }
   },
@@ -258,12 +259,12 @@ window.monsters = [
     About:"The Forbearer-Ramis is in battle." ,
     toggleDialogues: {
       player1: [
-        "Forbearer-Ramis grunts: Stand your ground, Jaybers8!",
-        "Forbearer-Ramis calls: Now toggle and face me, Jaybers8!"
+        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis grunts: Stand your ground, Jaybers8!</span>",
+        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis calls: Now toggle and face me, Jaybers8!</span>"
       ],
       player2: [
-        "Forbearer-Ramis grunts: Stand your ground, FLIGHTx12!",
-        "Forbearer-Ramis calls: Now toggle and face me, FLIGHTx12!"
+        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis grunts: Stand your ground, FLIGHTx12!</span>",
+        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis calls: Now toggle and face me, FLIGHTx12!</span>"
       ]
     }
   },
@@ -334,13 +335,13 @@ window.monsters = [
     About:"The PURSCERx17 is in battle." ,
     toggleDialogues: {
       player1: [
-        "PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'",
-        "PURSCERx17 warns: Switching now, Jaybers8!"
+        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'</span>",
+        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 warns: Switching now, Jaybers8!</span>"
       ],
       player2: [
-        "PURSCERx17 shouts: Get ready, FLIGHTx12!",
-        "PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'",
-        "PURSCERx17 warns: Switching now, FLIGHTx12!"
+        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 shouts: Get ready, FLIGHTx12!</span>",
+        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'</span>",
+        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 warns: Switching now, FLIGHTx12!</span>"
       ]
     }
   },
