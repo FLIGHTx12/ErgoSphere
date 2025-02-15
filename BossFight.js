@@ -221,17 +221,16 @@ document.addEventListener("DOMContentLoaded", () => {
         lifeBarGreen.style.width = (monsterLife / monster.health) * 100 + "%";
         lifeBarText.textContent = monsterLife;
 
-        // Replace previous shake logic with:
-        if (totalDamage >= 5) {
-          // Calculate shake steps: every 5 damage adds 1px shake, capped at 40px
-          const shakeSteps = Math.min(Math.floor(totalDamage / 5), 40);
-          const shakeAmplitude = shakeSteps + "px";
-          // Set CSS variable on the monster container and add shake class
-          monsterContainer.style.setProperty("--shake-amount", shakeAmplitude);
-          monsterContainer.classList.add("shake");
+        // Add vibration, shake, and red flash animation based on damage
+        if (totalDamage > 0) {
+          const shakeIntensity = Math.min(totalDamage / 15, 10); // Cap intensity at 10
+          const redIntensity = Math.min(totalDamage / 150, 1); // Cap red intensity at 1
+          const duration = Math.min(totalDamage / 50, 3); // Cap duration at 3 seconds
+          monsterImage.style.animation = `shake ${shakeIntensity * 0.1}s infinite, redFlash ${redIntensity * 0.5}s infinite`;
+          navigator.vibrate(shakeIntensity * 100); // Vibrate for intensity * 100ms
           setTimeout(() => {
-            monsterContainer.classList.remove("shake");
-          }, 500);
+            monsterImage.style.animation = "";
+          }, duration * 1000);
         }
 
         const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";

@@ -146,8 +146,10 @@ window.monsters = [
         "You kick a badger in its stomach, it goes flying into a group of badgers charging you",
         "CyberBadgers growls at the hit."],
       "36-75": [
+        "You stab a Badger in the jaw as it snaps at you. The body goes limp. You clean your blade.",
         "A solid strike! CyberBadger Cete snarls in pain!"],
       "76-99": [
+        "MASSIVE BLOW! there are a lot fewer Cyberbadgers on the field now",
         "The force rattles CyberBadger Clan noticeably! A few scurry off."],
       "100+": [
         "A crushing blow! The CyberBadgers waver. Thier green blood paints the battlefield"]
@@ -187,11 +189,12 @@ window.monsters = [
     toggleDialogues: {
       player1: [
         "The CyberBadger Cete snarls at Jaybers8!",
-        "The CyberBadger Clan bark loudly and charge at Jaybers8!"
+        "The CyberBadger Clan barks loudly and charge at Jaybers8!"
       ],
       player2: [
-        "CyberBadger Cete snarls: Bring it on, FLIGHTx12!",
-        "The CyberBadger Clan bark loudly and charge at FLIGHTx12"
+        "The CyberBadger Cete snarls at FLIGHTx12!",
+        "The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!",
+        "The CyberBadger Clan barks loudly and charge at FLIGHTx12"
       ]
     }
   },
@@ -206,6 +209,7 @@ window.monsters = [
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
+        "Ramis gracefully floats away from your attack.", 
         "Forbearer-Ramis shrugs off the hit."],
       "1-20": [
         "Forbearer-Ramis takes a light hit."],
@@ -225,6 +229,7 @@ window.monsters = [
         "Ramis throws dirt in your eyes, when you recover he is nowhere to be seen",
         "Forbearer-Ramis lands a precise hit.'I train for this bitch!' "],
       "2-3": [
+        "Ramis throws 10 knives in the air in your general direction. A few stab you in the shoulder.",
         "Forbearer-Ramis strikes twice in quick succession!"],
       "4-5": [
         "A series of hits from Forbearer-Ramis!"],
@@ -306,6 +311,7 @@ window.monsters = [
         "PURSCER uppercuts you and you land 10ft away. Your shoulder and back feel numb. "
       ],
       "10+": [
+        "PURSCERx17 Jumps 30ft closing the gap and landing in front of you. You trurn to run but it's too late. He grabs you with one hand and pounds your face with the other. When he is done your face is a bloddy mess.",
         "A devastating barrage from PURSCERx17!"]
     },
     getDamageDialogue(damage, playerName) {
@@ -328,11 +334,12 @@ window.monsters = [
     About:"The PURSCERx17 is in battle." ,
     toggleDialogues: {
       player1: [
-        "PURSCERx17 shouts: Get ready, Jaybers8!",
+        "PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'",
         "PURSCERx17 warns: Switching now, Jaybers8!"
       ],
       player2: [
         "PURSCERx17 shouts: Get ready, FLIGHTx12!",
+        "PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'",
         "PURSCERx17 warns: Switching now, FLIGHTx12!"
       ]
     }
@@ -413,6 +420,8 @@ window.monsters = [
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
+        "Curve smirks: 'you are so predictable'.",
+        "Curve smirks: 'Saw that a mile away pussy'.",
         "Curve shrugs off the hit."],
       "1-20": [
         "Curve takes a light hit."],
