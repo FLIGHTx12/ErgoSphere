@@ -4,17 +4,17 @@
     "description": "ErgoSphere the game",
     "main": "index.html",
     "scripts": {
-       "start": "node index.html"
+      "start": "node index.html" 
     },
     "repository": {
-        "type": "git",
-        "url": "git+https://github.com/FLIGHTx12/ErgoSphere-Webfiles.git"
+      "type": "git",
+      "url": "git+https://github.com/FLIGHTx12/ErgoSphere-Webfiles.git"
     },
-    "keywords": [],
+    "keywords": ["ergosphere", "game", "web", "files"],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/FLIGHTx12/ErgoSphere-Webfiles/issues"
+      "url": "https://github.com/FLIGHTx12/ErgoSphere-Webfiles/issues"
     },
     "homepage": "https://github.com/FLIGHTx12/ErgoSphere-Webfiles#readme"
-}
+  }
