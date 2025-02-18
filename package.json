@@ -4,6 +4,17 @@
     "description": "ErgoSphere the game",
     "main": "index.html",
     "scripts": {
-      "start": "node server.js" 
-    }
-  }
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/FLIGHTx12/ErgoSphere-Webfiles.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/FLIGHTx12/ErgoSphere-Webfiles/issues"
+    },
+    "homepage": "https://github.com/FLIGHTx12/ErgoSphere-Webfiles#readme"
+}
