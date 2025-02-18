@@ -1,0 +1,9 @@
+{
+    "name": "ergosphere",
+    "version": "1.0.0",
+    "description": "ErgoSphere the game",
+    "main": "index.html",
+    "scripts": {
+      "start": "node server.js" 
+    }
+  }

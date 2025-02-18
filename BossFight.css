@@ -173,6 +173,11 @@ button:focus {
   border: #0f0 2px solid;
 }
 
+.toggle-dialogue {
+  color: lightblue;
+  font-style: italic;
+}
+
 .game-container {
   display: flex;
   flex-direction: column;

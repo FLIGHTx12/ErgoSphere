@@ -116,12 +116,12 @@ window.monsters = [
     About:"The EtchWraith Swarm is a group of ErgoBugs that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The EtchWraith Swarm is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm says: Ready for action, Jaybers8?</span>",
-        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm roars: Your move, Jaybers8!</span>"
+        "<span class='toggle-dialogue'>EtchWraith Swarm says: Ready for action, Jaybers8?</span>",
+        "<span class='toggle-dialogue'>EtchWraith Swarm roars: Your move, Jaybers8!</span>"
       ],
       player2: [
-        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm says: Ready for action, FLIGHTx12!</span>",
-        "<span style='color:lightblue; font-style:italic;'>EtchWraith Swarm roars: Your move, FLIGHTx12!</span>"
+        "<span class='toggle-dialogue'>EtchWraith Swarm says: Ready for action, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>EtchWraith Swarm roars: Your move, FLIGHTx12!</span>"
       ]
     }
   },
@@ -189,13 +189,13 @@ window.monsters = [
     About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The CyberBadger Cete is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Cete snarls at Jaybers8!</span>",
-        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Clan barks loudly and charge at Jaybers8!</span>"
+        "<span class='toggle-dialogue'>The CyberBadger Cete snarls at Jaybers8!</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Clan barks loudly and charge at Jaybers8!</span>"
       ],
       player2: [
-        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Cete snarls at FLIGHTx12!</span>",
-        "<span style='color:lightblue; font-style:italic;'>The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!</span>",
-        "<span style='color:lightblue; font-style:italic;'>The CyberBadger Clan barks loudly and charge at FLIGHTx12</span>"
+        "<span class='toggle-dialogue'>The CyberBadger Cete snarls at FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Clan barks loudly and charge at FLIGHTx12</span>"
       ]
     }
   },
@@ -211,18 +211,31 @@ window.monsters = [
     damageDialogues: {
       zero: [
         "Ramis gracefully floats away from your attack.", 
+        "Ramis teleports before the hit lands.",
         "Forbearer-Ramis shrugs off the hit."],
       "1-20": [
-        "Forbearer-Ramis takes a light hit."],
+        "Forbearer-Ramis takes a light hit.",
+        "Forbearer-Ramis takes a minor hit.",
+        "Forbearer-Ramis teleports away but buckles to one knee. Your hit must have landed before he got away!",
+      ],
       "21-35": [
-        "Forbearer-Ramis grunts from the blow."],
+        "Forbearer-Ramis grunts from the blow.",
+        "'You know I cant feel this right?,' Ramis growls.",
+        "Forbearer-Ramis takes a moderate hit.",
+        "Forbearer-Ramis is visibly enjoys the punishment you just handed him."
+      
+      ],
       "36-75": [
-        "A strong hit! Forbearer-Ramis feels the impact!"],
+        "'You're more resourceful than I anticipated,' Ramis observes, 'But it won't be enough.'",
+        "A strong hit! Forbearer-Ramis feels the impact!",
+        "Forbearer-Ramis spits out blood and laughs, He looks like he wants more!",],
       "76-99": [
         "You dodge Ramis's attack spin behind him before striking him in the back!",
         "You knee Ramis in the face! He stumbles back and lands on his ass",
+        "'You're starting to annoy me,' Ramis growls.",
         "Forbearer-Ramis is shaken by the force!"],
       "100+": [
+        "Forbearer-Ramis scoffs, 'A minor setback.'",
         "A powerful strike! Forbearer-Ramis staggers."]
     },
     hitDialogues: {
@@ -259,12 +272,12 @@ window.monsters = [
     About:"The Forbearer-Ramis is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis grunts: Stand your ground, Jaybers8!</span>",
-        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis calls: Now toggle and face me, Jaybers8!</span>"
+        "<span class='toggle-dialogue'>Forbearer-Ramis grunts: Stand your ground, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Forbearer-Ramis calls: Now toggle and face me, Jaybers8!</span>"
       ],
       player2: [
-        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis grunts: Stand your ground, FLIGHTx12!</span>",
-        "<span style='color:lightblue; font-style:italic;'>Forbearer-Ramis calls: Now toggle and face me, FLIGHTx12!</span>"
+        "<span class='toggle-dialogue'>Forbearer-Ramis grunts: Stand your ground, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Forbearer-Ramis calls: Now toggle and face me, FLIGHTx12!</span>"
       ]
     }
   },
@@ -335,13 +348,13 @@ window.monsters = [
     About:"The PURSCERx17 is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'</span>",
-        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 warns: Switching now, Jaybers8!</span>"
+        "<span class='toggle-dialogue'>PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 warns: Switching now, Jaybers8!</span>"
       ],
       player2: [
-        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 shouts: Get ready, FLIGHTx12!</span>",
-        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'</span>",
-        "<span style='color:lightblue; font-style:italic;'>PURSCERx17 warns: Switching now, FLIGHTx12!</span>"
+        "<span class='toggle-dialogue'>PURSCERx17 shouts: Get ready, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 warns: Switching now, FLIGHTx12!</span>"
       ]
     }
   },
@@ -401,12 +414,12 @@ window.monsters = [
     About:"The Aphen Neel is in battle." ,
     toggleDialogues: {
       player1: [
-        "Aphen Neel whispers: Welcome, Jaybers8.",
-        "Aphen Neel murmurs: Let the battle begin for you, Jaybers8."
+        "<span class='toggle-dialogue'>Aphen Neel whispers: Welcome, Jaybers8.</span>",
+        "<span class='toggle-dialogue'>Aphen Neel murmurs: Let the battle begin for you, Jaybers8.</span>"
       ],
       player2: [
-        "Aphen Neel whispers: Welcome, FLIGHTx12.",
-        "Aphen Neel murmurs: Let the battle begin for you, FLIGHTx12."
+        "<span class='toggle-dialogue'>Aphen Neel whispers: Welcome, FLIGHTx12.</span>",
+        "<span class='toggle-dialogue'>Aphen Neel murmurs: Let the battle begin for you, FLIGHTx12.</span>"
       ]
     }
   },
@@ -467,12 +480,12 @@ window.monsters = [
     About:"The Curve is in battle." ,
     toggleDialogues: {
       player1: [
-        "Curve tilts: Step in, Jaybers8!",
-        "Curve exclaims: Your toggle time is now, Jaybers8!"
+        "<span class='toggle-dialogue'>Curve tilts: Step in, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Curve exclaims: Your toggle time is now, Jaybers8!</span>"
       ],
       player2: [
-        "Curve tilts: Step in, FLIGHTx12!",
-        "Curve exclaims: Your toggle time is now, FLIGHTx12!"
+        "<span class='toggle-dialogue'>Curve tilts: Step in, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Curve exclaims: Your toggle time is now, FLIGHTx12!</span>"
       ]
     }
   },
@@ -531,12 +544,12 @@ window.monsters = [
     About:"The Dulguun Bolor is in battle." ,
     toggleDialogues: {
       player1: [
-        "Dulguun Bolor bellows: Engage, Jaybers8!",
-        "Dulguun Bolor declares: Ready up, Jaybers8!"
+        "<span class='toggle-dialogue'>Dulguun Bolor bellows: Engage, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Dulguun Bolor declares: Ready up, Jaybers8!</span>"
       ],
       player2: [
-        "Dulguun Bolor bellows: Engage, FLIGHTx12!",
-        "Dulguun Bolor declares: Ready up, FLIGHTx12!"
+        "<span class='toggle-dialogue'>Dulguun Bolor bellows: Engage, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Dulguun Bolor declares: Ready up, FLIGHTx12!</span>"
       ]
     }
   },
@@ -595,12 +608,12 @@ window.monsters = [
     About:"The Bennu is in battle." ,
     toggleDialogues: {
       player1: [
-        "Bennu soars: Fly in, Jaybers8!",
-        "Bennu calls out: It’s your turn now, Jaybers8!"
+        "<span class='toggle-dialogue'>Bennu soars: Fly in, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Bennu calls out: It’s your turn now, Jaybers8!</span>"
       ],
       player2: [
-        "Bennu soars: Fly in, FLIGHTx12!",
-        "Bennu calls out: It’s your turn now, FLIGHTx12!"
+        "<span class='toggle-dialogue'>Bennu soars: Fly in, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Bennu calls out: It’s your turn now, FLIGHTx12!</span>"
       ]
     }
   },
@@ -659,12 +672,12 @@ window.monsters = [
     About:"The Forbearer Tren is in battle." ,
     toggleDialogues: {
       player1: [
-        "Forbearer Tren advises: Focus up, Jaybers8!",
-        "Forbearer Tren signals: Step into the arena, Jaybers8!"
+        "<span class='toggle-dialogue'>Forbearer Tren advises: Focus up, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Forbearer Tren signals: Step into the arena, Jaybers8!</span>"
       ],
       player2: [
-        "Forbearer Tren advises: Focus up, FLIGHTx12!",
-        "Forbearer Tren signals: Step into the arena, FLIGHTx12!"
+        "<span class='toggle-dialogue'>Forbearer Tren advises: Focus up, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Forbearer Tren signals: Step into the arena, FLIGHTx12!</span>"
       ]
     }
   },
@@ -723,12 +736,12 @@ window.monsters = [
     About:"The Tash-Nadia is in battle." ,
     toggleDialogues: {
       player1: [
-        "Tash-Nadia challenges: Show your might, Jaybers8!",
-        "Tash-Nadia proclaims: Now toggle and fight, Jaybers8!"
+        "<span class='toggle-dialogue'>Tash-Nadia challenges: Show your might, Jaybers8!</span>",
+        "<span class='toggle-dialogue'>Tash-Nadia proclaims: Now toggle and fight, Jaybers8!</span>"
       ],
       player2: [
-        "Tash-Nadia challenges: Show your might, FLIGHTx12!",
-        "Tash-Nadia proclaims: Now toggle and fight, FLIGHTx12!"
+        "<span class='toggle-dialogue'>Tash-Nadia challenges: Show your might, FLIGHTx12!</span>",
+        "<span class='toggle-dialogue'>Tash-Nadia proclaims: Now toggle and fight, FLIGHTx12!</span>"
       ]
     }
   }
