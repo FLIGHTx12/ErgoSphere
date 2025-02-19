@@ -16,6 +16,7 @@ function loadOptionsMap() {
   return fetch('/api/refreshments')
     .then(res => res.json())
     .then(data => {
+      console.log('Fetched refreshment options:', data); // Debug log added
       optionsMap = {};
       Object.entries(containerMapping).forEach(([containerId, dataKey]) => {
         optionsMap[containerId] = data[dataKey] || [];
