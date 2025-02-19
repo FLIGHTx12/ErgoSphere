@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 /* New API endpoints for refreshments */
-const dataFile = path.join(__dirname, 'data', 'js/refreshments.json');
+const dataFile = path.join(__dirname, 'data', 'refreshments.json');
 
 app.get('/api/refreshments', (req, res) => {
   fs.readFile(dataFile, 'utf8', (err, data) => {
