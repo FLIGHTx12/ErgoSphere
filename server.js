@@ -1,36 +1,19 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+const http = require('http');
+const fs = require('fs');
 
-const app = express();
-const port = process.env.PORT || 3000;
-
-// Serve static files from the project folder
-app.use(express.static(path.join(__dirname)));
-
-// Parse incoming requests
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Route to serve the main page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+const server = http.createServer((req, res) => {
+  fs.readFile('index.html', (err, data) => {
+    if (err) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Error loading index.html');
+    } else {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    }
+  });
 });
 
-// Example route to handle user input (e.g., form submissions)
-app.post('/submit', (req, res) => {
-  const userData = req.body;
-  console.log('Received user data:', userData);
-  // Insert database logic here if needed
-  res.json({ success: true, data: userData });
-});
-
-// Example API endpoint
-app.get('/api/data', (req, res) => {
-  res.json({ msg: 'Hello from Node.js server!' });
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const port = process.env.PORT || 3000; // Use Heroku's port or 3000
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
