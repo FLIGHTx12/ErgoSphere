@@ -4,10 +4,11 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("../assets/img/backgrounds/nightSky.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat; /* updated to prevent tiling */
   /* background-size: cover; */ /* removed for animation */
   transition: transform 0.3s ease-in-out;
   animation: pan-bg 350s linear infinite;
+  background-attachment: fixed; /* added to move with the viewport */
 }
 
 body.page-transition {
@@ -283,7 +284,7 @@ li {
     background-position: 70% 70%;
   }
   75% {
-    background-size: 90%;
+    background-size: 100%; /* increased to ensure full coverage */
     background-position: 50% 50%;
   }
   100% {
