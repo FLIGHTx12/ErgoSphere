@@ -1,19 +1,14 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  fs.readFile('index.html', (err, data) => {
-    if (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Error loading index.html');
-    } else {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(data);
-    }
-  });
+app.use(express.static(__dirname)); // Serve static assets
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const port = process.env.PORT || 3000; // Use Heroku's port or 3000
-server.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
