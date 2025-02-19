@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin – Refreshments</title>
+  <!-- ...existing head elements... -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="navbar">
+        <button><a href="index.html">HOME</a></button>
+        <button><a href="refreshments.html">REFRESHMENTS</a></button>
+        <button><a href="MODS.html">MODS</a></button>
+        <button><a href="casino.html">CASINO</a></button>
+        <button><a href="contracts.html">CONTRACTS</a></button>
+        <button><a href="ErgoShop.html">ErgoShop</a></button>      
+      </nav>
+      <br>
+      <br>
+      <br>
+  <h1>Admin Refreshments</h1>
+  
+  <!-- Controls for adding an option -->
+  <label for="categorySelect">Category:</label>
+  <select id="categorySelect">
+    <option value="saltySnacks">Salty Snacks</option>
+    <option value="sweetSnacks">Sweet Snacks</option>
+    <option value="frozenSnacks">Frozen Snacks</option>
+    <option value="concoctions">Concoctions</option>
+    <option value="mealMods">Meal Mods</option>
+  </select>
+  
+  <br><br>
+  <label for="optionInput">Option Text:</label>
+  <input type="text" id="optionInput" placeholder="Enter option text">
+  
+  <br><br>
+  <label for="optionCost">Cost (number):</label>
+  <input type="number" id="optionCost" placeholder="Enter cost" min="0">
+  
+  <br><br>
+  <button id="addOptionBtn">Add Option</button>
+  <button id="removeOptionBtn">Remove Last Option (of chosen category)</button>
+  
+  <hr>
+  <h2>Current Options</h2>
+  <!-- New container: displays all categories grouped -->
+  <div id="allCurrentOptions"><!-- Options will load here --></div>
+  
+  <script src="adminRefreshments.js"></script>
+</body>
+</html>
