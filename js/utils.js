@@ -79,7 +79,7 @@ function addGlobalEventListeners() {
 
     const pages = [
         "index.html", "refreshments.html", "MODS.html",
-        "casino.html", "contracts.html"
+        "pages/casino.html", "contracts.html"
     ];
 
     let touchstartX = 0;
