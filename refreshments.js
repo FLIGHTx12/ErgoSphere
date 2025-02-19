@@ -96,6 +96,12 @@ function addNewSelection(selectContainerId) {
 }
 
 function populateSelect(selectElement, optionsArray) {
+  // Ensure the default option is added first.
+  const defaultOption = document.createElement("option");
+  defaultOption.value = 0;
+  defaultOption.text = "Select";
+  selectElement.appendChild(defaultOption);
+  
   optionsArray.forEach(optionText => {
     const option = document.createElement("option");
     const match = optionText.match(/(\d+)💷/);
