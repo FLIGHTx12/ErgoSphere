@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  /* Widen admin container elements on small screens */
+  #allCurrentOptions,
+  #categorySelect,
+  #optionInput,
+  #optionCost {
+    width: 90%;
+  }
+}

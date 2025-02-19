@@ -128,7 +128,12 @@ function submitSelection() {
       <p class="wager-total">TOTAL: ${totalValue} 💷</p>
   `;
   summary.style.display = 'block';
-  summary.style.width = '25%'; // Reduced summary div to about a quarter of container width
+  // Set width based on screen size: wider on small screens
+  if (window.innerWidth < 768) {
+    summary.style.width = '90%';
+  } else {
+    summary.style.width = '25%';
+  }
   document.querySelectorAll('.action-button.copy-clear').forEach(button => {
     button.style.display = 'inline-block';
   });
