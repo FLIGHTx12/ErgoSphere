@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.get('/api/refreshments', (req, res) => {
   pool.query("SELECT data FROM refreshments LIMIT 1", (err, result) => {
     if (err) return res.status(500).json({ error: 'Database error.' });
-    if (result.rows.length === 0) return res.json({});
+    if (result.rows.length === 0) return res.json({}); // No data inserted in DB?
     res.json(result.rows[0].data);
   });
 });
