@@ -187,6 +187,12 @@ button a {
   transform: translateX(100%);
 }
 
+@media (min-width: 1024px) {
+  #sidebar.hidden {
+    transform: translateX(0); /* Ensure sidebar is not hidden on larger screens */
+  }
+}
+
 #sidebar button {
   background-color: purple;
   color: white;
