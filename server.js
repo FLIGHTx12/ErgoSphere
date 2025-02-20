@@ -23,18 +23,17 @@ app.get('/', (req, res) => {
 
 /* Updated API endpoints for refreshments using database */
 app.get('/api/refreshments', (req, res) => {
-  // Query specifically for the row with id=1
+  // Query the database for the refreshments JSON stored for id=1
   pool.query("SELECT data FROM refreshments WHERE id = 1", (err, result) => {
     if (err) {
-      console.error('Postgres connection error:', err);
+      console.error('Database error:', err);
       return res.status(500).json({ error: 'Database error.' });
     }
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'No refreshments data found.' });
     }
-    // Debug: Confirm structure matches containerMapping keys
-    console.log('Fetched refreshments data structure:', Object.keys(result.rows[0].data));
-    console.log('Fetched refreshments data:', result.rows[0].data);
+    // Log the keys to confirm structure matches containerMapping
+    console.log('Fetched refreshments data keys:', Object.keys(result.rows[0].data));
     res.json(result.rows[0].data);
   });
 });

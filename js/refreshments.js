@@ -1,6 +1,4 @@
-// Remove static arrays and static optionsMap declarations
-
-// Mapping between container element IDs and keys from refreshment.json
+// Mapping between container element IDs and corresponding keys in the database JSON
 const containerMapping = {
   saltySnackContainer: 'saltySnacks',
   sweetSnackContainer: 'sweetSnacks',
@@ -11,35 +9,41 @@ const containerMapping = {
 
 let optionsMap = {};
 
-// Fetch options from the server and map them for each container
+// Fetch options from the server database
 function loadOptionsMap() {
   return fetch('/api/refreshments')
     .then(res => res.json())
     .then(data => {
-      // If needed, ensure data is an object
-      if (typeof data === 'string') data = JSON.parse(data);
-      console.log('Fetched refreshment options:', data);
       optionsMap = {};
       Object.entries(containerMapping).forEach(([containerId, dataKey]) => {
         optionsMap[containerId] = data[dataKey] || [];
       });
+      console.log('Options loaded:', optionsMap);
     })
     .catch(err => console.error('Error loading refreshment options:', err));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   loadOptionsMap().then(() => {
-    // Refreshment containers and data arrays
-    const selectContainers = Object.keys(optionsMap);
-    // Populate selects and add "+" button listeners
-    populateSelectOptions();
-    selectContainers.forEach(selectContainerId => {
-      const selectContainer = document.getElementById(selectContainerId);
-      if (selectContainer) {
-        const addButton = selectContainer.querySelector('.add-button');
-        if (addButton) {
-          addButton.addEventListener('click', () => {
-            addNewSelection(selectContainerId);
+    // Populate each dropdown based on the containerMapping
+    Object.keys(optionsMap).forEach(containerId => {
+      const container = document.getElementById(containerId);
+      if (container) {
+        const selectElement = container.querySelector('.custom-select');
+        if (selectElement) {
+          // Add default option
+          const defaultOption = document.createElement("option");
+          defaultOption.value = 0;
+          defaultOption.text = "Select";
+          selectElement.appendChild(defaultOption);
+          // Populate dropdown with options from the database
+          optionsMap[containerId].forEach(optionText => {
+            const option = document.createElement("option");
+            // Optionally parse numeric cost if needed
+            const match = optionText.match(/(\d+)💷/);
+            option.value = match ? match[1] : 0;
+            option.text = optionText;
+            selectElement.appendChild(option);
           });
         }
       }
