@@ -1,61 +1,63 @@
-// Mapping between container element IDs and corresponding keys in the database JSON
-const containerMapping = {
-  saltySnackContainer: 'saltySnacks',
-  sweetSnackContainer: 'sweetSnacks',
-  frozenSnackContainer: 'frozenSnacks',
-  concoctionsContainer: 'concoctions',
-  mealModsContainer: 'mealMods'
+/* ...existing dynamic fetch code removed... */
+
+// New static dropdown menu configuration:
+const saltySnacks = [
+   "🌿Roasted Seaweed - 10💷", "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "🧀Cheez-it - 30💷", "🧀Simply Cheetos Puffs White Cheddar - 30💷",  
+   "🐄 Old Fashioned Beef Jerk - 40💷", "🍘Wheat Thins Original - 40💷"
+];
+const sweetSnacks = [
+  "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "🐻Chocolate Teddy Graham Snacks - 30💷", "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "🍪Belvita Blueberry Breakfast biscuits - 40💷",
+  "🍪Chips Ahoy 2 pack - 40💷", "🎂Little Bites (Fudge/Banana) - 40💷"
+];
+const frozenSnacks = [
+  "🍕Jacks Pizza Bois - 20💷", "🍨Breyers Mango Ice cream - 20💷", "🍕Totinos Pizza rolls - 30💷", "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷", "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷", 
+  "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷"
+];
+const badSnacks = [
+   "🚬THC Gummies - 40💷"
+];
+const drinks = [
+ "☕VJ Hot Cocoa 500ml - 20💷", "🍺Beer - 50💷", "🥃Mixed Drink (2shots) - 50💷", "🍷Wine Glass 500ml - 100💷", "🍾Wine Bottle 750ml - 150💷"
+];
+// Merge badSnacks and drinks into one "concoctions" array
+const concoctions = badSnacks.concat(drinks);
+const mealMods = [
+  "🍔Fast Food Cheat Meal - 60💷", "🍴Lunch Snack - 2💷", "🌞Weekend AM Snack - 2💷",
+  "🎉SNACK-A-THON MOD(1/2) - 0💷", "🎉🎉SNACK-A-THON MOD(2/2) - 0💷"
+];
+
+const optionsMap = {
+  "saltySnackContainer": saltySnacks,
+  "sweetSnackContainer": sweetSnacks,
+  "frozenSnackContainer": frozenSnacks,
+  "concoctionsContainer": concoctions,
+  "mealModsContainer": mealMods
 };
 
-let optionsMap = {};
-
-// Fetch options from the server database
-function loadOptionsMap() {
-  return fetch('/api/refreshments')
-    .then(res => res.json())
-    .then(data => {
-      console.log('Fetched refreshment options:', data); // Debug log added
-      optionsMap = {};
-      Object.entries(containerMapping).forEach(([containerId, dataKey]) => {
-        optionsMap[containerId] = data[dataKey] || [];
-      });
-      console.log('Options loaded:', optionsMap);
-    })
-    .catch(err => console.error('Error loading refreshment options:', err));
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  loadOptionsMap().then(() => {
-    // Populate each dropdown based on the containerMapping
-    Object.keys(optionsMap).forEach(containerId => {
-      const container = document.getElementById(containerId);
-      if (container) {
-        const selectElement = container.querySelector('.custom-select');
-        if (selectElement) {
-          // Add default option
-          const defaultOption = document.createElement("option");
-          defaultOption.value = 0;
-          defaultOption.text = "Select";
-          selectElement.appendChild(defaultOption);
-          // Populate dropdown with options from the database
-          optionsMap[containerId].forEach(optionText => {
-            const option = document.createElement("option");
-            // Optionally parse numeric cost if needed
-            const match = optionText.match(/(\d+)💷/);
-            option.value = match ? match[1] : 0;
-            option.text = optionText;
-            selectElement.appendChild(option);
-          });
-        }
+  populateSelectOptions();
+  // Add "+" button event listeners for additional selections
+  const selectContainers = [
+    "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
+    "mealModsContainer"
+  ];
+  selectContainers.forEach(selectContainerId => {
+    const container = document.getElementById(selectContainerId);
+    if (container) {
+      const addButton = container.querySelector('.add-button');
+      if (addButton) {
+        addButton.addEventListener('click', () => {
+          addNewSelection(selectContainerId);
+        });
       }
-    });
+    }
   });
 });
 
-// Refreshment functions
+/* ...existing code for addNewSelection, populateSelect, submitSelection, clearSelection, copySummary, screenshotDiv... */
+
 function populateSelectOptions() {
-  const selectContainers = Object.keys(optionsMap);
-  selectContainers.forEach(id => {
+  Object.keys(optionsMap).forEach(id => {
     const container = document.getElementById(id);
     if (container) {
       const selectElement = container.querySelector('.custom-select');
