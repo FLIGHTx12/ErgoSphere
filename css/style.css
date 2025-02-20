@@ -162,8 +162,8 @@ button a {
 
 #sidebar {
   position: fixed;
-  top: 270px;
-  right: 300px;
+  top: 50%;
+  right: 0;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -173,7 +173,12 @@ button a {
   border: 2px solid purple;
   border-radius: 10px 0 0 10px;
   z-index: 1000;
-  width: 250px; /* Shorten the sidebar */
+  width: 150px; /* Shorten the sidebar */
+  transition: transform 0.3s ease-in-out;
+}
+
+#sidebar.hidden {
+  transform: translateX(100%);
 }
 
 #sidebar button {
@@ -257,12 +262,21 @@ li {
 }
 
 .action-button {
-  margin: -15px 30px 30px 0px;
+  margin: -15px 0px 0px 0px;
   padding: 10px;
   border-radius: 50px;
   float: right;
   display: block;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .action-button {
+    margin-right: 500px; /* Move buttons 200px to the left on larger screens */
+  }
+  .action-button.copy-clear {
+    margin-right: 600px; /* Move clear button closer to the copy button */
+  }
 }
 
 #summary {
@@ -281,6 +295,7 @@ li {
   text-align: right;
   margin-left: 200px;
 }
+
 
 #summary,
 .action-button.copy-clear {

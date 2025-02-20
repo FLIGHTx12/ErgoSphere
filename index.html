@@ -15,9 +15,6 @@
   <button><a href="pages/MODS.html">MODS</a></button>
   <button><a href="pages/casino.html">CASINO</a></button>
   <button><a href="pages/contracts.html">CONTRACTS</a></button>
-  <button><a href="pages/ErgoShop.html">ErgoShop</a></button>
-  <button><a href="pages/BossFight.html">BOSS FIGHT!</a></button>
-  <button><a href="admin/adminRefreshments.html">Admin Refreshments</a></button>
 </nav>
 
 <hr>
@@ -26,7 +23,7 @@
 </header>
 <hr>
 
-<div id="sidebar">
+<div id="sidebar" class="hidden">
   <button><a href="pages/BossFight.html">Boss Fight!</a></button>
   <button><a href="pages/ErgoShop.html">ErgoShop</a></button>
   <button><a href="pages/HCMC.html">HCMC</a></button>
@@ -177,28 +174,22 @@
 
     <h4>Setup:</h4>
     <ol class="rules-list">
-      <li><b>Putting Green:</b> Layout the putting green in the "TV room". 🛋️ Place a mat or something similar to block the golf balls from going under the TV shelf.</li>
-      <li><b>Center Line:</b> Find the middle of the putting green and mark it with a weight or similar object along the side. 📏</li>
-      <li><b>Chipping Setup:</b> Drape the chipping mat from the laundry table. 🧺 Prop up the chipping grass with the 3lb weight. 🏋️‍♀️</li>
-      <li><b>Game Balls:</b> Place the regular golf balls in a chair for participants to choose from during putting. 🏌️‍♀️🏌️‍♂️</li>
-      <li><b>Velcro Balls:</b> Each player chooses a velcro ball of their preferred color and places it on the chipping mat. 🔴🔵</li>
-      <li><b>Scoreboard:</b> Start with the first 4 boxes checked off on the scoreboard. ☑️</li>
+      <li><b>Putting Green:</li>
+      <li><b>Center Line:</li>
+      <li><b>Chipping Setup:</li>
+      <li><b>Game Balls:</li>
+      <li><b>Velcro Balls:</li>
+      <li><b>Scoreboard:</li>
     </ol>
 
     <h4>Gameplay:</h4>
     <ol class="rules-list">
-      <li><b>Starting Player:</b> The youngest player starts the very first game. 👶 For all following games, the loser of the previous ErgoGOLF match starts.</li>
-      <li><b>Chipping:</b> Players take turns hitting a velcro ball from the chipping grass. 🏌️‍♀️🏌️‍♂️</li>
-      <li><b>Determining Putts:</b> The number the velcro ball lands on corresponds to the number of putts the player gets.
-        <ul class="rules-list">
-          <li>If the ball lands on a line between numbers, the player uses the higher number. ⬆️</li>
-          <li>If the ball lands on a negative number, the player's score is reduced, and they don't get any putts for that round. ⬇️</li>
-          <li>If a player moves the chipping grass pad while hitting the velcro ball, their turn is forfeited. 🚫</li>
-        </ul>
-      </li>
-      <li><b>Putting:</b> The player putts the regular golf ball from behind the middle line on the putting green, aiming for their designated holes. 🕳️ The first player gets to choose which direction they putt first. ➡️⬅️</li>
-      <li><b>Scoring:</b> If the player makes a putt, they cover the hole and check off a box on the scoreboard. ☑️ The opponent tracks the number of putts used and is in charge of updating the scoreboard. ✏️</li>
-      <li><b>Clarification on Velcro Balls:</b> If all the velcro balls are used, replenish them by taking from the negative zones first, then the 1-point zone, then the 2-point zone, and so on. 🔄</li>
+      <li><b>Starting Player:</li>
+      <li><b>Chipping:</li>
+      <li><b>Determining Putts:</li>
+      <li><b>Putting:</li>
+      <li><b>Scoring:</li>
+      <li><b>Clarification on Velcro Balls:</li>
     </ol>
 
     <p><b>Winning:</b> The first player to reach 10 points wins! 🏆</p>
@@ -279,5 +270,32 @@
 </main>
   <script src="js/utils.js"></script>
   <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.getElementById('sidebar');
+      let touchstartX = 0;
+      let touchendX = 0;
+
+      function handleGesture() {
+        if (touchendX < touchstartX) {
+          sidebar.classList.add('hidden');
+          sidebar.style.transform = 'translateX(100%)';
+        }
+        if (touchendX > touchstartX) {
+          sidebar.classList.remove('hidden');
+          sidebar.style.transform = 'translateX(0)';
+        }
+      }
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      });
+    });
+  </script>
 </body>
 </html>
