@@ -32,6 +32,8 @@ app.get('/api/refreshments', (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'No refreshments data found.' });
     }
+    // Debug: Confirm structure matches containerMapping keys
+    console.log('Fetched refreshments data structure:', Object.keys(result.rows[0].data));
     console.log('Fetched refreshments data:', result.rows[0].data);
     res.json(result.rows[0].data);
   });
