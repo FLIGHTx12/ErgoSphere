@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
+<<<<<<< HEAD
 const pool = require('./db');
 
 pool.query('SELECT NOW()', (err, result) => {
@@ -16,11 +16,15 @@ pool.query('SELECT NOW()', (err, result) => {
 
 app.use(express.static(__dirname));
 app.use(express.json()); // For parsing application/json
+=======
+app.use(express.static(__dirname)); // Serve static assets
+>>>>>>> parent of 27e14e3 (refreshments update 1)
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+<<<<<<< HEAD
 /* Updated API endpoints for refreshments using database */
 app.get('/api/refreshments', (req, res) => {
   // Query the database for the refreshments JSON stored for id=1
@@ -47,6 +51,8 @@ app.post('/api/refreshments', (req, res) => {
   });
 });
 
+=======
+>>>>>>> parent of 27e14e3 (refreshments update 1)
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
