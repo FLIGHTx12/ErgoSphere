@@ -4,6 +4,16 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const pool = require('./db');
+
+pool.query('SELECT NOW()', (err, result) => {
+  if (err) {
+    console.error('Postgres connection error:', err);
+  } else {
+    console.log('Postgres connected:', result.rows[0]);
+  }
+});
+
 app.use(express.static(__dirname));
 app.use(express.json()); // For parsing application/json
 
@@ -11,21 +21,27 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-/* New API endpoints for refreshments */
-const dataFile = path.join(__dirname, 'data', 'refreshments.json');
-
+/* Updated API endpoints for refreshments using database */
 app.get('/api/refreshments', (req, res) => {
-  fs.readFile(dataFile, 'utf8', (err, data) => {
-    if (err) return res.status(500).json({ error: 'Failed to read data.' });
-    res.json(JSON.parse(data));
+  // Query specifically for the row with id=1
+  pool.query("SELECT data FROM refreshments WHERE id = 1", (err, result) => {
+    if (err) {
+      console.error('Postgres connection error:', err);
+      return res.status(500).json({ error: 'Database error.' });
+    }
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'No refreshments data found.' });
+    }
+    console.log('Fetched refreshments data:', result.rows[0].data);
+    res.json(result.rows[0].data);
   });
 });
 
 app.post('/api/refreshments', (req, res) => {
-  // Expect a JSON object with the new options to merge
   const newData = req.body;
-  fs.writeFile(dataFile, JSON.stringify(newData, null, 2), err => {
-    if (err) return res.status(500).json({ error: 'Failed to save data.' });
+  // Update the single row in the "refreshments" table.
+  pool.query("UPDATE refreshments SET data = $1", [newData], (err) => {
+    if (err) return res.status(500).json({ error: 'Failed to update data.' });
     res.json({ success: true });
   });
 });
