@@ -91,6 +91,32 @@ app.post('/api/options/:category/remove', (req, res) => {
     });
   });
 });
+
+// Endpoint to fetch all refreshment options
+app.get('/api/admin/refreshments', (req, res) => {
+  pool.query('SELECT * FROM refreshment_options ORDER BY category', (err, result) => {
+    if (err) return res.status(500).json({ error: 'Database error.' });
+    res.json(result.rows);
+  });
+});
+
+// Endpoint to add a new refreshment option
+app.post('/api/admin/refreshments/add', (req, res) => {
+  const { category, option, cost } = req.body;
+  pool.query('INSERT INTO refreshment_options (category, option, cost) VALUES ($1, $2, $3)', [category, option, cost], (err) => {
+    if (err) return res.status(500).json({ error: 'Database error.' });
+    res.json({ success: true });
+  });
+});
+
+// Endpoint to remove a refreshment option
+app.post('/api/admin/refreshments/remove', (req, res) => {
+  const { category, option } = req.body;
+  pool.query('DELETE FROM refreshment_options WHERE category = $1 AND option = $2', [category, option], (err) => {
+    if (err) return res.status(500).json({ error: 'Database error.' });
+    res.json({ success: true });
+  });
+});
   
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -62,3 +62,10 @@ INSERT INTO dropdown_options (category, options) VALUES
 ('frozenSnackContainer', '["🍕Jacks Pizza Bois - 20💷","🍨Breyers Mango Ice cream - 20💷","🍕Totinos Pizza rolls - 30💷","🥟Bibigo Chicken & Veggie Mini Wontos - 30💷","🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷","🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷"]'),
 ('concoctionsContainer', '["🚬THC Gummies - 40💷","☕VJ Hot Cocoa 500ml - 20💷","🍺Beer - 50💷","🥃Mixed Drink (2shots) - 50💷","🍷Wine Glass 500ml - 100💷","🍾Wine Bottle 750ml - 150💷"]'),
 ('mealModsContainer', '["🍔Fast Food Cheat Meal - 60💷","🍴Lunch Snack - 2💷","🌞Weekend AM Snack - 2💷","🎉SNACK-A-THON MOD(1/2) - 0💷","🎉🎉SNACK-A-THON MOD(2/2) - 0💷"]');
+
+CREATE TABLE IF NOT EXISTS refreshment_options (
+  id SERIAL PRIMARY KEY,
+  category VARCHAR(50) NOT NULL,
+  option VARCHAR(100) NOT NULL,
+  cost INTEGER NOT NULL
+);

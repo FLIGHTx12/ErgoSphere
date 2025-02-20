@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Refreshments</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/adminRefreshments.css">
+</head>
+<body>
+  <nav id="navbar">
+    <button><a href="../index.html">HOME</a></button>
+    <button><a href="refreshments.html">REFRESHMENTS</a></button>
+    <button><a href="adminRefreshments.html">ADMIN REFRESHMENTS</a></button>
+  </nav>
+  <hr>
+  <header>
+    <h1>Admin Refreshments</h1>
+  </header>
+  <hr>
+  <main>
+    <div id="allCurrentOptions">
+      <h2>Current Options</h2>
+      <div id="optionsList"></div>
+    </div>
+    <div id="addOption">
+      <h2>Add New Option</h2>
+      <select id="categorySelect">
+        <option value="saltySnacks">Salty Snacks</option>
+        <option value="sweetSnacks">Sweet Snacks</option>
+        <option value="frozenSnacks">Frozen Snacks</option>
+        <option value="concoctions">Concoctions</option>
+        <option value="mealMods">Meal Mods</option>
+      </select>
+      <input type="text" id="optionInput" placeholder="Option Name">
+      <input type="number" id="optionCost" placeholder="Cost">
+      <button id="addOptionButton">Add Option</button>
+    </div>
+  </main>
+  <script src="../js/adminRefreshments.js"></script>
+</body>
+</html>
