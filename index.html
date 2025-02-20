@@ -277,11 +277,11 @@
       let touchendX = 0;
 
       function handleGesture() {
-        if (touchendX < touchstartX) {
+        if (touchendX > touchstartX) {
           sidebar.classList.add('hidden');
           sidebar.style.transform = 'translateX(100%)';
         }
-        if (touchendX > touchstartX) {
+        if (touchendX < touchstartX) {
           sidebar.classList.remove('hidden');
           sidebar.style.transform = 'translateX(0)';
         }
