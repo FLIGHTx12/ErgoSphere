@@ -5,7 +5,8 @@ let optionsMap = {};
 
 // Replace the original populateSelectOptions with a function that fetches options from the database.
 function populateOptionsMap() {
-  fetch('/api/options')
+  // Use full origin so the API call doesn't get affected by relative paths.
+  fetch(`${window.location.origin}/api/options`)
     .then(res => res.json())
     .then(data => {
       data.forEach(row => {
