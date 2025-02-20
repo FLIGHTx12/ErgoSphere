@@ -47,7 +47,7 @@ div {
 
 @media (max-width: 600px) {
   div {
-    width: 85%; /* Make main divs have a width of 85% of the viewport on smaller devices */
+    width: 95%; /* Increase width of main divs for smaller screens */
   }
 }
 
