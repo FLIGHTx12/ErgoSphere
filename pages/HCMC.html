@@ -1,5 +1,3 @@
-// HCMC HYDRON COLIDER MULTIVERSE CONTROLS
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +24,7 @@
 </nav>
 <hr>
 <header>
-  <h1>HYDRON COLIDER MULTIVERSE CONTROLS</h1>
+  <h1 style="text-align: center;">HYDRON COLIDER MULTIVERSE CONTROLS</h1>
 </header>
 <hr>
   <!-- New main container for picker and static rewards -->
@@ -42,7 +40,7 @@
       <button id="stop-button">Stop</button>
     </div>
     <!-- New static rewards div -->
-    <div id="static-rewards"></div>
+    <div id="static-rewards" class="hidden"></div>
   </div>
   <div id="reward-buttons">
     <button id="loot-button">LOOT</button>
@@ -57,6 +55,32 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/utils.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const staticRewards = document.getElementById('static-rewards');
+      let touchstartX = 0;
+      let touchendX = 0;
+
+      function handleGesture() {
+        if (touchendX > touchstartX) {
+          staticRewards.classList.add('hidden');
+          staticRewards.style.transform = 'translateX(100%)';
+        }
+        if (touchendX < touchstartX) {
+          staticRewards.classList.remove('hidden');
+          staticRewards.style.transform = 'translateX(0)';
+        }
+      }
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      });
+    });
+  </script>
 </body>
 </html>

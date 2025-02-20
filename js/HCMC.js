@@ -1,4 +1,5 @@
 let choices = [];
+let currentPool = 'LOOT';
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -13,6 +14,7 @@ const pvpButton = document.getElementById("pvp-button");
 const coopButton = document.getElementById("coop-button");
 
 function loadChoices(pool) {
+  currentPool = pool.toUpperCase();
   fetch(`../data/${pool}.json`)
     .then(response => response.json())
     .then(data => {
@@ -23,9 +25,10 @@ function loadChoices(pool) {
 }
 
 function populateStaticRewards() {
-  staticRewards.innerHTML = "<h3>Available Rewards</h3><ul>" +
-    choices.map(choice => `<li>${choice.text}</li>`).join("") +
+  staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
+    choices.map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("") +
     "</ul>";
+  staticRewards.style.fontSize = ".6em"; // Decrease font size by half
 }
 
 function selectWeightedChoice(choices) {
