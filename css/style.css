@@ -160,6 +160,46 @@ button a {
   box-sizing: border-box;
 }
 
+#sidebar {
+  position: fixed;
+  top: 270px;
+  right: 300px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid purple;
+  border-radius: 10px 0 0 10px;
+  z-index: 1000;
+  width: 250px; /* Shorten the sidebar */
+}
+
+#sidebar button {
+  background-color: purple;
+  color: white;
+  font-size: 1em; /* Adjust font size */
+  padding: 5px; /* Adjust padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#sidebar button a {
+  color: white;
+  text-decoration: none;
+}
+
+#sidebar button:hover {
+  background-color: darkviolet;
+}
+
+#main-content {
+  margin-right: 160px; /* Reduce margin to about 10px */
+}
+
 section {
   border: #333;
   border-radius: 15px;
