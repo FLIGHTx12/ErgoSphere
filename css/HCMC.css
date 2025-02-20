@@ -1,14 +1,30 @@
+#main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
 #main-container {
     position: relative;
-    /* Ensure enough width for both picker and rewards panel */
-    width: 1100px;
+    width: 600px; /* Adjusted width */
+    margin: 0;
+    padding-top: 0px;
+}
+
+#reward-container {
+    width: 100%; /* Adjusted width */
+    height: 600px; /* increased height */
+    border: 2px solid green; /* Your favorite color */
+    position: right; /* Align to the right */
+    overflow: hidden;
     
-    margin: 0 auto;
-    padding-top: 50px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 #picker-container {
-    width: 800px;  /* increased width */
+    width: 100%;  /* Adjusted width */
     height: 600px; /* increased height */
     border: 2px solid green; /* Your favorite color */
     position: relative;
@@ -16,7 +32,6 @@
     
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    float: left;
 }
 
 #choice-display {
@@ -113,12 +128,33 @@
 #static-rewards {
     width: 280px;
     height: 600px;
-    float: right;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
+    position: relative; /* Ensure relative positioning */
+    margin-left: 20px; /* Add margin to the left */
+    z-index: 1; /* Adjust z-index */
+}
+
+#reward-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    background-color:none;
+    z-index: 2; /* Ensure buttons are above other content */
+    position:inherit; /* Ensure relative positioning */
+    margin-top: -650px; /* Add margin to the top */
+    margin-left: 500px;
+}
+
+@media (min-width: 1024px) {
+  #main-container {
+    width: 1000px; /* Ensure the viewport mirrors the width of the main container */
+  }
 }
 
 button {
@@ -149,7 +185,7 @@ button {
     margin: auto;
     position: relative;
     overflow: hidden;
-    z-index: 0;
+    z-index: 1;
   }
   
   #navbar {
@@ -194,6 +230,10 @@ button {
     min-width: 100px;
     height: auto;
     box-sizing: border-box;
+  }
+
+  .hidden {
+    display: none;
   }
 
   body {

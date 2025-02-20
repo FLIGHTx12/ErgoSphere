@@ -1,33 +1,222 @@
 [
-  {
-    "image": "https://i.ibb.co/j92kZQgd/Human-Fall-Flat.jpg",
-    "text": "CO-OP Reward 1",
-    "copies": 1
-  },
-  {
-    "image": "https://i.ibb.co/cX3Mn0vG/WarFrame.jpg",
-    "text": "CO-OP Reward 2",
-    "copies": 1
-  },
-  {
-    "image": "https://i.ibb.co/0RFyXyZY/Valheim.png",
-    "text": "CO-OP Reward 3",
-    "copies": 1
-  },
-  {
-    "image": "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
-    "text": "CO-OP Reward 4",
-    "copies": 3
-  },
-  {
-    "image": "https://i.ibb.co/20mPhJ38/The-ASCENT.jpg",
-    "text": "CO-OP Reward 5",
-    "copies": 1
-  },
-  {
-    "image": "https://i.ibb.co/prPP8873/TMNT-Shredders-Revenge.png",
-    "text": "CO-OP Reward 6",
-    "copies": 1
-  }
-
-]
+    {
+      "game": "3ON3 FREESTYLE",
+      "mode": "3on3 mode online",
+      "details": "5 games",
+      "image": "",
+      "text": "3ON3 FREESTYLE",
+      "copies": 1
+    },
+    {
+      "game": "Animal Royal",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Animal Royal",
+      "copies": 0
+    },
+    {
+      "game": "Apex Legends",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Apex Legends",
+      "copies": 0
+    },
+    {
+      "game": "Destiny 2 Crucible",
+      "mode": "competative",
+      "image": "",
+      "text": "Destiny 2 Crucible",
+      "copies": 0
+    },
+    {
+      "game": "Escape Academy",
+      "mode": "PvP mode",
+      "details": "no longer on gamepass",
+      "image": "",
+      "text": "Escape Academy",
+      "copies": 1
+    },
+    {
+      "game": "ExoPrimal",
+      "mode": "quickplay PvP only",
+      "image": "",
+      "text": "ExoPrimal",
+      "copies": 0
+    },
+    {
+      "game": "Fallguys",
+      "mode": "doubles",
+      "image": "",
+      "text": "Fallguys",
+      "copies": 0
+    },
+    {
+      "game": "FIFA",
+      "mode": "online",
+      "details": "1- 6min qtrs. game Hard difficulty",
+      "image": "",
+      "text": "FIFA",
+      "copies": 0
+    },
+    {
+      "game": "Fortnite",
+      "mode": "doubles",
+      "image": "",
+      "text": "Fortnite",
+      "copies": 0
+    },
+    {
+      "game": "Gears 5",
+      "mode": "pvp quickplay",
+      "image": "",
+      "text": "Gears 5",
+      "copies": 0
+    },
+    {
+      "game": "Halo Infinite",
+      "mode": "tactical slayer ranked",
+      "image": "",
+      "text": "Halo Infinite",
+      "copies": 0
+    },
+    {
+      "game": "HAWKED!",
+      "mode": "quickplay",
+      "image": "",
+      "text": "HAWKED!",
+      "copies": 1
+    },
+    {
+      "game": "Headbangers: Rhythm Royale",
+      "mode": "quickplay",
+      "details": "no longer on gamepass",
+      "image": "",
+      "text": "Headbangers: Rhythm Royale",
+      "copies": 0
+    },
+    {
+      "game": "Hunt showdown 1896",
+      "details": "Time to beat - {battle royal}",
+      "image": "",
+      "text": "Hunt showdown 1896",
+      "copies": 0
+    },
+    {
+      "game": "Naraka: Bladepoint",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Naraka: Bladepoint",
+      "copies": 0
+    },
+    {
+      "game": "NBA 2k",
+      "details": "4 3v3 games",
+      "image": "",
+      "text": "NBA 2k",
+      "copies": 0
+    },
+    {
+      "game": "Overwatch 2",
+      "mode": "ranked",
+      "image": "",
+      "text": "Overwatch 2",
+      "copies": 0
+    },
+    {
+      "game": "Paladins",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Paladins",
+      "copies": 1
+    },
+    {
+      "game": "POWERSTAR Golf",
+      "details": "back 9, Bingwa pick coarse",
+      "image": "",
+      "text": "POWERSTAR Golf",
+      "copies": 1
+    },
+    {
+      "game": "Predecessor",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Predecessor",
+      "copies": 1
+    },
+    {
+      "game": "PUBG: Battlegrounds",
+      "mode": "quickplay",
+      "image": "",
+      "text": "PUBG: Battlegrounds",
+      "copies": 0
+    },
+    {
+      "game": "ROCKET LEAGUE",
+      "mode": "quickplay",
+      "image": "",
+      "text": "ROCKET LEAGUE",
+      "copies": 0
+    },
+    {
+      "game": "Rogue Company",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Rogue Company",
+      "copies": 0
+    },
+    {
+      "game": "Smite",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Smite",
+      "copies": 0
+    },
+    {
+      "game": "Sonic all-star racing",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Sonic all-star racing",
+      "copies": 0
+    },
+    {
+      "game": "Splitgate",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Splitgate",
+      "copies": 0
+    },
+    {
+      "game": "Star Wars Battlefront",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Star Wars Battlefront",
+      "copies": 0
+    },
+    {
+      "game": "The Finals",
+      "mode": "quickplay",
+      "image": "",
+      "text": "The Finals",
+      "copies": 0
+    },
+    {
+      "game": "Titanfall 2",
+      "mode": "quickplay",
+      "image": "",
+      "text": "Titanfall 2",
+      "copies": 0
+    },
+    {
+      "game": "Valorant",
+      "mode": "ranked",
+      "image": "",
+      "text": "Valorant",
+      "copies": 2
+    },
+    {
+      "game": "WILDSTYLE Board game",
+      "image": "",
+      "text": "WILDSTYLE Board game",
+      "copies": 0
+    }
+  ]

@@ -27,7 +27,7 @@
   <h1 style="text-align: center;">HYDRON COLIDER MULTIVERSE CONTROLS</h1>
 </header>
 <hr>
-  <!-- New main container for picker and static rewards -->
+<div id="main-wrapper">
   <div id="main-container">
     <div id="picker-container">
       <div id="choice-display">
@@ -39,48 +39,25 @@
       <button id="start-button">Start</button>
       <button id="stop-button">Stop</button>
     </div>
-    <!-- New static rewards div -->
-    <div id="static-rewards" class="hidden"></div>
   </div>
-  <div id="reward-buttons">
-    <button id="loot-button">LOOT</button>
-    <button id="pvp-button">PVP</button>
-    <button id="coop-button">CO-OP</button>
+  <div id="static-rewards">
+    <!-- Removed reward-buttons from here -->
   </div>
-  <br>
-  <br>
-  <script src="../js/HCMC.js"></script>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../js/utils.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const staticRewards = document.getElementById('static-rewards');
-      let touchstartX = 0;
-      let touchendX = 0;
+</div>
+<div id="reward-buttons">
+  <button id="loot-button">LOOT</button>
+  <button id="pvp-button">PVP</button>
+  <button id="coop-button">CO-OP</button>
+</div>
+<br>
+<br>
+<script src="../js/HCMC.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-      function handleGesture() {
-        if (touchendX > touchstartX) {
-          staticRewards.classList.add('hidden');
-          staticRewards.style.transform = 'translateX(100%)';
-        }
-        if (touchendX < touchstartX) {
-          staticRewards.classList.remove('hidden');
-          staticRewards.style.transform = 'translateX(0)';
-        }
-      }
-
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      });
-
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleGesture();
-      });
-    });
-  </script>
+</script>
 </body>
 </html>
