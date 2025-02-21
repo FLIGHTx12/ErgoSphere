@@ -1,4 +1,5 @@
-const optionsFile = "../data/options.json";
+// Update data file reference to ErgoShop.json
+const optionsFile = "../data/ErgoShop.json";
 
 async function loadOptions(containerId) {
   const response = await fetch(optionsFile);
@@ -6,10 +7,12 @@ async function loadOptions(containerId) {
   return optionsData[containerId];
 }
 
+// Revert container list in populateSelectOptions and DOMContentLoaded event
 function populateSelectOptions() {
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer", "entertainmentContainer"  // added new container
+    "mealModsContainer", "prizesContainer", "replacementsContainer",
+    "entertainmentContainer", "schedulemodsContainer", "wantsvsneedsContainer"
   ];
   
   selectContainers.forEach(selectContainerId => {
@@ -27,10 +30,10 @@ function populateSelectOptions() {
 
 document.addEventListener('DOMContentLoaded', () => {
   populateSelectOptions();
-  // Add "+" button event listeners for additional selections
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer", "entertainmentContainer"  // added new container
+    "mealModsContainer", "prizesContainer", "replacementsContainer",
+    "entertainmentContainer", "schedulemodsContainer", "wantsvsneedsContainer"
   ];
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);
@@ -87,24 +90,31 @@ function addNewSelection(selectContainerId) {
   const selectContainer = document.getElementById(selectContainerId);
   if (selectContainer) {
     const addButton = selectContainer.querySelector('.add-button');
-    if (addButton) {
-      // Remove duplicate <select>; only add new quantity input.
-      const newQuantityInput = document.createElement('input');
-      newQuantityInput.type = 'number';
-      newQuantityInput.classList.add('quantity-input');
-      newQuantityInput.value = 1;
-      newQuantityInput.min = 0;
-      selectContainer.insertBefore(newQuantityInput, addButton);
+    // Clone the custom-select and reset its selection
+    const originalSelect = selectContainer.querySelector('.custom-select');
+    if (originalSelect) {
+      const clonedSelect = originalSelect.cloneNode(true);
+      clonedSelect.selectedIndex = 0; // reset selection
+      selectContainer.insertBefore(clonedSelect, addButton);
     }
+    // Also add a new quantity input
+    const newQuantityInput = document.createElement('input');
+    newQuantityInput.type = 'number';
+    newQuantityInput.classList.add('quantity-input');
+    newQuantityInput.value = 1;
+    newQuantityInput.min = 0;
+    selectContainer.insertBefore(newQuantityInput, addButton);
   }
 }
 
 function submitSelection() {
   let selectedItems = [];
   let totalValue = 0;
+  // Updated container list to include new categories
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer", "entertainmentContainer"  // added new container
+    "mealModsContainer", "prizesContainer", "replacementsContainer",
+    "entertainmentContainer", "schedulemodsContainer", "wantsvsneedsContainer"
   ];
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);
@@ -113,8 +123,7 @@ function submitSelection() {
       const quantityInputs = container.querySelectorAll('.quantity-input');
       selectElements.forEach((select, index) => {
         const quantity = parseInt(quantityInputs[index].value, 10);
-        // Changed check: ignore the default option by checking the selectedIndex
-        if (select.selectedIndex !== 0) {
+        if (select.selectedIndex !== 0) { // ignore default option
           const itemName = select.options[select.selectedIndex].text;
           selectedItems.push(itemName + ' x ' + quantity);
           totalValue += parseInt(select.value, 10) * quantity;
@@ -132,11 +141,10 @@ function submitSelection() {
       <p class="wager-total">TOTAL: ${totalValue} 💷</p>
   `;
   summary.style.display = 'block';
-  // Set width based on screen size: wider on small screens
   if (window.innerWidth < 768) {
     summary.style.width = '90%';
   } else {
-    summary.style.width = '25%';
+    summary.style.width = '50%'; // changed from '25%' to '50%'
   }
   document.querySelectorAll('.action-button.copy-clear').forEach(button => {
     button.style.display = 'inline-block';

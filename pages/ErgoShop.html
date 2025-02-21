@@ -26,9 +26,9 @@
 <hr>
 
 <main>
+
   <div id="snacks">
-    <h2 >REFRESHMENTS</h2>
-    <hr>
+    <details><summary>REFRESHMENTS</summary>
     <ul>
       <li>
         <h2>Salty Snacks</h2>
@@ -78,12 +78,36 @@
       </li>
     </ul>
   </div>
-  <br>
+ 
   <div id="mealMods">
+    <details><summary>MEAL MODS</summary>
+
     <ul>
       <li>
-        <h2>Meal Mods</h2>
+        <h2>DISCOUNTS</h2>
         <div id="mealModsContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <!-- Added Prizes -->
+      <li>
+        <h2>Prizes</h2>
+        <div id="prizesContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <!-- Added Replacements -->
+      <li>
+        <h2>Replacements</h2>
+        <div id="replacementsContainer">
           <select class="custom-select">
             <option value="0">Select</option>
           </select>
@@ -93,11 +117,13 @@
       </li>
       <br>
     </ul>
-  </div> <!-- End of Meal Mods container -->
+  </div> </details>
+  <!-- End of Meal Mods container -->
   
-  <!-- New Entertainment section -->
+  <!-- Entertainment section with additional containers -->
   <div id="entertainment">
-    <h2>Entertainment</h2>
+    <details><summary>LEISURE</summary>
+    <h3>ENTERTAINMENT MODS</h3>
     <div id="entertainmentContainer">
       <select class="custom-select">
         <option value="0">Select</option>
@@ -105,9 +131,27 @@
       <input type="number" class="quantity-input" value="1" min="0">
       <button class="add-button">+</button>
     </div>
-  </div>
-  <br>
-  
+    <!-- Added Schedulemods -->
+    <h3>SCHEDULE MODS</h3>
+    <div id="schedulemodsContainer">
+      <select class="custom-select">
+        <option value="0">Select</option>
+      </select>
+      <input type="number" class="quantity-input" value="1" min="0">
+      <button class="add-button">+</button>
+    </div>
+    <!-- Added Wantsvsneeds -->
+   <h3>WANTSxNEEDS</h3>
+      
+    <div id="wantsvsneedsContainer">
+      <select class="custom-select">
+        <option value="0">Select</option>
+      </select>
+      <input type="number" class="quantity-input" value="1" min="0">
+      <button class="add-button">+</button>
+    </div>
+  </div></Details>
+
   <button type="button" class="action-button" onclick="submitSelection()">Submit</button>
   <br>
   <div id="summary" class="summary" onclick="screenshotDiv()"></div>
