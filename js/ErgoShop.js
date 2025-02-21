@@ -9,7 +9,7 @@ async function loadOptions(containerId) {
 function populateSelectOptions() {
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer"
+    "mealModsContainer", "entertainmentContainer"  // added new container
   ];
   
   selectContainers.forEach(selectContainerId => {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add "+" button event listeners for additional selections
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer"
+    "mealModsContainer", "entertainmentContainer"  // added new container
   ];
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);
@@ -48,10 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ...existing functions: populateSelect, addNewSelection, submitSelection, clearSelection, copySummary, screenshotDiv... */
 
 function populateSelect(selectElement, optionsArray) {
-  // Ensure the default option is added first.
+  // Ensure the default option is added first and hidden.
   const defaultOption = document.createElement("option");
   defaultOption.value = 0;
   defaultOption.text = "Select";
+  defaultOption.hidden = true; // hide the default option
   selectElement.appendChild(defaultOption);
   
   optionsArray.forEach(option => {
@@ -83,7 +84,7 @@ function submitSelection() {
   let totalValue = 0;
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
-    "mealModsContainer"
+    "mealModsContainer", "entertainmentContainer"  // added new container
   ];
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);

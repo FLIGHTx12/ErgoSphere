@@ -39,5 +39,9 @@
     { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
     { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
     { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
+  ],
+  "entertainmentContainer": [
+    { "text": "🎬 Movie Tickets - 50💷", "value": 50 },
+    { "text": "🎮 Video Game Rental - 40💷", "value": 40 }
   ]
 }
