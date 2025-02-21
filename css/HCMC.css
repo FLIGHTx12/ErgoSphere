@@ -135,16 +135,17 @@
     display: flex;
     max-height: 475px;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Align items to the left */
+    justify-content:baseline;
     list-style-type: none;
     padding-left: 0;
+    padding-right: 0;
     font-size: 1rem;
 }
 
 #static-rewards li {
     flex: 1 1 40%; /* Ensure at least 2 columns */
     margin: 15px;
-    text-align: left; /* Align text to the left */
+    text-align:justify; /* Align text to the left */
     padding: 2px; /* Minimal padding */
 }
 
@@ -185,6 +186,48 @@ header{
   #main-container {
     width: 1000px; /* Ensure the viewport mirrors the width of the main container */
   }
+}
+
+@media (max-width: 600px) {
+    #main-wrapper {
+        width: 100%; /* Take up full width of the viewport */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        flex-direction: column; /* Ensure elements stack vertically */
+        align-items: center; /* Center align items */
+    }
+
+    #main-container {
+        width: 100%; /* Ensure the main container also takes up full width */
+        padding: 0 10px; /* Add padding to prevent content from touching the edges */
+    }
+
+    #reward-container, #picker-container {
+        width: 100%; /* Ensure containers take up full width */
+        height: auto; /* Adjust height to be responsive */
+        margin-bottom: 20px; /* Add margin to separate elements */
+    }
+
+    #static-rewards {
+        width: 100%; /* Ensure the static rewards take up full width */
+        height: auto; /* Adjust height to be responsive */
+        margin-left: 0;
+        transition: none; /* Remove transition */
+        z-index: 1;
+    }
+
+    #static-rewards ul {
+        flex-direction: column;
+    }
+
+    #static-rewards li {
+        flex: 1 1 auto;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column; /* Stack body containers vertically */
+        align-items: center; /* Center align items */
+    }
 }
 
 button {
