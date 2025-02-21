@@ -41,7 +41,12 @@
     { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
   ],
   "entertainmentContainer": [
-    { "text": "🎬 Movie Tickets - 50💷", "value": 50 },
-    { "text": "🎮 Video Game Rental - 40💷", "value": 40 }
+    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15},
+    { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20 },    
+    { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25 },
+    { "text": "🏚 ENTER TAVERN - 30💶", "value": 20 },
+    { "text": "😴 SLEEP IN - 50💶", "value": 50 },
+    { "text": "🛌🏾 BINGE DAY - 200💶", "value": 200 },
+    { "text": "🎟 Golden Ticket - 300💶", "value": 300 }
   ]
 }
