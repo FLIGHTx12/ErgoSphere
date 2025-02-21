@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: flex-start;
     margin-top: 50px;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 #main-container {
@@ -216,8 +217,13 @@
     #static-rewards li {
         flex: 1 1 auto;
     }
+
+    body {
+        display: flex;
+        flex-direction: column; /* Stack body containers vertically */
+        align-items: center; /* Center align items */
+    }
 }
-/* ...existing code... */
 
 #reward-buttons {
     width: 100%;
@@ -316,6 +322,7 @@ button {
   .hidden {
     display: none;
   }
+
 
   body {
     background-color: rgb(7, 7, 7);
