@@ -6,7 +6,8 @@
     <title>EregoSphere</title>
     <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
+    <link rel="icon" href="path/to/your/favicon.png" type="image/png">
+    
       /* Responsive main-content on smaller screens */
       @media (max-width: 600px) {
         #main-content {
@@ -288,7 +289,6 @@
       const mainContent = document.getElementById('main-content');
       let touchstartX = 0;
       let touchendX = 0;
-      const leftSwipeThreshold = 50; // Only trigger left swipe if more than 50px
 
       function handleGesture() {
         if (touchendX > touchstartX) {
@@ -296,7 +296,7 @@
           sidebar.style.transform = 'translateX(100%)';
           mainContent.classList.remove('sidebar-visible');
         }
-        if (touchstartX - touchendX > leftSwipeThreshold) { // require sufficient left swipe
+        if (touchendX < touchstartX) {
           sidebar.classList.remove('hidden');
           sidebar.style.transform = 'translateX(0)';
           mainContent.classList.add('sidebar-visible');
