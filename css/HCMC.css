@@ -176,6 +176,15 @@
 
 /* Sidebar styles for smaller screens */
 @media (max-width: 600px) {
+    #main-wrapper {
+        width: 100%; /* Take up full width of the viewport */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    #main-container {
+        width: 100%; /* Ensure the main container also takes up full width */
+    }
+
     #static-rewards {
         position: fixed;
         top: 0;
