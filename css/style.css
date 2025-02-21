@@ -263,14 +263,18 @@ li {
 }
 
 .quantity-input {
-  width: 2em;
-  height: 2em;
-  font-size: 16px;
-  color: #0f0;
-  background-color: #222;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border: 2px solid #0f0;
-  padding: 0.2em;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: #222;
+  color: #0f0;
+  font-size: 16px;
   text-align: center;
+  width: 3em;
+  height: 2em;
 }
 
 .action-button {
