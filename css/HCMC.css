@@ -179,10 +179,19 @@
     #main-wrapper {
         width: 100%; /* Take up full width of the viewport */
         overflow-x: hidden; /* Prevent horizontal scrolling */
+        flex-direction: column; /* Ensure elements stack vertically */
+        align-items: center; /* Center align items */
     }
 
     #main-container {
         width: 100%; /* Ensure the main container also takes up full width */
+        padding: 0 10px; /* Add padding to prevent content from touching the edges */
+    }
+
+    #reward-container, #picker-container {
+        width: 100%; /* Ensure containers take up full width */
+        height: auto; /* Adjust height to be responsive */
+        margin-bottom: 20px; /* Add margin to separate elements */
     }
 
     #static-rewards {
