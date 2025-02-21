@@ -27,7 +27,7 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": "hide"
+    "after spin": "hide after spin"
     },
     {
     "text": "YOU FOUND!! FBSPORT Ping pong net (hide after spin) - $19.99",
@@ -75,7 +75,7 @@
     "after spin": "hide"
     },
     {
-    "text": "YOU FOUND!! massage equipment (continues)",
+    "text": "YOU FOUND!! massage equipment ",
     "image": "",
     "game": "",
     "copies": 0,
@@ -87,10 +87,10 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": ""
+    "after spin": "(continues)"
     },
     {
-    "text": "YOU FOUND!! New Alexa component (Continues)",
+    "text": "YOU FOUND!! New Alexa component ",
     "image": "",
     "game": "",
     "copies": 0,
@@ -102,10 +102,10 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": ""
+    "after spin": "(Continues)"
     },
     {
-    "text": "YOU FOUND!! New bed comforter (hide after spin)",
+    "text": "YOU FOUND!! New bed comforter",
     "image": "",
     "game": "",
     "copies": 0,
@@ -117,10 +117,10 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
-    "text": "YOU FOUND!! new bed sheets (hide after spin)",
+    "text": "YOU FOUND!! new bed sheets ",
     "image": "",
     "game": "",
     "copies": 0,
@@ -132,10 +132,10 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
-    "text": "YOU FOUND!! new computer monitor (hide after 2 are found) - $150",
+    "text": "YOU FOUND!! new computer monitor ",
     "image": "",
     "game": "",
     "copies": 1,
@@ -147,7 +147,7 @@
     "owned": false,
     "completed": false,
     "cost": "$150",
-    "after spin": ""
+    "after spin": "(hide after 2 are found)"
     },
     {
     "text": "YOU FOUND!! New living room TV! (hide after spin)",
@@ -225,7 +225,7 @@
     "after spin": "hide"
     },
     {
-    "text": "YOU FOUND!! Poached egg maker cozilife (hide after spin) - $10.97",
+    "text": "YOU FOUND!! Poached egg maker cozilife ",
     "image": "",
     "game": "",
     "copies": 0,
@@ -237,10 +237,10 @@
     "owned": false,
     "completed": false,
     "cost": "$10.97",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
-    "text": "YOU FOUND!! Splatoon 3 (hide after spin)",
+    "text": "YOU FOUND!! Splatoon 3",
     "image": "",
     "game": "",
     "copies": 0,
@@ -252,10 +252,10 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
-    "text": "YOU FOUND!! Steering wheel cover (hide after spin)",
+    "text": "YOU FOUND!! Steering wheel cover",
     "image": "",
     "game": "",
     "copies": 0,
@@ -267,7 +267,7 @@
     "owned": false,
     "completed": false,
     "cost": "",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
     "text": "YOU FOUND!! Switch SPORTS equipment pack (hide after spin)",
@@ -285,7 +285,7 @@
     "after spin": "hide"
     },
     {
-    "text": "YOU FOUND!! VASAGLE Laundry Hamper (hide after spin) - $34.31",
+    "text": "YOU FOUND!! VASAGLE Laundry Hamper",
     "image": "",
     "game": "",
     "copies": 1,
@@ -297,7 +297,7 @@
     "owned": false,
     "completed": false,
     "cost": "$34.31",
-    "after spin": "hide"
+    "after spin": "(hide after spin)"
     },
     {
     "text": "YOU FOUND!!: Dimmable front room lights (hide after spin)",
