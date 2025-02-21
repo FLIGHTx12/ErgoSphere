@@ -26,9 +26,46 @@ function loadChoices(pool) {
 
 function populateStaticRewards() {
   staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
-    choices.map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("") +
-    "</ul>";
+    choices.filter(choice => choice.copies > 0).map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("") +
+    "</ul>" +
+    `<select id="filter-dropdown">
+      <option value="selected">Selected</option>
+      <option value="all">All</option>
+      <option value="owned">Owned</option>
+      <option value="not-owned">Not Owned</option>
+      <option value="completed">Completed</option>
+      <option value="not-completed">Not Completed</option>
+    </select>`;
   staticRewards.style.fontSize = ".6em"; // Decrease font size by half
+
+  document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
+}
+
+function filterChoices() {
+  const filterValue = document.getElementById("filter-dropdown").value;
+  let filteredChoices = choices;
+
+  switch (filterValue) {
+    case "owned":
+      filteredChoices = choices.filter(choice => choice.owned);
+      break;
+    case "not-owned":
+      filteredChoices = choices.filter(choice => !choice.owned);
+      break;
+    case "completed":
+      filteredChoices = choices.filter(choice => choice.completed);
+      break;
+    case "not-completed":
+      filteredChoices = choices.filter(choice => !choice.completed);
+      break;
+    case "all":
+      filteredChoices = choices;
+      break;
+    default:
+      filteredChoices = choices.filter(choice => choice.copies > 0);
+  }
+
+  staticRewards.querySelector("ul").innerHTML = filteredChoices.map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("");
 }
 
 function selectWeightedChoice(choices) {
@@ -44,7 +81,8 @@ function selectWeightedChoice(choices) {
 }
 
 function spin() {
-  const choice = selectWeightedChoice(choices);
+  const selectedChoices = choices.filter(choice => choice.copies > 0);
+  const choice = selectWeightedChoice(selectedChoices);
   choiceImage.style.display = "block";
   choiceImage.src = choice.image;
   
@@ -138,6 +176,21 @@ stopButton.addEventListener("click", () => {
 lootButton.addEventListener("click", () => loadChoices('loot'));
 pvpButton.addEventListener("click", () => loadChoices('pvp'));
 coopButton.addEventListener("click", () => loadChoices('coop'));
+
+function setRandomBackground() {
+  const backgrounds = [
+    "../assets/img/backgrounds/CERN detailed.jpeg",
+    "../assets/img/backgrounds/Hadron Collider inside.jpg",
+    "../assets/img/backgrounds/Hadron Collider Pipe.jpg",
+    "../assets/img/backgrounds/classicBlackHole.jpg",
+    "../assets/img/backgrounds/mixingGalaxy.jpg"
+  ];
+  const randomIndex = Math.floor(Math.random() * backgrounds.length);
+  document.body.style.backgroundImage = `url(${backgrounds[randomIndex]})`;
+}
+
+// Call the function to set a random background on page load
+setRandomBackground();
 
 // Load default pool on page load
 loadChoices('loot');

@@ -58,8 +58,8 @@
 }
 
 #choice-image {
-    width: 475px;       /* fixed width */
-    height: 250px;      /* fixed height */
+    width: 600px;       /* fixed width */
+    height: 350px;      /* fixed height */
     object-fit: cover;  /* ensures the image covers the container */
     margin-left: 30px;
     position: relative;
@@ -96,14 +96,18 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+
 #start-button:hover, #stop-button:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 #start-button:active, #stop-button:active {
     transform: scale(0.95) translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 #start-button {
@@ -125,9 +129,11 @@
     box-sizing: border-box;
 }
 
+/* ...existing code... */
 #static-rewards {
-    width: 280px;
-    height: 600px;
+    width: auto; /* Adjust width to be responsive */
+    max-width: 600px; /* Ensure it doesn't exceed a certain width */
+    height: auto; /* Adjust height to be responsive */
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px;
@@ -136,7 +142,38 @@
     position: relative; /* Ensure relative positioning */
     margin-left: 20px; /* Add margin to the left */
     z-index: 1; /* Adjust z-index */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
 }
+
+#static-rewards ul {
+    display: flex;
+    max-height: 475px;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to the left */
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#static-rewards li {
+    flex: 1 1 45%; /* Ensure at least 2 columns */
+    margin: 5px;
+    text-align: left; /* Align text to the left */
+    padding: 2px; /* Minimal padding */
+}
+
+#filter-dropdown {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+/* ...existing code... */
 
 #reward-buttons {
     width: 100%;
@@ -185,7 +222,7 @@ button {
     margin: auto;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    z-index: 0;
   }
   
   #navbar {
@@ -241,7 +278,10 @@ button {
     color: white;
     margin: 0;
     padding: 0;
-    background-image: url("https://i.ibb.co/wKZgsqP/star-sky.jpg");
+    background-image: url("../assets/img/backgrounds/CERN detailed.jpeg");
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-size: cover; /* Ensure the background covers the entire area */
+    background-attachment: fixed; /* Ensure the background moves with the viewport */
     transition: transform 0.3s ease-in-out;
     animation: pan-body 650s linear infinite;
   }
