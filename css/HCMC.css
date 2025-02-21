@@ -170,14 +170,14 @@ header{
 }
 
 #reward-buttons {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px;
-    background-color:none;
+    background-color: none;
     z-index: 2; /* Ensure buttons are above other content */
-    position:inherit; /* Ensure relative positioning */
+    position: relative; /* Ensure relative positioning */
     margin-top: -650px; /* Add margin to the top */
     margin-left: 500px;
 }
@@ -227,6 +227,12 @@ header{
         display: flex;
         flex-direction: column; /* Stack body containers vertically */
         align-items: center; /* Center align items */
+    }
+
+    div {
+        width: 100%; /* Ensure all divs take up full width */
+        max-width: 100%; /* Ensure divs do not exceed the width of the main container */
+        margin: 10px 0; /* Add margin to separate elements */
     }
 }
 
