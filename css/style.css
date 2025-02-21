@@ -367,3 +367,17 @@ li {
   }
 }
 
+#description-popup {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  font-size: 14px;
+  max-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: 10001;
+}
+

@@ -182,27 +182,38 @@ function screenshotDiv() {
 
 // Functions to show/hide the option description on long press.
 let holdTimer;
-function showDescription(text, selectElement) {
-  let descDiv = document.getElementById('description-popup');
-  if (!descDiv) {
-    descDiv = document.createElement('div');
-    descDiv.id = 'description-popup';
-    descDiv.style.position = 'absolute'; // Changed to absolute
-    descDiv.style.background = 'rgba(0,0,0,0.8)';
-    descDiv.style.color = 'white';
-    descDiv.style.padding = '8px';
-    descDiv.style.borderRadius = '4px';
-    descDiv.style.zIndex = 10000;
-    document.body.appendChild(descDiv);
-  }
-  descDiv.textContent = text;
 
-  // Calculate position relative to the select element
+function showDescription(text, selectElement) {
+  // Remove any existing popup
+  const existingPopup = document.getElementById('description-popup');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  // Create new popup
+  const descDiv = document.createElement('div');
+  descDiv.id = 'description-popup';
+  descDiv.textContent = text;
+  document.body.appendChild(descDiv);
+
+  // Position the popup
   const rect = selectElement.getBoundingClientRect();
-  descDiv.style.left = (rect.right + 10) + 'px'; // Position to the right of the select
-  descDiv.style.top = rect.top + 'px'; // Align with the top of the select
+  const popupRect = descDiv.getBoundingClientRect();
+  
+  // Check if popup would go off-screen to the right
+  if (rect.right + popupRect.width + 10 > window.innerWidth) {
+    // Position to the left of the select if it would go off-screen
+    descDiv.style.left = (rect.left - popupRect.width - 10) + 'px';
+  } else {
+    // Position to the right of the select
+    descDiv.style.left = (rect.right + 10) + 'px';
+  }
+  
+  descDiv.style.top = rect.top + 'px';
+  
+  // Ensure visibility
   descDiv.style.display = 'block';
-  descDiv.style.zIndex = '10001'; // Make sure it's above everything else
+  console.log('Showing description:', text); // Debug log
 }
 
 function hideDescription() {
