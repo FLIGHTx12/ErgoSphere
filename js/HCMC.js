@@ -194,3 +194,34 @@ setRandomBackground();
 
 // Load default pool on page load
 loadChoices('loot');
+
+function toggleSidebar() {
+  const staticRewards = document.getElementById("static-rewards");
+  staticRewards.classList.toggle("visible");
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth <= 600) {
+    const staticRewards = document.getElementById("static-rewards");
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    function handleGesture() {
+      if (touchendX < touchstartX) {
+        staticRewards.classList.add('visible');
+      }
+      if (touchendX > touchstartX) {
+        staticRewards.classList.remove('visible');
+      }
+    }
+
+    document.addEventListener('touchstart', function(e) {
+      touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', function(e) {
+      touchendX = e.changedTouches[0].screenX;
+      handleGesture();
+    });
+  }
+});

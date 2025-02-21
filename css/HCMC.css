@@ -173,6 +173,32 @@
     border: 1px solid #666;
     border-radius: 5px;
 }
+
+/* Sidebar styles for smaller screens */
+@media (max-width: 600px) {
+    #static-rewards {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100%;
+        margin-left: 0;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    #static-rewards.visible {
+        right: 0;
+    }
+
+    #static-rewards ul {
+        flex-direction: column;
+    }
+
+    #static-rewards li {
+        flex: 1 1 auto;
+    }
+}
 /* ...existing code... */
 
 #reward-buttons {
