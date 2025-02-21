@@ -41,12 +41,12 @@
     { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
   ],
   "entertainmentContainer": [
-    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Quickly change your plans for a fresh experience." },
-    { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch a short film in a cozy setting." },
-    { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Enjoy a brief gaming session." },
-    { "text": "🏚 ENTER TAVERN - 30💶", "value": 20, "description": "Enter the tavern for a relaxed vibe." },
-    { "text": "😴 SLEEP IN - 50💶", "value": 50, "description": "Take a little extra time to rest." },
-    { "text": "🛌🏾 BINGE DAY - 200💶", "value": 200, "description": "Spend a day binging on your favorite shows." },
-    { "text": "🎟 Golden Ticket - 300💶", "value": 300, "description": "Unlock an exclusive event with this golden ticket." }
+    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'." },
+    { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch 30 mins of any show or movie. Player pays for every 30 min increment. The show or movie can not be one listed on the Movie or show lists unless it is a rewatch or to finish up" },
+    { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Play 30 mins of any game.Player pays for every 30 min increment." },
+    { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage. Can only be used during vacation or illness." },
+    { "text": "😴 SLEEP IN (2hrs)- 50💶", "value": 50, "description": "Skip Scheduled morning events and sleep in for up to 2 hours." },
+    { "text": "🛌🏾 BINGE DAY (1day) - 200💶", "value": 200, "description": "Turn all scheduled event to an all day show or game binge." },
+    { "text": "🎟 Golden Ticket (1screening) - 300💶", "value": 300, "description": "Block off schedule to attend a theatre showing." }
   ]
 }
