@@ -133,7 +133,8 @@
 /* ...existing code... */
 #static-rewards {
     width: auto; /* Adjust width to be responsive */
-    max-width: 600px; /* Ensure it doesn't exceed a certain width */
+    max-width: 900px; /* Ensure it doesn't exceed a certain width */
+    min-width: 800px; /* Ensure it doesn't shrink below a certain width */
     height: auto; /* Adjust height to be responsive */
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -158,8 +159,8 @@
 }
 
 #static-rewards li {
-    flex: 1 1 45%; /* Ensure at least 2 columns */
-    margin: 5px;
+    flex: 1 1 40%; /* Ensure at least 2 columns */
+    margin: 15px;
     text-align: left; /* Align text to the left */
     padding: 2px; /* Minimal padding */
 }
@@ -225,8 +226,17 @@
     }
 }
 
+header{
+    
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: -10px;
+    margin-top: -110px;
+}
+
 #reward-buttons {
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
