@@ -48,21 +48,22 @@
     { "text": "🔄Extra Life - 50💷", "value": 50 },
     { "text": "♻️Swap & Save - 30💷", "value": 30 }
   ],
-  "entertainmentContainer": [
-    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'." },
+  "entertainmentContainer": [   
     { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch 30 mins of any show or movie." },
     { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Play 30 mins of any game." },
-    { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage during vacation." },
+    
     { "text": "😴 SLEEP IN (2hrs)- 50💶", "value": 50, "description": "Skip Scheduled morning events." },
     { "text": "🛌🏾 BINGE DAY (1day) - 200💶", "value": 200, "description": "All day show or game binge." },
     { "text": "🎟 Golden Ticket (1screening) - 300💶", "value": 300, "description": "Attend a theatre showing." }
   ],
   "schedulemodsContainer": [
-    { "text": "⏰ Reschedule Event - 20💶", "value": 20, "description": "Shift event time by 30 minutes." },
-    { "text": "📆 Flex Time - 25💶", "value": 25, "description": "Adjust schedule for one event." }
+    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'." },
+    { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage during vacation." },
+    { "text": "😴 SLEEP IN (2hrs)- 100💶", "value": 100, "description": "Skip Scheduled morning events." },
+    { "text": "🛌🏾 BINGE DAY (1day) - 500💶", "value": 500, "description": "All day show or game binge." }
   ],
   "wantsvsneedsContainer": [
-    { "text": "💡 Must-have Upgrade - 50💶", "value": 50, "description": "Essential choice upgrade." },
-    { "text": "🎁 Optional Bonus - 30💶", "value": 30, "description": "Choose if you want an extra bonus." }
+    { "text": "💱👑BINGWA CURRENCY EXCHANGE (2💷 per full dollar)", "value": 2, "description": "Use 20 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)" },
+    { "text": "💱😖KUSHINDWA CURRENCY EXCHANGE (4💷 per full dollar)", "value": 4, "description": "Use 40 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)" }
   ]
 }

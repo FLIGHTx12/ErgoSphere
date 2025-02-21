@@ -134,7 +134,7 @@ function submitSelection() {
   const summary = document.getElementById('summary');
   summary.innerHTML = `
       <hr>
-      <h2>Receipt:</h2>
+      <h2>ErgoShop Receipt:</h2>
       <hr>
       <ul>${selectedItems.map(item => `<li>${item}</li>`).join('')}</ul>
       <hr>
@@ -164,9 +164,9 @@ function copySummary() {
   window.getSelection().addRange(range);
   try {
     document.execCommand('copy');
-    alert('Summary copied to clipboard!');
+    alert('Here is your receipt 🐨  Thanks for shopping at ErgoShop!');
   } catch (err) {
-    console.error('Failed to copy:', err);
+    console.error('Lil problem here..:', err);
   }
   window.getSelection().removeAllRanges();
 }
@@ -178,7 +178,7 @@ function screenshotDiv() {
       navigator.clipboard.write([
         new ClipboardItem({ 'image/png': blob })
       ]).then(() => {
-        alert('Summary screenshot copied to clipboard!');
+        alert('Here is your receipt 🐨  Thanks for shopping at ErgoShop!');
       }).catch(err => {
         console.error('Failed to copy screenshot:', err);
       });
