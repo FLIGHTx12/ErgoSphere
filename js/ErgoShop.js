@@ -43,6 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Add long-press event to display descriptions on options.
+  document.querySelectorAll('select.custom-select').forEach(select => {
+    select.addEventListener('mouseover', function(e) { // Mouse hover
+      if (e.target && e.target.tagName === 'OPTION' && e.target.dataset.description) {
+        showDescription(e.target.dataset.description, select); // Pass select element
+      }
+    });
+    select.addEventListener('mouseout', hideDescription); // Mouse leave
+
+    select.addEventListener('touchstart', function(e) { // Touch start
+      if (e.target && e.target.tagName === 'OPTION' && e.target.dataset.description) {
+        showDescription(e.target.dataset.description, select); // Pass select element
+      }
+    });
+    select.addEventListener('touchend', hideDescription); // Touch end
+  });
 });
 
 /* ...existing functions: populateSelect, addNewSelection, submitSelection, clearSelection, copySummary, screenshotDiv... */
@@ -59,6 +76,9 @@ function populateSelect(selectElement, optionsArray) {
     const optionElement = document.createElement("option");
     optionElement.value = option.value;
     optionElement.text = option.text;
+    if (option.description) {
+      optionElement.dataset.description = option.description; // store description
+    }
     selectElement.appendChild(optionElement);
   });
 }
@@ -158,4 +178,37 @@ function screenshotDiv() {
   }).catch(err => {
     console.error('Failed to capture screenshot:', err);
   });
+}
+
+// Functions to show/hide the option description on long press.
+let holdTimer;
+function showDescription(text, selectElement) {
+  let descDiv = document.getElementById('description-popup');
+  if (!descDiv) {
+    descDiv = document.createElement('div');
+    descDiv.id = 'description-popup';
+    descDiv.style.position = 'absolute'; // Changed to absolute
+    descDiv.style.background = 'rgba(0,0,0,0.8)';
+    descDiv.style.color = 'white';
+    descDiv.style.padding = '8px';
+    descDiv.style.borderRadius = '4px';
+    descDiv.style.zIndex = 10000;
+    document.body.appendChild(descDiv);
+  }
+  descDiv.textContent = text;
+
+  // Calculate position relative to the select element
+  const rect = selectElement.getBoundingClientRect();
+  descDiv.style.left = (rect.right + 10) + 'px'; // Position to the right of the select
+  descDiv.style.top = rect.top + 'px'; // Align with the top of the select
+  descDiv.style.display = 'block';
+  descDiv.style.zIndex = '10001'; // Make sure it's above everything else
+}
+
+function hideDescription() {
+  clearTimeout(holdTimer);
+  const descDiv = document.getElementById('description-popup');
+  if (descDiv) {
+    descDiv.style.display = 'none';
+  }
 }
