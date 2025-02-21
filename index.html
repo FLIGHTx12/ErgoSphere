@@ -6,6 +6,18 @@
     <title>EregoSphere</title>
     <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Responsive main-content on smaller screens */
+      @media (max-width: 600px) {
+        #main-content {
+          width: 90vw;
+          transition: width 0.3s ease-in-out;
+        }
+        #main-content.sidebar-visible {
+          width: 65vw;
+        }
+      }
+    </style>
 </head>
 <body>
 
@@ -273,6 +285,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
       let touchstartX = 0;
       let touchendX = 0;
 
@@ -280,10 +293,12 @@
         if (touchendX > touchstartX) {
           sidebar.classList.add('hidden');
           sidebar.style.transform = 'translateX(100%)';
+          mainContent.classList.remove('sidebar-visible');
         }
         if (touchendX < touchstartX) {
           sidebar.classList.remove('hidden');
           sidebar.style.transform = 'translateX(0)';
+          mainContent.classList.add('sidebar-visible');
         }
       }
 
