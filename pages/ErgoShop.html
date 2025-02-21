@@ -1,168 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EregoSphere</title>
-    <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/ErgoShop.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EregoSphere</title>
+  <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsiveContainers.css" />
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
-<nav id="navbar">
-    <button><a href="../index.html">HOME</a></button>
-    <button><a href="refreshments.html">REFRESHMENTS</a></button>
-    <button><a href="MODS.html">MODS</a></button>
-    <button><a href="casino.html">CASINO</a></button>
-    <button><a href="contracts.html">CONTRACTS</a></button>
-    <button><a href="ErgoShop.html">ErgoShop</a></button>
-</nav>
-  <header>
-    <h1>ErgoSphere Shop</h1>
-  </header>
-  <main>
-    <div id="entertainment">
-      <!-- New user type selector as dropdown -->
-      <div id="user-type-selector">
-        <label for="user-type">STATUS:</label>
-        <select id="user-type">
-          <option value="KUSHINDWA" selected>KUSHINDWA</option>
-          <option value="BINGWA">👑BINGWA👑</option>
-        </select>
-      </div>
-      <!-- Each category with two dropdown menus and a right-side total display -->
-      <div class="category" data-category="Spin the wheel PVP Games">
-        <label>Spin the wheel PVP Games:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <!-- Category running total display -->
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Spin the wheel Co-op Games">
-        <label>Spin the wheel Co-op Games:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Spin the wheel Loot Boxes">
-        <label>Spin the wheel Loot Boxes:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Single Player Games">
-        <label>Single Player Games:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Bingwa Movie Night">
-        <label>Bingwa Movie Night:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Anime Shows">
-        <label>Anime Shows:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Sunday Morning Shows">
-        <label>Sunday Morning Shows:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="Sunday Night Shows">
-        <label>Sunday Night Shows:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <div class="category" data-category="YouTube Theater">
-        <label>YouTube Theater:<br></label>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <select class="ent-select">
-          <option value="0">Select</option>
-          <!-- ...option entries... -->
-        </select>
-        <span class="category-total" style="float:right;">0 💷</span>
-      </div>
-      <!-- Cashout input -->
-      <div id="cashout">
-        <label>CASHOUT REQUEST (DUCATS):</label>
-        <input type="number" id="cashout-input" value="0" min="0">
-      </div>
-      <button type="button" id="ent-submit">Submit</button>
-      <div id="ent-summary" style="display:none;"></div>
-    </div>
-    <!-- ...existing main content if any... -->
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </main>
+<nav id="navbar">
+  <button><a href="../index.html">HOME</a></button>
+  <button><a href="ErgoShop.html">ErgoShop</a></button>
+  <button><a href="MODS.html">MODS</a></button>
+  <button><a href="casino.html">CASINO</a></button>
+  <button><a href="contracts.html">CONTRACTS</a></button>
+</nav>
+
+<hr>
+<header>
+  <h1>ErgoSphere ErgoShop</h1>
+</header>
+<hr>
+
+<main>
+  <div id="snacks">
+    <ul>
+      <li>
+        <h2>Salty Snacks</h2>
+        <div id="saltySnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Sweet Snacks</h2>
+        <div id="sweetSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Frozen Snacks</h2>
+        <div id="frozenSnackContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+      <hr>
+      <li>
+        <h2>Concoctions</h2>
+        <div id="concoctionsContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <br>
+  <div id="mealMods">
+    <ul>
+      <li>
+        <h2>Meal Mods</h2>
+        <div id="mealModsContainer">
+          <select class="custom-select">
+            <option value="0">Select</option>
+          </select>
+          <input type="number" class="quantity-input" value="1" min="0">
+          <button class="add-button">+</button>
+        </div>
+      </li>
+      <br>
+    </ul>
+  </div> <!-- End of Meal Mods container -->
+  
+  <button type="button" class="action-button" onclick="submitSelection()">Submit</button>
+  <br>
+  <div id="summary" class="summary" onclick="screenshotDiv()"></div>
+  <br>
+  <button type="button" class="action-button copy-clear" onclick="clearSelection()">Clear</button>
+  <button type="button" class="action-button copy-clear" onclick="copySummary()">Copy</button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</main>
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/ErgoShop.js"></script>
 <script src="../js/utils.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="../js/script.js"></script>
+<script src="../js/ErgoShop.js"></script>
 </body>
 </html>

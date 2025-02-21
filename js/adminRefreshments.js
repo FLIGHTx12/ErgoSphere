@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchOptions() {
-  fetch('/api/admin/refreshments')
+  fetch('/api/admin/ErgoShop')
     .then(response => response.json())
     .then(data => {
       const optionsList = document.getElementById('optionsList');
@@ -30,7 +30,7 @@ function fetchOptions() {
 }
 
 function addOption(category, option, cost) {
-  fetch('/api/admin/refreshments/add', {
+  fetch('/api/admin/ErgoShop/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ function addOption(category, option, cost) {
 }
 
 function removeOption(category, option) {
-  fetch('/api/admin/refreshments/remove', {
+  fetch('/api/admin/ErgoShop/remove', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

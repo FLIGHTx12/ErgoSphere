@@ -78,7 +78,7 @@ function addGlobalEventListeners() {
     });
 
     const pages = [
-        "index.html", "refreshments.html", "MODS.html",
+        "index.html", "ErgoShop.html", "MODS.html",
         "pages/casino.html", "contracts.html"
     ];
 

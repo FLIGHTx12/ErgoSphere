@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS refreshments;
-CREATE TABLE refreshments (
+DROP TABLE IF EXISTS ErgoShop;
+CREATE TABLE ErgoShop (
   id SERIAL PRIMARY KEY,
   data JSONB NOT NULL
 );
 
-INSERT INTO refreshments (data) VALUES (
+INSERT INTO ErgoShop (data) VALUES (
   '{
     "saltySnacks": [
       "🌿Roasted Seaweed - 10💷",

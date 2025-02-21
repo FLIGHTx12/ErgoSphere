@@ -1,714 +1,160 @@
-// Add arrays linking each entertainment category to its options.
-const entertainmentOptions = {
-"Single Player Games": ["0. NONE", 
-  "Alan Wake (14 hrs) - {Action Adventure} game pass",
-  "Broken Age (10hrs - 13hrs)",
-  "Creatures of Ava (20hrs)",
-  "Disco Elysium (60hrs) - {RPG}",
-  "Firewatch (4hrs - 5hrs)",
-  "Flintlock: Siege of the Dawn (20hrs)",
-  "Hauntii (8-14hrs) - {Action/Adventure}",
-  "Kunitsu-Gami: Path of the Goddess (34hrs) - {Action}",
-  "The inner world (6hrs - 8hrs)",
-  "The Rewinder (5hrs) - {Adventure}",
-  "TUNIC (12-20hrs)",
-  "zHellblade: Senua's Sacrifice (8hrs - 9hrs) 🔴",
-  "zReCore: Definitive Edition (Time to beat) 🔴",
-  "zSenua's Saga Hellblade 2 (May 21 - 9hrs) 🔴",
-  "zStarfield (100hrs) - {RPG} 🔴",
-  "Fe (12hrs - 15hrs)",
-  "Gris (4hrs - 6hrs)",
-  "zJusant (3hrs - 5hrs) 🔴",
-  "Planet of Lana (5-6hrs)",
-  "Spirit of the North: Enhanced Edition (6-8hrs)",
-  "Dragon Age: The Veilguard (Time to beat) - 2024",
-  "Dragon Age: Inquisition (40-88hrs)",
-  "Nine Sols (30hrs) - {Action RPG - Soulslike}",
-  "The Outer Worlds (15-40hrs)", 
-  "We Happy Few (21hrs - 66hrs)",
-  "The Wandering Village (not on gamepass) (10-18hrs)",
-  "As Dusk Falls (6.5hrs - 13hrs)"],
-// Add more categories and options as needed.
+const optionsFile = "../data/options.json";
 
-  "Spin the wheel PVP Games": ["0. NONE",   
-    "3ON3 FREESTYLE (3on3 mode online)(5 games) 🟢",
-    "Animal Royal (quickplay)",
-    "Apex Legends (quickplay)",
-    "Destiny 2 Crucible (competative) 🟢",
-    "Escape Academy (PvP mode) (no longer on gamepass)",
-    "ExoPrimal ( quickplay PvP only)",
-    "Fallguys ( doubles ) 🟢",
-    "FIFA ( online)(1- 6min qtrs. game Hard difficulty)",
-    "Fortnite (doubles)",
-    "Gears 5 (pvp quickplay)",
-    "Halo Infinite (tactical slayer ranked) 🟢",
-    "HAWKED! (quickplay)",
-    "Headbangers: Rhythm Royale (quickplay) (no longer on gamepass)",
-    "Hunt showdown 1896 (Time to beat) - {battle royal}",
-    "Naraka: Bladepoint (quickplay)",
-    "NBA 2k (4 3v3 games)",
-    "Overwatch 2 (ranked) 🟢",
-    "Paladins (quickplay)",
-    "POWERSTAR Golf ( back 9, Bingwa pick coarse) 🟢",
-    "Predecessor (quickplay)🟢",
-    "PUBG: Battlegrounds (quickplay)",
-    "ROCKET LEAGUE (quickplay)",
-    "Rogue Company (quickplay)",
-    "Smite (quickplay)",
-    "Sonic all-star racing (quickplay)",
-    "Splitgate (quickplay)",
-    "Star Wars Battlefront (quickplay)",
-    "The Finals (quickplay)",
-    "Titanfall 2 (quickplay)",
-    "Valorant (ranked) 🟢🟢",
-    "WILDSTYLE Board game"],
+async function loadOptions(containerId) {
+  const response = await fetch(optionsFile);
+  const optionsData = await response.json();
+  return optionsData[containerId];
+}
 
-  "Spin the wheel Co-op Games": ["0. NONE", 
-    "33 Immortals",
-    "Army of 2 (XBOX 360)",
-    "As Dusk falls",
-    "Battle Toads 🟢",
-    "Broforce",
-    "Brothers 🏆",
-    "Chariot",
-    "Common'hood (24 hrs) - {simulation} (no longer on gamepass)",
-    "Darksiders Genesis",
-    "DayZ",
-    "Deep Rock Galactic, ROCK AND STONE!",
-    "Diablo 3: reaper of souls",
-    "Diablo IV 🟢🟢🟢",
-    "Divinity 2: Original sin",
-    "Dune: Spice Wars 🟢",
-    "Endless Dungeon 🟢",
-    "Escape Academy",
-    "ExoPrimal",
-    "Fallout 76",
-    "Generation Zero (50hrs) - {FPS Survival}",
-    "Grounded",
-    "How to survive 2: Storm warning edition",
-    "Human Fall Flat",
-    "Ilo and Milo",
-    "IT TAKES TWO 🏆",
-    "Knights on Bikes (not available currently on gamepass)",
-    "Legendary: Marvel Card Game",
-    "Livelock",
-    "LOVERS In A Dangerous Spacetime 🏆",
-    "Marvel ultimate alliance",
-    "Marvel Ultimate Alliance 3: The Black Order (13hrs) - {action}",
-    "Marvel's Avengers",
-    "Minecraft Dungeons",
-    "Monster hunter rise",
-    "NBA2k (WNBA Season)",
-    "Out of Space Couch Edition",
-    "OUTRIDERS",
-    "overcooked",
-    "Palworld",
-    "Payday 2 Crimewave",
-    "Photosynthesis",
-    "Plate UP! 🟢",
-    "PORTAL 2 🏆",
-    "Red Dead Redemption 2, story missions",
-    "Redfall 🏆",
-    "Resident evil revelation 2",
-    "Sea of thieves🟢",
-    "Space lines fare out 🏆",
-    "State of Decay 2",
-    "Stranded Deep (not available currently on gamepass)",
-    "Streets of rage 4 (not available currently on gamepass)",
-    "Terraria",
-    "Tetris (quickplay)",
-    "The ASCENT 🏆",
-    "TMNT: Shredders Revenge",
-    "Unravel 2 🏆",
-    "Valheim",
-    "Vampire survivors 🟢🟢",
-    "WarFrame",
-    "Wilmonts Warehouse",
-    "ZHEROS",
-    "Zombie Warrior 4: Dead War"],
-    // Add more categories and options as needed.
-
-  "Spin the wheel Loot Boxes": ["0. NONE", 
-    "YOU FOUND!! 1 XBOX series X's (Continue until 2 are claimed)",
-    "YOU FOUND!! Bathroom clock (hide after spin)",
-    "YOU FOUND!! FBSPORT Ping pong net (hide after spin) - $19.99",
-    "YOU FOUND!! First floor clock (hide after spin)",
-    "YOU FOUND!! Kitchen scissors (hide after spin)",
-    "YOU FOUND!! massage equipment (continues)",
-    "YOU FOUND!! New Alexa component (Continues)",
-    "YOU FOUND!! New bed comforter (hide after spin)",
-    "YOU FOUND!! new bed sheets (hide after spin)",
-    "YOU FOUND!! new computer monitor (hide after 2 are found) - $150 🟢",
-    "YOU FOUND!! New living room TV! (hide after spin)",
-    "YOU FOUND!! New Robes (hide after spin)",
-    "YOU FOUND!! New Salt rock light (hide after spin)",
-    "YOU FOUND!! New treadmill (hide after spin)",
-    "YOU FOUND!! New yoga mats (hide after spin)",
-    "YOU FOUND!! Poached egg maker cozilife (hide after spin) - $10.97",
-    "YOU FOUND!! Splatoon 3 (hide after spin)",
-    "YOU FOUND!! Steering wheel cover (hide after spin)",
-    "YOU FOUND!! Switch SPORTS equipment pack (hide after spin)",
-    "YOU FOUND!! VASAGLE Laundry Hamper (hide after spin) - $34.31 🟢",
-    "YOU FOUND!!: Dimmable front room lights (hide after spin)",
-    "zYOU FOUND!! 10 or 20-gallon fish tank, 30x15 max (hide after spin) 🔴",
-    "zYOU FOUND!! Bathroom rugs (hide after spin) 🔴",
-    "zYOU FOUND!! Cupping Therapy Set (hide after spin) 🔴",
-    "zYOU FOUND!! Golf wedge (found) 🔴",
-    "zYOU FOUND!! New Basketball (Found) 🔴",
-    "zYOU FOUND!! New Kitchen mat (hide after spin) 🔴",
-    "zYOU FOUND!! New Microphone for RockBand (hide after spin) 🔴",
-    "zYOU FOUND!! Outlet extender/adapter (hide after spin) 🔴",
-    "zYOU FOUND!! Samsung Soundbar (hide after spin) 🔴",
-    "zYOU FOUND!! Storage Freezer for the basement (found) 🔴"],
-   // Add more categories and options as needed.
-
-  "Bingwa Movie Night": ["0. NONE", 
-    "13 going on 30 (Netflix) 1hr37m",
-"Benny and Joon (Prime) 1hr38m 👀",
-"Breakfast at Tiffany's (Paramount+) 115 minutes",
-"Casablanca (HBO Max) 102 minutes",
-"Crazy Rich Asians (HBO Max) - 113 minutes",
-"Cyrano (Prime) 2hr3m",
-"Date Night (Prime) 1hr26m 👀",
-"Garden State (Hulu) 1hr42m 👀",
-"I Want You Back (Prime) 1hr57m 👀",
-"In the Mood for Love (HBO Max) 99 minutes",
-"Licorice Pizza (Prime) 2hr13m",
-"Little Fish (Hulu) 1hr41m 👀",
-"Morris from America (HBO) 1h30m",
-"Needle in a Timestack (Prime) 1h 51m 👀",
-"Paris Can Wait (Hulu, Starz, Kanopy) 1h 32m",
-"Plus One (Netflix) 1hr38m 👀",
-"Pride and Prejudice (2005) (Hulu) 129 minutes",
-"Racing with the Moon (Prime) 1hr48m",
-"Rust and Bone (HBO Max, Criterion Channel) 2h 0m",
-"She's all that (Netflix) 1hr35m",
-"Sixteen Candles (Prime) 1h32m",
-"The Fault in Our Stars (Hulu) - 125 minutes",
-"The King's Speech (Hulu) - 118 minutes",
-"The Lovebirds (Netflix) 1hr27min 👀",
-"The Lunchbox (HBO Max, Mubi, Kanopy) 1h 44m",
-"The Proposal (Hulu) - 108 minutes",
-"The Shape of Water (Prime) 2h3m 👀",
-"Three Thousand Years of Longing (Prime) Duration 1h48m - {Fantasy/Romance}",
-"Vanilla Sky (prime) 2h 25m 👀",
-"We Live in Time (Prime - pay) Duration 1h47m - {Romantic Drama}",
-"When Harry Met Sally (HBO Max) 126 minutes",
-"Chungking Express (Prime) Duration 1h43m - {Drama}👀",
-"A Beautiful Mind (HULU) 2h15m 👀",
-"A man called Otto (Netflix) 2hrs 👀",
-"Any Given Sunday (PRIME) Duration 2h42m - {Drama}",
-"Badlands (Prime) 1h35m 🟢",
-"Basquiat 1996 (Where to watch) Duration 1h50m (drama)🟢",
-"Blink Twice (Prime) Duration 1h44m - {Suspense Drama} 🟢",
-"Catch Me If You Can (Prime) 2h21m",
-"Crown Heights (Prime) 1hr39m",
-"Down with the King (Netflix) 1h40m",
-"Downsizing (Prime) 2h15m",
-"Emancipation (Apple tv) 2h12m👀",
-"Empire of the Sun (Prime) 2h34m",
-"Fences (PRIME) 2h19m 👀",
-"Field of Dreams (Peacock) 1h 47m",
-"Flamin' Hot (Disney+) 1h38m",
-"Forest Gump (Prime) 2h22m",
-"Full Metal Jacket (Prime) 1h56m 👀",
-"God's and monsters (Prime) 1h45m",
-"Good Time (Prime) 1hr40m 👀",
-"Gran Turismo (Netflix) 2h14m",
-"House of Sand and Fog (HBO) 2h6m",
-"Old Boy (Netflix) 2h12m 👀",
-"Oppenheimer (Hulu) Duration 3h00m - {Thriller} 👀",
-"Reality Bites (Prime) 1hr38m 👀",
-"Run Lola Run (Prime) 1h19m",
-"Schindler's List (Prime) 3h15m",
-"Seven (HBO Max) 127 mins👀",
-"Short Term 12 (Amazon) 1h36m👀",
-"Spartan (Prime) 1h46m",
-"Sunset Park (Prime) 1h39m",
-"The Last Duel (HBO Max, Hulu) 2h 32m",
-"The Little Things (Netflix) Duration 2h07m - {Drama / Mystery}",
-"The Menu (HBO Max) 1h 47m",
-"The Woman King (Prime free) 2h15m 👀",
-"Tolkien (Hulu) 1h52m 👀",
-"Trainspotting (Hulu) 90 minutes 👀",
-"Whiplash (Netflix) 1h46m 👀",
-"13 lives (Prime) 2h27m",
-"2001 Space Odyssey (HBO) 2h29m",
-"65 (Netflix) 1h 32m 👀",
-"A Time to Kill (Prime) 2h25m",
-"Ant-Man (Disney+) 117 minutes",
-"Ant-Man and the Wasp (Disney+) 118 minutes",
-"Archive (PRIME) 1h49m",
-"Avengers: Age of Ultron (Disney+) 141 minutes 🟢",
-"Avengers: Endgame (Disney+) 181 minutes 🟢",
-"Avengers: Infinity War (Disney+) 149 minutes",
-"Black Adam (HBO) 2h5m 👀",
-"Black Panther (Disney+) 134 minutes",
-"Black Panther: Wakanda Forever (Disney+) 161 minutes",
-"Black Widow (Disney+) 134 minutes",
-"Black Widow (Disney+) 2h16m 👀",
-"Bright (Netflix) Duration 1h58m 🟢",
-"Brightburn (Xbox) 1h 30m",
-"Captain America: Civil War (Disney+) 147 minutes",
-"Captain America: The First Avenger (Disney+) 124 minutes",
-"Captain America: The Winter Soldier (Disney+) 136 minutes👀",
-"Captain Marvel (Disney+) 123 minutes👀",
-"Children of Men (Prime) 1h49m 👀",
-"Close Encounters of the Third Kind (Prime) 2h17m",
-"Constantine (HBO) 2h1m👀",
-"Contact (HBO Max) 2h 30m👀",
-"Dark City (HBO Max) 100 mins 👀",
-"Doctor Strange (Disney+) 115 minutes👀",
-"Doctor Strange in the Multiverse of Madness (Disney+) 126 minutes 👀",
-"Doctor Strange: In the Multiverse of Madness (Disney+) 2h8m 👀👀",
-"Doors (Prime) 1h 21m 👀",
-"Dredd (Prime) 1h35m🟢",
-"Dungeons & Dragons: Honor Among Thieves (PRIME) 2h10m👀",
-"Equilibrium (Paramount) 107 mins👀",
-"Eternals (Disney+) 156 minutes👀",
-"Grosse pointe blank (Prime) 1h47m",
-"Guardians of the Galaxy (Disney+) 121 minutes",
-"Guardians of the Galaxy Vol. 2 (Disney+) 136 minutes👀",
-"Heaven knows what (Prime) 1h37m",
-"Iron Man (Disney+) 126 minutes👀",
-"Iron Man 2 (Disney+) 124 minutes👀",
-"Iron Man 3 (Disney+) 130 minutes👀",
-"Judge Dredd (Prime) 1h36m",
-"Lucy (Netflix) 1h30m",
-"Marvel's The Avengers (Disney+) 143 minutes👀",
-"Morbius (Disney+) 1h44m👀",
-"Mulholland Drive (Criterion Channel, Hulu) 121 mins",
-"Nope (Prime) 2h10m 👀",
-"Out of Time (Prime - free) Duration 1h32m - {Sci-fi Action} 🟢",
-"Pacific Rim (Netflix) 2h11m 👀",
-"Push (Hulu) 1h51m 👀",
-"Rebel moon part two (Netflix) 2h03m👀",
-"Red Planet (HBO Max, Roku Channel) 106 minutes",
-"SCANNER DARKLY (PRIME) Duration 1h40m - {Sci-fi}",
-"Shaft 2000 (Prime) 1h39m",
-"Shang-Chi and the Legend of the Ten Rings (Disney+) 132 minutes 👀",
-"Sonic the Hedgehog (Paramount, Hulu) 99 minutes",
-"Source Code (HBO) 1h33m 👀",
-"SPACEMAN (Netflix) 1h47m 👀",
-"Spider-Man Across the SpiderVerse (Netflix) 2h20m",
-"Spider-Man: Far From Home (Starz) 129 minutes",
-"Spider-Man: Homecoming (Starz) 133 minutes",
-"Spider-Man: No Way Home (Starz) 148 minutes",
-"Starship Troopers (Movies Anywhere) 2h9m 👀",
-"Strange Days (HBO) 2h 25m",
-"Suicide squad (Netflix) 2h10m 👀",
-"The Darkest Hour (Prime) 2h5m 👀",
-"The Departed (HBO) 2h31m",
-"The Flash (HBO) 2h24m 👀",
-"The Godfather (Prime) 2h55m",
-"The Godfather 2 (Prime) 3h22M",
-"The Godfather 3 (Hulu) 2h42m",
-"The Incredible Hulk (HBO Max) 112 minutes",
-"The Italian Job (Netflix) 1h44m",
-"The Machinist (Starz) 102 mins",
-"The nice guys (Netflix) 1h56m",
-"The Silence of the Lambs (HBO) 1h58m",
-"The Suicide Squad (HBO) 2h12m 👀",
-"The Woman King (Netflix) 2h15m 👀",
-"The wonderful story of Henry Sugar and Three more (Netflix) 1h 28m",
-"They Cloned Tyrone (Netflix) 2h 2m 👀",
-"Thor (Disney+) 115 minutes 👀",
-"Thor: Love and Thunder (Disney+) 119 minutes 👀",
-"Thor: Ragnarok (Disney+) 130 minutes 👀",
-"Thor: The Dark World (Disney+) 112 minutes 👀",
-"Transcendence (Hulu, HBO Max) 1h 59m",
-"Transformers: Dark of the Moon (Amazon Prime) 155 minutes",
-"Transformers: Revenge of the Fallen (Amazon Prime) 150 minutes",
-"Tron 1982 (Disney+) 1h36m 👀",
-"Tron Legacy (Disney+) 2h5m 👀",
-"Uncharted (Netflix) 1h56m",
-"Upgrade (HBO) 1h40m 👀",
-"Venom (Disney+) 1h52m 👀",
-"Venom 2 (Disney+) 1h37m👀",
-"Virus 1999 (Prime) 1h40m",
-"Warriors (Prime) 1h30m 👀",
-"Wing commander 1999 (Prime) 1h50m",
-"Invasion of the Body Snatchers (Showtime) 115m",
-"Malevolent (Netflix) 1h29m",
-"Rubber (HBO) 1h25m",
-"Shutter Island (Hulu) 138 mins 👀",
-"The Mist (Netflix) 2h6m",
-"US (HBO) 2h19",
-"22 (Netflix) 1h41m",
-"US (HBO) 2h",
-"Malevolent (Netflix) 1h29m",
-"Shutter Island (Hulu) 138 mins",
-"The Mist (Netflix) 2h6m",
-"Invasion of the Body Snatchers (Showtime) 115m👀",
-"Rubber (HBO) 1h25m",
-"Asteroid City (PRIME) 1h45m 👀",
-"Birdman (hbo) 2hr 👀",
-"Blazing Saddles (Netflix) 1h32m",
-"First Time Female Director (Roku) 1hr 37m 👀",
-"Kingpin (Starz) 1h 57m",
-"Marcel the Shell with Shoes On (HBO) Duration 1h30m - {Comedy}🟢",
-"Strays (Prime) 1h33m 👀",
-"The Big Lebowski (Hulu) 117 mins👀",
-"The Book of Clarence (Netflix) 2h09m👀",
-"The Cable Guy - HBO Max - 95 minutes",
-"The Men Who Stare at Goats (Prime) Duration 1h34m - {Dark Comedy}",
-"The Super Mario Bros Movie (Netflix) 1h32m 👀",
-"White Men Can't Jump 1992 (Hulu) 1h 58m 👀",
-"You People (Netflix) 1h58m 👀",
-"Zootopia (Disney+) 1h48m",
-"American Movie (HBO Max) - 111 minutes 👀",
-"Amy (Hulu) - 97 minutes",
-"Call me Miss Cleo (HBO) 1h30m 👀",
-"Citizenfour (HBO Max) - 114 minutes",
-"Cropsey (Prime) 1h24m 👀",
-"Free to play (Netflix) 1h15m",
-"Hate to Love: Nickelback (Netflix) 1h32m 👀",
-"Hoop Reality (Prime )1h32m",
-"HyperNormalisation (Blue ray) 2h 46m",
-"Jennifer Lopez: HALFTIME (Netflix) 1h36m",
-"Jihad rehab (unwatchable) 1h48m",
-"Jiro Dreams of Sushi (Hulu) - 101 minutes",
-"Kelce (prime) 1hr42m",
-"Man on Wire (Hulu) - 94 minutes",
-"My Octopus Teacher (Netflix) - 85 minutes",
-"Shirkers (Netflix) 1h36m",
-"Stutz (Netflix) 1h36m",
-"The Greatest Night In Pop (Netflix) 1h37m",
-"The last repair shop (Disney+) 40m",
-"The Redeem Team (Netflix) 1hr37m 👀",
-"The source family 1h45m",
-"When We Were Kings (HBO Max) - 85 minutes",
-"Where to Invade Next (PRIME) Duration 1h59m - {Documentary}🟢",
-"Who Shot The Sheriff (Netflix) 57m",
-"ZEF: The Story of Die Antwoord (Prime - free) Duration 1h30m - {Documentary}"
-],
-  // Add more categories and options as needed.
-  "YouTube Theater": ["0. NONE", 
-   "Age of Apocalypse - Part 1 - Brave New World (9m)",
-"Age of Apocalypse - Part 2 - Map of The New World (10m)",
-"Age of Apocalypse - Part 3 - Deadpool (8m)",
-"Age of Apocalypse - Part 4 - Nate Grey (5m)",
-"Age of Apocalypse - Part 5 - Conclusion (12m)",
-"Marvel Comics Monica Rambeau is overpowered (7m)",
-"Marvel Comics: Blade Explained (24m)",
-"Marvel Comics: Cyclops Explained (15m)👀",
-"Marvel Comics: Gambit Explained | Comics Explained (22m)",
-"Marvel Comics: Gambit’s powers explained (10m)",
-"Marvel Comics: Mutant History Explained |(20m)",
-"Marvel Comics: She-Hulk Explained (22m)👀",
-"Marvel Comics: The X-Men Explained | Comics Explained (22m)",
-"Marvel Comics: Wakanda Explained (13m)",
-"Marvel's Secret Invasion Story Explained (30m)",
-"The Most Hated Man At Marvel Comics (17m)",
-"The Return of...: Annihilation Scourge Alpha (13m)",
-"Too Powerful For Marvel Movies: The Purple Man | Comics Explained (10m)",
-"When Deadpool tries to join the X Men (25m)",
-"Where is Richard Rider? (ANAD Nova Vol 1: Resurrection) (23m)",
-"X Men: Gambit Marries Rogue (11m)🟢",
-"X-Men/Avengers: House of M Conclusion (22m)👀",
-"X-Men/Avengers: House of M Part 1 (31m)👀",
-"A growing concern: Teenage pregnancy in Brazil (13m)",
-"China's competition for living space (43m)👀",
-"Dealing with menopause (13m)",
-"Did Jesus really exist? | DW Documentary (52m)",
-"How much influence do the super rich have? (43m)",
-"Man against machine - Coal, climate and the future (13m)👀",
-"Nepal's mercenaries fight for Russia (13m)",
-"New York City rich and poor - The inequality crisis (43m)",
-"North Korea's most powerful woman (51m)👀",
-"Pakistan’s female comedians challenge the male-dominated world of comedy (13m)",
-"Parenting while blind (13m) 🟢",
-"Protesting Putin: The Russian opposition in exile (13m)👀",
-"The Akha tribe in Laos: Between tradition and modernity (42m)👀",
-"Tomatoes and greed – the exodus of Ghana's farmers (53m)",
-"Two women rappers face being vilified in their country for pursuing their dreams (13m)",
-"A New Age of Slavery Documentary (20M)",
-"Recycling is literally a scam (20M)",
-"The CIA’s Plot to Assassinate Julian Assange (21m)👀",
-"The Disturbing Rise in Parasites (27m)",
-"The Rise & Fall of the World’s Most Notorious Private Army (19m)👀",
-"This is why they killed him. (22m)👀",
-"Where does all our recycling go? (21m)",
-"Who ACTUALLY runs the world? (13m)👀",
-"Why are Billionaires Obsessed With Being Philanthropists? (16m)",
-"Why Dumb People Make More Money Than You (14M)",
-"Why it’s okay to be fat (19m)",
-"Why the U.S. Military is running out of soldiers (18M)",
-"Aging in the U.S. (55M)",
-"Israel’s Second Front (full documentary) | Amid War in Gaza, Tensions Rise in West Bank | FRONTLINE (26M)",
-"Love Or Hate Hippies From The 1960s Here Is The Best Documentary To Understand Them (28M)👀",
-"Supplements and Safety (full documentary) | Hidden Dangers of Vitamins & Supplements | FRONTLINE (54m)👀",
-"The Battle for Ukraine (full documentary) | FRONTLINE (34m)",
-"The Discord Leaks (full documentary) | FRONTLINE (53m)",
-"Addiction (54m)",
-"Decoding da Vinci (53m)",
-"Great American Eclipse (54)",
-"The Cannabis Question (54m)",
-"Your Brain: Who's in Control? (54m)👀",
-"What Happened In CHI-RAQ??!! (2015) (25m)",
-"What Happened In CRADLE 2 THE GRAVE??!! (2003) PRIMM'S HOOD CINEMA (27m)",
-"What Happened In DANGEROUS MINDS??!! (1995) PRIMM'S HOOD CINEMA (19)",
-"What Happened In DIARY OF A MAD BLACK WOMAN??!! (2005) (15m)",
-"What Happened In DO THE RIGHT THING??!! (1989) (15m)",
-"What Happened In FOUR BROTHERS??! (2005) (20m)👀",
-"What Happened In FRIDAY AFTER NEXT??!! (2002) (19m)",
-"What Happened In FRIDAY??!! (1995) (20m)",
-"What Happened In HOT BOYZ??!! (2000) (22m)",
-"What Happened In HOW HIGH??!! (2001) (19m)",
-"What Happened In HUSTLE & FLOW??!! (2005) (21m)",
-"What Happened In IN TOO DEEP??!! (1999) PRIMM'S HOOD CINEMA (16m)",
-"What Happened In JASON'S LYRIC??!! (1994) PRIMM'S HOOD CINEMA (21M)👀",
-"What Happened In LOVE & BASKETBALL??!! (2000) PRIMM'S HOOD CINEMA (19m)",
-"What Happened In LOVE DON'T COST A THING??!! (2003) (18m)",
-"What Happened In MALIBU'S MOST WANTED??!! (2003) (20m)👀",
-"What Happened In SET IT OFF??!! (1996) (18m)",
-"What Happened In SOUL FOOD??!! (1997) (21m)",
-"What Happened In THE NUTTY PROFESSOR??!! (1996) (19m)",
-"Are Humans the First Civilization? The Silurian Hypothesis (12M)",
-"Atlantis Rises, Lemuria Falls: The War that Sank a Continent (33m)",
-"Humans vs Superhumans | When Monsters Were Real and We Almost Went Extinct (45m)👀",
-"It's All FAKE | The Dead Internet Theory (13m)",
-"Knights Templar | Forbidden History and their Secret Quest for Atlantis (55m)",
-"Lucid Dreams & Nightmares: Ever Dream This Man? (36m)",
-"Martian Mysteries | The Phobos Incident, Monoliths, and Ancient Ruins (36m)",
-"Mysteries Beneath the Ice: The Secrets of Antarctica (43m)",
-"Sounds from the Hell | The Borehole Drilling Project that went Very Wrong (12M)",
-"The Horrors of Plum Island | Hybrids, Human Experiments and Weaponized Killer Insects (38m)",
-"THE LEGEND of the Immortal: The Count of Saint Germain (15m)",
-"The Mothman Returns: Point Pleasant Legend to Chicago Terror (36m)",
-"Time-Slip Artifacts: Modern Objects in the Ancient World - Volume 1 (45m)",
-"UNSOLVED: The Creepiest TV Hack in History (16m)👀",
-"We Live in a Simulation. The evidence is everywhere. All you have to do is look. (22m)👀",
-"Who are The Dark Watchers? Don't stare too long. (9m)",
-"1962 Missile Crisis: How A Nuclear WW3 Was Narrowly Averted (51m)",
-"47 Rōnin: The Ruthless Samurai That Defied The Shōgun | Ancient Black Ops (50m)",
-"America B.C: How Far Back Does Native American History Go? (47m)",
-"Angkor Wat: The Ancient Mystery Of Cambodia’s Lost Capital (50m) 👀",
-"Diana & Dodi's Crash: What Really Happened On The Night They Died? (50m)",
-"Stonehenge: The Mysterious Origins Of England's Ancient Megalith (45m)",
-"The Edwardian Inventions That Turned Normal Homes Into Death Traps (59m)👀",
-"The Hunt For Shangri-La: Pakistan's Hidden Utopia (50m)",
-"The Lost City Of Knowledge: What Life Was Like In Ancient Alexandria (52m)",
-"The Mystery Of The Dark Age's Global Climate Disaster (49m)",
-"The Shocking Discovery Of The Dead Sea Scrolls (48m)",
-"The Underappreciated World Of Dark Age Art (59m)",
-"The Untold Story Of The 1381 Peasants Revolt (53m)",
-"What Ignited The Ongoing Palestine vs Israel Conflict | Promises & Betrayals (50m)",
-"What Is This Mysterious Sunken Object Beneath The Baltic Sea? 57=8m)",
-"Anti-Racist Skinheads Fighting Nazis: The Baldies | Full-Length Documentary (52m)",
-"Bound By Earth: Archaeology In Minnesota | Full Documentary (27m)👀",
-"Flour Power | Full Documentary (56m)🟢",
-"KMOJ: Heart and Soul (55m)👀",
-"Minnesota State Fair Stories | Full Documentary (54)",
-"St. Paul's Historic Black Neighborhood Destroyed By Highway (11m) 👀",
-"The History of Minneapolis's Most Famous Music Club: First Avenue (58m)",
-"The Myth of Minnesota (30m)👀",
-"Wannabe: Life and Death in a Small Town Gang (57m)",
-"Gun Owners & Users Debate America’s Gun Problem | VICE Debates (43m)👀",
-"Inside Iran: What Happened to Iran’s Women-led Uprising? (29M)",
-"Inside the Red Sea Mission (51M) 👀",
-"The Rise of the Crisis Actor Conspiracy Movement (25m) 👀",
-"The Rise, Fall & Rebirth of Detroit | Abandoned (44m)👀",
-"What Iran Doesn't Want You To See | Super Users",
-"Why You Should Be Worried About China’s Nukes | Super Users (8m)",
-"How AI and Automation Fuel Walmart’s Ultrafast Deliveries (9m)",
-"How LED Wristbands, Google Maps, Spotify and More Work (48m)",
-"How Temu’s Explosive Growth Is Disrupting American E-Commerce (8m)",
-"I Challenged My AI Clone to Replace Me for 24 Hours (8m)",
-"Inside Prigozhin’s Wagner, Russia’s Secret War Company (40m)",
-"iPhone Thief Explains How He Breaks Into Your Phone (10m)",
-"Lawyer Explains How AI Is Shaking Up Copyright Law (9m)",
-"Mitch McConnell: How the Senate Leader Leveraged His Power Over 17 Years (8m)",
-"The Rise, Fall and Possible Rise Again of San Francisco’s Downtown (9m)",
-"This Is How Easy It Is to Hack EV Chargers (8m)",
-"Angels Too Soon: The School Fire of '58 (56m)",
-"The Rise and Fall of the Mail Order Giants (57m)",
-"The Outrage of Danny Sotomayor (57m)",
-"The Great Chicago Fire: A Chicago Stories Special Documentary (56m)",
-"Ida B. Wells: A Chicago Stories Special Documentary (1hr)",
-"Inventing Improv (59m)",
-"The Birth of Gospel (56m)",
-"Ali Siddiq: It’s Bigger Than These Bars - Full Special (1hr) - comedy 🟢👀",
-"Biodegradable Sun Chips - Hari Kondabolu - Full Special (22m) - Comedy Central Stand-Up👀",
-"Jordan Jensen - Death Chunk (19m) - Jordan Jensen - comedy 🟢👀",
-"Mickey Overman I the precipice (59m) - comedy 🟢",
-"Saints Row2022 - What Happened? (16m) - Matt McMuscles 👀",
-"X-Men Origins Wolverine - What Happened? (18m) - Matt McMuscles 👀"],
-
-  "Anime Shows": ["0. NONE",
-    "7 Seeds (24 episodes)",
-    "Aggretsuko (50 episodes)",
-    "Arcane (NETFLIX) 09ep 60mins each",
-    "Blue Eyed Samurai (Netflix) 8ep 1hr",
-    "Cowboy Bebop (hulu 26 episodes)👀",
-    "Cyberpunk Edgerunner (Netflix) 10ep 30mins👀",
-    "Eden (4 episodes)👀",
-    "Erased (12 episodes)👀",
-    "exception (8 episodes)",
-    "Hunter x Hunter (148 episodes)",
-    "Invincible (PRIME) 8ep 1hr👀",
-    "Jujutsu Kaisen (Hulu) 24ep 24mins each",
-    "Monster (74 episodes)",
-    "Neon Genesis Evangelion (26 episodes)👀",
-    "Pluto (8 episodes)👀",
-    "Samurai 7 (PRIME) 26ep 30mins",
-    "Samurai Champloo (HULU) 24ep 30mins",
-    "Scavengers Reign",
-    "Scavengers Reign (Netflix) 12ep 30mins each",
-    "Scott Pilgrim Takes Off (Netflix) 08ep 0h28m each 🟢",
-    "The disastrous life of Saiki K. (50 episodes)",
-    "The Orbital Children (Netflix 6 episodes)👀"],
-
-  // Add more categories and options as needed.
-  "Sunday Morning Shows": ["0. NONE",
-  "Abbot Elementary (Hulu)👀👀 🟢",
-  "Curb Your Enthusasium (HBO) 12seasons 30mins👀",
-  "Dave (Hulu) 10ep 30min👀👀",
-  "Ghosted (Hulu) 16ep 30min👀",
-  "Pen15 (HULU) 27ep 30mins (dramedy)",
-  "Reservation Dogs (Hulu)👀👀👀",
-  "Starting 5 (Netflix) 00ep 00mins each {Reality}👀",
-  "Survivor (Hulu) 14ep 40mins each {Reality}",
-  "The Standups (Netflix) 6ep 30mins each {comedy}",
-  "The Vince Staples Show (Netflix) 5ep 30mins👀",
-  "What we do in the shadows (Hulu)👀👀👀👀"
-],
-
-  // Add more categories and options as needed. 
-  "Sunday Night Shows": ["0. NONE",
-    "📺(((Action/Superhero)))📺",
-    "Ahsoka (Disney+)👀",
-    "Fallout (prime) 8ep 45-1hr👀",
-    "Firefly (HULU) 14ep 1hr",
-    "Halo (Paramount)",
-    "Kingdom (Netflix)",
-    "Loki (Disney+)👀",
-    "Mr. & Mrs. Smith (Prime) 8 episodes 1hr👀",
-    "Tales from the loop (prime) 08ep 54mins each {drama}👀",
-    "The Boys (Prime) 08ep 60mins each👀",
-    "The Changeling (Apple TV)",
-    "Witcher (Netflix)👀",
-    "📺(((Drama)))📺",
-    "3 Body Problem (Netflix) 08ep 60ish mins each {Sci-Fi / Thriller}👀",
-    "American Gods (PRIME) 30ep 60mins",
-    "MARVELS Runaways (HULU) 10ep 60mins each {DRAMA} 🟢",
-    "SHOGUN (HULU) 8ep 1hr",
-    "THE BEAR (HULU) 8ep 30mins🟢",
-    "True Detective (HBO)",
-    "Wu-Tang: An American Saga (HULU) 10ep 1hr👀",
-    "📺(((Docuseries)))📺",
-    "American Conspiracy (Netflix) 4ep 1hr",
-    "The Program (Netflix) 3ep 1hr",
-    "Wild Wild Country(Netflix) 6ep 1hr",
-    "You are what you eat (Netflix) 4ep 1hr"]
-};
-
-// Set default user type
-let userType = "KUSHINDWA";
+function populateSelectOptions() {
+  const selectContainers = [
+    "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
+    "mealModsContainer"
+  ];
+  
+  selectContainers.forEach(selectContainerId => {
+    loadOptions(selectContainerId).then(optionsArray => {
+      const container = document.getElementById(selectContainerId);
+      if (container) {
+        const selectElement = container.querySelector('.custom-select');
+        if (selectElement) {
+          populateSelect(selectElement, optionsArray);
+        }
+      }
+    });
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // Populate each category's select boxes with options from the corresponding array.
-  document.querySelectorAll('#entertainment .category').forEach(cat => {
-    const catName = cat.getAttribute('data-category');
-    const optionsArray = entertainmentOptions[catName] || [];
-    cat.querySelectorAll('.ent-select').forEach(select => {
-      select.innerHTML = '';
-      optionsArray.forEach(optionText => {
-        const opt = document.createElement('option');
-        opt.value = optionText.split(' ')[0]; // use first token as value
-        opt.text = optionText;
-        select.appendChild(opt);
-      });
-      // Add change listener to update this category's total when option changes
-      select.addEventListener('change', () => {
-        updateCategoryTotal(cat);
-      });
-    });
+  populateSelectOptions();
+  // Add "+" button event listeners for additional selections
+  const selectContainers = [
+    "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
+    "mealModsContainer"
+  ];
+  selectContainers.forEach(selectContainerId => {
+    const container = document.getElementById(selectContainerId);
+    if (container) {
+      const addButton = container.querySelector('.add-button');
+      if (addButton) {
+        addButton.addEventListener('click', () => {
+          addNewSelection(selectContainerId);
+        });
+      }
+    }
   });
+});
+
+/* ...existing functions: populateSelect, addNewSelection, submitSelection, clearSelection, copySummary, screenshotDiv... */
+
+function populateSelect(selectElement, optionsArray) {
+  // Ensure the default option is added first.
+  const defaultOption = document.createElement("option");
+  defaultOption.value = 0;
+  defaultOption.text = "Select";
+  selectElement.appendChild(defaultOption);
   
-  // Add dropdown-based user type listener.
-  const userTypeDropdown = document.getElementById('user-type');
-  if (userTypeDropdown) {
-    userTypeDropdown.addEventListener('change', (e) => {
-      userType = e.target.value;
-      if (userType === "BINGWA") {
-        document.body.classList.add('bingwa-theme');
-      } else {
-        document.body.classList.remove('bingwa-theme');
-      }
-      // Update all category totals after multiplier change.
-      document.querySelectorAll('#entertainment .category').forEach(cat => {
-        updateCategoryTotal(cat);
-      });
-    });
-  }
-  
-  // Helper function to update a category's total cost.
-  function updateCategoryTotal(categoryDiv) {
-    // Determine cost multiplier based on user type.
-    const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
-    let count = 0;
-    categoryDiv.querySelectorAll('.ent-select').forEach(select => {
-      if (select.selectedIndex > 0) {
-        count++;
-      }
-    });
-    // Update the visible total inside the category div.
-    const totalElem = categoryDiv.querySelector('.category-total');
-    if (totalElem) {
-      totalElem.textContent = `${count * multiplier} 💷`;
+  optionsArray.forEach(option => {
+    const optionElement = document.createElement("option");
+    optionElement.value = option.value;
+    optionElement.text = option.text;
+    selectElement.appendChild(optionElement);
+  });
+}
+
+function addNewSelection(selectContainerId) {
+  const selectContainer = document.getElementById(selectContainerId);
+  if (selectContainer) {
+    const addButton = selectContainer.querySelector('.add-button');
+    if (addButton) {
+      // Remove duplicate <select>; only add new quantity input.
+      const newQuantityInput = document.createElement('input');
+      newQuantityInput.type = 'number';
+      newQuantityInput.classList.add('quantity-input');
+      newQuantityInput.value = 1;
+      newQuantityInput.min = 0;
+      selectContainer.insertBefore(newQuantityInput, addButton);
     }
   }
-  
-  const submitBtn = document.getElementById('ent-submit');
-  const summaryDiv = document.getElementById('ent-summary');
-  
-  submitBtn.addEventListener('click', () => {
-    console.log('Submit button clicked');
-    try {
-      let summaryHTML = '<hr><h2>ErgoShop Summary:</h2><ul>';
-      let overallTotal = 0;
-      
-      // Process each category and accumulate totals.
-      document.querySelectorAll('.category').forEach(cat => {
-        const catName = cat.getAttribute('data-category');
-        const selects = cat.querySelectorAll('.ent-select');
-        let selections = [];
-        let catCount = 0;
-        selects.forEach(select => {
-          if (select.selectedIndex > 0) {
-            selections.push(select.options[select.selectedIndex].text);
-            catCount++;
-          }
-        });
-        // Determine cost multiplier based on user type.
-        const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
-        const catTotal = catCount * multiplier;
-        overallTotal += catTotal;
-        if (selections.length > 0) {
-          // Use <u> tags to underline the category and <br> for each option.
-          summaryHTML += `<li><strong><u>${catName}:</u></strong><br>${selections.join('<br>')} - <em>${catTotal} 💷</em></li><br>`;
+}
+
+function submitSelection() {
+  let selectedItems = [];
+  let totalValue = 0;
+  const selectContainers = [
+    "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
+    "mealModsContainer"
+  ];
+  selectContainers.forEach(selectContainerId => {
+    const container = document.getElementById(selectContainerId);
+    if (container) {
+      const selectElements = container.querySelectorAll('.custom-select');
+      const quantityInputs = container.querySelectorAll('.quantity-input');
+      selectElements.forEach((select, index) => {
+        const quantity = parseInt(quantityInputs[index].value, 10);
+        // Changed check: ignore the default option by checking the selectedIndex
+        if (select.selectedIndex !== 0) {
+          const itemName = select.options[select.selectedIndex].text;
+          selectedItems.push(itemName + ' x ' + quantity);
+          totalValue += parseInt(select.value, 10) * quantity;
         }
       });
-      
-      const cashout = document.getElementById('cashout-input').value;
-      summaryHTML += '</ul>';
-      summaryHTML += `<p><hr><strong> TOTAL:</strong><span style="color: gold; font-weight: bold;"> ${overallTotal}💷</span> </p>`;
-      summaryHTML += `<p><strong>Cashout Request:</strong> <span style="color: gold; font-weight: bold;">${cashout} 💷</span></p>`;
-      summaryHTML += '<hr>';
-      
-      summaryDiv.innerHTML = summaryHTML;
-      summaryDiv.style.display = 'block';
-      console.log('Submit processing complete');
-    } catch(err) {
-      console.error('Error during submit processing:', err);
     }
   });
-  
-  // New: When summary is clicked, capture its screenshot.
-  summaryDiv.addEventListener('click', () => {
-    captureScreenshot(summaryDiv);
+  const summary = document.getElementById('summary');
+  summary.innerHTML = `
+      <hr>
+      <h2>Receipt:</h2>
+      <hr>
+      <ul>${selectedItems.map(item => `<li>${item}</li>`).join('')}</ul>
+      <hr>
+      <p class="wager-total">TOTAL: ${totalValue} 💷</p>
+  `;
+  summary.style.display = 'block';
+  // Set width based on screen size: wider on small screens
+  if (window.innerWidth < 768) {
+    summary.style.width = '90%';
+  } else {
+    summary.style.width = '25%';
+  }
+  document.querySelectorAll('.action-button.copy-clear').forEach(button => {
+    button.style.display = 'inline-block';
   });
+}
 
-});
+function clearSelection() {
+  const summary = document.getElementById('summary');
+  if (summary) summary.innerHTML = '';
+}
+
+function copySummary() {
+  const summary = document.getElementById('summary');
+  const range = document.createRange();
+  range.selectNode(summary);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  try {
+    document.execCommand('copy');
+    alert('Summary copied to clipboard!');
+  } catch (err) {
+    console.error('Failed to copy:', err);
+  }
+  window.getSelection().removeAllRanges();
+}
+
+function screenshotDiv() {
+  const summary = document.getElementById('summary');
+  html2canvas(summary, { useCORS: true, allowTaint: true }).then(canvas => {
+    canvas.toBlob(blob => {
+      navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob })
+      ]).then(() => {
+        alert('Summary screenshot copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy screenshot:', err);
+      });
+    });
+  }).catch(err => {
+    console.error('Failed to capture screenshot:', err);
+  });
+}
