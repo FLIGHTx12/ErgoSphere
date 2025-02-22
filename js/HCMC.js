@@ -26,7 +26,9 @@ function loadChoices(pool) {
 
 function populateStaticRewards() {
   staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
-    choices.filter(choice => choice.copies > 0).map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("") +
+    choices.filter(choice => choice.copies > 0)
+      .map(choice => `<li class="reward-item" data-text="${choice.text}">${choice.text} ${'🟢'.repeat(choice.copies)}</li>`)
+      .join("") +
     "</ul>" +
     `<select id="filter-dropdown">
       <option value="selected">Selected</option>
@@ -80,11 +82,19 @@ function selectWeightedChoice(choices) {
   return weightedArray[randomIndex];
 }
 
+function updateActiveReward(currentChoice) {
+  const rewardItems = staticRewards.querySelectorAll(".reward-item");
+  rewardItems.forEach(item => item.classList.remove("active"));
+  const activeItem = staticRewards.querySelector(`.reward-item[data-text="${currentChoice.text}"]`);
+  if (activeItem) activeItem.classList.add("active");
+}
+
 function spin() {
   const selectedChoices = choices.filter(choice => choice.copies > 0);
   const choice = selectWeightedChoice(selectedChoices);
   choiceImage.style.display = "block";
   choiceImage.src = choice.image;
+  updateActiveReward(choice); // mark current cycling item in available rewards
   
   if (spinning) {
     delay = delay * 0.95;

@@ -341,3 +341,7 @@ header {
     box-sizing: border-box;
     text-shadow: -3px 5px 4px rgba(169, 175, 185, 0.6);
 }
+
+.reward-item.active {
+    color: gold;
+}
