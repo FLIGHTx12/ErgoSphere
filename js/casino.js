@@ -225,16 +225,18 @@ const teamsData = {
     teams: teams.wnba,
     categories: {
       INDIVIDUAL: [
-        {text: "FG attempted", value: "2/5"},
-        {text: "FG made", value: "2/10"},
-        {text: "blocks", value: "5/10"},
-        {text: "Most Points", value: "10/20"},
-        {text: "Most Assist", value: "20/40"},
-        {text: "Most Rebounds", value: "20/40"},
-        {text: "Most Steals", value: "30/60"},
-        {text: "Most Threes Made", value: "40/90"}
+        {text: "Most FG attempted", value: "50/90"},
+        {text: "Most FG made", value: "50/100"},
+        {text: "Most blocks", value: "50/100"},
+        {text: "Most Points", value: "50/100"}, 
+        {text: "Most Rebounds", value: "50/150"},
+        {text: "Most Threes Made", value: "50/150"},
+        {text: "Most Assist", value: "50/200"},
+        {text: "Most Steals", value: "50/200"}
       ],
       STAT_HUNTING: [
+        {text: "Reach 1 Steal", value: "2/10"},
+        {text: "Reach 1 Block", value: "2/10"},
         {text: "Reach 20 points", value: "10/30"},
         {text: "Reach 6 rebounds", value: "10/30"},
         {text: "Reach 3 Three Pointers Made", value: "10/30"},
@@ -242,9 +244,11 @@ const teamsData = {
         {text: "Reach 2 Blocks", value: "20/50"},
         {text: "Reach +/- over 10", value: "20/50"},
         {text: "Reach 2 Steals", value: "30/70"},
+        {text: "Reach a Doubling double", value: "40/90"},
         {text: "Reach 30 points", value: "40/90"},
         {text: "Reach 11 rebounds", value: "40/90"},
         {text: "Reach 4 Three Pointers Made", value: "40/90"},
+        {text: "Reach a Tripple double", value: "50/110"},
         {text: "Reach +/- over 20", value: "50/110"},
         {text: "Reach 10 assists", value: "50/110"},
         {text: "Reach 3 Blocks", value: "50/110"},
@@ -252,6 +256,7 @@ const teamsData = {
       ],
       TEAM: [
         {text: "Team Field goal attempts", value: "2/10"},
+        {text: "Team Total Rebounds", value: "2/10"},
         {text: "Team Field Goal %", value: "10/20"},
         {text: "Team Def. Rebounds", value: "10/20"},
         {text: "Team Off. Rebounds", value: "20/40"},
@@ -274,7 +279,8 @@ const teamsData = {
         {text: "First MN FG is a 3 pointer", value: "40/100"},
         {text: "Technical foul is called this game (either team)", value: "40/120"},
         {text: "Flagrant foul is called this game (either team)", value: "50/150"},
-        {text: "Half court shot made (either team)", value: "50/250"}
+        {text: "Game goes into overtime", value: "50/150"},
+        {text: "Half+ court shot made", value: "50/250"}
       ]
     },
     players: [
@@ -300,16 +306,18 @@ const teamsData = {
     teams: teams.nba,
     categories: {
       INDIVIDUAL: [
-        {text: "FG attempted", value: "2/5"},
-        {text: "FG made", value: "2/10"},
-        {text: "blocks", value: "5/10"},
-        {text: "Most Points", value: "10/20"},
-        {text: "Most Assist", value: "20/40"},
-        {text: "Most Rebounds", value: "20/40"},
-        {text: "Most Steals", value: "30/60"},
-        {text: "Most Threes Made", value: "40/90"}
+        {text: "Most FG attempted", value: "50/90"},
+        {text: "Most FG made", value: "50/100"},
+        {text: "Most blocks", value: "50/100"},
+        {text: "Most Points", value: "50/100"}, 
+        {text: "Most Rebounds", value: "50/150"},
+        {text: "Most Threes Made", value: "50/150"},
+        {text: "Most Assist", value: "50/200"},
+        {text: "Most Steals", value: "50/200"}
       ],
       STAT_HUNTING: [
+        {text: "Reach 1 Steal", value: "2/10"},
+        {text: "Reach 1 Block", value: "2/10"},
         {text: "Reach 20 points", value: "10/30"},
         {text: "Reach 6 rebounds", value: "10/30"},
         {text: "Reach 3 Three Pointers Made", value: "10/30"},
@@ -317,9 +325,11 @@ const teamsData = {
         {text: "Reach 2 Blocks", value: "20/50"},
         {text: "Reach +/- over 10", value: "20/50"},
         {text: "Reach 2 Steals", value: "30/70"},
+        {text: "Reach a Doubling double", value: "40/90"},
         {text: "Reach 30 points", value: "40/90"},
         {text: "Reach 11 rebounds", value: "40/90"},
         {text: "Reach 4 Three Pointers Made", value: "40/90"},
+        {text: "Reach a Tripple double", value: "50/110"},
         {text: "Reach +/- over 20", value: "50/110"},
         {text: "Reach 10 assists", value: "50/110"},
         {text: "Reach 3 Blocks", value: "50/110"},
@@ -343,13 +353,17 @@ const teamsData = {
       WILD_CARD: [
         {text: "MN has most fast break points", value: "2/10"},
         {text: "MN win tip off", value: "10/30"},
+        {text: "MN wins by 5+ points", value: "10/30"},
         {text: "Other team misses 2 free-throws in a row", value: "20/50"},
         {text: "MN has the biggest lead of the game", value: "20/50"},
         {text: "First MN FG is a 2 pointer.", value: "40/80"},
         {text: "First MN FG is a 3 pointer", value: "40/100"},
+        {text: "MN wins by 10+ points", value: "40/100"},
         {text: "Technical foul is called this game (either team)", value: "40/120"},
         {text: "Flagrant foul is called this game (either team)", value: "50/150"},
-        {text: "Half court shot made (either team)", value: "50/250"}
+        {text: "Game goes into overtime", value: "50/150"},
+        {text: "MN wins by 20+ points", value: "50/200"},
+        {text: "Half+ court shot made", value: "50/250"}
       ]
     },
     players: [
