@@ -1,18 +1,22 @@
 #main-wrapper {
     display: flex;
+    flex-direction: row; /* Change to row for side-by-side layout */
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    align-items: flex-start;
-    margin-top: 50px;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    align-items: flex-start; /* Align items to the top */
+    margin: 50px auto;
+    padding: 0 20px;
+    max-width: 1600px;
+    width: 100%;
 }
 
 #main-container {
     position: relative;
-    width: 600px; /* Adjusted width */
+    width: 100%;
+    max-width: 2000px; /* Increased from 1600px */
     margin: 0;
-    padding-top: 0px;
-    padding-left: 10px;
-    padding-right: 1px;
+    flex: 0 1 auto; /* Don't grow, can shrink, auto basis */
 }
 
 #reward-container {
@@ -27,14 +31,16 @@
 }
 
 #picker-container {
-    width: 100%;  /* Adjusted width */
-    height: 600px; /* increased height */
-    border: 2px solid green; /* Your favorite color */
     position: relative;
-    overflow: hidden;
-    
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    width: 100%;
+    aspect-ratio: 21/9; /* Changed from 16/9 to make it wider and shorter */
+    min-height: 600px; /* Reduced from 800px */
+    max-height: 900px; /* Reduced from 1400px */
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.95));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
 }
 
 #choice-display {
@@ -58,16 +64,22 @@
     position: relative;
     z-index: 1;
     transition: none; /* Removed opacity transition */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #choice-image {
-    width: 600px;       /* fixed width */
-    height: 350px;      /* fixed height */
-    object-fit: cover;  /* ensures the image covers the container */
-    margin-left: 30px;
+    width: 60%; /* Use percentage instead of fixed width */
+    height: 50%; /* Use percentage instead of fixed height */
+    object-fit: cover;
     position: relative;
-    top: 50px;  /* Lowered from 10px to 50px to fit within the computer screen */
-    opacity: 0.5;  /* adjust value as needed for desired transparency */
+    top: 5%; /* Use percentage instead of fixed pixels */
+    left: 16px; /* Added to move image right by 10px */
+    opacity: 0.5;
+    margin: 0 auto; /* Center horizontally */
 }
 
 #start-button, #stop-button {
@@ -114,39 +126,59 @@
 }
 
 #static-rewards {
-    width: auto; /* Adjust width to be responsive */
-    max-width: 900px; /* Ensure it doesn't exceed a certain width */
-    min-width: 800px; /* Ensure it doesn't shrink below a certain width */
-    height: auto; /* Adjust height to be responsive */
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    width: 100%;
+    max-width: 400px; /* Decreased from 600px */
+    flex: 0 1 auto; /* Don't grow, can shrink, auto basis */
+    margin: 0;
+    height: auto;
+    max-height: 800px; /* Match picker container */
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;
     position: relative; /* Ensure relative positioning */
-    margin-left: 20px; /* Add margin to the left */
     z-index: 1; /* Adjust z-index */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the left */
+    transition: all 0.3s ease;
 }
 
 #static-rewards ul {
-    display: flex;
-    max-height: 475px;
-    flex-wrap: wrap;
-    justify-content:baseline;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Changed from auto-fill to auto-fit and reduced minimum width */
+    gap: 10px;
+    padding: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 rgba(0, 0, 0, 0.2);
     list-style-type: none;
     padding-left: 0;
     padding-right: 0;
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 1vw + 0.3rem, 1rem); /* Dynamic font sizing */
 }
 
 #static-rewards li {
+    margin: 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    transition: all 0.3s ease;
     flex: 1 1 40%; /* Ensure at least 2 columns */
-    margin: 15px;
     text-align:justify; /* Align text to the left */
-    padding: 2px; /* Minimal padding */
+    min-width: 0; /* Allows text to wrap properly */
+    word-wrap: break-word; /* Ensures long words don't overflow */
+    hyphens: auto; /* Adds hyphens when needed */
+}
+
+#static-rewards li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 #filter-dropdown {
@@ -170,16 +202,33 @@ header{
 }
 
 #reward-buttons {
-    width: 100%;
+    position: static;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0px;
-    background-color: none;
-    z-index: 2; /* Ensure buttons are above other content */
-    position: relative; /* Ensure relative positioning */
-    margin-top: -650px; /* Add margin to the top */
-    margin-left: 500px;
+    gap: 5px;
+    margin: 5px auto; /* Reduced from 20px to 5px (reduced by 75%) */
+    margin-bottom: -50px;
+    width: 100%;
+    max-width: 600px;
+    z-index: 100;
+}
+
+#reward-buttons button {
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: 2px solid #4CAF50;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+#reward-buttons button:hover {
+    background: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
 @media (min-width: 1024px) {
@@ -188,7 +237,71 @@ header{
   }
 }
 
+@media (max-width: 1280px) {
+    #main-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main-container,
+    #static-rewards {
+        max-width: 1600px; /* Match new main container width */
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 1280px) {
+    #static-rewards ul {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        font-size: clamp(0.8rem, 1vw + 0.4rem, 1.1rem);
+    }
+}
+
+@media (max-width: 1024px) {
+    #main-wrapper {
+        padding: 10px;
+    }
+
+    #reward-buttons {
+        position: absolute;
+        top: 10px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    #static-rewards ul {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        font-size: clamp(0.6rem, 1vw + 0.2rem, 0.9rem);
+    }
+}
+
 @media (max-width: 600px) {
+    #main-wrapper {
+        margin: 20px auto;
+        gap: 10px;
+    }
+
+    #picker-container {
+        min-height: 300px;
+    }
+
+    #static-rewards ul {
+        grid-template-columns: 1fr;
+    }
+
+    #reward-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #reward-buttons button {
+        width: auto;
+        min-width: 100px;
+    }
+
     #main-wrapper {
         width: 100%; /* Take up full width of the viewport */
         overflow-x: hidden; /* Prevent horizontal scrolling */

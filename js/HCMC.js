@@ -1,5 +1,11 @@
 let choices = [];
 let currentPool = 'LOOT';
+let currentCycleId = null;
+let spinning = false;
+let stopInitiated = false;
+let delay = 1000;
+let rampStartTime = null;
+let powerDownPlayed = false; // Add this with other state variables at the top
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -13,9 +19,42 @@ const lootButton = document.getElementById("loot-button");
 const pvpButton = document.getElementById("pvp-button");
 const coopButton = document.getElementById("coop-button");
 
+const AUDIO = {
+    click: new Audio('../assets/audio/click.mp3'),
+    cycle: new Audio('../assets/audio/cycle.mp3'),
+    slowdown: new Audio('../assets/audio/slowdown.mp3'),
+    popup: new Audio('../assets/audio/popup.mp3'),
+    spinUp: new Audio('../assets/audio/HCMC spin up.mp3'),
+    powerDown: new Audio('../assets/audio/Power down.mp3'), // Add power down sound
+    mouseClick: new Audio('../assets/audio/mouse-click-normal.mp3')
+};
+
+// Initialize audio settings
+Object.values(AUDIO).forEach(audio => {
+    audio.preload = 'auto';
+    audio.volume = 0.5;
+});
+
+function playSound(soundName) {
+    const sound = AUDIO[soundName];
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Audio play failed:', e));
+    }
+}
+
+// Update the click sound to include both sounds
+function playClickSounds() {
+    playSound('mouseClick');
+    playSound('click');
+}
+
 function loadChoices(pool) {
+  resetCycle();
   currentPool = pool.toUpperCase();
-  fetch(`../data/${pool}.json`)
+  currentCycleId = Math.random();
+  
+  return fetch(`../data/${pool}.json`)
     .then(response => response.json())
     .then(data => {
       choices = data;
@@ -41,9 +80,15 @@ function populateStaticRewards() {
   staticRewards.style.fontSize = ".6em"; // Decrease font size by half
 
   document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
+
+  // Add click sounds to static reward items
+  staticRewards.querySelectorAll('.reward-item').forEach(item => {
+    item.addEventListener('click', () => playClickSounds());
+  });
 }
 
 function filterChoices() {
+  resetCycle();
   const filterValue = document.getElementById("filter-dropdown").value;
   let filteredChoices = choices;
 
@@ -89,20 +134,56 @@ function updateActiveReward(currentChoice) {
   if (activeItem) activeItem.classList.add("active");
 }
 
-function spin() {
-  const selectedChoices = choices.filter(choice => choice.copies > 0);
-  const choice = selectWeightedChoice(selectedChoices);
+function spin(cycleId) {
+  if (cycleId !== currentCycleId) return;
+
+  const filterValue = document.getElementById("filter-dropdown").value;
+  let filteredChoices = choices;
+
+  switch (filterValue) {
+    case "owned":
+      filteredChoices = choices.filter(choice => choice.owned);
+      break;
+    case "not-owned":
+      filteredChoices = choices.filter(choice => !choice.owned);
+      break;
+    case "completed":
+      filteredChoices = choices.filter(choice => choice.completed);
+      break;
+    case "not-completed":
+      filteredChoices = choices.filter(choice => !choice.completed);
+      break;
+    case "all":
+      filteredChoices = choices;
+      break;
+    default:
+      filteredChoices = choices.filter(choice => choice.copies > 0);
+  }
+
+  if (filteredChoices.length === 0) {
+    resetCycle();
+    alert("No choices available in current filter!");
+    return;
+  }
+
+  const choice = selectWeightedChoice(filteredChoices);
   choiceImage.style.display = "block";
   choiceImage.src = choice.image;
-  updateActiveReward(choice); // mark current cycling item in available rewards
+  updateActiveReward(choice);
   
   if (spinning) {
+    playSound('cycle');
     delay = delay * 0.95;
-    setTimeout(spin, delay);
+    powerDownPlayed = false; // Reset flag when spinning
+    setTimeout(() => spin(cycleId), delay);
   } else if (stopInitiated) {
     if (Date.now() - rampStartTime < 5000) {
+      if (!powerDownPlayed) {
+        playSound('powerDown');
+        powerDownPlayed = true;
+      }
       delay = delay * 1.2;
-      setTimeout(spin, delay);
+      setTimeout(() => spin(cycleId), delay);
     } else {
       showOptionPopup(choice);
     }
@@ -110,6 +191,7 @@ function spin() {
 }
 
 function showOptionPopup(choice) {
+  playSound('popup');
   const popup = document.createElement("div");
   popup.id = "optionPopup";
   popup.style.position = "fixed";
@@ -165,27 +247,75 @@ function resetCycle() {
   choiceImage.src = "";
   choiceImage.style.display = "none";
   choiceText.textContent = "";
+  
+  const rewardItems = staticRewards.querySelectorAll(".reward-item");
+  rewardItems.forEach(item => item.classList.remove("active"));
+  
+  const existingPopup = document.getElementById("optionPopup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+  powerDownPlayed = false; // Reset the flag when resetting cycle
 }
 
 startButton.addEventListener("click", () => {
+  playClickSounds();
+  playSound('spinUp'); // Play spin up sound when starting
   resetCycle();
   spinning = true;
-  spin();
+  const cycleId = currentCycleId;
+  spin(cycleId);
 });
+
+function stopAllAudio() {
+    Object.values(AUDIO).forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+}
 
 stopButton.addEventListener("click", () => {
-  if (spinning) {
-    spinning = false;
-    stopInitiated = true;
-    rampStartTime = Date.now();
-  } else if (!spinning && stopInitiated) {
-    resetCycle();
-  }
+    playClickSounds();
+    stopAllAudio(); // Stop all audio when stop button is clicked
+    if (spinning) {
+        spinning = false;
+        stopInitiated = true;
+        rampStartTime = Date.now();
+    } else {
+        resetCycle();
+    }
 });
 
-lootButton.addEventListener("click", () => loadChoices('loot'));
-pvpButton.addEventListener("click", () => loadChoices('pvp'));
-coopButton.addEventListener("click", () => loadChoices('coop'));
+lootButton.addEventListener("click", async () => {
+  stopAllAudio();
+  playClickSounds();
+  highlightActiveButton(lootButton);
+  await loadChoices('loot');
+  localStorage.setItem('currentPool', 'loot'); // Save current selection
+});
+
+pvpButton.addEventListener("click", async () => {
+  stopAllAudio();
+  playClickSounds();
+  highlightActiveButton(pvpButton);
+  await loadChoices('pvp');
+  localStorage.setItem('currentPool', 'pvp'); // Save current selection
+});
+
+coopButton.addEventListener("click", async () => {
+  stopAllAudio();
+  playClickSounds();
+  highlightActiveButton(coopButton);
+  await loadChoices('coop');
+  localStorage.setItem('currentPool', 'coop'); // Save current selection
+});
+
+function highlightActiveButton(activeButton) {
+  [lootButton, pvpButton, coopButton].forEach(button => {
+    button.classList.remove('active');
+  });
+  activeButton.classList.add('active');
+}
 
 function setRandomBackground() {
   const backgrounds = [
@@ -199,11 +329,13 @@ function setRandomBackground() {
   document.body.style.backgroundImage = `url(${backgrounds[randomIndex]})`;
 }
 
-// Call the function to set a random background on page load
 setRandomBackground();
 
-// Load default pool on page load
-loadChoices('loot');
+document.addEventListener('DOMContentLoaded', () => {
+  const savedPool = localStorage.getItem('currentPool') || 'loot';
+  loadChoices(savedPool);
+  highlightActiveButton(document.getElementById(`${savedPool}-button`));
+});
 
 function toggleSidebar() {
   const staticRewards = document.getElementById("static-rewards");

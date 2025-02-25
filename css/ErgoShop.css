@@ -1,3 +1,15 @@
+@media (max-width: 768px) {
+  /* Increase child container widths to be parent's width minus 2px (1px padding each side) */
+  #mealModsContainer,
+  #concoctionsContainer,
+  #frozenSnackContainer,
+  #sweetSnackContainer,
+  #saltySnackContainer {
+    width: calc(100% - 2px);
+  }
+}
+
+
 #summary {
   background-color: #f8f8f8;
   border: 1px solid #ccc;
