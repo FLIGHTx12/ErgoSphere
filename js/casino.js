@@ -318,6 +318,7 @@ const teamsData = {
       STAT_HUNTING: [
         {text: "Reach 1 Steal", value: "2/10"},
         {text: "Reach 1 Block", value: "2/10"},
+        {text: "Reach +/- over 0", value: "2/10"},
         {text: "Reach 20 points", value: "10/30"},
         {text: "Reach 6 rebounds", value: "10/30"},
         {text: "Reach 3 Three Pointers Made", value: "10/30"},
@@ -329,11 +330,11 @@ const teamsData = {
         {text: "Reach 30 points", value: "40/90"},
         {text: "Reach 11 rebounds", value: "40/90"},
         {text: "Reach 4 Three Pointers Made", value: "40/90"},
-        {text: "Reach a Tripple double", value: "50/110"},
         {text: "Reach +/- over 20", value: "50/110"},
         {text: "Reach 10 assists", value: "50/110"},
         {text: "Reach 3 Blocks", value: "50/110"},
-        {text: "Reach 3 Steals", value: "50/120"}
+        {text: "Reach 3 Steals", value: "50/120"},
+        {text: "Reach a Tripple double", value: "50/150"}
       ],
       TEAM: [
         {text: "Team Field goal attempts", value: "2/10"},
@@ -394,12 +395,18 @@ const teamsData = {
 
 function updateBets() {
   const league = document.getElementById("league").value;
+  const bettingSystem = document.getElementById("betting-system");
   const categories = teamsData[league]?.categories;
   const players = teamsData[league]?.players;
   const leagueTeams = teamsData[league]?.teams || [];
 
-  const awayTeamSelect = document.getElementById("awayTeam");
-  const homeTeamSelect = document.getElementById("homeTeam");
+  // Remove all league-specific classes
+  bettingSystem.classList.remove('nfl', 'wnba', 'nba');
+  
+  // Add the appropriate league class
+  if (league) {
+    bettingSystem.classList.add(league.toLowerCase());
+  }
 
   let backgroundColor;
   if (league === "NFL") backgroundColor = "#FFC62F";
@@ -409,7 +416,15 @@ function updateBets() {
   const selectElements = document.querySelectorAll('select');
   selectElements.forEach(select => {
       select.style.backgroundColor = backgroundColor;
+      if (league === "WNBA") {
+          select.classList.add('wnba');
+      } else {
+          select.classList.remove('wnba');
+      }
   });
+
+  const awayTeamSelect = document.getElementById("awayTeam");
+  const homeTeamSelect = document.getElementById("homeTeam");
 
   awayTeamSelect.innerHTML = '<option value="">Select Away Team</option>';
   homeTeamSelect.innerHTML = '<option value="">Select Home Team</option>';
