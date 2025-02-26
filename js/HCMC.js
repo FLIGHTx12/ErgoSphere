@@ -275,14 +275,23 @@ function stopAllAudio() {
 }
 
 stopButton.addEventListener("click", () => {
-    playClickSounds();
-    stopAllAudio(); // Stop all audio when stop button is clicked
+    const wasSpinning = spinning; // Store spinning state
     if (spinning) {
         spinning = false;
         stopInitiated = true;
         rampStartTime = Date.now();
     } else {
         resetCycle();
+    }
+    playClickSounds(); // Play click sounds after state changes but before stopping other audio
+    if (wasSpinning) {
+        // Only stop non-click audio if we were spinning
+        Object.entries(AUDIO).forEach(([key, audio]) => {
+            if (!['mouseClick', 'click'].includes(key)) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        });
     }
 });
 
@@ -319,14 +328,16 @@ function highlightActiveButton(activeButton) {
 
 function setRandomBackground() {
   const backgrounds = [
-    "../assets/img/backgrounds/CERN detailed.jpeg",
-    "../assets/img/backgrounds/Hadron Collider inside.jpg",
-    "../assets/img/backgrounds/Hadron Collider Pipe.jpg",
+    "../assets/img/backgrounds/CERN_detailed.jpeg",         // Updated filename
+    "../assets/img/backgrounds/Hadron_Collider_inside.jpg", // Updated filename
+    "../assets/img/backgrounds/Hadron_Collider_Pipe.jpg",   // Updated filename
     "../assets/img/backgrounds/classicBlackHole.jpg",
     "../assets/img/backgrounds/mixingGalaxy.jpg"
   ];
   const randomIndex = Math.floor(Math.random() * backgrounds.length);
-  document.body.style.backgroundImage = `url(${backgrounds[randomIndex]})`;
+  const selectedBg = backgrounds[randomIndex];
+  console.log('Loading background:', selectedBg); // Add logging to debug
+  document.body.style.backgroundImage = `url(${selectedBg})`;
 }
 
 setRandomBackground();
