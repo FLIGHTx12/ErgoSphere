@@ -5,10 +5,11 @@
     gap: 20px;
     justify-content: center;
     align-items: flex-start; /* Align items to the top */
-    margin: 50px auto;
-    padding: 0 20px;
+    margin: 20px auto;
+    padding: 0 10px;
     max-width: 1600px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 #main-container {
@@ -202,15 +203,17 @@ header{
 }
 
 #reward-buttons {
-    position: static;
+    position: relative;
     display: flex;
     justify-content: center;
     gap: 5px;
-    margin: 5px auto; /* Reduced from 20px to 5px (reduced by 75%) */
-    margin-bottom: -50px;
+    margin: 20px auto;
+    padding: 0 10px;
     width: 100%;
     max-width: 600px;
-    z-index: 100;
+    z-index: 10; /* Increased z-index */
+    box-sizing: border-box;
+    order: -1; /* Ensure buttons always come before main content */
 }
 
 #reward-buttons button {
@@ -274,6 +277,142 @@ header{
     #static-rewards ul {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         font-size: clamp(0.6rem, 1vw + 0.2rem, 0.9rem);
+    }
+}
+
+@media (max-width: 768px) {
+    #main-wrapper {
+        margin: 10px auto;
+        padding: 0 5px;
+    }
+
+    #main-container,
+    #static-rewards {
+        width: 100% !important; /* Force full width */
+        max-width: 100% !important; /* Prevent overflow */
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    #picker-container {
+        min-height: 300px;
+        width: 100%;
+    }
+
+    header {
+        padding-top: 120px; /* Increased padding for navbar clearance */
+        margin-bottom: 10px;
+    }
+
+    #reward-buttons {
+        position: relative; /* Changed from absolute */
+        width: 95%;
+        margin: 10px auto;
+        order: -1;
+        padding: 5px;
+        flex-wrap: nowrap; /* Prevent wrapping on small screens */
+        justify-content: space-between; /* Spread buttons evenly */
+        z-index: 10;
+    }
+
+    #reward-buttons button {
+        flex: 1;
+        min-width: 0; /* Allow buttons to shrink below min-width */
+        padding: 8px 5px;
+        margin: 0 2px;
+        font-size: 12px; /* Slightly smaller font for mobile */
+    }
+
+    #reward-buttons button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #navbar {
+        padding: 5px 0;
+    }
+
+    body {
+        padding-top: 0;
+    }
+}
+
+/* Additional small screen adjustments */
+@media (max-width: 480px) {
+    header {
+        padding-top: 140px; /* Even more padding for smaller screens */
+    }
+
+    #reward-buttons {
+        flex-wrap: nowrap; /* Keep buttons in a single row */
+        gap: 2px; /* Reduce gap between buttons */
+        padding: 0 5px;
+        margin: 10px auto;
+        width: 98%; /* Slightly less than full width */
+    }
+
+    #reward-buttons button {
+        flex: 1;
+        min-width: 0; /* Allow buttons to be very narrow */
+        padding: 6px 4px; /* Reduce padding */
+        font-size: 11px; /* Make text smaller */
+        letter-spacing: 0; /* Remove letter spacing */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+}
+
+@media (max-width: 360px) {
+    #reward-buttons button {
+        padding: 4px 2px; /* Even smaller padding */
+        font-size: 10px; /* Even smaller text */
+        border-width: 1px; /* Thinner border */
+    }
+}
+
+@media (max-width: 320px) {
+    header {
+        padding-top: 160px;
+    }
+
+    #reward-buttons {
+        gap: 1px; /* Minimal gap */
+    }
+
+    #reward-buttons button {
+        font-size: 9px; /* Smallest text size */
+        padding: 3px 1px; /* Minimal padding */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding-top: 140px; /* Even more padding for smaller screens */
+    }
+
+    #reward-buttons {
+        flex-wrap: wrap;
+    }
+
+    #reward-buttons button {
+        flex: 1 1 auto;
+        min-width: 80px;
+        margin: 2px;
+    }
+
+    #main-wrapper {
+        margin: 5px auto;
+    }
+}
+
+/* Fix for extremely small screens */
+@media (max-width: 320px) {
+    header {
+        padding-top: 160px;
+    }
+
+    #reward-buttons button {
+        min-width: 70px;
+        padding: 6px 12px;
     }
 }
 
@@ -448,9 +587,12 @@ body.page-transition {
 
 header {
     border: 2rem purple;
-    padding-top: 120px;
+    padding-top: 100px; /* Increased from 60px */
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
-    max-width: 100vw;
+    position: relative;
+    z-index: 1;
     box-sizing: border-box;
     text-shadow: -3px 5px 4px rgba(169, 175, 185, 0.6);
 }
