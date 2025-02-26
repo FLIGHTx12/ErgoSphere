@@ -134,60 +134,99 @@ function updateActiveReward(currentChoice) {
   if (activeItem) activeItem.classList.add("active");
 }
 
+function updateVibrationIntensity() {
+    if (!spinning) return;
+    
+    const timeSinceStart = Date.now() - rampStartTime;
+    const baseIntensity = 8.8; // Starting duration in seconds
+    const minIntensity = 0.05; // Fastest vibration duration
+    
+    // Create exponential decrease over time
+    const timeRatio = Math.min(timeSinceStart / 30000, 1); // 30 seconds to reach max intensity
+    const newDuration = baseIntensity * Math.pow(0.1, timeRatio);
+    
+    // Clamp the duration between min and base intensity
+    const clampedDuration = Math.max(minIntensity, Math.min(baseIntensity, newDuration));
+    document.body.style.animationDuration = `${clampedDuration}s`;
+}
+
+function startVibration() {
+    rampStartTime = Date.now();
+    setTimeout(() => {
+        document.body.classList.add('vibrating');
+        document.body.style.animationDuration = '8.8s'; // Start very slow
+    }, 2000); // 5 second delay before vibration starts
+}
+
+function stopVibration() {
+    document.body.classList.remove('vibrating');
+    document.body.style.animationDuration = '';
+}
+
+function showFlashEffect() {
+    document.body.classList.add('flashing');
+    setTimeout(() => {
+        document.body.classList.remove('flashing');
+    }, 7000); // Total flash effect duration (3s intense + 4s fade)
+}
+
 function spin(cycleId) {
-  if (cycleId !== currentCycleId) return;
+    if (cycleId !== currentCycleId) return;
 
-  const filterValue = document.getElementById("filter-dropdown").value;
-  let filteredChoices = choices;
+    const filterValue = document.getElementById("filter-dropdown").value;
+    let filteredChoices = choices;
 
-  switch (filterValue) {
-    case "owned":
-      filteredChoices = choices.filter(choice => choice.owned);
-      break;
-    case "not-owned":
-      filteredChoices = choices.filter(choice => !choice.owned);
-      break;
-    case "completed":
-      filteredChoices = choices.filter(choice => choice.completed);
-      break;
-    case "not-completed":
-      filteredChoices = choices.filter(choice => !choice.completed);
-      break;
-    case "all":
-      filteredChoices = choices;
-      break;
-    default:
-      filteredChoices = choices.filter(choice => choice.copies > 0);
-  }
-
-  if (filteredChoices.length === 0) {
-    resetCycle();
-    alert("No choices available in current filter!");
-    return;
-  }
-
-  const choice = selectWeightedChoice(filteredChoices);
-  choiceImage.style.display = "block";
-  choiceImage.src = choice.image;
-  updateActiveReward(choice);
-  
-  if (spinning) {
-    playSound('cycle');
-    delay = delay * 0.95;
-    powerDownPlayed = false; // Reset flag when spinning
-    setTimeout(() => spin(cycleId), delay);
-  } else if (stopInitiated) {
-    if (Date.now() - rampStartTime < 5000) {
-      if (!powerDownPlayed) {
-        playSound('powerDown');
-        powerDownPlayed = true;
-      }
-      delay = delay * 1.2;
-      setTimeout(() => spin(cycleId), delay);
-    } else {
-      showOptionPopup(choice);
+    switch (filterValue) {
+        case "owned":
+            filteredChoices = choices.filter(choice => choice.owned);
+            break;
+        case "not-owned":
+            filteredChoices = choices.filter(choice => !choice.owned);
+            break;
+        case "completed":
+            filteredChoices = choices.filter(choice => choice.completed);
+            break;
+        case "not-completed":
+            filteredChoices = choices.filter(choice => !choice.completed);
+            break;
+        case "all":
+            filteredChoices = choices;
+            break;
+        default:
+            filteredChoices = choices.filter(choice => choice.copies > 0);
     }
-  }
+
+    if (filteredChoices.length === 0) {
+        resetCycle();
+        alert("No choices available in current filter!");
+        return;
+    }
+
+    const choice = selectWeightedChoice(filteredChoices);
+    choiceImage.style.display = "block";
+    choiceImage.src = choice.image;
+    updateActiveReward(choice);
+
+    if (spinning) {
+        playSound('cycle');
+        delay = delay * 0.95;
+        powerDownPlayed = false; // Reset flag when spinning
+        updateVibrationIntensity();
+        setTimeout(() => spin(cycleId), delay);
+    } else if (stopInitiated) {
+        if (Date.now() - rampStartTime < 5000) {
+            if (!powerDownPlayed) {
+                playSound('powerDown');
+                powerDownPlayed = true;
+                showFlashEffect();
+                stopVibration();
+            }
+            delay = delay * 1.2;
+            setTimeout(() => spin(cycleId), delay);
+        } else {
+            showOptionPopup(choice);
+        }
+    }
 }
 
 async function capturePopupScreenshot(element) {
@@ -328,6 +367,7 @@ function resetCycle() {
     existingPopup.remove();
   }
   powerDownPlayed = false; // Reset the flag when resetting cycle
+  stopVibration();
 }
 
 startButton.addEventListener("click", () => {
@@ -335,6 +375,7 @@ startButton.addEventListener("click", () => {
   playSound('spinUp'); // Play spin up sound when starting
   resetCycle();
   spinning = true;
+  startVibration();
   const cycleId = currentCycleId;
   spin(cycleId);
 });
