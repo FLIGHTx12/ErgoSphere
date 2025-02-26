@@ -190,53 +190,125 @@ function spin(cycleId) {
   }
 }
 
-function showOptionPopup(choice) {
-  playSound('popup');
-  const popup = document.createElement("div");
-  popup.id = "optionPopup";
-  popup.style.position = "fixed";
-  popup.style.top = "50%";
-  popup.style.left = "50%";
-  popup.style.transform = "translate(-50%, -50%)";
-  popup.style.width = "75%";
-  popup.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-  popup.style.padding = "20px";
-  popup.style.border = "2px solid white";
-  popup.style.zIndex = "2000";
-  
-  const img = document.createElement("img");
-  img.src = choice.image;
-  img.style.width = "100%";
-  img.style.objectFit = "cover";
-  
-  const textDiv = document.createElement("div");
-  textDiv.textContent = choice.text;
-  textDiv.style.color = "white";
-  textDiv.style.textAlign = "center";
-  textDiv.style.marginTop = "10px";
-  
-  const extraDiv = document.createElement("div");
-  extraDiv.id = "extraText";
-  extraDiv.style.color = "white";
-  extraDiv.style.textAlign = "center";
-  extraDiv.style.marginTop = "10px";
-  extraDiv.textContent = "";
-  
-  popup.appendChild(img);
-  popup.appendChild(textDiv);
-  popup.appendChild(extraDiv);
-  
-  document.body.appendChild(popup);
-  
-  function handleOutsideClick(event) {
-    if (!popup.contains(event.target)) {
-      popup.remove();
-      document.removeEventListener("click", handleOutsideClick);
+async function capturePopupScreenshot(element) {
+    try {
+        // Save original styles
+        const originalStyles = {
+            transform: element.style.transform,
+            position: element.style.position,
+            left: element.style.left,
+            top: element.style.top
+        };
+
+        // Temporarily modify element for screenshot
+        element.style.transform = 'none';
+        element.style.position = 'fixed';
+        element.style.left = '0';
+        element.style.top = '0';
+
+        const canvas = await html2canvas(element, {
+            backgroundColor: null,
+            scale: 2, // Increase quality
+            logging: false,
+            useCORS: true,
+            allowTaint: true,
+            windowWidth: element.scrollWidth,
+            windowHeight: element.scrollHeight
+        });
+
+        // Restore original styles
+        element.style.transform = originalStyles.transform;
+        element.style.position = originalStyles.position;
+        element.style.left = originalStyles.left;
+        element.style.top = originalStyles.top;
+
+        canvas.toBlob(function(blob) {
+            const item = new ClipboardItem({ "image/png": blob });
+            navigator.clipboard.write([item]).then(() => {
+                const toast = document.createElement('div');
+                toast.textContent = 'Screenshot copied to clipboard!';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '20px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.background = 'rgba(0, 255, 0, 0.8)';
+                toast.style.color = 'white';
+                toast.style.padding = '10px 20px';
+                toast.style.borderRadius = '5px';
+                toast.style.zIndex = '9999';
+                
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2000);
+            });
+        });
+    } catch (error) {
+        console.error('Screenshot failed:', error);
     }
-  }
-  setTimeout(() => {
-    document.addEventListener("click", handleOutsideClick);
-  }, 0);
+}
+
+function showOptionPopup(choice) {
+    playSound('popup');
+    const popup = document.createElement("div");
+    popup.id = "optionPopup";
+    popup.style.position = "fixed";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.maxWidth = "90vw";
+    popup.style.maxHeight = "90vh";
+    popup.style.width = "75%";
+    popup.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+    popup.style.padding = "20px";
+    popup.style.border = "2px solid white";
+    popup.style.borderRadius = "15px"; // Added rounded corners
+    popup.style.zIndex = "2000";
+    popup.style.boxSizing = "border-box";
+    popup.style.overflow = "hidden"; // Prevent scrolling
+    popup.style.cursor = "pointer"; // Indicate clickable
+    
+    popup.classList.add('glow-effect');
+    popup.addEventListener('animationend', () => {
+        popup.classList.remove('glow-effect');
+    });
+    
+    const img = document.createElement("img");
+    img.src = choice.image;
+    img.style.width = "100%";
+    img.style.maxHeight = "60vh"; // Ensure image doesn't overflow
+    img.style.objectFit = "contain"; // Keep aspect ratio
+    
+    const textDiv = document.createElement("div");
+    textDiv.textContent = choice.text;
+    textDiv.style.color = "white";
+    textDiv.style.textAlign = "center";
+    textDiv.style.marginTop = "10px";
+    
+    const extraDiv = document.createElement("div");
+    extraDiv.id = "extraText";
+    extraDiv.style.color = "white";
+    extraDiv.style.textAlign = "center";
+    extraDiv.style.marginTop = "10px";
+    extraDiv.textContent = "";
+    
+    popup.appendChild(img);
+    popup.appendChild(textDiv);
+    popup.appendChild(extraDiv);
+    
+    // Add click handler for screenshot
+    popup.addEventListener('click', () => capturePopupScreenshot(popup));
+    
+    document.body.appendChild(popup);
+    
+    function handleOutsideClick(event) {
+        if (!popup.contains(event.target)) {
+            popup.remove();
+            document.removeEventListener("click", handleOutsideClick);
+        }
+    }
+    
+    setTimeout(() => {
+        document.addEventListener("click", handleOutsideClick);
+    }, 0);
 }
 
 function resetCycle() {
