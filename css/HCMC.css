@@ -193,13 +193,12 @@
     border-radius: 5px;
 }
 
-header{
-    
+header {
     color: white;
     text-align: center;
     padding: 5px;
     margin-bottom: -10px;
-    margin-top: -110px;
+    margin-top: 550px; /* Changed from -110px to -50px for less extreme spacing */
 }
 
 #reward-buttons {
@@ -334,6 +333,47 @@ header{
 
     body {
         padding-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #reward-buttons {
+        order: 2; /* Place after main-container but before static-rewards */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin: 10px 0;
+        padding: 0 5px;
+    }
+
+    #reward-buttons button {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-width: 60px;
+        flex: 0 1 auto; /* Don't grow, can shrink, auto basis */
+    }
+
+    #main-container {
+        order: 1;
+    }
+
+    #static-rewards {
+        order: 3;
+    }
+}
+
+@media (max-width: 480px) {
+    #reward-buttons button {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-width: 50px;
     }
 }
 
@@ -536,10 +576,13 @@ button a {
     background-color: rgb(14, 13, 13);
     transition: top 0.3s;
     animation: pan-navbar 90s linear infinite;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
 }
 
 #navbar.hidden {
     top: -100px;
+    transform: translateY(-100%);
 }
 
 #navbar a {

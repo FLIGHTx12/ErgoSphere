@@ -450,3 +450,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Add navbar hide on scroll
+let lastScrollPosition = window.pageYOffset;
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.pageYOffset;
+    if (lastScrollPosition < currentScrollPosition) {
+        navbar.classList.add('hidden');
+    } else {
+        navbar.classList.remove('hidden');
+    }
+    lastScrollPosition = currentScrollPosition;
+});
