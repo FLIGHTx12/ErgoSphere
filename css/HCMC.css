@@ -677,3 +677,41 @@ header {
     animation: vibrate 0.1s linear infinite;
     animation-play-state: running;
 }
+
+.info-overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #4CAF50;
+    z-index: 9999;
+    font-size: 14px;
+    max-width: 300px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.info-overlay.visible {
+    opacity: 1;
+}
+
+.info-overlay p {
+    margin: 5px 0;
+    color: #4CAF50;
+}
+
+.info-overlay span {
+    color: white;
+}
+
+@media (min-width: 1024px) {
+    header {
+        margin-top: -85px; /* Reduced by 70% from 550px */
+    }
+
+    #navbar {
+        margin-bottom: 3px; /* Reduced by 70% from 10px */
+    }
+}

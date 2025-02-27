@@ -63,10 +63,39 @@ function loadChoices(pool) {
     .catch(error => console.error('Error loading choices:', error));
 }
 
+function createInfoOverlay(choice) {
+    const overlay = document.createElement('div');
+    overlay.className = 'info-overlay';
+    
+    const fields = [
+        { key: 'mode', label: 'Mode' },
+        { key: 'details', label: 'Details' },
+        { key: 'genre', label: 'Genre' },
+        { key: 'type', label: 'Type' },
+        { key: 'cost', label: 'Cost' },
+        { key: 'console', label: 'Console' },
+        { key: 'time to beat', label: 'Time to Beat' },
+        { key: 'owned', label: 'Owned' },
+        { key: 'after spin', label: 'After Spin' }
+    ];
+
+    const content = fields
+        .filter(field => choice[field.key])
+        .map(field => `<p>${field.label}: <span>${choice[field.key]}</span></p>`)
+        .join('');
+
+    overlay.innerHTML = content;
+    return overlay;
+}
+
 function populateStaticRewards() {
   staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
     choices.filter(choice => choice.copies > 0)
-      .map(choice => `<li class="reward-item" data-text="${choice.text}">${choice.text} ${'🟢'.repeat(choice.copies)}</li>`)
+      .map(choice => `<li class="reward-item" data-text="${choice.text}">
+        ${choice.text}
+        <br>
+        <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
+      </li>`)
       .join("") +
     "</ul>" +
     `<select id="filter-dropdown">
@@ -84,6 +113,29 @@ function populateStaticRewards() {
   // Add click sounds to static reward items
   staticRewards.querySelectorAll('.reward-item').forEach(item => {
     item.addEventListener('click', () => playClickSounds());
+  });
+
+  staticRewards.querySelectorAll('.reward-item').forEach(item => {
+    const choice = choices.find(c => c.text === item.dataset.text);
+    if (choice) {
+        const overlay = createInfoOverlay(choice);
+        overlay.style.display = 'none';
+        item.appendChild(overlay);
+        
+        let infoVisible = false;
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!infoVisible) {
+                overlay.style.display = 'block';
+                setTimeout(() => overlay.classList.add('visible'), 10);
+                infoVisible = true;
+            } else {
+                overlay.classList.remove('visible');
+                setTimeout(() => overlay.style.display = 'none', 300);
+                infoVisible = false;
+            }
+        });
+    }
   });
 }
 
@@ -333,6 +385,32 @@ function showOptionPopup(choice) {
     popup.appendChild(textDiv);
     popup.appendChild(extraDiv);
     
+    let infoTimeout;
+    const overlay = createInfoOverlay(choice);
+    overlay.style.display = 'none';
+    popup.appendChild(overlay);
+
+    // Show info on hover/long press
+    const showInfo = () => {
+        overlay.style.display = 'block';
+        setTimeout(() => overlay.classList.add('visible'), 10);
+    };
+
+    const hideInfo = () => {
+        overlay.classList.remove('visible');
+        setTimeout(() => overlay.style.display = 'none', 300);
+    };
+
+    popup.addEventListener('mouseenter', showInfo);
+    popup.addEventListener('mouseleave', hideInfo);
+    popup.addEventListener('touchstart', () => {
+        infoTimeout = setTimeout(showInfo, 500);
+    });
+    popup.addEventListener('touchend', () => {
+        clearTimeout(infoTimeout);
+        hideInfo();
+    });
+
     // Add click handler for screenshot
     popup.addEventListener('click', () => capturePopupScreenshot(popup));
     

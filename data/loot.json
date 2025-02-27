@@ -1,9 +1,9 @@
 [
     {
     "text": "You've brought forth a treacherous ERGO DJINN!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn1.png",
     "copies": 10,
-    "details": "",
+    "details": "Take 10 damage to your health, if you survive spin again",
     "genre": "hazzard",
     "type": "loot",
     "cost": "",
@@ -11,10 +11,10 @@
     "link":""
     },
     {
-    "text": "CRITICAL FAILURE!__FLAWED PARTICLE__ABORT",
+    "text": "CRITICAL FAILURE!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg",
     "copies": 15,
-    "details": "",
+    "details": "Flawed Particle",
     "genre": "hazzard",
     "type": "loot",
     "cost": "",
@@ -78,7 +78,7 @@
     },
     {
     "text": "Gained SNACK-A-THON!",
-    "image": "",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png",
     "copies": 5,
     "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week",
     "genre": "week modifiers",
@@ -89,9 +89,9 @@
     },
     {
     "text": "Gained GAME-A-THON!",
-    "image": "",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png",
     "copies": 5,
-    "details": "For the rest of the week, freetime games cost no coins",
+    "details": "For the rest of the week, all freetime games cost no coins",
     "genre": "week modifiers",
     "type": "loot",
     "cost": "",
@@ -111,7 +111,7 @@
     },
     {
     "text": "Gained FEAST!",
-    "image": "",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/feast.png",
     "copies": 2,
     "details": "the upcoming Friday or Sunday dinner can be changed to a Takout!!",
     "genre": "week modifiers",
