@@ -1,8 +1,8 @@
 [
     {
-    "text": "",
-    "image": "",
-    "copies": 0,
+    "text": "You've brought forth a treacherous ERGO DJINN!",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png",
+    "copies": 10,
     "details": "",
     "genre": "hazzard",
     "type": "loot",
@@ -11,9 +11,9 @@
     "link":""
     },
     {
-    "text": "",
-    "image": "",
-    "copies": 0,
+    "text": "CRITICAL FAILURE!__FLAWED PARTICLE__ABORT",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg",
+    "copies": 15,
     "details": "",
     "genre": "hazzard",
     "type": "loot",
@@ -77,11 +77,66 @@
     "link":""
     },
     {
-    "text": "",
+    "text": "Gained SNACK-A-THON!",
+    "image": "",
+    "copies": 5,
+    "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": "",
+    "after spin": "",
+    "link":""
+    },
+    {
+    "text": "Gained GAME-A-THON!",
+    "image": "",
+    "copies": 5,
+    "details": "For the rest of the week, freetime games cost no coins",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": "",
+    "after spin": "",
+    "link":""
+    },
+    {
+    "text": "You got the golden ticket!",
+    "image": "",
+    "copies": 4,
+    "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit)",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": "",
+    "after spin": "",
+    "link":""
+    },
+    {
+    "text": "Gained FEAST!",
+    "image": "",
+    "copies": 2,
+    "details": "the upcoming Friday or Sunday dinner can be changed to a Takout!!",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": "",
+    "after spin": "",
+    "link":""
+    },
+    {
+    "text": "You've brought forth a Kind ERGO DJINN!",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png",
+    "copies": 2,
+    "details": "Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear.",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": "",
+    "after spin": "",
+    "link":""
+    },
+    {
+    "text": "A portal opens up and a hand reaches out beckoning.",
     "image": "",
     "copies": 0,
-    "details": "",
-    "genre": "helper",
+    "details": "Add 4 to any HCMC probabilities.",
+    "genre": "week modifiers",
     "type": "loot",
     "cost": "",
     "after spin": "",

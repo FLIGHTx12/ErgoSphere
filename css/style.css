@@ -26,6 +26,7 @@ header {
 
 div {
   border: 2px solid purple;
+  border-radius: 20px;
   padding: 10px;
   position: relative;
   margin: 20px auto;
