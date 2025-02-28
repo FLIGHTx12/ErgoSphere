@@ -687,31 +687,51 @@ header {
     border: 1px solid #4CAF50;
     z-index: 9999;
     font-size: 14px;
-    max-width: 300px;
+    width: 250px; /* Increased width to fit more content */
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+    display: none;
 }
 
-.info-overlay.visible {
-    opacity: 1;
+.info-overlay h4 {
+    margin: 0 0 10px 0;
+    color: #4CAF50;
+    font-size: 16px;
 }
 
 .info-overlay p {
     margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.info-overlay strong {
     color: #4CAF50;
 }
 
-.info-overlay span {
-    color: white;
+/* Style for static rewards tooltips */
+#static-rewards .reward-item {
+    position: relative;
 }
 
-@media (min-width: 1024px) {
-    header {
-        margin-top: -85px; /* Reduced by 70% from 550px */
-    }
+#static-rewards .info-overlay {
+    left: -220px;
+    top: 0;
+    transform: translateY(0);
+}
 
-    #navbar {
-        margin-bottom: 3px; /* Reduced by 70% from 10px */
-    }
+/* Style for popup tooltips */
+#optionPopup {
+    position: relative;
+}
+
+#optionPopup .info-overlay {
+    left: 150px;
+    top: 20px;
+    transform: translateY(0);
+}
+
+.info-overlay.visible {
+    opacity: 1;
 }

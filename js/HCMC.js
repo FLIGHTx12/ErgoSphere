@@ -67,7 +67,11 @@ function createInfoOverlay(choice) {
     const overlay = document.createElement('div');
     overlay.className = 'info-overlay';
     
-    const fields = [
+    // Create HTML content based on available choice properties
+    let content = `<h4>${choice.text}</h4>`;
+    
+    // Add each available property to the overlay
+    const properties = [
         { key: 'mode', label: 'Mode' },
         { key: 'details', label: 'Details' },
         { key: 'genre', label: 'Genre' },
@@ -75,13 +79,17 @@ function createInfoOverlay(choice) {
         { key: 'cost', label: 'Cost' },
         { key: 'console', label: 'Console' },
         { key: 'time to beat', label: 'Time to Beat' },
-        { key: 'owned', label: 'Owned' },
+        { key: 'owned', label: 'Owned', transform: val => val ? 'Yes' : 'No' },
+        { key: 'completed', label: 'Completed', transform: val => val ? 'Yes' : 'No' },
         { key: 'after spin', label: 'After Spin' }
     ];
 
-    const content = fields
-        .filter(field => choice[field.key])
-        .map(field => `<p>${field.label}: <span>${choice[field.key]}</span></p>`)
+    content += properties
+        .filter(prop => choice[prop.key] !== undefined && choice[prop.key] !== '')
+        .map(prop => {
+            const value = prop.transform ? prop.transform(choice[prop.key]) : choice[prop.key];
+            return `<p><strong>${prop.label}:</strong> ${value}</p>`;
+        })
         .join('');
 
     overlay.innerHTML = content;
@@ -89,54 +97,63 @@ function createInfoOverlay(choice) {
 }
 
 function populateStaticRewards() {
-  staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
-    choices.filter(choice => choice.copies > 0)
-      .map(choice => `<li class="reward-item" data-text="${choice.text}">
-        ${choice.text}
-        <br>
-        <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
-      </li>`)
-      .join("") +
-    "</ul>" +
-    `<select id="filter-dropdown">
-      <option value="selected">Selected</option>
-      <option value="all">All</option>
-      <option value="owned">Owned</option>
-      <option value="not-owned">Not Owned</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not Completed</option>
-    </select>`;
-  staticRewards.style.fontSize = ".6em"; // Decrease font size by half
+    staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
+        choices.filter(choice => choice.copies > 0)
+            .map(choice => `<li class="reward-item" data-text="${choice.text}">
+                ${choice.text}
+                <br>
+                <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
+            </li>`)
+            .join("") +
+        "</ul>" +
+        `<select id="filter-dropdown">
+          <option value="selected">Selected</option>
+          <option value="all">All</option>
+          <option value="owned">Owned</option>
+          <option value="not-owned">Not Owned</option>
+          <option value="completed">Completed</option>
+          <option value="not-completed">Not Completed</option>
+        </select>`;
+    staticRewards.style.fontSize = ".6em"; // Decrease font size by half
 
-  document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
+    document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
 
-  // Add click sounds to static reward items
-  staticRewards.querySelectorAll('.reward-item').forEach(item => {
-    item.addEventListener('click', () => playClickSounds());
-  });
+    // Add click sounds to static reward items
+    staticRewards.querySelectorAll('.reward-item').forEach(item => {
+        const choice = choices.find(c => c.text === item.dataset.text);
+        if (choice) {
+            const overlay = createInfoOverlay(choice);
+            item.appendChild(overlay);
 
-  staticRewards.querySelectorAll('.reward-item').forEach(item => {
-    const choice = choices.find(c => c.text === item.dataset.text);
-    if (choice) {
-        const overlay = createInfoOverlay(choice);
-        overlay.style.display = 'none';
-        item.appendChild(overlay);
-        
-        let infoVisible = false;
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (!infoVisible) {
+            const showInfo = () => {
                 overlay.style.display = 'block';
-                setTimeout(() => overlay.classList.add('visible'), 10);
-                infoVisible = true;
-            } else {
+                overlay.classList.add('visible');
+            };
+
+            const hideInfo = () => {
                 overlay.classList.remove('visible');
-                setTimeout(() => overlay.style.display = 'none', 300);
-                infoVisible = false;
-            }
-        });
-    }
-  });
+                setTimeout(() => overlay.style.display = 'none', 800);
+            };
+
+            // Mouse events
+            item.addEventListener('mouseenter', showInfo);
+            item.addEventListener('mouseleave', hideInfo);
+
+            // Touch events with long press
+            let pressTimer;
+            item.addEventListener('touchstart', () => {
+                pressTimer = setTimeout(showInfo, 500);
+            });
+            item.addEventListener('touchend', () => {
+                clearTimeout(pressTimer);
+                hideInfo();
+            });
+            item.addEventListener('touchcancel', () => {
+                clearTimeout(pressTimer);
+                hideInfo();
+            });
+        }
+    });
 }
 
 function filterChoices() {
@@ -387,29 +404,26 @@ function showOptionPopup(choice) {
     
     let infoTimeout;
     const overlay = createInfoOverlay(choice);
-    overlay.style.display = 'none';
     popup.appendChild(overlay);
 
-    // Show info on hover/long press
+    // Show info with delay for popup
     const showInfo = () => {
-        overlay.style.display = 'block';
-        setTimeout(() => overlay.classList.add('visible'), 10);
+        infoTimeout = setTimeout(() => {
+            overlay.style.display = 'block';
+            setTimeout(() => overlay.classList.add('visible'), 10);
+        }, 2000);
     };
 
     const hideInfo = () => {
+        clearTimeout(infoTimeout);
         overlay.classList.remove('visible');
         setTimeout(() => overlay.style.display = 'none', 300);
     };
 
     popup.addEventListener('mouseenter', showInfo);
     popup.addEventListener('mouseleave', hideInfo);
-    popup.addEventListener('touchstart', () => {
-        infoTimeout = setTimeout(showInfo, 500);
-    });
-    popup.addEventListener('touchend', () => {
-        clearTimeout(infoTimeout);
-        hideInfo();
-    });
+    popup.addEventListener('touchstart', showInfo);
+    popup.addEventListener('touchend', hideInfo);
 
     // Add click handler for screenshot
     popup.addEventListener('click', () => capturePopupScreenshot(popup));

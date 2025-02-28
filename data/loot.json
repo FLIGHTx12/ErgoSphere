@@ -100,7 +100,7 @@
     },
     {
     "text": "You got the golden ticket!",
-    "image": "",
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png",
     "copies": 4,
     "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit)",
     "genre": "week modifiers",
@@ -133,8 +133,8 @@
     },
     {
     "text": "A portal opens up and a hand reaches out beckoning.",
-    "image": "",
-    "copies": 0,
+    "image": "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png",
+    "copies": 1,
     "details": "Add 4 to any HCMC probabilities.",
     "genre": "week modifiers",
     "type": "loot",
