@@ -133,8 +133,14 @@ function showRewardInfo(choice) {
     const infoDisplay = document.getElementById('reward-info-display');
     const infoContent = document.getElementById('reward-info-content');
     
-    let content = `<h4>${choice.text}</h4>`;
+    // Create title, making it a link if a link property exists
+    let titleContent = choice.text;
+    if (choice.link && choice.link.trim() !== '') {
+        titleContent = `<a href="${choice.link}" target="_blank" style="color: #4CAF50; text-decoration: none; hover: underline;">${choice.text}</a>`;
+    }
+    let content = `<h4>${titleContent}</h4>`;
     
+    // Rest of properties display remains the same
     const properties = [
         { key: 'mode', label: 'Mode' },
         { key: 'details', label: 'Details' },
@@ -194,13 +200,20 @@ function filterChoices() {
 }
 
 function selectWeightedChoice(choices) {
-  const weightedArray = [];
-  choices.forEach(choice => {
-    const count = choice.copies || 1;
-    for (let i = 0; i < count; i++) {
-      weightedArray.push(choice);
+  // Create array of choices where each copy is a separate instance
+  const weightedArray = choices.reduce((acc, choice) => {
+    const copies = Math.max(0, choice.copies || 0);
+    // Add this choice to array once for each copy
+    for (let i = 0; i < copies; i++) {
+      acc.push(choice);
     }
-  });
+    return acc;
+  }, []);
+
+  if (weightedArray.length === 0) {
+    return null;
+  }
+
   const randomIndex = Math.floor(Math.random() * weightedArray.length);
   return weightedArray[randomIndex];
 }
@@ -248,6 +261,14 @@ function showFlashEffect() {
     }, 7000); // Total flash effect duration (3s intense + 4s fade)
 }
 
+function getRandomImage(choice) {
+    if (Array.isArray(choice.image)) {
+        const randomIndex = Math.floor(Math.random() * choice.image.length);
+        return choice.image[randomIndex];
+    }
+    return choice.image;
+}
+
 function spin(cycleId) {
     if (cycleId !== currentCycleId) return;
 
@@ -265,24 +286,29 @@ function spin(cycleId) {
             filteredChoices = choices.filter(choice => choice.completed);
             break;
         case "not-completed":
-            filteredChoices = choices.filter(choice => !choice.completed);
-            break;
-        case "all":
             filteredChoices = choices;
             break;
         default:
             filteredChoices = choices.filter(choice => choice.copies > 0);
     }
 
-    if (filteredChoices.length === 0) {
+    // Check if we have any valid choices with copies
+    const hasValidChoices = filteredChoices.some(choice => choice.copies > 0);
+    
+    if (!hasValidChoices) {
         resetCycle();
         alert("No choices available in current filter!");
         return;
     }
 
     const choice = selectWeightedChoice(filteredChoices);
+    if (!choice) {
+        resetCycle();
+        return;
+    }
+
     choiceImage.style.display = "block";
-    choiceImage.src = choice.image;
+    choiceImage.src = getRandomImage(choice); // Use getRandomImage instead of direct assignment
     updateActiveReward(choice);
 
     if (spinning) {
@@ -389,7 +415,7 @@ function showOptionPopup(choice) {
     });
     
     const img = document.createElement("img");
-    img.src = choice.image;
+    img.src = getRandomImage(choice); // Use getRandomImage for popup as well
     img.style.width = "100%";
     img.style.maxHeight = "60vh"; // Ensure image doesn't overflow
     img.style.objectFit = "contain"; // Keep aspect ratio
