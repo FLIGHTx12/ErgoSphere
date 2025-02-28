@@ -107,54 +107,63 @@ function populateStaticRewards() {
             .join("") +
         "</ul>" +
         `<select id="filter-dropdown">
-          <option value="selected">Selected</option>
-          <option value="all">All</option>
-          <option value="owned">Owned</option>
-          <option value="not-owned">Not Owned</option>
-          <option value="completed">Completed</option>
-          <option value="not-completed">Not Completed</option>
+            <option value="selected">Selected</option>
+            <option value="all">All</option>
+            <option value="owned">Owned</option>
+            <option value="not-owned">Not Owned</option>
+            <option value="completed">Completed</option>
+            <option value="not-completed">Not Completed</option>
         </select>`;
-    staticRewards.style.fontSize = ".6em"; // Decrease font size by half
+    staticRewards.style.fontSize = ".6em";
 
     document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
 
-    // Add click sounds to static reward items
+    // Add click handler for reward items
     staticRewards.querySelectorAll('.reward-item').forEach(item => {
-        const choice = choices.find(c => c.text === item.dataset.text);
-        if (choice) {
-            const overlay = createInfoOverlay(choice);
-            item.appendChild(overlay);
-
-            const showInfo = () => {
-                overlay.style.display = 'block';
-                overlay.classList.add('visible');
-            };
-
-            const hideInfo = () => {
-                overlay.classList.remove('visible');
-                setTimeout(() => overlay.style.display = 'none', 800);
-            };
-
-            // Mouse events
-            item.addEventListener('mouseenter', showInfo);
-            item.addEventListener('mouseleave', hideInfo);
-
-            // Touch events with long press
-            let pressTimer;
-            item.addEventListener('touchstart', () => {
-                pressTimer = setTimeout(showInfo, 500);
-            });
-            item.addEventListener('touchend', () => {
-                clearTimeout(pressTimer);
-                hideInfo();
-            });
-            item.addEventListener('touchcancel', () => {
-                clearTimeout(pressTimer);
-                hideInfo();
-            });
-        }
+        item.addEventListener('click', () => {
+            const choice = choices.find(c => c.text === item.dataset.text);
+            if (choice) {
+                showRewardInfo(choice);
+            }
+        });
     });
 }
+
+function showRewardInfo(choice) {
+    const infoDisplay = document.getElementById('reward-info-display');
+    const infoContent = document.getElementById('reward-info-content');
+    
+    let content = `<h4>${choice.text}</h4>`;
+    
+    const properties = [
+        { key: 'mode', label: 'Mode' },
+        { key: 'details', label: 'Details' },
+        { key: 'genre', label: 'Genre' },
+        { key: 'type', label: 'Type' },
+        { key: 'cost', label: 'Cost' },
+        { key: 'console', label: 'Console' },
+        { key: 'time to beat', label: 'Time to Beat' },
+        { key: 'owned', label: 'Owned', transform: val => val ? 'Yes' : 'No' },
+        { key: 'completed', label: 'Completed', transform: val => val ? 'Yes' : 'No' },
+        { key: 'after spin', label: 'After Spin' }
+    ];
+
+    content += properties
+        .filter(prop => choice[prop.key] !== undefined && choice[prop.key] !== '')
+        .map(prop => {
+            const value = prop.transform ? prop.transform(choice[prop.key]) : choice[prop.key];
+            return `<p><strong>${prop.label}:</strong> ${value}</p>`;
+        })
+        .join('');
+
+    infoContent.innerHTML = content;
+    infoDisplay.classList.remove('hidden');
+}
+
+// Add close button handler
+document.getElementById('close-info').addEventListener('click', () => {
+    document.getElementById('reward-info-display').classList.add('hidden');
+});
 
 function filterChoices() {
   resetCycle();
