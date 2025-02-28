@@ -26,7 +26,11 @@ const AUDIO = {
     popup: new Audio('../assets/audio/popup.mp3'),
     spinUp: new Audio('../assets/audio/HCMC spin up.mp3'),
     powerDown: new Audio('../assets/audio/Power down.mp3'), // Add power down sound
-    mouseClick: new Audio('../assets/audio/mouse-click-normal.mp3')
+    mouseClick: new Audio('../assets/audio/mouse-click-normal.mp3'),
+    hazzard: new Audio('../assets/audio/hazzard.mp3'),
+    helper: new Audio('../assets/audio/healer.mp3'),
+    weekMod: new Audio('../assets/audio/Week Mod.mp3'),
+    want: new Audio('../assets/audio/happy-logo-13397.mp3')
 };
 
 // Initialize audio settings
@@ -328,6 +332,19 @@ function spin(cycleId) {
             delay = delay * 1.2;
             setTimeout(() => spin(cycleId), delay);
         } else {
+            // Play genre-specific sound before showing popup
+            if (choice.genre) {
+                const genreSound = {
+                    'hazzard': 'hazzard',
+                    'helper': 'helper',
+                    'week modifiers': 'weekMod',
+                    'want': 'want'
+                }[choice.genre.toLowerCase()];
+                
+                if (genreSound) {
+                    playSound(genreSound);
+                }
+            }
             showOptionPopup(choice);
         }
     }

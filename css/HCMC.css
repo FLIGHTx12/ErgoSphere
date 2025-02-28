@@ -151,6 +151,13 @@
     overflow: visible; /* Change from auto to visible */
 }
 
+#static-rewards h3 {
+    font-size: 1.5em;
+    margin: 0 0 15px 0;
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
 #static-rewards ul {
     display: flex;
     flex-wrap: wrap;
@@ -163,7 +170,7 @@
     list-style-type: none;
     padding-left: 0;
     padding-right: 0;
-    font-size: clamp(0.7rem, 1vw + 0.3rem, 1rem);
+    font-size: clamp(0.6rem, 0.8vw + 0.2rem, 0.9rem); /* Decreased from 0.7rem */
 }
 
 #static-rewards li {
@@ -279,7 +286,7 @@ header {
 @media (min-width: 1280px) {
     #static-rewards ul {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        font-size: clamp(0.8rem, 1vw + 0.4rem, 1.1rem);
+        font-size: clamp(0.7rem, 0.9vw + 0.3rem, 1rem); /* Decreased from 0.8rem */
     }
 }
 
@@ -298,7 +305,7 @@ header {
 @media (max-width: 768px) {
     #static-rewards ul {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        font-size: clamp(0.6rem, 1vw + 0.2rem, 0.9rem);
+        font-size: clamp(0.5rem, 0.8vw + 0.1rem, 0.8rem); /* Decreased from 0.6rem */
     }
 }
 
