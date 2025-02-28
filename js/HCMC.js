@@ -111,12 +111,12 @@ function populateStaticRewards() {
             .join("") +
         "</ul>" +
         `<select id="filter-dropdown">
-            <option value="selected">Selected</option>
-            <option value="all">All</option>
-            <option value="owned">Owned</option>
-            <option value="not-owned">Not Owned</option>
-            <option value="completed">Completed</option>
-            <option value="not-completed">Not Completed</option>
+            <option value="active">Active</option>
+            <option value="selectable">Selectable</option>
+            <option value="wants">Wants</option>
+            <option value="modifiers">Modifiers</option>
+            <option value="helpers">Helpers</option>
+            <option value="hazzards">Hazzards</option>
         </select>`;
     staticRewards.style.fontSize = ".6em";
 
@@ -176,31 +176,46 @@ document.getElementById('close-info').addEventListener('click', () => {
 });
 
 function filterChoices() {
-  resetCycle();
-  const filterValue = document.getElementById("filter-dropdown").value;
-  let filteredChoices = choices;
+    resetCycle();
+    const filterValue = document.getElementById("filter-dropdown").value;
+    let filteredChoices = choices;
 
-  switch (filterValue) {
-    case "owned":
-      filteredChoices = choices.filter(choice => choice.owned);
-      break;
-    case "not-owned":
-      filteredChoices = choices.filter(choice => !choice.owned);
-      break;
-    case "completed":
-      filteredChoices = choices.filter(choice => choice.completed);
-      break;
-    case "not-completed":
-      filteredChoices = choices.filter(choice => !choice.completed);
-      break;
-    case "all":
-      filteredChoices = choices;
-      break;
-    default:
-      filteredChoices = choices.filter(choice => choice.copies > 0);
-  }
+    switch (filterValue) {
+        case "active":
+            filteredChoices = choices.filter(choice => 
+                choice.copies > 0 && choice.text.trim() !== '');
+            break;
+        case "selectable":
+            filteredChoices = choices.filter(choice => 
+                choice.copies === 0 && choice.text.trim() !== '');
+            break;
+        case "wants":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'want');
+            break;
+        case "modifiers":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'week modifiers');
+            break;
+        case "helpers":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'helper');
+            break;
+        case "hazzards":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'hazzard');
+            break;
+        default:
+            filteredChoices = choices.filter(choice => choice.copies > 0);
+    }
 
-  staticRewards.querySelector("ul").innerHTML = filteredChoices.map(choice => `<li>${choice.text} ${'🟢'.repeat(choice.copies)}</li>`).join("");
+    staticRewards.querySelector("ul").innerHTML = filteredChoices
+        .map(choice => `<li class="reward-item" data-text="${choice.text}">
+            ${choice.text}
+            <br>
+            <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
+        </li>`)
+        .join("");
 }
 
 function selectWeightedChoice(choices) {
@@ -280,25 +295,36 @@ function spin(cycleId) {
     let filteredChoices = choices;
 
     switch (filterValue) {
-        case "owned":
-            filteredChoices = choices.filter(choice => choice.owned);
+        case "active":
+            filteredChoices = choices.filter(choice => 
+                choice.copies > 0 && choice.text?.trim() !== '');
             break;
-        case "not-owned":
-            filteredChoices = choices.filter(choice => !choice.owned);
+        case "selectable":
+            filteredChoices = choices.filter(choice => 
+                choice.copies === 0 && choice.text?.trim() !== '');
             break;
-        case "completed":
-            filteredChoices = choices.filter(choice => choice.completed);
+        case "wants":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'want');
             break;
-        case "not-completed":
-            filteredChoices = choices;
+        case "modifiers":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'week modifiers');
+            break;
+        case "helpers":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'helper');
+            break;
+        case "hazzards":
+            filteredChoices = choices.filter(choice => 
+                choice.genre?.toLowerCase() === 'hazzard');
             break;
         default:
-            filteredChoices = choices.filter(choice => choice.copies > 0);
+            filteredChoices = choices.filter(choice.copies > 0);
     }
 
-    // Check if we have any valid choices with copies
+    // Check if we have any valid choices
     const hasValidChoices = filteredChoices.some(choice => choice.copies > 0);
-    
     if (!hasValidChoices) {
         resetCycle();
         alert("No choices available in current filter!");
