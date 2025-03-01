@@ -10,7 +10,6 @@
         <button><a href="../HCMC.html">HCMC</a></button>
     </nav>
 
-    <!-- Initial Mode Selection -->
     <div id="mode-selection" class="admin-section">
         <h2>HCMC Options Manager</h2>
         <div class="button-container">
@@ -18,8 +17,16 @@
             <button id="edit-mode" class="mode-button">EDIT EXISTING OPTIONS</button>
         </div>
     </div>
+    
+    <!-- Simple popup for pool selection -->
+    <div id="workflow-popup" class="admin-section hidden">
+        <p>Select Pool:</p>
+        <button class="pool-button" data-pool="loot">LOOT POOL</button>
+        <button class="pool-button" data-pool="pvp">PVP POOL</button>
+        <button class="pool-button" data-pool="coop">CO-OP POOL</button>
+        <button id="close-popup">Close</button>
+    </div>
 
-    <!-- Pool Selection -->
     <div id="pool-selection" class="admin-section hidden">
         <h3>Select Pool</h3>
         <div class="button-container">
@@ -47,5 +54,6 @@
         </div>
         <button class="back-button">Back</button>
     </div>
+    <script src="../../js/adminHCMC.js"></script>
 </body>
 </html>

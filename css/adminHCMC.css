@@ -244,12 +244,20 @@ button:hover {
 
 .admin-section {
     max-width: 1200px;
-    margin: 200px auto;
+    margin: 20px auto;
     padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     border: 2px solid purple;
     transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.admin-section.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 .hidden {
@@ -367,4 +375,24 @@ button:hover {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#mode-selection {
+    margin-top: 100px; /* Space below navbar */
+}
+
+#pool-selection {
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+#workflow-popup {
+    position: relative;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid purple;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }

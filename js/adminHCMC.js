@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAdmin();
 });
 
+// New helper to show the workflow popup
+function showWorkflowPopup(content) {
+    const popup = document.getElementById('workflow-popup');
+    popup.innerHTML = content;
+    popup.classList.remove('hidden');
+    // Attach event listeners to pool buttons & back button inside popup
+    popup.querySelectorAll('[data-pool]').forEach(button => {
+        button.addEventListener('click', () => {
+            console.log('Pool selected:', button.dataset.pool);
+            handlePoolSelection(button.dataset.pool);
+        });
+    });
+    popup.querySelector('.back-button')?.addEventListener('click', () => {
+        popup.classList.add('hidden');
+    });
+}
+
 function initializeEventListeners() {
     document.getElementById('load-pool').addEventListener('click', () => {
         const pool = document.getElementById('pool-select').value;
@@ -197,12 +214,24 @@ function adjustCopies(index, amount) {
 
 function initializeAdmin() {
     // Mode selection handlers
-    document.getElementById('add-mode').addEventListener('click', () => showSection('pool-selection', 'add'));
-    document.getElementById('edit-mode').addEventListener('click', () => showSection('pool-selection', 'edit'));
+    document.getElementById('add-mode')?.addEventListener('click', () => {
+        console.log('Add mode clicked');
+        localStorage.setItem('currentMode', 'add');
+        showWorkflowPopup(getPoolSelectionHTML());
+    });
+    
+    document.getElementById('edit-mode')?.addEventListener('click', () => {
+        console.log('Edit mode clicked');
+        localStorage.setItem('currentMode', 'edit');
+        showWorkflowPopup(getPoolSelectionHTML());
+    });
 
     // Pool selection handlers
-    document.querySelectorAll('#pool-selection button[data-pool]').forEach(button => {
-        button.addEventListener('click', () => handlePoolSelection(button.dataset.pool));
+    document.querySelectorAll('[data-pool]').forEach(button => {
+        button.addEventListener('click', () => {
+            console.log('Pool button clicked:', button.dataset.pool);
+            handlePoolSelection(button.dataset.pool);
+        });
     });
 
     // Back button handlers
@@ -211,28 +240,39 @@ function initializeAdmin() {
     });
 }
 
+function getPoolSelectionHTML() {
+    return `
+        <h3>Select Pool</h3>
+        <div class="button-container">
+            <button data-pool="loot">LOOT POOL</button>
+            <button data-pool="pvp">PVP POOL</button>
+            <button data-pool="coop">CO-OP POOL</button>
+        </div>
+        <button class="back-button">Back</button>
+    `;
+}
+
 function showSection(sectionId, mode = null) {
-    // Hide all sections first
+    console.log(`Showing section: ${sectionId}, Mode: ${mode}`);
+    
+    // Hide all sections
     document.querySelectorAll('.admin-section').forEach(section => {
         section.classList.add('hidden');
     });
     
-    // Show the requested section
+    // Show requested section
     const section = document.getElementById(sectionId);
     if (section) {
         section.classList.remove('hidden');
+        section.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Store the current mode if provided
     if (mode) {
         localStorage.setItem('currentMode', mode);
     }
-
-    // Log for debugging
-    console.log(`Showing section: ${sectionId}, Mode: ${mode}`);
 }
 
-function handlePoolSelection(poolName) {
+async function handlePoolSelection(poolName) {
     console.log(`Pool selected: ${poolName}`); // Debug log
     const mode = localStorage.getItem('currentMode');
     console.log(`Current mode: ${mode}`); // Debug log
@@ -425,3 +465,35 @@ function handleBack() {
         localStorage.removeItem('currentMode');
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const addMode = document.getElementById("add-mode");
+  const editMode = document.getElementById("edit-mode");
+  const popup = document.getElementById("workflow-popup");
+  const closePopup = document.getElementById("close-popup");
+
+  addMode.addEventListener("click", function() {
+    localStorage.setItem("currentMode", "add");
+    popup.classList.remove("hidden");
+  });
+  
+  editMode.addEventListener("click", function() {
+    localStorage.setItem("currentMode", "edit");
+    popup.classList.remove("hidden");
+  });
+
+  closePopup.addEventListener("click", function() {
+    popup.classList.add("hidden");
+  });
+  
+  document.querySelectorAll(".pool-button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      const pool = button.dataset.pool;
+      console.log("Pool selected:", pool);
+      // Hide the popup
+      document.getElementById("workflow-popup").classList.add("hidden");
+      // Call the next step in the workflow
+      handlePoolSelection(pool);
+    });
+  });
+});
