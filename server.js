@@ -199,6 +199,33 @@ app.get('/api/restore/:pool/:backupId', async (req, res) => {
   }
 });
 
+// Add image directory scanning endpoint
+app.get('/api/images/:pool', async (req, res) => {
+  try {
+    const poolName = req.params.pool.toLowerCase();
+    const validPools = ['loot', 'pvp', 'coop'];
+    
+    if (!validPools.includes(poolName)) {
+      return res.status(400).json({ error: 'Invalid pool name' });
+    }
+
+    const imagePath = path.join(__dirname, 'assets', 'img', 'Spin The Wheel Photos', poolName);
+    const files = await fs.readdir(imagePath);
+    
+    const images = files
+      .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+      .map(file => ({
+        name: file,
+        path: `../assets/img/Spin The Wheel Photos/${poolName}/${file}`
+      }));
+
+    res.json(images);
+  } catch (error) {
+    console.error('Error scanning images:', error);
+    res.status(500).json({ error: 'Failed to scan images directory' });
+  }
+});
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err);

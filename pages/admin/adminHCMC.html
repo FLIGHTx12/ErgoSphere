@@ -8,93 +8,44 @@
     <nav id="navbar">
         <button><a href="../../index.html">HOME</a></button>
         <button><a href="../HCMC.html">HCMC</a></button>
-        <link rel="stylesheet" href="../css/HCMC.css">
-        <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" /> 
     </nav>
 
-    <div id="admin-panel">
+    <!-- Initial Mode Selection -->
+    <div id="mode-selection" class="admin-section">
         <h2>HCMC Options Manager</h2>
-        
-        <div id="pool-selector">
-            <select id="pool-select">
-                <option value="loot">Loot Pool</option>
-                <option value="pvp">PVP Pool</option>
-                <option value="coop">Co-op Pool</option>
-            </select>
-            <button id="load-pool">Load Pool</button>
-        </div>
-
-        <div id="option-editor">
-            <h3>Add/Edit Option</h3>
-            <form id="option-form">
-                <div class="form-group">
-                    <label for="text">Text:</label>
-                    <input type="text" id="text" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="image">Image URL(s):</label>
-                    <input type="text" id="image" placeholder="Single URL or comma-separated URLs">
-                </div>
-
-                <div class="form-group">
-                    <label for="copies">Copies:</label>
-                    <input type="number" id="copies" min="0" value="0">
-                </div>
-
-                <div class="form-group">
-                    <label for="genre">Genre:</label>
-                    <select id="genre">
-                        <option value="hazzard">Hazzard</option>
-                        <option value="helper">Helper</option>
-                        <option value="week modifiers">Week Modifiers</option>
-                        <option value="want">Want</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="details">Details:</label>
-                    <textarea id="details"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="cost">Cost:</label>
-                    <input type="text" id="cost">
-                </div>
-
-                <div class="form-group">
-                    <label for="after-spin">After Spin:</label>
-                    <input type="text" id="after-spin">
-                </div>
-
-                <div class="form-group">
-                    <label for="link">Link:</label>
-                    <input type="url" id="link">
-                </div>
-
-                <div class="button-group">
-                    <button type="submit">Save Option</button>
-                    <button type="reset">Clear Form</button>
-                </div>
-            </form>
-        </div>
-
-        <div id="options-list">
-            <h3>Current Options</h3>
-            <div class="list-controls">
-                <input type="text" id="search" placeholder="Search options...">
-                <select id="filter">
-                    <option value="all">All</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
-            <ul id="options"></ul>
+        <div class="button-container">
+            <button id="add-mode" class="mode-button">ADD NEW OPTION</button>
+            <button id="edit-mode" class="mode-button">EDIT EXISTING OPTIONS</button>
         </div>
     </div>
 
-    <script src="../../js/adminHCMC.js"></script>
+    <!-- Pool Selection -->
+    <div id="pool-selection" class="admin-section hidden">
+        <h3>Select Pool</h3>
+        <div class="button-container">
+            <button data-pool="loot">LOOT POOL</button>
+            <button data-pool="pvp">PVP POOL</button>
+            <button data-pool="coop">CO-OP POOL</button>
+        </div>
+        <button class="back-button">Back</button>
+    </div>
+
+    <!-- Add Option Form -->
+    <div id="add-form" class="admin-section hidden">
+        <h3>Add New Option</h3>
+        <form id="option-form">
+            <!-- Form fields will be dynamically populated based on pool -->
+        </form>
+        <button class="back-button">Back</button>
+    </div>
+
+    <!-- Edit Options View -->
+    <div id="edit-view" class="admin-section hidden">
+        <h3>Edit Options</h3>
+        <div id="options-container">
+            <!-- Options will be dynamically populated and organized by genre -->
+        </div>
+        <button class="back-button">Back</button>
+    </div>
 </body>
 </html>

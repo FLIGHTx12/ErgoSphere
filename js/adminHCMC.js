@@ -4,6 +4,7 @@ let currentPoolName = 'loot';
 document.addEventListener('DOMContentLoaded', () => {
     initializeEventListeners();
     loadPool('loot');
+    initializeAdmin();
 });
 
 function initializeEventListeners() {
@@ -192,4 +193,235 @@ function adjustCopies(index, amount) {
     currentPool[index].copies = Math.max(0, (currentPool[index].copies || 0) + amount);
     savePool();
     displayOptions();
+}
+
+function initializeAdmin() {
+    // Mode selection handlers
+    document.getElementById('add-mode').addEventListener('click', () => showSection('pool-selection', 'add'));
+    document.getElementById('edit-mode').addEventListener('click', () => showSection('pool-selection', 'edit'));
+
+    // Pool selection handlers
+    document.querySelectorAll('#pool-selection button[data-pool]').forEach(button => {
+        button.addEventListener('click', () => handlePoolSelection(button.dataset.pool));
+    });
+
+    // Back button handlers
+    document.querySelectorAll('.back-button').forEach(button => {
+        button.addEventListener('click', handleBack);
+    });
+}
+
+function showSection(sectionId, mode = null) {
+    // Hide all sections first
+    document.querySelectorAll('.admin-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    
+    // Show the requested section
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.classList.remove('hidden');
+    }
+    
+    // Store the current mode if provided
+    if (mode) {
+        localStorage.setItem('currentMode', mode);
+    }
+
+    // Log for debugging
+    console.log(`Showing section: ${sectionId}, Mode: ${mode}`);
+}
+
+function handlePoolSelection(poolName) {
+    console.log(`Pool selected: ${poolName}`); // Debug log
+    const mode = localStorage.getItem('currentMode');
+    console.log(`Current mode: ${mode}`); // Debug log
+
+    try {
+        await loadPool(poolName);
+        if (mode === 'add') {
+            await loadAddForm(poolName);
+        } else {
+            await loadEditView(poolName);
+        }
+    } catch (error) {
+        console.error('Error handling pool selection:', error);
+        showToast('Error loading pool data', 'error');
+    }
+}
+
+async function loadImageOptions(poolName) {
+    try {
+        const response = await fetch(`/api/images/${poolName}`);
+        if (!response.ok) throw new Error('Failed to load images');
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading images:', error);
+        showToast('Error loading images', 'error');
+        return [];
+    }
+}
+
+async function loadAddForm(poolName) {
+    showLoading(true);
+    try {
+        const form = document.getElementById('option-form');
+        const imageOptions = await loadImageOptions(poolName);
+        
+        form.innerHTML = `
+            <div class="form-group">
+                <label for="text">Text:</label>
+                <input type="text" id="text" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <select id="image" required>
+                    <option value="">Select an image...</option>
+                    ${imageOptions.map(img => 
+                        `<option value="${img.path}">${img.name}</option>`
+                    ).join('')}
+                    <option value="multiple">Multiple Images...</option>
+                </select>
+                <div id="multiple-images" class="hidden">
+                    <div class="image-grid">
+                        ${imageOptions.map(img => `
+                            <div class="image-option">
+                                <input type="checkbox" id="${img.name}" value="${img.path}">
+                                <label for="${img.name}">
+                                    <img src="${img.path}" alt="${img.name}">
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <select id="genre" required>
+                    <option value="hazzard">Hazzard</option>
+                    <option value="helper">Helper</option>
+                    <option value="week modifiers">Week Modifiers</option>
+                    <option value="want">Want</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="copies">Copies:</label>
+                <input type="number" id="copies" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label for="details">Details:</label>
+                <textarea id="details"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost:</label>
+                <input type="text" id="cost">
+            </div>
+            <div class="form-group">
+                <label for="after-spin">After Spin:</label>
+                <input type="text" id="after-spin">
+            </div>
+            <div class="form-group">
+                <label for="link">Link:</label>
+                <input type="url" id="link">
+            </div>
+            <div class="button-group">
+                <button type="submit">Save Option</button>
+                <button type="reset">Clear Form</button>
+            </div>
+        `;
+
+        // Add image selection handler
+        form.querySelector('#image').addEventListener('change', (e) => {
+            const multipleImages = document.getElementById('multiple-images');
+            multipleImages.classList.toggle('hidden', e.target.value !== 'multiple');
+        });
+
+        showSection('add-form');
+    } catch (error) {
+        console.error('Error setting up form:', error);
+        showToast('Error setting up form', 'error');
+    } finally {
+        showLoading(false);
+    }
+}
+
+async function loadEditView(poolName) {
+    const container = document.getElementById('options-container');
+    const data = await loadPoolData(poolName);
+    
+    // Group by genre and sort alphabetically
+    const groupedOptions = groupAndSortOptions(data);
+    
+    container.innerHTML = Object.entries(groupedOptions)
+        .map(([genre, options]) => `
+            <div class="genre-section">
+                <h4>${genre}</h4>
+                <div class="option-list">
+                    ${options.map(option => createOptionCard(option)).join('')}
+                </div>
+            </div>
+        `).join('');
+
+    showSection('edit-view');
+}
+
+function groupAndSortOptions(data) {
+    const grouped = data.reduce((acc, option) => {
+        const genre = option.genre || 'Uncategorized';
+        if (!acc[genre]) acc[genre] = [];
+        acc[genre].push(option);
+        return acc;
+    }, {});
+
+    // Sort within each genre
+    Object.keys(grouped).forEach(genre => {
+        grouped[genre].sort((a, b) => a.text.localeCompare(b.text));
+    });
+
+    return grouped;
+}
+
+function createOptionCard(option) {
+    return `
+        <div class="option-card" data-id="${option.id}">
+            <div class="option-info">
+                <strong>${option.text}</strong>
+                <span>Copies: ${option.copies}</span>
+            </div>
+            <div class="option-controls">
+                <button onclick="adjustCopies(${option.id}, 1)">+</button>
+                <button onclick="adjustCopies(${option.id}, -1)">-</button>
+                <button onclick="editOption(${option.id})">Edit</button>
+                <button onclick="deleteOption(${option.id})">Delete</button>
+            </div>
+        </div>
+    `;
+}
+
+// Add loading state management
+function showLoading(show) {
+    const loader = document.getElementById('loader') || createLoader();
+    loader.style.display = show ? 'flex' : 'none';
+}
+
+function createLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'loader';
+    loader.innerHTML = `
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+}
+
+function handleBack() {
+    const currentMode = localStorage.getItem('currentMode');
+    if (document.getElementById('add-form').classList.contains('hidden') === false ||
+        document.getElementById('edit-view').classList.contains('hidden') === false) {
+        showSection('pool-selection', currentMode);
+    } else {
+        showSection('mode-selection');
+        localStorage.removeItem('currentMode');
+    }
 }
