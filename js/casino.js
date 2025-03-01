@@ -376,6 +376,7 @@ const teamsData = {
       "Joe Ingles",
       "Mike Conley",
       "Nickeil Alexander-Walker",
+      "Rob Dillingham",
       "Terrence Shannon Jr.",
       "Tristen Newton",
 

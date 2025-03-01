@@ -1,0 +1,97 @@
+body {
+    background-color: #1a1a2e;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+#admin-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 1px solid #4CAF50;
+}
+
+#pool-selector {
+    margin-bottom: 20px;
+}
+
+#option-editor {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    color: white;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#options-list {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.list-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#options {
+    list-style: none;
+    padding: 0;
+}
+
+.option-item {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option-controls {
+    display: flex;
+    gap: 5px;
+}
