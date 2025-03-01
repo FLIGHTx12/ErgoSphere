@@ -149,6 +149,7 @@
     transition: all 0.5s ease;
     padding-top: 20px; /* Add some padding at the top to prevent tooltips from being cut off */
     overflow: visible; /* Change from auto to visible */
+    font-size: .3em; /* Decreased from .6em */
 }
 
 #static-rewards h3 {
@@ -672,6 +673,8 @@ header {
 
 .reward-item.active {
     color: gold;
+    background-color: rgba(76, 175, 80, 0.3); /* Green glow for active items */
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 @keyframes glowBorder {
@@ -839,4 +842,8 @@ header {
 
 #reward-info-content strong {
     color: #4CAF50;
+}
+
+.reward-item {
+    transition: background-color 0.3s ease;
 }

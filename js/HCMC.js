@@ -103,8 +103,8 @@ function createInfoOverlay(choice) {
 function populateStaticRewards() {
     staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
         choices.filter(choice => choice.copies > 0)
-            .map(choice => `<li class="reward-item" data-text="${choice.text}">
-                ${choice.text}
+            .map(choice => `<li class="reward-item" data-text="${choice.text.trim()}">
+                ${choice.text.trim()}
                 <br>
                 <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
             </li>`)
@@ -288,6 +288,47 @@ function getRandomImage(choice) {
     return choice.image;
 }
 
+// Add new image preloading system
+const imageCache = new Map();
+let lastImageUrl = null;
+
+function preloadImage(url) {
+    if (imageCache.has(url)) {
+        return imageCache.get(url);
+    }
+
+    const img = new Image();
+    const promise = new Promise((resolve, reject) => {
+        img.onload = () => resolve(url);
+        img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+        img.src = url;
+    });
+    imageCache.set(url, promise);
+    return promise;
+}
+
+async function updateChoiceImage(choice) {
+    try {
+        const imageUrl = getRandomImage(choice);
+        // Skip if same image
+        if (imageUrl === lastImageUrl) {
+            return;
+        }
+        
+        // Wait for image to load
+        await preloadImage(imageUrl);
+        
+        // Only update if we're still spinning
+        if (spinning || stopInitiated) {
+            choiceImage.style.display = "block";
+            choiceImage.src = imageUrl;
+            lastImageUrl = imageUrl;
+        }
+    } catch (error) {
+        console.error('Error loading image:', error);
+    }
+}
+
 function spin(cycleId) {
     if (cycleId !== currentCycleId) return;
 
@@ -337,13 +378,13 @@ function spin(cycleId) {
         return;
     }
 
-    choiceImage.style.display = "block";
-    choiceImage.src = getRandomImage(choice); // Use getRandomImage instead of direct assignment
+    updateChoiceImage(choice); // Replace direct image assignment with new function
     updateActiveReward(choice);
 
     if (spinning) {
         playSound('cycle');
-        delay = delay * 0.95;
+        // Changed from 0.95 to 0.98 for slower acceleration
+        delay = delay * 0.98;
         powerDownPlayed = false; // Reset flag when spinning
         updateVibrationIntensity();
         setTimeout(() => spin(cycleId), delay);
@@ -374,6 +415,29 @@ function spin(cycleId) {
             showOptionPopup(choice);
         }
     }
+}
+
+// Reset image cache when cycle ends
+function resetCycle() {
+  spinning = false;
+  stopInitiated = false;
+  delay = 1000;
+  rampStartTime = null;
+  choiceImage.src = "";
+  choiceImage.style.display = "none";
+  choiceText.textContent = "";
+  
+  const rewardItems = staticRewards.querySelectorAll(".reward-item");
+  rewardItems.forEach(item => item.classList.remove("active"));
+  
+  const existingPopup = document.getElementById("optionPopup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+  powerDownPlayed = false; // Reset the flag when resetting cycle
+  stopVibration();
+  imageCache.clear();
+  lastImageUrl = null;
 }
 
 async function capturePopupScreenshot(element) {
@@ -518,26 +582,6 @@ function showOptionPopup(choice) {
     setTimeout(() => {
         document.addEventListener("click", handleOutsideClick);
     }, 0);
-}
-
-function resetCycle() {
-  spinning = false;
-  stopInitiated = false;
-  delay = 1000;
-  rampStartTime = null;
-  choiceImage.src = "";
-  choiceImage.style.display = "none";
-  choiceText.textContent = "";
-  
-  const rewardItems = staticRewards.querySelectorAll(".reward-item");
-  rewardItems.forEach(item => item.classList.remove("active"));
-  
-  const existingPopup = document.getElementById("optionPopup");
-  if (existingPopup) {
-    existingPopup.remove();
-  }
-  powerDownPlayed = false; // Reset the flag when resetting cycle
-  stopVibration();
 }
 
 startButton.addEventListener("click", () => {

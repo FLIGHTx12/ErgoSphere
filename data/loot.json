@@ -1,19 +1,17 @@
 [
-    {
-    "text": "EVIL ERGO DJINN!",
+    {"text": "EVIL ERGO DJINN!",
     "image": ["../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn.png"
     ,"../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn1.png"
     ,"../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn2.png"
     ],
-    "copies": 10,
+     "copies": 10,
     "details": "You've brought forth a treacherous ERGO DJINN! Take -5 💔 damage to all party members.",
     "genre": "hazzard",
     "type": "loot",
     "cost": "",
     "after spin": "",
     "link":""
-    },
-    {
+    },{
     "text": "CRITICAL FAILURE!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg",
     "copies": 15,
@@ -24,41 +22,7 @@
     "after spin": "",
     "link":""
     },
-    {
-    "text": "",
-    "image": "",
-    "copies": 0,
-    "details": "",
-    "genre": "hazzard",
-    "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {
-    "text": "",
-    "image": "",
-    "copies": 0,
-    "details": "",
-    "genre": "hazzard",
-    "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {
-    "text": "",
-    "image": "",
-    "copies": 0,
-    "details": "",
-    "genre": "helper",
-    "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {
-    "text": "CHARGED UP!",
+    {"text": "CHARGED UP!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png",
     "copies": 1,
     "details": "You forget who, but someone thought it was a good idea to snort a god particle... GREAT IDEA!! Gain +10 💖 to all party members.",
@@ -68,8 +32,7 @@
     "after spin": "",
     "link":""
     },
-    {
-    "text": "HABITICAN HEALERS!",
+    {"text": "HABITICAN HEALERS!",
     "image": ["../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
     "../assets/img/Spin The Wheel Photos/Loot/Habitican healers2.png",
     "../assets/img/Spin The Wheel Photos/Loot/Habitican healers3.png"],
@@ -81,8 +44,7 @@
     "after spin": "",
     "link":""
     },
-    {
-    "text": "SNACK-A-THON!",
+    {"text": "SNACK-A-THON!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png",
     "copies": 5,
     "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week for everyone",
@@ -92,8 +54,7 @@
     "after spin": "",
     "link":""
     },
-    {
-    "text": "GAME-A-THON!",
+    {"text": "GAME-A-THON!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png",
     "copies": 5,
     "details": "For the rest of the week, all freetime games cost no coins for everyone",
@@ -114,8 +75,7 @@
     "after spin": "",
     "link":""
     },
-    {
-    "text": "FEAST!",
+    {"text": "FEAST!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/feast.png",
     "copies": 2,
     "details": "Gained FEAST! the upcoming Friday or Sunday dinner can be changed to a Takout!!",
@@ -125,8 +85,7 @@
     "after spin": "Remains",
     "link":""
     },
-    {
-    "text": "KIND ERGO DJINN!",
+    {"text": "KIND ERGO DJINN!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png",
     "copies": 2,
     "details": "You've brought forth a Kind ERGO DJINN!, Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear.",
@@ -136,8 +95,7 @@
     "after spin": "Remains",
     "link":""
     },
-    {
-    "text": "BECKONING HAND",
+    { "text": "BECKONING HAND",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png",
     "copies": 1,
     "details": "A portal opens up and a hand reaches out beckoning. Add 4 new probabilities to any HCMC pool.",
@@ -147,8 +105,7 @@
     "after spin": "Remains",
     "link":""
     },
-    {
-    "text": "1 XBOX series X's",
+    {"text": "1 XBOX series X's",
     "image": "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg",
     "copies": 0,
     "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
@@ -158,8 +115,7 @@
     "after spin": "Remove after 2 both party members have found one",
     "link":"https://a.co/d/6VWXgqg"
     },
-    {
-    "text": "YOU FOUND!! Bathroom clock",
+    {"text": "YOU FOUND!! Bathroom clock",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Bathroom clock (hide after spin).jpg",
     "copies": 0,
     "details": "",
@@ -169,8 +125,7 @@
     "after spin": "Remove",
     "link":""
     },
-    {
-    "text": "PING PONG SET!",
+    {"text": "PING PONG SET!",
     "image": "../assets/img/Spin The Wheel Photos/Loot/Ping-pong set.jpg",
     "copies": 0,
     "details": "YOU FOUND!! Professional Ping Pong Net for Any Table | Portable Anywhere Table Tennis Set with Retractable Net, 2 and 4 Paddle Set, 3-Star Balls, Fitted Storage Case",
@@ -180,8 +135,7 @@
     "after spin": "Remove",
     "link":"https://a.co/d/5m0KWR4"
     },
-    {
-    "text": "1st floor clock",
+    {"text": "1st floor clock",
     "image": "",
     "copies": 0,
     "details": "YOU FOUND!!",

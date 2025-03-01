@@ -146,11 +146,15 @@ app.post('/api/savePool', validatePoolName, async (req, res) => {
   try {
     const { pool, data } = req.body;
     const filePath = path.join(__dirname, 'data', `${pool}.json`);
+    const backupDir = path.join(__dirname, 'data/backups');
     
-    // Create backup of existing file
-    const backupPath = path.join(__dirname, 'data/backups', `${pool}_${Date.now()}.json`);
+    // Ensure backup directory exists
+    await fs.mkdir(backupDir, { recursive: true });
+    
+    // Create backup of current file if it exists
     try {
       const currentData = await fs.readFile(filePath, 'utf8');
+      const backupPath = path.join(backupDir, `${pool}_${Date.now()}.json`);
       await fs.writeFile(backupPath, currentData);
     } catch (err) {
       console.log('No existing file to backup');
@@ -162,6 +166,36 @@ app.post('/api/savePool', validatePoolName, async (req, res) => {
   } catch (error) {
     console.error('Error saving pool:', error);
     res.status(500).json({ error: 'Failed to save pool' });
+  }
+});
+
+// Add backup management endpoints
+app.get('/api/backups/:pool', async (req, res) => {
+  try {
+    const backupDir = path.join(__dirname, 'data/backups');
+    const files = await fs.readdir(backupDir);
+    const poolBackups = files
+      .filter(f => f.startsWith(req.params.pool))
+      .map(f => ({
+        id: f.split('_')[1].replace('.json', ''),
+        date: new Date(parseInt(f.split('_')[1].replace('.json', ''))).toLocaleString(),
+        filename: f
+      }))
+      .sort((a, b) => b.id - a.id);
+    res.json(poolBackups);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to load backups' });
+  }
+});
+
+app.get('/api/restore/:pool/:backupId', async (req, res) => {
+  try {
+    const backupFile = path.join(__dirname, 'data/backups', 
+      `${req.params.pool}_${req.params.backupId}.json`);
+    const data = await fs.readFile(backupFile, 'utf8');
+    res.json(JSON.parse(data));
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to restore backup' });
   }
 });
 

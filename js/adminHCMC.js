@@ -35,6 +35,11 @@ async function loadPool(poolName) {
 
 async function savePool() {
     try {
+        // Show confirmation dialog before saving
+        if (!confirm('Are you sure you want to save changes to the pool? This will update the existing data.')) {
+            return;
+        }
+
         const response = await fetch('/api/savePool', {
             method: 'POST',
             headers: {
@@ -52,18 +57,44 @@ async function savePool() {
             throw new Error(result.error || 'Failed to save pool');
         }
         
-        // Create toast notification
-        const toast = document.createElement('div');
-        toast.className = 'toast success';
-        toast.textContent = 'Pool saved successfully';
-        document.body.appendChild(toast);
-        
-        // Remove toast after 3 seconds
-        setTimeout(() => toast.remove(), 3000);
+        showToast('Pool saved successfully', 'success');
     } catch (error) {
         console.error('Error saving pool:', error);
-        alert(`Error saving pool: ${error.message}`);
+        showToast(`Error saving pool: ${error.message}`, 'error');
     }
+}
+
+// Add new backup management functions
+async function loadBackups() {
+    try {
+        const response = await fetch(`/api/backups/${currentPoolName}`);
+        const backups = await response.json();
+        return backups;
+    } catch (error) {
+        console.error('Error loading backups:', error);
+        return [];
+    }
+}
+
+async function restoreBackup(backupId) {
+    try {
+        const response = await fetch(`/api/restore/${currentPoolName}/${backupId}`);
+        const restoredData = await response.json();
+        currentPool = restoredData;
+        displayOptions();
+        showToast('Backup restored successfully', 'success');
+    } catch (error) {
+        console.error('Error restoring backup:', error);
+        showToast('Error restoring backup', 'error');
+    }
+}
+
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
 
 function saveOption() {
