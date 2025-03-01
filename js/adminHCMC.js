@@ -35,7 +35,7 @@ async function loadPool(poolName) {
 
 async function savePool() {
     try {
-        const response = await fetch(`/api/savePool`, {
+        const response = await fetch('/api/savePool', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,11 +46,23 @@ async function savePool() {
             })
         });
 
-        if (!response.ok) throw new Error('Failed to save pool');
-        alert('Pool saved successfully');
+        const result = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(result.error || 'Failed to save pool');
+        }
+        
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.className = 'toast success';
+        toast.textContent = 'Pool saved successfully';
+        document.body.appendChild(toast);
+        
+        // Remove toast after 3 seconds
+        setTimeout(() => toast.remove(), 3000);
     } catch (error) {
         console.error('Error saving pool:', error);
-        alert('Error saving pool data');
+        alert(`Error saving pool: ${error.message}`);
     }
 }
 

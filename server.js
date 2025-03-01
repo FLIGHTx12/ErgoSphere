@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises;
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -16,6 +16,15 @@ pool.query('SELECT NOW()', (err, result) => {
 
 app.use(express.static(__dirname)); // Serve static assets
 app.use(express.json()); // For parsing application/json
+
+// Security middleware to validate pool names
+const validatePoolName = (req, res, next) => {
+  const validPools = ['loot', 'pvp', 'coop'];
+  if (!validPools.includes(req.body.pool)) {
+    return res.status(400).json({ error: 'Invalid pool name' });
+  }
+  next();
+};
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -130,6 +139,36 @@ app.post('/api/admin/ErgoShop/remove', (req, res) => {
     if (err) return res.status(500).json({ error: 'Database error.' });
     res.json({ success: true });
   });
+});
+
+// Save pool endpoint
+app.post('/api/savePool', validatePoolName, async (req, res) => {
+  try {
+    const { pool, data } = req.body;
+    const filePath = path.join(__dirname, 'data', `${pool}.json`);
+    
+    // Create backup of existing file
+    const backupPath = path.join(__dirname, 'data/backups', `${pool}_${Date.now()}.json`);
+    try {
+      const currentData = await fs.readFile(filePath, 'utf8');
+      await fs.writeFile(backupPath, currentData);
+    } catch (err) {
+      console.log('No existing file to backup');
+    }
+
+    // Write new data
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error saving pool:', error);
+    res.status(500).json({ error: 'Failed to save pool' });
+  }
+});
+
+// Error handling
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Internal server error' });
 });
   
 app.listen(port, () => {
