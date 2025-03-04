@@ -8,7 +8,7 @@
     "../assets/img/ERGOvillians/Ergobugs variant 2 (ErgoVillian) .jpg",
     "../assets/img/ERGOvillians/Ergobugs variant 3 (ErgoVillian) .jpg"
   ],
-    "copies": 10,
+   "copies": 10,
     "console": "",
     "genre": "ERGOvillians",
     "mode": "ERGOarena",
@@ -629,7 +629,7 @@
       "link": "",
       "description": ""
       },
-      {"text": "Red Dead Redemption 2, story missions",
+    {"text": "Red Dead Redemption 2, story missions",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -642,7 +642,7 @@
       "link": "",
       "description": ""
       },
-      {"text": "Redfall",
+    {"text": "Redfall",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -655,7 +655,7 @@
         "link": "",
         "description": ""
       },
-      { "text": "Resident evil revelation 2",
+    { "text": "Resident evil revelation 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -668,7 +668,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Sea of thieves",
+    {"text": "Sea of thieves",
         "image": "../assets/img/Spin The Wheel Photos/CO-OP/Sea Of Thieves.jpg",
         "copies": 1,
         "genre": "",
@@ -681,7 +681,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Space lines fare out",
+    {"text": "Space lines fare out",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -694,7 +694,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "State of Decay 2",
+    {"text": "State of Decay 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -707,7 +707,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Stranded Deep",
+    {"text": "Stranded Deep",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -720,7 +720,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Streets of rage 4",
+    {"text": "Streets of rage 4",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -733,7 +733,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Terraria",
+    {"text": "Terraria",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -746,7 +746,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Tetris (quickplay)",
+    {"text": "Tetris (quickplay)",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -759,7 +759,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "The ASCENT",
+    {"text": "The ASCENT",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -772,7 +772,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "TMNT: Shredders Revenge",
+    {"text": "TMNT: Shredders Revenge",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -785,7 +785,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Unravel 2",
+    {"text": "Unravel 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -798,7 +798,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Valheim",
+    {"text": "Valheim",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -811,7 +811,7 @@
         "link": "",
         "description": ""
       },
-      { "text": "Vampire survivors",
+    { "text": "Vampire survivors",
         "image": "../assets/img/Spin The Wheel Photos/CO-OP/Vampire Survivors.JPG",
         "copies": 1,
         "genre": "",
@@ -824,7 +824,7 @@
         "link": "",
         "description": ""
       },
-      { "text": "WarFrame",
+    { "text": "WarFrame",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -837,7 +837,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Wilmonts Warehouse",
+    {"text": "Wilmonts Warehouse",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -850,7 +850,7 @@
         "link": "",
         "description": ""
       },
-      { "text": "ZHEROS",
+    { "text": "ZHEROS",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -863,7 +863,7 @@
         "link": "",
         "description": ""
       },
-      {"text": "Zombie Warrior 4: Dead War",
+    {"text": "Zombie Warrior 4: Dead War",
         "image": "../",
         "copies": 0,
         "genre": "",

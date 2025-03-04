@@ -14,7 +14,7 @@ pool.query('SELECT NOW()', (err, result) => {
   }
 });
 
-app.use(express.static(__dirname)); // Serve static assets
+app.use(express.static(__dirname)); // This serves the "data" folder if it exists in the project root
 app.use(express.json()); // For parsing application/json
 
 // Security middleware to validate pool names

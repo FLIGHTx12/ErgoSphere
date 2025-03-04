@@ -361,7 +361,8 @@ function spin(cycleId) {
                 choice.genre?.toLowerCase() === 'hazzard');
             break;
         default:
-            filteredChoices = choices.filter(choice.copies > 0);
+            // Fixed error: using an arrow function for proper filtering
+            filteredChoices = choices.filter(choice => choice.copies > 0);
     }
 
     // Check if we have any valid choices
