@@ -226,6 +226,10 @@ app.get('/api/images/:pool', async (req, res) => {
   }
 });
 
+// Import and use the new items API routes
+const itemsRouter = require('./routes/items');
+app.use('/api/items', itemsRouter);
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err);
