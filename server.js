@@ -226,6 +226,50 @@ app.get('/api/images/:pool', async (req, res) => {
   }
 });
 
+// New endpoint to update an option's copies in a pool JSON file
+app.post('/api/options/update', async (req, res) => {
+  const { pool, text, copies } = req.body;
+  try {
+    const filePath = path.join(__dirname, 'data', `${pool}.json`);
+    let data = JSON.parse(await fs.readFile(filePath, 'utf8'));
+    // Assume data is an object with container keys (e.g. "saltySnackContainer", etc.)
+    let updated = false;
+    Object.keys(data).forEach(container => {
+      data[container] = data[container].map(option => {
+        if (option.text === text) {
+          option.copies = copies;
+          updated = true;
+        }
+        return option;
+      });
+    });
+    if (!updated) {
+      return res.status(404).json({ error: 'Option not found' });
+    }
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error updating option:", error);
+    res.status(500).json({ error: 'Failed to update option' });
+  }
+});
+
+// New route to handle PUT requests for JSON data files
+app.put('/data/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const data = req.body;
+  const filePath = path.join(__dirname, 'data', filename);
+
+  fs.writeFile(filePath, JSON.stringify(data), err => {
+    if (err) {
+      console.error('Error writing JSON file:', err);
+      return res.status(500).send('Error saving data');
+    }
+    console.log('JSON file updated successfully!');
+    res.send('Data saved');
+  });
+});
+
 // Import and use the new items API routes
 const itemsRouter = require('./routes/items');
 app.use('/api/items', itemsRouter);
