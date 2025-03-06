@@ -157,44 +157,16 @@ body {
 }
 
 .item .tooltip {
-  visibility: hidden;
-  width: 200px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%; /* Position the tooltip above the text */
-  left: 50%;
-  margin-left: -100px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.item .tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-
-.item:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
+  display: none; /* Remove tooltip content */
 }
 
 .item .buttons {
   display: flex;
-  width: 100%;
+  width: 110%;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -3px;
+  padding: .5em 1px 0; /* Add padding between buttons and item text */
 }
 
 .item .decrease-button, .item .increase-button {
@@ -220,12 +192,72 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-right: 160px; /* Adjust margin to accommodate sidebar */
+}
+
+.container.sidebar-visible {
+  margin-right: 310px; /* Adjust margin when sidebar is visible */
 }
 
 .column {
   flex: 1;
   margin: 10px;
   min-width: 300px;
+}
+
+#sidebar {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid purple;
+  border-radius: 10px 0 0 10px;
+  z-index: 1000;
+  width: 150px; /* Shorten the sidebar */
+  transition: transform 0.3s ease-in-out;
+}
+
+#sidebar.hidden {
+  transform: translateX(100%);
+}
+
+#sidebar button {
+  background-color: purple;
+  color: white;
+  font-size: 1em; /* Adjust font size */
+  padding: 5px; /* Adjust padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#sidebar button a {
+  color: white;
+  text-decoration: none;
+}
+
+#sidebar button:hover {
+  background-color: darkviolet;
+}
+
+@media (max-width: 1024px) {
+  #sidebar.hidden {
+    transform: translateX(100%); /* Ensure sidebar is hidden on smaller screens */
+  }
+
+  .container {
+    margin-right: 0; /* Remove margin on smaller screens */
+  }
+
+  .container.sidebar-visible {
+    margin-right: 150px; /* Adjust margin when sidebar is visible on smaller screens */
+  }
 }
 
 @media (max-width: 600px) {
