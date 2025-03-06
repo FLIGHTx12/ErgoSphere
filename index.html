@@ -291,32 +291,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('main-content');
-      let touchstartX = 0;
-      let touchendX = 0;
-      const swipeThreshold = 30; // Define a swipe threshold
-
-      function handleGesture() {
-        const swipeDistance = touchendX - touchstartX;
-        if (swipeDistance > swipeThreshold) {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          mainContent.classList.remove('sidebar-visible');
-        }
-        if (swipeDistance < -swipeThreshold) {
-          sidebar.classList.remove('hidden');
-          sidebar.style.transform = 'translateX(0)';
-          mainContent.classList.add('sidebar-visible');
-        }
-      }
-
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      });
-
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleGesture();
-      });
+      // Removed gesture controls
     });
   </script>
 </body>

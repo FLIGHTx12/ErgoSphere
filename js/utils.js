@@ -72,43 +72,5 @@ function addGlobalEventListeners() {
         lastScrollTop = Math.max(scrollTop, 0);
     });
 
-    const pages = [
-        "index.html", "ErgoShop.html", "MODS.html",
-        "pages/casino.html", "contracts.html"
-    ];
-
-    let touchstartX = 0;
-    let touchstartY = 0;
-    let touchendX = 0;
-    let touchendY = 0;
-    const minSwipeDistance = 100;
-
-    function handleGesture() {
-        const horizontalSwipe = Math.abs(touchendX - touchstartX) > Math.abs(touchendY - touchstartY);
-        const swipeDistance = Math.abs(touchendX - touchstartX);
-        if (!horizontalSwipe || swipeDistance < minSwipeDistance) return;
-
-        document.body.classList.add('page-transition');
-        const currentPage = window.location.pathname.split("/").pop();
-        const currentIndex = pages.indexOf(currentPage);
-
-        setTimeout(() => {
-            if (touchendX < touchstartX) {
-                window.location.href = pages[(currentIndex + 1) % pages.length];
-            } else if (touchendX > touchstartX) {
-                window.location.href = pages[(currentIndex - 1 + pages.length) % pages.length];
-            }
-        }, 300);
-    }
-
-    document.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches[0].screenX;
-        touchstartY = e.changedTouches[0].screenY;
-    });
-
-    document.addEventListener('touchend', e => {
-        touchendX = e.changedTouches[0].screenX;
-        touchendY = e.changedTouches[0].screenY;
-        handleGesture();
-    });
+    // Removed gesture controls
 }
