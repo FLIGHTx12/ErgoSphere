@@ -12,6 +12,7 @@ function loadItems(file, containerId) {
             <p>${item.text} - Copies: <span class="copies-count">${item.copies}</span></p>
             <button class="decrease-button">-</button>
             <button class="increase-button">+</button>
+            <div class="tooltip">${item.details || 'No details available'}</div>
           `;
   
           // Add event listeners for buttons

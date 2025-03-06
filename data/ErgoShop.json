@@ -44,7 +44,10 @@
   "prizesContainer": [
     { "text": "✨⭐⭐🌟LUXURY🌟⭐⭐✨- 0💷", "value": 0 },
     { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
-    { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
+    { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 },
+    { "text": "🧞 Djinn Wish (1/3) - 0💷", "value": 0 },
+    { "text": "🧞🧞 Djinn Wish (2/3) - 0💷", "value": 0 },
+    { "text": "🧞🧞🧞 Djinn Wish (3/3) - 0💷", "value": 0 }
   ],
   "replacementsContainer": [
     { "text": "🌃🍽 DINE OUT - 300💷", "value": 300, "description": "Replace weekday meal, dine out instead " },
