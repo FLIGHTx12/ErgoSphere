@@ -9,10 +9,13 @@ function loadItems(file, containerId) {
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('item');
           itemDiv.innerHTML = `
-            <p>${item.text} - Copies: <span class="copies-count">${item.copies}</span></p>
-            <button class="decrease-button">-</button>
-            <button class="increase-button">+</button>
+            <p>${item.text}</p>
+            <span class="copies-count">${item.copies}</span>
             <div class="tooltip">${item.details || 'No details available'}</div>
+            <div class="buttons">
+              <button class="decrease-button">-</button>
+              <button class="increase-button">+</button>
+            </div>
           `;
   
           // Add event listeners for buttons
