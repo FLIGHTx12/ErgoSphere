@@ -229,17 +229,107 @@ body {
 }
 
 @media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #navbar {
+    position: static;
+    width: 100%;
+    padding: 10px;
+    box-shadow: none;
+    animation: none;
+  }
+
+  #navbar button {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    min-width: 120px;
+  }
+
   .collapsible {
-    font-size: 18px;
-    padding: 15px;
+    font-size: 20px;
+    padding: 20px;
   }
 
   .container {
     flex-direction: column;
+    width: 100%;
   }
 
   .column {
     width: 100%;
     margin: 5px 0;
   }
+
+  .item {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .item .copies-count {
+    font-size: 28px;
+    padding: 10px 15px;
+  }
+
+  .item .decrease-button, .item .increase-button {
+    font-size: 20px;
+    padding: 10px;
+  }
 }
+
+@keyframes pan-body {
+    0% {
+      transform: scale(1.4) translate(0, 0);
+    }
+    25% {
+      transform: scale(1.4) translate(-20%, -20%);
+    }
+    50% {
+      transform: scale(1.4) translate(20%, 20%);
+    }
+    75% {
+      transform: scale(0.9) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.4) translate(0, 0);
+    }
+  }
+  
+  @keyframes pan-navbar {
+    from { background-position: center top; }
+    to { background-position: bottom; }
+  }
+  
+  @keyframes pan-bg {
+    0% {
+      background-size: 140%;
+      background-position: 50% 50%;
+    }
+    25% {
+      background-size: 140%;
+      background-position: 30% 30%;
+    }
+    50% {
+      background-size: 140%;
+      background-position: 70% 70%;
+    }
+    75% {
+      background-size: 100%; /* increased to ensure full coverage */
+      background-position: 50% 50%;
+    }
+    100% {
+      background-size: 140%;
+      background-position: 50% 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 600px) {
+    body {
+      animation: none;
+      background-size: cover;
+    }
+  }
+
