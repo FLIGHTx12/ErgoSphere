@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-// GET items by type (coop, loot, pvp, shop, etc.)
 router.get('/:type', async (req, res) => {
   const { type } = req.params;
   try {
@@ -13,7 +12,6 @@ router.get('/:type', async (req, res) => {
   }
 });
 
-// Create new item
 router.post('/', async (req, res) => {
   const { type, text, image, copies, details, genre, cost, after_spin, link } = req.body;
   try {
@@ -28,7 +26,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update an item
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { text, image, copies, details, genre, cost, after_spin, link } = req.body;
@@ -44,7 +41,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete an item
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {

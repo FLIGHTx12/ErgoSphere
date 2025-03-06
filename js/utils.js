@@ -50,7 +50,6 @@ function captureScreenshot(element) {
 }
 
 function fallbackDownload(blob) {
-    // Create a temporary link to download the image
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.style.display = 'none';
@@ -67,14 +66,10 @@ function addGlobalEventListeners() {
     let lastScrollTop = 0;
     const navbar = document.getElementById('navbar');
 
-    window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-            navbar.classList.add('hidden');
-        } else {
-            navbar.classList.remove('hidden');
-        }
-        lastScrollTop = scrollTop <= 0? 0: scrollTop;
+        navbar.classList.toggle('hidden', scrollTop > lastScrollTop);
+        lastScrollTop = Math.max(scrollTop, 0);
     });
 
     const pages = [
@@ -107,13 +102,13 @@ function addGlobalEventListeners() {
     }
 
     document.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches.screenX;
-        touchstartY = e.changedTouches.screenY;
+        touchstartX = e.changedTouches[0].screenX;
+        touchstartY = e.changedTouches[0].screenY;
     });
 
     document.addEventListener('touchend', e => {
-        touchendX = e.changedTouches.screenX;
-        touchendY = e.changedTouches.screenY;
+        touchendX = e.changedTouches[0].screenX;
+        touchendY = e.changedTouches[0].screenY;
         handleGesture();
     });
 }

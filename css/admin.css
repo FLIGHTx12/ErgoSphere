@@ -234,7 +234,7 @@ button:active {
   border-radius: 10px 0 0 10px;
   z-index: 1000;
   width: 150px; /* Shorten the sidebar */
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.39s ease-in-out; /* Increased duration by 30% */
 }
 
 #sidebar.hidden {

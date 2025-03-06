@@ -9,7 +9,6 @@ async function migrateLoot() {
     const lootItems = JSON.parse(data);
     
     for (const item of lootItems) {
-      // Ensure image field is JSON
       const imageVal = Array.isArray(item.image) ? item.image : [item.image];
       await pool.query(
         `INSERT INTO loot_items (text, image, copies, details, genre, type, cost, after_spin, link)
