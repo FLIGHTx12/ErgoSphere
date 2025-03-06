@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 
   addGlobalEventListeners();
+
+  // Add click sound to all buttons
+  const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');
+  document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', () => {
+      clickSound.play();
+    });
+  });
 });
 
 function handleScreenshotButtonClick(event) {

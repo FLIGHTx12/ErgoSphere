@@ -9,10 +9,8 @@
 <body>
   <nav id="navbar">
     <button><a href="../../index.html">HOME</a></button>
-    <button><a href="../ErgoShop.html">ErgoShop</a></button>
-    <button><a href="../MODS.html">MODS</a></button>
-    <button><a href="../casino.html">CASINO</a></button>
-    <button><a href="../contracts.html">CONTRACTS</a></button>
+    <button><a href="admin.html">ADMIN</a></button>
+    <button><a href="../HCMC.html">HCMC</a></button>
   </nav>
 
   <div id="sidebar" class="hidden">
@@ -24,15 +22,36 @@
   <div class="container">
     <div class="column">
       <button class="collapsible">CO-OP</button>
-      <div id="coop-items" class="content item-container"></div>
+      <div id="coop-items" class="content item-container">
+        <div class="filters">
+          <button class="filter-button" data-filter="all">All</button>
+          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
+          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="filter-button" data-filter="genre">GENRE</button>
+        </div>
+      </div>
     </div>
     <div class="column">
       <button class="collapsible">LOOT</button>
-      <div id="loot-items" class="content item-container"></div>
+      <div id="loot-items" class="content item-container">
+        <div class="filters">
+          <button class="filter-button" data-filter="all">All</button>
+          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
+          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="filter-button" data-filter="genre">GENRE</button>
+        </div>
+      </div>
     </div>
     <div class="column">
       <button class="collapsible">PVP</button>
-      <div id="pvp-items" class="content item-container"></div>
+      <div id="pvp-items" class="content item-container">
+        <div class="filters">
+          <button class="filter-button" data-filter="all">All</button>
+          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
+          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="filter-button" data-filter="genre">GENRE</button>
+        </div>
+      </div>
     </div>
   </div>
 

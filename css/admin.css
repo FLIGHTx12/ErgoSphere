@@ -92,6 +92,10 @@ body {
     z-index: 0;
   }
 
+button:active {
+  transform: translateY(2px); /* Indent effect on click */
+}
+
 .column {
   
   flex: 1;
@@ -156,6 +160,11 @@ body {
   border-radius: 5px;
 }
 
+.item .copies-count.zero {
+  background-color: red;
+  border: 1px solid rgb(255, 0, 0);
+}
+
 .item .tooltip {
   display: none; /* Remove tooltip content */
 }
@@ -182,10 +191,16 @@ body {
   text-align: center;
   font-size: 18px;
   border-top: 2px solid purple;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
 }
 
 .item .decrease-button:hover, .item .increase-button:hover {
   background-color: darkviolet;
+  transform: scale(1.1); /* Add hover effect */
+}
+
+.item .decrease-button:active, .item .increase-button:active {
+  transform: translateY(2px); /* Indent effect on click */
 }
 
 .container {
@@ -243,6 +258,26 @@ body {
 }
 
 #sidebar button:hover {
+  background-color: darkviolet;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-button {
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
   background-color: darkviolet;
 }
 

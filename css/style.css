@@ -123,6 +123,10 @@ button a {
   z-index: 0;
 }
 
+button:active {
+  transform: translateY(2px); /* Indent effect on click */
+}
+
 #navbar {
   position: fixed;
   top: 0;
@@ -384,5 +388,30 @@ li {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   pointer-events: none;
   z-index: 10001;
+}
+
+.item .decrease-button, .item .increase-button {
+  flex: 1;
+  margin-bottom: -3px;
+  padding: 1px; /* Lower the height of the buttons */
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  border-top: 2px solid purple;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
+}
+
+.item .decrease-button:hover, .item .increase-button:hover {
+  background-color: darkviolet;
+  transform: scale(1.1); /* Add hover effect */
+}
+
+.item .decrease-button:active, .item .increase-button:active {
+  transform: translateY(2px); /* Indent effect on click */
 }
 

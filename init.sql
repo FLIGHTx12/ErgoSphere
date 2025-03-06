@@ -1,51 +1,50 @@
 DROP TABLE IF EXISTS ErgoShop;
 CREATE TABLE ErgoShop (
-  id SERIAL PRIMARY KEY,
   data JSONB NOT NULL
 );
 
 INSERT INTO ErgoShop (data) VALUES (
   '{
-    "saltySnacks": [
-      "🌿Roasted Seaweed - 10💷",
-      "🔺Tortilla Chips (Donkey/El Milagro) - 10💷",
-      "🍿Popcorn (Boom chicka/Skinny pop) - 20💷",
-      "🧀Cheez-it - 30💷",
-      "🧀Simply Cheetos Puffs White Cheddar - 30💷",
-      "🐄 Old Fashioned Beef Jerk - 40💷",
-      "🍘Wheat Thins Original - 40💷"
+    "saltySnackContainer": [
+      { "text": "🌿Roasted Seaweed - 10💷", "value": 10 },
+      { "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "value": 10 },
+      { "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "value": 20 },
+      { "text": "🧀Cheez-it - 30💷", "value": 30 },
+      { "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷", "value": 30 },
+      { "text": "🐄 Old Fashioned Beef Jerk - 40💷", "value": 40 },
+      { "text": "🍘Wheat Thins Original - 40💷", "value": 40 }
     ],
-    "sweetSnacks": [
-      "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷",
-      "🍪Simple Truth Blueberry Breakfast Cookies - 20💷",
-      "🐻Chocolate Teddy Graham Snacks - 30💷",
-      "🍫Dark Chocolate Covered Almonds/Raisins - 30💷",
-      "🍪Belvita Blueberry Breakfast biscuits - 40💷",
-      "🍪Chips Ahoy 2 pack - 40💷",
-      "🎂Little Bites (Fudge/Banana) - 40💷"
+    "sweetSnackContainer": [
+      { "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "value": 10 },
+      { "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "value": 20 },
+      { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
+      { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
+      { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
+      { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
+      { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
     ],
-    "frozenSnacks": [
-      "🍕Jacks Pizza Bois - 20💷",
-      "🍨Breyers Mango Ice cream - 20💷",
-      "🍕Totinos Pizza rolls - 30💷",
-      "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷",
-      "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷",
-      "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷"
+    "frozenSnackContainer": [
+      { "text": "🍕Jacks Pizza Bois - 20💷", "value": 20 },
+      { "text": "🍨Breyers Mango Ice cream - 20💷", "value": 20 },
+      { "text": "🍕Totinos Pizza rolls - 30💷", "value": 30 },
+      { "text": "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷", "value": 30 },
+      { "text": "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷", "value": 40 },
+      { "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷", "value": 40 }
     ],
-    "concoctions": [
-      "🚬THC Gummies - 40💷",
-      "☕VJ Hot Cocoa 500ml - 20💷",
-      "🍺Beer - 50💷",
-      "🥃Mixed Drink (2shots) - 50💷",
-      "🍷Wine Glass 500ml - 100💷",
-      "🍾Wine Bottle 750ml - 150💷"
+    "concoctionsContainer": [
+      { "text": "🚬THC Gummies - 40💷", "value": 40 },
+      { "text": "☕VJ Hot Cocoa 500ml - 20💷", "value": 20 },
+      { "text": "🍺Beer - 50💷", "value": 50 },
+      { "text": "🥃Mixed Drink (2shots) - 50💷", "value": 50 },
+      { "text": "🍷Wine Glass 500ml - 100💷", "value": 100 },
+      { "text": "🍾Wine Bottle 750ml - 150💷", "value": 150 }
     ],
-    "mealMods": [
-      "🍔Fast Food Cheat Meal - 60💷",
-      "🍴Lunch Snack - 2💷",
-      "🌞Weekend AM Snack - 2💷",
-      "🎉SNACK-A-THON MOD(1/2) - 0💷",
-      "🎉🎉SNACK-A-THON MOD(2/2) - 0💷"
+    "mealModsContainer": [
+      { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
+      { "text": "🍴Lunch Snack - 2💷", "value": 2 },
+      { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
+      { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
+      { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
     ]
   }'
 );
@@ -57,11 +56,47 @@ CREATE TABLE dropdown_options (
 );
 
 INSERT INTO dropdown_options (category, options) VALUES
-('saltySnackContainer', '["🌿Roasted Seaweed - 10💷","🔺Tortilla Chips (Donkey/El Milagro) - 10💷","🍿Popcorn (Boom chicka/Skinny pop) - 20💷","🧀Cheez-it - 30💷","🧀Simply Cheetos Puffs White Cheddar - 30💷","🐄 Old Fashioned Beef Jerk - 40💷","🍘Wheat Thins Original - 40💷"]'),
-('sweetSnackContainer', '["🐮Chobani Whole Milk Plain Greek Yogurt - 10💷","🍪Simple Truth Blueberry Breakfast Cookies - 20💷","🐻Chocolate Teddy Graham Snacks - 30💷","🍫Dark Chocolate Covered Almonds/Raisins - 30💷","🍪Belvita Blueberry Breakfast biscuits - 40💷","🍪Chips Ahoy 2 pack - 40💷","🎂Little Bites (Fudge/Banana) - 40💷"]'),
-('frozenSnackContainer', '["🍕Jacks Pizza Bois - 20💷","🍨Breyers Mango Ice cream - 20💷","🍕Totinos Pizza rolls - 30💷","🥟Bibigo Chicken & Veggie Mini Wontos - 30💷","🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷","🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷"]'),
-('concoctionsContainer', '["🚬THC Gummies - 40💷","☕VJ Hot Cocoa 500ml - 20💷","🍺Beer - 50💷","🥃Mixed Drink (2shots) - 50💷","🍷Wine Glass 500ml - 100💷","🍾Wine Bottle 750ml - 150💷"]'),
-('mealModsContainer', '["🍔Fast Food Cheat Meal - 60💷","🍴Lunch Snack - 2💷","🌞Weekend AM Snack - 2💷","🎉SNACK-A-THON MOD(1/2) - 0💷","🎉🎉SNACK-A-THON MOD(2/2) - 0💷"]');
+('saltySnackContainer', '[
+  { "text": "🌿Roasted Seaweed - 10💷", "value": 10 },
+  { "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "value": 10 },
+  { "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "value": 20 },
+  { "text": "🧀Cheez-it - 30💷", "value": 30 },
+  { "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷", "value": 30 },
+  { "text": "🐄 Old Fashioned Beef Jerk - 40💷", "value": 40 },
+  { "text": "🍘Wheat Thins Original - 40💷", "value": 40 }
+]'),
+('sweetSnackContainer', '[
+  { "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "value": 10 },
+  { "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "value": 20 },
+  { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
+  { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
+  { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
+  { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
+  { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
+]'),
+('frozenSnackContainer', '[
+  { "text": "🍕Jacks Pizza Bois - 20💷", "value": 20 },
+  { "text": "🍨Breyers Mango Ice cream - 20💷", "value": 20 },
+  { "text": "🍕Totinos Pizza rolls - 30💷", "value": 30 },
+  { "text": "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷", "value": 30 },
+  { "text": "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷", "value": 40 },
+  { "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷", "value": 40 }
+]'),
+('concoctionsContainer', '[
+  { "text": "🚬THC Gummies - 40💷", "value": 40 },
+  { "text": "☕VJ Hot Cocoa 500ml - 20💷", "value": 20 },
+  { "text": "🍺Beer - 50💷", "value": 50 },
+  { "text": "🥃Mixed Drink (2shots) - 50💷", "value": 50 },
+  { "text": "🍷Wine Glass 500ml - 100💷", "value": 100 },
+  { "text": "🍾Wine Bottle 750ml - 150💷", "value": 150 }
+]'),
+('mealModsContainer', '[
+  { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
+  { "text": "🍴Lunch Snack - 2💷", "value": 2 },
+  { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
+  { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
+  { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
+]');
 
 CREATE TABLE IF NOT EXISTS refreshment_options (
   id SERIAL PRIMARY KEY,
@@ -69,6 +104,14 @@ CREATE TABLE IF NOT EXISTS refreshment_options (
   option VARCHAR(100) NOT NULL,
   cost INTEGER NOT NULL
 );
+
+INSERT INTO refreshment_options (category, option, cost) VALUES
+('saltySnackContainer', '🌿Roasted Seaweed', 10),
+('saltySnackContainer', '🔺Tortilla Chips (Donkey/El Milagro)', 10),
+('sweetSnackContainer', '🐮Chobani Whole Milk Plain Greek Yogurt', 10),
+('frozenSnackContainer', '🍕Jacks Pizza Bois', 20),
+('concoctionsContainer', '🚬THC Gummies', 40),
+('mealModsContainer', '🍔Fast Food Cheat Meal', 60);
 
 DROP TABLE IF EXISTS game_data;
 CREATE TABLE game_data (
@@ -80,52 +123,22 @@ CREATE TABLE game_data (
 INSERT INTO game_data (category, data) VALUES
 ('pvp', '[
   {
-    "game": "3ON3 FREESTYLE",
+    "text": "3ON3 FREESTYLE",
     "mode": "3on3 mode online",
     "details": "5 games",
     "image": "../assets/img/Spin The Wheel Photos/PVP/3ON3 FREESTYLE.png",
-    "text": "3ON3 FREESTYLE",
-    "copies": 1,
-    "console": "",
-    "genre": "",
-    "time to beat": "",
-    "owned": false,
-    "completed": false,
-    "cost": "",
-    "after spin": ""
+    "copies": 1
   }
 ]'),
 ('loot', '[
   {
-    "text": "YOU FOUND!! 1 XBOX series X's (Continue until 2 are claimed)",
-    "image": "",
-    "game": "",
-    "copies": 0,
-    "mode": "",
-    "details": "",
-    "console": "",
-    "genre": "",
-    "time to beat": "",
-    "owned": false,
-    "completed": false,
-    "cost": "",
-    "after spin": ""
+    "text": "YOU FOUND!! 1 XBOX series X\'s (Continue until 2 are claimed)",
+    "copies": 0
   }
 ]'),
 ('coop', '[
   {
     "text": "33 Immortals",
-    "image": "",
-    "game": "",
-    "copies": 0,
-    "mode": "",
-    "details": "",
-    "console": "",
-    "genre": "",
-    "time to beat": "",
-    "owned": false,
-    "completed": false,
-    "cost": "",
-    "after spin": ""
+    "copies": 0
   }
 ]');
