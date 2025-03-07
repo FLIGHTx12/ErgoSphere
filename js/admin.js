@@ -5,7 +5,7 @@ function loadItems(file, containerId) {
     .then(data => {
       console.log('Data:', data); // Debug: log parsed JSON data
       const container = document.getElementById(containerId);
-      const genres = [...new Set(data.map(item => item.genre))];
+      const genres = [...new Set(data.map(item => item.GENRE))];
       const genreButton = container.querySelector('.filter-button[data-filter="genre"]');
       let currentGenreIndex = 0;
 
@@ -18,44 +18,27 @@ function loadItems(file, containerId) {
       data.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
-        itemDiv.dataset.genre = item.genre;
+        itemDiv.dataset.genre = item.GENRE;
         itemDiv.innerHTML = `
-          <p>${item.text}</p>
-          <span class="copies-count ${item.copies === 0 ? 'zero' : ''}">${item.copies}</span>
+          <p>${item.TITLE || item.Title}</p>
+          <span class="status-text ${item.STATUS === '🟢' ? 'active' : ''}">${item.STATUS || ' '}</span>
           <div class="buttons">
-            <button class="decrease-button">-</button>
-            <button class="increase-button">+</button>
+            <button class="toggle-button">${item.STATUS === '🟢' ? '🟢' : 'OFF'}</button>
           </div>
         `;
 
         // Add event listeners for buttons
-        const decreaseButton = itemDiv.querySelector('.decrease-button');
-        const increaseButton = itemDiv.querySelector('.increase-button');
-        const copiesCountSpan = itemDiv.querySelector('.copies-count');
+        const toggleButton = itemDiv.querySelector('.toggle-button');
+        const statusTextSpan = itemDiv.querySelector('.status-text');
 
         const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');
 
-        decreaseButton.addEventListener('click', () => {
+        toggleButton.addEventListener('click', () => {
           clickSound.play();
-          if (item.copies > 0) {
-            item.copies--;
-            copiesCountSpan.textContent = item.copies;
-            if (item.copies === 0) {
-              copiesCountSpan.classList.add('zero');
-            }
-            // Save the updated JSON data back to the file (implementation below)
-            saveItems(file, data);
-          }
-        });
-
-        increaseButton.addEventListener('click', () => {
-          clickSound.play();
-          item.copies++;
-          copiesCountSpan.textContent = item.copies;
-          if (item.copies > 0) {
-            copiesCountSpan.classList.remove('zero');
-          }
-          // Save the updated JSON data back to the file (implementation below)
+          item.STATUS = item.STATUS === '🟢' ? '' : '🟢';
+          toggleButton.textContent = item.STATUS === '🟢' ? '🟢' : 'OFF';
+          statusTextSpan.textContent = item.STATUS || ' ';
+          statusTextSpan.classList.toggle('active', item.STATUS === '🟢');
           saveItems(file, data);
         });
 
@@ -85,11 +68,11 @@ function filterItems(containerId, filter, genre) {
       case 'all':
         item.style.display = 'flex';
         break;
-      case 'has-copies':
-        item.style.display = parseInt(item.querySelector('.copies-count').textContent) > 0 ? 'flex' : 'none';
+      case 'has-status':
+        item.style.display = item.querySelector('.status-text').textContent === '🟢' ? 'flex' : 'none';
         break;
-      case 'zero-copies':
-        item.style.display = parseInt(item.querySelector('.copies-count').textContent) === 0 ? 'flex' : 'none';
+      case 'no-status':
+        item.style.display = item.querySelector('.status-text').textContent !== '🟢' ? 'flex' : 'none';
         break;
       case 'genre':
         item.style.display = item.dataset.genre === genre ? 'flex' : 'none';
@@ -102,7 +85,7 @@ function filterItems(containerId, filter, genre) {
 
 // Function to save the updated JSON data back to the file
 function saveItems(file, data) {
-  fetch(file, {
+  fetch(`/data/${file.split('/').pop()}`, {
     method: 'PUT', // Use PUT to update the resource
     headers: {
       'Content-Type': 'application/json'
@@ -122,3 +105,8 @@ function saveItems(file, data) {
 loadItems('../../data/coop.json', 'coop-items');
 loadItems('../../data/loot.json', 'loot-items');
 loadItems('../../data/pvp.json', 'pvp-items');
+loadItems('../../data/movies.json', 'movies-items');
+loadItems('../../data/anime.json', 'anime-items');
+loadItems('../../data/sundaymorning.json', 'sundaymorning-items');
+loadItems('../../data/sundaynight.json', 'sundaynight-items');
+loadItems('../../data/singleplayer.json', 'singleplayer-items');

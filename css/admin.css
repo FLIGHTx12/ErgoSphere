@@ -165,6 +165,21 @@ button:active {
   border: 1px solid rgb(255, 0, 0);
 }
 
+.item .status-text {
+  background-color: transparent;
+  border: 1px solid rgb(23, 207, 100);
+  margin-bottom: 20px;
+  color: white;
+  font-size: 24px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.item .status-text.active {
+  background-color: green;
+  border: 1px solid rgb(255, 0, 0);
+}
+
 .item .tooltip {
   display: none; /* Remove tooltip content */
 }
@@ -200,6 +215,31 @@ button:active {
 }
 
 .item .decrease-button:active, .item .increase-button:active {
+  transform: translateY(2px); /* Indent effect on click */
+}
+
+.item .toggle-button {
+  flex: 1;
+  margin-bottom: -3px;
+  padding: 1px; /* Lower the height of the buttons */
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  border-top: 2px solid purple;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
+}
+
+.item .toggle-button:hover {
+  background-color: darkviolet;
+  transform: scale(1.1); /* Add hover effect */
+}
+
+.item .toggle-button:active {
   transform: translateY(2px); /* Indent effect on click */
 }
 
