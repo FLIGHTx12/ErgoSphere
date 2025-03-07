@@ -2,6 +2,7 @@ body {
   background-color: rgb(7, 7, 7);
   color: white;
   margin: 0;
+ 
   padding-left: 50px;
   padding: 0;
   background-image: url("https://i.redd.it/qaevyh08hsx51.jpg");
@@ -103,6 +104,8 @@ button:focus {
   min-width: 100px;
   height: auto;
   box-sizing: border-box;
+  flex: none; /* Revert to original */
+  max-width: auto; /* Revert to original */
 }
 
 #content-container {
@@ -229,13 +232,45 @@ button:focus {
 }
 
 @media (max-width: 768px) {
-  /* Reset #historyContainer to remain absolutely to the right */
-  #historyContainer {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-left: 10px;
-    width: 300px;
+  body {
+    padding-left: 0;
+  }
+
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start; /* Revert to original */
+  }
+
+  #navbar button {
+    max-width: auto; /* Revert to original */
+  }
+
+  #content-container {
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .monster-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .monster-image {
+    width: 100%;
+  }
+
+  #infoContainer, #historyContainer {
+    position: static;
+    width: 100%;
+    margin: 10px 0;
+    display: block; /* Revert to original */
+    flex-direction: column; /* Change to column */
   }
 }
 
@@ -382,12 +417,12 @@ button:focus {
   background-color: rgba(0, 0, 0, 0.80); /* Adjust this value to change transparency */
   gap: 10px;
   margin-top: 20px;
-  position: absolute;
+  position: absolute; /* Corrected from flex */
   top: 50px;
   left: -320px;
+  padding: 10px;
   width: 300px;
   border: 1px solid white;
-  padding: 10px;
   overflow-y: auto;
   max-height: 400px;
 }
@@ -403,7 +438,7 @@ button:focus {
   overflow-y: auto;
   border: 1px solid white;
   padding: 0px;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 50px;
 }
 
@@ -449,4 +484,35 @@ button:focus {
     transform: scale(1.25); /* Adjust scale as needed for larger displays */
     transform-origin: top center;
   }
+}
+
+#gameOver {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10000;
+}
+
+#gameOver img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+#gameOver p {
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+
+#timer {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

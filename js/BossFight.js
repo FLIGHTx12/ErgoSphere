@@ -3,9 +3,66 @@ document.addEventListener("DOMContentLoaded", () => {
   const monsters = window.monsters;
 
   const gameContainer = document.querySelector(".game-container");
+  gameContainer.style.display = "flex";
+  gameContainer.style.flexDirection = "column";
+  gameContainer.style.alignItems = "center";
+
   const monsterButtonsContainer = document.getElementById("monsterButtons");
   const navbar = document.getElementById("navbar");
   let currentPlayer = 1;
+
+  let timerStarted = false;
+  let timer;
+  const gameOverAudio = new Audio('assets/audio/hazzard.mp3');
+
+  function startTimer() {
+    let timeLeft = 300; // 5 minutes in seconds
+    const timerElement = document.getElementById("timer");
+    const timerInterval = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        gameOver();
+      } else {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      }
+    }, 1000);
+    return timerInterval;
+  }
+
+  function gameOver() {
+    gameOverAudio.play();
+    const gameOverDiv = document.createElement("div");
+    gameOverDiv.id = "gameOver";
+    gameOverDiv.style.position = "fixed";
+    gameOverDiv.style.top = "0";
+    gameOverDiv.style.left = "0";
+    gameOverDiv.style.width = "100%";
+    gameOverDiv.style.height = "100%";
+    gameOverDiv.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    gameOverDiv.style.display = "flex";
+    gameOverDiv.style.flexDirection = "column";
+    gameOverDiv.style.justifyContent = "center";
+    gameOverDiv.style.alignItems = "center";
+    gameOverDiv.style.color = "white";
+    gameOverDiv.style.zIndex = "10000";
+
+    const gameOverImage = document.createElement("img");
+    gameOverImage.src = "assets/img/backgrounds/Gameover.jpg";
+    gameOverImage.style.maxWidth = "80%";
+    gameOverImage.style.maxHeight = "80%";
+    gameOverDiv.appendChild(gameOverImage);
+
+    const punishmentText = document.createElement("p");
+    punishmentText.innerHTML = currentMonster.Punishment;
+    punishmentText.style.marginTop = "20px";
+    punishmentText.style.fontSize = "1.5em";
+    gameOverDiv.appendChild(punishmentText);
+
+    document.body.appendChild(gameOverDiv);
+  }
 
   if (!document.getElementById("chooseOpponentBtn")) {
     const chooseOpponentBtn = document.createElement("button");
@@ -57,6 +114,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const historyContainer = document.createElement("div");
       historyContainer.id = "historyContainer";
+      historyContainer.style.display = "block"; /* Revert to original */
+      historyContainer.style.flexDirection = "row"; /* Revert to original */
+
+      // Add timer element to history container
+      const timerElement = document.createElement("div");
+      timerElement.id = "timer";
+      timerElement.style.fontSize = "2em";
+      timerElement.style.fontWeight = "bold";
+      timerElement.style.marginBottom = "10px";
+      historyContainer.appendChild(timerElement);
       
       // New info container for monster details
       const infoContainer = document.createElement("div");
@@ -192,6 +259,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       attackButton.addEventListener("click", () => {
+        if (!timerStarted) {
+          timerStarted = true;
+          timer = startTimer();
+          gameOverAudio.play();
+        }
+
         const currentContainer = currentPlayer === 1 ? container1 : container2;
         let totalDamage = 0;
         let hitCount = 0;

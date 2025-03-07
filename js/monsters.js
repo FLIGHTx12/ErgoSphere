@@ -22,8 +22,7 @@ function selectDialogue(dialogue) {
 }
 
 window.monsters = [
-  {
-    name: "-Enemy Select-",
+  {name: "-Enemy Select-",
     attackType: "",
     health: adjustHealthByQuarter(0),
     hitNumbers: [0, 0, 0, 0, 0],
@@ -35,8 +34,7 @@ window.monsters = [
       player2: ["No toggle dialogue."]
     }
   },
-  {
-    name: "EtchWraith Swarm",
+  { name: "EtchWraith Swarm",
     attackType: "Swarm",
     health: adjustHealthByQuarter(400),
     hitNumbers: [ 5, 19, 4, 1, 8, 12, 5, 3, 6, 17],
@@ -125,13 +123,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "CyberBadger Cete",
+  {name: "CyberBadger Cete",
     attackType: "OverWhelm",
     health: adjustHealthByQuarter(500),
     hitNumbers: [15, 6, 6, 6, 4, 8, 9, 12, 2, 20 ],
-    Rewards: "Spinner gets to pick any available PVP game instead of spinning.",
-    Punishment:"Spinner deletes 2 spin options and 2 weekday “FUN” events. Spin again unless PVP has been removed. ",
+    Rewards: "Party leader gets to pick any available PVP game this week.",
+    Punishment:"Party leader deletes 1 HCMC probability and 2 weekday “FUN” events. Start up HCMC again unless PVP has been removed.",
     imageSrc: "https://i.ibb.co/XrMg0sFn/Ergo-Badgers-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -199,13 +196,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Forbearer-Ramis",
+  {name: "Forbearer-Ramis",
     attackType: "CONSTITUTION",
     health: adjustHealthByQuarter(1205),
     hitNumbers: [15, 6,  4, 20, 20, 20],
-    Rewards:"Spinner gets to pick any available PVP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available PVP game for the week. Party also gains 50 ducats ",
+    Punishment:"{CONFUSION} All rounds for fight night have the “Confusion” mod for this week.Party leader deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week. ",
     imageSrc: "https://i.ibb.co/JWj2G6mp/Forbearer-Ramis-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -281,18 +277,17 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "PURSCERx17",
+  {name: "PURSCERx17",
     attackType: "STRENGTH",
     health: adjustHealthByQuarter(900),
     hitNumbers: [17, 17, 17, 17, 17, 17, 1, 1, 8, 8, 12, 5, 5,],
-    Rewards:"Spinner gets to pick any available PVP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week.",
+    Rewards:"Party leader gets to pick any available PVP game for the week. Party also gains 50 ducats ",
+    Punishment:" {AGRESSER} Add 10 mins to daily 30 min work out for the rest of the week. Spinner Deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week.",
     imageSrc: "https://i.ibb.co/mFDZz1p3/PURSCERx17-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "PURSCERx17 steps to the side avoiding your attack 'Thats what you wrokin with pussy?'.",
+        "PURSCERx17 steps to the side avoiding your attack 'Thats all you workin with pussy?'. 😂",
         "PURSCERx17 is unfazed by the hit.",
         "PURSCERx17 shrugs off the hit",
         " You missed PURSCERx17! 'The fuck was that shorty?",
@@ -358,13 +353,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Aphen Neel",
+  {name: "Aphen Neel",
     attackType: "INTELLINGENCE",
     health: adjustHealthByQuarter(580),
     hitNumbers: [16, 6, 6, 6, 7, 19, 3, 3, 14],
-    Rewards:"Spinner gets to pick any available PVP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available PVP game for the week. Party also gains 50 ducats ",
+    Punishment:"{DECEPTION} All bets only pay half of the winnings this week. Party leader deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week. ",
     imageSrc: "https://i.ibb.co/rGgXk56y/Aphen-Neel-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -423,13 +417,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Curve",
+  { name: "Curve",
     attackType: "PERCEPTION",
     health: adjustHealthByQuarter(612),
     hitNumbers: [1, 2, 3, 4, 5],
-    Rewards:"Spinner gets to pick any available PVP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available PVP game for the week. Party also gains 50 ducats ",
+    Punishment:"{CLAIRVOYANCE} Block and positive weekly mods gained next week. Party leader deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week ",
     imageSrc: "https://i.ibb.co/6JB8WQ2g/Curve-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -489,13 +482,13 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Dulguun Bolor",
+  {name: "Dulguun Bolor",
     attackType: "CONSTITUTION",
     health: adjustHealthByQuarter(1610),
     hitNumbers: [2, 11, 19, 13, 13],
-    Rewards:"Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 4 spin options. No CO-OP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available CO-OP game. Player also gains 50 ducats.",
+    Punishment:"{Vegicide} Each party member must pick one day this week to abstain from meat consumption. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.", 
+    "genre": "ERGOvillians",
     imageSrc: "https://i.ibb.co/j9PBJZdy/Dulguun-Bolor-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -553,13 +546,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Bennu",
+  { name: "Bennu",
     attackType: "PERCEPTION",
     health: adjustHealthByQuarter(722),
     hitNumbers: [15, 16, 17, 18, 19, 20],
     Rewards:"Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 4 spin options. No CO-OP game will be picked this week. ",
+    Punishment:"{Borracho} Each party member must play on level above the Gig Game requirement during the next weekly Rockband session. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.", 
     imageSrc: "https://i.ibb.co/fVN7Xhdh/Bennu-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -617,13 +609,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Forbearer Tren",
+  { name: "Forbearer Tren",
     attackType: "INTELLINGENCE",
     health: adjustHealthByQuarter(550),
     hitNumbers: [6, 8, 3, 12, 1, 1, 1, 1, 1, 1, ],
-    Rewards:"Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 4 spin options. No CO-OP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available CO-OP game. Player also gains 50 ducats.",
+    Punishment: "{Hypnopompia} If the Party leader is the current Bingwa and or Atletico champ, remove your title and swap with the Kushindwa and or Atletico loser. All choices stay the same but all other rewards go to other player. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     imageSrc: "https://i.ibb.co/W42ZGbd2/Forbearer-Tren-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
@@ -681,13 +672,12 @@ window.monsters = [
       ]
     }
   },
-  {
-    name: "Tash-Nadia",
+  {name: "Tash-Nadia",
     attackType: "STRENGTH",
     health: adjustHealthByQuarter(809),
     hitNumbers: [1, 2, 2, 2, 4, 4, 4, 4, 20, 20, 20, 20],
-    Rewards:"Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"Spinner Deletes 4 spin options. No CO-OP game will be picked this week. ",
+    Rewards:"Party leader gets to pick any available CO-OP game. Player also gains 50 ducats.",
+    Punishment:"{Dagon’s Curse} Remove all fish from the menu this week. One Co-op day becomes a deep clean fish tank day. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     imageSrc: "https://i.ibb.co/FLzybjYd/Tash-Nadia-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
