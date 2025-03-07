@@ -179,3 +179,18 @@ loadItems('../../data/anime.json', 'anime-items');
 loadItems('../../data/sundaymorning.json', 'sundaymorning-items');
 loadItems('../../data/sundaynight.json', 'sundaynight-items');
 loadItems('../../data/singleplayer.json', 'singleplayer-items');
+
+document.addEventListener('DOMContentLoaded', function() {
+  const coll = document.getElementsByClassName("collapsible");
+  const collapseAllButton = document.getElementById('collapse-all');
+
+  collapseAllButton.addEventListener('click', function() {
+    for (let i = 0; i < coll.length; i++) {
+      const content = coll[i].nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+        coll[i].classList.remove("active");
+      }
+    }
+  });
+});

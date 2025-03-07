@@ -1,0 +1,60 @@
+body {
+    background-color: rgb(7, 7, 7);
+    color: white;
+    margin: 100px 0;
+    padding: 0;
+    background-image: url("../assets/img/backgrounds/nightSky.jpg");
+    background-repeat: no-repeat; /* updated to prevent tiling */
+    /* background-size: cover; */ /* removed for animation */
+    transition: transform 0.3s ease-in-out;
+    animation: pan-bg 350s linear infinite;
+    background-attachment: fixed; /* added to move with the viewport */
+  }
+  
+  body.page-transition {
+    transform: translateX(-100%);
+  }
+
+#data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.collapsible-item {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  background-color: #f1f1f1;
+  color: #333;
+  display: none;
+  overflow: hidden;
+}
+
+.content p {
+  margin: 5px 0;
+}
