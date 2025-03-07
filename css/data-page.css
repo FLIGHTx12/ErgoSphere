@@ -58,3 +58,13 @@ body {
 .content p {
   margin: 5px 0;
 }
+
+.content .key {
+  font-weight: bold;
+  text-shadow: #333 10px 1px 1px;
+  color: #555;
+}
+
+.content .value {
+  color: #777;
+}

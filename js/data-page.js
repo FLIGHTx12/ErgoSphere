@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           let itemDetails = '';
           for (const key in item) {
-            if (item.hasOwnProperty(key)) {
-              itemDetails += `<p><strong>${key}:</strong> ${item[key]}</p>`;
+            if (item.hasOwnProperty(key) && key !== 'Link' && !key.toLowerCase().includes('image')) {
+              itemDetails += `<p><strong style="color: purple;">${key}:</strong> <span style="color: green;">${item[key]}</span></p>`;
             }
           }
 
