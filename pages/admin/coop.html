@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CO-OP Data</title>
-  <link rel="stylesheet" href="../css/admin.css">
-  <link rel="stylesheet" href="../css/data-page.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../../css/data-page.css">
 </head>
 <body>
   <nav id="navbar">
@@ -13,7 +13,80 @@
     <button><a href="../admin/admin.html">ADMIN</a></button>
     <button><a href="../HCMC.html">HCMC</a></button>
   </nav>
+
+  <div id="sidebar" class="hidden">
+    <button id="collapse-all" style="background-color: green; color: rgb(0, 0, 0);">Collapse All</button>
+    <button><a href="../admin/coop.html">CO-OP</a></button>
+    <button><a href="../admin/loot.html">LOOT</a></button>
+    <button><a href="../admin/pvp.html">PVP</a></button>
+    <button><a href="../admin/movies.html">MOVIES</a></button>
+    <button><a href="../admin/anime.html">ANIME</a></button>
+    <button><a href="../admin/sundaymorning.html">SUNDAY MORNING</a></button>
+    <button><a href="../admin/sundaynight.html">SUNDAY NIGHT</a></button>
+    <button><a href="../admin/singleplayer.html">SINGLE PLAYER</a></button>
+  </div>
+
   <div id="data-container"></div>
-  <script src="../js/data-page.js"></script>
+
+  <script src="../../js/data-page.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.getElementById('sidebar');
+      const dataContainer = document.getElementById('data-container');
+      let touchstartX = 0;
+      let touchendX = 0;
+      const swipeThreshold = 100;
+
+      function handleGesture() {
+        const swipeDistance = touchendX - touchstartX;
+        if (swipeDistance > swipeThreshold) {
+          sidebar.classList.add('hidden');
+          sidebar.style.transform = 'translateX(100%)';
+          dataContainer.classList.remove('sidebar-visible');
+        }
+        if (swipeDistance < -swipeThreshold) {
+          sidebar.classList.remove('hidden');
+          sidebar.style.transform = 'translateX(0)';
+          dataContainer.classList.add('sidebar-visible');
+        }
+      }
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+      });
+
+      const mediaQuery = window.matchMedia('(min-width: 1024px)');
+      function handleScreenChange(e) {
+        if (e.matches) {
+          sidebar.classList.remove('hidden');
+          sidebar.style.transform = 'translateX(0)';
+          sidebar.style.transitionDuration = '0.65s';
+          dataContainer.classList.add('sidebar-visible');
+        } else {
+          sidebar.classList.add('hidden');
+          sidebar.style.transform = 'translateX(100%)';
+          sidebar.style.transitionDuration = '0.65s';
+          dataContainer.classList.remove('sidebar-visible');
+        }
+      }
+      mediaQuery.addListener(handleScreenChange);
+      handleScreenChange(mediaQuery);
+
+      // Highlight active sidebar button
+      const path = window.location.pathname;
+      const page = path.split('/').pop().replace('.html', '');
+      const sidebarLinks = document.querySelectorAll('#sidebar button a');
+      sidebarLinks.forEach(link => {
+        if (link.getAttribute('href') === `../admin/${page}.html`) {
+          link.parentNode.classList.add('active-sidebar-button');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

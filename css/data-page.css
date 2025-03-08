@@ -1,19 +1,18 @@
 body {
-    background-color: rgb(7, 7, 7);
-    color: white;
-    margin: 100px 0;
-    padding: 0;
-    background-image: url("../assets/img/backgrounds/nightSky.jpg");
-    background-repeat: no-repeat; /* updated to prevent tiling */
-    /* background-size: cover; */ /* removed for animation */
-    transition: transform 0.3s ease-in-out;
-    animation: pan-bg 350s linear infinite;
-    background-attachment: fixed; /* added to move with the viewport */
-  }
-  
-  body.page-transition {
-    transform: translateX(-100%);
-  }
+  background-color: rgb(7, 7, 7);
+  color: white;
+  margin: 100px 0;
+  padding: 0;
+  background-image: url("../assets/img/backgrounds/nightSky.jpg");
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+  animation: pan-bg 350s linear infinite;
+  background-attachment: fixed;
+}
+
+body.page-transition {
+  transform: translateX(-100%);
+}
 
 #data-container {
   display: flex;
@@ -21,6 +20,57 @@ body {
   align-items: center;
   width: 80%;
   margin: 20px auto;
+}
+
+.item-row {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid purple;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #111;
+  box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.6);
+  transition: all 0.3s ease;
+}
+
+.item-row:hover {
+  background-color: #333;
+}
+
+.item-row.expanded {
+  background-color: #555;
+}
+
+.item-row .item-title {
+  padding: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0px 3px 5px rgb(19, 80, 28);
+}
+
+.item-row .item-details {
+  padding: 10px;
+  display: none;
+  color: #ddd;
+}
+
+.item-row.expanded .item-details {
+  display: block;
+}
+
+.item-row .item-details p {
+  margin: 5px 0;
+}
+
+.item-row .item-details strong {
+  color: purple;
+}
+
+.item-row .item-details a {
+  color: lightblue;
+  text-decoration: none;
 }
 
 .collapsible-item {

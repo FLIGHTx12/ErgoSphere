@@ -440,3 +440,7 @@ button:active {
     }
   }
 
+.active-sidebar-button {
+  color: gold;
+}
+
