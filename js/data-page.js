@@ -20,12 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('collapsible-item');
 
-          // If the item has a link, make the div clickable
+          // Remove the link click handler - let links work naturally
           if (item.Link) {
             itemDiv.style.cursor = 'pointer';
-            itemDiv.addEventListener('click', () => {
-              window.location.href = item.Link;
-            });
           }
 
           let itemDetails = '';

@@ -170,15 +170,15 @@ function saveItems(file, data) {
     });
 }
 
-// Load items from each JSON file with corrected relative paths
-loadItems('../../data/coop.json', 'coop-items');
-loadItems('../../data/loot.json', 'loot-items');
-loadItems('../../data/pvp.json', 'pvp-items');
-loadItems('../../data/movies.json', 'movies-items');
-loadItems('../../data/anime.json', 'anime-items');
-loadItems('../../data/sundaymorning.json', 'sundaymorning-items');
-loadItems('../../data/sundaynight.json', 'sundaynight-items');
-loadItems('../../data/singleplayer.json', 'singleplayer-items');
+// Load items from each JSON file with root-relative paths
+loadItems('/data/coop.json', 'coop-items');
+loadItems('/data/loot.json', 'loot-items');
+loadItems('/data/pvp.json', 'pvp-items');
+loadItems('/data/movies.json', 'movies-items');
+loadItems('/data/anime.json', 'anime-items');
+loadItems('/data/sundaymorning.json', 'sundaymorning-items');
+loadItems('/data/sundaynight.json', 'sundaynight-items');
+loadItems('/data/singleplayer.json', 'singleplayer-items');
 
 document.addEventListener('DOMContentLoaded', function() {
   const coll = document.getElementsByClassName("collapsible");
