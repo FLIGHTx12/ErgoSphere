@@ -8,6 +8,7 @@ body {
   transition: transform 0.3s ease-in-out;
   animation: pan-bg 350s linear infinite;
   background-attachment: fixed;
+  background-size: cover; /* Ensure full coverage */
 }
 
 body.page-transition {
@@ -16,14 +17,15 @@ body.page-transition {
 
 #data-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
+  flex-wrap: wrap; /* Allow items to wrap into multiple columns */
+  justify-content: flex-start; /* Align items to the start of the container */
+  width: 100%; /* Take up full width */
   margin: 20px auto;
 }
 
 .item-row {
-  width: 100%;
+  width: calc(33% - 20px); /* Each item takes up about a third of the width, minus margin */
+  margin: 10px;
   margin-bottom: 10px;
   border: 2px solid purple;
   border-radius: 20px;
@@ -32,6 +34,19 @@ body.page-transition {
   background-color: #111;
   box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.6);
   transition: all 0.3s ease;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+@media (max-width: 768px) {
+  .item-row {
+    width: calc(50% - 20px); /* Two items per row on medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .item-row {
+    width: 100%; /* One item per row on small screens */
+  }
 }
 
 .item-row:hover {
@@ -48,6 +63,15 @@ body.page-transition {
   font-weight: bold;
   color: white;
   text-shadow: 0px 3px 5px rgb(19, 80, 28);
+}
+
+.item-row .item-title a {
+  color: white; /* Set title link color to white */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.item-row .item-title a:visited {
+  color: white; /* Set visited link color to white */
 }
 
 .item-row .item-details {
