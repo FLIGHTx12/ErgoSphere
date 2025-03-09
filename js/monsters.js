@@ -46,54 +46,73 @@ window.monsters = [
       zero: [
         "EtchWraith Swarm dodge around your fist and buzz in defiance.",
         "The EtchWraith Swarm's form flickers and distorts, but it quickly reassembles!",
-        "More EtchWraiths join the fray, but the remains undeterred.",
+        "More EtchWraiths join the fray, but the swarm remains undeterred.",
         "Some of these fucking bugs sound like they're laughing at you as you miss.",
         "As you swing, the EtchWraith Swarm splits apart and reforms, avoiding the hit.",
         "",
         "EtchWraith Swarm ignores the minor scratch.",
-        "EtchWraith Swarm barely registers the hit."],
-      "1-20": [
+        "EtchWraith Swarm barely registers the hit.",
+        "The swarm shifts and shimmers, your attack passing right through!" 
+    ],
+    "1-20": [
         "EtchWraith Swarm winces at the hit.",
-        "buz buzz",
+        "buzz buzz",
         "One of the bugs falls to the ground, but the rest keep coming.",
-        "two bugs crash into each other, some of the EtchWraiths strart to eat the carcasses.",
-
-        "buzzing in pain, EtchWraith Swarm recoils from the hit."
-      ],
-      "21-35": [
+        "two bugs crash into each other, some of the EtchWraiths start to eat the carcasses.",
+        "buzzing in pain, EtchWraith Swarm recoils from the hit.",
+        "A few EtchWraiths fall, their buzzing silenced, but the swarm presses on."
+    ],
+    "21-35": [
         "Sparks fly from the EtchWraith Swarm as it recoils from the blow!",
         "wings and legs fly everywhere as you strike the EtchWraith Swarm!",
-        "EtchWraith Swarm grunts from the moderate blow."],
-      "36-75": [
+        "EtchWraith Swarm buzz from the moderate blow.", 
+        "The swarm recoils, a noticeable gap appearing in its mass."
+    ],
+    "36-75": [
         "You take out 4 bugs with one swing! Their bodies fall to the ground with a thud.",
-        "A mighty strike! EtchWraith Swarm roars in agony!"],
-      "76-99": [
-        "As the Swarm decends upon you, you strike them back with a powerful blow! bug legs and metalic wings fly everywhere!",
+        "A mighty strike! EtchWraith Swarm buzz in agony!", 
+        "The swarm thins significantly as your attack cleaves through it!"
+    ],
+    "76-99": [
+        "As the Swarm descends upon you, you strike them back with a powerful blow! bug legs and metallic wings fly everywhere!",
         "Your attack causes an explosion of bug parts! some of the EtchWraiths rush in to pick at the remains before darting at you again.",
-        "The hit shakes EtchWraith Swarm deeply!"],
-      "100+": [
+        "The hit shakes EtchWraith Swarm deeply!",
+        "The swarm falters, its movements becoming erratic as it tries to recover."
+    ],
+    "100+": [
         "You are fucking them up! EtchWraith Swarm buzzes in terror!",
-        "A devastating blow! EtchWraith Swarm staggers."]
-    },
-    hitDialogues: {
-      "1": [
+        "A devastating blow! EtchWraith Swarm staggers.",
+        "The swarm's buzzing reaches a fever pitch as it suffers immense damage!"
+    ]
+},
+hitDialogues: {
+    "1": [
         "The EtchWraith Swarm flys by you causing knicks and bruises as you fight them off.",
-        "The EtchWraith Swarm lands a single, precise hit."], 
-      "2-3": [
+        "The EtchWraith Swarm lands a single, precise hit.", 
+        "One of the EtchWraiths latches onto you, its mandibles scraping your armor."
+    ], 
+    "2-3": [
         "EtchWraith Swarm delivers quick successive blows!",
         "Fucking ergobugs spit acid on your armor! Life support systems are failing!",
         "You can't keep up with the EtchWraith Swarm's relentless assault!",
-      ],
-      "4-5": [
+        "The swarm darts around you, inflicting multiple small wounds."
+    ],
+    "4-5": [
         "EtchWraith Swarm's furious assault shows no mercy!",
         "You are surrounded! These things are everywhere!",
-        "A barrage! EtchWraith Swarm overwhelms the attacker!"],
-      "6-9": [
+        "A barrage! EtchWraith Swarm overwhelms the attacker!",
+        "You stumble back as the swarm's attacks land in quick succession."
+    ],
+    "6-9": [
         "A mountain of bugs swarm you! All you can do is swing and hope to hit something as the !",
-        "EtchWraith Swarm’s furious assault shows no mercy!"],
-      "10+": [
-        "A relentless barrage decimates the foe!"]
-    },
+        "EtchWraith Swarm’s furious assault shows no mercy!",
+        "You're engulfed in a sea of buzzing, biting EtchWraiths!" 
+    ],
+    "10+": [
+        "A relentless barrage decimates the foe!",
+        "The swarm's attack is overwhelming, leaving you reeling."
+    ]
+},
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
       if (damage >= 1 && damage <= 20) return selectDialogue(this.damageDialogues["1-20"]);
@@ -133,39 +152,69 @@ window.monsters = [
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "The CyberBadger Clan dodges the hit.",
-        "The CyberBadger Swarm cackles and laughs as you swing and slip in some cyber shit! 💩 .",
-        "CyberBadger Swarm ignores the minor scratch."],
+          "The CyberBadger Clan dodges the hit.",
+          "The CyberBadger Swarm cackles and laughs as you swing and slip in some cyber shit! 💩 .",
+          "CyberBadger Swarm ignores the minor scratch.",
+          "One of the cyberbadgers deflects your blow with its augmented claws.",
+          "A cyberbadger with glowing red eyes stares you down, unfazed."
+      ],
       "1-20": [
-        "A light jab makes CyberBadgers scatter.",
-        "You graze one as three rush at you barking ferociously",
+          "A light jab makes CyberBadgers scatter.",
+          "You graze one as three rush at you barking ferociously",
+          "One of the cyberbadgers yelps as you clip its cybernetic leg.",
+          "Sparks fly as your attack glances off a cyberbadger's reinforced skull."
       ],
       "21-35": [
-        "You kick a badger in its stomach, it goes flying into a group of badgers charging you",
-        "CyberBadgers growls at the hit."],
+          "You kick aA cyberbadger howls in pain as you crush its cybernetic jaw.",
+          "You hear the crunch of metal and bone as your attack connects." 
+      ],
       "36-75": [
-        "You stab a Badger in the jaw as it snaps at you. The body goes limp. You clean your blade.",
-        "A solid strike! CyberBadger Cete snarls in pain!"],
+          "You stab a Badger in the jaw as it snaps at you. The body goes limp. You clean your blade.",
+          "A solid strike! CyberBadger Cete snarls in pain!",
+          "One of the cyberbadgers collapses, its cybernetic enhancements sputtering and failing.",
+          "The stench of burnt fur and ozone fills the air as a cyberbadger crumples to the ground."
+      ],
       "76-99": [
-        "MASSIVE BLOW! there are a lot fewer Cyberbadgers on the field now",
-        "The force rattles CyberBadger Clan noticeably! A few scurry off."],
+          "MASSIVE BLOW! there are a lot fewer Cyberbadgers on the field now",
+          "The force rattles CyberBadger Clan noticeably! A few scurry off.",
+          "Several cyberbadgers are thrown back by the force of your attack, their cybernetics overloading.",
+          "A cyberbadger's head explodes in a shower of sparks and gore."
+      ],
       "100+": [
-        "A crushing blow! The CyberBadgers waver. Thier green blood paints the battlefield"]
-    },
-    hitDialogues: {
+          "A crushing blow! The CyberBadgers waver. Thier green blood paints the battlefield",
+          "The remaining cyberbadgers whimper and cower in fear.",
+          "You've decimated the CyberBadger Clan! Their mangled bodies litter the ground."
+      ]
+  },
+  hitDialogues: {
       "1": [
-        "CyberBadger Swarm scores a sharp hit."],
+          "CyberBadger Swarm scores a sharp hit.",
+          "A cyberbadger's claws rake across your armor, leaving deep gouges.",
+          "You feel a sharp pain as a cyberbadger bites into your leg."
+      ],
       "2-3": [
-        "CyberBadger Swarm strikes twice in quick succession!"],
+          "CyberBadger Swarm strikes twice in quick succession!",
+          "Two cyberbadgers lunge at you, their cybernetic teeth bared.",
+          "You're knocked off balance by a pair of cyberbadger attacks."
+      ],
       "4-5": [
-        "A flurry of hits from CyberBadger Swarm!"],
+          "A flurry of hits from CyberBadger Swarm!",
+          "Cyberbadgers swarm you, their claws and teeth tearing at your flesh.",
+          "You're barely able to defend yourself as the cyberbadgers overwhelm you."
+      ],
       "6-9": [
-        "CyberBadger Swarm's relentless assault is terrifying!"],
+          "CyberBadger Swarm's relentless assault is terrifying!",
+          "The ground is stained with your blood as the cyberbadgers continue their onslaught.",
+          "You can feel your strength fading as the cyberbadgers' attacks take their toll."
+      ],
       "10+": [
-        "💥💥 4 CyberBadgers explode in your face! They have self destructable armor? WHAT THE FUCK!",
-        "A CyberBadger badger is tired of your shit and takes a hunk out of your arm!",
-        "A barrage from CyberBadger Swarm leaves devastation!"]
-    },
+          "💥💥 4 CyberBadgers explode in your face! They have self destructable armor? WHAT THE FUCK!",
+          "A CyberBadger badger is tired of your shit and takes a hunk out of your arm!",
+          "A barrage from CyberBadger Swarm leaves devastation!",
+          "You're thrown back by a series of explosions as several cyberbadgers self-destruct.",
+          "The world goes black as the cyberbadgers' final attack overwhelms you."
+      ]
+  },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
       if (damage >= 1 && damage <= 20) return selectDialogue(this.damageDialogues["1-20"]);
@@ -206,48 +255,76 @@ window.monsters = [
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "Ramis gracefully floats away from your attack.", 
-        "Ramis teleports before the hit lands.",
-        "Forbearer-Ramis shrugs off the hit."],
+          "Ramis gracefully floats away from your attack.", 
+          "Ramis teleports before the hit lands.",
+          "Forbearer-Ramis shrugs off the hit.",
+          "With a mocking laugh, Ramis disappears in a flash of light, your attack striking only empty air.",
+          "Your attack passes through Ramis as if he were a phantom, his form flickering erratically."
+      ],
       "1-20": [
-        "Forbearer-Ramis takes a light hit.",
-        "Forbearer-Ramis takes a minor hit.",
-        "Forbearer-Ramis teleports away but buckles to one knee. Your hit must have landed before he got away!",
+          "Forbearer-Ramis takes a light hit.",
+          "Forbearer-Ramis takes a minor hit.",
+          "Forbearer-Ramis teleports away but buckles to one knee. Your hit must have landed before he got away!",
+          "Ramis stumbles back, a look of surprise crossing his face. 'An unexpected tingle,' he mutters.",
+          "A flicker of pain crosses Ramis's eyes, but he quickly recovers. 'Is that the best you can do?' he taunts."
       ],
       "21-35": [
-        "Forbearer-Ramis grunts from the blow.",
-        "'You know I cant feel this right?,' Ramis growls.",
-        "Forbearer-Ramis takes a moderate hit.",
-        "Forbearer-Ramis is visibly enjoys the punishment you just handed him."
-      
+          "Forbearer-Ramis grunts from the blow.",
+          "'You know I cant feel this right?,' Ramis growls.",
+          "Forbearer-Ramis takes a moderate hit.",
+          "Forbearer-Ramis is visibly enjoys the punishment you just handed him.",
+          "Ramis lets out a guttural cry, a mixture of pain and pleasure. 'More! Give me more!' he demands.",
+          "You see a hint of respect in Ramis's eyes. 'You're not entirely without merit,' he concedes."
       ],
       "36-75": [
-        "'You're more resourceful than I anticipated,' Ramis observes, 'But it won't be enough.'",
-        "A strong hit! Forbearer-Ramis feels the impact!",
-        "Forbearer-Ramis spits out blood and laughs, He looks like he wants more!",],
+          "'You're more resourceful than I anticipated,' Ramis observes, 'But it won't be enough.'",
+          "A strong hit! Forbearer-Ramis feels the impact!",
+          "Forbearer-Ramis spits out blood and laughs, He looks like he wants more!",
+          "Ramis staggers, clutching his side. 'An impressive blow,' he admits, 'But I've endured worse.'",
+          "You knock Ramis to the ground, but he quickly springs back to his feet. 'This is getting interesting,' he says with a wicked grin."
+      ],
       "76-99": [
-        "You dodge Ramis's attack spin behind him before striking him in the back!",
-        "You knee Ramis in the face! He stumbles back and lands on his ass",
-        "'You're starting to annoy me,' Ramis growls.",
-        "Forbearer-Ramis is shaken by the force!"],
+          "You dodge Ramis's attack spin behind him before striking him in the back!",
+          "You knee Ramis in the face! He stumbles back and lands on his ass",
+          "'You're starting to annoy me,' Ramis growls.",
+          "Forbearer-Ramis is shaken by the force!",
+          "Ramis's eyes widen in shock. 'You dare challenge my authority?' he roars.",
+          "A look of fury crosses Ramis's face. 'You'll pay for that!' he screams."
+      ],
       "100+": [
-        "Forbearer-Ramis scoffs, 'A minor setback.'",
-        "A powerful strike! Forbearer-Ramis staggers."]
-    },
-    hitDialogues: {
+          "Forbearer-Ramis scoffs, 'A minor setback.'",
+          "A powerful strike! Forbearer-Ramis staggers.",
+          "Ramis collapses to one knee, his body wracked with pain. 'This cannot be,' he whispers.",
+          "You see a flicker of fear in Ramis's eyes. 'Have I finally met my match?' he wonders."
+      ]
+  },
+  hitDialogues: {
       "1": [
-        "Ramis throws dirt in your eyes, when you recover he is nowhere to be seen",
-        "Forbearer-Ramis lands a precise hit.'I train for this bitch!' "],
+          "Ramis throws dirt in your eyes, when you recover he is nowhere to be seen",
+          "Forbearer-Ramis lands a precise hit.'I train for this bitch!' ",
+          "Ramis materializes behind you, his blade drawing a thin line of blood across your back."
+      ],
       "2-3": [
-        "Ramis throws 10 knives in the air in your general direction. A few stab you in the shoulder.",
-        "Forbearer-Ramis strikes twice in quick succession!"],
+          "Ramis throws 10 knives in the air in your general direction. A few stab you in the shoulder.",
+          "Forbearer-Ramis strikes twice in quick succession!",
+          "You're caught off guard by Ramis's sudden attack, his blows landing with pinpoint accuracy."
+      ],
       "4-5": [
-        "A series of hits from Forbearer-Ramis!"],
+          "A series of hits from Forbearer-Ramis!",
+          "Ramis moves with blinding speed, his attacks coming from all directions.",
+          "You're barely able to keep up with Ramis's relentless assault."
+      ],
       "6-9": [
-        "Forbearer-Ramis's relentless assault is fierce!"],
+          "Forbearer-Ramis's relentless assault is fierce!",
+          "Ramis's attacks are relentless, each one pushing you closer to the brink.",
+          "You're starting to feel overwhelmed by Ramis's sheer power."
+      ],
       "10+": [
-        "A devastating barrage from Forbearer-Ramis!"]
-    },
+          "A devastating barrage from Forbearer-Ramis!",
+          "Ramis unleashes his full fury, his attacks raining down upon you like a storm.",
+          "You're helpless to defend yourself as Ramis's final attack obliterates you."
+      ]
+  },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
       if (damage >= 1 && damage <= 20) return selectDialogue(this.damageDialogues["1-20"]);
