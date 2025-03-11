@@ -42,7 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (item.copies !== undefined && item.copies > 0) {
             indicator += ' 🟢'.repeat(item.copies);
           }
-          let itemLink = item.link ? `<a href="${item.link}" target="_blank">${itemText}${indicator}</a>` : `${itemText}${indicator}`;
+          
+          // Use "link", "LINK", or "Link" property to generate the anchor
+          let linkVal = item.link || item.LINK || item.Link || '';
+          let itemLink = linkVal 
+            ? `<a class="item-title-link" data-href="${linkVal}" target="_blank">${itemText}${indicator}</a>` 
+            : `${itemText}${indicator}`;
 
           let detailsHTML = '';
           detailsHTML += item.status !== undefined ? `<p><strong>Status:</strong> ${item.status}</p>` : '';
@@ -70,16 +75,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
           container.appendChild(itemDiv);
 
-          // Updated click event: restrict to the container and stop propagation.
+          // Updated click event: collapse other items and toggle expansion.
           itemDiv.addEventListener('click', function(event) {
               event.stopPropagation();
-              const allItems = container.querySelectorAll('.item-row'); // only items in container
+              const allItems = container.querySelectorAll('.item-row');
               allItems.forEach(el => {
                   if (el !== this) {
-                      el.classList.remove('expanded'); // ensure other items are closed
+                      el.classList.remove('expanded');
+                      // Ensure link in closed items is disabled and styling reset
+                      const link = el.querySelector('a.item-title-link');
+                      if (link) {
+                          link.removeAttribute('href');
+                          link.style.color = '';
+                      }
                   }
               });
-              this.classList.toggle('expanded'); // toggle expansion of clicked item
+              this.classList.toggle('expanded');
+              // If expanded, enable the link and style it; otherwise, disable it.
+              const currentLink = this.querySelector('a.item-title-link');
+              if (currentLink) {
+                if (this.classList.contains('expanded')) {
+                  currentLink.setAttribute('href', currentLink.dataset.href);
+                  currentLink.style.color = 'lightgreen';
+                } else {
+                  currentLink.removeAttribute('href');
+                  currentLink.style.color = '';
+                }
+              }
           });
         });
       })
