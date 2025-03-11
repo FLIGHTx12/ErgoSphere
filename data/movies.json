@@ -67,7 +67,7 @@
     "STATUS": "🟢",
     "WATCHED": "👀",
     "OwnerShip": "DISNEY+",
-    "GENRE": "Super Hero, Action",
+    "GENRE": ["Super Hero, Action"],
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": ""
