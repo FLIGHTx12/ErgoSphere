@@ -88,5 +88,19 @@
       });
     });
   </script>
+  <script>
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > lastScrollY) {
+        // When scrolling down, hide the navbar
+        navbar.classList.add('hidden');
+      } else {
+        // When scrolling up, show the navbar
+        navbar.classList.remove('hidden');
+      }
+      lastScrollY = window.scrollY;
+    });
+  </script>
 </body>
 </html>

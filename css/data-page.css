@@ -54,7 +54,10 @@ body.page-transition {
 }
 
 .item-row.expanded {
-  background-color: #555;
+  background-color: #555; /* fallback color */
+  background-image: url("../assets/img/buttons/blkbedsheets.avif");
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%; /* Expanded div now spans the full row */
 }
 
@@ -142,4 +145,10 @@ body.page-transition {
 
 .content .value {
   color: #777;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-size: cover !important;
+  }
 }

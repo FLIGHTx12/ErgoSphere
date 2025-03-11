@@ -349,13 +349,6 @@ button:active {
     animation: none;
   }
 
-  #navbar button {
-    font-size: 16px;
-    padding: 10px;
-    margin: 5px;
-    min-width: 120px;
-  }
-
   .collapsible {
     font-size: 20px;
     padding: 20px;
@@ -442,5 +435,14 @@ button:active {
 
 .active-sidebar-button {
   color: gold;
+}
+
+@media (max-width: 600px) {
+  #navbar {
+    position: static;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
 
