@@ -73,7 +73,8 @@
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
     "description": ""
   },   
-    { "text": "33 Immortals",
+    { "TITLE": "33 Immortals",
+      "text": "33 Immortals",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/33Immortals.jpg",
       "copies": 0,
       "genre": ["Action","Fantasy"],
@@ -85,9 +86,9 @@
       "completed": "",
       "link": "https://www.igdb.com/games/33-immortals",
       "description": "Your mortal life has been judged sinful, and your soul’s fate is to be punished for all eternity – but an uprising is brewing among the damned! Press on as a renegade in the immortal rebellion against God’s final judgment, and fight for your eternal life."
-
     },
-    {"text": "Army of 2",
+    {"TITLE": "Army of 2",
+      "text": "Army of 2",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/Army of 2.jpg",
       "copies": 0,
       "genre": "Action",
@@ -100,7 +101,8 @@
       "link": "",
       "description": "When one man is not enough, it will take an army of two to fight through war and a conspiracy so vast it threatens the entire world."
     },
-    {"text": "As Dusk falls",
+    {"TITLE": "As Dusk falls",
+      "text": "As Dusk falls",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/As Dusk falls.png",
       "copies": 0,
       "genre": ["Point-and-click", "Role-playing (RPG)", "Adventure"],
@@ -113,7 +115,8 @@
       "link": "https://www.igdb.com/games/as-dusk-falls",
       "description": "Starting in 1998 with a robbery-gone-wrong in small town Arizona, the choices you make have a powerful impact on the characters’ lives in this uncompromising story of betrayal, sacrifice and resilience."
     },
-    {"text": "Battletoads (2020)",
+    {"TITLE": "Battletoads (2020)",
+      "text": "Battletoads (2020)",
       "image": "../assets/img/BattleToads.jpg",
       "copies": 1,
       "genre": ["Fighting" , "Platform", " Platform Hack and slash/Beat 'em up, Adventure"],
@@ -126,7 +129,8 @@
       "link": "https://www.igdb.com/games/battletoads--2",
       "description": "battletoads is a genre-defying tale of three unlikely heroes as they fight to save their galaxy from a deadly warlord. The game is a reboot of the original Battletoads game series, which was developed by Rare and published by Tradewest. The game features beat 'em up, platforming, and racing gameplay."
     },
-    {"text": "Broforce",
+    {"TITLE": "Broforce",
+      "text": "Broforce",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -139,7 +143,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Brothers",
+    {"TITLE": "Brothers",
+      "text": "Brothers",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -152,7 +157,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Chariot",
+    {"TITLE": "Chariot",
+      "text": "Chariot",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -165,7 +171,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Common'hood (24 hrs) - {simulation} (no longer on gamepass)",
+    {"TITLE": "Common'hood (24 hrs) - {simulation} (no longer on gamepass)",
+      "text": "Common'hood (24 hrs) - {simulation} (no longer on gamepass)",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -178,7 +185,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Darksiders Genesis",
+    {"TITLE": "Darksiders Genesis",
+      "text": "Darksiders Genesis",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -191,7 +199,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "DayZ",
+    {"TITLE": "DayZ",
+      "text": "DayZ",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -204,7 +213,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Deep Rock Galactic, ROCK AND STONE!",
+    {"TITLE": "Deep Rock Galactic, ROCK AND STONE!",
+      "text": "Deep Rock Galactic, ROCK AND STONE!",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -217,7 +227,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Diablo 3: reaper of souls",
+    {"TITLE": "Diablo 3: reaper of souls",
+      "text": "Diablo 3: reaper of souls",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -230,7 +241,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Diablo IV",
+    {"TITLE": "Diablo IV",
+      "text": "Diablo IV",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/DIABLO IV.png",
       "copies": 3,
       "genre": ["Action", "Fantasy", "Horror"],
@@ -243,7 +255,8 @@
       "link": "https://www.igdb.com/games/diablo-iv",
       "description": "As the battle between the High Heavens and Burning Hells rages on, hatred devours Sanctuary as evil spreads and a new wave of cultists and worshippers arise to embrace Lilith’s coming. Only a brave few dare to face this threat and bring light to the all-consuming darkness."
     },
-    {"text": "Divinity 2: Original sin",
+    {"TITLE": "Divinity 2: Original sin",
+      "text": "Divinity 2: Original sin",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -256,7 +269,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Dune: Spice Wars",
+    {"TITLE": "Dune: Spice Wars",
+      "text": "Dune: Spice Wars",
       "image": "../",
       "copies": 1,
       "genre": "",
@@ -269,7 +283,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Endless Dungeon",
+    {"TITLE": "Endless Dungeon",
+      "text": "Endless Dungeon",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/Endless Dungeon.PNG",
       "copies": 1,
       "genre": "",
@@ -282,7 +297,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Escape Academy",
+    {"TITLE": "Escape Academy",
+      "text": "Escape Academy",
       "image": "../",
       "copies": 1,
       "genre": "",
@@ -295,7 +311,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "ExoPrimal",
+    {"TITLE": "ExoPrimal",
+      "text": "ExoPrimal",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -308,7 +325,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Fallout 76",
+    {"TITLE": "Fallout 76",
+      "text": "Fallout 76",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -321,7 +339,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Generation Zero (50hrs) - {FPS Survival}",
+    {"TITLE": "Generation Zero (50hrs) - {FPS Survival}",
+      "text": "Generation Zero (50hrs) - {FPS Survival}",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -334,7 +353,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Grounded",
+    {"TITLE": "Grounded",
+      "text": "Grounded",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -347,7 +367,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "How to survive 2: Storm warning edition",
+    {"TITLE": "How to survive 2: Storm warning edition",
+      "text": "How to survive 2: Storm warning edition",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -360,7 +381,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Human Fall Flat",
+    {"TITLE": "Human Fall Flat",
+      "text": "Human Fall Flat",
       "image": "../",
       "copies": 1,
       "genre": "",
@@ -373,7 +395,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Ilo and Milo",
+    {"TITLE": "Ilo and Milo",
+      "text": "Ilo and Milo",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -386,7 +409,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "IT TAKES TWO",
+    {"TITLE": "IT TAKES TWO",
+      "text": "IT TAKES TWO",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -399,7 +423,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Knights on Bikes (not available currently on gamepass)",
+    {"TITLE": "Knights on Bikes (not available currently on gamepass)",
+      "text": "Knights on Bikes (not available currently on gamepass)",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -412,7 +437,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Legendary: Marvel Card Game",
+    {"TITLE": "Legendary: Marvel Card Game",
+      "text": "Legendary: Marvel Card Game",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -425,7 +451,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Livelock",
+    {"TITLE": "Livelock",
+      "text": "Livelock",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -438,7 +465,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "LOVERS In A Dangerous Spacetime",
+    {"TITLE": "LOVERS In A Dangerous Spacetime",
+      "text": "LOVERS In A Dangerous Spacetime",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -451,7 +479,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Marvel ultimate alliance",
+    {"TITLE": "Marvel ultimate alliance",
+      "text": "Marvel ultimate alliance",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/MarvelUA.jpg",
       "copies": 1,
       "genre": "",
@@ -464,7 +493,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Marvel Ultimate Alliance 3: The Black Order (13hrs) - {action}",
+    {"TITLE": "Marvel Ultimate Alliance 3: The Black Order (13hrs) - {action}",
+      "text": "Marvel Ultimate Alliance 3: The Black Order (13hrs) - {action}",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -477,7 +507,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Marvel's Avengers",
+    {"TITLE": "Marvel's Avengers",
+      "text": "Marvel's Avengers",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -490,7 +521,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Minecraft Dungeons",
+    {"TITLE": "Minecraft Dungeons",
+      "text": "Minecraft Dungeons",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -503,7 +535,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Monster hunter rise",
+    {"TITLE": "Monster hunter rise",
+      "text": "Monster hunter rise",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -516,7 +549,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "NBA2k (WNBA Season)",
+    {"TITLE": "NBA2k (WNBA Season)",
+      "text": "NBA2k (WNBA Season)",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -529,7 +563,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Out of Space Couch Edition",
+    {"TITLE": "Out of Space Couch Edition",
+      "text": "Out of Space Couch Edition",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -542,7 +577,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "OUTRIDERS",
+    {"TITLE": "OUTRIDERS",
+      "text": "OUTRIDERS",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -555,7 +591,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "overcooked",
+    {"TITLE": "overcooked",
+      "text": "overcooked",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -568,7 +605,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Palworld",
+    {"TITLE": "Palworld",
+      "text": "Palworld",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -581,7 +619,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Payday 2 Crimewave",
+    {"TITLE": "Payday 2 Crimewave",
+      "text": "Payday 2 Crimewave",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -594,7 +633,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Photosynthesis",
+    {"TITLE": "Photosynthesis",
+      "text": "Photosynthesis",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -607,7 +647,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "Plate UP!",
+    {"TITLE": "Plate UP!",
+      "text": "Plate UP!",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/Plate UP!.jpg",
       "copies": 4,
       "genre": "",
@@ -620,7 +661,8 @@
       "link": "",
       "description": ""
     },
-    {"text": "PORTAL 2",
+    {"TITLE": "PORTAL 2",
+      "text": "PORTAL 2",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -633,7 +675,8 @@
       "link": "",
       "description": ""
       },
-    {"text": "Red Dead Redemption 2, story missions",
+    {"TITLE": "Red Dead Redemption 2, story missions",
+      "text": "Red Dead Redemption 2, story missions",
       "image": "../",
       "copies": 0,
       "genre": "",
@@ -646,7 +689,8 @@
       "link": "",
       "description": ""
       },
-    {"text": "Redfall",
+    {"TITLE": "Redfall",
+      "text": "Redfall",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -659,7 +703,8 @@
         "link": "",
         "description": ""
       },
-    { "text": "Resident evil revelation 2",
+    { "TITLE": "Resident evil revelation 2",
+      "text": "Resident evil revelation 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -672,7 +717,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Sea of thieves",
+    {"TITLE": "Sea of thieves",
+      "text": "Sea of thieves",
         "image": "../assets/img/Spin The Wheel Photos/CO-OP/Sea Of Thieves.jpg",
         "copies": 2,
         "genre": "",
@@ -685,7 +731,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Space lines fare out",
+    {"TITLE": "Space lines fare out",
+      "text": "Space lines fare out",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -698,7 +745,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "State of Decay 2",
+    {"TITLE": "State of Decay 2",
+      "text": "State of Decay 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -711,7 +759,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Stranded Deep",
+    {"TITLE": "Stranded Deep",
+      "text": "Stranded Deep",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -724,7 +773,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Streets of rage 4",
+    {"TITLE": "Streets of rage 4",
+      "text": "Streets of rage 4",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -737,7 +787,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Terraria",
+    {"TITLE": "Terraria",
+      "text": "Terraria",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -750,7 +801,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Tetris (quickplay)",
+    {"TITLE": "Tetris (quickplay)",
+      "text": "Tetris (quickplay)",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -763,7 +815,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "The ASCENT",
+    {"TITLE": "The ASCENT",
+      "text": "The ASCENT",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -776,7 +829,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "TMNT: Shredders Revenge",
+    {"TITLE": "TMNT: Shredders Revenge",
+      "text": "TMNT: Shredders Revenge",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -789,7 +843,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Unravel 2",
+    {"TITLE": "Unravel 2",
+      "text": "Unravel 2",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -802,7 +857,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Valheim",
+    {"TITLE": "Valheim",
+      "text": "Valheim",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -815,7 +871,8 @@
         "link": "",
         "description": ""
       },
-    { "text": "Vampire survivors",
+    { "TITLE": "Vampire survivors",
+      "text": "Vampire survivors",
         "image": "../assets/img/Spin The Wheel Photos/CO-OP/Vampire Survivors.JPG",
         "copies": 1,
         "genre": "",
@@ -828,7 +885,8 @@
         "link": "",
         "description": ""
       },
-    { "text": "WarFrame",
+    { "TITLE": "WarFrame",
+      "text": "WarFrame",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -841,7 +899,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Wilmonts Warehouse",
+    {"TITLE": "Wilmonts Warehouse",
+      "text": "Wilmonts Warehouse",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -854,7 +913,8 @@
         "link": "",
         "description": ""
       },
-    { "text": "ZHEROS",
+    { "TITLE": "ZHEROS",
+      "text": "ZHEROS",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -867,7 +927,8 @@
         "link": "",
         "description": ""
       },
-    {"text": "Zombie Warrior 4: Dead War",
+    {"TITLE": "Zombie Warrior 4: Dead War",
+      "text": "Zombie Warrior 4: Dead War",
         "image": "../",
         "copies": 0,
         "genre": "",
@@ -881,4 +942,4 @@
         "description": ""
       }
     ]
-  
+

@@ -437,6 +437,11 @@ button:active {
   color: gold;
 }
 
+.active-sidebar-button {
+  border: 0.9cap solid #FFD700; /* Gold border */
+  box-shadow: 0 0 5px 1.5px #FFD700; /* Glowing effect */
+}
+
 @media (max-width: 600px) {
   #navbar {
     position: static;

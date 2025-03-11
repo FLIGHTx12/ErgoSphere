@@ -16,11 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const container = document.getElementById(containerId);
 
-        data.forEach(item => {
+        // Helper to get the title from either key
+        function getTitle(item) {
+          return item.text || item.TITLE || item.Title || 'No Title';
+        }
+
+        // Function to handle each item, including those within arrays
+        function processItem(item) {
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('item-row');
 
-          let itemText = item.text || item.TITLE || item.Title || 'No Title';
+          // Use getTitle() to set the title text interchangeably
+          let itemText = getTitle(item);
           let indicator = '';
           // If status is 🟢 then add a 🟢 indicator
           if (item.status === '🟢' || item.STATUS === '🟢') {
@@ -139,6 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               }
           });
+        }
+
+        // Iterate through the data and process each item
+        data.forEach(item => {
+          if (Array.isArray(item)) {
+            item.forEach(processItem); // If it's an array, process each element
+          } else {
+            processItem(item); // If it's a single item, process it directly
+          }
         });
           
           // Add Collapse All functionality if the button exists
