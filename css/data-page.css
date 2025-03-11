@@ -55,6 +55,7 @@ body.page-transition {
 
 .item-row.expanded {
   background-color: #555;
+  width: 100%; /* Expanded div now spans the full row */
 }
 
 .item-row .item-title {

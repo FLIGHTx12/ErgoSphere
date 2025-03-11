@@ -22,9 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
           let itemText = item.text || item.TITLE || item.Title || 'No Title';
           let indicator = '';
-          if (item.status === '🟢') {
-            indicator = ' 🟢';
+          // If status is 🟢 then add a 🟢 indicator
+          if (item.status === '🟢' || item.STATUS === '🟢') {
+            indicator += ' 🟢';
           }
+          // If COMPLETED? contains a ✔ then add a ✔ indicator
+          if (item['COMPLETED?'] && item['COMPLETED?'].includes('✔')) {
+            indicator += ' ✔';
+          }
+          // If LAST WATCHED has data, extract number and add that many 👀
+          if (item['LAST WATCHED']) {
+            const match = item['LAST WATCHED'].match(/\d+/);
+            if (match) {
+              const seasonCount = parseInt(match[0], 10);
+              indicator += ' ' + '👀'.repeat(seasonCount);
+            }
+          }
+          // Preserve copies behavior
           if (item.copies !== undefined && item.copies > 0) {
             indicator += ' 🟢'.repeat(item.copies);
           }
@@ -56,8 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
           container.appendChild(itemDiv);
 
-          itemDiv.addEventListener('click', () => {
-            itemDiv.classList.toggle('expanded');
+          // Updated click event: restrict to the container and stop propagation.
+          itemDiv.addEventListener('click', function(event) {
+              event.stopPropagation();
+              const allItems = container.querySelectorAll('.item-row'); // only items in container
+              allItems.forEach(el => {
+                  if (el !== this) {
+                      el.classList.remove('expanded'); // ensure other items are closed
+                  }
+              });
+              this.classList.toggle('expanded'); // toggle expansion of clicked item
           });
         });
       })
