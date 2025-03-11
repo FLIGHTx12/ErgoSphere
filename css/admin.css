@@ -262,9 +262,9 @@ button:active {
 
 #sidebar {
   position: fixed;
-  top: 50%;
+  top: 10%; /* Raise the sidebar */
   right: 0;
-  transform: translateY(-50%);
+  transform: translateY(0); /* Adjust transform to align from the top */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -344,9 +344,8 @@ button:active {
   #navbar {
     position: static;
     width: 100%;
-    padding: 10px;
+    background-color: black; /* Match other pages */
     box-shadow: none;
-    animation: none;
   }
 
   .collapsible {

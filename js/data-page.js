@@ -120,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Updated click event: collapse other items and toggle expansion.
           itemDiv.addEventListener('click', function(event) {
+              // Prevent the click event from immediately following the link
+              if (event.target.classList.contains('item-title-link')) {
+                  return; // Do nothing, allow the link to function normally when expanded
+              }
               event.stopPropagation();
               const allItems = container.querySelectorAll('.item-row');
               allItems.forEach(el => {
