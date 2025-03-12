@@ -88,6 +88,11 @@ body.page-transition {
   color: white; /* Set visited link color to white */
 }
 
+/* Add a glowing effect on hover */
+.item-row .item-title a:hover {
+  text-shadow: 0 0 10px lightgreen; /* Adjust the glow color and intensity as needed */
+}
+
 .item-row .item-details {
   padding: 10px;
   display: none;
