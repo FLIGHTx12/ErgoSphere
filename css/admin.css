@@ -100,7 +100,6 @@ button:active {
   
   flex: 1;
   margin: 10px;
-  min-width: 300px;
 }
 
 .collapsible {
@@ -245,8 +244,11 @@ button:active {
 
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Changed to column */
   flex-wrap: wrap;
+  width: 50%; /* Reduced width by 50% */
+  margin-left: auto; /* Added to center horizontally */
+  margin-right: auto; /* Added to center horizontally */
   margin-right: 160px; /* Adjust margin to accommodate sidebar */
 }
 
@@ -257,7 +259,6 @@ button:active {
 .column {
   flex: 1;
   margin: 10px;
-  min-width: 300px;
 }
 
 #sidebar {

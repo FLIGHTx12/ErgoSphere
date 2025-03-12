@@ -9,9 +9,9 @@ function loadItems(file, containerId) {
       // Extract genres based on the container ID
       let genres = [];
       if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
-        genres = [...new Set(data.map(item => item.genre || ''))];
+        genres = [...new Set(data.flatMap(item => (item.genre || '').split(',').map(s => s.trim())))];
       } else {
-        genres = [...new Set(data.map(item => item.GENRE || ''))];
+        genres = [...new Set(data.flatMap(item => (item.GENRE || '').split(',').map(s => s.trim())))];
       }
 
       const genreButton = container.querySelector('.filter-button[data-filter="genre"]');
@@ -28,7 +28,11 @@ function loadItems(file, containerId) {
         itemDiv.classList.add('item');
 
         // Set the genre dataset based on the container ID
-        itemDiv.dataset.genre = item.GENRE || item.genre || '';
+        let itemGenres = item.GENRE || item.genre || '';
+        if (typeof itemGenres === 'string') {
+          itemGenres = itemGenres.split(',').map(s => s.trim());
+        }
+        itemDiv.dataset.genre = JSON.stringify(itemGenres);
 
         let itemText = '';
         let statusText = '';
@@ -144,7 +148,8 @@ function filterItems(containerId, filter, genre) {
         item.style.display = parseInt(item.querySelector('.copies-count').textContent) === 0 ? 'flex' : 'none';
         break;
       case 'genre':
-        item.style.display = item.dataset.genre === genre ? 'flex' : 'none';
+        const itemGenres = JSON.parse(item.dataset.genre);
+        item.style.display = itemGenres.includes(genre) ? 'flex' : 'none';
         break;
       default:
         item.style.display = 'flex';

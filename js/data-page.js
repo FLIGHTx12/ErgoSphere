@@ -82,10 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
 
-          addDetail('Details', item.details);
-          addDetail('Reward', item.reward);
-          addDetail('Punishment', item.punishment);
-          addDetail('Genre', item.genre || item.GENRE);
+          let genreValue = item.genre || item.GENRE || '';
+          if (typeof genreValue === 'string') {
+            genreValue = genreValue.split(',').map(genre => genre.trim());
+          }
+          addDetail('Genre', Array.isArray(genreValue) ? genreValue.join(', ') : genreValue);
           addDetail('Mode', item.mode);
           addDetail('Time per match', item['Time per match']);
           addDetail('Playability', item.playability);
