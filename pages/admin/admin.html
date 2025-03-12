@@ -12,12 +12,18 @@
     <button><a href="admin.html">ADMIN</a></button>
     <button><a href="../HCMC.html">HCMC</a></button>
   </nav>
+  <hr>
+<header>
+  <h1>ADMIN</h1>
+</header>
+<hr>
 
   <div id="sidebar" class="hidden">
     <button id="collapse-all" style="background-color: green; color: rgb(0, 0, 0);">Collapse All</button>
     <button><a href="../admin/coop.html">CO-OP</a></button>
     <button><a href="../admin/loot.html">LOOT</a></button>
     <button><a href="../admin/pvp.html">PVP</a></button>
+    <button><a href="../admin/youtube.html">YOUTUBE</a></button>
     <button><a href="../admin/movies.html">MOVIES</a></button>
     <button><a href="../admin/anime.html">ANIME</a></button>
     <button><a href="../admin/sundaymorning.html">SUNDAY MORNING</a></button>
@@ -106,6 +112,17 @@
     <div class="column">
       <button class="collapsible">SINGLE PLAYER</button>
       <div id="singleplayer-items" class="content item-container">
+        <div class="filters">
+          <button class="filter-button" data-filter="all">All</button>
+          <button class="filter-button" data-filter="has-status">ACTIVE</button>
+          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="filter-button" data-filter="genre">GENRE</button>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <button class="collapsible">YOUTUBE</button>
+      <div id="youtube-items" class="content item-container">
         <div class="filters">
           <button class="filter-button" data-filter="all">All</button>
           <button class="filter-button" data-filter="has-status">ACTIVE</button>

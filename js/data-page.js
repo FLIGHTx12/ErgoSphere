@@ -15,10 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => response.json())
       .then(data => {
         const container = document.getElementById(containerId);
+        const isYoutubePage = window.location.pathname.includes('youtube.html');
 
         // Helper to get the title from either key
         function getTitle(item) {
           return item.text || item.TITLE || item.Title || 'No Title';
+        }
+
+        let processedData = data;
+        if (isYoutubePage) {
+          // Group items by channel
+          processedData = data.reduce((acc, item) => {
+            const channel = item.CHANNEL || 'Unknown Channel';
+            if (!acc[channel]) {
+              acc[channel] = [];
+            }
+            acc[channel].push(item);
+            return acc;
+          }, {});
         }
 
         // Function to handle each item, including those within arrays
@@ -146,16 +160,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               }
           });
+          return itemDiv;
         }
 
         // Iterate through the data and process each item
-        data.forEach(item => {
-          if (Array.isArray(item)) {
-            item.forEach(processItem); // If it's an array, process each element
-          } else {
-            processItem(item); // If it's a single item, process it directly
+        if (isYoutubePage) {
+          for (const channel in processedData) {
+            const channelItems = processedData[channel];
+
+            const channelDiv = document.createElement('div');
+            channelDiv.classList.add('channel-section');
+            channelDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            const channelHeader = document.createElement('h2');
+            channelHeader.textContent = channel;
+            channelDiv.appendChild(channelHeader);
+
+            channelItems.forEach(item => {
+              const itemDiv = processItem(item);
+              channelDiv.appendChild(itemDiv);
+            });
+
+            container.appendChild(channelDiv);
           }
-        });
+        } else {
+          data.forEach(item => {
+            processItem(item);
+          });
+        }
           
           // Add Collapse All functionality if the button exists
           const collapseAll = document.getElementById('collapse-all');

@@ -179,6 +179,7 @@ loadItems('../../data/anime.json', 'anime-items');
 loadItems('../../data/sundaymorning.json', 'sundaymorning-items');
 loadItems('../../data/sundaynight.json', 'sundaynight-items');
 loadItems('../../data/singleplayer.json', 'singleplayer-items');
+loadItems('../../data/youtube.json', 'youtube-items');
 
 document.addEventListener('DOMContentLoaded', function() {
   const coll = document.getElementsByClassName("collapsible");
