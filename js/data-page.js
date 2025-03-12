@@ -43,10 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
           // Use getTitle() to set the title text interchangeably
           let itemText = getTitle(item);
           let indicator = '';
+
           // If status is 🟢 then add a 🟢 indicator
           if (item.status === '🟢' || item.STATUS === '🟢') {
             indicator += ' 🟢';
           }
+
+          // Add copies indicators
+          if (item.copies !== undefined) {
+            indicator += ' 🟢'.repeat(item.copies);
+          }
+
           // If COMPLETED? contains a ✔ then add a ✔ indicator
           if (item['COMPLETED?'] && item['COMPLETED?'].includes('✔')) {
             indicator += ' ✔';
@@ -68,31 +75,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Replace detailsHTML construction with conditional checks
           let detailsHTML = '';
-          if (item.status && item.status.trim() !== '') {
-              detailsHTML += `<p><strong>Status:</strong> ${item.status}</p>`;
+
+          function addDetail(label, value) {
+            if (value && value.trim() !== '') {
+              detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+            }
           }
-          if (item['Series Length'] && item['Series Length'].trim() !== '') {
-              detailsHTML += `<p><strong>Series Length:</strong> ${item['Series Length']}</p>`;
-          }
-          if (item['LAST WATCHED'] && item['LAST WATCHED'].trim() !== '') {
-              detailsHTML += `<p><strong>Last Watched:</strong> ${item['LAST WATCHED']}</p>`;
-          }
-          if (item['OwnerShip'] && item['OwnerShip'].trim() !== '') {
-              detailsHTML += `<p><strong>Ownership:</strong> ${item['OwnerShip']}</p>`;
-          }
-          if (item.GENRE && item.GENRE.trim() !== '') {
-              detailsHTML += `<p><strong>Genre:</strong> ${item.GENRE}</p>`;
-          }
-          if (item.RUNTIME && item.RUNTIME.trim() !== '') {
-              detailsHTML += `<p><strong>Runtime:</strong> ${item.RUNTIME}</p>`;
-          }
-          if (item['Max Episodes'] && item['Max Episodes'].trim() !== '') {
-              detailsHTML += `<p><strong>Max Episodes:</strong> ${item['Max Episodes']}</p>`;
-          }
+
+          addDetail('Details', item.details);
+          addDetail('Reward', item.reward);
+          addDetail('Punishment', item.punishment);
+          addDetail('Genre', item.genre || item.GENRE);
+          addDetail('Mode', item.mode);
+          addDetail('Time per match', item['Time per match']);
+          addDetail('Playability', item.playability);
+          addDetail('Console', item.console || item.CONSOLE);
+          addDetail('Time to beat', item['time to beat'] || item["TIME TO BEAT"]);
+          addDetail('Completed', item.completed || item["COMPLETED?"]);
           if ((item.description && item.description.trim() !== '') || (item.DESCRIPTION && item.DESCRIPTION.trim() !== '')) {
             const desc = item.description || item.DESCRIPTION;
-            detailsHTML += `<p><strong>Description:</strong> ${desc}</p>`;
+            addDetail('Description', desc);
           }
+          addDetail('Cost', item.cost);
+          addDetail('After Spin', item['after spin']);
+          addDetail('Series Length', item['Series Length']);
+          addDetail('Last Watched', item['LAST WATCHED']);
+          addDetail('Ownership', item['OwnerShip']);
+          addDetail('Runtime', item['RUNTIME']);
+          addDetail('Max Episodes', item['Max Episodes']);
+          addDetail('Game', item.game);
+          addDetail('Watched', item.WATCHED);
+          addDetail('Channel', item.CHANNEL);
+          addDetail('Times Seen', item['TIMES SEEN']);
+          addDetail('Episodes', item.EPISODES);
+          addDetail('Console', item.CONSOLE);
+          addDetail('Platform', item.PLATFORM);
 
           itemDiv.innerHTML = `
             <div class="item-title">${itemLink}</div>
@@ -108,7 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
               allItems.forEach(el => {
                   if (el !== this) {
                       el.classList.remove('expanded');
-                      // Ensure link in closed items is disabled and styling reset
+                      el.style.backgroundImage = ''; // Remove background image from other items
+                      // Disable links in closed items and reset styling
                       const link = el.querySelector('a.item-title-link');
                       if (link) {
                           link.removeAttribute('href');
@@ -127,6 +145,28 @@ document.addEventListener('DOMContentLoaded', () => {
                   currentLink.removeAttribute('href');
                   currentLink.style.color = '';
                 }
+              }
+              // Set background image
+              let imageUrl = item.imageUrl || '';
+              if (item.image) {
+                  if (Array.isArray(item.image)) {
+                      imageUrl = item.image[0] || ''; // Use the first image from the array
+                  } else {
+                      imageUrl = item.image;
+                  }
+              }
+              if (imageUrl) {
+                  this.style.backgroundImage = `url('${imageUrl}')`;
+                  this.style.backgroundSize = 'cover';
+                  this.style.backgroundRepeat = 'no-repeat';
+                  this.style.color = 'white'; // Ensure text is visible
+                  this.style.textShadow = '2px 2px 4px #000000'; // Add text shadow for readability
+                  this.style.position = 'relative'; // Add position relative
+              } else {
+                  this.style.backgroundImage = ''; // Remove background image
+                  this.style.color = ''; // Reset text color
+                  this.style.textShadow = ''; // Remove text shadow
+                  this.style.position = ''; // Remove position relative
               }
           });
           return itemDiv;
@@ -174,9 +214,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           });
         } else {
-          data.forEach(item => {
-            processItem(item);
-          });
+          // Check if data is an object with container keys
+          if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+            // Iterate through each container in the data object
+            Object.keys(data).forEach(containerKey => {
+              const containerData = data[containerKey];
+              if (Array.isArray(containerData)) {
+                containerData.forEach(item => {
+                  processItem(item);
+                });
+              } else {
+                console.error('Container data is not an array:', containerData);
+              }
+            });
+          } else if (Array.isArray(data)) {
+            // If data is an array, process each item directly
+            data.forEach(item => {
+              processItem(item);
+            });
+          } else {
+            console.error('Data is not an array or object:', data);
+          }
         }
           
           // Add Collapse All functionality if the button exists
