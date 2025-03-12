@@ -59,10 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
               indicator += ' ' + '👀'.repeat(seasonCount);
             }
           }
-          // Preserve copies behavior
-          if (item.copies !== undefined && item.copies > 0) {
-            indicator += ' 🟢'.repeat(item.copies);
-          }
           
           // Use "link", "LINK", or "Link" property to generate the anchor
           let linkVal = item.link || item.LINK || item.Link || '';
@@ -75,9 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if (item.status && item.status.trim() !== '') {
               detailsHTML += `<p><strong>Status:</strong> ${item.status}</p>`;
           }
-          if (item.copies !== undefined) {
-              detailsHTML += `<p><strong>Copies:</strong> ${item.copies}</p>`;
-          }
           if (item['Series Length'] && item['Series Length'].trim() !== '') {
               detailsHTML += `<p><strong>Series Length:</strong> ${item['Series Length']}</p>`;
           }
@@ -87,38 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
           if (item['OwnerShip'] && item['OwnerShip'].trim() !== '') {
               detailsHTML += `<p><strong>Ownership:</strong> ${item['OwnerShip']}</p>`;
           }
+          if (item.GENRE && item.GENRE.trim() !== '') {
+              detailsHTML += `<p><strong>Genre:</strong> ${item.GENRE}</p>`;
+          }
           if (item.RUNTIME && item.RUNTIME.trim() !== '') {
               detailsHTML += `<p><strong>Runtime:</strong> ${item.RUNTIME}</p>`;
           }
           if (item['Max Episodes'] && item['Max Episodes'].trim() !== '') {
               detailsHTML += `<p><strong>Max Episodes:</strong> ${item['Max Episodes']}</p>`;
-          }
-          if (item.console && item.console.trim() !== '') {
-              detailsHTML += `<p><strong>Console:</strong> ${item.console}</p>`;
-          }
-          if (item.genre && item.genre.trim() !== '') {
-              detailsHTML += `<p><strong>Genre:</strong> ${item.genre}</p>`;
-          }
-          if (item.cost && item.cost.trim() !== '') {
-              detailsHTML += `<p><strong>Cost:</strong> ${item.cost}</p>`;
-          }
-          if (item.mode && item.mode.trim() !== '') {
-              detailsHTML += `<p><strong>Mode:</strong> ${item.mode}</p>`;
-          }
-          if (item['after spin'] && item['after spin'].trim() !== '') {
-              detailsHTML += `<p><strong>After Spin:</strong> ${item['after spin']}</p>`;
-          }
-          if (item['time per match'] && item['time per match'].trim() !== '') {
-              detailsHTML += `<p><strong>Time Per Match:</strong> ${item['time per match']}</p>`;
-          }
-          if (item['TIME TO BEAT'] && item['TIME TO BEAT'].trim() !== '') {
-              detailsHTML += `<p><strong>Time to Beat:</strong> ${item['TIME TO BEAT']}</p>`;
-          }
-          if (item.playability && item.playability.trim() !== '') {
-              detailsHTML += `<p><strong>Playability:</strong> ${item.playability}</p>`;
-          }
-          if (item['COMPLETED?'] && item['COMPLETED?'].trim() !== '') {
-              detailsHTML += `<p><strong>Completed:</strong> ${item['COMPLETED?']}</p>`;
           }
           if ((item.description && item.description.trim() !== '') || (item.DESCRIPTION && item.DESCRIPTION.trim() !== '')) {
             const desc = item.description || item.DESCRIPTION;
@@ -165,23 +134,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Iterate through the data and process each item
         if (isYoutubePage) {
-          for (const channel in processedData) {
+          // Sort channels alphabetically
+          const sortedChannels = Object.keys(processedData).sort();
+
+          sortedChannels.forEach(channel => {
             const channelItems = processedData[channel];
 
             const channelDiv = document.createElement('div');
             channelDiv.classList.add('channel-section');
             channelDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+
+            // Add collapsible functionality
             const channelHeader = document.createElement('h2');
             channelHeader.textContent = channel;
+            channelHeader.classList.add('collapsible');
             channelDiv.appendChild(channelHeader);
+
+            const channelContent = document.createElement('div');
+            channelContent.classList.add('content');
+            channelContent.style.display = 'none'; // Initially hide the content
 
             channelItems.forEach(item => {
               const itemDiv = processItem(item);
-              channelDiv.appendChild(itemDiv);
+              channelContent.appendChild(itemDiv);
             });
 
+            channelDiv.appendChild(channelContent);
             container.appendChild(channelDiv);
-          }
+
+            // Add event listener to toggle collapsible content
+            channelHeader.addEventListener('click', function() {
+              this.classList.toggle('active');
+              const content = this.nextElementSibling;
+              if (content.style.display === 'block') {
+                content.style.display = 'none';
+              } else {
+                content.style.display = 'block';
+              }
+            });
+          });
         } else {
           data.forEach(item => {
             processItem(item);
