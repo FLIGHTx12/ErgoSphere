@@ -3,17 +3,17 @@
       "TITLE": "Alan Wake",
       "STATUS": "",
       "GENRE": "Action Adventure",
-      "CONSOLE": "game pass",
+      "CONSOLE": "Game Pass",
       "TIME TO BEAT": "14 hrs",
       "Playability": "",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images.alphacoders.com/117/1179971.jpg"
     },
     {
       "TITLE": "Avowed",
-      "STATUS": "",
+      "STATUS": "🟣",
       "GENRE": "RPG",
       "CONSOLE": "",
       "TIME TO BEAT": "",
@@ -21,7 +21,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images.alphacoders.com/134/1348504.jpeg"
     },
     {
       "TITLE": "Broken Age",
@@ -33,7 +33,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://artfiles.alphacoders.com/904/thumb-1920-90435.jpg"
     },
     {
       "TITLE": "Creatures of Ava",
@@ -45,11 +45,23 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images2.alphacoders.com/137/thumb-1920-1371578.jpeg"
+    },
+    {
+      "TITLE": "Cyberpunk 2077",
+      "STATUS": "",
+      "GENRE": "Shooter, Role-playing (RPG), Adventure",
+      "CONSOLE": "Xbox",
+      "TIME TO BEAT": "57hrs",
+      "Playability": "owned",
+      "COMPLETED?": "🏆",
+      "LINK": "https://www.igdb.com/games/cyberpunk-2077-ultimate-edition",
+      "DESCRIPTION": "Cyberpunk 2077 is an open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. You can customize your character’s cyberware, skillset and playstyle, and explore a vast city where the choices you make shape the story and the world around you.",
+      "imageUrl": "https://www.hdwallpapers.in/download/cyborg_futuristic_johnny_silverhand_4k_hd_cyberpunk_2077-HD.jpg"
     },
     {
       "TITLE": "Disco Elysium",
-      "STATUS": "",
+      "STATUS": "🟣",
       "GENRE": "RPG",
       "CONSOLE": "",
       "TIME TO BEAT": "60hrs",
@@ -57,7 +69,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images8.alphacoders.com/119/1193016.jpg"
     },
     {
       "TITLE": "Firewatch",
@@ -69,19 +81,19 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images3.alphacoders.com/129/1292799.jpg"
     },
     {
       "TITLE": "Flintlock: Siege of the Dawn",
-      "STATUS": "",
+      "STATUS": "🟣",
       "GENRE": "Action Adventure, RPG",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "20hrs",
-      "Playability": "SEASON 1",
-      "COMPLETED?": "",
+      "Playability": "Game Pass",
+      "COMPLETED?": "🏆",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images8.alphacoders.com/136/1369674.png"
     },
     {
       "TITLE": "Hauntii",
@@ -93,55 +105,55 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images7.alphacoders.com/136/thumb-1920-1363212.jpeg"
     },
     {
       "TITLE": "Kunitsu-Gami: Path of the Goddess",
       "STATUS": "",
       "GENRE": "Action Adventure",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "34hrs",
-      "Playability": "",
+      "Playability": "Game Pass",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2024/07/Kunitsu-Gami-Path-of-the-Goddess-1920x1080.jpg"
     },
     {
       "TITLE": "South Of Midnight",
-      "STATUS": "",
+      "STATUS": "🟣",
       "GENRE": "Action Adventure",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "",
       "Playability": "SEASON 4",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images5.alphacoders.com/138/1386032.jpg"
     },
     {
       "TITLE": "The inner world",
       "STATUS": "",
       "GENRE": "Action Adventure",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "6hrs - 8hrs",
       "Playability": "",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://www.newgamenetwork.com/images/uploads/gallery/TheInnerWorld/innerworld_04.jpg"
     },
     {
       "TITLE": "The Rewinder",
       "STATUS": "🟢",
       "GENRE": "Adventure",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "5hrs",
-      "Playability": "",
+      "Playability": "Game Pass",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://cdn.mobygames.com/cff4f910-c270-11ed-ab6b-02420a000194.webp"
     },
     {
       "TITLE": "TUNIC",
@@ -153,43 +165,43 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://gameranx.com/wp-content/uploads/2019/09/Tunic-1.jpg"
     },
     {
       "TITLE": "Hellblade: Senua's Sacrifice",
       "STATUS": "Completed",
-      "GENRE": "z",
+      "GENRE": "",
       "CONSOLE": "",
       "TIME TO BEAT": "8hrs - 9hrs",
-      "Playability": "",
-      "COMPLETED?": "",
+      "Playability": "Game Pass",
+      "COMPLETED?": "🏆",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images7.alphacoders.com/709/709447.jpg"
     },
     {
       "TITLE": "ReCore: Definitive Edition",
       "STATUS": "Completed",
-      "GENRE": "z",
+      "GENRE": "Action Adventure",
       "CONSOLE": "",
       "TIME TO BEAT": "",
-      "Playability": "",
-      "COMPLETED?": "",
+      "Playability": "Game Pass",
+      "COMPLETED?": "🏆",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://www.shanethegamer.com/wp-content/uploads/2016/09/recore.jpg"
     },
     {
       "TITLE": "Senua's Saga Hellblade 2",
       "STATUS": "Completed",
       "GENRE": "z",
-      "CONSOLE": "",
+      "CONSOLE": "Xbox",
       "TIME TO BEAT": "May 21 - 9hrs",
-      "Playability": "",
-      "COMPLETED?": "",
+      "Playability": "Game Pass",
+      "COMPLETED?": "🏆",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://www.siliconera.com/wp-content/uploads/2024/05/senuas-saga-hellblade-2-review-cinematic-masterpiece.jpg?fit=1200%2C675"
     },
     {
       "TITLE": "Starfield",
@@ -201,7 +213,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2022/02/Starfield-game-HD-scaled.jpg"
     },
     {
       "TITLE": "Fe",
@@ -209,23 +221,23 @@
       "GENRE": "",
       "CONSOLE": "",
       "TIME TO BEAT": "12hrs - 15hrs",
-      "Playability": "",
+      "Playability": "Game Pass",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://assets1.ignimgs.com/thumbs/userUploaded/2018/2/15/fereview36190303feblogrollpreview-1518735046810.jpeg"
     },
     {
       "TITLE": "Gris",
       "STATUS": "",
-      "GENRE": "z",
+      "GENRE": "",
       "CONSOLE": "",
       "TIME TO BEAT": "4hrs - 6hrs",
       "Playability": "",
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAhfv-2l_VFbLVICbT_U2NQaq05Rc5I5nLA&s"
     },
     {
       "TITLE": "Jusant",
@@ -237,7 +249,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://cdna.artstation.com/p/assets/images/images/069/824/956/4k/nicolas-vidal-chap3-17.jpg?1701106734"
     },
     {
       "TITLE": "Planet of Lana",
@@ -249,7 +261,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images2.alphacoders.com/137/thumb-1920-1377612.jpg"
     },
     {
       "TITLE": "Spirit of the North: Enhanced Edition",
@@ -261,7 +273,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://www.heypoorplayer.com/wp-content/uploads/2020/11/Spirit-of-the-North-EE-Magic-scaled.jpg"
     },
     {
       "TITLE": "Dragon Age: The Veilguard",
@@ -273,7 +285,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://4kwallpapers.com/images/wallpapers/dragon-age-the-3840x1080-18399.jpg"
     },
     {
       "TITLE": "Dragon Age: Inquisition",
@@ -285,7 +297,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images3.alphacoders.com/555/555170.jpg"
     },
     {
       "TITLE": "Nine Sols",
@@ -297,7 +309,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images.alphacoders.com/129/1296794.jpg"
     },
     {
       "TITLE": "The Outer Worlds",
@@ -309,7 +321,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images3.alphacoders.com/104/thumb-1920-1042708.jpg"
     },
     {
       "TITLE": "We Happy Few",
@@ -321,7 +333,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images6.alphacoders.com/721/721399.png"
     },
     {
       "TITLE": "The Wandering Village",
@@ -333,7 +345,7 @@
       "COMPLETED?": "",
       "LINK": "",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://images8.alphacoders.com/127/1270169.jpg"
     },
     {
       "TITLE": "As Dusk Falls",
@@ -345,6 +357,6 @@
       "COMPLETED?": "",
       "LINK": "https://www.ign.com/games/as-dusk-falls",
       "DESCRIPTION": "",
-      "imageUrl": ""
+      "imageUrl": "https://cdna.artstation.com/p/assets/images/images/052/611/824/4k/amit-ginni-patpatia-screen-2560x1440-2022-08-11-14-12-42png09.jpg?1660231929"
     }
   ]

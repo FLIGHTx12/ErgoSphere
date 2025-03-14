@@ -2,7 +2,7 @@
   { "Title": "Thirteen Lives (2022)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "Subscription",
+    "OwnerShip": "Prime Video",
     "GENRE": ["Mystery & Thriller", "Drama", "Based On A True Story"],
     "RUNTIME": "2h 29min",
     "Link": "https://www.justwatch.com/us/movie/thirteen-lives",
@@ -12,17 +12,17 @@
   { "Title": "2001: A Space Odyssey(1968)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "Subscription",
+    "OwnerShip": "max",
     "GENRE": ["Action & Adventure", "Science-Fiction", "Mystery & Thriller", "Cerebral", "Space Opera"],
     "RUNTIME": "2h29m",
     "Link": "https://www.justwatch.com/us/movie/how-the-solar-system-was-won",
     "DESCRIPTION": "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
     "imageUrl": "https://images.justwatch.com/backdrop/267832295/s1440/how-the-solar-system-was-won.avif"
   },
-  {"Title": "A Time to Kill (1996)",
+  {"Title": "65 (2023)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "Subscription",
+    "OwnerShip": "NETFLIX",
     "GENRE": "Science-Fiction, Action & Adventure, Mystery & Thriller, Drama, Sci-Fi Drama",
     "RUNTIME": "1h 30min",
     "Link": "https://www.justwatch.com/us/movie/65",
@@ -41,8 +41,8 @@
   },
   { "Title": "Ant-Man (2015)",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "Science-Fiction, Action & Adventure, Comedy, Superhero",
     "RUNTIME": "1h 57min",
     "Link": "https://www.justwatch.com/us/movie/ant-man",
@@ -51,8 +51,8 @@
   },
   {"Title": "Ant-Man and the Wasp (2018)",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Subscription",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "Action & Adventure, Science-Fiction, Comedy, Superhero",
     "RUNTIME": "1h 58min",
     "Link": "https://www.justwatch.com/us/movie/ant-man-and-the-wasp",
@@ -62,7 +62,7 @@
   {"Title": "Archive (2020)",
     "STATUS": "🟢",
     "WATCHED": "👀",
-    "OwnerShip": "Subscription",
+    "OwnerShip": "Prime Video",
     "GENRE": "Sci-Fi",
     "RUNTIME": "1h 49min",
     "Link": "https://www.justwatch.com/us/movie/archive",
@@ -83,68 +83,68 @@
   {
     "Title": "Avengers: Endgame",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://i.pinimg.com/736x/ee/8f/55/ee8f555b1832b15bc62669aad0aa1611.jpg"
   },
   {
     "Title": "Avengers: Infinity War",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapers.com/images/hd/avengers-infinity-war-4k-logo-q2mik92nipxepl5i.jpg"
   },
   {
     "Title": "Black Adam",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
+    "OwnerShip": "max",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images2.alphacoders.com/129/1292444.jpg"
   },
   {
     "Title": "Black Panther",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images.alphacoders.com/902/902378.jpg"
   },
   {
     "Title": "Black Panther: Wakanda Forever",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images4.alphacoders.com/128/1286402.jpg"
   },
   {
     "Title": "Black Widow",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images4.alphacoders.com/107/1070325.jpg"
   },
   {
     "Title": "Bright (2017)",
@@ -160,24 +160,24 @@
   {
     "Title": "Brightburn",
     "STATUS": "",
-    "WATCHED": "",
+    "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images7.alphacoders.com/112/1123067.jpg"
   },
   {
     "Title": "Captain America: Civil War",
     "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
+    "WATCHED": "👀",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images5.alphacoders.com/689/689398.jpg"
   },
   {
     "Title": "Captain America: The First Avenger",
@@ -188,29 +188,29 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://blurayauthority.com/wp-content/uploads/2019/02/captainamericasbhd_pub.jpg"
   },
   {
     "Title": "Captain America: The Winter Soldier",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images.alphacoders.com/110/1108888.jpg"
   },
   {
     "Title": "Captain Marvel",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
+    "OwnerShip": "d",
     "GENRE": " Super Hero, Action",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images2.alphacoders.com/979/979960.jpg"
   },
   {
     "Title": "Children of Men",
@@ -221,29 +221,29 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://preview.redd.it/children-of-men-4k-dolby-vision-upgrade-v0-a1sdwjznmwyb1.jpg?width=1920&format=pjpg&auto=webp&s=140a9898aa49c41c971f6a3d36936adaaaf4f9f8"
   },
   {
-    "Title": "Close Encounters of the Third Kind",
+    "Title": "Close Encounters of the Third Kind (1977)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Buy",
+    "GENRE": "Science-Fiction, Drama, Sci-Fi Drama",
+    "RUNTIME": "2h 17min",
+    "Link": "https://www.justwatch.com/us/movie/close-encounters-of-the-third-kind",
+    "DESCRIPTION": "After an encounter with UFOs, an electricity linesman feels undeniably drawn to an isolated area in the wilderness where something spectacular is about to happen.",
+    "imageUrl": "https://www.hollywoodreporter.com/wp-content/uploads/2015/10/close_encounters_third_kind_1977_017.jpg?w=1440&h=810&crop=1"
   },
   {
     "Title": "Constantine",
     "STATUS": "",
-    "WATCHED": "👀",
+    "WATCHED": "👀👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://s.yimg.com/ny/api/res/1.2/mtlxlE__kPFyY_526LG_7w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTEyODA-/https://media.zenfs.com/en/digital_spy_281/1b9c022e58539dfc02ff11ff79cbbea1"
   },
   {
     "Title": "Contact",
@@ -254,29 +254,29 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://www.acmodasi.in/amdb/images/movie/f/p/contact-1997-9rSAYk.jpg"
   },
   {
-    "Title": "Dark City",
+    "Title": "Dark City (1998)",
     "STATUS": "",
     "WATCHED": "👀👀",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Prime Video",
+    "GENRE": "Science-Fiction, Mystery & Thriller, Fantasy, SciFi Horror, Dark Fantasy",
+    "RUNTIME": "1h 40min",
+    "Link": "https://www.justwatch.com/us/movie/dark-city-1998",
+    "DESCRIPTION": "A man struggles with memories of his past, including a wife he cannot remember, in a nightmarish world with no sun and run by beings with telekinetic powers who seek the souls of humans.",
+    "imageUrl": "https://rockshockpop.com/filedata/fetch?id=429259&d=1710342359"
   },
   {
     "Title": "Doctor Strange",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
+    "OwnerShip": "DISNEY+",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapercat.com/w/full/0/6/b/476391-3840x2160-desktop-4k-benedict-cumberbatch-doctor-strange-wallpaper-photo.jpg"
   },
   {
     "Title": "Doctor Strange: In the Multiverse of Madness",
@@ -287,24 +287,24 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images6.alphacoders.com/126/1262370.jpg"
   },
   {
-    "Title": "Doors",
+    "Title": "Doors(2021)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
+    "OwnerShip": "Prime Video",
+    "GENRE": "Science-Fiction, Invasion",
+    "RUNTIME": "1h 24min",
+    "Link": "https://www.justwatch.com/us/movie/doors-2021",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://w0.peakpx.com/wallpaper/619/845/HD-wallpaper-movie-doors.jpg"
   },
   {
     "Title": "Dredd (2012)",
     "STATUS": "🟢",
-    "WATCHED": "",
-    "OwnerShip": "Subscription",
+    "WATCHED": "👀",
+    "OwnerShip": "max",
     "GENRE": "Action & Adventure, Science-Fiction, Crime, Cyberpunk",
     "RUNTIME": "1h 35min",
     "Link": "https://www.justwatch.com/us/movie/judge-dredd",
@@ -320,7 +320,7 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images6.alphacoders.com/132/1321280.jpeg"
   },
   {
     "Title": "Equilibrium",
@@ -331,40 +331,40 @@
     "RUNTIME": "1h 47min",
     "Link": "https://www.justwatch.com/us/movie/equilibrium",
     "DESCRIPTION": "In a dystopian future, a totalitarian regime maintains peace by subduing the populace with a drug, and displays of emotion are punishable by death. A man in charge of enforcing the law rises to overthrow the system.",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapercave.com/wp/wp5471335.jpg"
   },
   {
     "Title": "Eternals (2021)",
     "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "",
-    "GENRE": "",
+    "WATCHED": "👀👀",
+    "OwnerShip": "DISNEY+",
+    "GENRE": "Action & Adventure, Science-Fiction, Fantasy, Superhero",
     "RUNTIME": "2h 36min",
     "Link": "https://www.justwatch.com/us/movie/eternals",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images3.alphacoders.com/118/1188044.jpg"
   },
   {
-    "Title": "Grosse pointe blank",
+    "Title": "Grosse Pointe Blank (1997)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Buy",
+    "GENRE": "Comedy, Mystery & Thriller, Romance, Action & Adventure, Crime, Action Comedy",
+    "RUNTIME": "1h 47min",
+    "Link": "https://www.justwatch.com/us/movie/grosse-pointe-blank",
+    "DESCRIPTION": "Martin Blank is a hitman for hire. When he starts to develop a conscience, he botches a couple of routine jobs. On the advice of his secretary and his psychiatrist, he decides to attend his ten-year high school reunion in Grosse Pointe, Michigan.",
+    "imageUrl": "https://m.media-amazon.com/images/S/pv-target-images/e69c70b1be9550c7a07ebc5b80549e6170ddb0e5f98373d17dc58dd3dc6c6217.png"
   },
   {
     "Title": "Guardians of the Galaxy",
     "STATUS": "",
-    "WATCHED": "",
+    "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images.wallpapersden.com/image/download/guardians-of-the-galaxy-hd-movie-poster_bWVobW2UmZqaraWkpJRmbmdlrWZlbWU.jpg"
   },
   {
     "Title": "Guardians of the Galaxy Vol. 2",
@@ -375,18 +375,18 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapercave.com/wp/wp2033197.jpg"
   },
   {
     "Title": "Heaven knows what",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Plex",
+    "GENRE": "Drama, Crime, Dark Crime",
+    "RUNTIME": "1h 34min",
+    "Link": "https://www.justwatch.com/us/movie/heaven-knows-what",
+    "DESCRIPTION": "A young heroin addict roams the streets of New York to panhandle and get her next fix, while her unstable boyfriend drifts in and out of her life at random.",
+    "imageUrl": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/06/heaven-knows-what.jpg"
   },
   {
     "Title": "Iron Man",
@@ -397,7 +397,7 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images2.alphacoders.com/105/1051995.jpg"
   },
   {
     "Title": "Iron Man 2",
@@ -408,7 +408,7 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://images4.alphacoders.com/261/261278.jpg"
   },
   {
     "Title": "Iron Man 3",
@@ -419,18 +419,18 @@
     "RUNTIME": "1hr, 30mins",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapercave.com/wp/wp1886680.jpg"
   },
   {
-    "Title": "Judge Dredd",
+    "Title": "Judge Dredd (1995)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Buy",
+    "GENRE": "Science-Fiction, Action & Adventure, Mystery & Thriller, Crime, Cyberpunk",
+    "RUNTIME": "1h 36min",
+    "Link": "https://www.justwatch.com/us/movie/judge-dredd-1995",
+    "DESCRIPTION": "In a dystopian future, Dredd, the most famous judge (a cop with instant field judiciary powers) is convicted for a crime he did not commit while his murderous counterpart escapes.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BZWM0MjExNzMtNGJkMy00MDNhLTlkOTctNDFiYzVjNTVmNGFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     "Title": "Lucy",
@@ -441,10 +441,10 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapercave.com/wp/wp7057790.jpg"
   },
   {
-    "Title": "Marvel's The Avengers ",
+    "Title": "Marvel's The Avengers",
     "STATUS": "",
     "WATCHED": "👀",
     "OwnerShip": "",
@@ -452,7 +452,7 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapers.com/images/featured/avengers-vm16xv4a69smdauy.jpg"
   },
   {
     "Title": "Morbius",
@@ -463,29 +463,29 @@
     "RUNTIME": "",
     "Link": "",
     "DESCRIPTION": "",
-    "imageUrl": ""
+    "imageUrl": "https://wallpapers.com/images/hd/morbius-movie-poster-ldch8chn0qv1wcrv.jpg"
   },
   {
-    "Title": "Mulholland Drive",
+    "Title": "Mulholland Dr. (1999)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Buy",
+    "GENRE": "Drama, Mystery Thriller",
+    "RUNTIME": "2h 27min",
+    "Link": "https://www.justwatch.com/us/movie/mulholland-drive",
+    "DESCRIPTION": "Blonde Betty Elms has only just arrived in Hollywood to become a movie star when she meets an enigmatic brunette with amnesia. Meanwhile, as the two set off to solve the second woman's identity, filmmaker Adam Kesher runs into ominous trouble while casting his latest project.",
+    "imageUrl": "https://images.savoysystems.co.uk/MCB/222090.jpg"
   },
   {
-    "Title": "Nope",
+    "Title": "Nope (2022)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
+    "OwnerShip": "Buy",
+    "GENRE": "Mystery & Thriller, Horror, Science-Fiction, SciFi Horror",
+    "RUNTIME": "2h 10min",
+    "Link": "https://www.justwatch.com/us/movie/nope",
+    "DESCRIPTION": "A man and his sister discover an unnatural alien force while working on their horse ranch. Soon after, they start experiencing strange events unfolding around them. Their horses begin acting out, fatally injuring people and other animals. The siblings scramble to put an end to this alien force, while their neighbor, the owner of a nearby theme park, tries to profit from the mysterious phenomenon.",
+    "imageUrl": "https://blog.frame.io/wp-content/uploads/2022/08/mif-nope-kaluuya-palmer-perea.jpg"
   },
   {
     "Title": "When We Were Kings (1996)",
@@ -507,7 +507,7 @@
     "RUNTIME": "2h 1min",
     "Link": "https://www.justwatch.com/us/movie/where-to-invade-next",
     "DESCRIPTION": "To understand firsthand what the United States of America can learn from other nations, Michael Moore playfully “invades” some to see what they have to offer.",
-    "imageUrl": "https://images.justwatch.com/backdrop/241484968/s1440/where-to-invade-next.avif"
+    "imageUrl": "https://images4.alphacoders.com/831/thumb-1920-831817.jpg"
   },
   {
     "Title": "ReMastered: Who Shot the Sheriff(2018)",
@@ -518,7 +518,7 @@
     "RUNTIME": "57min",
     "Link": "https://www.justwatch.com/us/movie/remastered-who-shot-the-sheriff",
     "DESCRIPTION": "In 1976, reggae icon Bob Marley survived an assassination attempt as rival political groups battled in Jamaica. But who exactly was responsible?",
-    "imageUrl": "https://images.justwatch.com/backdrop/91101832/s1440/remastered-who-shot-the-sheriff.avif"
+    "imageUrl": "https://occ-0-8407-116.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABdKdPAHM7EdM3tlzQpODduryeW4FBOmvi3N6lYslIRjBpQm9KuPQ0HBDVGsC_YCkXJxJXxVfpTfE3iPGx40R-jsCeoYfyDTCqqFG.jpg?r=74d"
   },
   {
     "Title": "ZEF - The Story of Die Antwoord (2024)",
