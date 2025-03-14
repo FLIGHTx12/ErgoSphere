@@ -1,16 +1,6 @@
 body {
-  background-color: rgb(7, 7, 7);
-  color: white;
-  margin: 0;
- 
-  padding-left: 50px;
-  padding: 0;
   background-image: url("https://i.redd.it/qaevyh08hsx51.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  transition: transform 0.3s ease-in-out;
   font-family: 'Courier New', Courier, monospace;
-  animation: pan-body 550s linear infinite;
 }
 
 @keyframes pan-body {

@@ -147,27 +147,29 @@ document.addEventListener('DOMContentLoaded', () => {
                   currentLink.style.color = '';
                 }
               }
-              // Set background image
-              let imageUrl = item.imageUrl || '';
-              if (item.image) {
+              // Set background image using imageUrl or first image from array
+              let backgroundImage = '';
+              if (item.imageUrl) {
+                  backgroundImage = item.imageUrl;
+              } else if (item.image) {
                   if (Array.isArray(item.image)) {
-                      imageUrl = item.image[0] || ''; // Use the first image from the array
+                      backgroundImage = item.image[0];
                   } else {
-                      imageUrl = item.image;
+                      backgroundImage = item.image;
                   }
               }
-              if (imageUrl) {
-                  this.style.backgroundImage = `url('${imageUrl}')`;
+
+              if (backgroundImage) {
+                  this.style.backgroundImage = `url('${backgroundImage}')`;
                   this.style.backgroundSize = 'cover';
+                  this.style.backgroundPosition = 'center';
                   this.style.backgroundRepeat = 'no-repeat';
-                  this.style.color = 'white'; // Ensure text is visible
-                  this.style.textShadow = '2px 2px 4px #000000'; // Add text shadow for readability
-                  this.style.position = 'relative'; // Add position relative
+                  this.style.color = 'white';
+                  this.style.textShadow = '2px 2px 4px #000000';
               } else {
-                  this.style.backgroundImage = ''; // Remove background image
-                  this.style.color = ''; // Reset text color
-                  this.style.textShadow = ''; // Remove text shadow
-                  this.style.position = ''; // Remove position relative
+                  this.style.backgroundImage = '';
+                  this.style.color = '';
+                  this.style.textShadow = '';
               }
           });
           return itemDiv;

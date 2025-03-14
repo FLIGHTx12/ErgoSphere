@@ -31,6 +31,27 @@ body.bingwa-theme select, body.bingwa-theme .ent-select {
   font-size: calc(100% + 5px);
 }
 
+/* Add Kushindwa dropdown styles */
+.ent-select {
+  background-color: #333;  /* Grey background for Kushindwa status */
+  color: white;
+}
+
+/* Add cashout input styling */
+#cashout-input {
+    width: 40px;  /* Set width to half */
+    margin: 5px 0;
+    border-radius: 15px;
+}
+
+#ent-summary {
+  background-image: url("https://i.ibb.co/CtB1Dvz/black-glass.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
 @media only screen and (max-width: 600px) {
   #ent-summary li {
     font-size: 10px;

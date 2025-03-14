@@ -1,76 +1,84 @@
 [
-  { "Title": "13 lives",
+  { "Title": "Thirteen Lives (2022)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "OwnerShip": "Subscription",
+    "GENRE": ["Mystery & Thriller", "Drama", "Based On A True Story"],
+    "RUNTIME": "2h 29min",
+    "Link": "https://www.justwatch.com/us/movie/thirteen-lives",
+    "DESCRIPTION": "Based on the true nail-biting mission that captivated the world. Twelve boys and the coach of a Thai soccer team explore the Tham Luang cave when an unexpected rainstorm traps them in a chamber inside the mountain. Entombed behind a maze of flooded cave tunnels, they face impossible odds. A team of world-class divers navigate through miles of dangerous cave networks to discover that finding the boys is only the beginning.",
+    "imageUrl": "https://images.justwatch.com/backdrop/296395011/s1440/thirteen-lives.avif"
   },
-  { "Title": "2001 Space Odyssey",
+  { "Title": "2001: A Space Odyssey(1968)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
+    "OwnerShip": "Subscription",
+    "GENRE": ["Action & Adventure", "Science-Fiction", "Mystery & Thriller", "Cerebral", "Space Opera"],
     "RUNTIME": "2h29m",
-    "Link": "",
-    "DESCRIPTION": ""
+    "Link": "https://www.justwatch.com/us/movie/how-the-solar-system-was-won",
+    "DESCRIPTION": "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
+    "imageUrl": "https://images.justwatch.com/backdrop/267832295/s1440/how-the-solar-system-was-won.avif"
   },
-  {"Title": "65",
+  {"Title": "A Time to Kill (1996)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "OwnerShip": "Subscription",
+    "GENRE": "Science-Fiction, Action & Adventure, Mystery & Thriller, Drama, Sci-Fi Drama",
+    "RUNTIME": "1h 30min",
+    "Link": "https://www.justwatch.com/us/movie/65",
+    "DESCRIPTION": "An emergency landing brings an astronaut to a mysterious planet. He spends his time desperately trying to figure out how to leave with the only other survivor a young girl who needs his protection. Mills and Koa explore the uncanny planet that feels at once familiar and odd. Quickly the pair discover that their fellow inhabitants are ancient dinosaurs and that the planet is Earth, 65 million years in the past. All they can do is try to survive being hunted until they can escape.",
+    "imageUrl": "https://images.justwatch.com/backdrop/304934688/s1440/65.avif"
   },
-  {"Title": "A Time to Kill",
+  {"Title": "A Time to Kill (1996)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Buy",
+    "GENRE": "Crime, Drama, Mystery & Thriller, Courtroom, Civil Rights",
+    "RUNTIME": "2h 29min",
+    "Link": "https://www.justwatch.com/us/movie/a-time-to-kill",
+    "DESCRIPTION": "A young lawyer defends a black man accused of murdering two white men who raped his 10-year-old daughter, sparking a rebirth of the KKK.",
+    "imageUrl": "https://images.justwatch.com/backdrop/179853071/s1440/a-time-to-kill.avif"
+  },
+  { "Title": "Ant-Man (2015)",
     "STATUS": "",
     "WATCHED": "",
     "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "GENRE": "Science-Fiction, Action & Adventure, Comedy, Superhero",
+    "RUNTIME": "1h 57min",
+    "Link": "https://www.justwatch.com/us/movie/ant-man",
+    "DESCRIPTION": "Armed with the astonishing ability to shrink in scale but increase in strength, master thief Scott Lang must embrace his inner-hero and help his mentor, Doctor Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world.",
+    "imageUrl": "https://images.justwatch.com/backdrop/176243789/s1440/ant-man.avif"
   },
-  { "Title": "Ant-Man",
+  {"Title": "Ant-Man and the Wasp (2018)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "OwnerShip": "Subscription",
+    "GENRE": "Action & Adventure, Science-Fiction, Comedy, Superhero",
+    "RUNTIME": "1h 58min",
+    "Link": "https://www.justwatch.com/us/movie/ant-man-and-the-wasp",
+    "DESCRIPTION": "Just when his time under house arrest is about to end, Scott Lang once again puts his freedom at risk to help Hope van Dyne and Dr. Hank Pym dive into the quantum realm and try to accomplish, against time and any chance of success, a very dangerous rescue mission.",
+    "imageUrl": "https://images.justwatch.com/backdrop/40492690/s1440/ant-man-and-the-wasp.avif"
   },
-  {"Title": "Ant-Man and the Wasp",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
-  },
-  {"Title": "Archive",
+  {"Title": "Archive (2020)",
     "STATUS": "🟢",
     "WATCHED": "👀",
-    "OwnerShip": "PRIME - free",
+    "OwnerShip": "Subscription",
     "GENRE": "Sci-Fi",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "RUNTIME": "1h 49min",
+    "Link": "https://www.justwatch.com/us/movie/archive",
+    "DESCRIPTION": "2038: George Almore is working on a true human-equivalent AI, and his latest prototype is almost ready. This sensitive phase is also the riskiest as he has a goal that must be hidden at all costs—being reunited with his dead wife.",
+    "imageUrl": "https://images.justwatch.com/backdrop/195510228/s1440/archive.avif"
   },
   {
-    "Title": "Avengers: Age of Ultron",
+    "Title": "Avengers: Age of Ultron (2015)",
     "STATUS": "🟢",
     "WATCHED": "👀👀",
     "OwnerShip": "DISNEY+",
     "GENRE": "Super Hero, Action",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "RUNTIME": "2h 21min",
+    "Link": "https://www.justwatch.com/us/movie/avengers-age-of-ultron",
+    "DESCRIPTION": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+    "imageUrl": "https://images.justwatch.com/backdrop/318032910/s1440/avengers-age-of-ultron.avif"
   },
   {
     "Title": "Avengers: Endgame",
@@ -80,7 +88,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Avengers: Infinity War",
@@ -90,7 +99,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Black Adam",
@@ -100,7 +110,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Black Panther",
@@ -110,7 +121,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Black Panther: Wakanda Forever",
@@ -120,7 +132,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Black Widow",
@@ -130,17 +143,19 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Bright",
+    "Title": "Bright (2017)",
     "STATUS": "🟢",
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Fantasy",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "RUNTIME": "1h 57min",
+    "Link": "https://www.justwatch.com/us/movie/bright",
+    "DESCRIPTION": "In an alternate present-day where magical creatures live among us, two L.A. cops become embroiled in a prophesied turf battle.",
+    "imageUrl": "https://images.justwatch.com/backdrop/38006467/s1440/bright.avif"
   },
   {
     "Title": "Brightburn",
@@ -150,7 +165,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Captain America: Civil War",
@@ -160,7 +176,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Captain America: The First Avenger",
@@ -170,7 +187,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Captain America: The Winter Soldier",
@@ -180,7 +198,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Captain Marvel",
@@ -190,7 +209,8 @@
     "GENRE": " Super Hero, Action",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Children of Men",
@@ -200,7 +220,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Close Encounters of the Third Kind",
@@ -210,7 +231,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Constantine",
@@ -220,7 +242,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Contact",
@@ -230,7 +253,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Dark City",
@@ -240,7 +264,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Doctor Strange",
@@ -250,7 +275,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Doctor Strange: In the Multiverse of Madness",
@@ -260,7 +286,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Doors",
@@ -270,17 +297,19 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Dredd (Prime) 1h35m",
+    "Title": "Dredd (2012)",
     "STATUS": "🟢",
     "WATCHED": "",
-    "OwnerShip": "PRIME - buy or rent",
-    "GENRE": "Super Hero, Crime",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": ""
+    "OwnerShip": "Subscription",
+    "GENRE": "Action & Adventure, Science-Fiction, Crime, Cyberpunk",
+    "RUNTIME": "1h 35min",
+    "Link": "https://www.justwatch.com/us/movie/judge-dredd",
+    "DESCRIPTION": "In the future, America is a dystopian wasteland. The latest scourge is Ma-Ma, a prostitute-turned-drug pusher with a dangerous new drug and aims to take over the city. The only possibility of stopping her is an elite group of urban police called Judges, who combine the duties of judge, jury and executioner to deliver a brutal brand of swift justice. But even the top-ranking Judge, Dredd, discovers that taking down Ma-Ma isn’t as easy as it seems in this explosive adaptation of the hugely popular comic series.",
+    "imageUrl": "https://images.justwatch.com/backdrop/175501338/s1440/judge-dredd.avif"
   },
   {
     "Title": "Dungeons & Dragons: Honor Among Thieves",
@@ -290,7 +319,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Equilibrium",
@@ -300,7 +330,8 @@
     "GENRE": "Action & Adventure, Science-Fiction, Mystery & Thriller, Drama, Tech Noir",
     "RUNTIME": "1h 47min",
     "Link": "https://www.justwatch.com/us/movie/equilibrium",
-    "DESCRIPTION": "In a dystopian future, a totalitarian regime maintains peace by subduing the populace with a drug, and displays of emotion are punishable by death. A man in charge of enforcing the law rises to overthrow the system."
+    "DESCRIPTION": "In a dystopian future, a totalitarian regime maintains peace by subduing the populace with a drug, and displays of emotion are punishable by death. A man in charge of enforcing the law rises to overthrow the system.",
+    "imageUrl": ""
   },
   {
     "Title": "Eternals (2021)",
@@ -310,7 +341,8 @@
     "GENRE": "",
     "RUNTIME": "2h 36min",
     "Link": "https://www.justwatch.com/us/movie/eternals",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Grosse pointe blank",
@@ -320,7 +352,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Guardians of the Galaxy",
@@ -330,7 +363,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Guardians of the Galaxy Vol. 2",
@@ -340,17 +374,19 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Heaven knows what (Prime) 1h37m",
+    "Title": "Heaven knows what",
     "STATUS": "",
     "WATCHED": "",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Iron Man",
@@ -360,7 +396,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Iron Man 2",
@@ -370,7 +407,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Iron Man 3",
@@ -380,47 +418,52 @@
     "GENRE": "",
     "RUNTIME": "1hr, 30mins",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Judge Dredd (Prime) 1h36m",
+    "Title": "Judge Dredd",
     "STATUS": "",
     "WATCHED": "",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Lucy (Netflix) ",
+    "Title": "Lucy",
     "STATUS": "",
     "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Marvel's The Avengers (Disney+) 143 minutes👀",
+    "Title": "Marvel's The Avengers ",
     "STATUS": "",
     "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
-    "Title": "Morbius (Disney+) 1h44m👀",
+    "Title": "Morbius",
     "STATUS": "",
     "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Mulholland Drive",
@@ -430,7 +473,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "Nope",
@@ -440,7 +484,8 @@
     "GENRE": "",
     "RUNTIME": "",
     "Link": "",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "",
+    "imageUrl": ""
   },
   {
     "Title": "When We Were Kings (1996)",
@@ -450,7 +495,8 @@
     "GENRE": "History, Music & Musical, Documentary, Sport",
     "RUNTIME": "1h 29min",
     "Link": "https://www.justwatch.com/us/movie/when-we-were-kings",
-    "DESCRIPTION": "It's 1974. Muhammad Ali is 32 and thought by many to be past his prime. George Foreman is ten years younger and the heavyweight champion of the world. Promoter Don King wants to make a name for himself and offers both fighters five million dollars apiece to fight one another, and when they accept, King has only to come up with the money. He finds a willing backer in Mobutu Sese Suko, the dictator of Zaire, and the 'Rumble in the Jungle' is set, including a musical festival featuring some of America's top black performers, like James Brown and B.B. King."
+    "DESCRIPTION": "It's 1974. Muhammad Ali is 32 and thought by many to be past his prime. George Foreman is ten years younger and the heavyweight champion of the world. Promoter Don King wants to make a name for himself and offers both fighters five million dollars apiece to fight one another, and when they accept, King has only to come up with the money. He finds a willing backer in Mobutu Sese Suko, the dictator of Zaire, and the 'Rumble in the Jungle' is set, including a musical festival featuring some of America's top black performers, like James Brown and B.B. King.",
+    "imageUrl": "https://images.justwatch.com/backdrop/173315787/s1440/when-we-were-kings.avif"
   },
   {
     "Title": "Where to Invade Next (2015)",
@@ -460,7 +506,8 @@
     "GENRE": "Documentary, Comedy",
     "RUNTIME": "2h 1min",
     "Link": "https://www.justwatch.com/us/movie/where-to-invade-next",
-    "DESCRIPTION": "To understand firsthand what the United States of America can learn from other nations, Michael Moore playfully “invades” some to see what they have to offer."
+    "DESCRIPTION": "To understand firsthand what the United States of America can learn from other nations, Michael Moore playfully “invades” some to see what they have to offer.",
+    "imageUrl": "https://images.justwatch.com/backdrop/241484968/s1440/where-to-invade-next.avif"
   },
   {
     "Title": "ReMastered: Who Shot the Sheriff(2018)",
@@ -470,7 +517,8 @@
     "GENRE": "Documentary, Crime, History, Music & Musical",
     "RUNTIME": "57min",
     "Link": "https://www.justwatch.com/us/movie/remastered-who-shot-the-sheriff",
-    "DESCRIPTION": "In 1976, reggae icon Bob Marley survived an assassination attempt as rival political groups battled in Jamaica. But who exactly was responsible?"
+    "DESCRIPTION": "In 1976, reggae icon Bob Marley survived an assassination attempt as rival political groups battled in Jamaica. But who exactly was responsible?",
+    "imageUrl": "https://images.justwatch.com/backdrop/91101832/s1440/remastered-who-shot-the-sheriff.avif"
   },
   {
     "Title": "ZEF - The Story of Die Antwoord (2024)",
@@ -480,6 +528,7 @@
     "GENRE": "Documentary, Music & Musical, Music Biopics",
     "RUNTIME": "1h 30min",
     "Link": "https://www.justwatch.com/us/movie/zef-the-story-of-die-antwoord",
-    "DESCRIPTION": "South African producer / director JON DAY spent the last 5 years making a documentary about the mysterious rap-rave group, DIE ANTWOORD. Art directed by surrealist photographer, ROGER BALLEN. Narrated by NINJA & ¥O-LANDI'S daughter, 16 JONES."
+    "DESCRIPTION": "South African producer / director JON DAY spent the last 5 years making a documentary about the mysterious rap-rave group, DIE ANTWOORD. Art directed by surrealist photographer, ROGER BALLEN. Narrated by NINJA & ¥O-LANDI'S daughter, 16 JONES.",
+    "imageUrl": "https://images.justwatch.com/backdrop/312764084/s1440/zef-the-story-of-die-antwoord.avif"
   }
 ]
