@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Add navbar scroll behavior
+  let lastScrollTop = 0;
+  const navbar = document.getElementById('navbar');
+  
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      navbar.classList.add('hidden');
+    } else {
+      navbar.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
+  });
+
   const dataFile = getDataFile();
   const containerId = 'data-container';
 
@@ -153,9 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   backgroundImage = item.imageUrl;
               } else if (item.image) {
                   if (Array.isArray(item.image)) {
-                      backgroundImage = item.image[0];
+                      backgroundImage = '../' + item.image[0]; // Add '../' prefix for relative paths
                   } else {
-                      backgroundImage = item.image;
+                      backgroundImage = '../' + item.image; // Add '../' prefix for relative paths
                   }
               }
 

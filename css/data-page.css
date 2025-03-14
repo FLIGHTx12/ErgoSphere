@@ -67,7 +67,7 @@ body.page-transition {
   background-position: top; /* Changed from 'top center' to just 'top' */
   background-repeat: no-repeat;
   width: 100%; /* Expanded div now spans the full row */
-  max-width: 70%; /* Limit the maximum width */
+  max-width: 70%; /* Default max-width for larger screens */
   margin-left: auto;
   margin-right: auto; /* Center the expanded item */
   margin-top: 20px; /* Add some space above */
@@ -86,6 +86,14 @@ body.page-transition {
   padding-bottom: 40px; /* Add more padding at bottom */
   box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.3); /* Reduced shadow opacity from 0.6 to 0.3 */
   transform-origin: top; /* Ensure transforms happen from top */
+}
+
+@media (max-width: 768px) {
+  .item-row.expanded {
+    max-width: 95%; /* Take up most of the viewport width on mobile */
+    margin: 10px auto; /* Adjust margins for mobile */
+    padding: 15px; /* Slightly reduce padding for mobile */
+  }
 }
 
 .item-row.expanded:hover {
@@ -239,4 +247,26 @@ body.page-transition {
   body {
     background-size: cover !important;
   }
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+  background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+  background-color: rgb(14, 13, 13);
+  transition: transform 0.3s ease-in-out;
+}
+
+#navbar.hidden {
+  transform: translateY(-100%);
 }
