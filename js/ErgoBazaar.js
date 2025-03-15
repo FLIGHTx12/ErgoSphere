@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cat.querySelectorAll('.ent-select').forEach(select => {
         select.innerHTML = '<option value="0">Select</option>'; // Clear existing options
         optionsArray.forEach(item => {
+          // Skip items with game="ERGOarena"
+          if (item.game === "ERGOarena") return;
+          
           // Extract relevant information from the item
           const title = item.Title || item.TITLE || item.text || 'No Title';
           let status = item.STATUS || '';

@@ -10,8 +10,7 @@ let powerDownPlayed = false; // Add this with other state variables at the top
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
 const choiceText = document.getElementById("choice-text");
-const startButton = document.getElementById("start-button");
-const stopButton = document.getElementById("stop-button");
+const controlButton = document.getElementById("control-button");
 const rewardDisplay = document.getElementById("reward-display");
 const staticRewards = document.getElementById("static-rewards");
 const choiceContent = document.getElementById("choice-content");
@@ -137,6 +136,22 @@ function showRewardInfo(choice) {
     const infoDisplay = document.getElementById('reward-info-display');
     const infoContent = document.getElementById('reward-info-content');
     
+    // Set background image if available
+    if (choice.imageUrl && choice.imageUrl.trim() !== '') {
+        infoDisplay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('${choice.imageUrl}')`;
+    } else if (choice.image) {
+        const imagePath = Array.isArray(choice.image) ? choice.image[0] : choice.image;
+        if (imagePath && imagePath.trim() !== '') {
+            // Handle both relative and absolute URLs
+            const imageUrl = imagePath.startsWith('http') ? imagePath : `../${imagePath.replace(/^\.\.\//, '')}`;
+            infoDisplay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('${imageUrl}')`;
+        } else {
+            infoDisplay.style.backgroundImage = 'none';
+        }
+    } else {
+        infoDisplay.style.backgroundImage = 'none';
+    }
+
     // Create title, making it a link if a link property exists
     let titleContent = choice.text;
     if (choice.link && choice.link.trim() !== '') {
@@ -281,18 +296,34 @@ function showFlashEffect() {
 }
 
 function getRandomImage(choice) {
-    if (Array.isArray(choice.image)) {
-        const randomIndex = Math.floor(Math.random() * choice.image.length);
-        return choice.image[randomIndex];
+    if (!choice || (!choice.image && !choice.imageUrl)) {
+        console.warn('No image found for choice:', choice);
+        return null;
     }
-    return choice.image;
+    
+    if (choice.imageUrl) return choice.imageUrl;
+    
+    if (Array.isArray(choice.image)) {
+        if (choice.image.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * choice.image.length);
+        return normalizePath(choice.image[randomIndex]);
+    }
+    return normalizePath(choice.image);
 }
 
-// Add new image preloading system
+function normalizePath(path) {
+    if (!path) return null;
+    if (path.startsWith('http')) return path;
+    return path.startsWith('../') ? path : `../${path.replace(/^\.\.\//, '')}`;
+}
+
+// Improve image preloading system
 const imageCache = new Map();
 let lastImageUrl = null;
+let currentlyLoading = false;
 
 function preloadImage(url) {
+    if (!url) return Promise.reject(new Error('No image URL provided'));
     if (imageCache.has(url)) {
         return imageCache.get(url);
     }
@@ -300,7 +331,11 @@ function preloadImage(url) {
     const img = new Image();
     const promise = new Promise((resolve, reject) => {
         img.onload = () => resolve(url);
-        img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+        img.onerror = () => {
+            console.warn(`Failed to load image: ${url}`);
+            imageCache.delete(url);
+            reject(new Error(`Failed to load image: ${url}`));
+        };
         img.src = url;
     });
     imageCache.set(url, promise);
@@ -308,10 +343,15 @@ function preloadImage(url) {
 }
 
 async function updateChoiceImage(choice) {
+    if (currentlyLoading) return; // Prevent multiple simultaneous updates
+    
     try {
+        currentlyLoading = true;
         const imageUrl = getRandomImage(choice);
-        // Skip if same image
-        if (imageUrl === lastImageUrl) {
+        
+        // Skip if same image or no image
+        if (!imageUrl || imageUrl === lastImageUrl) {
+            currentlyLoading = false;
             return;
         }
         
@@ -320,12 +360,19 @@ async function updateChoiceImage(choice) {
         
         // Only update if we're still spinning
         if (spinning || stopInitiated) {
-            choiceImage.style.display = "block";
-            choiceImage.src = imageUrl;
-            lastImageUrl = imageUrl;
+            choiceImage.style.opacity = '0';
+            setTimeout(() => {
+                choiceImage.style.display = "block";
+                choiceImage.src = imageUrl;
+                choiceImage.style.opacity = '0.5';
+                lastImageUrl = imageUrl;
+            }, 100);
         }
     } catch (error) {
-        console.error('Error loading image:', error);
+        console.error('Error updating choice image:', error);
+        choiceImage.style.display = "none"; // Hide image on error
+    } finally {
+        currentlyLoading = false;
     }
 }
 
@@ -420,25 +467,29 @@ function spin(cycleId) {
 
 // Reset image cache when cycle ends
 function resetCycle() {
-  spinning = false;
-  stopInitiated = false;
-  delay = 1000;
-  rampStartTime = null;
-  choiceImage.src = "";
-  choiceImage.style.display = "none";
-  choiceText.textContent = "";
-  
-  const rewardItems = staticRewards.querySelectorAll(".reward-item");
-  rewardItems.forEach(item => item.classList.remove("active"));
-  
-  const existingPopup = document.getElementById("optionPopup");
-  if (existingPopup) {
-    existingPopup.remove();
-  }
-  powerDownPlayed = false; // Reset the flag when resetting cycle
-  stopVibration();
-  imageCache.clear();
-  lastImageUrl = null;
+    spinning = false;
+    stopInitiated = false;
+    delay = 1000;
+    rampStartTime = null;
+    choiceImage.src = "";
+    choiceImage.style.display = "none";
+    choiceText.textContent = "";
+    controlButton.textContent = "Start";
+    controlButton.classList.remove('stopping');
+    
+    const rewardItems = staticRewards.querySelectorAll(".reward-item");
+    rewardItems.forEach(item => item.classList.remove("active"));
+    
+    const existingPopup = document.getElementById("optionPopup");
+    if (existingPopup) {
+        existingPopup.remove();
+    }
+    powerDownPlayed = false; // Reset the flag when resetting cycle
+    stopVibration();
+    imageCache.clear();
+    lastImageUrl = null;
+    currentlyLoading = false; // Reset loading state
+    choiceImage.style.opacity = '0';
 }
 
 async function capturePopupScreenshot(element) {
@@ -585,14 +636,53 @@ function showOptionPopup(choice) {
     }, 0);
 }
 
-startButton.addEventListener("click", () => {
-  playClickSounds();
-  playSound('spinUp'); // Play spin up sound when starting
-  resetCycle();
-  spinning = true;
-  startVibration();
-  const cycleId = currentCycleId;
-  spin(cycleId);
+controlButton.addEventListener("click", () => {
+    if (!spinning && !stopInitiated) {
+        // Start spinning
+        playClickSounds();
+        playSound('spinUp');
+        resetCycle();
+        spinning = true;
+        startVibration();
+        controlButton.textContent = "Stop";
+        controlButton.classList.add('stopping');
+        const cycleId = currentCycleId;
+        spin(cycleId);
+    } else {
+        // Stop spinning
+        const wasSpinning = spinning;
+        if (spinning) {
+            spinning = false;
+            stopInitiated = true;
+            rampStartTime = Date.now();
+        } else {
+            resetCycle();
+        }
+        playClickSounds();
+        if (wasSpinning) {
+            Object.entries(AUDIO).forEach(([key, audio]) => {
+                if (!['mouseClick', 'click'].includes(key)) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+        }
+    }
+});
+
+// Add spacebar control
+document.addEventListener('keydown', (event) => {
+    // Check if spacebar was pressed and we're not typing in any input/textarea
+    if (event.code === 'Space' && 
+        !event.repeat && 
+        !(event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA')) {
+        event.preventDefault(); // Prevent page scrolling
+        controlButton.click(); // Simulate button click
+        
+        // Add visual feedback
+        controlButton.classList.add('press-animation');
+        setTimeout(() => controlButton.classList.remove('press-animation'), 200);
+    }
 });
 
 function stopAllAudio() {
@@ -601,27 +691,6 @@ function stopAllAudio() {
         audio.currentTime = 0;
     });
 }
-
-stopButton.addEventListener("click", () => {
-    const wasSpinning = spinning; // Store spinning state
-    if (spinning) {
-        spinning = false;
-        stopInitiated = true;
-        rampStartTime = Date.now();
-    } else {
-        resetCycle();
-    }
-    playClickSounds(); // Play click sounds after state changes but before stopping other audio
-    if (wasSpinning) {
-        // Only stop non-click audio if we were spinning
-        Object.entries(AUDIO).forEach(([key, audio]) => {
-            if (!['mouseClick', 'click'].includes(key)) {
-                audio.pause();
-                audio.currentTime = 0;
-            }
-        });
-    }
-});
 
 lootButton.addEventListener("click", async () => {
   stopAllAudio();
