@@ -1,5 +1,11 @@
 body {
   background-image: url("https://i.redd.it/qaevyh08hsx51.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  image-rendering: -webkit-optimize-contrast;  /* For Webkit browsers */
+  image-rendering: crisp-edges;  /* For Firefox */
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -176,6 +182,7 @@ button:focus {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  margin-left: -20px; /* Added to shift container left */
 }
 
 .monster-container {
@@ -236,7 +243,8 @@ button:focus {
   }
 
   #content-container {
-    margin-left: 0;
+    margin-left: 0px;
+    margin-top: 0;
     padding-left: 20px;
     padding-right: 20px;
   }

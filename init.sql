@@ -1,8 +1,44 @@
-DROP TABLE IF EXISTS ErgoShop;
-CREATE TABLE ErgoShop (
-  data JSONB NOT NULL
+-- Drop all existing tables with proper order to avoid dependency issues
+DROP TABLE IF EXISTS refreshment_options CASCADE;
+DROP TABLE IF EXISTS dropdown_options CASCADE;
+DROP TABLE IF EXISTS game_data CASCADE;
+DROP TABLE IF EXISTS loot_items CASCADE;
+DROP TABLE IF EXISTS ErgoShop CASCADE;
+
+-- Create tables with proper constraints
+CREATE TABLE IF NOT EXISTS ErgoShop (
+  id SERIAL PRIMARY KEY,
+  data JSONB NOT NULL CHECK (jsonb_typeof(data) = 'object')
 );
 
+CREATE TABLE IF NOT EXISTS dropdown_options (
+  category TEXT PRIMARY KEY CHECK (category IS NOT NULL AND category != ''),
+  options JSONB NOT NULL CHECK (jsonb_typeof(options) = 'array')
+);
+
+CREATE TABLE IF NOT EXISTS loot_items (
+  id SERIAL PRIMARY KEY,
+  text TEXT NOT NULL,
+  image JSONB,
+  copies INTEGER NOT NULL DEFAULT 0 CHECK (copies >= 0),
+  details TEXT,
+  genre TEXT,
+  type TEXT,
+  cost TEXT,
+  after_spin TEXT,
+  link TEXT
+);
+
+-- Include data tables
+\i db/migrations/create_data_tables.sql
+
+-- Add data migration scripts 
+\i db/migrations/import_youtube_data.sql
+\i db/migrations/import_sundaynight_data.sql
+\i db/migrations/import_singleplayer_data.sql
+\i db/migrations/import_movies_data.sql
+
+-- Insert core shop data
 INSERT INTO ErgoShop (data) VALUES (
   '{
     "saltySnackContainer": [
@@ -10,6 +46,7 @@ INSERT INTO ErgoShop (data) VALUES (
       { "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "value": 10 },
       { "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "value": 20 },
       { "text": "🧀Cheez-it - 30💷", "value": 30 },
+      { "text": "🥜Gourmet Nut Power Up® Mega Omega Premium Trail Mix - 30💷", "value": 30 },
       { "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷", "value": 30 },
       { "text": "🐄 Old Fashioned Beef Jerk - 40💷", "value": 40 },
       { "text": "🍘Wheat Thins Original - 40💷", "value": 40 }
@@ -20,6 +57,7 @@ INSERT INTO ErgoShop (data) VALUES (
       { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
       { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
       { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
+      { "text": "🐇Annie''s Organic Bunny Fruit Snacks - 40💷", "value": 40 },
       { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
       { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
     ],
@@ -32,113 +70,66 @@ INSERT INTO ErgoShop (data) VALUES (
       { "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷", "value": 40 }
     ],
     "concoctionsContainer": [
-      { "text": "🚬THC Gummies - 40💷", "value": 40 },
-      { "text": "☕VJ Hot Cocoa 500ml - 20💷", "value": 20 },
+      { "text": "🩸THC Gummies - 40💷", "value": 40 },
+      { "text": "☕VJ Hot Cocoa 500ml - 30💷", "value": 30 },
       { "text": "🍺Beer - 50💷", "value": 50 },
       { "text": "🥃Mixed Drink (2shots) - 50💷", "value": 50 },
       { "text": "🍷Wine Glass 500ml - 100💷", "value": 100 },
       { "text": "🍾Wine Bottle 750ml - 150💷", "value": 150 }
     ],
     "mealModsContainer": [
-      { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
       { "text": "🍴Lunch Snack - 2💷", "value": 2 },
       { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
+      { "text": "🍞Toast Nightcap (butter/peanut)- 2💷", "value": 2 },
+      { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 }
+    ],
+    "prizesContainer": [
+      { "text": "✨⭐⭐🌟LUXURY🌟⭐⭐✨- 0💷", "value": 0 },
       { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
-      { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
+      { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 },
+      { "text": "🧞 Djinn Wish (1/3) - 0💷", "value": 0 },
+      { "text": "🧞🧞 Djinn Wish (2/3) - 0💷", "value": 0 },
+      { "text": "🧞🧞🧞 Djinn Wish (3/3) - 0💷", "value": 0 }
+    ],
+    "replacementsContainer": [
+      { "text": "🌃🍽 DINE OUT - 300💷", "value": 300, "description": "Replace weekday meal, dine out instead " },
+      { "text": "🍕🥡TAKEOUT NIGHT! - 500💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
+    ],
+    "entertainmentContainer": [   
+      { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch 30 mins of any show or movie." },
+      { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Play 30 mins of any game." },
+      { "text": "🎟 Golden Ticket (1screening) - 300💶", "value": 300, "description": "Attend a theatre showing. Wipe scheduled events" }
+    ],
+    "schedulemodsContainer": [
+      { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any ''Fun'' event into ''Free time''." },
+      { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage during vacation." },
+      { "text": "😴 SLEEP IN (2hrs)- 100💶", "value": 100, "description": "Skip Scheduled morning events." },
+      { "text": "🛌🏾 BINGE DAY (1day) - 500💶", "value": 500, "description": "All day show or game binge." }
+    ],
+    "wantsvsneedsContainer": [
+      { "text": "💱👑BINGWA CURRENCY EXCHANGE (2💷 per full dollar)", "value": 2, "description": "Use 20 Ducats per $10 to buy a \"want\" instead of spinning it (does not concern needs)" },
+      { "text": "💱😖KUSHINDWA CURRENCY EXCHANGE (4💷 per full dollar)", "value": 4, "description": "Use 40 Ducats per $10 to buy a \"want\" instead of spinning it (does not concern needs)" }
     ]
   }'
 );
 
-DROP TABLE IF EXISTS dropdown_options;
-CREATE TABLE dropdown_options (
-  category TEXT PRIMARY KEY,
-  options JSONB NOT NULL
-);
+-- Populate dropdown options from ErgoShop data
+INSERT INTO dropdown_options (category, options) 
+SELECT category, data::jsonb AS options 
+FROM ErgoShop, jsonb_each(data) AS e(category, data);
 
-INSERT INTO dropdown_options (category, options) VALUES
-('saltySnackContainer', '[
-  { "text": "🌿Roasted Seaweed - 10💷", "value": 10 },
-  { "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "value": 10 },
-  { "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "value": 20 },
-  { "text": "🧀Cheez-it - 30💷", "value": 30 },
-  { "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷", "value": 30 },
-  { "text": "🐄 Old Fashioned Beef Jerk - 40💷", "value": 40 },
-  { "text": "🍘Wheat Thins Original - 40💷", "value": 40 }
-]'),
-('sweetSnackContainer', '[
-  { "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "value": 10 },
-  { "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "value": 20 },
-  { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
-  { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
-  { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
-  { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
-  { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
-]'),
-('frozenSnackContainer', '[
-  { "text": "🍕Jacks Pizza Bois - 20💷", "value": 20 },
-  { "text": "🍨Breyers Mango Ice cream - 20💷", "value": 20 },
-  { "text": "🍕Totinos Pizza rolls - 30💷", "value": 30 },
-  { "text": "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷", "value": 30 },
-  { "text": "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷", "value": 40 },
-  { "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷", "value": 40 }
-]'),
-('concoctionsContainer', '[
-  { "text": "🚬THC Gummies - 40💷", "value": 40 },
-  { "text": "☕VJ Hot Cocoa 500ml - 20💷", "value": 20 },
-  { "text": "🍺Beer - 50💷", "value": 50 },
-  { "text": "🥃Mixed Drink (2shots) - 50💷", "value": 50 },
-  { "text": "🍷Wine Glass 500ml - 100💷", "value": 100 },
-  { "text": "🍾Wine Bottle 750ml - 150💷", "value": 150 }
-]'),
-('mealModsContainer', '[
-  { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
-  { "text": "🍴Lunch Snack - 2💷", "value": 2 },
-  { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
-  { "text": "🎉SNACK-A-THON MOD(1/2) - 0💷", "value": 0 },
-  { "text": "🎉🎉SNACK-A-THON MOD(2/2) - 0💷", "value": 0 }
-]');
+-- Create indexes for better performance
+CREATE INDEX IF NOT EXISTS idx_ergoshop_data ON ErgoShop USING gin (data);
+CREATE INDEX IF NOT EXISTS idx_dropdown_options_data ON dropdown_options USING gin (options);
+CREATE INDEX IF NOT EXISTS idx_loot_items_type ON loot_items(type);
 
-CREATE TABLE IF NOT EXISTS refreshment_options (
-  id SERIAL PRIMARY KEY,
-  category VARCHAR(50) NOT NULL,
-  option VARCHAR(100) NOT NULL,
-  cost INTEGER NOT NULL
-);
+-- Create additional indexes for performance
+CREATE INDEX IF NOT EXISTS idx_media_content_data ON media_content USING gin (data);
+CREATE INDEX IF NOT EXISTS idx_games_data ON games USING gin (data);
 
-INSERT INTO refreshment_options (category, option, cost) VALUES
-('saltySnackContainer', '🌿Roasted Seaweed', 10),
-('saltySnackContainer', '🔺Tortilla Chips (Donkey/El Milagro)', 10),
-('sweetSnackContainer', '🐮Chobani Whole Milk Plain Greek Yogurt', 10),
-('frozenSnackContainer', '🍕Jacks Pizza Bois', 20),
-('concoctionsContainer', '🚬THC Gummies', 40),
-('mealModsContainer', '🍔Fast Food Cheat Meal', 60);
-
-DROP TABLE IF EXISTS game_data;
-CREATE TABLE game_data (
-  id SERIAL PRIMARY KEY,
-  category TEXT NOT NULL,
-  data JSONB NOT NULL
-);
-
-INSERT INTO game_data (category, data) VALUES
-('pvp', '[
-  {
-    "text": "3ON3 FREESTYLE",
-    "mode": "3on3 mode online",
-    "details": "5 games",
-    "image": "../assets/img/Spin The Wheel Photos/PVP/3ON3 FREESTYLE.png",
-    "copies": 1
-  }
-]'),
-('loot', '[
-  {
-    "text": "YOU FOUND!! 1 XBOX series X\'s (Continue until 2 are claimed)",
-    "copies": 0
-  }
-]'),
-('coop', '[
-  {
-    "text": "33 Immortals",
-    "copies": 0
-  }
-]');
+-- Add verification query
+SELECT 
+    (SELECT COUNT(*) FROM ErgoShop) as shop_items,
+    (SELECT COUNT(*) FROM media_content) as media_items,
+    (SELECT COUNT(*) FROM games) as game_items,
+    (SELECT COUNT(*) FROM loot_items) as loot_items;

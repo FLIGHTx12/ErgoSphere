@@ -128,38 +128,22 @@ document.addEventListener("DOMContentLoaded", () => {
       // New info container for monster details
       const infoContainer = document.createElement("div");
       infoContainer.id = "infoContainer";
-      infoContainer.innerHTML = `<h3>
-<span style="color:deepskyblue; font-weight:bold;">Name:</span>
-<span style="color:white;">${monster.name}</span>
-</h3>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">Attack Type:</span>
-<span style="color:white;">${monster.attackType}</span>
-</p>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">Health:</span>
-<span style="color:white;">${monster.health}</span>
-</p>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">Hit Numbers:</span>
-<span style="color:white;">${monster.hitNumbers.join(', ')}</span>
-</p>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">Rewards:</span>
-<span style="color:white;">${monster.Rewards}</span>
-</p>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">Punishment:</span>
-<span style="color:white;">${monster.Punishment}</span>
-</p>
-<p>
-<span style="color:deepskyblue; font-weight:bold;">About:</span>
-<span style="color:white;">${monster.About}</span>
-</p>`;
+      infoContainer.innerHTML = `
+<div style="text-align:center;">
+  <h2 style="color:white; margin-bottom:5px;">${monster.name}</h2>
+  <div style="font-size:0.9em; color:#888; margin-bottom:15px;">${monster.About}</div>
+</div>
+<div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:5px;">
+  <p><span style="color:deepskyblue; font-weight:bold;">Attack Type:</span> <span style="color:white;">${monster.attackType}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Health:</span> <span style="color:white;">${monster.health}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Hit Numbers:</span> <span style="color:white;">${monster.hitNumbers.join(', ')}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Rewards:</span> <span style="color:white;">${monster.Rewards}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Punishment:</span> <span style="color:white;">${monster.Punishment}</span></p>
+</div>`;
 // Change position to absolute so the monster container remains centered at the top
       infoContainer.style.position = "absolute";
       infoContainer.style.top = "50px";
-      infoContainer.style.left = "-320px";  // shift further left from the monster container
+      infoContainer.style.left = "-330px";  // Changed from -320px to -420px
       // Remove flex styling to prevent interfering with parent centering
       infoContainer.style.width = "300px";
       infoContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
@@ -309,6 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
 
         if (monsterLife === 0) {
+          clearInterval(timer);  // Stop timer when boss is defeated
           // Announce defeat in historyContainer with large, bold, bright red font
           historyContainer.innerHTML += `<p style="font-size:32px; font-weight:bold; color:#FF0000;">${playerName} defeated the ${monster.name}!</p>`;
           image.src = monster.defeatedImageSrc;
@@ -328,6 +313,9 @@ document.addEventListener("DOMContentLoaded", () => {
             historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${hitDialogue}</p>`;
           }
         }
+        // Add time remaining to history
+        const timeElement = document.getElementById("timer");
+        historyContainer.innerHTML += `<p style="color:#888; font-size:0.9em;">Time Remaining: ${timeElement.textContent}</p>`;
         historyContainer.innerHTML += `<hr>`;
         historyContainer.scrollTop = historyContainer.scrollHeight;
 
