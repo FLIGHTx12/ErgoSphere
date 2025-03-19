@@ -24,6 +24,297 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasCompletedData = false;
   let hasSeasonalData = false;
 
+  // After creating the filter button, add the genre filter
+  const genreFilter = document.createElement('div');
+  genreFilter.className = 'genre-filter';
+  
+  const genreBtn = document.createElement('button');
+  genreBtn.className = 'genre-btn';
+  genreBtn.textContent = 'Genre: All';
+  
+  const genreDropdown = document.createElement('div');
+  genreDropdown.className = 'genre-dropdown';
+  
+  genreFilter.appendChild(genreBtn);
+  genreFilter.appendChild(genreDropdown);
+  navbar.appendChild(genreFilter);
+
+  // Add sort button
+  const sortFilter = document.createElement('div');
+  sortFilter.className = 'sort-filter';
+  
+  const sortBtn = document.createElement('button');
+  sortBtn.className = 'sort-btn';
+  sortBtn.textContent = 'Sort By';
+  
+  const sortDropdown = document.createElement('div');
+  sortDropdown.className = 'sort-dropdown';
+  
+  sortFilter.appendChild(sortBtn);
+  sortFilter.appendChild(sortDropdown);
+  navbar.appendChild(sortFilter);
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!genreFilter.contains(e.target)) {
+      genreDropdown.classList.remove('show');
+    }
+    if (!sortFilter.contains(e.target)) {
+      sortDropdown.classList.remove('show');
+    }
+  });
+
+  // Toggle dropdown
+  genreBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    genreDropdown.classList.toggle('show');
+  });
+
+  // Toggle dropdown
+  sortBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sortDropdown.classList.toggle('show');
+  });
+
+  function populateGenreDropdown(data) {
+    const genres = new Set();
+    
+    // Clear existing options
+    while (genreDropdown.firstChild) {
+      genreDropdown.removeChild(genreDropdown.firstChild);
+    }
+    
+    // Extract only non-empty genres
+    data.forEach(item => {
+      const genreString = item.GENRE || item.genre || '';
+      if (genreString.trim() !== '') {
+        genreString.split(/[,&-]/).forEach(genre => {
+          const trimmedGenre = genre.trim();
+          if (trimmedGenre) genres.add(trimmedGenre);
+        });
+      }
+    });
+
+    // Only show genre filter if we have genres
+    if (genres.size > 0) {
+      const allOption = document.createElement('div');
+      allOption.className = 'genre-option';
+      allOption.textContent = 'All';
+      allOption.addEventListener('click', () => {
+        genreBtn.textContent = 'Genre: All';
+        genreDropdown.classList.remove('show');
+        filterByGenre('all');
+      });
+      genreDropdown.appendChild(allOption);
+
+      Array.from(genres).sort().forEach(genre => {
+        const option = document.createElement('div');
+        option.className = 'genre-option';
+        option.textContent = genre;
+        option.addEventListener('click', () => {
+          genreBtn.textContent = `Genre: ${genre}`;
+          genreDropdown.classList.remove('show');
+          filterByGenre(genre);
+        });
+        genreDropdown.appendChild(option);
+      });
+      genreBtn.style.display = 'block';
+    } else {
+      genreBtn.style.display = 'none';
+    }
+  }
+
+  function filterByGenre(selectedGenre) {
+    currentGenre = selectedGenre;
+    applyAllFilters();
+  }
+
+  function populateSortOptions(data) {
+    while (sortDropdown.firstChild) {
+      sortDropdown.removeChild(sortDropdown.firstChild);
+    }
+
+    const sortOptions = [];
+    
+    // Check for year data - only look for (YYYY) in titles
+    const hasYearData = data.some(item => {
+      const title = item.Title || '';
+      return /.*\(\d{4}\)/.test(title);
+    });
+    
+    // Check for runtime data
+    const hasRuntimeData = data.some(item => {
+      const runtime = item.RUNTIME || '';
+      return runtime.trim() !== '' || /\d+(?:h|min)/.test(item.Title || '');
+    });
+    
+    // Check for specific fields
+    const hasTimeTobeat = data.some(item => 
+      (item['TIME TO BEAT'] || item['time to beat']) && 
+      (item['TIME TO BEAT']?.trim() !== '' || item['time to beat']?.trim() !== '')
+    );
+    
+    const hasCost = data.some(item => 
+      item.cost && item.cost.trim() !== ''
+    );
+    
+    const hasCopies = data.some(item => 
+      typeof item.copies === 'number' || 
+      (typeof item.copies === 'string' && item.copies.trim() !== '')
+    );
+
+    // Only add options that have data
+    if (hasYearData) sortOptions.push('Year');
+    if (hasRuntimeData) sortOptions.push('Runtime');
+    if (hasTimeTobeat) sortOptions.push('Time to Beat');
+    if (hasCost) sortOptions.push('Cost');
+    if (hasCopies) sortOptions.push('Copies');
+
+    // Only create dropdown if we have options
+    if (sortOptions.length > 0) {
+      sortOptions.forEach(option => {
+        const sortOption = document.createElement('div');
+        sortOption.className = 'sort-option';
+        sortOption.textContent = option;
+        sortOption.addEventListener('click', () => {
+          const currentDirection = sortBtn.textContent.includes('↓') ? '↓' : '↑';
+          sortBtn.textContent = `Sort By: ${option} ${currentDirection}`;
+          sortDropdown.classList.remove('show');
+          sortItems(option.toLowerCase());
+        });
+        sortDropdown.appendChild(sortOption);
+      });
+      sortBtn.style.display = 'block';
+    } else {
+      sortBtn.style.display = 'none';
+    }
+  }
+
+  function sortItems(criteria, maintainDirection = false) {
+    const container = document.getElementById('data-container');
+    const items = Array.from(container.getElementsByClassName('item-row'));
+
+    // Only get visible items
+    const visibleItems = items.filter(item => item.style.display !== 'none');
+    
+    // Update sort state
+    currentSort.field = criteria;
+    if (!maintainDirection) {
+      currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+    }
+
+    const extractRuntime = (text) => {
+      let totalMinutes = 0;
+      
+      // Match formats: "1h 35min", "2h30m", "150 minutes", "2:30", "1h", "30m", "90min"
+      const timeMatch = text.match(/(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/);
+      
+      if (timeMatch) {
+        const hours = timeMatch[1] ? parseInt(timeMatch[1]) : 0;
+        const minutes = timeMatch[2] ? parseInt(timeMatch[2]) : 0;
+        totalMinutes = hours * 60 + minutes;
+      }
+      
+      // Also try to match just a pure number of minutes like "123 minutes"
+      if (totalMinutes === 0) {
+        const pureMinutes = text.match(/(\d+)\s*minutes?/);
+        if (pureMinutes) {
+          totalMinutes = parseInt(pureMinutes[1]);
+        }
+      }
+      
+      return totalMinutes || 9999; // Return 9999 for items without runtime
+    };
+
+    const extractYear = (text) => {
+      // Only match year in titles with format: "Title (YYYY)"
+      const titleMatch = text.match(/.*?\((\d{4})\)/);
+      return titleMatch ? parseInt(titleMatch[1]) : 9999;
+    };
+
+    items.sort((a, b) => {
+      const aTitle = a.querySelector('.item-title').textContent;
+      const bTitle = b.querySelector('.item-title').textContent;
+      const aDetails = a.querySelector('.item-details').textContent;
+      const bDetails = a.querySelector('.item-details').textContent;
+      
+      switch(criteria) {
+        case 'year':
+          const yearA = extractYear(aTitle);
+          const yearB = extractYear(bTitle);
+          // Items without years go to the end
+          if (yearA === 9999 && yearB === 9999) {
+            return aTitle.localeCompare(bTitle); // Alphabetical if no years
+          }
+          if (yearA === 9999) return 1;
+          if (yearB === 9999) return -1;
+          return yearA - yearB;
+          
+        case 'runtime':
+          const runtimeA = extractRuntime(aTitle);
+          const runtimeB = extractRuntime(bTitle);
+          // Items without runtime go to the end
+          if (runtimeA === 9999 && runtimeB === 9999) {
+            return aTitle.localeCompare(bTitle); // Alphabetical if no runtime
+          }
+          if (runtimeA === 9999) return 1;
+          if (runtimeB === 9999) return -1;
+          return runtimeA - runtimeB;
+
+        case 'time to beat':
+          const getTTB = (text) => {
+            const match = text.match(/Time to [Bb]eat:?\s*(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/);
+            if (match) {
+              const hours = match[1] ? parseInt(match[1]) : 0;
+              const minutes = match[2] ? parseInt(match[2]) : 0;
+              return hours * 60 + minutes;
+            }
+            return 9999;
+          };
+          const ttbA = getTTB(aDetails);
+          const ttbB = getTTB(bDetails);
+          if (ttbA === 9999 && ttbB === 9999) {
+            return aTitle.localeCompare(bTitle);
+          }
+          if (ttbA === 9999) return 1;
+          if (ttbB === 9999) return -1;
+          return ttbA - ttbB;
+          
+        case 'cost':
+          const getCostValue = (text) => {
+            const match = text.match(/Cost:?\s*\$?(\d+)/);
+            return match ? parseInt(match[1]) : 0;
+          };
+          return getCostValue(aDetails) - getCostValue(bDetails);
+          
+        case 'copies':
+          const getCopiesValue = (text) => {
+            const match = text.match(/Copies:?\s*(\d+)/);
+            return match ? parseInt(match[1]) : 0;
+          };
+          return getCopiesValue(aDetails) - getCopiesValue(bDetails);
+          
+        default:
+          return 0;
+      }
+    });
+
+    // Apply direction
+    if (currentSort.direction === 'desc') {
+      visibleItems.reverse();
+    }
+
+    // Clear and re-append sorted items
+    items.forEach(item => item.remove());
+    visibleItems.forEach(item => container.appendChild(item));
+    items.filter(item => !visibleItems.includes(item))
+         .forEach(item => container.appendChild(item));
+
+    // Update button text
+    const arrow = currentSort.direction === 'asc' ? '↑' : '↓';
+    sortBtn.textContent = `Sort By: ${criteria} ${arrow}`;
+  }
+
   // Function to check if any items have LAST WATCHED data
   function checkForWatchedData(data) {
     return data.some(item => item['LAST WATCHED'] !== undefined);
@@ -39,6 +330,58 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to check for seasonal status
   function checkForSeasonalData(data) {
     return data.some(item => item.STATUS?.includes('🟣'));
+  }
+
+  // Add filter state tracking
+  let currentGenre = 'all';
+  let currentSort = { field: null, direction: 'asc' };
+
+  function applyAllFilters() {
+    const items = document.querySelectorAll('.item-row');
+    items.forEach(item => {
+      // Start with item visible
+      let shouldShow = true;
+
+      // Apply genre filter
+      if (currentGenre !== 'all') {
+        const detailsElement = item.querySelector('.item-details');
+        const genreText = detailsElement?.textContent || '';
+        shouldShow = shouldShow && genreText.toLowerCase().includes(currentGenre.toLowerCase());
+      }
+
+      // Apply status filter
+      const titleElement = item.querySelector('.item-title');
+      const detailsElement = item.querySelector('.item-details');
+      const hasActiveStatus = titleElement?.textContent.includes('🟢') || false;
+      const hasSeasonalStatus = titleElement?.textContent.includes('🟣') || false;
+      const hasWatchedStatus = titleElement?.textContent.includes('👀') || false;
+      const hasCompletedStatus = detailsElement?.textContent.includes('🏆') || false;
+
+      switch(currentFilter) {
+        case 'active':
+          shouldShow = shouldShow && hasActiveStatus;
+          break;
+        case 'seasonal':
+          shouldShow = shouldShow && hasSeasonalStatus;
+          break;
+        case 'inactive':
+          shouldShow = shouldShow && !hasActiveStatus;
+          break;
+        case 'completed':
+          shouldShow = shouldShow && hasCompletedStatus;
+          break;
+        case 'watched':
+          shouldShow = shouldShow && hasWatchedStatus;
+          break;
+      }
+
+      item.style.display = shouldShow ? '' : 'none';
+    });
+
+    // Re-apply current sort if exists
+    if (currentSort.field) {
+      sortItems(currentSort.field, true);
+    }
   }
 
   filterBtn.addEventListener('click', () => {
@@ -96,36 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterBtn.textContent = 'Status: All';
     }
 
-    // Apply filter - check title section for indicators
-    items.forEach(item => {
-      const titleElement = item.querySelector('.item-title');
-      const detailsElement = item.querySelector('.item-details');
-      const hasActiveStatus = titleElement?.textContent.includes('🟢') || false;
-      const hasSeasonalStatus = titleElement?.textContent.includes('🟣') || false;
-      const hasWatchedStatus = titleElement?.textContent.includes('👀') || false;
-      const hasCompletedStatus = detailsElement?.textContent.includes('🏆') || false;
-      
-      switch(currentFilter) {
-        case 'all':
-          item.style.display = '';
-          break;
-        case 'active':
-          item.style.display = hasActiveStatus ? '' : 'none';
-          break;
-        case 'seasonal':
-          item.style.display = hasSeasonalStatus ? '' : 'none';
-          break;
-        case 'inactive':
-          item.style.display = !hasActiveStatus ? '' : 'none';
-          break;
-        case 'completed':
-          item.style.display = hasCompletedStatus ? '' : 'none';
-          break;
-        case 'watched':
-          item.style.display = hasWatchedStatus ? '' : 'none';
-          break;
-      }
-    });
+    applyAllFilters();
   });
 
   const dataFile = getDataFile();
@@ -406,6 +720,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Data is not an array or object:', data);
           }
         }
+          
+          // After processing the data, populate the genre dropdown
+          populateGenreDropdown(data);
+          
+          // After processing the data, populate the sort options
+          populateSortOptions(data);
           
           // Add Collapse All functionality if the button exists
           const collapseAll = document.getElementById('collapse-all');

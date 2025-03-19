@@ -365,3 +365,151 @@ body.page-transition {
   background-color: #FFA500;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
+
+.genre-filter {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.genre-btn {
+  background: linear-gradient(
+    45deg,
+    #9932CC 25%,
+    #8B008B 30%,
+    #9932CC 45%,
+    #BA55D3 50%,
+    #9932CC 55%,
+    #8B008B 70%,
+    #9932CC 75%
+  );
+  background-size: 200% 200%;
+  animation: shine 3s linear infinite;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  outline: 1px solid black;
+  padding: 8px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.genre-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #FFD700;
+  border-radius: 10px;
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.genre-dropdown.show {
+  display: block;
+}
+
+.genre-option {
+  color: #FFD700;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-shadow: 1px 1px 2px black;
+}
+
+.genre-option:hover {
+  background: rgba(153, 50, 204, 0.3);
+}
+
+/* Scrollbar styling for genre dropdown */
+.genre-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.genre-dropdown::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.genre-dropdown::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 4px;
+}
+
+.sort-filter {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.sort-btn {
+  background: linear-gradient(
+    45deg,
+    #20B2AA 25%,
+    #008B8B 30%,
+    #20B2AA 45%,
+    #48D1CC 50%,
+    #20B2AA 55%,
+    #008B8B 70%,
+    #20B2AA 75%
+  );
+  background-size: 200% 200%;
+  animation: shine 3s linear infinite;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  outline: 1px solid black;
+  padding: 8px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.sort-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #FFD700;
+  border-radius: 10px;
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  min-width: 150px;
+}
+
+.sort-dropdown.show {
+  display: block;
+}
+
+.sort-option {
+  color: #FFD700;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-shadow: 1px 1px 2px black;
+}
+
+.sort-option:hover {
+  background: rgba(32, 178, 170, 0.3);
+}
