@@ -21,6 +21,8 @@ body.page-transition {
   justify-content: flex-start; /* Align items to the start of the container */
   width: 100%; /* Take up full width */
   margin: 20px auto;
+  scroll-snap-type: none;
+  scroll-padding: 0;
 }
 
 @media (min-width: 1024px) {
@@ -97,18 +99,52 @@ body.page-transition {
     -1px  1px 0 #000,
      1px  1px 0 #000,
     2px 2px 4px rgba(0,0,0,0.8);
-  position: relative; /* Add this to ensure proper positioning context */
-  transition: background-size 0.3s ease;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-attachment: scroll;
+  z-index: 1000;
+  margin: 0;
+  background-size: 100% auto;
+  background-position: center 0;
+  transition: background-position 0.1s ease-out;
   min-height: 500px; /* Increased from 400px to show more image */
   padding: 20px; /* Add more padding to prevent text from touching edges */
   padding-bottom: 40px; /* Add more padding at bottom */
   box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.3); /* Reduced shadow opacity from 0.6 to 0.3 */
   transform-origin: top; /* Ensure transforms happen from top */
-  background-attachment: fixed; /* Enable parallax effect */
-  background-position: center; /* Reset to center for parallax */
   transform-style: preserve-3d; /* Enhance 3D effect */
   perspective: 1000px; /* Add perspective for 3D effect */
   will-change: background-position; /* Optimize performance */
+  contain: layout;
+  overscroll-behavior: contain;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 100;
+  margin: 10vh 0;
+  scroll-margin: 50vh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* Add smooth scrolling for the expanded content */
+.item-row.expanded::-webkit-scrollbar {
+  width: 8px;
+}
+
+.item-row.expanded::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.item-row.expanded::-webkit-scrollbar-thumb {
+  background: rgba(128, 0, 128, 0.6);
+  border-radius: 4px;
+}
+
+.item-row.expanded::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 0, 128, 0.8);
 }
 
 @media (max-width: 768px) {
@@ -118,7 +154,7 @@ body.page-transition {
 }
 
 .item-row.expanded:hover {
-  background-size: 105%; /* Reduced from 130% for subtler zoom effect */
+  background-size: 100% auto;
 }
 
 .item-row.expanded::before {
@@ -127,10 +163,21 @@ body.page-transition {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* This was correct */
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Reduced from 0.5 to 0.3 */
   z-index: 1;
-  pointer-events: none; /* Allow clicks to pass through */
+  pointer-events: none;
+}
+
+.item-row.expanded::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4); /* Reduced from 0.7 to 0.4 */
+  z-index: -1;
 }
 
 .item-row.expanded > * {

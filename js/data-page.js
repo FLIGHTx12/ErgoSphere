@@ -652,6 +652,28 @@ document.addEventListener('DOMContentLoaded', () => {
                   this.style.color = '';
                   this.style.textShadow = '';
               }
+
+              if (this.classList.contains('expanded')) {
+                // Add scroll listener for expanded div
+                let startY = 0;
+                let bgPos = 0;
+                
+                const handleScroll = (e) => {
+                  const delta = e.deltaY;
+                  bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
+                  this.style.backgroundPosition = `center ${bgPos}%`;
+                  e.preventDefault();
+                };
+                
+                this.addEventListener('wheel', handleScroll, { passive: false });
+                
+                // Remove scroll listener when collapsed
+                this.addEventListener('click', () => {
+                  if (!this.classList.contains('expanded')) {
+                    this.removeEventListener('wheel', handleScroll);
+                  }
+                }, { once: true });
+              }
           });
           return itemDiv;
         }
