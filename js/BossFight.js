@@ -13,14 +13,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let timerStarted = false;
   let timer;
-  const gameOverAudio = new Audio('assets/audio/hazzard.mp3');
+  const gameOverAudio = new Audio('../assets/audio/hazzard.mp3');
+  const fightMusic = new Audio('../assets/audio/gorila-315977.mp3');
+  fightMusic.loop = true; // loop the fight music
+  fightMusic.volume = 0.5; // Set volume to 50% (adjust as needed)
+
+  // Preload audio
+  gameOverAudio.preload = 'auto';
+  fightMusic.preload = 'auto';
+
+  // Function to attempt playing the audio
+  function playFightMusic() {
+    const playPromise = fightMusic.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Autoplay started!
+        console.log("Fight music started playing.");
+      }).catch(error => {
+        // Autoplay was prevented.
+        console.error("Autoplay prevented:", error);
+        // Show a button to allow the user to start the music manually
+        const playButton = document.createElement('button');
+        playButton.textContent = 'Play Music';
+        playButton.addEventListener('click', () => {
+          fightMusic.play();
+          playButton.remove(); // Remove the button after it's clicked
+        });
+        document.body.appendChild(playButton); // Append the button to the body or another appropriate container
+      });
+    }
+  }
 
   function startTimer() {
     let timeLeft = 300; // 5 minutes in seconds
     const timerElement = document.getElementById("timer");
-    const timerInterval = setInterval(() => {
+    timer = setInterval(() => { // Assign the interval to the timer variable
       if (timeLeft <= 0) {
-        clearInterval(timerInterval);
+        clearInterval(timer);
         gameOver();
       } else {
         timeLeft--;
@@ -29,10 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
         timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
       }
     }, 1000);
-    return timerInterval;
+    return timer;
   }
 
   function gameOver() {
+    fightMusic.pause(); // Pause fight music
+    fightMusic.currentTime = 0; // Reset to the beginning
     gameOverAudio.play();
     const gameOverDiv = document.createElement("div");
     gameOverDiv.id = "gameOver";
@@ -50,16 +82,31 @@ document.addEventListener("DOMContentLoaded", () => {
     gameOverDiv.style.zIndex = "10000";
 
     const gameOverImage = document.createElement("img");
-    gameOverImage.src = "assets/img/backgrounds/Gameover.jpg";
+    gameOverImage.src = "../assets/img/backgrounds/YouDied.jpg";
     gameOverImage.style.maxWidth = "80%";
     gameOverImage.style.maxHeight = "80%";
+    gameOverImage.onerror = function() {
+      console.error("Error loading game over image:", this.src);
+    };
     gameOverDiv.appendChild(gameOverImage);
 
+    // Ensure currentMonster is defined before accessing its properties
+    let currentMonster = monsters[document.getElementById("monsterDropdown").value];
     const punishmentText = document.createElement("p");
-    punishmentText.innerHTML = currentMonster.Punishment;
+    punishmentText.innerHTML = currentMonster ? currentMonster.Punishment : "No punishment defined.";
     punishmentText.style.marginTop = "20px";
     punishmentText.style.fontSize = "1.5em";
     gameOverDiv.appendChild(punishmentText);
+
+    // Add restart button
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "Restart Game";
+    restartButton.style.marginTop = "20px";
+    restartButton.style.fontSize = "1.2em";
+    restartButton.addEventListener("click", () => {
+      location.reload(); // Reload the page to restart the game
+    });
+    gameOverDiv.appendChild(restartButton);
 
     document.body.appendChild(gameOverDiv);
   }
@@ -242,11 +289,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+      let attackButtonCooldown = false; // Cooldown flag
       attackButton.addEventListener("click", () => {
+        if (attackButtonCooldown) return; // If cooldown is active, ignore click
+
+        attackButtonCooldown = true; // Activate cooldown
+
         if (!timerStarted) {
           timerStarted = true;
           timer = startTimer();
-          gameOverAudio.play();
+          playFightMusic(); // Attempt to play fight music
         }
 
         const currentContainer = currentPlayer === 1 ? container1 : container2;
@@ -280,9 +332,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add vibration, shake, and red flash animation based on damage
         if (totalDamage > 0) {
-          const shakeIntensity = Math.min(totalDamage / 15, 10); // Cap intensity at 10
-          const redIntensity = Math.min(totalDamage / 150, 1); // Cap red intensity at 1
-          const duration = Math.min(totalDamage / 50, 3); // Cap duration at 3 seconds
+          const shakeIntensity = Math.min(totalDamage / 15, 20); // Cap intensity at 10
+          const redIntensity = Math.min(totalDamage / 150, 4); // Cap red intensity at 1
+          const duration = Math.min(totalDamage / 50, 4); // Cap duration at 3 seconds
           monsterImage.style.animation = `shake ${shakeIntensity * 0.1}s infinite, redFlash ${redIntensity * 0.5}s infinite`;
           navigator.vibrate(shakeIntensity * 100); // Vibrate for intensity * 100ms
           setTimeout(() => {
@@ -294,6 +346,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (monsterLife === 0) {
           clearInterval(timer);  // Stop timer when boss is defeated
+          fightMusic.pause(); // Pause fight music
+          fightMusic.currentTime = 0; // Reset to the beginning
           // Announce defeat in historyContainer with large, bold, bright red font
           historyContainer.innerHTML += `<p style="font-size:32px; font-weight:bold; color:#FF0000;">${playerName} defeated the ${monster.name}!</p>`;
           image.src = monster.defeatedImageSrc;
@@ -322,6 +376,10 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 1; i < currentContainer.children.length; i++) {
           currentContainer.children[i].value = "";
         }
+
+        setTimeout(() => {
+          attackButtonCooldown = false; // Deactivate cooldown after 1 second
+        }, 1000);
       });
 
       function toggleContainer(player) {
@@ -372,6 +430,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedMonsterIndex !== "") {
         monsterContainers[selectedMonsterIndex].style.display = "block";
         monsterDropdown.style.display = "none";
+        // Start timer and play music immediately after monster selection
+        if (!timerStarted) {
+          timerStarted = true;
+          timer = startTimer();
+          playFightMusic();
+        }
       }
     });
   }

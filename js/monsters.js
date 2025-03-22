@@ -13,12 +13,19 @@ function adjustHealthByQuarter(baseHealth) {
     quarterMultiplier = 3; // Q4
   }
 
-  return baseHealth + (quarterMultiplier * 200);
+  // Ensure health doesn't go below zero
+  return Math.max(0, baseHealth + (quarterMultiplier * 200));
 }
 
 // New helper: selects a random dialogue if an array
 function selectDialogue(dialogue) {
-  return Array.isArray(dialogue) ? dialogue[Math.floor(Math.random() * dialogue.length)] : dialogue;
+  // Check if dialogue is an array and not empty
+  if (Array.isArray(dialogue) && dialogue.length > 0) {
+    return dialogue[Math.floor(Math.random() * dialogue.length)];
+  } else {
+    // Return the dialogue directly if it's not an array, or return an empty string if the array is empty
+    return dialogue || "";
+  }
 }
 
 window.monsters = [
@@ -34,7 +41,7 @@ window.monsters = [
       player2: ["No toggle dialogue."]
     }
   },
-  { name: "EtchWraith Swarm",
+  {name: "EtchWraith Swarm",
     attackType: "Swarm",
     health: adjustHealthByQuarter(400),
     hitNumbers: [ 5, 19, 4, 1, 8, 12, 5, 3, 6, 17],
@@ -133,14 +140,30 @@ hitDialogues: {
     About:"The EtchWraith Swarm is a group of ErgoBugs that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The EtchWraith Swarm is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>EtchWraith Swarm says: Ready for action, Jaybers8?</span>",
-        "<span class='toggle-dialogue'>EtchWraith Swarm roars: Your move, Jaybers8!</span>"
+          "<span class='toggle-dialogue'>A high-pitched, collective shriek pierces the air as the EtchWraith Swarm descends on Jaybers8.</span>",
+          "<span class='toggle-dialogue'>The EtchWraith Swarm's wings beat furiously, creating a deafening buzz that vibrates through Jaybers8's bones.</span>",
+          "<span class='toggle-dialogue'>A wave of clicking mandibles and scraping chitin washes over Jaybers8 as the EtchWraith Swarm surges forward.</span>",
+          "<span class='toggle-dialogue'>The air crackles with static as the EtchWraith Swarm's bodies rub together, a prelude to their attack on Jaybers8.</span>",
+          "<span class='toggle-dialogue'>Jaybers8 is enveloped in a cloud of noxious fumes as the EtchWraith Swarm expels a foul-smelling gas.</span>",
+          "<span class='toggle-dialogue'>A horrifying wave of skittering sounds emanates from the EtchWraith Swarm as they crawl towards Jaybers8.</span>",
+          "<span class='toggle-dialogue'>The ground trembles beneath Jaybers8's feet as the EtchWraith Swarm's heavy bodies impact the arena.</span>",
+          "<span class='toggle-dialogue'>A sickening crunch fills the air as the EtchWraith Swarm's mandibles snap open and close, targeting Jaybers8.</span>",
+          "<span class='toggle-dialogue'>The EtchWraith Swarm pulses with dark energy, emitting a low, guttural hum that vibrates in Jaybers8's chest.</span>",
+          "<span class='toggle-dialogue'>A frenzy of movement assaults Jaybers8's eyes as the EtchWraith Swarm swirls around her, a living vortex of chitin and rage.</span>"
       ],
       player2: [
-        "<span class='toggle-dialogue'>EtchWraith Swarm says: Ready for action, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>EtchWraith Swarm roars: Your move, FLIGHTx12!</span>"
-      ]
-    }
+          "<span class='toggle-dialogue'>A high-pitched, collective shriek pierces the air as the EtchWraith Swarm descends on FLIGHTx12!.</span>",
+          "<span class='toggle-dialogue'>The EtchWraith Swarm's wings beat furiously, creating a deafening buzz that vibrates through FLIGHTx12!'s bones.</span>",
+          "<span class='toggle-dialogue'>A wave of clicking mandibles and scraping chitin washes over FLIGHTx12! as the EtchWraith Swarm surges forward.</span>",
+          "<span class='toggle-dialogue'>The air crackles with static as the EtchWraith Swarm's bodies rub together, a prelude to their attack on FLIGHTx12!.</span>",
+          "<span class='toggle-dialogue'>FLIGHTx12! is enveloped in a cloud of noxious fumes as the EtchWraith Swarm expels a foul-smelling gas.</span>",
+          "<span class='toggle-dialogue'>A horrifying wave of skittering sounds emanates from the EtchWraith Swarm as they crawl towards FLIGHTx12!.</span>",
+          "<span class='toggle-dialogue'>The ground trembles beneath FLIGHTx12!'s feet as the EtchWraith Swarm's heavy bodies impact the arena.</span>",
+          "<span class='toggle-dialogue'>A sickening crunch fills the air as the EtchWraith Swarm's mandibles snap open and close, targeting FLIGHTx12!.</span>",
+          "<span class='toggle-dialogue'>The EtchWraith Swarm pulses with dark energy, emitting a low, guttural hum that vibrates in FLIGHTx12!'s chest.</span>",
+          "<span class='toggle-dialogue'>A frenzy of movement assaults FLIGHTx12!'s eyes as the EtchWraith Swarm swirls around him, a living vortex of chitin and rage.</span>"
+        ]
+      }
   },
   {name: "CyberBadger Cete",
     attackType: "OverWhelm",
@@ -235,14 +258,29 @@ hitDialogues: {
     About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The CyberBadger Cete is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>The CyberBadger Cete snarls at Jaybers8!</span>",
-        "<span class='toggle-dialogue'>The CyberBadger Clan barks loudly and charge at Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>The CyberBadger Cete snarls at FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>The glowing emerald green in FLIGHTx12! armor drives The CyberBadger Cete wild! They turn to attack!</span>",
-        "<span class='toggle-dialogue'>The CyberBadger Clan barks loudly and charge at FLIGHTx12</span>"
-      ]
+        "<span class='toggle-dialogue'>The CyberBadger Cete lets out a series of guttural snarls, their cybernetic eyes glowing menacingly at Jaybers8.</span>",
+        "<span class='toggle-dialogue'>A cacophony of metallic growls and snapping jaws erupts from the CyberBadger Clan as they charge Jaybers8.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's claws scrape against the ground, emitting sparks as they stalk Jaybers8.</span>",
+        "<span class='toggle-dialogue'>A chorus of furious barks, enhanced by digital distortion, fills the air as the CyberBadger Clan targets Jaybers8.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete foams at the mouth, a mix of saliva and glowing green ooze, as they fixate on Jaybers8.</span>",
+        "<span class='toggle-dialogue'>A series of rapid, mechanical yips and growls emanates from the CyberBadger Clan as they close in on Jaybers8.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's cybernetic implants whir and click as they prepare to attack Jaybers8.</span>",
+        "<span class='toggle-dialogue'>A frenzy of snarls and snapping sounds fills the air as the CyberBadger Clan lunges at Jaybers8.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's metallic growl reverberates through the arena, directed at Jaybers8.</span>",
+        "<span class='toggle-dialogue'>A unified, digitized roar shakes the ground as the CyberBadger Clan advances on Jaybers8.</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>The CyberBadger Cete lets out a series of guttural snarls, their cybernetic eyes glowing menacingly at FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>A cacophony of metallic growls and snapping jaws erupts from the CyberBadger Clan as they charge FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's claws scrape against the ground, emitting sparks as they stalk FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>A chorus of furious barks, enhanced by digital distortion, fills the air as the CyberBadger Clan targets FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete foams at the mouth, a mix of saliva and glowing green ooze, as they fixate on FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>A series of rapid, mechanical yips and growls emanates from the CyberBadger Clan as they close in on FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's cybernetic implants whir and click as they prepare to attack FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>A frenzy of snarls and snapping sounds fills the air as the CyberBadger Clan lunges at FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>The CyberBadger Cete's metallic growl reverberates through the arena, directed at FLIGHTx12!.</span>",
+        "<span class='toggle-dialogue'>A unified, digitized roar shakes the ground as the CyberBadger Clan advances on FLIGHTx12!.</span>"
+    ]
     }
   },
   {name: "Forbearer-Ramis",
@@ -387,7 +425,7 @@ hitDialogues: {
         "PURSCERx17's metal armor clanks against yours as he pushes you back with his forarm",
         "PURSCERx17 roars in your direction leaving you shaken from the intensity. 'I'm gonna crush your bitch ass!'"],
       "2-3": [
-        "PURSCERx17 give you a 2 peice with wings to your gut! You hop back in fear of his next swing",
+        "PURSCERx17 givs you a 2 peice with wings to your gut! You hop back in fear of his next swing",
         "PURSCERx17 Walks up slowely, tanking your attacks. Suddenly he smacks the shit outta you! Blood drips from your mouth. You face feels swollen ",
         "PURSCERx17 strikes twice in quick succession!"],
       "4-5": [
@@ -420,14 +458,29 @@ hitDialogues: {
     About:"The PURSCERx17 is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>PURSCERx17 turns to Jaybers8 and says: 'Your a weird looking thing. Reminds me of Tren'</span>",
-        "<span class='toggle-dialogue'>PURSCERx17 warns: Switching now, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>PURSCERx17 shouts: Get ready, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>PURSCERx17 turns to FLIGHTx12! and says: 'You ready to get fucked chump!?!'</span>",
-        "<span class='toggle-dialogue'>PURSCERx17 warns: Switching now, FLIGHTx12!</span>"
-      ]
+        "<span class='toggle-dialogue'>PURSCERx17 roars at Jaybers8: 'You think you're quick, Belkan? I'll catch you in my grip!'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17's tentacle-dreads writhe: 'Ramis wants you broken, Jaybers8!'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 sneers: 'Your kind are all bark, little Belkan.'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 booms: 'Belkan! You'll wish you never crossed our paths!'</span>",
+        "<span class='toggle-dialogue'>'Hah! You think your little tricks will work on *me*, Belkan?' PURSCERx17 laughs.</span>",
+        "<span class='toggle-dialogue'>PURSCERx17's voice drips with menace: 'Your pathetic little agility won't save you Belkan.'</span>",
+        "<span class='toggle-dialogue'>'I'll show you what a *real* fight looks like, Jaybers8!' PURSCERx17 taunts.</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 laughs maniacally: 'Belkans are so weak... it's pathetic!'</span>",
+        "<span class='toggle-dialogue'>A deep growl emanates from PURSCERx17: 'Belkan, I'll enjoy crushing you.'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 says to Jaybers8: You're nothing but a pest.'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>PURSCERx17 roars at FLIGHTx12!: 'Dilardian, you smell like weakness!'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17's tentacle-dreads writhe: 'Ramis will be pleased to have your head, Dilardian!'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 sneers: 'You big idiots will all fall.'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 booms: 'Dilardian! You'll wish you never crossed our paths!'</span>",
+        "<span class='toggle-dialogue'>'Hah! You think your tough act will work on *me*, Dilardian?' PURSCERx17 laughs.</span>",
+        "<span class='toggle-dialogue'>PURSCERx17's voice drips with menace: 'All that muscle just makes you a bigger target Dilardian!'</span>",
+        "<span class='toggle-dialogue'>'I'll show you what a *real* fight looks like, FLIGHTx12!' PURSCERx17 taunts.</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 laughs maniacally: 'Dilardians are so strong... it's fun to rip them to pieces!'</span>",
+        "<span class='toggle-dialogue'>A deep growl emanates from PURSCERx17: 'Dilardian, I'll enjoy tearing your arms off.'</span>",
+        "<span class='toggle-dialogue'>PURSCERx17 says to FLIGHTx12!: You're nothing but a bug!'</span>"
+    ]
     }
   },
   {name: "Aphen Neel",
@@ -485,16 +538,32 @@ hitDialogues: {
     About:"The Aphen Neel is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>Aphen Neel whispers: Welcome, Jaybers8.</span>",
-        "<span class='toggle-dialogue'>Aphen Neel murmurs: Let the battle begin for you, Jaybers8.</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Aphen Neel whispers: Welcome, FLIGHTx12.</span>",
-        "<span class='toggle-dialogue'>Aphen Neel murmurs: Let the battle begin for you, FLIGHTx12.</span>"
-      ]
+        "<span class='toggle-dialogue'>Aphen Neel says to Jaybers8: 'Do you even comprehend the forces you are meddling with, Belkan?'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's voice shimmers with illusion: 'Such a bright aura, Jaybers8... it will be a shame to dim it.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel remarks to Jaybers8: 'Your efforts are amusing, little Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's eyes glow: 'The light bends to my will, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to Jaybers8: 'You are outmatched, little Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's voice drips with disdain: 'Your kind are so predictable, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel gestures languidly: 'Embrace the shadows, Belkan. It is your destiny.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel whispers to Jaybers8: 'I know your deepest fears, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to Jaybers8: 'Your struggles are pointless, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to Jaybers8: 'You will learn respect, Belkan.'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>Aphen Neel says to FLIGHTx12!: 'Do you even comprehend the forces you are meddling with, Dilardian?'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's voice shimmers with illusion: 'Such a bright aura, Dilardian... it will be a shame to dim it.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel remarks to FLIGHTx12!: 'Your efforts are amusing, little Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's eyes glow: 'The light bends to my will, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to FLIGHTx12!: 'You are outmatched, little Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel's voice drips with disdain: 'Your kind are so predictable, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel gestures languidly: 'Embrace the shadows, Dilardian. It is your destiny.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel whispers to FLIGHTx12!: 'I know your deepest fears, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to FLIGHTx12!: 'Your struggles are pointless, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Aphen Neel says to FLIGHTx12!: 'You will learn respect, Dilardian.'</span>"
+    ]
     }
   },
-  { name: "Curve",
+  {name: "Curve",
     attackType: "PERCEPTION",
     health: adjustHealthByQuarter(612),
     hitNumbers: [1, 2, 3, 4, 5],
@@ -550,12 +619,28 @@ hitDialogues: {
     About:"The Curve is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>Curve tilts: Step in, Jaybers8!</span>",
-        "<span class='toggle-dialogue'>Curve exclaims: Your toggle time is now, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Curve tilts: Step in, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>Curve exclaims: Your toggle time is now, FLIGHTx12!</span>"
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Your moves... predictable. But not for long, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'I saw this coming... almost, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'You disrupt the flow, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'The future is uncertain... because of you, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'This ends now, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'You cannot escape what is to come, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Your chaos... it interferes with my sight, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'I know how this plays out, Belkan... and you lose.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'The threads of fate... they resist your touch, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Time is on my side, Belkan.'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Your moves... predictable. But not for long, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'I saw this coming... almost, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'You disrupt the flow, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'The future is uncertain... because of you, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'This ends now, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'You cannot escape what is to come, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Your chaos... it interferes with my sight, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'I know how this plays out, Dilardian... and you lose.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'The threads of fate... they resist your touch, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Time is on my side, Dilardian.'</span>"
       ]
     }
   },
@@ -612,18 +697,34 @@ hitDialogues: {
       return "";
     },
     About:"The Dulguun Bolor is in battle." ,
-    toggleDialogues: {
-      player1: [
-        "<span class='toggle-dialogue'>Dulguun Bolor bellows: Engage, Jaybers8!</span>",
-        "<span class='toggle-dialogue'>Dulguun Bolor declares: Ready up, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Dulguun Bolor bellows: Engage, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>Dulguun Bolor declares: Ready up, FLIGHTx12!</span>"
-      ]
-    }
+      toggleDialogues: {
+        player1: [
+            "<span class='toggle-dialogue'>Dulguun Bolor's ancient voice rumbles: 'Jaybers8, the spores hunger for your warmth.'</span>",
+            "<span class='toggle-dialogue'>A fungal hiss echoes from Dulguun Bolor: 'Your agility is fleeting, Belkan.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor snarls, her eyes glowing: 'The hunt will end swiftly, Jaybers8.'</span>",
+            "<span class='toggle-dialogue'>Spores erupt from Dulguun Bolor's mane: 'Feel the embrace of the ancient rot, Belkan.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice cracks: 'Jaybers8, your spirit will feed the cycle.'</span>",
+            "<span class='toggle-dialogue'>A deep growl resonates: 'Belkan, your world will crumble like mine.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's fungal voice whispers: 'Join us, Jaybers8, become one with the ErgoSphere.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's eyes fixate on Jaybers8: 'The ancient hunt begins anew.'</span>",
+            "<span class='toggle-dialogue'>A chilling growl emanates from Dulguun Bolor: 'Belkan, you cannot escape the inevitable.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, Jaybers8!'</span>"
+        ],
+        player2: [
+            "<span class='toggle-dialogue'>Dulguun Bolor's ancient voice rumbles: 'FLIGHTx12!, your strength will wither like the old world.'</span>",
+            "<span class='toggle-dialogue'>A fungal hiss echoes from Dulguun Bolor: 'Your defiance is meaningless, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor snarls, her eyes glowing: 'The hunt will end swiftly, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Spores erupt from Dulguun Bolor's mane: 'Feel the embrace of the ancient rot, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice cracks: 'FLIGHTx12!, your blood will feed the cycle.'</span>",
+            "<span class='toggle-dialogue'>A deep growl resonates: 'Dilardian, your world will crumble like mine.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's fungal voice whispers: 'Join us, FLIGHTx12!, become one with the ErgoSphere.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's eyes fixate on FLIGHTx12!: 'The ancient hunt begins anew.'</span>",
+            "<span class='toggle-dialogue'>A chilling growl emanates from Dulguun Bolor: 'Dilardian, you cannot escape the inevitable.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, FLIGHTx12!'</span>"
+          ]
+        }
   },
-  { name: "Bennu",
+  {name: "Bennu",
     attackType: "PERCEPTION",
     health: adjustHealthByQuarter(722),
     hitNumbers: [15, 16, 17, 18, 19, 20],
@@ -677,13 +778,29 @@ hitDialogues: {
     About:"The Bennu is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>Bennu soars: Fly in, Jaybers8!</span>",
-        "<span class='toggle-dialogue'>Bennu calls out: It’s your turn now, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Bennu soars: Fly in, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>Bennu calls out: It’s your turn now, FLIGHTx12!</span>"
-      ]
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Hey there, Belkan! You wanna party or fight? Either way, let's make it quick, I got places to be.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'This is getting boring. Where's the music, Belkan?'</span>",
+        "<span class='toggle-dialogue'>Bennu yawns: 'Fighting already? It's barely noon in the ErgoSphere, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You hit hard, Belkan, but can you keep up with my disappearing act?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Let's turn up the heat, Belkan... or maybe just turn up the music?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You're cramping my style, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'This ErgoSphere is wild, but you're bringing it down, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Come on, Belkan, where's the fun in this?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You're harshing my buzz, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Look, Belkan, can we just skip this and grab a drink?'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Hey there, Dilardian! You wanna party or fight? Either way, let's make it quick, I got places to be.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'This is getting boring. Where's the music, Dilardian?'</span>",
+        "<span class='toggle-dialogue'>Bennu yawns: 'Fighting already? It's barely noon in the ErgoSphere, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You hit hard, Dilardian, but can you keep up with my disappearing act?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Let's turn up the heat, Dilardian... or maybe just turn up the music?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You're cramping my style, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'This ErgoSphere is wild, but you're bringing it down, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Come on, Dilardian, where's the fun in this?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You're harshing my buzz, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Look, Dilardian, can we just skip this and grab a drink?'</span>"
+    ]
     }
   },
   { name: "Forbearer Tren",
@@ -740,13 +857,29 @@ hitDialogues: {
     About:"The Forbearer Tren is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>Forbearer Tren advises: Focus up, Jaybers8!</span>",
-        "<span class='toggle-dialogue'>Forbearer Tren signals: Step into the arena, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Forbearer Tren advises: Focus up, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>Forbearer Tren signals: Step into the arena, FLIGHTx12!</span>"
-      ]
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'You remind me of old Belka, child, but your path is foolish.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren gestures wearily: 'The ErgoSphere... it does not change, why should you, Belkan?'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren murmurs to Jaybers8: 'You seek to alter the flow, Belkan, but the flow will consume you.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'Your struggles are fleeting, Belkan. The ErgoSphere endures.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren's voice echoes with age: 'I have seen countless like you, Belkan. All lost to time.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'Change is an illusion, Belkan. Embrace the stagnation.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren gestures: 'The creatures of the ErgoSphere heed my call, Belkan. They will decide your fate.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'You fight against the inevitable, Belkan. Rest, and let the ErgoSphere take its course.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'Your magic is crude, Belkan. You cannot comprehend the true forces at play.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'I offer you a choice, Belkan: Yield, or be lost.'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You remind me of old Belka, child, but your path is foolish.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren gestures wearily: 'The ErgoSphere... it does not change, why should you, Dilardian?'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren murmurs to FLIGHTx12!: 'You seek to alter the flow, Dilardian, but the flow will consume you.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'Your struggles are fleeting, Dilardian. The ErgoSphere endures.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren's voice echoes with age: 'I have seen countless like you, Dilardian. All lost to time.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'Change is an illusion, Dilardian. Embrace the stagnation.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren gestures: 'The creatures of the ErgoSphere heed my call, Dilardian. They will decide your fate.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You fight against the inevitable, Dilardian. Rest, and let the ErgoSphere take its course.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'Your magic is crude, Dilardian. You cannot comprehend the true forces at play.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'I offer you a choice, Dilardian: Yield, or be lost.'</span>"
+    ]
     }
   },
   {name: "Tash-Nadia",
@@ -803,13 +936,29 @@ hitDialogues: {
     About:"The Tash-Nadia is in battle." ,
     toggleDialogues: {
       player1: [
-        "<span class='toggle-dialogue'>Tash-Nadia challenges: Show your might, Jaybers8!</span>",
-        "<span class='toggle-dialogue'>Tash-Nadia proclaims: Now toggle and fight, Jaybers8!</span>"
-      ],
-      player2: [
-        "<span class='toggle-dialogue'>Tash-Nadia challenges: Show your might, FLIGHTx12!</span>",
-        "<span class='toggle-dialogue'>Tash-Nadia proclaims: Now toggle and fight, FLIGHTx12!</span>"
-      ]
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The depths call for you, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia's voice rumbles: 'You fight with the ferocity of surface dwellers, Jaybers8.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The currents of fate pull you under, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'Your world is dry and brittle, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'Feel the crushing pressure, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'You do not belong here, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The abyss awaits, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'Your struggles are futile, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The water will claim you, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'You will drown in the ErgoSphere, Belkan.'</span>"
+    ],
+    player2: [
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The depths call for you, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia's voice rumbles: 'You fight with the ferocity of surface dwellers, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The currents of fate pull you under, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'Your world is dry and brittle, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'Feel the crushing pressure, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'You do not belong here, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The abyss awaits, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'Your struggles are futile, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The water will claim you, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'You will drown in the ErgoSphere, Dilardian.'</span>"
+    ]
     }
   }
 ];

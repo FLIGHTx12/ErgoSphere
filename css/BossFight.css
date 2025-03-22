@@ -509,6 +509,24 @@ button:focus {
   font-size: 1.5em;
 }
 
+/* Add CSS for the restart button */
+#gameOver button {
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#gameOver button:hover {
+  background-color: darkpurple;
+}
+
 #timer {
   font-size: 2em;
   font-weight: bold;
