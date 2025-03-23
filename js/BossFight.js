@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerStarted = false;
   let timer;
   const gameOverAudio = new Audio('../assets/audio/hazzard.mp3');
-  const fightMusic = new Audio('../assets/audio/gorila-315977.mp3');
+  const fightMusic = new Audio('../assets/audio/ErgoArenaTheme.mp3');
   fightMusic.loop = true; // loop the fight music
   fightMusic.volume = 0.5; // Set volume to 50% (adjust as needed)
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startTimer() {
-    let timeLeft = 300; // 5 minutes in seconds
+    let timeLeft = 366; // 5 minutes in seconds
     const timerElement = document.getElementById("timer");
     timer = setInterval(() => { // Assign the interval to the timer variable
       if (timeLeft <= 0) {
@@ -416,7 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     chooseOpponentBtn.addEventListener("click", () => {
-      monsterDropdown.style.display = "block";
+      monsterDropdown.style.display = monsterDropdown.style.display === "block" ? "none" : "block";
     });
 
     monsterDropdown.addEventListener("change", () => {
@@ -439,16 +439,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
 
-function toggleButtonColors(player) {
-  const attackButton = document.getElementById("attackButton");
+  function toggleButtonColors(player) {
+    const attackButton = document.getElementById("attackButton");
+    const playerToggle = document.getElementById("playerToggle");
 
-  if (player === 1) {
-    attackButton.style.backgroundColor = "purple";
-    attackButton.style.color = "white";
-  } else {
-    attackButton.style.backgroundColor = "green";
-    attackButton.style.color = "white";
+    if (player === 1) {
+      attackButton.style.background = "purple";
+      attackButton.style.color = "white";
+      playerToggle.classList.remove("player2Active");
+      playerToggle.classList.add("player1Active");
+    } else {
+      attackButton.style.background = "green";
+      attackButton.style.color = "white";
+      playerToggle.classList.remove("player1Active");
+      playerToggle.classList.add("player2Active");
+    }
+
+    // Remove any background images that might interfere
+    attackButton.style.backgroundImage = "none";
+    playerToggle.style.backgroundImage = "none";
   }
-}
+});
