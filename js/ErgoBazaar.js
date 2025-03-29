@@ -14,68 +14,135 @@ const categoryFileMap = {
 // Set default user type
 let userType = "KUSHINDWA";
 
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // Function to fetch options from JSON file
-  const fetchOptions = async (filePath) => {
-    try {
-      const response = await fetch(`../${filePath}`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(`Error fetching data from ${filePath}:`, error);
-      return [];
+// Cache object to store last modified timestamps
+const fileCache = {};
+
+// Function to fetch options from JSON file with cache validation
+const fetchOptions = async (filePath) => {
+  try {
+    // Add cache-busting query parameter
+    const timestamp = Date.now();
+    const response = await fetch(`../${filePath}?t=${timestamp}`);
+    
+    // Get last modified header
+    const lastModified = response.headers.get('last-modified');
+    
+    // Check if file has been modified
+    if (fileCache[filePath] && fileCache[filePath].lastModified === lastModified) {
+      return fileCache[filePath].data;
     }
-  };
 
-  // Populate each category's select boxes with options from the corresponding JSON file.
-  document.querySelectorAll('#entertainment .category').forEach(async cat => {
-    const catName = cat.getAttribute('data-category');
-    const filePath = categoryFileMap[catName];
+    const data = await response.json();
+    
+    // Update cache
+    fileCache[filePath] = {
+      lastModified,
+      data
+    };
 
-    if (filePath) {
-      const optionsArray = await fetchOptions(filePath);
-      cat.querySelectorAll('.ent-select').forEach(select => {
-        select.innerHTML = '<option value="0">Select</option>'; // Clear existing options
-        optionsArray.forEach(item => {
-          // Skip items with game="ERGOarena"
-          if (item.game === "ERGOarena") return;
-          
-          // Extract relevant information from the item
-          const title = item.Title || item.TITLE || item.text || 'No Title';
-          let status = item.STATUS || '';
-          const watched = item["TIMES SEEN"] || item.WATCHED || '';
-          let copies = item.copies !== undefined ? `(${item.copies})` : '';
+    return data;
+  } catch (error) {
+    console.error(`Error fetching data from ${filePath}:`, error);
+    return fileCache[filePath]?.data || [];
+  }
+};
 
-          // Represent copies with green circles
-          if (item.copies > 0) {
-            copies = '🟢'.repeat(item.copies);
-          } else {
-            copies = ''; // Or any other default representation if no copies
-          }
+// Function to refresh options for a category
+const refreshCategoryOptions = async (category) => {
+  const catName = category.getAttribute('data-category');
+  const filePath = categoryFileMap[catName];
 
-          // Represent status with green circle
-          if (status === "🟢") {
-            status = '🟢';
-          } else {
-            status = '';
-          }
+  if (filePath) {
+    const optionsArray = await fetchOptions(filePath);
+    category.querySelectorAll('.ent-select').forEach(select => {
+      const currentValue = select.value;
+      
+      select.innerHTML = '<option value="0">Select</option>';
+      optionsArray.forEach(item => {
+        // Skip ERGOarena items and items with specific genres in Loot Boxes
+        if (item.game === "ERGOarena") return;
+        if (catName === "Spin the wheel Loot Boxes" && 
+           (item.genre === "hazzard" || item.genre === "week modifiers" || item.genre === "helper")) return;
+        
+        let optionText = '';
+        const title = item.Title || item.TITLE || item.text || 'No Title';
+        let status = item.STATUS || '';
+        
+        // Format based on category type
+        switch(catName) {
+          case "Bingwa Movie Night":
+            // Simply use the WATCHED field as-is without any manipulation
+            const movieWatched = item.WATCHED || '';
+            const ownership = item.OwnerShip ? `[${item.OwnerShip}]` : '';
+            optionText = `${title} ${status} ${movieWatched} ${ownership}`.trim();
+            break;
+            
+          case "Anime Shows":
+          case "Sunday Morning Shows":
+          case "Sunday Night Shows":
+          case "YouTube Theater":
+            let watchCount = '';
+            if (item["TIMES SEEN"]) {
+              watchCount = '👀'.repeat(item["TIMES SEEN"]);
+            } else if (item.WATCHED) {
+              watchCount = '👀'.repeat(item.WATCHED.length);
+            } else if (item["LAST WATCHED"]) {
+              // Convert "se1", "se2" etc to appropriate number of eye emojis
+              const seasonMatch = item["LAST WATCHED"].match(/se(\d+)/i);
+              if (seasonMatch) {
+                watchCount = '👀'.repeat(parseInt(seasonMatch[1]));
+              }
+            }
+            const seriesLength = item["Series Length"] || '';
+            optionText = `${title} ${status} ${watchCount} ${seriesLength}`.trim();
+            break;
+            
+          case "Single Player Games":
+            const completed = item["COMPLETED?"] || '';
+            const timeToBeat = item["TIME TO BEAT"] || '';
+            const playability = item.Playability ? `[${item.Playability}]` : '';
+            optionText = `${title} ${status} ${completed} ${timeToBeat} ${playability}`.trim();
+            break;
+            
+          default: // PVP and Co-op Games
+            let copies = '';
+            if (item.copies > 0) {
+              copies = '🟢'.repeat(item.copies);
+            }
+            const gameMode = item.mode || '';
+            optionText = `${title} ${status} ${copies} ${gameMode}`.trim();
+        }
 
-          const optionText = `${title} ${status} ${watched} ${copies}`.trim();
-          const opt = document.createElement('option');
-          opt.value = title; // Use title as value
-          opt.text = optionText;
-          select.appendChild(opt);
-        });
-        // Add change listener to update this category's total when option changes
-        select.addEventListener('change', () => {
-          updateCategoryTotal(cat);
-        });
+        const opt = document.createElement('option');
+        opt.value = title;
+        opt.text = optionText;
+        select.appendChild(opt);
       });
-    } else {
-      console.warn(`No file mapping found for category: ${catName}`);
-    }
+
+      // Restore previous selection
+      if (currentValue !== "0") {
+        const matchingOption = Array.from(select.options).find(opt => opt.value === currentValue);
+        if (matchingOption) {
+          select.value = currentValue;
+        }
+      }
+    });
+  }
+};
+
+// Function to refresh all categories
+const refreshAllCategories = () => {
+  document.querySelectorAll('#entertainment .category').forEach(category => {
+    refreshCategoryOptions(category);
   });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initial population of dropdowns
+  refreshAllCategories();
+
+  // Set up periodic refresh (every 30 seconds)
+  setInterval(refreshAllCategories, 30000);
   
   // Add dropdown-based user type listener.
   const userTypeDropdown = document.getElementById('user-type');

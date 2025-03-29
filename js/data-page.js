@@ -748,6 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
           
           // After processing the data, populate the sort options
           populateSortOptions(data);
+
+		  if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+			updateActiveOptions();
+		  }
           
           // Add Collapse All functionality if the button exists
           const collapseAll = document.getElementById('collapse-all');
@@ -768,5 +772,49 @@ document.addEventListener('DOMContentLoaded', () => {
           
       })
       .catch(error => console.error('Error loading data:', error));
+  }
+
+  function updateActiveOptions() {
+    const singleplayerURL = '../../data/singleplayer.json';
+    const coopURL = '../../data/coop.json';
+    const pvpURL = '../../data/pvp.json';
+
+    Promise.all([fetch(singleplayerURL), fetch(coopURL), fetch(pvpURL)])
+      .then(responses => Promise.all(responses.map(response => response.json())))
+      .then(datas => {
+        const singleplayerData = datas[0];
+        const coopData = datas[1];
+        const pvpData = datas[2];
+
+        // Filter active options
+        const activeSingleplayer = filterActiveOptions(singleplayerData);
+        const activeCoop = filterActiveOptions(coopData);
+        const activePvp = filterActiveOptions(pvpData);
+
+        // Display active options
+        displayActiveOptions('singleplayer-list', activeSingleplayer);
+        displayActiveOptions('coop-list', activeCoop);
+        displayActiveOptions('pvp-list', activePvp);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  function filterActiveOptions(data) {
+    return data.filter(item => {
+      const hasGreenStatus = item.STATUS?.includes('🟢') || item.status?.includes('🟢');
+      const hasCopies = item.copies > 0;
+      return hasGreenStatus || hasCopies;
+    });
+  }
+
+  function displayActiveOptions(listId, items) {
+    const list = document.getElementById(listId);
+    list.innerHTML = ''; // Clear existing list
+
+    items.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.textContent = item.TITLE || item.Title || item.text;
+      list.appendChild(listItem);
+    });
   }
 });

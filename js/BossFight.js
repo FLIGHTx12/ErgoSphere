@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startTimer() {
-    let timeLeft = 366; // 5 minutes in seconds
+    let timeLeft = 365; // 5 minutes in seconds
     const timerElement = document.getElementById("timer");
     timer = setInterval(() => { // Assign the interval to the timer variable
       if (timeLeft <= 0) {
@@ -357,11 +357,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const damageDialogue = monster.getDamageDialogue(totalDamage, playerName);
         const hitDialogue = hitCount > 0 ? monster.getHitDialogue(hitCount, playerName) : "";
 
-        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"};">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
         if (damageDialogue) {
           historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${damageDialogue}</p>`;
         }
+        // Play punch sound for player's hit
+        const playPunchSounds = (count, soundFile) => {
+          for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+              const punchSound = new Audio(soundFile);
+              punchSound.volume = 0.5; // Adjust volume as needed
+              punchSound.play();
+            }, i * 300); // Adjust delay as needed (300ms between each sound)
+          }
+        };
+        playPunchSounds(hitCount, '../assets/audio/punch - 1.mp3');
+        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"};">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
         if (hitCount > 0) {
+          // Play punch sound for monster's hit
+          const playPunchSounds = (count, soundFile) => {
+            for (let i = 0; i < count; i++) {
+              setTimeout(() => {
+                const punchSound = new Audio(soundFile);
+                punchSound.volume = 0.5; // Adjust volume as needed
+                punchSound.play();
+              }, i * 300); // Adjust delay as needed (300ms between each sound)
+            }
+          };
+          playPunchSounds(hitCount, '../assets/audio/Punch - 2.mp3');
           historyContainer.innerHTML += `<p style="color:red;">${monster.name} hits ${playerName} ${hitCount} times.</p>`;
           if (hitDialogue) {
             historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${hitDialogue}</p>`;

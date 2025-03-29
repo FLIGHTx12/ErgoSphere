@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    margin: 0;
+    color: #eee; /* Light Gray */
+    background-color: #111; /* Dark Background */
+}
+
+h1 {
+    text-align: center;
+    color: #00bcd4; /* Cyan */
+    text-shadow: 0 0 5px #00bcd4;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+#activeOptionsContainer {
+    max-width: 95%;
+    margin: 10px auto;
+    padding: 15px;
+    background-color: rgba(33, 33, 33, 0.9); /* Dark Gray, Slightly transparent */
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.3); /* Cyan shadow */
+}
+
+.active-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.option-card {
+    width: 300px;
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+}
+
+.option-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.category-container {
+    margin-bottom: 20px;
+}
+
+.category-title {
+    font-size: 1.4em;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #0097a7; /* Darker Cyan */
+    color: #fff;
+}
+
+.option-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Use flexbox for columns */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    gap: 15px; /* Consistent gap between columns */
+}
+
+.option-column {
+    display: flex;
+    flex-direction: column;
+    width: var(--column-width); /* Use the dynamic width */
+}
+
+.option-list li {
+    margin-bottom: 4px;
+    font-size: 0.9em;
+    color: #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: auto; /* Remove fixed width, let content define it */
+}

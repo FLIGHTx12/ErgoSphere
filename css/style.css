@@ -415,3 +415,21 @@ li {
   transform: translateY(2px); /* Indent effect on click */
 }
 
+#active-options {
+  border: 2px solid #00ff00; /* Green border */
+  border-radius: 5px; /* Sharper corners */
+  padding: 10px;
+  position: relative;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-shadow: 0px 3px 5px #000; /* Dark text shadow */
+  box-shadow: 0 0 15px #00ff00; /* Green glow effect */
+  color: #00ff00; /* Green text */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  overflow: hidden;
+  background-image: none; /* Remove background image */
+  background: none; /* Remove background */
+}
+

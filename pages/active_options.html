@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Options</title>
+    <link rel="stylesheet" href="../css/active_options.css">
+</head>
+<body>
+
+    <h1>Active Options</h1>
+    <div id="activeOptionsContainer">
+        <!-- Active options will be displayed here -->
+    </div>
+
+    <script>
+        async function fetchData(url) {
+            const response = await fetch(url);
+            return await response.json();
+        }
+
+        async function displayActiveOptions() {
+            const container = document.getElementById('activeOptionsContainer');
+            const dataSources = [
+                { url: '../data/coop.json', type: 'Co-op' },
+                { url: '../data/pvp.json', type: 'PVP' },
+                { url: '../data/singleplayer.json', type: 'Singleplayer' },
+                { url: '../data/sundaymorning.json', type: 'Sunday Morning' },
+                { url: '../data/sundaynight.json', type: 'Sunday Night' },
+                { url: '../data/anime.json', type: 'Anime' },
+                { url: '../data/youtube.json', type: 'YouTube' },
+                { url: '../data/movies.json', type: 'Movies' }
+            ];
+
+            for (const source of dataSources) {
+                const data = await fetchData(source.url);
+                const activeOptions = data.filter(item => (item.STATUS === "🟢" || item.STATUS === "🟣" || (item.copies !== undefined && item.copies > 0)) && item.game !== "ERGOarena");
+
+                if (activeOptions.length > 0) {
+                    const categoryContainer = document.createElement('div');
+                    categoryContainer.classList.add('category-container');
+
+                    const categoryTitle = document.createElement('h2');
+                    categoryTitle.classList.add('category-title');
+                    categoryTitle.textContent = source.type;
+                    categoryContainer.appendChild(categoryTitle);
+
+                    const optionList = document.createElement('ul');
+                    optionList.classList.add('option-list');
+
+                    // Calculate max title width
+                    let maxTitleWidth = 0;
+                    activeOptions.forEach(option => {
+                        const title = option.TITLE || option.text || option.Title || 'No Title';
+                        
+                        // Measure title width with emojis
+                        const tempElement = document.createElement('span');
+                        tempElement.style.font = '0.9em Arial, sans-serif'; // Match font in CSS
+                        tempElement.style.whiteSpace = 'nowrap';
+                        tempElement.textContent = title;
+                        document.body.appendChild(tempElement);
+                        const titleWidth = tempElement.offsetWidth;
+                        document.body.removeChild(tempElement);
+
+                        maxTitleWidth = Math.max(maxTitleWidth, titleWidth);
+                    });
+
+                    // Base width + some extra padding
+                    const columnWidth = Math.max(150, maxTitleWidth * 8); // Adjust 8 based on font size
+
+                    optionList.style.setProperty('--column-width', `${columnWidth}px`);
+
+                    let chunkedOptions = [];
+                    for (let i = 0; i < activeOptions.length; i += 5) {
+                        chunkedOptions.push(activeOptions.slice(i, i + 5));
+                    }
+
+                    chunkedOptions.forEach(chunk => {
+                        const column = document.createElement('div');
+                        column.classList.add('option-column');
+
+                        chunk.forEach(option => {
+                            const listItem = document.createElement('li');
+                            let title = option.TITLE || option.text || option.Title || 'No Title';
+
+                            if (option['COMPLETED?']) {
+                                title += ' 🏆';
+                            }
+                            if (option.WATCHED || option['LAST WATCHED']) {
+                                title += ' 👀';
+                            }
+                            if (option.STATUS === "🟣") {
+                                title += ' 🟣 (QTR)';
+                            }
+
+                            listItem.textContent = title;
+                            column.appendChild(listItem);
+                        });
+                        optionList.appendChild(column);
+                    });
+
+                    categoryContainer.appendChild(optionList);
+                    container.appendChild(categoryContainer);
+                }
+            }
+        }
+
+        displayActiveOptions();
+    </script>
+</body>
+</html>
