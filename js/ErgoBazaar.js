@@ -71,37 +71,47 @@ const refreshCategoryOptions = async (category) => {
         // Format based on category type
         switch(catName) {
           case "Bingwa Movie Night":
-            // Simply use the WATCHED field as-is without any manipulation
             const movieWatched = item.WATCHED || '';
             const ownership = item.OwnerShip ? `[${item.OwnerShip}]` : '';
-            optionText = `${title} ${status} ${movieWatched} ${ownership}`.trim();
+            optionText = `${title} ┃ ${status} ${movieWatched} ${ownership}`.trim();
+            break;
+            
+          case "YouTube Theater":
+            let watchCount = '';
+            if (typeof item["TIMES SEEN"] === 'number') {
+              watchCount = '👀'.repeat(item["TIMES SEEN"]);
+            } else if (item["TIMES SEEN"]) {
+              // If TIMES SEEN contains actual eye emojis, use their count
+              const matches = (item["TIMES SEEN"].match(/👀/g) || []).length;
+              watchCount = '👀'.repeat(matches);
+            }
+            const channel = item.CHANNEL ? `[${item.CHANNEL}]` : '';
+            optionText = `${title} ┃ ${channel} ┃ ${status} ${watchCount}`.trim();
             break;
             
           case "Anime Shows":
           case "Sunday Morning Shows":
           case "Sunday Night Shows":
-          case "YouTube Theater":
-            let watchCount = '';
+            let watchCountShows = '';
             if (item["TIMES SEEN"]) {
-              watchCount = '👀'.repeat(item["TIMES SEEN"]);
+              watchCountShows = '👀'.repeat(item["TIMES SEEN"]);
             } else if (item.WATCHED) {
-              watchCount = '👀'.repeat(item.WATCHED.length);
+              watchCountShows = '👀'.repeat(item.WATCHED.length);
             } else if (item["LAST WATCHED"]) {
-              // Convert "se1", "se2" etc to appropriate number of eye emojis
               const seasonMatch = item["LAST WATCHED"].match(/se(\d+)/i);
               if (seasonMatch) {
-                watchCount = '👀'.repeat(parseInt(seasonMatch[1]));
+                watchCountShows = '👀'.repeat(parseInt(seasonMatch[1]));
               }
             }
             const seriesLength = item["Series Length"] || '';
-            optionText = `${title} ${status} ${watchCount} ${seriesLength}`.trim();
+            optionText = `${title} ┃ ${status} ${watchCountShows} ┃ ${seriesLength}`.trim();
             break;
             
           case "Single Player Games":
             const completed = item["COMPLETED?"] || '';
             const timeToBeat = item["TIME TO BEAT"] || '';
             const playability = item.Playability ? `[${item.Playability}]` : '';
-            optionText = `${title} ${status} ${completed} ${timeToBeat} ${playability}`.trim();
+            optionText = `${title} ┃ ${status} ${completed} ┃ ${timeToBeat} ${playability}`.trim();
             break;
             
           default: // PVP and Co-op Games
@@ -110,7 +120,7 @@ const refreshCategoryOptions = async (category) => {
               copies = '🟢'.repeat(item.copies);
             }
             const gameMode = item.mode || '';
-            optionText = `${title} ${status} ${copies} ${gameMode}`.trim();
+            optionText = `${title} ┃ ${status} ${copies} ┃ ${gameMode}`.trim();
         }
 
         const opt = document.createElement('option');

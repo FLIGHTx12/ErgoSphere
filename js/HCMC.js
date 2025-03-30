@@ -6,6 +6,7 @@ let stopInitiated = false;
 let delay = 1000;
 let rampStartTime = null;
 let powerDownPlayed = false; // Add this with other state variables at the top
+let currentlyDisplayedChoice = null; // Add this with other state variables at top
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -53,17 +54,18 @@ function playClickSounds() {
 }
 
 function loadChoices(pool) {
-  resetCycle();
-  currentPool = pool.toUpperCase();
-  currentCycleId = Math.random();
-  
-  return fetch(`../data/${pool}.json`)
-    .then(response => response.json())
-    .then(data => {
-      choices = data;
-      populateStaticRewards();
-    })
-    .catch(error => console.error('Error loading choices:', error));
+    resetCycle();
+    currentPool = pool.toUpperCase();
+    currentCycleId = Math.random();
+    
+    return fetch(`../data/${pool}.json`)
+        .then(response => response.json())
+        .then(async data => {
+            choices = data;
+            await preloadAllImages(choices);
+            populateStaticRewards();
+        })
+        .catch(error => console.error('Error loading choices:', error));
 }
 
 function createInfoOverlay(choice) {
@@ -136,33 +138,57 @@ function showRewardInfo(choice) {
     const infoDisplay = document.getElementById('reward-info-display');
     const infoContent = document.getElementById('reward-info-content');
     
-    // Set background image if available
-    if (choice.imageUrl && choice.imageUrl.trim() !== '') {
-        infoDisplay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('${choice.imageUrl}')`;
-    } else if (choice.image) {
-        const imagePath = Array.isArray(choice.image) ? choice.image[0] : choice.image;
-        if (imagePath && imagePath.trim() !== '') {
-            // Handle both relative and absolute URLs
-            const imageUrl = imagePath.startsWith('http') ? imagePath : `../${imagePath.replace(/^\.\.\//, '')}`;
-            infoDisplay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('${imageUrl}')`;
+    // Get image URL from choice
+    let backgroundImageUrl;
+    if (choice.image) {
+        if (Array.isArray(choice.image)) {
+            backgroundImageUrl = normalizePath(choice.image[0]); // Use first image if array
         } else {
-            infoDisplay.style.backgroundImage = 'none';
+            backgroundImageUrl = normalizePath(choice.image);
         }
+    } else if (choice.imageUrl) {
+        backgroundImageUrl = choice.imageUrl;
+    }
+    
+    // Set background image
+    if (backgroundImageUrl) {
+        infoDisplay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${backgroundImageUrl}')`;
+        infoDisplay.style.backgroundSize = 'cover';
+        infoDisplay.style.backgroundPosition = 'center';
     } else {
         infoDisplay.style.backgroundImage = 'none';
     }
 
-    // Create title, making it a link if a link property exists
+    // Rest of the showRewardInfo function remains the same
     let titleContent = choice.text;
     if (choice.link && choice.link.trim() !== '') {
         titleContent = `<a href="${choice.link}" target="_blank" style="color: #4CAF50; text-decoration: none; hover: underline;">${choice.text}</a>`;
     }
     let content = `<h4>${titleContent}</h4>`;
     
-    // Rest of properties display remains the same
+    // Add genre-specific information 
+    if (choice.genre === 'ERGOvillians' && choice.Escape) {
+        content += `<p><strong>Escape Cost:</strong> ${choice.Escape}</p>`;
+    }
+
+    // Add description if available
+    if (choice.description && choice.description.trim() !== '') {
+        content += `<p><strong>Description:</strong> ${choice.description}</p>`;
+    }
+
+    // Add reward if available
+    if (choice.reward && choice.reward.trim() !== '') {
+        content += `<p><strong>Reward:</strong> ${choice.reward}</p>`;
+    }
+
+    // Add punishment if available
+    if (choice.punishment && choice.punishment.trim() !== '') {
+        content += `<p><strong>Punishment:</strong> ${choice.punishment}</p>`;
+    }
+
+    // Rest of properties display (removing 'details' from the list)
     const properties = [
         { key: 'mode', label: 'Mode' },
-        { key: 'details', label: 'Details' },
         { key: 'genre', label: 'Genre' },
         { key: 'type', label: 'Type' },
         { key: 'cost', label: 'Cost' },
@@ -236,7 +262,14 @@ function filterChoices() {
 function selectWeightedChoice(choices) {
   // Create array of choices where each copy is a separate instance
   const weightedArray = choices.reduce((acc, choice) => {
-    const copies = Math.max(0, choice.copies || 0);
+    let copies = Math.max(0, choice.copies || 0);
+    
+    // Add 15% more copies if this was the displayed choice when stopping
+    if (stopInitiated && currentlyDisplayedChoice && 
+        choice.text === currentlyDisplayedChoice.text) {
+      copies = Math.ceil(copies * 1.15); // 15% more copies
+    }
+    
     // Add this choice to array once for each copy
     for (let i = 0; i < copies; i++) {
       acc.push(choice);
@@ -317,10 +350,17 @@ function normalizePath(path) {
     return path.startsWith('../') ? path : `../${path.replace(/^\.\.\//, '')}`;
 }
 
-// Improve image preloading system
+// Expand imageCache system to handle all types of images
 const imageCache = new Map();
 let lastImageUrl = null;
 let currentlyLoading = false;
+const backgroundImages = [
+    "../assets/img/backgrounds/CERN_detailed.jpeg",
+    "../assets/img/backgrounds/Hadron_Collider_inside.jpg",
+    "../assets/img/backgrounds/Hadron_Collider_Pipe.jpg",
+    "../assets/img/backgrounds/classicBlackHole.jpg",
+    "../assets/img/backgrounds/mixingGalaxy.jpg"
+];
 
 function preloadImage(url) {
     if (!url) return Promise.reject(new Error('No image URL provided'));
@@ -330,7 +370,10 @@ function preloadImage(url) {
 
     const img = new Image();
     const promise = new Promise((resolve, reject) => {
-        img.onload = () => resolve(url);
+        img.onload = () => {
+            imageCache.set(url, img);
+            resolve(url);
+        };
         img.onerror = () => {
             console.warn(`Failed to load image: ${url}`);
             imageCache.delete(url);
@@ -342,6 +385,36 @@ function preloadImage(url) {
     return promise;
 }
 
+async function preloadAllImages(choices) {
+    const urls = new Set();
+    
+    // Add background images
+    backgroundImages.forEach(url => urls.add(url));
+    
+    // Add all choice images
+    choices.forEach(choice => {
+        if (choice.imageUrl) {
+            urls.add(choice.imageUrl);
+        }
+        if (choice.image) {
+            if (Array.isArray(choice.image)) {
+                choice.image.forEach(url => urls.add(normalizePath(url)));
+            } else {
+                urls.add(normalizePath(choice.image));
+            }
+        }
+    });
+
+    // Preload all images concurrently
+    const preloadPromises = Array.from(urls).map(url => preloadImage(url));
+    try {
+        await Promise.allSettled(preloadPromises);
+    } catch (error) {
+        console.warn('Some images failed to preload:', error);
+    }
+}
+
+// Improve image preloading system
 async function updateChoiceImage(choice) {
     if (currentlyLoading) return; // Prevent multiple simultaneous updates
     
@@ -426,6 +499,9 @@ function spin(cycleId) {
         return;
     }
 
+    // Track currently displayed choice
+    currentlyDisplayedChoice = choice;
+
     updateChoiceImage(choice); // Replace direct image assignment with new function
     updateActiveReward(choice);
 
@@ -490,6 +566,7 @@ function resetCycle() {
     lastImageUrl = null;
     currentlyLoading = false; // Reset loading state
     choiceImage.style.opacity = '0';
+    currentlyDisplayedChoice = null; // Reset the tracked choice
 }
 
 async function capturePopupScreenshot(element) {
@@ -723,18 +800,18 @@ function highlightActiveButton(activeButton) {
   activeButton.classList.add('active');
 }
 
+// Update setRandomBackground to use cached images
 function setRandomBackground() {
-  const backgrounds = [
-    "../assets/img/backgrounds/CERN_detailed.jpeg",         // Updated filename
-    "../assets/img/backgrounds/Hadron_Collider_inside.jpg", // Updated filename
-    "../assets/img/backgrounds/Hadron_Collider_Pipe.jpg",   // Updated filename
-    "../assets/img/backgrounds/classicBlackHole.jpg",
-    "../assets/img/backgrounds/mixingGalaxy.jpg"
-  ];
-  const randomIndex = Math.floor(Math.random() * backgrounds.length);
-  const selectedBg = backgrounds[randomIndex];
-  console.log('Loading background:', selectedBg); // Add logging to debug
-  document.body.style.backgroundImage = `url(${selectedBg})`;
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    const selectedBg = backgroundImages[randomIndex];
+    
+    if (imageCache.has(selectedBg)) {
+        document.body.style.backgroundImage = `url(${selectedBg})`;
+    } else {
+        preloadImage(selectedBg).then(() => {
+            document.body.style.backgroundImage = `url(${selectedBg})`;
+        });
+    }
 }
 
 setRandomBackground();

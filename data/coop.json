@@ -9,15 +9,15 @@
     "../assets/img/ERGOvillians/Ergobugs variant 3 (ErgoVillian) .jpg"
   ],
     "imageUrl": "",
-   "copies": 13,
+   "copies": 14,
     "reward": "Party leader gets to pick any available CO-OP game.",
     "punishment": "Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     "genre": "ERGOvillians",
     "mode": "ERGOarena",
-    "Time per match": "5mins",
-    "playability":"" ,
+    "Time per match": "6mins",
+    "Escape":"30 Ducats" ,
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
-    "description": ""
+    "description": "Swarm"
   },  
   { "text": "Tash Nadia",
     "game": "ERGOarena",
@@ -29,10 +29,10 @@
     "punishment": "{Dagon’s Curse} Remove all fish from the menu this week. One Co-op day becomes a deep clean fish tank day. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     "genre": "ERGOvillians",
     "mode": "ERGOarena",
-    "Time per match": "5mins",
-    "playability":"" ,
+    "Time per match": "6mins",
+    "Escape":"30 Ducats" ,
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
-    "description": ""
+    "description": "STRENGTH"
   },  
   { "text": "Forbearer Tren",
     "game": "ERGOarena",
@@ -44,10 +44,10 @@
     "punishment": " {Hypnopompia} If the Party leader is the current Bingwa and or Atletico champ, remove your title and swap with the Kushindwa and or Atletico loser. All choices stay the same but all other rewards go to other player. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     "genre": "ERGOvillians",
     "mode": "ERGOarena",
-    "Time per match": "5mins",
-    "playability":"" ,
+    "Time per match": "6mins",
+    "Escape":"30 Ducats" ,
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
-    "description": ""
+    "description": "INTELLINGENCE"
   },  
   { "text": "Bennu",
     "game": "ERGOarena",
@@ -58,10 +58,10 @@
     "reward": "Party leader gets to pick any available CO-OP game. Player also gains 50 ducats.",
     "punishment": "{Borracho} Each party member must play on level above the Gig Game requirement during the next weekly Rockband session. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.", 
     "mode": "ERGOarena",
-    "Time per match": "5mins",
-    "playability":"" ,
+    "Time per match": "6mins",
+    "Escape":"30 Ducats" ,
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
-    "description": ""
+    "description": "PERCEPTION"
   },  
   { "text": "Dulguun Bolor",
     "game": "ERGOarena",
@@ -73,15 +73,15 @@
     "punishment": "{Vegicide} Each party member must pick one day this week to abstain from meat consumption. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.", 
     "genre": "ERGOvillians",
     "mode": "ERGOarena",
-    "Time per match": "5mins",
-    "playability":"" ,
+    "Time per match": "6mins",
+    "Escape":"30 Ducats" ,
     "link": "https://ergosphere-02b692b18f50.herokuapp.com/pages/BossFight.html",
-    "description": ""
+    "description": "CONSTITUTION"
   },   
     { "text": "33 Immortals",
       "image": "../assets/img/Spin The Wheel Photos/CO-OP/33Immortals.jpg",
       "imageUrl": "",
-      "copies": 3,
+      "copies": 5,
       "genre": "RPG, Hack and slash/Beat 'em up, Indie",
       "mode": "",
       "details": "",
