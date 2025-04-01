@@ -469,6 +469,18 @@ document.addEventListener('DOMContentLoaded', () => {
         function getTitle(item) {
           return item.text || item.TITLE || item.Title || 'No Title';
         }
+        
+        // NEW: For ALL data-pages, sort the items alphabetically by title.
+        if (Array.isArray(data)) {
+          data.sort((a, b) => getTitle(a).localeCompare(getTitle(b)));
+        } else if (typeof data === 'object' && data !== null) {
+          Object.keys(data).forEach(key => {
+            if (Array.isArray(data[key])) {
+              data[key].sort((a, b) => getTitle(a).localeCompare(getTitle(b)));
+            }
+          });
+        }
+        // End NEW sorting block
 
         let processedData = data;
         if (isYoutubePage) {

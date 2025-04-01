@@ -1,5 +1,49 @@
 [
     {
+    "TITLE": "Ozempic - What’s the truth behind the hype?",
+    "imageUrl": "",
+    "STATUS": "",
+    "CHANNEL": "DW DOCUMENTARY",
+    "GENRE": "Documentary",
+    "RUNTIME": "29mins",
+    "Link": "https://www.youtube.com/watch?v=nBI1WCmHRe4",
+    "TIMES SEEN": "",
+    "DESCRIPTION": ""
+    },
+    {
+      "TITLE": "Mass Effect Andromeda - What Happened?",
+      "imageUrl": "",
+      "STATUS": "",
+      "CHANNEL": "Matt McMuscles: What Happened?",
+      "GENRE": "Video Game",
+      "RUNTIME": "18mins",
+      "Link": "https://www.youtube.com/watch?v=vVZfPohK96U&t=10s",
+      "TIMES SEEN": "",
+      "DESCRIPTION": ""
+    }, 
+    {
+      "TITLE": "AJ Foster | Pay It Forward",
+      "imageUrl": "",
+      "STATUS": "",
+      "CHANNEL": "COMEDY SETS",
+      "GENRE": "Comedy",
+      "RUNTIME": "30mins",
+      "Link": "https://www.youtube.com/watch?v=3rjiqZuVMgs",
+      "TIMES SEEN": "",
+      "DESCRIPTION": "AJ Foster is a stand up comic and writer known for his appearances on Fox’s “Laughs”, AXS TV’s “Gotham Comedy Live”, and “Lyft Comics” on Kevin Hart’s LOL Network. His witty observational humor paired with his laid back delivery captivates audiences and makes them just as comfortable as he appears on stage. Combine that with his charm and contagious smile and you have a comedian who is both lovable and relatable to people of all ages and backgrounds."
+    }, 
+    {
+      "TITLE": "Bald Brothers Freestyle Comedy Show Ft. Tony Baker & KevOnStage #1",
+      "imageUrl": "",
+      "STATUS": "",
+      "CHANNEL": "COMEDY SETS",
+      "GENRE": "Comedy",
+      "RUNTIME": "45mins",
+      "Link": "https://www.youtube.com/watch?v=nwqejGRry00",
+      "TIMES SEEN": "",
+      "DESCRIPTION": "Next Bald Brothers Freestyle Comedy Show in LA"
+    },    
+    {
       "TITLE": "Age of Apocalypse - Part 1 - Brave New World ",
       "imageUrl": "https://m.media-amazon.com/images/I/71Li8Iv6ZPL._AC_UF1000,1000_QL80_.jpg",
       "STATUS": "",
@@ -20,7 +64,7 @@
       "Link": "",
       "TIMES SEEN": "",
       "DESCRIPTION": ""
-    },
+    }, 
     {
       "TITLE": "Age of Apocalypse - Part 3 - Deadpool",
       "imageUrl": "https://www.midtowncomics.com/images/PRODUCT/XL/1977702_xl.jpg",

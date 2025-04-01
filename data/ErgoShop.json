@@ -12,11 +12,13 @@
   "sweetSnackContainer": [
     { "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "value": 10 },
     { "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "value": 20 },
+    { "text": "🍫Kroger® Peanut Butter & Dark Chocolate Chewy Granola Bars - 30💷", "value": 30 },
     { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
     { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
     { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
     { "text": "🐇Annie's Organic Bunny Fruit Snacks - 40💷", "value": 40 },
     { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
+    { "text": "🍒TWIZZLERS NIBS Cherry - 40💷", "value": 40 },
     { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
   ],
   "frozenSnackContainer": [
