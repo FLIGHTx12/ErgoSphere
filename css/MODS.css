@@ -1,1 +1,32 @@
 /* Add specific styles here if needed */
+
+/* Screenshot button styling */
+.screenshot-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.screenshot-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+/* Position styling for mod divs to allow absolute positioning of buttons */
+.mod {
+    position: relative;
+    padding-right: 45px; /* Make room for the button */
+}

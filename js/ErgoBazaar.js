@@ -176,15 +176,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Determine cost multiplier based on user type.
     const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
     let count = 0;
+    let discountEyeCount = 0;
+    
     categoryDiv.querySelectorAll('.ent-select').forEach(select => {
       if (select.selectedIndex > 0) {
         count++;
+        // Count eye emojis in the selected option for discount calculation
+        const selectedText = select.options[select.selectedIndex].text;
+        const eyeCount = (selectedText.match(/👀/g) || []).length;
+        discountEyeCount += eyeCount;
       }
     });
+    
+    // Calculate base cost and discount
+    const baseCost = count * multiplier;
+    const discountPercentage = discountEyeCount * 0.2; // 20% per eye emoji
+    const discountAmount = Math.round(baseCost * discountPercentage);
+    const finalCost = baseCost - discountAmount;
+    
     // Update the visible total inside the category div.
     const totalElem = categoryDiv.querySelector('.category-total');
     if (totalElem) {
-      totalElem.textContent = `${count * multiplier} 💷`;
+      if (discountAmount > 0) {
+        totalElem.textContent = `${finalCost} 💷 (${discountAmount} off)`;
+      } else {
+        totalElem.textContent = `${baseCost} 💷`;
+      }
     }
   }
   
@@ -196,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       let summaryHTML = '<hr><h2>ErgoBazaar Summary:</h2><ul>';
       let overallTotal = 0;
+      let overallDiscount = 0;
       
       // Process each category and accumulate totals.
       document.querySelectorAll('.category').forEach(cat => {
@@ -203,29 +221,69 @@ document.addEventListener('DOMContentLoaded', () => {
         const selects = cat.querySelectorAll('.ent-select');
         let selections = [];
         let catCount = 0;
+        let categoryEyeCount = 0;
+        
         selects.forEach(select => {
           if (select.selectedIndex > 0) {
-            selections.push(select.options[select.selectedIndex].text);
+            const selectedText = select.options[select.selectedIndex].text;
+            selections.push(selectedText);
             catCount++;
+            
+            // Count eye emojis for discount
+            const eyeCount = (selectedText.match(/👀/g) || []).length;
+            categoryEyeCount += eyeCount;
           }
         });
+        
         // Determine cost multiplier based on user type.
         const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
-        const catTotal = catCount * multiplier;
-        overallTotal += catTotal;
+        const baseCatTotal = catCount * multiplier;
+        const discountPercentage = categoryEyeCount * 0.2; // 20% per eye emoji
+        const discountAmount = Math.round(baseCatTotal * discountPercentage);
+        const finalCatTotal = baseCatTotal - discountAmount;
+        
+        overallTotal += finalCatTotal;
+        overallDiscount += discountAmount;
+        
         if (selections.length > 0) {
-          // Use <u> tags to underline the category and <br> for each option.
-          summaryHTML += `<li><strong><u>${catName}:</u></strong><br>${selections.join('<br>')} - <em>${catTotal} 💷</em></li><br>`;
+          let catSummary = `<li><strong><u>${catName}:</u></strong><br>${selections.join('<br>')}`;
+          
+          if (discountAmount > 0) {
+            catSummary += ` - <em>${baseCatTotal} 💷</em>`;
+            catSummary += ` <span style="color:lightgreen">(-${discountAmount} 💷 discount)</span>`;
+            catSummary += ` = <em>${finalCatTotal} 💷</em>`;
+          } else {
+            catSummary += ` - <em>${finalCatTotal} 💷</em>`;
+          }
+          
+          catSummary += '</li><br>';
+          summaryHTML += catSummary;
         }
       });
       
       const cashout = document.getElementById('cashout-input').value;
       summaryHTML += '</ul>';
-      summaryHTML += `<p><hr><strong> TOTAL:</strong><span style="color: gold; font-weight: bold;"> ${overallTotal}💷</span> </p>`;
+      
+      // Simplified total summary without showing discount breakdown
+      let totalSummary = `<p><hr><strong> TOTAL:</strong>`;
+      totalSummary += `<span style="color: gold; font-weight: bold;"> ${overallTotal}💷</span>`;
+      totalSummary += ` </p>`;
+      
+      summaryHTML += totalSummary;
       summaryHTML += `<p><strong>Cashout Request:</strong> <span style="color: gold; font-weight: bold;">${cashout} 💷</span></p>`;
       summaryHTML += '<hr>';
       
       summaryDiv.innerHTML = summaryHTML;
+      
+      // Ensure background image is explicitly set and visible
+      const computedStyle = getComputedStyle(summaryDiv);
+      if (computedStyle.backgroundImage === 'none' || !computedStyle.backgroundImage) {
+        // Use the background image from CSS if not already applied
+        summaryDiv.style.backgroundImage = "url('https://i.ibb.co/CtB1Dvz/black-glass.jpg')";
+        summaryDiv.style.backgroundSize = 'cover';
+        summaryDiv.style.backgroundPosition = 'center';
+      }
+      
       summaryDiv.style.display = 'block';
       console.log('Submit processing complete');
     } catch(err) {

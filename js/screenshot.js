@@ -1,24 +1,6 @@
-function setDateAndTimeInputs() {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().substr(0, 10);
-    const formattedTime = currentDate.toTimeString().substr(0, 5);
+// Screenshot functionality for MOD divs
 
-    document.querySelectorAll('input[type="date"]').forEach(dateInput => {
-        dateInput.value = formattedDate;
-    });
-
-    document.querySelectorAll('input[type="time"]').forEach(timeInput => {
-        timeInput.value = formattedTime;
-    });
-}
-
-function animateClick(element) {
-    element.classList.add('clicked');
-    setTimeout(() => {
-        element.classList.remove('clicked');
-    }, 300);
-}
-
+// Function to capture screenshot of an element
 function captureScreenshot(element) {
     // Force any background images to load completely before capture
     if (element.style.backgroundImage || 
@@ -85,28 +67,51 @@ function captureScreenshot(element) {
     });
 }
 
+// Fallback download function when clipboard API is not available
 function fallbackDownload(blob) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.style.display = 'none';
     a.href = url;
-    a.download = 'screenshot.png';
+    a.download = 'mod-screenshot.png';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    alert('Screenshot downloaded as "screenshot.png".');
+    alert('Screenshot downloaded!');
 }
 
-function addGlobalEventListeners() {
-    let lastScrollTop = 0;
-    const navbar = document.getElementById('navbar');
-
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        navbar.classList.toggle('hidden', scrollTop > lastScrollTop);
-        lastScrollTop = Math.max(scrollTop, 0);
+// Initialize screenshot buttons when the document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add screenshot buttons to each mod div
+    const modDivs = document.querySelectorAll('.mod');
+    
+    modDivs.forEach((modDiv, index) => {
+        // Set unique ID if not already set
+        if (!modDiv.id) {
+            modDiv.id = `mod-${index}`;
+        }
+        
+        // Create screenshot button
+        const screenshotBtn = document.createElement('button');
+        screenshotBtn.className = 'screenshot-btn';
+        screenshotBtn.innerHTML = '📸';
+        screenshotBtn.setAttribute('title', 'Copy to clipboard');
+        
+        // Add click event listener
+        screenshotBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent any parent click events
+            
+            // Temporarily hide the button for cleaner screenshot
+            this.style.display = 'none';
+            
+            // Capture the screenshot
+            captureScreenshot(modDiv).then(() => {
+                // Show the button again after capturing
+                this.style.display = 'block';
+            });
+        });
+        
+        // Append button to mod div
+        modDiv.appendChild(screenshotBtn);
     });
-
-    // Removed gesture controls
-}
+});

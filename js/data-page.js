@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return /.*\(\d{4}\)/.test(title);
     });
     
-    // Check for runtime data
+    // Check for runtime data - FIX: Added missing closing parenthesis
     const hasRuntimeData = data.some(item => {
       const runtime = item.RUNTIME || '';
       return runtime.trim() !== '' || /\d+(?:h|min)/.test(item.Title || '');
@@ -206,6 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const extractRuntime = (text) => {
       let totalMinutes = 0;
       
+      // First check for specific runtime field in the details
+      const runtimeMatch = text.match(/Runtime:?\s*(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/i);
+      if (runtimeMatch) {
+        const hours = runtimeMatch[1] ? parseInt(runtimeMatch[1]) : 0;
+        const minutes = runtimeMatch[2] ? parseInt(runtimeMatch[2]) : 0;
+        totalMinutes = hours * 60 + minutes;
+        if (totalMinutes > 0) return totalMinutes;
+      }
+      
       // Match formats: "1h 35min", "2h30m", "150 minutes", "2:30", "1h", "30m", "90min"
       const timeMatch = text.match(/(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/);
       
@@ -217,9 +226,17 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Also try to match just a pure number of minutes like "123 minutes"
       if (totalMinutes === 0) {
-        const pureMinutes = text.match(/(\d+)\s*minutes?/);
+        const pureMinutes = text.match(/(\d+)\s*minutes?/i);
         if (pureMinutes) {
           totalMinutes = parseInt(pureMinutes[1]);
+        }
+      }
+      
+      // Try to match "X:YY" format (hours:minutes)
+      if (totalMinutes === 0) {
+        const timeFormat = text.match(/(\d+):(\d{2})/);
+        if (timeFormat) {
+          totalMinutes = parseInt(timeFormat[1]) * 60 + parseInt(timeFormat[2]);
         }
       }
       
@@ -227,21 +244,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const extractYear = (text) => {
-      // Only match year in titles with format: "Title (YYYY)"
+      // First try title with format: "Title (YYYY)"
       const titleMatch = text.match(/.*?\((\d{4})\)/);
-      return titleMatch ? parseInt(titleMatch[1]) : 9999;
+      if (titleMatch) {
+        return parseInt(titleMatch[1]);
+      }
+      
+      // Try to find a year anywhere in the text
+      const yearMatch = text.match(/\b(19\d{2}|20\d{2})\b/);
+      if (yearMatch) {
+        return parseInt(yearMatch[1]);
+      }
+      
+      return 9999; // Default value for items without year
     };
 
     items.sort((a, b) => {
       const aTitle = a.querySelector('.item-title').textContent;
       const bTitle = b.querySelector('.item-title').textContent;
       const aDetails = a.querySelector('.item-details').textContent;
-      const bDetails = a.querySelector('.item-details').textContent;
+      const bDetails = b.querySelector('.item-details').textContent;
+      const aFullText = aTitle + " " + aDetails;
+      const bFullText = aTitle + " " + bDetails;
       
       switch(criteria) {
         case 'year':
-          const yearA = extractYear(aTitle);
-          const yearB = extractYear(bTitle);
+          const yearA = extractYear(aFullText);
+          const yearB = extractYear(bFullText);
           // Items without years go to the end
           if (yearA === 9999 && yearB === 9999) {
             return aTitle.localeCompare(bTitle); // Alphabetical if no years
@@ -251,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
           return yearA - yearB;
           
         case 'runtime':
-          const runtimeA = extractRuntime(aTitle);
-          const runtimeB = extractRuntime(bTitle);
+          const runtimeA = extractRuntime(aFullText);
+          const runtimeB = extractRuntime(bFullText);
           // Items without runtime go to the end
           if (runtimeA === 9999 && runtimeB === 9999) {
             return aTitle.localeCompare(bTitle); // Alphabetical if no runtime
@@ -263,16 +292,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         case 'time to beat':
           const getTTB = (text) => {
-            const match = text.match(/Time to [Bb]eat:?\s*(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/);
-            if (match) {
-              const hours = match[1] ? parseInt(match[1]) : 0;
-              const minutes = match[2] ? parseInt(match[2]) : 0;
+            // Look for "Time to Beat: Xh Ymin" format
+            const ttbMatch = text.match(/Time to [Bb]eat:?\s*(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/);
+            if (ttbMatch) {
+              const hours = ttbMatch[1] ? parseInt(ttbMatch[1]) : 0;
+              const minutes = ttbMatch[2] ? parseInt(ttbMatch[2]) : 0;
               return hours * 60 + minutes;
             }
-            return 9999;
+            
+            // Try alternate formats
+            const hourMinFormat = text.match(/TIME TO BEAT:?\s*(?:(\d+)\s*h(?:ours?)?)?[:\s]*(?:(\d+)\s*m(?:in(?:utes?)?)?)?/i);
+            if (hourMinFormat) {
+              const hours = hourMinFormat[1] ? parseInt(hourMinFormat[1]) : 0;
+              const minutes = hourMinFormat[2] ? parseInt(hourMinFormat[2]) : 0;
+              return hours * 60 + minutes;
+            }
+            
+            // Look for just hours or just minutes
+            const hoursOnly = text.match(/Time to [Bb]eat:?\s*(\d+)\s*h/);
+            if (hoursOnly) {
+              return parseInt(hoursOnly[1]) * 60;
+            }
+            
+            const minutesOnly = text.match(/Time to [Bb]eat:?\s*(\d+)\s*m/);
+            if (minutesOnly) {
+              return parseInt(minutesOnly[1]);
+            }
+            
+            // Try to find a plain number near "Time to Beat"
+            const plainNumber = text.match(/Time to [Bb]eat:?\s*(\d+)/);
+            if (plainNumber) {
+              // Assume hours if number is small, minutes otherwise
+              const num = parseInt(plainNumber[1]);
+              return num < 10 ? num * 60 : num;
+            }
+            
+            return 9999; // Default for items without TTB
           };
-          const ttbA = getTTB(aDetails);
-          const ttbB = getTTB(bDetails);
+          
+          const ttbA = getTTB(aFullText);
+          const ttbB = getTTB(bFullText);
           if (ttbA === 9999 && ttbB === 9999) {
             return aTitle.localeCompare(bTitle);
           }
@@ -282,20 +341,58 @@ document.addEventListener('DOMContentLoaded', () => {
           
         case 'cost':
           const getCostValue = (text) => {
-            const match = text.match(/Cost:?\s*\$?(\d+)/);
-            return match ? parseInt(match[1]) : 0;
+            // Look for cost with dollar sign
+            const matchWithSymbol = text.match(/Cost:?\s*\$?(\d+(?:\.\d+)?)/i);
+            if (matchWithSymbol) {
+              return parseFloat(matchWithSymbol[1]);
+            }
+            
+            // Look for just a number after "Cost:"
+            const plainMatch = text.match(/Cost:?\s*(\d+(?:\.\d+)?)/i);
+            if (plainMatch) {
+              return parseFloat(plainMatch[1]);
+            }
+            
+            return 0; // Default for items without cost
           };
-          return getCostValue(aDetails) - getCostValue(bDetails);
+          
+          const costA = getCostValue(aFullText);
+          const costB = getCostValue(bFullText);
+          if (costA === 0 && costB === 0) {
+            return aTitle.localeCompare(bTitle);
+          }
+          if (costA === 0) return 1;
+          if (costB === 0) return -1;
+          return costA - costB;
           
         case 'copies':
           const getCopiesValue = (text) => {
-            const match = text.match(/Copies:?\s*(\d+)/);
-            return match ? parseInt(match[1]) : 0;
+            // First check for "Copies: X" format
+            const copiesMatch = text.match(/Copies:?\s*(\d+)/i);
+            if (copiesMatch) {
+              return parseInt(copiesMatch[1]);
+            }
+            
+            // Count 🟢 indicators (each represents a copy)
+            const greenDots = (text.match(/🟢/g) || []).length;
+            if (greenDots > 0) {
+              return greenDots;
+            }
+            
+            return 0; // Default for items without copies
           };
-          return getCopiesValue(aDetails) - getCopiesValue(bDetails);
+          
+          const copiesA = getCopiesValue(aFullText);
+          const copiesB = getCopiesValue(bFullText);
+          if (copiesA === 0 && copiesB === 0) {
+            return aTitle.localeCompare(bTitle);
+          }
+          if (copiesA === 0) return 1;
+          if (copiesB === 0) return -1;
+          return copiesA - copiesB;
           
         default:
-          return 0;
+          return aTitle.localeCompare(bTitle);
       }
     });
 
@@ -315,9 +412,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sortBtn.textContent = `Sort By: ${criteria} ${arrow}`;
   }
 
-  // Function to check if any items have LAST WATCHED data
+  // Function to check if any items have watched-related data
   function checkForWatchedData(data) {
-    return data.some(item => item['LAST WATCHED'] !== undefined);
+    return data.some(item => 
+      item['LAST WATCHED'] !== undefined || 
+      item['WATCHED'] !== undefined || 
+      item['Watched'] !== undefined ||
+      item['watched'] !== undefined ||
+      item['TIMES SEEN'] !== undefined
+    );
   }
 
   // Function to check if any items have completion data
@@ -354,7 +457,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const detailsElement = item.querySelector('.item-details');
       const hasActiveStatus = titleElement?.textContent.includes('🟢') || false;
       const hasSeasonalStatus = titleElement?.textContent.includes('🟣') || false;
-      const hasWatchedStatus = titleElement?.textContent.includes('👀') || false;
+      const hasWatchedStatus = detailsElement?.textContent.includes('👀') || false;
+      const hasWatchedIndicator = 
+        hasWatchedStatus || 
+        titleElement?.textContent.includes('👀') || 
+        detailsElement?.textContent.includes('TIMES SEEN') ||
+        detailsElement?.textContent.includes('WATCHED') ||
+        detailsElement?.textContent.includes('LAST WATCHED');
       const hasCompletedStatus = detailsElement?.textContent.includes('🏆') || false;
 
       switch(currentFilter) {
@@ -371,7 +480,10 @@ document.addEventListener('DOMContentLoaded', () => {
           shouldShow = shouldShow && hasCompletedStatus;
           break;
         case 'watched':
-          shouldShow = shouldShow && hasWatchedStatus;
+          shouldShow = shouldShow && hasWatchedIndicator;
+          break;
+        case 'unwatched':
+          shouldShow = shouldShow && !hasWatchedIndicator;
           break;
       }
 
@@ -410,27 +522,31 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
       case 'inactive':
         // Only add watched state if we have watched data
-        if (hasCompletedData) {
-          currentFilter = 'completed';
-          filterBtn.textContent = 'Status: Completed 🏆';
-        } else if (hasWatchedData) {
-          currentFilter = 'watched';
-          filterBtn.textContent = 'Status: Watched 👀';
-        } else {
-          currentFilter = 'all';
-          filterBtn.textContent = 'Status: All';
-        }
-        break;
-      case 'completed':
         if (hasWatchedData) {
           currentFilter = 'watched';
           filterBtn.textContent = 'Status: Watched 👀';
+        } else if (hasCompletedData) {
+          currentFilter = 'completed';
+          filterBtn.textContent = 'Status: Completed 🏆';
         } else {
           currentFilter = 'all';
           filterBtn.textContent = 'Status: All';
         }
         break;
       case 'watched':
+        currentFilter = 'unwatched';
+        filterBtn.textContent = 'Status: Unwatched';
+        break;
+      case 'unwatched':
+        if (hasCompletedData) {
+          currentFilter = 'completed';
+          filterBtn.textContent = 'Status: Completed 🏆';
+        } else {
+          currentFilter = 'all';
+          filterBtn.textContent = 'Status: All';
+        }
+        break;
+      case 'completed':
         currentFilter = 'all';
         filterBtn.textContent = 'Status: All';
         break;
@@ -486,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isYoutubePage) {
           // Group items by channel
           processedData = data.reduce((acc, item) => {
-            const channel = item.CHANNEL || 'Unknown Channel';
+            const channel = item.channel || 'Unknown Channel';
             if (!acc[channel]) {
               acc[channel] = [];
             }
@@ -495,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, {});
         }
 
-        // Function to handle each item, including those within arrays
+        // Process each item
         function processItem(item) {
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('item-row');
@@ -566,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `<a class="item-title-link" data-href="${linkVal}" target="_blank">${itemText}${indicator}</a>` 
             : `${itemText}${indicator}`;
 
-          // Replace detailsHTML construction with conditional checks
+          // Build details HTML with property checks
           let detailsHTML = '';
 
           function addDetail(label, value) {
@@ -614,111 +730,166 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Updated click event: collapse other items and toggle expansion.
           itemDiv.addEventListener('click', function(event) {
+            // Don't collapse when clicking on links or details
+            if (event.target.closest('.item-title-link') || 
+                event.target.closest('.item-details')) {
               event.stopPropagation();
-              const allItems = container.querySelectorAll('.item-row');
-              allItems.forEach(el => {
-                  if (el !== this) {
-                      el.classList.remove('expanded');
-                      el.style.backgroundImage = ''; // Remove background image from other items
-                      // Disable links in closed items and reset styling
-                      const link = el.querySelector('a.item-title-link');
-                      if (link) {
-                          link.removeAttribute('href');
-                          link.style.color = '';
-                      }
-                  }
-              });
-              this.classList.toggle('expanded');
-              // If expanded, enable the link and style it; otherwise, disable it.
+              return;
+            }
+            
+            // If click is on the collapse corner, process it but don't return
+            if (event.target.closest('.collapse-corner')) {
+              event.stopPropagation();
+              this.classList.remove('expanded');
+              const collapseCorner = this.querySelector('.collapse-corner');
+              if (collapseCorner) {
+                collapseCorner.remove();
+              }
+              // Reset links and styling
               const currentLink = this.querySelector('a.item-title-link');
               if (currentLink) {
-                if (this.classList.contains('expanded')) {
-                  currentLink.setAttribute('href', currentLink.dataset.href);
-                  currentLink.style.color = 'lightgreen';
-                } else {
-                  currentLink.removeAttribute('href');
-                  currentLink.style.color = '';
+                currentLink.removeAttribute('href');
+                currentLink.style.color = '';
+              }
+              // Reset background
+              this.style.backgroundImage = '';
+              this.style.color = '';
+              this.style.textShadow = '';
+              return;
+            }
+            
+            event.stopPropagation();
+            const allItems = container.querySelectorAll('.item-row');
+            
+            // Remove collapse corner from all items
+            document.querySelectorAll('.collapse-corner').forEach(corner => {
+              corner.remove();
+            });
+            
+            allItems.forEach(el => {
+              if (el !== this) {
+                el.classList.remove('expanded');
+                el.style.backgroundImage = ''; // Remove background image from other items
+                // Disable links in closed items and reset styling
+                const link = el.querySelector('a.item-title-link');
+                if (link) {
+                  link.removeAttribute('href');
+                  link.style.color = '';
                 }
               }
+            });
+            
+            this.classList.toggle('expanded');
+            
+            // If expanded, add collapse corner, enable link and style it
+            if (this.classList.contains('expanded')) {
+              // Add collapse corner
+              const collapseCorner = document.createElement('div');
+              collapseCorner.className = 'collapse-corner';
+              collapseCorner.innerHTML = '↕';
+              collapseCorner.title = 'Click to collapse';
+              
+              // Insert the button right after the item-title div to ensure it's at the top
+              const titleDiv = this.querySelector('.item-title');
+              if (titleDiv && titleDiv.nextSibling) {
+                this.insertBefore(collapseCorner, titleDiv.nextSibling);
+              } else {
+                // Fallback - just append it
+                this.appendChild(collapseCorner);
+              }
+              
+              // Make sure the button is positioned properly
+              collapseCorner.style.position = 'absolute';
+              collapseCorner.style.top = '10px';
+              collapseCorner.style.right = '10px';
+              collapseCorner.style.zIndex = '1000';
+              
+              // Enable link
+              const currentLink = this.querySelector('a.item-title-link');
+              if (currentLink) {
+                currentLink.setAttribute('href', currentLink.dataset.href);
+                currentLink.style.color = 'lightgreen';
+              }
+              
               // Set background image using imageUrl or first image from array
               let backgroundImage = '';
               if (item.imageUrl) {
-                  backgroundImage = item.imageUrl;
+                backgroundImage = item.imageUrl;
               } else if (item.image) {
-                  if (Array.isArray(item.image)) {
-                      backgroundImage = '../' + item.image[0]; // Add '../' prefix for relative paths
-                  } else {
-                      backgroundImage = '../' + item.image; // Add '../' prefix for relative paths
-                  }
+                if (Array.isArray(item.image)) {
+                  backgroundImage = '../' + item.image[0];
+                } else {
+                  backgroundImage = '../' + item.image;
+                }
               }
 
               if (backgroundImage) {
-                  this.style.backgroundImage = `url('${backgroundImage}')`;
-                  this.style.backgroundSize = 'cover';
-                  this.style.backgroundPosition = 'center';
-                  this.style.backgroundRepeat = 'no-repeat';
-                  this.style.color = 'white';
-                  this.style.textShadow = '2px 2px 4px #000000';
-              } else {
-                  this.style.backgroundImage = '';
-                  this.style.color = '';
-                  this.style.textShadow = '';
+                this.style.backgroundImage = `url('${backgroundImage}')`;
+                this.style.backgroundSize = 'cover';
+                this.style.backgroundPosition = 'center';
+                this.style.backgroundRepeat = 'no-repeat';
+                this.style.color = 'white';
+                this.style.textShadow = '2px 2px 4px #000000';
               }
 
-              if (this.classList.contains('expanded')) {
-                // Add scroll listener for expanded div
-                let startY = 0;
-                let bgPos = 0;
-                
-                const handleScroll = (e) => {
-                  const delta = e.deltaY;
-                  bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
-                  this.style.backgroundPosition = `center ${bgPos}%`;
-                  e.preventDefault();
-                };
-                
-                this.addEventListener('wheel', handleScroll, { passive: false });
-                
-                // Remove scroll listener when collapsed
-                this.addEventListener('click', () => {
-                  if (!this.classList.contains('expanded')) {
-                    this.removeEventListener('wheel', handleScroll);
-                  }
-                }, { once: true });
-              }
+              // Add scroll listener for expanded div
+              let startY = 0;
+              let bgPos = 0;
+              
+              const handleScroll = (e) => {
+                const delta = e.deltaY;
+                bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
+                this.style.backgroundPosition = `center ${bgPos}%`;
+                e.preventDefault();
+              };
+              
+              this.addEventListener('wheel', handleScroll, { passive: false });
+              
+              // Remove scroll listener when collapsed
+              this.addEventListener('click', () => {
+                if (!this.classList.contains('expanded')) {
+                  this.removeEventListener('wheel', handleScroll);
+                }
+              }, { once: true });
+            } else {
+              // Reset styling when not expanded
+              this.style.backgroundImage = '';
+              this.style.color = '';
+              this.style.textShadow = '';
+            }
           });
           return itemDiv;
         }
 
-        // Iterate through the data and process each item
-        if (isYoutubePage) {
-          // Sort channels alphabetically
-          const sortedChannels = Object.keys(processedData).sort();
-
-          sortedChannels.forEach(channel => {
-            const channelItems = processedData[channel];
-
-            const channelDiv = document.createElement('div');
-            channelDiv.classList.add('channel-section');
-            channelDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        // Remove the simplified processItem function that didn't properly include details
+        if (Array.isArray(processedData)) {
+          processedData.forEach(item => {
+            processItem(item);
+          });
+        } else if (typeof processedData === 'object' && processedData !== null) {
+          // Handle YouTube page with channels
+          Object.keys(processedData).forEach(key => {
+            const channelSection = document.createElement('div');
+            channelSection.classList.add('channel-section');
+            channelSection.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
 
             // Add collapsible functionality
             const channelHeader = document.createElement('h2');
-            channelHeader.textContent = channel;
+            channelHeader.textContent = key;
             channelHeader.classList.add('collapsible');
-            channelDiv.appendChild(channelHeader);
+            channelSection.appendChild(channelHeader);
 
             const channelContent = document.createElement('div');
             channelContent.classList.add('content');
             channelContent.style.display = 'none'; // Initially hide the content
 
-            channelItems.forEach(item => {
+            processedData[key].forEach(item => {
               const itemDiv = processItem(item);
               channelContent.appendChild(itemDiv);
             });
 
-            channelDiv.appendChild(channelContent);
-            container.appendChild(channelDiv);
+            channelSection.appendChild(channelContent);
+            container.appendChild(channelSection);
 
             // Add event listener to toggle collapsible content
             channelHeader.addEventListener('click', function() {
@@ -731,102 +902,17 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
           });
-        } else {
-          // Check if data is an object with container keys
-          if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
-            // Iterate through each container in the data object
-            Object.keys(data).forEach(containerKey => {
-              const containerData = data[containerKey];
-              if (Array.isArray(containerData)) {
-                containerData.forEach(item => {
-                  processItem(item);
-                });
-              } else {
-                console.error('Container data is not an array:', containerData);
-              }
-            });
-          } else if (Array.isArray(data)) {
-            // If data is an array, process each item directly
-            data.forEach(item => {
-              processItem(item);
-            });
-          } else {
-            console.error('Data is not an array or object:', data);
-          }
         }
-          
-          // After processing the data, populate the genre dropdown
-          populateGenreDropdown(data);
-          
-          // After processing the data, populate the sort options
-          populateSortOptions(data);
 
-		  if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
-			updateActiveOptions();
-		  }
-          
-          // Add Collapse All functionality if the button exists
-          const collapseAll = document.getElementById('collapse-all');
-          if (collapseAll) {
-              collapseAll.addEventListener('click', function() {
-                  const items = container.querySelectorAll('.item-row');
-                  items.forEach(el => {
-                      el.classList.remove('expanded');
-                      // Disable links in closed items and reset styling
-                      const link = el.querySelector('a.item-title-link');
-                      if (link) {
-                          link.removeAttribute('href');
-                          link.style.color = '';
-                      }
-                  });
-              });
-          }
-          
+        // Populate genre dropdown
+        populateGenreDropdown(data);
+
+        // Populate sort options
+        populateSortOptions(data);
+
+        // Apply initial filters and sort
+        applyAllFilters();
       })
       .catch(error => console.error('Error loading data:', error));
-  }
-
-  function updateActiveOptions() {
-    const singleplayerURL = '../../data/singleplayer.json';
-    const coopURL = '../../data/coop.json';
-    const pvpURL = '../../data/pvp.json';
-
-    Promise.all([fetch(singleplayerURL), fetch(coopURL), fetch(pvpURL)])
-      .then(responses => Promise.all(responses.map(response => response.json())))
-      .then(datas => {
-        const singleplayerData = datas[0];
-        const coopData = datas[1];
-        const pvpData = datas[2];
-
-        // Filter active options
-        const activeSingleplayer = filterActiveOptions(singleplayerData);
-        const activeCoop = filterActiveOptions(coopData);
-        const activePvp = filterActiveOptions(pvpData);
-
-        // Display active options
-        displayActiveOptions('singleplayer-list', activeSingleplayer);
-        displayActiveOptions('coop-list', activeCoop);
-        displayActiveOptions('pvp-list', activePvp);
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }
-
-  function filterActiveOptions(data) {
-    return data.filter(item => {
-      const hasGreenStatus = item.STATUS?.includes('🟢') || item.status?.includes('🟢');
-      const hasCopies = item.copies > 0;
-      return hasGreenStatus || hasCopies;
-    });
-  }
-
-  function displayActiveOptions(listId, items) {
-    const list = document.getElementById(listId);
-    list.innerHTML = ''; // Clear existing list
-
-    items.forEach(item => {
-      const listItem = document.createElement('li');
-      listItem.textContent = item.TITLE || item.Title || item.text;
-      list.appendChild(listItem);
-    });
   }
 });

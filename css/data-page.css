@@ -47,6 +47,7 @@ body.page-transition {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -99,7 +100,7 @@ body.page-transition {
     -1px  1px 0 #000,
      1px  1px 0 #000,
     2px 2px 4px rgba(0,0,0,0.8);
-  position: fixed;
+  position: fixed; /* Keep this as fixed for the modal effect */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -559,4 +560,29 @@ body.page-transition {
 
 .sort-option:hover {
   background: rgba(32, 178, 170, 0.3);
+}
+
+.collapse-corner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 0, 128, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  pointer-events: auto; /* Ensure the button is clickable */
+}
+
+.collapse-corner:hover {
+  background-color: rgba(128, 0, 128, 0.9);
+  transform: scale(1.1);
 }
