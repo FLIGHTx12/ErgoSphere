@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const aTitle = a.querySelector('.item-title').textContent;
       const bTitle = b.querySelector('.item-title').textContent;
       const aDetails = a.querySelector('.item-details').textContent;
-      const bDetails = b.querySelector('.item-details').textContent;
+      const bDetails = a.querySelector('.item-details').textContent;
       const aFullText = aTitle + " " + aDetails;
       const bFullText = aTitle + " " + bDetails;
       
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isYoutubePage) {
           // Group items by channel
           processedData = data.reduce((acc, item) => {
-            const channel = item.channel || 'Unknown Channel';
+            const channel = item.channel || item.CHANNEL || 'Unknown Channel';
             if (!acc[channel]) {
               acc[channel] = [];
             }
@@ -616,22 +616,42 @@ document.addEventListener('DOMContentLoaded', () => {
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('item-row');
 
+          // Extract YouTube video ID and thumbnail URL if available
+          let backgroundImage = '';
+          
+          if (item.imageUrl && item.imageUrl.trim() !== '') {
+            // Use existing image URL if present
+            backgroundImage = item.imageUrl;
+          } else if (item.image) {
+            // Use existing image array if present
+            if (Array.isArray(item.image)) {
+              backgroundImage = '../' + item.image[0];
+            } else {
+              backgroundImage = '../' + item.image;
+            }
+          } else {
+            // Check for YouTube link and generate thumbnail
+            const linkVal = item.link || item.LINK || item.Link || '';
+            if (linkVal && linkVal.includes('youtube.com') || linkVal.includes('youtu.be')) {
+              // Extract video ID from YouTube URL
+              let videoId = '';
+              if (linkVal.includes('youtube.com/watch?v=')) {
+                videoId = linkVal.split('youtube.com/watch?v=')[1].split('&')[0];
+              } else if (linkVal.includes('youtu.be/')) {
+                videoId = linkVal.split('youtu.be/')[1].split('?')[0];
+              }
+              
+              if (videoId) {
+                // Use high quality YouTube thumbnail
+                backgroundImage = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+              }
+            }
+          }
+
           // Add mouseover event to show background image
           itemDiv.addEventListener('mouseover', function() {
-            if (!this.classList.contains('expanded')) {
-              let backgroundImage = '';
-              if (item.imageUrl) {
-                backgroundImage = item.imageUrl;
-              } else if (item.image) {
-                if (Array.isArray(item.image)) {
-                  backgroundImage = '../' + item.image[0];
-                } else {
-                  backgroundImage = '../' + item.image;
-                }
-              }
-              if (backgroundImage) {
-                this.style.backgroundImage = `url('${backgroundImage}')`;
-              }
+            if (!this.classList.contains('expanded') && backgroundImage) {
+              this.style.backgroundImage = `url('${backgroundImage}')`;
             }
           });
 
@@ -667,12 +687,33 @@ document.addEventListener('DOMContentLoaded', () => {
           if (item['COMPLETED?'] && item['COMPLETED?'].includes('✔')) {
             indicator += ' ✔';
           }
+          
           // If LAST WATCHED has data, extract number and add that many 👀
           if (item['LAST WATCHED']) {
             const match = item['LAST WATCHED'].match(/\d+/);
             if (match) {
               const seasonCount = parseInt(match[0], 10);
               indicator += ' ' + '👀'.repeat(seasonCount);
+            }
+          }
+          
+          // Handle TIMES SEEN for YouTube videos and other items
+          if (item['TIMES SEEN']) {
+            // If TIMES SEEN already contains 👀 emoji, use it directly
+            if (item['TIMES SEEN'].includes('👀')) {
+              // Count how many 👀 are in the string
+              const emojiCount = (item['TIMES SEEN'].match(/👀/g) || []).length;
+              indicator += ' ' + '👀'.repeat(emojiCount);
+            } else {
+              // Try to extract a number from TIMES SEEN
+              const match = item['TIMES SEEN'].match(/\d+/);
+              if (match) {
+                const timesSeenCount = parseInt(match[0], 10);
+                indicator += ' ' + '👀'.repeat(timesSeenCount);
+              } else if (item['TIMES SEEN'].trim() !== '') {
+                // If there's a value but no number, add a single 👀
+                indicator += ' 👀';
+              }
             }
           }
           
@@ -725,6 +766,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="item-title">${itemLink}</div>
             <div class="item-details">${detailsHTML}</div>
           `;
+
+          // Store the background image URL as a data attribute for later use
+          if (backgroundImage) {
+            itemDiv.setAttribute('data-bg-image', backgroundImage);
+          }
 
           container.appendChild(itemDiv);
 
@@ -811,20 +857,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentLink.style.color = 'lightgreen';
               }
               
-              // Set background image using imageUrl or first image from array
-              let backgroundImage = '';
-              if (item.imageUrl) {
-                backgroundImage = item.imageUrl;
-              } else if (item.image) {
-                if (Array.isArray(item.image)) {
-                  backgroundImage = '../' + item.image[0];
-                } else {
-                  backgroundImage = '../' + item.image;
+              // Set background image from data attribute, imageUrl, or image array
+              let bgImage = this.getAttribute('data-bg-image') || '';
+              if (!bgImage) {
+                if (item.imageUrl) {
+                  bgImage = item.imageUrl;
+                } else if (item.image) {
+                  if (Array.isArray(item.image)) {
+                    bgImage = '../' + item.image[0];
+                  } else {
+                    bgImage = '../' + item.image;
+                  }
                 }
               }
 
-              if (backgroundImage) {
-                this.style.backgroundImage = `url('${backgroundImage}')`;
+              if (bgImage) {
+                this.style.backgroundImage = `url('${bgImage}')`;
                 this.style.backgroundSize = 'cover';
                 this.style.backgroundPosition = 'center';
                 this.style.backgroundRepeat = 'no-repeat';
