@@ -240,6 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
                   scoreForm.innerHTML = create3on3FreestyleForm();
                 } else if (gameName === 'Sonic all-star racing') {
                   scoreForm.innerHTML = createSonicRacingForm();
+                } else if (gameName === 'Apex Legends') {
+                  scoreForm.innerHTML = createApexLegendsForm();
+                } else if (gameName === 'Destiny 2 Crucible') {
+                  scoreForm.innerHTML = createDestiny2Form();
+                } else if (gameName === 'VALORANT') {
+                  scoreForm.innerHTML = createValorantForm();
+                } else if (gameName === 'Predecessor') {
+                  scoreForm.innerHTML = createPredecessorForm();
                 } else {
                   // Create generic score form for other games
                   scoreForm.innerHTML = createGenericScoreForm(gameName);
@@ -262,6 +270,14 @@ document.addEventListener('DOMContentLoaded', () => {
                       calculate3on3FreestyleScore(scoreForm);
                     } else if (gameName === 'Sonic all-star racing') {
                       calculateSonicRacingScore(scoreForm);
+                    } else if (gameName === 'Apex Legends') {
+                      calculateApexLegendsScore(scoreForm);
+                    } else if (gameName === 'Destiny 2 Crucible') {
+                      calculateDestiny2Score(scoreForm);
+                    } else if (gameName === 'VALORANT') {
+                      calculateValorantScore(scoreForm);
+                    } else if (gameName === 'Predecessor') {
+                      calculatePredecessorScore(scoreForm);
                     } else {
                       calculateGenericScore(scoreForm);
                     }
@@ -853,6 +869,361 @@ document.addEventListener('DOMContentLoaded', () => {
     
     return formHTML;
   }
+  
+  // Function to create the Apex Legends score form
+  function createApexLegendsForm() {
+    const matches = 4;
+    let formHTML = `
+      <h3>Apex Legends Scoreboard</h3>
+      <p>Match Results & Scoring Weights:</p>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
+        <li>1st place: +50</li>
+        <li>Top 5: +10</li>
+        <li>Top 10: +5</li>
+        <li>Top 20: +2</li>
+        <li>Below 20: -20</li>
+        <li>Kills: +5 each</li>
+      </ul>
+    `;
+    
+    for (let i = 1; i <= matches; i++) {
+      formHTML += `
+        <div class="match-container" data-match="${i}">
+          <div class="match-title">Match ${i}</div>
+          <div class="stats-container">
+            <div class="stat-input">
+              <label for="placement-${i}">Placement</label>
+              <select id="placement-${i}">
+                <option value="">Select...</option>
+                <option value="first">1st place (+50)</option>
+                <option value="top5">Top 5 (+10)</option>
+                <option value="top10">Top 10 (+5)</option>
+                <option value="top20">Top 20 (+2)</option>
+                <option value="below20">Below 20 (-20)</option>
+              </select>
+            </div>
+            <div class="stat-input">
+              <label for="kills-${i}">Kills <span class="stat-weight">(+5 each)</span></label>
+              <input type="number" id="kills-${i}" min="0" class="short-input">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    formHTML += `
+      <button class="calculate-btn">Calculate Score</button>
+      <div class="score-result">
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
+        <div class="stat-breakdown"></div>
+      </div>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
+    `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state (for cases where input might already have a value)
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
+    
+    return formHTML;
+  }
+
+  // Function to create the Destiny 2 score form
+  function createDestiny2Form() {
+    const matches = 4;
+    let formHTML = `
+      <h3>Destiny 2 Crucible Scoreboard</h3>
+      <p>Match Results & Scoring Weights:</p>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
+        <li>Player Score: +0.50 per point</li>
+        <li>Opponents Defeated: +0.50 per defeat</li>
+        <li>Objective Final Blows: +1 per blow</li>
+        <li>Advantage Points: +1 per point</li>
+        <li>Zones Captured: +1 per zone</li>
+        <li>Win: +5 / Loss: -50</li>
+      </ul>
+    `;
+    
+    for (let i = 1; i <= matches; i++) {
+      formHTML += `
+        <div class="match-container" data-match="${i}">
+          <div class="match-title">Match ${i}</div>
+          <div class="stats-container">
+            <div class="stat-input">
+              <label for="player-score-${i}">Player Score <span class="stat-weight">(+0.50)</span></label>
+              <input type="number" id="player-score-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="opponents-defeated-${i}">Opponents Defeated <span class="stat-weight">(+0.50)</span></label>
+              <input type="number" id="opponents-defeated-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="objective-blows-${i}">Objective Final Blows <span class="stat-weight">(+1)</span></label>
+              <input type="number" id="objective-blows-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="advantage-points-${i}">Advantage Points <span class="stat-weight">(+1)</span></label>
+              <input type="number" id="advantage-points-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="zones-captured-${i}">Zones Captured <span class="stat-weight">(+1)</span></label>
+              <input type="number" id="zones-captured-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+5/-50)</span></label>
+              <select id="winloss-${i}">
+                <option value="">Select...</option>
+                <option value="win">Win</option>
+                <option value="loss">Loss</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    formHTML += `
+      <button class="calculate-btn">Calculate Score</button>
+      <div class="score-result">
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
+        <div class="stat-breakdown"></div>
+      </div>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
+    `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state (for cases where input might already have a value)
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
+    
+    return formHTML;
+  }
+
+  // Function to create the VALORANT score form
+  function createValorantForm() {
+    const matches = 4;
+    let formHTML = `
+      <h3>VALORANT Scoreboard</h3>
+      <p>Match Results & Scoring Weights:</p>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
+        <li>Kills: +5 each</li>
+        <li>Deaths: -2 each</li>
+        <li>Assists: +2 each</li>
+        <li>First Blood: +5</li>
+        <li>Plants: +2 each</li>
+        <li>Defuses: +10 each</li>
+        <li>Win: +10 / Loss: -10</li>
+      </ul>
+    `;
+    
+    for (let i = 1; i <= matches; i++) {
+      formHTML += `
+        <div class="match-container" data-match="${i}">
+          <div class="match-title">Match ${i}</div>
+          <div class="stats-container">
+            <div class="stat-input">
+              <label for="kills-${i}">Kills <span class="stat-weight">(+5)</span></label>
+              <input type="number" id="kills-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="deaths-${i}">Deaths <span class="stat-weight">(-2)</span></label>
+              <input type="number" id="deaths-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="assists-${i}">Assists <span class="stat-weight">(+2)</span></label>
+              <input type="number" id="assists-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="first-blood-${i}">First Blood</label>
+              <select id="first-blood-${i}">
+                <option value="">No</option>
+                <option value="yes">Yes (+5)</option>
+              </select>
+            </div>
+            <div class="stat-input">
+              <label for="plants-${i}">Plants <span class="stat-weight">(+2)</span></label>
+              <input type="number" id="plants-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="defuses-${i}">Defuses <span class="stat-weight">(+10)</span></label>
+              <input type="number" id="defuses-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-10)</span></label>
+              <select id="winloss-${i}">
+                <option value="">Select...</option>
+                <option value="win">Win</option>
+                <option value="loss">Loss</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    formHTML += `
+      <button class="calculate-btn">Calculate Score</button>
+      <div class="score-result">
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
+        <div class="stat-breakdown"></div>
+      </div>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
+    `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state (for cases where input might already have a value)
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
+    
+    return formHTML;
+  }
+
+  // Function to create the Predecessor score form
+  function createPredecessorForm() {
+    const matches = 2;
+    let formHTML = `
+      <h3>Predecessor Scoreboard</h3>
+      <p>Match Results & Scoring Weights:</p>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
+        <li>Kills: +10 each</li>
+        <li>Deaths: -15 each</li>
+        <li>Assists: +5 each</li>
+        <li>Minions: +0.50 each</li>
+        <li>Gold Earned: +0.003 per gold</li>
+        <li>Win: +10 / Loss: -50</li>
+      </ul>
+    `;
+    
+    for (let i = 1; i <= matches; i++) {
+      formHTML += `
+        <div class="match-container" data-match="${i}">
+          <div class="match-title">Match ${i}</div>
+          <div class="stats-container">
+            <div class="stat-input">
+              <label for="kills-${i}">Kills <span class="stat-weight">(+10)</span></label>
+              <input type="number" id="kills-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="deaths-${i}">Deaths <span class="stat-weight">(-15)</span></label>
+              <input type="number" id="deaths-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="assists-${i}">Assists <span class="stat-weight">(+5)</span></label>
+              <input type="number" id="assists-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="minions-${i}">Minions <span class="stat-weight">(+0.50)</span></label>
+              <input type="number" id="minions-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="gold-${i}">Gold Earned <span class="stat-weight">(+0.003)</span></label>
+              <input type="number" id="gold-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-50)</span></label>
+              <select id="winloss-${i}">
+                <option value="">Select...</option>
+                <option value="win">Win</option>
+                <option value="loss">Loss</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    formHTML += `
+      <button class="calculate-btn">Calculate Score</button>
+      <div class="score-result">
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
+        <div class="stat-breakdown"></div>
+      </div>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
+    `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state (for cases where input might already have a value)
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
+    
+    return formHTML;
+  }
 
   // Function to calculate the score for Sonic All-Star Racing
   function calculateSonicRacingScore(formElement) {
@@ -1064,6 +1435,450 @@ document.addEventListener('DOMContentLoaded', () => {
       animateScoreCalculation(totalScoreElement, totalScore);
     }, 100);
   }
+  
+  // Function to calculate the score for Apex Legends
+  function calculateApexLegendsScore(formElement) {
+    const matches = 4;
+    let totalScore = 0;
+    let breakdown = '';
+    
+    // Define weights for placements
+    const placementWeights = {
+      first: 50,
+      top5: 10,
+      top10: 5,
+      top20: 2,
+      below20: -20
+    };
+    
+    const killWeight = 5;
+    
+    // Calculate score for each match
+    for (let i = 1; i <= matches; i++) {
+      let matchScore = 0;
+      let matchBreakdown = `<strong>Match ${i}:</strong> `;
+      
+      // Placement score
+      const placement = formElement.querySelector(`#placement-${i}`).value;
+      if (placement) {
+        const placementScore = placementWeights[placement];
+        matchScore += placementScore;
+        
+        // Get placement display name
+        let placementName = "Unknown";
+        switch(placement) {
+          case "first": placementName = "1st place"; break;
+          case "top5": placementName = "Top 5"; break;
+          case "top10": placementName = "Top 10"; break;
+          case "top20": placementName = "Top 20"; break;
+          case "below20": placementName = "Below 20"; break;
+        }
+        
+        const scorePrefix = placementScore >= 0 ? '+' : '';
+        matchBreakdown += `${placementName}: ${scorePrefix}${placementScore}, `;
+      }
+      
+      // Kills score
+      const kills = parseInt(formElement.querySelector(`#kills-${i}`).value) || 0;
+      const killsScore = kills * killWeight;
+      matchScore += killsScore;
+      if (kills > 0) {
+        matchBreakdown += `Kills: ${kills} × ${killWeight} = +${killsScore}, `;
+      }
+      
+      // Remove trailing comma and space
+      matchBreakdown = matchBreakdown.replace(/, $/, '');
+      
+      // Add match score to total if any selections were made
+      if (placement || kills > 0) {
+        totalScore += matchScore;
+        breakdown += `<div>${matchBreakdown} = <strong>${matchScore}</strong></div>`;
+      }
+    }
+    
+    // Display the result
+    const resultElement = formElement.querySelector('.score-result');
+    const totalScoreElement = formElement.querySelector('#total-score');
+    const breakdownElement = formElement.querySelector('.stat-breakdown');
+    
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
+    breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+    
+    // Show result before animation
+    resultElement.classList.add('show');
+    
+    // Add win/loss class based on total score
+    if (totalScore > 0) {
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
+    } else if (totalScore < 0) {
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
+    } else {
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
+    }
+    
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, totalScore);
+    }, 100);
+  }
+
+  // Function to calculate the score for Destiny 2
+  function calculateDestiny2Score(formElement) {
+    const matches = 4;
+    let totalScore = 0;
+    let breakdown = '';
+    
+    // Define weights
+    const weights = {
+      playerScore: 0.5,
+      opponentsDefeated: 0.5,
+      objectiveBlows: 1,
+      advantagePoints: 1,
+      zonesCaptured: 1,
+      win: 5,
+      loss: -50
+    };
+    
+    // Calculate score for each match
+    for (let i = 1; i <= matches; i++) {
+      let matchScore = 0;
+      let matchBreakdown = `<strong>Match ${i}:</strong> `;
+      
+      // Player Score
+      const playerScore = parseInt(formElement.querySelector(`#player-score-${i}`).value) || 0;
+      const playerScoreTotal = playerScore * weights.playerScore;
+      matchScore += playerScoreTotal;
+      if (playerScore > 0) {
+        matchBreakdown += `Player Score: ${playerScore} × ${weights.playerScore} = ${playerScoreTotal.toFixed(1)}, `;
+      }
+      
+      // Opponents Defeated
+      const opponentsDefeated = parseInt(formElement.querySelector(`#opponents-defeated-${i}`).value) || 0;
+      const opponentsDefeatedTotal = opponentsDefeated * weights.opponentsDefeated;
+      matchScore += opponentsDefeatedTotal;
+      if (opponentsDefeated > 0) {
+        matchBreakdown += `Opponents Defeated: ${opponentsDefeated} × ${weights.opponentsDefeated} = ${opponentsDefeatedTotal.toFixed(1)}, `;
+      }
+      
+      // Objective Final Blows
+      const objectiveBlows = parseInt(formElement.querySelector(`#objective-blows-${i}`).value) || 0;
+      const objectiveBlowsTotal = objectiveBlows * weights.objectiveBlows;
+      matchScore += objectiveBlowsTotal;
+      if (objectiveBlows > 0) {
+        matchBreakdown += `Objective Final Blows: ${objectiveBlows} × ${weights.objectiveBlows} = ${objectiveBlowsTotal}, `;
+      }
+      
+      // Advantage Points
+      const advantagePoints = parseInt(formElement.querySelector(`#advantage-points-${i}`).value) || 0;
+      const advantagePointsTotal = advantagePoints * weights.advantagePoints;
+      matchScore += advantagePointsTotal;
+      if (advantagePoints > 0) {
+        matchBreakdown += `Advantage Points: ${advantagePoints} × ${weights.advantagePoints} = ${advantagePointsTotal}, `;
+      }
+      
+      // Zones Captured
+      const zonesCaptured = parseInt(formElement.querySelector(`#zones-captured-${i}`).value) || 0;
+      const zonesCapturedTotal = zonesCaptured * weights.zonesCaptured;
+      matchScore += zonesCapturedTotal;
+      if (zonesCaptured > 0) {
+        matchBreakdown += `Zones Captured: ${zonesCaptured} × ${weights.zonesCaptured} = ${zonesCapturedTotal}, `;
+      }
+      
+      // Win/Loss
+      const winLoss = formElement.querySelector(`#winloss-${i}`).value;
+      if (winLoss === 'win') {
+        matchScore += weights.win;
+        matchBreakdown += `Win: +${weights.win}, `;
+      } else if (winLoss === 'loss') {
+        matchScore += weights.loss;
+        matchBreakdown += `Loss: ${weights.loss}, `;
+      }
+      
+      // Remove trailing comma and space
+      matchBreakdown = matchBreakdown.replace(/, $/, '');
+      
+      // Add match score to total if any selections were made
+      if (playerScore > 0 || opponentsDefeated > 0 || objectiveBlows > 0 || 
+          advantagePoints > 0 || zonesCaptured > 0 || winLoss) {
+        totalScore += matchScore;
+        breakdown += `<div>${matchBreakdown} = <strong>${matchScore.toFixed(1)}</strong></div>`;
+      }
+    }
+    
+    // Display the result
+    const resultElement = formElement.querySelector('.score-result');
+    const totalScoreElement = formElement.querySelector('#total-score');
+    const breakdownElement = formElement.querySelector('.stat-breakdown');
+    
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
+    breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+    
+    // Show result before animation
+    resultElement.classList.add('show');
+    
+    // Add win/loss class based on total score
+    if (totalScore > 0) {
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
+    } else if (totalScore < 0) {
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
+    } else {
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
+    }
+    
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, Math.round(totalScore));
+    }, 100);
+  }
+
+  // Function to calculate the score for VALORANT
+  function calculateValorantScore(formElement) {
+    const matches = 4;
+    let totalScore = 0;
+    let breakdown = '';
+    
+    // Define weights
+    const weights = {
+      kills: 5,
+      deaths: -2,
+      assists: 2,
+      firstBlood: 5,
+      plants: 2,
+      defuses: 10,
+      win: 10,
+      loss: -10
+    };
+    
+    // Calculate score for each match
+    for (let i = 1; i <= matches; i++) {
+      let matchScore = 0;
+      let matchBreakdown = `<strong>Match ${i}:</strong> `;
+      
+      // Kills
+      const kills = parseInt(formElement.querySelector(`#kills-${i}`).value) || 0;
+      const killsTotal = kills * weights.kills;
+      matchScore += killsTotal;
+      if (kills > 0) {
+        matchBreakdown += `Kills: ${kills} × ${weights.kills} = ${killsTotal}, `;
+      }
+      
+      // Deaths
+      const deaths = parseInt(formElement.querySelector(`#deaths-${i}`).value) || 0;
+      const deathsTotal = deaths * weights.deaths;
+      matchScore += deathsTotal;
+      if (deaths > 0) {
+        matchBreakdown += `Deaths: ${deaths} × ${weights.deaths} = ${deathsTotal}, `;
+      }
+      
+      // Assists
+      const assists = parseInt(formElement.querySelector(`#assists-${i}`).value) || 0;
+      const assistsTotal = assists * weights.assists;
+      matchScore += assistsTotal;
+      if (assists > 0) {
+        matchBreakdown += `Assists: ${assists} × ${weights.assists} = ${assistsTotal}, `;
+      }
+      
+      // First Blood
+      const firstBlood = formElement.querySelector(`#first-blood-${i}`).value;
+      if (firstBlood === 'yes') {
+        matchScore += weights.firstBlood;
+        matchBreakdown += `First Blood: +${weights.firstBlood}, `;
+      }
+      
+      // Plants
+      const plants = parseInt(formElement.querySelector(`#plants-${i}`).value) || 0;
+      const plantsTotal = plants * weights.plants;
+      matchScore += plantsTotal;
+      if (plants > 0) {
+        matchBreakdown += `Plants: ${plants} × ${weights.plants} = ${plantsTotal}, `;
+      }
+      
+      // Defuses
+      const defuses = parseInt(formElement.querySelector(`#defuses-${i}`).value) || 0;
+      const defusesTotal = defuses * weights.defuses;
+      matchScore += defusesTotal;
+      if (defuses > 0) {
+        matchBreakdown += `Defuses: ${defuses} × ${weights.defuses} = ${defusesTotal}, `;
+      }
+      
+      // Win/Loss
+      const winLoss = formElement.querySelector(`#winloss-${i}`).value;
+      if (winLoss === 'win') {
+        matchScore += weights.win;
+        matchBreakdown += `Win: +${weights.win}, `;
+      } else if (winLoss === 'loss') {
+        matchScore += weights.loss;
+        matchBreakdown += `Loss: ${weights.loss}, `;
+      }
+      
+      // Remove trailing comma and space
+      matchBreakdown = matchBreakdown.replace(/, $/, '');
+      
+      // Add match score to total if any selections were made
+      if (kills > 0 || deaths > 0 || assists > 0 || firstBlood === 'yes' || 
+          plants > 0 || defuses > 0 || winLoss) {
+        totalScore += matchScore;
+        breakdown += `<div>${matchBreakdown} = <strong>${matchScore}</strong></div>`;
+      }
+    }
+    
+    // Display the result
+    const resultElement = formElement.querySelector('.score-result');
+    const totalScoreElement = formElement.querySelector('#total-score');
+    const breakdownElement = formElement.querySelector('.stat-breakdown');
+    
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
+    breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+    
+    // Show result before animation
+    resultElement.classList.add('show');
+    
+    // Add win/loss class based on total score
+    if (totalScore > 0) {
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
+    } else if (totalScore < 0) {
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
+    } else {
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
+    }
+    
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, totalScore);
+    }, 100);
+  }
+
+  // Function to calculate the score for Predecessor
+  function calculatePredecessorScore(formElement) {
+    const matches = 2;
+    let totalScore = 0;
+    let breakdown = '';
+    
+    // Define weights
+    const weights = {
+      kills: 10,
+      deaths: -15,
+      assists: 5,
+      minions: 0.5,
+      gold: 0.003,
+      win: 10,
+      loss: -50
+    };
+    
+    // Calculate score for each match
+    for (let i = 1; i <= matches; i++) {
+      let matchScore = 0;
+      let matchBreakdown = `<strong>Match ${i}:</strong> `;
+      
+      // Kills
+      const kills = parseInt(formElement.querySelector(`#kills-${i}`).value) || 0;
+      const killsTotal = kills * weights.kills;
+      matchScore += killsTotal;
+      if (kills > 0) {
+        matchBreakdown += `Kills: ${kills} × ${weights.kills} = ${killsTotal}, `;
+      }
+      
+      // Deaths
+      const deaths = parseInt(formElement.querySelector(`#deaths-${i}`).value) || 0;
+      const deathsTotal = deaths * weights.deaths;
+      matchScore += deathsTotal;
+      if (deaths > 0) {
+        matchBreakdown += `Deaths: ${deaths} × ${weights.deaths} = ${deathsTotal}, `;
+      }
+      
+      // Assists
+      const assists = parseInt(formElement.querySelector(`#assists-${i}`).value) || 0;
+      const assistsTotal = assists * weights.assists;
+      matchScore += assistsTotal;
+      if (assists > 0) {
+        matchBreakdown += `Assists: ${assists} × ${weights.assists} = ${assistsTotal}, `;
+      }
+      
+      // Minions
+      const minions = parseInt(formElement.querySelector(`#minions-${i}`).value) || 0;
+      const minionsTotal = minions * weights.minions;
+      matchScore += minionsTotal;
+      if (minions > 0) {
+        matchBreakdown += `Minions: ${minions} × ${weights.minions} = ${minionsTotal.toFixed(1)}, `;
+      }
+      
+      // Gold Earned
+      const gold = parseInt(formElement.querySelector(`#gold-${i}`).value) || 0;
+      const goldTotal = gold * weights.gold;
+      matchScore += goldTotal;
+      if (gold > 0) {
+        matchBreakdown += `Gold: ${gold} × ${weights.gold} = ${goldTotal.toFixed(1)}, `;
+      }
+      
+      // Win/Loss
+      const winLoss = formElement.querySelector(`#winloss-${i}`).value;
+      if (winLoss === 'win') {
+        matchScore += weights.win;
+        matchBreakdown += `Win: +${weights.win}, `;
+      } else if (winLoss === 'loss') {
+        matchScore += weights.loss;
+        matchBreakdown += `Loss: ${weights.loss}, `;
+      }
+      
+      // Remove trailing comma and space
+      matchBreakdown = matchBreakdown.replace(/, $/, '');
+      
+      // Add match score to total if any selections were made
+      if (kills > 0 || deaths > 0 || assists > 0 || minions > 0 || gold > 0 || winLoss) {
+        totalScore += matchScore;
+        breakdown += `<div>${matchBreakdown} = <strong>${matchScore.toFixed(1)}</strong></div>`;
+      }
+    }
+    
+    // Display the result
+    const resultElement = formElement.querySelector('.score-result');
+    const totalScoreElement = formElement.querySelector('#total-score');
+    const breakdownElement = formElement.querySelector('.stat-breakdown');
+    
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
+    breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+    
+    // Show result before animation
+    resultElement.classList.add('show');
+    
+    // Add win/loss class based on total score
+    if (totalScore > 0) {
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
+    } else if (totalScore < 0) {
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
+    } else {
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
+    }
+    
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, Math.round(totalScore));
+    }, 100);
+  }
 
   // Function to calculate score for generic forms
   function calculateGenericScore(formElement) {
@@ -1233,3 +2048,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Simple hash function for generating gradient colors
+function simpleHash(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+}
