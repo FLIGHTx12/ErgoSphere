@@ -118,6 +118,65 @@
   padding: 20px;
 }
 
+/* Center expanded items on desktop screens */
+@media screen and (min-width: 768px) {
+  /* Item transition and positioning */
+  .item-row {
+    transition: all 0.3s ease;
+  }
+  
+  .item-row.expanded {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80% !important;
+    max-width: 1200px !important;
+    height: auto !important;
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    z-index: 9999 !important;
+    padding: 30px !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
+    box-sizing: border-box !important;
+    animation: scaleIn 0.3s ease-out !important;
+  }
+  
+  /* Overlay for desktop */
+  body:has(.item-row.expanded)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9998;
+    animation: fadeIn 0.3s;
+  }
+  
+  /* Better scrollbar for expanded items */
+  .item-row.expanded::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .item-row.expanded::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  .item-row.expanded::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+  }
+  
+  .item-row.expanded::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
 /* Responsive styles for mobile */
 @media screen and (max-width: 767px) {
   .item-row.expanded {
@@ -198,9 +257,46 @@
   }
 }
 
+/* Make collapse corner more visible on all screen sizes */
+.item-row.expanded .collapse-corner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 22px;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.item-row.expanded .collapse-corner:hover {
+  background-color: rgba(255, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 /* Animation for expanding items */

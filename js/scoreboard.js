@@ -14,10 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Check if device is mobile
-  const isMobile = window.innerWidth < 768;
+  const isMobile = () => window.innerWidth < 768;
+  
+  // Disable body scroll when item is expanded on any screen size
+  function toggleBodyScroll(disable) {
+    if (disable) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
   
   // Add special handling for mobile scrolling when a div is expanded
-  if (isMobile) {
+  if (isMobile()) {
     document.body.addEventListener('touchmove', function(e) {
       const expandedItem = document.querySelector('.item-row.expanded');
       if (expandedItem && !expandedItem.contains(e.target)) {
@@ -137,6 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
               }
               // Reset background
               this.style.backgroundImage = '';
+              // Enable scrolling again
+              toggleBodyScroll(false);
               return;
             }
             
@@ -153,15 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
             
-            // Toggle this item if not already expanded
+            // Toggle this item's expanded state
             if (!this.classList.contains('expanded')) {
               this.classList.add('expanded');
               
-              // For mobile: scroll to top and prevent body scrolling
-              if (window.innerWidth < 768) {
-                window.scrollTo(0, 0);
-                document.body.style.overflow = 'hidden';
-              }
+              // Disable scrolling on the body - works for both mobile and desktop
+              toggleBodyScroll(true);
               
               // Add collapse corner
               const collapseCorner = document.createElement('div');
@@ -176,12 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
               } else {
                 this.appendChild(collapseCorner);
               }
-              
-              // Position the button properly
-              collapseCorner.style.position = 'absolute';
-              collapseCorner.style.top = '10px';
-              collapseCorner.style.right = '10px';
-              collapseCorner.style.zIndex = '1000';
               
               // Set background image
               let bgImage = this.getAttribute('data-bg-image') || '';
@@ -199,10 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 parentItem.classList.remove('expanded');
                 this.remove();
                 
-                // For mobile: restore body scrolling
-                if (window.innerWidth < 768) {
-                  document.body.style.overflow = '';
-                }
+                // Enable scrolling again
+                toggleBodyScroll(false);
                 
                 // Reset background
                 parentItem.style.backgroundImage = '';
@@ -356,10 +356,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               }
             } else {
-              // When collapsing, restore body scrolling on mobile
-              if (window.innerWidth < 768) {
-                document.body.style.overflow = '';
+              // When collapsing
+              this.classList.remove('expanded');
+              // Enable scrolling again
+              toggleBodyScroll(false);
+              // Remove collapse corner
+              const collapseCorner = this.querySelector('.collapse-corner');
+              if (collapseCorner) {
+                collapseCorner.remove();
               }
+              // Reset background
+              this.style.backgroundImage = '';
             }
           });
         });
@@ -378,10 +385,8 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
             
-            // For mobile: restore body scrolling
-            if (window.innerWidth < 768) {
-              document.body.style.overflow = '';
-            }
+            // Enable scrolling again
+            toggleBodyScroll(false);
           });
         }
       })
@@ -391,16 +396,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add window resize handler to adjust expanded items on screen size change
   window.addEventListener('resize', function() {
     const expandedItem = document.querySelector('.item-row.expanded');
-    const isMobileNow = window.innerWidth < 768;
     
     if (expandedItem) {
-      if (isMobileNow) {
-        // Apply mobile styles
-        document.body.style.overflow = 'hidden';
-        window.scrollTo(0, 0);
+      // If width changes between mobile/desktop breakpoints,
+      // adjust the modal appearance accordingly
+      if (isMobile()) {
+        expandedItem.style.transform = '';
+        if (window.scrollY > 0) {
+          window.scrollTo(0, 0);
+        }
       } else {
-        // Apply desktop styles
-        document.body.style.overflow = '';
+        // For desktop, ensure it stays centered
+        expandedItem.style.transform = 'translate(-50%, -50%)';
       }
     }
   });
@@ -490,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to create the Sonic All-Star Racing score form
   function createSonicRacingForm() {
-    const races = 1; // Changed from 4 to 1 race
+    const races = 2; // Changed from 1 to 2 races
     
     let formHTML = `
       <h3>Sonic All-Star Racing Scoreboard</h3>
@@ -507,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 1; i <= races; i++) {
       formHTML += `
         <div class="match-container" data-race="${i}">
-          <div class="match-title">Race ${i}</div>
+          <div class="match-title">GRAND PRIX ${i}</div>
           <div class="stats-container">
             <div class="stat-input">
               <label for="position-${i}">Position</label>
@@ -543,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to calculate the score for Sonic All-Star Racing
   function calculateSonicRacingScore(formElement) {
-    const races = 1; // Changed from 4 to 1 race
+    const races = 2; // Changed from 1 to 2 races
     let totalScore = 0;
     let breakdown = '';
     
@@ -559,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate score for each race
     for (let i = 1; i <= races; i++) {
       let raceScore = 0;
-      let raceBreakdown = `<strong>Race ${i}:</strong> `;
+      let raceBreakdown = `<strong>GRAND PRIX ${i}:</strong> `;
       
       // Position score
       const position = formElement.querySelector(`#position-${i}`).value;
