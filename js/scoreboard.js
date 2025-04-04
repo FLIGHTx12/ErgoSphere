@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Add style for short inputs at the beginning of the script
+  const style = document.createElement('style');
+  style.textContent = `
+    .short-input {
+      width: 60px !important; /* Override any existing width */
+      padding-right: 5px !important;
+      text-align: center;
+    }
+    
+    /* Hide spinner buttons on number inputs for cleaner look */
+    .short-input::-webkit-inner-spin-button, 
+    .short-input::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    .short-input[type=number] {
+      -moz-appearance: textfield;
+    }
+  `;
+  document.head.appendChild(style);
+
   // Add navbar scroll behavior
   let lastScrollTop = 0;
   const navbar = document.getElementById('navbar');
@@ -100,12 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="item-title">${gameName}</div>
             <div class="item-details">
               ${item.details ? `<p>${item.details}</p>` : ''}
-              ${item.genre ? `<p><strong>Genre:</strong> ${item.genre}</p>` : ''}
-              ${item.console ? `<p><strong>Console:</strong> ${item.console}</p>` : ''}
               ${item.mode ? `<p><strong>Mode:</strong> ${item.mode}</p>` : ''}
               ${item['Time per match'] ? `<p><strong>Time per match:</strong> ${item['Time per match']}</p>` : ''}
               ${item.playability ? `<p><strong>Playability:</strong> ${item.playability}</p>` : ''}
-              ${item.description ? `<p><strong>Description:</strong> ${item.description}</p>` : ''}
             </div>
           `;
 
@@ -266,19 +286,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     container.style.width = '800px';
                     container.style.padding = '20px';
                     container.style.borderRadius = '10px';
+                    container.style.backgroundColor = '#121212'; // Dark background as fallback
                     
-                    // Copy background from the parent item
-                    const bgImage = parentItem.getAttribute('data-bg-image');
-                    if (bgImage) {
-                      container.style.backgroundImage = `url('${bgImage}')`;
-                      container.style.backgroundSize = 'cover';
-                      container.style.backgroundPosition = 'center';
-                    } else {
-                      container.style.backgroundColor = '#000';
+                    // Check if scoreForm has a score-result with show class
+                    const scoreResult = scoreForm.querySelector('.score-result.show');
+                    if (!scoreResult) {
+                      alert('Please calculate a score first before taking a screenshot.');
+                      return;
                     }
                     
-                    // Create a clone of the score form
+                    // Create a deep clone of the score form to ensure all content is copied
                     const scoreFormClone = scoreForm.cloneNode(true);
+                    
+                    // Ensure all form fields show their values in the screenshot
+                    const inputs = scoreForm.querySelectorAll('input, select');
+                    const cloneInputs = scoreFormClone.querySelectorAll('input, select');
+                    
+                    inputs.forEach((input, index) => {
+                      if (cloneInputs[index]) {
+                        // For selects, set the selected option
+                        if (input.tagName === 'SELECT') {
+                          const selectedIndex = input.selectedIndex;
+                          if (selectedIndex >= 0) {
+                            cloneInputs[index].selectedIndex = selectedIndex;
+                          }
+                        } else {
+                          // For inputs, directly copy the value
+                          cloneInputs[index].value = input.value;
+                        }
+                      }
+                    });
                     
                     // Add timestamp and game title
                     const header = document.createElement('div');
@@ -295,22 +332,237 @@ document.addEventListener('DOMContentLoaded', () => {
                       cloneBtn.style.display = 'none';
                     }
                     
+                    // Make sure the score-result is visible in the clone
+                    const cloneScoreResult = scoreFormClone.querySelector('.score-result');
+                    if (cloneScoreResult) {
+                      cloneScoreResult.classList.add('show');
+                      cloneScoreResult.style.display = 'block';
+                      
+                      // Set correct color for the payout value
+                      const payoutValue = cloneScoreResult.querySelector('.payout-value');
+                      if (payoutValue) {
+                        const scoreValue = parseInt(payoutValue.textContent) || 0;
+                        if (scoreValue > 0) {
+                          payoutValue.className = 'payout-value win';
+                          cloneScoreResult.classList.add('positive-result');
+                        } else if (scoreValue < 0) {
+                          payoutValue.className = 'payout-value loss';
+                          cloneScoreResult.classList.add('negative-result');
+                        }
+                      }
+                    }
+                    
                     // Add everything to container
                     container.appendChild(header);
                     container.appendChild(scoreFormClone);
                     document.body.appendChild(container);
                     
+                    console.log('Screenshot container created with content:', container.innerHTML);
+                    
                     // Hide the original button for cleaner screenshot
                     this.style.display = 'none';
                     
-                    // Load html2canvas and take screenshot
-                    if (!window.html2canvas) {
-                      const script = document.createElement('script');
-                      script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
-                      script.onload = () => takeScreenshot();
-                      document.head.appendChild(script);
+                    // Try to load the background image first to avoid CORS issues
+                    const bgImage = parentItem.getAttribute('data-bg-image');
+                    
+                    if (bgImage) {
+                      // Preload image to check if it can be accessed
+                      const img = new Image();
+                      img.crossOrigin = "anonymous"; // Try to request CORS access
+                      
+                      img.onload = function() {
+                        // If image loads successfully, use it as background
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        // Size canvas to match desired screenshot dimensions
+                        canvas.width = 800;
+                        canvas.height = 500; // Approximate height
+                        
+                        // Draw image on canvas (this converts it to same-origin)
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        
+                        try {
+                          // Try to use the canvas as background
+                          container.style.backgroundImage = `url(${canvas.toDataURL('image/png')})`;
+                          container.style.backgroundSize = 'cover';
+                          container.style.backgroundPosition = 'center';
+                          
+                          // Add a dark overlay for better text readability
+                          container.style.boxShadow = "inset 0 0 0 2000px rgba(0, 0, 0, 0.7)";
+                          
+                          // Now take the screenshot
+                          prepareAndTakeScreenshot();
+                        } catch (e) {
+                          console.error("Failed to convert image:", e);
+                          // Fallback to solid background
+                          applyFallbackBackground();
+                          prepareAndTakeScreenshot();
+                        }
+                      };
+                      
+                      img.onerror = function() {
+                        console.warn("Background image couldn't be loaded. Using fallback background.");
+                        applyFallbackBackground();
+                        prepareAndTakeScreenshot();
+                      };
+                      
+                      // Start loading the image
+                      img.src = bgImage;
+                      
+                      // If the image is already cached, the onload event might not fire
+                      // so we need this timeout as a fallback
+                      setTimeout(() => {
+                        if (!img.complete) {
+                          img.src = ""; // Cancel the pending request
+                          applyFallbackBackground();
+                          prepareAndTakeScreenshot();
+                        }
+                      }, 3000); // 3 second timeout
+                      
                     } else {
-                      takeScreenshot();
+                      // No background image specified, use fallback
+                      applyFallbackBackground();
+                      prepareAndTakeScreenshot();
+                    }
+                    
+                    // Apply a fallback background with local image or generated gradient
+                    function applyFallbackBackground() {
+                      // Try multiple possible paths for the purpspace.jpg image
+                      const possiblePaths = [
+                        '/assets/img/backgrounds/purpspace.jpg',
+                        '../assets/img/backgrounds/purpspace.jpg',
+                        '../../assets/img/backgrounds/purpspace.jpg',
+                        '/ErgoSphere/assets/img/backgrounds/purpspace.jpg',
+                        'https://raw.githubusercontent.com/yourgithubusername/ErgoSphere/main/assets/img/backgrounds/purpspace.jpg'
+                      ];
+                      
+                      // Try the first path
+                      tryNextPath(0);
+                      
+                      function tryNextPath(index) {
+                        if (index >= possiblePaths.length) {
+                          // All paths failed, use embedded image or gradient
+                          useEmbeddedBackgroundOrGradient();
+                          return;
+                        }
+                        
+                        const path = possiblePaths[index];
+                        console.log(`Trying background path: ${path}`);
+                        
+                        const img = new Image();
+                        img.onload = function() {
+                          // Image loaded successfully
+                          console.log(`Successfully loaded background from: ${path}`);
+                          container.style.backgroundImage = `url('${path}')`;
+                          container.style.backgroundSize = 'cover';
+                          container.style.backgroundPosition = 'center';
+                          container.style.boxShadow = "inset 0 0 0 2000px rgba(0, 0, 0, 0.7)";
+                        };
+                        
+                        img.onerror = function() {
+                          // Failed to load this path, try next one
+                          console.log(`Failed to load background from: ${path}`);
+                          tryNextPath(index + 1);
+                        };
+                        
+                        img.src = path;
+                      }
+                      
+                      function useEmbeddedBackgroundOrGradient() {
+                        // Try using a base64 embedded small dark purple pattern
+                        const base64BG = getEmbeddedBackground();
+                        
+                        if (base64BG) {
+                          console.log("Using embedded background image as fallback");
+                          container.style.backgroundImage = `url(${base64BG})`;
+                          container.style.backgroundSize = 'cover';
+                          container.style.backgroundPosition = 'center';
+                          container.style.boxShadow = "inset 0 0 0 2000px rgba(0, 0, 0, 0.7)";
+                        } else {
+                          // Last resort: Use gradient based on game name
+                          console.log("Using gradient as final fallback");
+                          const hash = simpleHash(gameName);
+                          const hue1 = hash % 360;
+                          const hue2 = (hash + 120) % 360;
+                          
+                          container.style.background = `linear-gradient(135deg, 
+                            hsla(${hue1}, 70%, 20%, 1) 0%, 
+                            hsla(${hue2}, 90%, 10%, 1) 100%)`;
+                        }
+                      }
+                      
+                      // Improve the aesthetics regardless of which background gets used
+                      container.style.boxShadow = "inset 0 0 100px rgba(0, 0, 0, 0.8)";
+                      container.style.border = "1px solid rgba(255, 255, 255, 0.1)";
+                    }
+                    
+                    // Function to get a base64 encoded background image as last resort
+                    function getEmbeddedBackground() {
+                      // This is a small, dark purple background pattern encoded in base64
+                      // It's compressed and optimized for size while still providing a nice background
+                      return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEBDEWZBO2lwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABb0lEQVRo3u2awQ2DMAxFfwYYgVVYhdE6CmwCozDKKIzCKF0lu3SQkDgBHFMioZZDG9fx9+dLFItFVdXMzFQEW111+Q6BL8IIg2BKbuQvakmgPqPYlnlKWVV300rBO0TNrCxL0+X7c0ZU9TLQq6WlT3M6xLZtQJIEjdPikhDJBe0MQltnhMIlaZLdUukwQjiEzslkBnIJkxnMQsJyWJ7vj5YeN0hKnCBG8MEk2Gq1UkDpgTzBOGMZZAqMN4ZBpsJ4QQ4g1mxFKiADwNg+bbEOWSNNIGawS9jjVZDVKpBg/kjkPQWZPI/0Tt6UGSl/REKuFofIS0iulRVdkCWDGcNgxjKQMQ1jrAEMNSZvxpqAd4MZwjRmCBkC8mG6MeRCYAxkeYNBAgwiGERGILJtJnsnr3zbdlNK6ZBSil57iRZBa7NWvOkLAO89QgjPMcdYMdZIpZRQVXjvsd/vr0dMWxBAzjmcc4gxvvxX/JvV07K1vYkCkiVpmvFoAAAAAElFTkSuQmCC";
+                    }
+
+                    function enhanceScreenshotContainer(container) {
+                      // Add extra styling to make results more visible in screenshots
+                      container.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+                      
+                      // Enhance the payout display in screenshots
+                      const payoutContainer = container.querySelector('.payout-container');
+                      if (payoutContainer) {
+                        payoutContainer.style.padding = '20px';
+                        payoutContainer.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+                        payoutContainer.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+                        payoutContainer.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+                      }
+                      
+                      // Enhance the stat breakdown for better readability
+                      const statBreakdown = container.querySelector('.stat-breakdown');
+                      if (statBreakdown) {
+                        statBreakdown.style.backgroundColor = 'rgba(30, 30, 30, 0.9)';
+                        statBreakdown.style.padding = '15px';
+                        statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                      }
+                      
+                      return container;
+                    }
+                    
+                    // Prepare and take the screenshot
+                    function prepareAndTakeScreenshot() {
+                      // Apply extra styling to ensure visibility of results
+                      enhanceScreenshotContainer(container);
+                      
+                      // Make sure computed styles are applied before taking screenshot
+                      setTimeout(() => {
+                        console.log('Taking screenshot, container ready:', container.innerHTML);
+                        
+                        // Force all form values to be visible
+                        const allInputs = container.querySelectorAll('input[type="number"]');
+                        allInputs.forEach(input => {
+                          if (input.value) {
+                            // Apply visible styling to inputs with values
+                            input.style.backgroundColor = 'rgba(100, 65, 165, 0.2)';
+                            input.style.borderColor = '#6441a5';
+                          }
+                        });
+                        
+                        // Force score result to be visible
+                        const resultElement = container.querySelector('.score-result');
+                        if (resultElement) {
+                          resultElement.style.display = 'block';
+                        }
+                        
+                        // Load html2canvas if needed and take screenshot
+                        if (!window.html2canvas) {
+                          const script = document.createElement('script');
+                          script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+                          script.onload = () => takeScreenshot();
+                          document.head.appendChild(script);
+                        } else {
+                          takeScreenshot();
+                        }
+                      }, 200);
                     }
                     
                     function takeScreenshot() {
@@ -318,7 +570,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         allowTaint: true,
                         useCORS: true,
                         backgroundColor: null,
-                        scale: 2
+                        scale: 2,
+                        logging: false
                       }).then(canvas => {
                         // Convert to blob
                         canvas.toBlob(blob => {
@@ -338,6 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
                           document.body.removeChild(container);
                           screenshotBtn.style.display = 'block';
                         });
+                      }).catch(error => {
+                        console.error("Screenshot failed:", error);
+                        alert("Screenshot failed. Please try again or use a screen capture tool instead.");
+                        document.body.removeChild(container);
+                        screenshotBtn.style.display = 'block';
                       });
                     }
                     
@@ -418,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let formHTML = `
       <h3>3ON3 FREESTYLE Scoreboard</h3>
       <p>Statistical Categories & Scoring Weights:</p>
-      <ul>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
         <li>Points: +1</li>
         <li>Rebounds: +1</li>
         <li>Assists: +2</li>
@@ -436,27 +694,27 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="stats-container">
             <div class="stat-input">
               <label for="points-${i}">Points <span class="stat-weight">(+1)</span></label>
-              <input type="number" id="points-${i}" min="0" value="0">
+              <input type="number" id="points-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="rebounds-${i}">Rebounds <span class="stat-weight">(+1)</span></label>
-              <input type="number" id="rebounds-${i}" min="0" value="0">
+              <input type="number" id="rebounds-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="assists-${i}">Assists <span class="stat-weight">(+2)</span></label>
-              <input type="number" id="assists-${i}" min="0" value="0">
+              <input type="number" id="assists-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="steals-${i}">Steals <span class="stat-weight">(+2)</span></label>
-              <input type="number" id="steals-${i}" min="0" value="0">
+              <input type="number" id="steals-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="blocks-${i}">Blocks <span class="stat-weight">(+2)</span></label>
-              <input type="number" id="blocks-${i}" min="0" value="0">
+              <input type="number" id="blocks-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="turnovers-${i}">Turn Overs <span class="stat-weight">(-5)</span></label>
-              <input type="number" id="turnovers-${i}" min="0" value="0">
+              <input type="number" id="turnovers-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
               <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-20)</span></label>
@@ -474,11 +732,35 @@ document.addEventListener('DOMContentLoaded', () => {
     formHTML += `
       <button class="calculate-btn">Calculate Score</button>
       <div class="score-result">
-        <div class="total-score">Total Score: <span id="total-score">0</span></div>
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
         <div class="stat-breakdown"></div>
       </div>
-      <button class="screenshot-btn" title="Copy scoreboard to clipboard">📸 Take Screenshot</button>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
     `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state (for cases where input might already have a value)
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
     
     return formHTML;
   }
@@ -490,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>Generic scoreboard for ${gameName}</p>
         <p>Custom scoring form not yet implemented.</p>
         <button class="calculate-btn">Calculate Score</button>
-        <button class="screenshot-btn" title="Copy scoreboard to clipboard">📸 Take Screenshot</button>
+        <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
       </div>
     `;
   }
@@ -502,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let formHTML = `
       <h3>Sonic All-Star Racing Scoreboard</h3>
       <p>Race Position & Scoring Weights:</p>
-      <ul>
+      <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
         <li>1st place: +50</li>
         <li>2nd place: +40</li>
         <li>3rd place: +30</li>
@@ -529,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="stat-input">
               <label for="points-${i}">Points Earned</label>
-              <input type="number" id="points-${i}" min="0" value="0">
+              <input type="number" id="points-${i}" min="0" class="short-input">
             </div>
           </div>
         </div>
@@ -539,11 +821,35 @@ document.addEventListener('DOMContentLoaded', () => {
     formHTML += `
       <button class="calculate-btn">Calculate Score</button>
       <div class="score-result">
-        <div class="total-score">Total Score: <span id="total-score">0</span></div>
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value" id="total-score">0</div>
+        </div>
         <div class="stat-breakdown"></div>
       </div>
-      <button class="screenshot-btn" title="Copy scoreboard to clipboard">📸 Take Screenshot</button>
+      <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
     `;
+    
+    // Add additional event listeners after form is created
+    setTimeout(() => {
+      const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+      
+      formInputs.forEach(input => {
+        // Add input event listener to detect changes
+        input.addEventListener('input', function() {
+          if (this.value) {
+            this.classList.add('input-has-value');
+          } else {
+            this.classList.remove('input-has-value');
+          }
+        });
+        
+        // Check initial state
+        if (input.value) {
+          input.classList.add('input-has-value');
+        }
+      });
+    }, 100);
     
     return formHTML;
   }
@@ -611,20 +917,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalScoreElement = formElement.querySelector('#total-score');
     const breakdownElement = formElement.querySelector('.stat-breakdown');
     
-    totalScoreElement.textContent = totalScore;
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
     breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+    
+    // Show result before animation
+    resultElement.classList.add('show');
     
     // Add win/loss class based on total score
     if (totalScore > 0) {
-      totalScoreElement.className = 'win';
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
     } else if (totalScore < 0) {
-      totalScoreElement.className = 'loss';
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
     } else {
-      totalScoreElement.className = '';
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
     }
     
-    // Show result
-    resultElement.classList.add('show');
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, totalScore);
+    }, 100);
   }
 
   // Function to calculate the score for 3ON3 FREESTYLE
@@ -721,20 +1038,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalScoreElement = formElement.querySelector('#total-score');
     const breakdownElement = formElement.querySelector('.stat-breakdown');
     
-    totalScoreElement.textContent = totalScore;
+    // First set to zero, then animate to final score
+    totalScoreElement.textContent = '0';
     breakdownElement.innerHTML = breakdown;
+    
+    // Show result before animation
+    resultElement.classList.add('show');
     
     // Add win/loss class based on total score
     if (totalScore > 0) {
-      totalScoreElement.className = 'win';
+      totalScoreElement.className = 'payout-value win';
+      resultElement.classList.add('positive-result');
+      resultElement.classList.remove('negative-result');
     } else if (totalScore < 0) {
-      totalScoreElement.className = 'loss';
+      totalScoreElement.className = 'payout-value loss';
+      resultElement.classList.add('negative-result');
+      resultElement.classList.remove('positive-result');
     } else {
-      totalScoreElement.className = '';
+      totalScoreElement.className = 'payout-value';
+      resultElement.classList.remove('positive-result', 'negative-result');
     }
     
-    // Show result
-    resultElement.classList.add('show');
+    // Animate to final score
+    setTimeout(() => {
+      animateScoreCalculation(totalScoreElement, totalScore);
+    }, 100);
   }
 
   // Function to calculate score for generic forms
@@ -746,15 +1074,162 @@ document.addEventListener('DOMContentLoaded', () => {
       scoreResult = document.createElement('div');
       scoreResult.className = 'score-result';
       scoreResult.innerHTML = `
-        <div class="total-score">No scoring system implemented yet.</div>
+        <div class="payout-container">
+          <div class="payout-label">PAYOUT</div>
+          <div class="payout-value">Not Available</div>
+        </div>
       `;
       formElement.appendChild(scoreResult);
     }
     
-    // Show result
+    // Show result with animation
     scoreResult.classList.add('show');
+    
+    // For generic forms where we don't have a specific score,
+    // just add a random animation for effect
+    const totalScoreElement = scoreResult.querySelector('.payout-value');
+    animateScoreCalculation(totalScoreElement, 0, 800);
     
     // This would be implemented later for other games
     console.log('Generic score calculation not yet implemented');
   }
+
+  // Modify screenshot generation to ensure better visibility
+  function enhanceScreenshotContainer(container) {
+    // Add extra styling to make results more visible in screenshots
+    container.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+    
+    // Enhance the payout display in screenshots
+    const payoutContainer = container.querySelector('.payout-container');
+    if (payoutContainer) {
+      payoutContainer.style.padding = '20px';
+      payoutContainer.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+      payoutContainer.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+      payoutContainer.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+    }
+    
+    // Enhance the stat breakdown for better readability
+    const statBreakdown = container.querySelector('.stat-breakdown');
+    if (statBreakdown) {
+      statBreakdown.style.backgroundColor = 'rgba(30, 30, 30, 0.9)';
+      statBreakdown.style.padding = '15px';
+      statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+    }
+    
+    // Add color border based on score result
+    const totalScoreElement = container.querySelector('#total-score');
+    const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
+    
+    if (scoreValue > 0) {
+      container.style.border = '3px solid rgba(76, 175, 80, 0.7)';
+      container.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.5)';
+    } else if (scoreValue < 0) {
+      container.style.border = '3px solid rgba(244, 67, 54, 0.7)';
+      container.style.boxShadow = '0 0 15px rgba(244, 67, 54, 0.5)';
+    }
+    
+    return container;
+  }
+  
+  // Add this function call to the screenshot button's event listener
+  // Inside the screenshot button click handler, find and modify:
+  // Just before html2canvas is called, add:
+  // enhanceScreenshotContainer(container);
+});
+
+// Function to animate score calculation with number cycling effect
+function animateScoreCalculation(element, finalScore, duration = 1000) {
+  // Create flash elements if they don't exist
+  if (!document.getElementById('green-flash')) {
+    const greenFlash = document.createElement('div');
+    greenFlash.id = 'green-flash';
+    greenFlash.className = 'screen-flash green-flash';
+    document.body.appendChild(greenFlash);
+    
+    const redFlash = document.createElement('div');
+    redFlash.id = 'red-flash';
+    redFlash.className = 'screen-flash red-flash';
+    document.body.appendChild(redFlash);
+  }
+  
+  // Number of steps in the animation
+  const steps = 15;
+  const stepDuration = duration / steps;
+  
+  // Generate random numbers that converge toward the final score
+  let currentStep = 0;
+  
+  // Function to update the display with a random number
+  function updateDisplay() {
+    // As we progress, make numbers closer to the final score
+    const progressFactor = currentStep / steps;
+    const randomRange = Math.max(5, Math.abs(finalScore) * (1 - progressFactor) * 2);
+    
+    // Generate a random number that gets closer to the finalScore as the animation progresses
+    let randomScore;
+    if (currentStep < steps - 1) {
+      const min = Math.max(-999, finalScore - randomRange);
+      const max = Math.min(999, finalScore + randomRange);
+      randomScore = Math.floor(Math.random() * (max - min + 1)) + min;
+    } else {
+      randomScore = finalScore; // Last step shows the actual score
+    }
+    
+    // Update the display
+    element.textContent = randomScore;
+    element.classList.add('cycling-number');
+    
+    // Remove animation class after a short delay
+    setTimeout(() => {
+      element.classList.remove('cycling-number');
+    }, 50);
+    
+    // Continue animation or finish
+    currentStep++;
+    
+    if (currentStep <= steps) {
+      setTimeout(updateDisplay, stepDuration);
+    } else {
+      // Animation complete - show flash effect
+      const flashElement = finalScore >= 0 ? 
+        document.getElementById('green-flash') : 
+        document.getElementById('red-flash');
+        
+      // Flash the screen
+      flashElement.style.opacity = '1';
+      setTimeout(() => {
+        flashElement.style.opacity = '0';
+      }, 300);
+    }
+  }
+  
+  // Start the animation
+  updateDisplay();
+}
+
+// Add placeholder attributes to number inputs
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      if (!input.hasAttribute('placeholder')) {
+        input.setAttribute('placeholder', '');
+      }
+    });
+  }, 1000);
+});
+
+// Add a general listener for all form inputs
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event delegation to listen for input events on any form inputs
+  document.addEventListener('input', function(e) {
+    if ((e.target.tagName === 'INPUT' && e.target.type === 'number') || 
+        e.target.tagName === 'SELECT') {
+      
+      if (e.target.value) {
+        e.target.classList.add('input-has-value');
+      } else {
+        e.target.classList.remove('input-has-value');
+      }
+    }
+  });
 });

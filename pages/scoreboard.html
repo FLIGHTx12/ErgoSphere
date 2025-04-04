@@ -6,6 +6,103 @@
   <title>Scoreboard</title>
   <link rel="stylesheet" href="../css/data-page.css">
   <link rel="stylesheet" href="../css/scoreboard.css">
+  <style>
+    /* Navbar specific styles */
+    button {
+      background-color: purple;
+      background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
+      color: black;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: large;
+      font-style: normal;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      text-align: center;
+      text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+      margin: 5px 0;
+      box-sizing: border-box;
+      white-space: normal;
+      max-width: auto;
+      max-height: 200px;
+      padding: auto;
+    }
+
+    button a {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    button:active {
+      transform: translateY(2px); /* Indent effect on click */
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+      box-sizing: border-box;
+      box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+      background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+      background-color: rgb(14, 13, 13);
+      transition: top 0.3s;
+      animation: pan-navbar 90s linear infinite;
+    }
+
+    #navbar.hidden {
+      top: -100px;
+    }
+
+    #navbar a {
+      color: rgb(12, 12, 12);
+      text-decoration: none;
+    }
+
+    #navbar button {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      display: inline-block;
+      font-size: 14px;
+      margin: 2px;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: background-color 0.5s ease;
+      width: auto;
+      min-width: 100px;
+      height: auto;
+      box-sizing: border-box;
+    }
+    
+    /* Define navbar animation if needed */
+    @keyframes pan-navbar {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 0%; }
+    }
+    
+    /* Ensure other buttons aren't affected */
+    .calculate-btn, .screenshot-btn {
+      background-image: none;
+      font-family: inherit;
+      font-weight: normal;
+      text-shadow: none;
+      margin: inherit;
+      max-height: inherit;
+    }
+  </style>
 </head>
 <body>
   <nav id="navbar">
@@ -13,31 +110,16 @@
     <button><a href="scoreboard.html">scoreboard</a></button>
   </nav>
 
-
   <div id="data-container"></div>
 
   <script src="../js/scoreboard.js"></script>
+  <!-- Simplified script without sidebar references that were causing errors -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const sidebar = document.getElementById('sidebar');
-      const dataContainer = document.getElementById('data-container');
+      // Mobile swipe detection can remain, but without sidebar manipulation
       let touchstartX = 0;
       let touchendX = 0;
       const swipeThreshold = 100;
-
-      function handleGesture() {
-        const swipeDistance = touchendX - touchstartX;
-        if (swipeDistance > swipeThreshold) {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          dataContainer.classList.remove('sidebar-visible');
-        }
-        if (swipeDistance < -swipeThreshold) {
-          sidebar.classList.remove('hidden');
-          sidebar.style.transform = 'translateX(0)';
-          dataContainer.classList.add('sidebar-visible');
-        }
-      }
 
       document.addEventListener('touchstart', function(e) {
         touchstartX = e.changedTouches[0].screenX;
@@ -45,34 +127,7 @@
 
       document.addEventListener('touchend', function(e) {
         touchendX = e.changedTouches[0].screenX;
-        handleGesture();
-      });
-
-      const mediaQuery = window.matchMedia('(min-width: 1024px)');
-      function handleScreenChange(e) {
-        if (e.matches) {
-          sidebar.classList.remove('hidden');
-          sidebar.style.transform = 'translateX(0)';
-          sidebar.style.transitionDuration = '0.65s';
-          dataContainer.classList.add('sidebar-visible');
-        } else {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          sidebar.style.transitionDuration = '0.65s';
-          dataContainer.classList.remove('sidebar-visible');
-        }
-      }
-      mediaQuery.addListener(handleScreenChange);
-      handleScreenChange(mediaQuery);
-
-      // Highlight active sidebar button
-      const path = window.location.pathname;
-      const page = path.split('/').pop().replace('.html', '');
-      const sidebarLinks = document.querySelectorAll('#sidebar button a');
-      sidebarLinks.forEach(link => {
-        if (link.getAttribute('href') === `${page}.html`) {
-          link.parentNode.classList.add('active-sidebar-button');
-        }
+        // Custom handler for swipe gestures could be added here if needed
       });
     });
   </script>
