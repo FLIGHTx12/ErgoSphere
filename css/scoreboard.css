@@ -1,0 +1,251 @@
+/* Scoreboard page specific styles */
+.score-form {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.match-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: rgba(40, 40, 40, 0.7);
+}
+
+.match-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #d4af37;
+  font-size: 1.1em;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.stat-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.stat-input label {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.stat-input input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: rgba(30, 30, 30, 0.8);
+  color: white;
+}
+
+.stat-input select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: rgba(30, 30, 30, 0.8);
+  color: white;
+}
+
+.calculate-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #6441a5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.calculate-btn:hover {
+  background-color: #7d5bbe;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.score-result {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(50, 50, 50, 0.7);
+  display: none; /* Initially hidden until calculated */
+  font-size: 1.2em;
+}
+
+.score-result.show {
+  display: block;
+  animation: fadeIn 0.5s;
+}
+
+.win {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.loss {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.stat-weight {
+  font-size: 0.8em;
+  color: #999;
+  margin-left: 5px;
+}
+
+.stat-breakdown {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #ddd;
+}
+
+.empty-form-message {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Responsive styles for mobile */
+@media screen and (max-width: 767px) {
+  .item-row.expanded {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100vh !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .item-row.expanded .item-title {
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    padding: 10px;
+    margin: -15px -15px 10px -15px;
+    font-size: 1.2em;
+    border-bottom: 1px solid #444;
+  }
+  
+  .item-row.expanded .collapse-corner {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 10000 !important;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .score-form {
+    padding: 10px;
+    margin-bottom: 60px; /* Add space at the bottom to ensure content is visible */
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+  
+  .stat-input input[type="number"],
+  .stat-input select {
+    padding: 12px 8px; /* Larger touch targets for mobile */
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .calculate-btn,
+  .screenshot-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  /* Improved form layout for better mobile experience */
+  .match-container {
+    padding: 15px 10px;
+  }
+  
+  /* Fix for iOS input zoom */
+  @media screen and (max-width: 767px) {
+    input, select {
+      font-size: 16px !important;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animation for expanding items */
+.item-row {
+  transition: all 0.3s ease;
+}
+
+.item-row.expanded {
+  animation: expandItem 0.3s forwards;
+}
+
+@keyframes expandItem {
+  from {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Styles for screenshot button */
+.screenshot-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2c6e49;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshot-btn::before {
+  content: "📸";
+  margin-right: 8px;
+}
+
+.screenshot-btn:hover {
+  background-color: #3a8c5f;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

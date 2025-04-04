@@ -5,21 +5,10 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Comedy, Romance",
-    "RUNTIME": "1h 37min",
+    "RUNTIME": "01:37",
     "Link": "https://www.justwatch.com/us/movie/13-going-on-30",
     "DESCRIPTION": "After total humiliation at her thirteenth birthday party, Jenna Rink wants to just hide until she's thirty. Thanks to some wishing dust, Jenna's prayer has been answered. With a knockout body, a dream apartment and a fabulous job, here's the catch: She's still thirteen when it comes to memories and dreams.",
     "imageUrl": "https://images.justwatch.com/backdrop/177032141/s1440/suddenly-30.avif"
-  },
-  {
-    "Title": "2001: A Space Odyssey (1968)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "max",
-    "GENRE": "Action & Adventure, Science-Fiction, Mystery & Thriller, Cerebral, Space Opera",
-    "RUNTIME": "2h 29min",
-    "Link": "https://www.justwatch.com/us/movie/how-the-solar-system-was-won",
-    "DESCRIPTION": "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
-    "imageUrl": "https://images.justwatch.com/backdrop/267832295/s1440/how-the-solar-system-was-won.avif"
   },
   {
     "Title": "1922 (2017)",
@@ -27,195 +16,21 @@
     "WATCHED": "👀",
     "OwnerShip": "NETFLIX",
     "GENRE": "Drama, Horror, Crime, Mystery & Thriller, Dark Crime",
-    "RUNTIME": "1h 42min",
+    "RUNTIME": "01:42",
     "Link": "https://www.justwatch.com/us/movie/1922",
     "DESCRIPTION": "A simple yet proud rancher conspires to murder his wife for financial gain, convincing his teenage son to participate.",
     "imageUrl": "https://moviebabble.com/wp-content/uploads/2017/10/1922.jpg"
   },
   {
-    "Title": "American Movie (1999)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "PRIME",
-    "GENRE": "Documentary, Comedy",
-    "RUNTIME": "1h 47min",
-    "Link": "https://www.justwatch.com/us/movie/american-movie",
-    "DESCRIPTION": "American Movie is the story of filmmaker Mark Borchardt, his mission, and his dream. Spanning over two years of intense struggle with his film, his family, financial decline, and spiritual crisis, American Movie is a portrayal of ambition, obsession, excess, and one man's quest for the American Dream.",
-    "imageUrl": "https://musicart.xboxlive.com/7/38ae6200-0000-0000-0000-000000000002/504/image.jpg"
-  },
-  {
-    "Title": "Amy (2015)",
+    "Title": "2001: A Space Odyssey (1968)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "Kanopy",
-    "GENRE": "Documentary, Music & Musical, Music Biopics",
-    "RUNTIME": "2h 8min",
-    "Link": "https://www.justwatch.com/us/movie/amy-2015",
-    "DESCRIPTION": "A documentary on the life of Amy Winehouse, the immensely talented yet doomed songstress. We see her from her teen years, where she already showed her singing abilities, to her finding success and then her downward spiral into alcoholism and drugs.",
-    "imageUrl": "https://wallpapercave.com/wp/wp1918544.jpg"
-  },
-  {
-    "Title": "Asteroid City (2023)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "",
-    "GENRE": "Comedy, Drama, Romance, Science-Fiction, RomCom",
-    "RUNTIME": "1h 45min",
-    "Link": "https://www.justwatch.com/us/movie/asteroid-city",
-    "DESCRIPTION": "Asteroid City is the science-loving American’s top holiday destination. This small desert town plays host to the 1955 Junior Stargazer and Space Cadet conventions. In the dusty desert heat, sudden spectacular events interrupt the program and put Asteroid City on the map.",
-    "imageUrl": "https://images.alphacoders.com/131/1316316.jpeg"
-  },
-  {
-    "Title": "Leave the World Behind (2023)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "NETFLIX",
-    "GENRE": "Mystery & Thriller, Drama, Emotional Drama",
-    "RUNTIME": "2h 22min",
-    "Link": "https://www.justwatch.com/us/movie/leave-the-world-behind-2023",
-    "DESCRIPTION": "Blackouts have been occurring all over the country and could potentially upset the holiday of two families. As they deal with the unsteady situation, problems begin to escalate. What started as a local issue has become an apocalyptic blackout leaving millions across the world in darkness with no electricity. The world is falling apart and the two families have only each other to rely on in increasingly unstable and terrifying conditions. Survival will require a true team effort but as their old lives slip away, everyone is left feeling scared and alone.",
-    "imageUrl": "https://images.justwatch.com/backdrop/310044264/s1440/leave-the-world-behind-2023.avif"
-  },
-  {
-    "Title": "Running with Speed (2023)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "PRIME",
-    "GENRE": "Documentary, Video Game",
-    "RUNTIME": "2h 28min",
-    "Link": "https://www.justwatch.com/us/movie/running-with-speed",
-    "DESCRIPTION": "Follows speedrunners, past and present, collaboratively digging for secrets and working to uncover mind-blowing shortcuts and glitches which are used to streamline their runs in top game franchises.",
-    "imageUrl": "https://m.media-amazon.com/images/M/MV5BYTRkMDRkMzgtMDJjMS00YmVlLTg4NmItNmZhNDhmM2YzNmM0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  },  
-  {
-    "Title": "LX 2048 (2020)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "PRIME",
-    "GENRE": "Science-Fiction, Drama, Mystery & Thriller, Sci-Fi Drama",
-    "RUNTIME": "1h 43min",
-    "Link": "https://www.justwatch.com/us/movie/lx-2048",
-    "DESCRIPTION": "In the near future, the sun has become so toxic people can no longer leave their houses in daytime, and normal life is conducted mostly inside the virtual realm. Against this dystopian backdrop, a dying man seeks to ensure the future well-being of his family, while coping with what it means to be human in this new reality.",
-    "imageUrl": "https://w0.peakpx.com/wallpaper/821/308/HD-wallpaper-lx-2048-movies.jpg"
-  },  
-  {
-    "Title": "Monkey Man (2024)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "PRIME",
-    "GENRE": "Mystery & Thriller, Action & Adventure, Crime, Action Thriller",
-    "RUNTIME": "2h 1min",
-    "Link": "https://www.justwatch.com/us/movie/monkey-man",
-    "DESCRIPTION": "Released from prison in Mumbai, an ex-convict enters an unfamiliar and changed world. He sees excessive corporate greed causing mass poverty and spirituality waning all across society. With no hope of a fresh start, he uses his newfound freedom to seek out those who wronged him in the past. In his righteous frustration, he is fuelled only by his desire for revenge.",
-    "imageUrl": "https://images8.alphacoders.com/136/1368058.jpeg"
-  },  
-  {
-    "Title": "The Adventures of Buckaroo Banzai Across the 8th Dimension (1984)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "PRIME",
-    "GENRE": "Science-Fiction, Comedy, Action & Adventure, Romance, Sci-Fi Comedy",
-    "RUNTIME": "1h 43min",
-    "Link": "https://www.justwatch.com/us/movie/the-adventures-of-buckaroo-banzai",
-    "DESCRIPTION": "Adventurer/surgeon/rock musician Buckaroo Banzai and his band of men, the Hong Kong Cavaliers, take on evil alien invaders from the 8th dimension.",
-    "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDc0M2Q1MGUtNWQzMC00NTg0LWE1ZWQtYjk3YmY2ZTk2MDgxXkEyXkFqcGc@._V1_.jpg"
-  },  
-  {
-    "Title": "Wicked City (1987)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "PRIME",
-    "GENRE": "Horror, Animation, Action & Adventure, Fantasy, Science-Fiction, Mystery & Thriller, Classic Japanese Anime",
-    "RUNTIME": "1h 22min",
-    "Link": "https://www.justwatch.com/us/movie/wicked-city",
-    "DESCRIPTION": "A peace treaty between the Earth and the Black World, a parallel universe of demons, is coming to an end. Two cops, Taki, a human male, and Maki, a female demon, are assigned to protect a diplomat who will help secure another treaty. A radical group of demons from the Black World are out to assassinate the diplomat and prevent the treaty; only the bond that forms between the two cops can save the Earth from destruction.",
-    "imageUrl": "https://fantasyanime.com/anime/images/slide-wicked.jpg"
-  }, 
-   {
-    "Title": "The Green Knight (2021)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Buy",
-    "GENRE": "Drama, Fantasy, Epic Fantasy, Modern Fantasy, Action Adventure",
-    "RUNTIME": "2h 10min",
-    "Link": "https://www.justwatch.com/us/movie/the-green-knight",
-    "DESCRIPTION": "An epic fantasy adventure based on the timeless Arthurian legend, The Green Knight tells the story of Sir Gawain, King Arthur's reckless and headstrong nephew, who embarks on a daring quest to confront the eponymous Green Knight, a gigantic emerald-skinned stranger and tester of men.",
-    "imageUrl": "https://images2.alphacoders.com/119/1190277.jpg"
-  }, 
-  {
-    "Title": "The Fall (2006)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Buy",
-    "GENRE": "Drama, Action & Adventure, Fantasy, Epic Fantasy",
-    "RUNTIME": "1h 59min",
-    "Link": "https://www.justwatch.com/us/movie/the-fall",
-    "DESCRIPTION": "In a hospital on the outskirts of 1920s Los Angeles, an injured stuntman begins to tell a fellow patient, a little girl with a broken arm, a fantastic story about 5 mythical heroes. Thanks to his fractured state of mind and her vivid imagination, the line between fiction and reality starts to blur as the tale advances.",
-    "imageUrl": "https://www.justwatch.com/us/movie/the-fall"
-  }, 
-   {
-    "Title": "",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
-  },  {
-    "Title": "",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
-  },  {
-    "Title": "",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "",
-    "GENRE": "",
-    "RUNTIME": "",
-    "Link": "",
-    "DESCRIPTION": "",
-    "imageUrl": ""
-  },
-  {
-    "Title": "Tony Allen: The Grindfather | Memphis Grizzlies Documentary (2025)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Youtube",
-    "GENRE": "Documentary, Sport",
-    "RUNTIME": "1h 35min",
-    "Link": "https://www.youtube.com/watch?v=IWAQIMT4hyM",
-    "DESCRIPTION": "This documentary chronicles Allen’s journey from his childhood in Chicago, to his collegiate career in Stillwater, Okla., to his time in Boston and finally his home in Memphis, showcasing the moments that defined the Grit & Grind era and shaped the Grizzlies and Allen himself.",
-    "imageUrl": "https://i.ytimg.com/vi/IWAQIMT4hyM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDIrP_Puxwz8dALapUC82GUVGVMWQ"
-  },
-  {
-    "Title": "Birdman or (The Unexpected Virtue of Ignorance) (2014)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "HULU",
-    "GENRE": "Comedy, Drama, Dramedy",
-    "RUNTIME": "1h 59min",
-    "Link": "https://www.justwatch.com/us/movie/birdman",
-    "DESCRIPTION": "A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.",
-    "imageUrl": "https://images.justwatch.com/backdrop/154195082/s1440/birdman.avif"
-  },
-  {
-    "Title": "65 (2023)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "NETFLIX",
-    "GENRE": "Science-Fiction, Action & Adventure, Mystery & Thriller, Drama, Sci-Fi Drama",
-    "RUNTIME": "1h 30min",
-    "Link": "https://www.justwatch.com/us/movie/65",
-    "DESCRIPTION": "An emergency landing brings an astronaut to a mysterious planet. He spends his time desperately trying to figure out how to leave with the only other survivor a young girl who needs his protection. Mills and Koa explore the uncanny planet that feels at once familiar and odd. Quickly the pair discover that their fellow inhabitants are ancient dinosaurs and that the planet is Earth, 65 million years in the past. All they can do is try to survive being hunted until they can escape.",
-    "imageUrl": "https://images.justwatch.com/backdrop/304934688/s1440/65.avif"
+    "OwnerShip": "max",
+    "GENRE": "Action & Adventure, Science-Fiction, Mystery & Thriller, Cerebral, Space Opera",
+    "RUNTIME": "02:29",
+    "Link": "https://www.justwatch.com/us/movie/how-the-solar-system-was-won",
+    "DESCRIPTION": "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
+    "imageUrl": "https://images.justwatch.com/backdrop/267832295/s1440/how-the-solar-system-was-won.avif"
   },
   {
     "Title": "A Beautiful Mind (2001)",
@@ -223,7 +38,7 @@
     "WATCHED": "👀",
     "OwnerShip": "HULU",
     "GENRE": "Drama, Biography",
-    "RUNTIME": "2h 15min",
+    "RUNTIME": "02:15",
     "Link": "https://www.justwatch.com/us/movie/a-beautiful-mind",
     "DESCRIPTION": "John Nash is a brilliant but asocial mathematician fighting schizophrenia. After he accepts secret work in cryptography, his life takes a turn for the nightmarish.",
     "imageUrl": "https://wallpapercave.com/wp/wp4216642.jpg"
@@ -234,7 +49,7 @@
     "WATCHED": "👀",
     "OwnerShip": "NETFLIX",
     "GENRE": "Comedy, Drama",
-    "RUNTIME": "2h 0min",
+    "RUNTIME": "02:00",
     "Link": "https://www.justwatch.com/us/movie/a-man-called-otto",
     "DESCRIPTION": "When a lively young family moves in next door, grumpy widower Otto Anderson meets his match in quick-witted pregnant woman Marisol, leading to an unexpected friendship that turns his world upside down.",
     "imageUrl": "https://images.justwatch.com/backdrop/303980138/s1440/a-man-called-otto.avif"
@@ -245,7 +60,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Crime, Drama, Mystery & Thriller, Courtroom, Civil Rights",
-    "RUNTIME": "2h 29min",
+    "RUNTIME": "02:29",
     "Link": "https://www.justwatch.com/us/movie/a-time-to-kill",
     "DESCRIPTION": "A young lawyer defends a black man accused of murdering two white men who raped his 10-year-old daughter, sparking a rebirth of the KKK.",
     "imageUrl": "https://images.justwatch.com/backdrop/179853071/s1440/a-time-to-kill.avif"
@@ -256,21 +71,32 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Comedy, Adventure, Family",
-    "RUNTIME": "1h 42min",
+    "RUNTIME": "01:42",
     "Link": "https://www.justwatch.com/us/movie/adventures-in-babysitting",
     "DESCRIPTION": "A babysitter's quiet night takes an unexpected turn when she takes her young charges into the city to rescue her friend.",
     "imageUrl": "https://images5.alphacoders.com/129/1295511.jpg"
   },
   {
-    "Title": "Any Given Sunday (1999)",
-    "STATUS": "🟢",
+    "Title": "American Movie (1999)",
+    "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "Owned",
-    "GENRE": "Drama, Sport",
-    "RUNTIME": "2h 42min",
-    "Link": "https://moviesanywhere.com/movie/any-given-sunday-1999",
-    "DESCRIPTION": "Academy Award winner Al Pacino and Cameron Diaz lead a stellar cast in Oscar winner Oliver Stone's hard-hitting homage to the gridiron gladiators of Any Given Sunday. Tony D'Amato (Pacino), head coach of football's two-time champion Miami Sharks, desperately tries to hold his now losing team together. With seasoned quarterback Jack Cap Rooney (Dennis Quaid) injured and past his prime, third-string player Willie Beamen (Jamie Foxx) powers the Sharks to a playoff spot. At odds with Beamen's renegade style and loyal to Cap, D'Amato returns the veteran to the starting lineup, a choice that rankles young, aggressive team owner Christina Pagniacci (Cameron Diaz), who views a winning squad only as a marketable commodity. Pressured and disillusioned, D'Amato must win at any cost or suffer the defeat of his career.",
-    "imageUrl": "https://images2.alphacoders.com/797/thumb-1920-797513.jpg"
+    "OwnerShip": "PRIME",
+    "GENRE": "Documentary, Comedy",
+    "RUNTIME": "01:47",
+    "Link": "https://www.justwatch.com/us/movie/american-movie",
+    "DESCRIPTION": "American Movie is the story of filmmaker Mark Borchardt, his mission, and his dream. Spanning over two years of intense struggle with his film, his family, financial decline, and spiritual crisis, American Movie is a portrayal of ambition, obsession, excess, and one man's quest for the American Dream.",
+    "imageUrl": "https://musicart.xboxlive.com/7/38ae6200-0000-0000-0000-000000000002/504/image.jpg"
+  },
+  {
+    "Title": "Amy (2015)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Kanopy",
+    "GENRE": "Documentary, Music & Musical, Music Biopics",
+    "RUNTIME": "02:08",
+    "Link": "https://www.justwatch.com/us/movie/amy-2015",
+    "DESCRIPTION": "A documentary on the life of Amy Winehouse, the immensely talented yet doomed songstress. We see her from her teen years, where she already showed her singing abilities, to her finding success and then her downward spiral into alcoholism and drugs.",
+    "imageUrl": "https://wallpapercave.com/wp/wp1918544.jpg"
   },
   {
     "Title": "Ant-Man (2015)",
@@ -278,43 +104,21 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Science-Fiction, Action & Adventure, Comedy, Superhero",
-    "RUNTIME": "1h 57min",
+    "RUNTIME": "01:57",
     "Link": "https://www.justwatch.com/us/movie/ant-man",
     "DESCRIPTION": "Armed with the astonishing ability to shrink in scale but increase in strength, master thief Scott Lang must embrace his inner-hero and help his mentor, Doctor Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world.",
     "imageUrl": "https://images.justwatch.com/backdrop/176243789/s1440/ant-man.avif"
   },
   {
-    "Title": "Ant-Man and the Wasp (2018)",
+    "Title": "Asteroid City (2023)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "Disney+",
-    "GENRE": "Action & Adventure, Science-Fiction, Comedy, Superhero",
-    "RUNTIME": "1h 58min",
-    "Link": "https://www.justwatch.com/us/movie/ant-man-and-the-wasp",
-    "DESCRIPTION": "Just when his time under house arrest is about to end, Scott Lang once again puts his freedom at risk to help Hope van Dyne and Dr. Hank Pym dive into the quantum realm and try to accomplish, against time and any chance of success, a very dangerous rescue mission.",
-    "imageUrl": "https://images.justwatch.com/backdrop/40492690/s1440/ant-man-and-the-wasp.avif"
-  },
-  {
-    "Title": "Archive (2020)",
-    "STATUS": "🟢",
-    "WATCHED": "👀",
-    "OwnerShip": "PRIME",
-    "GENRE": "Sci-Fi",
-    "RUNTIME": "1h 49min",
-    "Link": "https://www.justwatch.com/us/movie/archive",
-    "DESCRIPTION": "2038: George Almore is working on a true human-equivalent AI, and his latest prototype is almost ready. This sensitive phase is also the riskiest as he has a goal that must be hidden at all costs—being reunited with his dead wife.",
-    "imageUrl": "https://images.justwatch.com/backdrop/195510228/s1440/archive.avif"
-  },
-  {
-    "Title": "Assassin's Creed (2016)",
-    "STATUS": "",
-    "WATCHED": "👀👀",
-    "OwnerShip": "Owned",
-    "GENRE": "Action, Adventure, Science Fiction",
-    "RUNTIME": "1h 55min",
-    "Link": "https://www.justwatch.com/us/movie/assassins-creed",
-    "DESCRIPTION": "Through a revolutionary technology that unlocks his genetic memories, Callum Lynch experiences the adventures of his ancestor, Aguilar, in 15th Century Spain.",
-    "imageUrl": "https://images8.alphacoders.com/750/750316.jpg"
+    "OwnerShip": "",
+    "GENRE": "Comedy, Drama, Romance, Science-Fiction, RomCom",
+    "RUNTIME": "01:45",
+    "Link": "https://www.justwatch.com/us/movie/asteroid-city",
+    "DESCRIPTION": "Asteroid City is the science-loving American’s top holiday destination. This small desert town plays host to the 1955 Junior Stargazer and Space Cadet conventions. In the dusty desert heat, sudden spectacular events interrupt the program and put Asteroid City on the map.",
+    "imageUrl": "https://images.alphacoders.com/131/1316316.jpeg"
   },
   {
     "Title": "Avatar: The Way of Water (2022)",
@@ -322,43 +126,10 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Science Fiction, Action, Adventure",
-    "RUNTIME": "3h 15min",
+    "RUNTIME": "03:15",
     "Link": "https://www.justwatch.com/us/movie/avatar-the-way-of-water",
     "DESCRIPTION": "Set more than a decade after the events of the first film, learn the story of the Sully family, the trouble that follows them, their efforts to keep each other safe and the battles they fight to stay alive.",
     "imageUrl": "https://i.redd.it/avatar-2-twow-4k-wallpaper-v0-3emk01btvfta1.jpg?width=3840&format=pjpg&auto=webp&s=8e8cdb7ca08f3c2a433a22955c14406f89ea5227"
-  },
-  {
-    "Title": "Avengers: Age of Ultron (2015)",
-    "STATUS": "🟢",
-    "WATCHED": "👀👀",
-    "OwnerShip": "Disney+",
-    "GENRE": "Super Hero, Action",
-    "RUNTIME": "2h 21min",
-    "Link": "https://www.justwatch.com/us/movie/avengers-age-of-ultron",
-    "DESCRIPTION": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
-    "imageUrl": "https://images.justwatch.com/backdrop/318032910/s1440/avengers-age-of-ultron.avif"
-  },
-  {
-    "Title": "Avengers: Endgame (2019)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "Disney+",
-    "GENRE": "Action & Adventure, Science-Fiction, Drama, Superhero",
-    "RUNTIME": "3h 1min",
-    "Link": "https://www.justwatch.com/us/movie/avengers-endgame",
-    "DESCRIPTION": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-    "imageUrl": "https://i.pinimg.com/736x/ee/8f/55/ee8f555b1832b15bc62669aad0aa1611.jpg"
-  },
-  {
-    "Title": "Avengers: Infinity War (2018)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "Disney+",
-    "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 30min",
-    "Link": "https://www.justwatch.com/us/movie/avengers-infinity-war",
-    "DESCRIPTION": "Thanos, a genocidal warlord from the planet Titan, plans to collect all six Infinity Stones – granting him the immense power he needs to fulfill his life’s purpose. As he gets closer to achieving his goal, the avengers must assemble to stop the greatest threat they have ever faced. Avengers: Infinity War is a continuation of the Marvel Cinematic Universe (MCU). The film was directed by Anthony and Joe Russo.",
-    "imageUrl": "https://wallpapers.com/images/hd/avengers-infinity-war-4k-logo-q2mik92nipxepl5i.jpg"
   },
   {
     "Title": "Basquiat (1996)",
@@ -366,7 +137,7 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Drama, History, Biopics",
-    "RUNTIME": "1h 47min",
+    "RUNTIME": "01:47",
     "Link": "https://www.justwatch.com/us/movie/basquiat",
     "DESCRIPTION": "The brief life of Jean Michel Basquiat, a world renowned New York street artist struggling with fame, drugs and his identity.",
     "imageUrl": "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/130/2024/11/04224124/basquiat-1996-BW-promo-e1730778211367.jpg"
@@ -377,10 +148,21 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Comedy, Romance, Drama",
-    "RUNTIME": "1h 38min",
+    "RUNTIME": "01:38",
     "Link": "https://www.justwatch.com/us/movie/benny-and-joon",
     "DESCRIPTION": "In a small town, an auto mechanic named Benny is devoted to taking care of his mentally ill sister, Joon, who wins a stranger named Sam in a poker game.",
     "imageUrl": "https://townsquare.media/site/442/files/2014/02/Benny-and-Joon.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89&format=natural"
+  },
+  {
+    "Title": "Birdman or (The Unexpected Virtue of Ignorance) (2014)",
+    "STATUS": "",
+    "WATCHED": "👀",
+    "OwnerShip": "HULU",
+    "GENRE": "Comedy, Drama, Dramedy",
+    "RUNTIME": "01:59",
+    "Link": "https://www.justwatch.com/us/movie/birdman",
+    "DESCRIPTION": "A fading actor best known for his portrayal of a popular superhero attempts to mount a comeback by appearing in a Broadway play. As opening night approaches, his attempts to become more altruistic, rebuild his career, and reconnect with friends and family prove more difficult than expected.",
+    "imageUrl": "https://images.justwatch.com/backdrop/154195082/s1440/birdman.avif"
   },
   {
     "Title": "Black Adam (2022)",
@@ -388,7 +170,7 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Science-Fiction, Action & Adventure, Fantasy, Superhero",
-    "RUNTIME": "2h 4min",
+    "RUNTIME": "02:04",
     "Link": "https://www.justwatch.com/us/movie/black-adam",
     "DESCRIPTION": "After misusing his god-like powers, Black Adam was sentenced to a brutal 5,000 years of imprisonment – but now he is finally free. Upon his release, Adam vows that no one will take away his liberty again. Driven by his own brand of justice and unbelievable strength, the almighty anti-hero sets out to defeat his adversaries. This leads to an encounter with the Justice Society, a superhero team that includes Hawkman, Dr. Fate, Atom Smasher and Cyclone.",
     "imageUrl": "https://images2.alphacoders.com/129/1292444.jpg"
@@ -399,7 +181,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 15min",
+    "RUNTIME": "02:15",
     "Link": "https://www.justwatch.com/us/movie/black-panther",
     "DESCRIPTION": "King T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without. Using powers reserved to Wakandan kings, T'Challa assumes the Black Panther mantle to join with ex-girlfriend Nakia, the queen-mother, his princess-kid sister, members of the Dora Milaje (the Wakandan 'special forces') and an American secret agent, to prevent Wakanda from being dragged into a world war.",
     "imageUrl": "https://images.alphacoders.com/902/902378.jpg"
@@ -410,7 +192,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Drama, Superhero",
-    "RUNTIME": "2h 42min",
+    "RUNTIME": "02:42",
     "Link": "https://www.justwatch.com/us/movie/black-panther-ii",
     "DESCRIPTION": "After the passing of revered and beloved King T'Challa, the nation of Wakanda is in a state mourning. World powers seize the vulnerable moment to intervene and Wakanda is left with no choice but to defend itself. With Queen Ramonda, Shuri and Nakia all standing in defence of the nation, Wakanda forges a new path forward while honoring the legacy of the Black Panther.",
     "imageUrl": "https://images4.alphacoders.com/128/1286402.jpg"
@@ -421,7 +203,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Science-Fiction, Action & Adventure, Spies, Superhero",
-    "RUNTIME": "2h 14min",
+    "RUNTIME": "02:14",
     "Link": "https://www.justwatch.com/us/movie/black-widow-2020",
     "DESCRIPTION": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.",
     "imageUrl": "https://images4.alphacoders.com/107/1070325.jpg"
@@ -432,7 +214,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Mystery & Thriller, Dramedy",
-    "RUNTIME": "1h 43min",
+    "RUNTIME": "01:43",
     "Link": "https://www.justwatch.com/us/movie/blink-twice",
     "DESCRIPTION": "A tech billionaire invites a woman to join him at his private island, but things take a turn when she discovers his intentions are not what they seem.",
     "imageUrl": "https://images.hdqwalls.com/wallpapers/blink-twice-movie-nb.jpg"
@@ -443,7 +225,7 @@
     "WATCHED": "",
     "OwnerShip": "Paramount+",
     "GENRE": "Romance, Comedy, Drama",
-    "RUNTIME": "1h 55min",
+    "RUNTIME": "01:55",
     "Link": "https://www.justwatch.com/us/movie/breakfast-at-tiffanys",
     "DESCRIPTION": "Holly Golightly is a flighty Manhattan party girl, who expects 'money for the powder room as well as for cab fare' for her companionship.",
     "imageUrl": "https://movie-screencaps.com/wp-content/uploads/2013/03/breakfast-at-tiffanys-movie-screencaps.com-.jpg"
@@ -454,7 +236,7 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Science Fiction, Dark Comedy, Dystopian",
-    "RUNTIME": "2h 22min",
+    "RUNTIME": "02:22",
     "Link": "https://www.justwatch.com/us/movie/brazil",
     "DESCRIPTION": "Low-level bureaucrat Sam Lowry escapes the monotony of his day-to-day life through a recurring daydream of himself as a virtuous hero saving a beautiful damsel. Investigating a case that led to the wrongful arrest and eventual death of an innocent man instead of wanted terrorist Harry Tuttle, he meets the woman from his daydream, and in trying to help her gets caught in a web of mistaken identities, mindless bureaucracy and lies.",
     "imageUrl": "https://wallpapercave.com/wp/wp11656676.jpg"
@@ -465,7 +247,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Fantasy",
-    "RUNTIME": "1h 57min",
+    "RUNTIME": "01:57",
     "Link": "https://www.justwatch.com/us/movie/bright",
     "DESCRIPTION": "In an alternate present-day where magical creatures live among us, two L.A. cops become embroiled in a prophesied turf battle.",
     "imageUrl": "https://images.justwatch.com/backdrop/38006467/s1440/bright.avif"
@@ -476,7 +258,7 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Mystery & Thriller, Horror, Science-Fiction, Drama, SciFi Horror",
-    "RUNTIME": "1h 31min",
+    "RUNTIME": "01:31",
     "Link": "https://www.justwatch.com/us/movie/brightburn",
     "DESCRIPTION": "What if a child from another world crash-landed on Earth, but instead of becoming a hero to mankind, he proved to be something far more sinister?",
     "imageUrl": "https://images7.alphacoders.com/112/1123067.jpg"
@@ -487,7 +269,7 @@
     "WATCHED": "👀",
     "OwnerShip": "NETFLIX",
     "GENRE": "Action, Comedy, Thriller",
-    "RUNTIME": "2h 6min",
+    "RUNTIME": "02:06",
     "Link": "https://www.justwatch.com/us/movie/bullet-train",
     "DESCRIPTION": "Unlucky assassin Ladybug is determined to do his job peacefully after too many gigs gone off the rails. Fate, however, may have other plans, as Ladybug's latest mission puts him on a collision course with lethal adversaries from around the globe—all with connected, yet conflicting, objectives—on the world's fastest train.",
     "imageUrl": "https://images8.alphacoders.com/126/thumb-1920-1262024.jpg"
@@ -498,7 +280,7 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Comedy, Crime, Drama",
-    "RUNTIME": "1h 36min",
+    "RUNTIME": "01:36",
     "Link": "https://www.justwatch.com/us/movie/burn-after-reading",
     "DESCRIPTION": "A disk containing mysterious information from a CIA agent ends up in the hands of two unscrupulous and amateur gym employees who attempt to sell it.",
     "imageUrl": "https://images.justwatch.com/backdrop/10097007/s1440/burn-after-reading.avif"
@@ -509,7 +291,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 27min",
+    "RUNTIME": "02:27",
     "Link": "https://www.justwatch.com/us/movie/captain-america-civil-war",
     "DESCRIPTION": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
     "imageUrl": "https://images5.alphacoders.com/689/689398.jpg"
@@ -520,7 +302,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 4min",
+    "RUNTIME": "02:04",
     "Link": "https://www.justwatch.com/us/movie/captain-america-the-first-avenger",
     "DESCRIPTION": "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull – Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
     "imageUrl": "https://blurayauthority.com/wp-content/uploads/2019/02/captainamericasbhd_pub.jpg"
@@ -531,7 +313,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Mystery & Thriller, Superhero",
-    "RUNTIME": "2h 16min",
+    "RUNTIME": "02:16",
     "Link": "https://www.justwatch.com/us/movie/captain-america-the-winter-soldier",
     "DESCRIPTION": "After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigue that threatens to put the world at risk. Joining forces with the Black Widow, Captain America struggles to expose the ever-widening conspiracy while fighting off professional assassins sent to silence him at every turn. When the full scope of the villainous plot is revealed, Captain America and the Black Widow enlist the help of a new ally, the Falcon. However, they soon find themselves up against an unexpected and formidable enemy—the Winter Soldier.",
     "imageUrl": "https://images.alphacoders.com/110/1108888.jpg"
@@ -542,7 +324,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero, Chick Flicks",
-    "RUNTIME": "2h 4min",
+    "RUNTIME": "02:04",
     "Link": "https://www.justwatch.com/us/movie/captain-marvel",
     "DESCRIPTION": "The story follows Carol Danvers as she becomes one of the universe’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.",
     "imageUrl": "https://images2.alphacoders.com/979/979960.jpg"
@@ -553,7 +335,7 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Drama, Romance, War & Military, Romantic Drama, Romantic Epics",
-    "RUNTIME": "1h 42min",
+    "RUNTIME": "01:42",
     "Link": "https://www.justwatch.com/us/movie/casablanca",
     "DESCRIPTION": "In Casablanca, Morocco in December 1941, a cynical American expatriate meets a former lover, with unforeseen complications.",
     "imageUrl": "https://images.justwatch.com/backdrop/205976178/s1440/casablanca.avif"
@@ -564,7 +346,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Drama, Crime, Based On A True Story",
-    "RUNTIME": "2h 21min",
+    "RUNTIME": "02:21",
     "Link": "https://www.justwatch.com/us/movie/catch-me-if-you-can",
     "DESCRIPTION": "The true story of Frank Abagnale Jr. who, before his 19th birthday, successfully conned millions of dollars worth of checks as a Pan Am pilot, doctor, and legal prosecutor.",
     "imageUrl": "https://images.justwatch.com/backdrop/239689/s1440/catch-me-if-you-can.avif"
@@ -575,7 +357,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Buy",
     "GENRE": "Science-Fiction, Mystery & Thriller, Drama, Sci-Fi Drama, Post Apocalyptic World",
-    "RUNTIME": "1h 49min",
+    "RUNTIME": "01:49",
     "Link": "https://www.justwatch.com/us/movie/children-of-men",
     "DESCRIPTION": "In 2027, in a chaotic world in which humans can no longer procreate, a former activist agrees to help transport a miraculously pregnant woman to a sanctuary at sea, where her child's birth may help scientists save the future of humankind.",
     "imageUrl": "https://preview.redd.it/children-of-men-4k-dolby-vision-upgrade-v0-a1sdwjznmwyb1.jpg?width=1920&format=pjpg&auto=webp&s=140a9898aa49c41c971f6a3d36936adaaaf4f9f8"
@@ -586,7 +368,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Drama, Crime, Emotional Drama",
-    "RUNTIME": "2h 10min",
+    "RUNTIME": "02:10",
     "Link": "https://www.justwatch.com/us/movie/city-of-god",
     "DESCRIPTION": "In the poverty-stricken favelas of Rio de Janeiro in the 1970s, two young men choose different paths. Rocket is a budding photographer who documents the increasing drug-related violence of his neigmaxrhood, while José “Zé” Pequeno is an ambitious drug dealer diving into a dangerous life of crime.",
     "imageUrl": "https://m.media-amazon.com/images/S/pv-target-images/e5145aedcd8af70c52ad5703efa85d4b3b0283e0bd68e799465affd9c5935822.jpg"
@@ -597,7 +379,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Science-Fiction, Drama, Sci-Fi Drama",
-    "RUNTIME": "2h 17min",
+    "RUNTIME": "02:17",
     "Link": "https://www.justwatch.com/us/movie/close-encounters-of-the-third-kind",
     "DESCRIPTION": "After an encounter with UFOs, an electricity linesman feels undeniably drawn to an isolated area in the wilderness where something spectacular is about to happen.",
     "imageUrl": "https://www.hollywoodreporter.com/wp-content/uploads/2015/10/close_encounters_third_kind_1977_017.jpg?w=1440&h=810&crop=1"
@@ -608,7 +390,7 @@
     "WATCHED": "👀👀",
     "OwnerShip": "Buy",
     "GENRE": "Horror, Action & Adventure, Fantasy, Dark Fantasy",
-    "RUNTIME": "2h 1min",
+    "RUNTIME": "02:01",
     "Link": "https://www.justwatch.com/us/movie/constantine",
     "DESCRIPTION": "",
     "imageUrl": "https://s.yimg.com/ny/api/res/1.2/mtlxlE__kPFyY_526LG_7w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTEyODA-/https://media.zenfs.com/en/digital_spy_281/1b9c022e58539dfc02ff11ff79cbbea1"
@@ -630,7 +412,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Drama, Biography, Crime",
-    "RUNTIME": "1h 39min",
+    "RUNTIME": "01:39",
     "Link": "https://www.justwatch.com/us/movie/crown-heights",
     "DESCRIPTION": "When Colin Warner is wrongfully convicted of murder, his best friend Carl King devotes his life to proving Colin's innocence.",
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjlhYjVlZTAtMzM1Mi00M2IzLWFjMWItMjQwMmZjNWVmOGZmXkEyXkFqcGc@._V1_.jpg"
@@ -641,7 +423,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Drama, Romance, Musical",
-    "RUNTIME": "2h 3min",
+    "RUNTIME": "02:03",
     "Link": "https://www.justwatch.com/us/movie/cyrano-2021",
     "DESCRIPTION": "Too self-conscious to woo Roxanne himself, wordsmith Cyrano de Bergerac helps young Christian nab her heart through love letters.",
     "imageUrl": "https://wallpapercat.com/w/full/6/a/5/2003860-3000x1687-desktop-hd-cyrano-background-photo.jpg"
@@ -652,7 +434,7 @@
     "WATCHED": "👀👀",
     "OwnerShip": "PRIME",
     "GENRE": "Science-Fiction, Mystery & Thriller, Fantasy, SciFi Horror, Dark Fantasy",
-    "RUNTIME": "1h 40min",
+    "RUNTIME": "01:40",
     "Link": "https://www.justwatch.com/us/movie/dark-city-1998",
     "DESCRIPTION": "A man struggles with memories of his past, including a wife he cannot remember, in a nightmarish world with no sun and run by beings with telekinetic powers who seek the souls of humans.",
     "imageUrl": "https://rockshockpop.com/filedata/fetch?id=429259&d=1710342359"
@@ -663,7 +445,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Comedy, Romance, Action",
-    "RUNTIME": "1h 26min",
+    "RUNTIME": "01:26",
     "Link": "https://www.justwatch.com/us/movie/date-night",
     "DESCRIPTION": "In New York City, a case of mistaken identity turns a bored married couple's attempt at a glamorous and romantic evening into something more thrilling and dangerous.",
     "imageUrl": "https://m.media-amazon.com/images/S/pv-target-images/eebf90d72bec1cd7fafbf2d1ba918902cf056c4122be4e83f5f30ba88f69232f._SX1080_FMjpg_.jpg"
@@ -674,7 +456,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Fantasy, Science-Fiction, Superhero",
-    "RUNTIME": "1h 55min",
+    "RUNTIME": "01:55",
     "Link": "https://www.justwatch.com/us/movie/doctor-strange",
     "DESCRIPTION": "After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under her wing and trains him to defend the world against evil.",
     "imageUrl": "https://wallpapercat.com/w/full/0/6/b/476391-3840x2160-desktop-4k-benedict-cumberbatch-doctor-strange-wallpaper-photo.jpg"
@@ -685,7 +467,7 @@
     "WATCHED": "👀👀",
     "OwnerShip": "Disney+",
     "GENRE": "Fantasy, Science-Fiction, Superhero, Action Adventure",
-    "RUNTIME": "2h 6min",
+    "RUNTIME": "02:06",
     "Link": "https://www.justwatch.com/us/movie/doctor-strange-in-the-multiverse-of-madness",
     "DESCRIPTION": "Doctor Strange’s actions in Spider-Man: No Way Home have had extreme consequences across the universe. After playing with the fabric of reality, he has opened the door to the multiverse and must make things right again. Strange is joined by Wong and fellow Avenger Wanda Maximoff – better known as Scarlet Witch – as they attempt to prevent the imminent threat posed to reality as we know it.",
     "imageUrl": "https://images6.alphacoders.com/126/1262370.jpg"
@@ -696,7 +478,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Science-Fiction, Invasion",
-    "RUNTIME": "1h 24min",
+    "RUNTIME": "01:24",
     "Link": "https://www.justwatch.com/us/movie/doors-2021",
     "DESCRIPTION": "Without warning, millions of mysterious alien “doors” suddenly appear around the globe. In a rush to determine the reason for their arrival, mankind must work together to understand the purpose of these cosmic anomalies.",
     "imageUrl": "https://w0.peakpx.com/wallpaper/619/845/HD-wallpaper-movie-doors.jpg"
@@ -707,7 +489,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Drama",
-    "RUNTIME": "1h 40min",
+    "RUNTIME": "01:40",
     "Link": "https://www.justwatch.com/us/movie/down-with-the-king",
     "DESCRIPTION": "A famous rapper, disillusioned with the music industry and the pressures of being a celebrity, leaves the city and his career behind to find himself in a small-town farming community.",
     "imageUrl": "https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/05/down-with-the-king-poster-Freddie-Gibbs.jpg"
@@ -718,7 +500,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Science Fiction, Comedy, Drama",
-    "RUNTIME": "2h 15min",
+    "RUNTIME": "02:15",
     "Link": "https://www.justwatch.com/us/movie/downsizing",
     "DESCRIPTION": "A social satire in which a man realizes he would have a better life if he were to shrink himself to five inches tall, allowing him to live in wealth and splendor.",
     "imageUrl": "https://images8.alphacoders.com/910/910591.jpg"
@@ -729,21 +511,10 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Action & Adventure, Science-Fiction, Crime, Cyberpunk",
-    "RUNTIME": "1h 35min",
+    "RUNTIME": "01:35",
     "Link": "https://www.justwatch.com/us/movie/judge-dredd",
     "DESCRIPTION": "In the future, America is a dystopian wasteland. The latest scourge is Ma-Ma, a prostitute-turned-drug pusher with a dangerous new drug and aims to take over the city. The only possibility of stopping her is an elite group of urban police called Judges, who combine the duties of judge, jury and executioner to deliver a brutal brand of swift justice. But even the top-ranking Judge, Dredd, discovers that taking down Ma-Ma isn’t as easy as it seems in this explosive adaptation of the hugely popular comic series.",
     "imageUrl": "https://images.justwatch.com/backdrop/175501338/s1440/judge-dredd.avif"
-  },
-  {
-    "Title": "Dungeons & Dragons: Honor Among Thieves (2023)",
-    "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "PRIME",
-    "GENRE": "Fantasy, Adventure, Action, Comedy",
-    "RUNTIME": "2h 14min",
-    "Link": "https://www.justwatch.com/us/movie/dungeons-and-dragons-honor-among-thieves",
-    "DESCRIPTION": "A charming thief and a band of unlikely adventurers undertake an epic heist to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
-    "imageUrl": "https://images5.alphacoders.com/132/1321279.jpeg"
   },
   {
     "Title": "Dune: Part Two (2024)",
@@ -751,10 +522,21 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Science Fiction, Adventure, Action",
-    "RUNTIME": "2h 46min",
+    "RUNTIME": "02:46",
     "Link": "https://www.justwatch.com/us/movie/dune-part-two",
     "DESCRIPTION": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.",
     "imageUrl": "https://images.alphacoders.com/135/1354224.jpeg"
+  },
+  {
+    "Title": "Dungeons & Dragons: Honor Among Thieves (2023)",
+    "STATUS": "",
+    "WATCHED": "👀",
+    "OwnerShip": "PRIME",
+    "GENRE": "Fantasy, Adventure, Action, Comedy",
+    "RUNTIME": "02:14",
+    "Link": "https://www.justwatch.com/us/movie/dungeons-and-dragons-honor-among-thieves",
+    "DESCRIPTION": "A charming thief and a band of unlikely adventurers undertake an epic heist to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
+    "imageUrl": "https://images5.alphacoders.com/132/1321279.jpeg"
   },
   {
     "Title": "Emancipation (2022)",
@@ -762,7 +544,7 @@
     "WATCHED": "",
     "OwnerShip": "Apple TV+",
     "GENRE": "Drama, History, Thriller",
-    "RUNTIME": "2h 12min",
+    "RUNTIME": "02:12",
     "Link": "https://www.justwatch.com/us/movie/emancipation",
     "DESCRIPTION": "Inspired by the gripping true story of a man who would do anything for his family—and for freedom.",
     "imageUrl": "https://images6.alphacoders.com/128/1289267.jpg"
@@ -773,7 +555,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Drama, War, History",
-    "RUNTIME": "2h 34min",
+    "RUNTIME": "02:34",
     "Link": "https://www.justwatch.com/us/movie/empire-of-the-sun",
     "DESCRIPTION": "Jamie Graham, a privileged English boy, is living in Shanghai when the Japanese invade and force all foreigners into prison camps. Jamie is captured with an American sailor, who looks out for him while they are in the camp together. Even though he is separated from his parents and in a hostile environment, Jamie maintains his dignity and youthful spirit, providing a beacon of hope for the others held captive with him.",
     "imageUrl": "https://images7.alphacoders.com/342/thumb-1920-342588.jpg"
@@ -784,7 +566,7 @@
     "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "Action & Adventure, Science-Fiction, Mystery & Thriller, Drama, Tech Noir",
-    "RUNTIME": "1h 47min",
+    "RUNTIME": "01:47",
     "Link": "https://www.justwatch.com/us/movie/equilibrium",
     "DESCRIPTION": "In a dystopian future, a totalitarian regime maintains peace by subduing the populace with a drug, and displays of emotion are punishable by death. A man in charge of enforcing the law rises to overthrow the system.",
     "imageUrl": "https://wallpapercave.com/wp/wp5471335.jpg"
@@ -795,7 +577,7 @@
     "WATCHED": "👀👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Fantasy, Superhero",
-    "RUNTIME": "2h 36min",
+    "RUNTIME": "02:36",
     "Link": "https://www.justwatch.com/us/movie/eternals",
     "DESCRIPTION": "The Eternals are a team of ancient aliens who have been living on Earth in secret for thousands of years. When an unexpected tragedy forces them out of the shadows, they are forced to reunite against mankind’s most ancient enemy, the Deviants.",
     "imageUrl": "https://images3.alphacoders.com/118/1188044.jpg"
@@ -806,21 +588,10 @@
     "WATCHED": "👀👀",
     "OwnerShip": "PRIME",
     "GENRE": "Science Fiction, Comedy, Action",
-    "RUNTIME": "2h 19min",
+    "RUNTIME": "02:19",
     "Link": "https://www.justwatch.com/us/movie/everything-everywhere-all-at-once",
     "DESCRIPTION": "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save what's important to her by connecting with the lives she could have led in other universes.",
     "imageUrl": "https://images5.alphacoders.com/122/1229938.jpg"
-  },
-  {
-    "Title": "Fight Club (1999)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Hulu",
-    "GENRE": "Drama, Thriller",
-    "RUNTIME": "2h 19min",
-    "Link": "https://www.justwatch.com/us/movie/fight-club",
-    "DESCRIPTION": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
-    "imageUrl": "https://wallpapers.com/images/hd/actors-of-fight-club-ibgirl59hxvxr5y4.jpg"
   },
   {
     "Title": "Field of Dreams (1989)",
@@ -828,10 +599,21 @@
     "WATCHED": "",
     "OwnerShip": "Peacock",
     "GENRE": "Drama, Fantasy, Sport",
-    "RUNTIME": "1h 47min",
+    "RUNTIME": "01:47",
     "Link": "https://www.justwatch.com/us/movie/field-of-dreams",
     "DESCRIPTION": "An Iowa corn farmer, hearing voices, interprets them as a command to build a baseball diamond in his fields; he does, and the 1919 Chicago White Sox come.",
     "imageUrl": "https://images7.alphacoders.com/793/793797.jpg"
+  },
+  {
+    "Title": "Fight Club (1999)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Hulu",
+    "GENRE": "Drama, Thriller",
+    "RUNTIME": "02:19",
+    "Link": "https://www.justwatch.com/us/movie/fight-club",
+    "DESCRIPTION": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+    "imageUrl": "https://wallpapers.com/images/hd/actors-of-fight-club-ibgirl59hxvxr5y4.jpg"
   },
   {
     "Title": "Flamin' Hot (2023)",
@@ -839,7 +621,7 @@
     "WATCHED": "",
     "OwnerShip": "Disney+",
     "GENRE": "Drama, Biography",
-    "RUNTIME": "1h 38min",
+    "RUNTIME": "01:38",
     "Link": "https://www.justwatch.com/us/movie/flamin-hot",
     "DESCRIPTION": "The story of Richard Montañez, the Frito Lay janitor who channeled his Mexican American heritage and upbringing to turn Flamin' Hot Cheetos into a snack that disrupted the food industry and became a global phenomenon.",
     "imageUrl": "https://images7.alphacoders.com/132/1321562.jpeg"
@@ -850,7 +632,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Comedy, Drama, Romance, Dramedy, Romantic Drama",
-    "RUNTIME": "2h 22min",
+    "RUNTIME": "02:22",
     "Link": "https://www.justwatch.com/us/movie/forrest-gump",
     "DESCRIPTION": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
     "imageUrl": "https://w0.peakpx.com/wallpaper/908/955/HD-wallpaper-movie-forrest-gump-tom-hanks.jpg"
@@ -861,7 +643,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Owned",
     "GENRE": "Drama, Romance, Comedy, Dramedy",
-    "RUNTIME": "1h 42min",
+    "RUNTIME": "01:42",
     "Link": "https://www.justwatch.com/us/movie/garden-state",
     "DESCRIPTION": "A quietly troubled young man returns home for his mother's funeral after being estranged from his family for a decade.",
     "imageUrl": "https://wallpapercave.com/wp/wp10909160.jpg"
@@ -872,7 +654,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Comedy, Mystery & Thriller, Romance, Action & Adventure, Crime, Action Comedy",
-    "RUNTIME": "1h 47min",
+    "RUNTIME": "01:47",
     "Link": "https://www.justwatch.com/us/movie/grosse-pointe-blank",
     "DESCRIPTION": "Martin Blank is a hitman for hire. When he starts to develop a conscience, he botches a couple of routine jobs. On the advice of his secretary and his psychiatrist, he decides to attend his ten-year high school reunion in Grosse Pointe, Michigan.",
     "imageUrl": "https://m.media-amazon.com/images/S/pv-target-images/e69c70b1be9550c7a07ebc5b80549e6170ddb0e5f98373d17dc58dd3dc6c6217.png"
@@ -883,7 +665,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Comedy, Superhero",
-    "RUNTIME": "2h 1min",
+    "RUNTIME": "02:01",
     "Link": "https://www.justwatch.com/us/movie/guardians-of-the-galaxy",
     "DESCRIPTION": "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
     "imageUrl": "https://c4.wallpaperflare.com/wallpaper/955/863/713/guardians-of-the-galaxy-groot-star-lord-movies-wallpaper-preview.jpg"
@@ -894,7 +676,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Science-Fiction, Action & Adventure, Comedy, Superhero",
-    "RUNTIME": "2h 17min",
+    "RUNTIME": "02:17",
     "Link": "https://www.justwatch.com/us/movie/guardians-of-the-galaxy-vol-2",
     "DESCRIPTION": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
     "imageUrl": "https://wallpapercave.com/wp/wp2033197.jpg"
@@ -905,7 +687,7 @@
     "WATCHED": "",
     "OwnerShip": "Plex",
     "GENRE": "Drama, Crime, Dark Crime",
-    "RUNTIME": "1h 34min",
+    "RUNTIME": "01:34",
     "Link": "https://www.justwatch.com/us/movie/heaven-knows-what",
     "DESCRIPTION": "A young heroin addict roams the streets of New York to panhandle and get her next fix, while her unstable boyfriend drifts in and out of her life at random.",
     "imageUrl": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/06/heaven-knows-what.jpg"
@@ -916,7 +698,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Crime, Drama, Thriller",
-    "RUNTIME": "2h 50min",
+    "RUNTIME": "02:50",
     "Link": "https://www.justwatch.com/us/movie/heat",
     "DESCRIPTION": "A group of professional bank robbers start to feel the heat from police when they unknowingly leave a clue at their latest heist.",
     "imageUrl": "https://images.alphacoders.com/126/1264271.jpg"
@@ -927,7 +709,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Comedy, Romance",
-    "RUNTIME": "1h 57min",
+    "RUNTIME": "01:57",
     "Link": "https://www.justwatch.com/us/movie/i-want-you-back",
     "DESCRIPTION": "Peter and Emma are total strangers, but when they meet, one thing instantly bonds them: they were both unexpectedly dumped by their respective partners, Anne and Noah, on the same weekend.",
     "imageUrl": "https://m.media-amazon.com/images/S/pv-target-images/25f4d84278ae8e199bf72f581e84d7e741a23e5b6b26d288dd865cb22eab5902.png"
@@ -938,7 +720,7 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Drama, Romance",
-    "RUNTIME": "1h 39min",
+    "RUNTIME": "01:39",
     "Link": "https://www.justwatch.com/us/movie/in-the-mood-for-love",
     "DESCRIPTION": "A melancholy story about the love between a woman and a man who live in the same building and one day find out that their husband and wife had an affair with each other.",
     "imageUrl": "https://hypercritic.org/wp-content/uploads-webpc/uploads/2021/01/inthemoodforlove_img_14_down.jpg.webp"
@@ -949,7 +731,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 6min",
+    "RUNTIME": "02:06",
     "Link": "https://www.justwatch.com/us/movie/iron-man",
     "DESCRIPTION": "",
     "imageUrl": "https://images2.alphacoders.com/105/1051995.jpg"
@@ -960,7 +742,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "2h 4min",
+    "RUNTIME": "02:04",
     "Link": "https://www.justwatch.com/us/movie/iron-man-ii",
     "DESCRIPTION": "With the world now aware of his dual life as the armored superhero Iron Man, billionaire inventor Tony Stark faces pressure from the government, the press and the public to share his technology with the military. Unwilling to let go of his invention, Stark, with Pepper Potts and James 'Rhodey' Rhodes at his side, must forge new alliances – and confront powerful enemies.",
     "imageUrl": "https://www.hdwallpapers.in/download/iron_man_2_widescreen-wide.jpg"
@@ -971,7 +753,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Superhero",
-    "RUNTIME": "1h 30min",
+    "RUNTIME": "01:30",
     "Link": "https://www.justwatch.com/us/movie/iron-man-3",
     "DESCRIPTION": "After saving the world with the Avengers, Tony Stark is struggling with paranoia and insomnia. He has become increasingly dependent on his Iron Man suits, which have affected every facet of his life. When a terrorist known as The Mandarin accepts his challenge and destroys his home, Tony is forced to use his ingenuity to save his loved ones.",
     "imageUrl": "https://wallpapercave.com/wp/wp1886680.jpg"
@@ -982,7 +764,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Science-Fiction, Action & Adventure, Mystery & Thriller, Crime, Cyberpunk",
-    "RUNTIME": "1h 36min",
+    "RUNTIME": "01:36",
     "Link": "https://www.justwatch.com/us/movie/judge-dredd-1995",
     "DESCRIPTION": "In a dystopian future, Dredd, the most famous judge (a cop with instant field judiciary powers) is convicted for a crime he did not commit while his murderous counterpart escapes.",
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BZWM0MjExNzMtNGJkMy00MDNhLTlkOTctNDFiYzVjNTVmNGFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
@@ -993,10 +775,21 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Crime, Drama, Mystery, Thriller",
-    "RUNTIME": "2h 17min",
+    "RUNTIME": "02:17",
     "Link": "https://www.justwatch.com/us/movie/la-confidential",
     "DESCRIPTION": "As corruption grows in 1950s Los Angeles, three policemen - one strait-laced, one brutal, and one sleazy - investigate a series of murders with their own brand of justice.",
     "imageUrl": "https://images.alphacoders.com/109/1090634.png"
+  },
+  {
+    "Title": "Leave the World Behind (2023)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Mystery & Thriller, Drama, Emotional Drama",
+    "RUNTIME": "02:22",
+    "Link": "https://www.justwatch.com/us/movie/leave-the-world-behind-2023",
+    "DESCRIPTION": "Blackouts have been occurring all over the country and could potentially upset the holiday of two families. As they deal with the unsteady situation, problems begin to escalate. What started as a local issue has become an apocalyptic blackout leaving millions across the world in darkness with no electricity. The world is falling apart and the two families have only each other to rely on in increasingly unstable and terrifying conditions. Survival will require a true team effort but as their old lives slip away, everyone is left feeling scared and alone.",
+    "imageUrl": "https://images.justwatch.com/backdrop/310044264/s1440/leave-the-world-behind-2023.avif"
   },
   {
     "Title": "Lucy (2014)",
@@ -1004,21 +797,32 @@
     "WATCHED": "👀",
     "OwnerShip": "",
     "GENRE": "Action & Adventure, Science-Fiction, Made in Europe, Mystery & Thriller, Cerebral, Action Thriller",
-    "RUNTIME": "1h 29min",
+    "RUNTIME": "01:29",
     "Link": "https://www.justwatch.com/us/movie/lucy",
     "DESCRIPTION": "A woman, accidentally caught in a dark deal, turns the tables on her captors and transforms into a merciless warrior evolved beyond human logic.",
     "imageUrl": "https://wallpapercave.com/wp/wp7057790.jpg"
   },
   {
-    "Title": "The Avengers (2012)",
+    "Title": "LX 2048 (2020)",
     "STATUS": "",
-    "WATCHED": "👀",
-    "OwnerShip": "Disney+",
-    "GENRE": "Science-Fiction, Action & Adventure, Superhero",
-    "RUNTIME": "2h 23min",
-    "Link": "https://www.justwatch.com/us/movie/avengers-assemble",
-    "DESCRIPTION": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
-    "imageUrl": "https://wallpapers.com/images/featured/avengers-vm16xv4a69smdauy.jpg"
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Science-Fiction, Drama, Mystery & Thriller, Sci-Fi Drama",
+    "RUNTIME": "01:43",
+    "Link": "https://www.justwatch.com/us/movie/lx-2048",
+    "DESCRIPTION": "In the near future, the sun has become so toxic people can no longer leave their houses in daytime, and normal life is conducted mostly inside the virtual realm. Against this dystopian backdrop, a dying man seeks to ensure the future well-being of his family, while coping with what it means to be human in this new reality.",
+    "imageUrl": "https://w0.peakpx.com/wallpaper/821/308/HD-wallpaper-lx-2048-movies.jpg"
+  },
+  {
+    "Title": "Monkey Man (2024)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Mystery & Thriller, Action & Adventure, Crime, Action Thriller",
+    "RUNTIME": "02:01",
+    "Link": "https://www.justwatch.com/us/movie/monkey-man",
+    "DESCRIPTION": "Released from prison in Mumbai, an ex-convict enters an unfamiliar and changed world. He sees excessive corporate greed causing mass poverty and spirituality waning all across society. With no hope of a fresh start, he uses his newfound freedom to seek out those who wronged him in the past. In his righteous frustration, he is fuelled only by his desire for revenge.",
+    "imageUrl": "https://images8.alphacoders.com/136/1368058.jpeg"
   },
   {
     "Title": "Morbius (2022)",
@@ -1026,7 +830,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Action & Adventure, Science-Fiction, Fantasy, Mystery & Thriller, Horror, SciFi Horror",
-    "RUNTIME": "1h 45min",
+    "RUNTIME": "01:45",
     "Link": "https://www.justwatch.com/us/movie/morbius",
     "DESCRIPTION": "Michael Morbius is a skilled biochemist who believes he can cure his rare blood disease. However, his high-risk experiment goes horribly wrong – infecting the ambitious scientist with a strange form of vampirism.Morbius is a superhero science fiction movie that takes place in the same universe as Venom and Venom: Let There be Carnage. The movie stars Academy Award winner Jared Leto in the titular role.",
     "imageUrl": "https://wallpapers.com/images/hd/morbius-movie-poster-ldch8chn0qv1wcrv.jpg"
@@ -1037,7 +841,7 @@
     "WATCHED": "",
     "OwnerShip": "Buy",
     "GENRE": "Drama, Mystery Thriller",
-    "RUNTIME": "2h 27min",
+    "RUNTIME": "02:27",
     "Link": "https://www.justwatch.com/us/movie/mulholland-drive",
     "DESCRIPTION": "Blonde Betty Elms has only just arrived in Hollywood to become a movie star when she meets an enigmatic brunette with amnesia. Meanwhile, as the two set off to solve the second woman's identity, filmmaker Adam Kesher runs into ominous trouble while casting his latest project.",
     "imageUrl": "https://images.savoysystems.co.uk/MCB/222090.jpg"
@@ -1048,7 +852,7 @@
     "WATCHED": "",
     "OwnerShip": "max Max",
     "GENRE": "Crime, Action, Drama",
-    "RUNTIME": "1h 58min",
+    "RUNTIME": "01:58",
     "Link": "https://www.justwatch.com/us/movie/natural-born-killers",
     "DESCRIPTION": "Two victims of traumatized childhoods become lovers and psychopathic serial murderers irresponsibly glorified by the mass media.",
     "imageUrl": "https://c4.wallpaperflare.com/wallpaper/651/248/952/movie-natural-born-killers-wallpaper-preview.jpg"
@@ -1059,7 +863,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Buy",
     "GENRE": "Mystery & Thriller, Horror, Science-Fiction, SciFi Horror",
-    "RUNTIME": "2h 10min",
+    "RUNTIME": "02:10",
     "Link": "https://www.justwatch.com/us/movie/nope",
     "DESCRIPTION": "A man and his sister discover an unnatural alien force while working on their horse ranch. Soon after, they start experiencing strange events unfolding around them. Their horses begin acting out, fatally injuring people and other animals. The siblings scramble to put an end to this alien force, while their neigmaxr, the owner of a nearby theme park, tries to profit from the mysterious phenomenon.",
     "imageUrl": "https://blog.frame.io/wp-content/uploads/2022/08/mif-nope-kaluuya-palmer-perea.jpg"
@@ -1070,7 +874,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Drama, Mystery & Thriller, Crime, Detective Crime",
-    "RUNTIME": "1h 32min",
+    "RUNTIME": "01:32",
     "Link": "https://www.justwatch.com/us/movie/out-of-time",
     "DESCRIPTION": "Matt Lee Whitlock, respected chief of police in small Banyan Key, Florida, must solve a vicious double homicide before he himself falls under suspicion. Matt Lee has to stay a few steps ahead of his own police force and everyone he's trusted in order to find out the truth.",
     "imageUrl": "https://m.media-amazon.com/images/I/71Uau+DjSLL._AC_UF894,1000_QL80_.jpg"
@@ -1081,7 +885,7 @@
     "WATCHED": "👀",
     "OwnerShip": "NETFLIX",
     "GENRE": "Science Fiction, Action, Adventure",
-    "RUNTIME": "2h 11min",
+    "RUNTIME": "02:11",
     "Link": "https://www.justwatch.com/us/movie/pacific-rim",
     "DESCRIPTION": "As a war between humankind and monstrous sea creatures wages on, a former pilot and a trainee are paired up to drive a seemingly obsolete special weapon in a desperate effort to save the world from the apocalypse.",
     "imageUrl": "https://wallpapercave.com/wp/wp1822925.jpg"
@@ -1092,7 +896,7 @@
     "WATCHED": "",
     "OwnerShip": "Hulu",
     "GENRE": "Romance, Drama, Period Drama",
-    "RUNTIME": "2h 9min",
+    "RUNTIME": "02:09",
     "Link": "https://www.justwatch.com/us/movie/pride-and-prejudice-2005",
     "DESCRIPTION": "A story of love and life among the landed English gentry during the Georgian era. Mr. Bennet is a gentleman living in Hertfordshire with his overbearing wife and five daughters, but if he dies their house will be inherited by a distant cousin whom they have never met, so the family's future happiness and security is dependent on the daughters making good marriages.",
     "imageUrl": "https://wallpapersok.com/images/hd/2005-pride-and-prejudice-poster-b1oftr6k1vs9pw22.jpg"
@@ -1103,7 +907,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Hulu",
     "GENRE": "Action, Science Fiction, Thriller",
-    "RUNTIME": "1h 51min",
+    "RUNTIME": "01:51",
     "Link": "https://www.justwatch.com/us/movie/push",
     "DESCRIPTION": "A group of young American ex-pats with telekinetic and clairvoyant abilities must band together to escape a U.S. government agency out to use them for military purposes.",
     "imageUrl": "https://wallpapercave.com/wp/wp2423131.jpg"
@@ -1114,7 +918,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Comedy, Drama, Romance",
-    "RUNTIME": "1h 38min",
+    "RUNTIME": "01:38",
     "Link": "https://www.justwatch.com/us/movie/reality-bites",
     "DESCRIPTION": "A small circle of friends suffering from post-collegiate blues must confront the hard truth about life, love and the pursuit of gainful employment. As they struggle to map out survival guides for the future, the Gen-X quartet soon begins to realize that reality isn't all it's cracked up to be.",
     "imageUrl": "https://pics.filmaffinity.com/reality_bites-358539199-large.jpg"
@@ -1125,10 +929,21 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Crime, Drama, Thriller",
-    "RUNTIME": "1h 19min",
+    "RUNTIME": "01:19",
     "Link": "https://www.justwatch.com/us/movie/run-lola-run",
     "DESCRIPTION": "Lola receives a phone call from her boyfriend Manni. He lost 100,000 DM in a subway train that belongs to a very bad guy. She has 20 minutes to raise this amount and meet Manni. Otherwise, he will rob a store to get the money.",
     "imageUrl": "https://assets.mubicdn.net/images/artworks/202246/images-original.png?1621564083"
+  },
+  {
+    "Title": "Running with Speed (2023)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Documentary, Video Game",
+    "RUNTIME": "02:28",
+    "Link": "https://www.justwatch.com/us/movie/running-with-speed",
+    "DESCRIPTION": "Follows speedrunners, past and present, collaboratively digging for secrets and working to uncover mind-blowing shortcuts and glitches which are used to streamline their runs in top game franchises.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BYTRkMDRkMzgtMDJjMS00YmVlLTg4NmItNmZhNDhmM2YzNmM0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     "Title": "A Scanner Darkly (2006)",
@@ -1136,7 +951,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Science Fiction, Animation, Drama, Mystery & Thriller",
-    "RUNTIME": "1h 40min",
+    "RUNTIME": "01:40",
     "Link": "https://www.justwatch.com/us/movie/a-scanner-darkly",
     "DESCRIPTION": "An undercover cop in a not-too-distant future becomes involved with a dangerous new drug and begins to lose his own identity as a result.",
     "imageUrl": "https://vistapointe.net/images/a-scanner-darkly-3.jpg"
@@ -1147,7 +962,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "History, War & Military, Drama, Biopics, Based On A True Story",
-    "RUNTIME": "3h 15min",
+    "RUNTIME": "03:15",
     "Link": "https://www.justwatch.com/us/movie/schindlers-list",
     "DESCRIPTION": "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
     "imageUrl": "https://images3.alphacoders.com/626/626354.jpg"
@@ -1158,7 +973,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Owned",
     "GENRE": "Crime, Mystery & Thriller, Drama",
-    "RUNTIME": "2h 7min",
+    "RUNTIME": "02:07",
     "Link": "https://www.justwatch.com/us/movie/se7en",
     "DESCRIPTION": "Two homicide detectives are on a desperate hunt for a serial killer whose crimes are based on the seven deadly sins. The case becomes personal as the killer's method of operation grows increasingly disturbing.",
     "imageUrl": "https://images4.alphacoders.com/110/1101480.jpg"
@@ -1169,7 +984,7 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Action, Crime, Thriller",
-    "RUNTIME": "1h 39min",
+    "RUNTIME": "01:39",
     "Link": "https://www.justwatch.com/us/movie/shaft-2000",
     "DESCRIPTION": "New York police detective John Shaft arrests Walter Wade Jr. for a racially motivated slaying. But the only eyewitness disappears, and Wade jumps bail for Switzerland. Two years later Wade returns to face trial, confident his money and influence will get him acquitted -- especially since he's paid a drug kingpin to kill the witness.",
     "imageUrl": "https://wallpapercave.com/wp/wp4387546.jpg"
@@ -1180,65 +995,32 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Fantasy, Science-Fiction, Superhero, Action Adventure",
-    "RUNTIME": "2h 12min",
+    "RUNTIME": "02:12",
     "Link": "https://www.justwatch.com/us/movie/shang-chi-and-the-legend-of-the-ten-rings",
     "DESCRIPTION": "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
     "imageUrl": "https://images6.alphacoders.com/128/1282788.jpg"
   },
   {
-    "Title": "Spider-Man: Far From Home (2019)",
+    "Title": "The Adventures of Buckaroo Banzai Across the 8th Dimension (1984)",
     "STATUS": "",
     "WATCHED": "",
-    "OwnerShip": "Starz",
-    "GENRE": "Action, Adventure, Science Fiction, Superhero",
-    "RUNTIME": "2h 9min",
-    "Link": "https://www.justwatch.com/us/movie/spider-man-far-from-home",
-    "DESCRIPTION": "Peter Parker and his friends go on a summer vacation to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
-    "imageUrl": "https://wallpapercat.com/w/full/a/c/3/2051866-3840x2160-desktop-4k-spider-man-far-from-home-wallpaper-image.jpg"
+    "OwnerShip": "PRIME",
+    "GENRE": "Science-Fiction, Comedy, Action & Adventure, Romance, Sci-Fi Comedy",
+    "RUNTIME": "01:43",
+    "Link": "https://www.justwatch.com/us/movie/the-adventures-of-buckaroo-banzai",
+    "DESCRIPTION": "Adventurer/surgeon/rock musician Buckaroo Banzai and his band of men, the Hong Kong Cavaliers, take on evil alien invaders from the 8th dimension.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDc0M2Q1MGUtNWQzMC00NTg0LWE1ZWQtYjk3YmY2ZTk2MDgxXkEyXkFqcGc@._V1_.jpg"
   },
   {
-    "Title": "Spider-Man: Homecoming (2017)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Owned",
-    "GENRE": "Action, Adventure, Science Fiction, Superhero",
-    "RUNTIME": "2h 13min",
-    "Link": "https://moviesanywhere.com/movie/spider-man-homecoming",
-    "DESCRIPTION": "Following the events of Captain America: Civil War, Peter Parker tries to balance his life as an ordinary high school student in Queens with fighting crime as his superhero alter ego Spider-Man when a new threat emerges.",
-    "imageUrl": "https://images.justwatch.com/backdrop/8728132/s1440/spider-man-homecoming.avif"
-  },
-  {
-    "Title": "Spider-Man: No Way Home (2021)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "Disney+",
-    "GENRE": "Action, Adventure, Science Fiction, Superhero",
-    "RUNTIME": "2h 28min",
-    "Link": "https://www.justwatch.com/us/movie/spider-man-no-way-home",
-    "DESCRIPTION": "Peter Parker's secret identity is revealed to the entire world. Desperate for help, Peter turns to Doctor Strange to make the world forget that he is Spider-Man. The spell goes horribly wrong and shatters the multiverse, bringing in monstrous villains that could destroy the world.",
-    "imageUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5298bac0-b8bf-4c80-af67-725c1272dbb0/dea4tym-6390f9ab-3413-4721-8dd8-ebc1d4e5688a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzUyOThiYWMwLWI4YmYtNGM4MC1hZjY3LTcyNWMxMjcyZGJiMFwvZGVhNHR5bS02MzkwZjlhYi0zNDEzLTQ3MjEtOGRkOC1lYmMxZDRlNTY4OGEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.1jwh0UUfFn_grwF1wBG6_07lB2OM0qplvaLW7OWiD1w"
-  },
-  {
-    "Title": "Starship Troopers (1997)",
+    "Title": "The Avengers (2012)",
     "STATUS": "",
     "WATCHED": "👀",
-    "OwnerShip": "Movies Anywhere",
-    "GENRE": "Action, Adventure, Science Fiction",
-    "RUNTIME": "2h 9min",
-    "Link": "https://www.justwatch.com/us/movie/starship-troopers",
-    "DESCRIPTION": "Set in the future, the story follows a young soldier named Johnny Rico and his exploits in the Mobile Infantry. Rico's military career progresses from recruit to non-commissioned officer and finally to officer against the backdrop of an interstellar war between mankind and an arachnoid species known as the Bugs.",
-    "imageUrl": "https://images4.alphacoders.com/796/796585.jpg"
-  },
-  {
-    "Title": "Strange Days (1995)",
-    "STATUS": "",
-    "WATCHED": "",
-    "OwnerShip": "max",
-    "GENRE": "Crime, Drama, Science-Fiction, Mystery & Thriller, Cyberpunk, Action Thriller",
-    "RUNTIME": "2h 25min", 
-    "Link": "https://www.justwatch.com/us/movie/strange-days",
-    "DESCRIPTION": "Former policeman Lenny Nero has moved into a more lucrative trade: the illegal sale of virtual reality-like recordings that allow users to experience the emotions and past experiences of others. While the bootlegs typically contain tawdry incidents, Nero is shocked when he receives one showing a murder.",
-    "imageUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/54ff0a41-cde5-4f96-8fac-093590b92242/de9gwrr-6e649b99-3305-474f-834b-10d7900309c0.jpg/v1/fill/w_1920,h_1080,q_75,strp/strange_days__1995__4k_wallpaper_by_madmike_fx_de9gwrr-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcLzU0ZmYwYTQxLWNkZTUtNGY5Ni04ZmFjLTA5MzU5MGI5MjI0MlwvZGU5Z3dyci02ZTY0OWI5OS0zMzA1LTQ3NGYtODM0Yi0xMGQ3OTAwMzA5YzAuanBnIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.jzPw0_Stp0ajcz5Niv0nhw9Pn71U-MfED_Hh_iX_v58"
+    "OwnerShip": "Disney+",
+    "GENRE": "Science-Fiction, Action & Adventure, Superhero",
+    "RUNTIME": "02:23",
+    "Link": "https://www.justwatch.com/us/movie/avengers-assemble",
+    "DESCRIPTION": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+    "imageUrl": "https://wallpapers.com/images/featured/avengers-vm16xv4a69smdauy.jpg"
   },
   {
     "Title": "The Departed (2006)",
@@ -1246,10 +1028,21 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Crime, Drama, Thriller",
-    "RUNTIME": "2h 31min",
+    "RUNTIME": "02:31",
     "Link": "https://www.justwatch.com/us/movie/the-departed",
     "DESCRIPTION": "To take down South Boston's Irish Mafia, the police send in one of their own to infiltrate the underworld, not realizing the syndicate has done likewise.",
     "imageUrl": "https://images8.alphacoders.com/112/1125351.jpg"
+  },
+  {
+    "Title": "The Fall (2006)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Buy",
+    "GENRE": "Drama, Action & Adventure, Fantasy, Epic Fantasy",
+    "RUNTIME": "01:59",
+    "Link": "https://www.justwatch.com/us/movie/the-fall",
+    "DESCRIPTION": "In a hospital on the outskirts of 1920s Los Angeles, an injured stuntman begins to tell a fellow patient, a little girl with a broken arm, a fantastic story about 5 mythical heroes. Thanks to his fractured state of mind and her vivid imagination, the line between fiction and reality starts to blur as the tale advances.",
+    "imageUrl": "https://www.justwatch.com/us/movie/the-fall"
   },
   {
     "Title": "The Flash (2023)",
@@ -1257,10 +1050,21 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Science-Fiction, Action & Adventure, Fantasy, Superhero",
-    "RUNTIME": "2h 24min",
+    "RUNTIME": "02:24",
     "Link": "https://www.justwatch.com/us/movie/the-flash-2023",
     "DESCRIPTION": "When his attempt to save his family inadvertently alters the future, Barry Allen becomes trapped in a reality in which General Zod has returned and there are no Super Heroes to turn to.",
     "imageUrl": "https://images6.alphacoders.com/131/1315898.jpeg"
+  },
+  {
+    "Title": "The Green Knight (2021)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Buy",
+    "GENRE": "Drama, Fantasy, Epic Fantasy, Modern Fantasy, Action Adventure",
+    "RUNTIME": "02:10",
+    "Link": "https://www.justwatch.com/us/movie/the-green-knight",
+    "DESCRIPTION": "An epic fantasy adventure based on the timeless Arthurian legend, The Green Knight tells the story of Sir Gawain, King Arthur's reckless and headstrong nephew, who embarks on a daring quest to confront the eponymous Green Knight, a gigantic emerald-skinned stranger and tester of men.",
+    "imageUrl": "https://images2.alphacoders.com/119/1190277.jpg"
   },
   {
     "Title": "The Italian Job (2003)",
@@ -1268,7 +1072,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Action & Adventure, Crime, Mystery & Thriller, Heist",
-    "RUNTIME": "1h 44min",
+    "RUNTIME": "01:44",
     "Link": "https://www.justwatch.com/us/movie/the-italian-job-2003",
     "DESCRIPTION": "Charlie Croker pulled off the crime of a lifetime. The one thing that he didn't plan on was being double-crossed. Along with a drop-dead gorgeous safecracker, Croker and his team take off to re-steal the loot and end up in a pulse-pounding, pedal-to-the-metal chase that careens up, down, above and below the streets of Los Angeles.",
     "imageUrl": "https://images7.alphacoders.com/909/909853.jpg"
@@ -1279,7 +1083,7 @@
     "WATCHED": "",
     "OwnerShip": "Plex",
     "GENRE": "Drama, History, Biography",
-    "RUNTIME": "1h 58min",
+    "RUNTIME": "01:58",
     "Link": "https://www.justwatch.com/us/movie/the-kings-speech",
     "DESCRIPTION": "The King's Speech tells the story of the man who became King George VI, the father of Queen Elizabeth II. After his brother abdicates, George ('Bertie') reluctantly assumes the throne. Plagued by a dreaded stutter and considered unfit to be king, Bertie engages the help of an unorthodox speech therapist named Lionel Logue. Through a set of unexpected techniques, and as a result of an unlikely friendship, Bertie is able to find his voice and boldly lead the country into war.",
     "imageUrl": "https://images8.alphacoders.com/498/498320.jpg"
@@ -1290,7 +1094,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Crime, Drama, Thriller",
-    "RUNTIME": "2h 7min",
+    "RUNTIME": "02:07",
     "Link": "https://www.justwatch.com/us/movie/the-little-things",
     "DESCRIPTION": "Deputy Sheriff Joe \"Deke\" Deacon joins forces with Sgt. Jim Baxter to search for a serial killer who's terrorizing Los Angeles. As they track the culprit, Baxter is unaware that the investigation is dredging up echoes of Deke's past, uncovering disturbing secrets that could threaten more than his case.",
     "imageUrl": "https://musicart.xboxlive.com/7/c69d5100-0000-0000-0000-000000000002/504/image.jpg"
@@ -1301,7 +1105,7 @@
     "WATCHED": "",
     "OwnerShip": "Paramount+",
     "GENRE": "Drama, Thriller, Psychological Thriller",
-    "RUNTIME": "1h 42min",
+    "RUNTIME": "01:42",
     "Link": "https://www.justwatch.com/us/movie/the-machinist",
     "DESCRIPTION": "Trevor, an insomniac lathe operator, experiences unusual occurrences at work and home. A strange man follows him everywhere, but no one else seems to notice him.",
     "imageUrl": "https://images5.alphacoders.com/342/342505.jpg"
@@ -1312,7 +1116,7 @@
     "WATCHED": "",
     "OwnerShip": "max Max",
     "GENRE": "Horror, Thriller, Comedy",
-    "RUNTIME": "1h 47min", 
+    "RUNTIME": "01:47",
     "Link": "https://www.justwatch.com/us/movie/the-menu",
     "DESCRIPTION": "A couple travels to a coastal island to eat at an exclusive restaurant where the chef has prepared a lavish menu, with some shocking surprises.",
     "imageUrl": "https://infinitefreetime.com/wp-content/uploads/2023/01/the-menu-ka-hero-c1.jpg"
@@ -1323,7 +1127,7 @@
     "WATCHED": "",
     "OwnerShip": "NETFLIX",
     "GENRE": "Comedy, Crime, Action",
-    "RUNTIME": "1h 56min",
+    "RUNTIME": "01:56",
     "Link": "https://www.justwatch.com/us/movie/the-nice-guys",
     "DESCRIPTION": "A private eye investigates the apparent suicide of a fading porn star in 1970s Los Angeles and uncovers a conspiracy.",
     "imageUrl": "https://images5.alphacoders.com/789/789689.jpg"
@@ -1334,7 +1138,7 @@
     "WATCHED": "",
     "OwnerShip": "Hulu",
     "GENRE": "Drama, Comedy, Romance, RomCom, Chick Flicks",
-    "RUNTIME": "1h 48min",
+    "RUNTIME": "01:48",
     "Link": "https://www.justwatch.com/us/movie/the-proposal",
     "DESCRIPTION": "When she learns she's in danger of losing her visa status and being deported, overbearing book editor Margaret Tate forces her put-upon assistant, Andrew Paxton, to marry her.",
     "imageUrl": "https://images6.alphacoders.com/824/824674.jpg"
@@ -1345,7 +1149,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Owned",
     "GENRE": "Fantasy, Drama, Romance",
-    "RUNTIME": "2h 3min",
+    "RUNTIME": "02:03",
     "Link": "https://www.justwatch.com/us/movie/the-shape-of-water",
     "DESCRIPTION": "At a top secret research facility in the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.",
     "imageUrl": "https://images8.alphacoders.com/119/1199909.jpg"
@@ -1356,10 +1160,21 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Crime, Drama, Thriller",
-    "RUNTIME": "1h 58min",
+    "RUNTIME": "01:58",
     "Link": "https://www.justwatch.com/us/movie/the-silence-of-the-lambs",
     "DESCRIPTION": "Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism.",
     "imageUrl": "https://wallpapercave.com/wp/wp3776893.jpg"
+  },
+  {
+    "Title": "The Warriors (1979)",
+    "STATUS": "",
+    "WATCHED": "👀",
+    "OwnerShip": "PRIME",
+    "GENRE": "Action, Thriller, Crime",
+    "RUNTIME": "01:30",
+    "Link": "https://www.justwatch.com/us/movie/warriors",
+    "DESCRIPTION": "Prominent gang leader Cyrus calls a meeting of New York's gangs to set aside their turf wars and take over the city. At the meeting, a rival leader kills Cyrus, but a Coney Island gang called the Warriors is wrongly blamed for Cyrus' death. Before you know it, the cops and every gangbanger in town is hot on the Warriors' trail.",
+    "imageUrl": "https://images8.alphacoders.com/641/641473.jpg"
   },
   {
     "Title": "Thirteen Lives (2022)",
@@ -1367,10 +1182,21 @@
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Mystery & Thriller, Drama, Based On A True Story",
-    "RUNTIME": "2h 29min",
+    "RUNTIME": "02:29",
     "Link": "https://www.justwatch.com/us/movie/thirteen-lives",
     "DESCRIPTION": "Based on the true nail-biting mission that captivated the world. Twelve boys and the coach of a Thai soccer team explore the Tham Luang cave when an unexpected rainstorm traps them in a chamber inside the mountain. Entombed behind a maze of flooded cave tunnels, they face impossible odds. A team of world-class divers navigate through miles of dangerous cave networks to discover that finding the boys is only the beginning.",
     "imageUrl": "https://wallpapercave.com/wp/wp11396065.jpg"
+  },
+  {
+    "Title": "Tony Allen: The Grindfather | Memphis Grizzlies Documentary (2025)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Youtube",
+    "GENRE": "Documentary, Sport",
+    "RUNTIME": "01:35",
+    "Link": "https://www.youtube.com/watch?v=IWAQIMT4hyM",
+    "DESCRIPTION": "This documentary chronicles Allen’s journey from his childhood in Chicago, to his collegiate career in Stillwater, Okla., to his time in Boston and finally his home in Memphis, showcasing the moments that defined the Grit & Grind era and shaped the Grizzlies and Allen himself.",
+    "imageUrl": "https://i.ytimg.com/vi/IWAQIMT4hyM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDIrP_Puxwz8dALapUC82GUVGVMWQ"
   },
   {
     "Title": "Trainspotting (1996)",
@@ -1378,7 +1204,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Hulu",
     "GENRE": "Drama, Crime",
-    "RUNTIME": "1h 30min",
+    "RUNTIME": "01:30",
     "Link": "https://www.justwatch.com/us/movie/trainspotting",
     "DESCRIPTION": "Mark Renton, deeply immersed in the Edinburgh drug scene, tries to clean up and get out, despite the allure of the drugs and influence of friends.",
     "imageUrl": "https://cdn.wallpapersafari.com/40/63/qwzgbn.jpg"
@@ -1389,7 +1215,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Disney+",
     "GENRE": "Science Fiction, Action, Adventure",
-    "RUNTIME": "2h 5min",
+    "RUNTIME": "02:05",
     "Link": "https://www.justwatch.com/us/movie/tron-legacy",
     "DESCRIPTION": "Sam Flynn, the tech-savvy and daring son of Kevin Flynn, investigates his father's disappearance and is pulled into The Grid.",
     "imageUrl": "https://www.hdwallpapers.in/download/tron_legacy_2010_movie-normal.jpg"
@@ -1400,7 +1226,7 @@
     "WATCHED": "",
     "OwnerShip": "max",
     "GENRE": "Action, Adventure",
-    "RUNTIME": "1h 56min",
+    "RUNTIME": "01:56",
     "Link": "https://www.justwatch.com/us/movie/uncharted",
     "DESCRIPTION": "A young street-smart Nathan Drake and his wisecracking partner Victor Sully Sullivan embark on a dangerous pursuit of the greatest treasure never found while also tracking clues that may lead to Nathan's long-lost brother.",
     "imageUrl": "https://4kwallpapers.com/images/wallpapers/uncharted-2022-movies-antonio-banderas-mark-wahlberg-sophia-5000x2527-7253.jpg"
@@ -1411,21 +1237,21 @@
     "WATCHED": "👀",
     "OwnerShip": "max",
     "GENRE": "Science Fiction, Action, Thriller",
-    "RUNTIME": "1h 40min",
+    "RUNTIME": "01:40",
     "Link": "https://www.justwatch.com/us/movie/upgrade",
     "DESCRIPTION": "A brutal mugging leaves Grey Trace paralyzed in the hospital and his beloved wife dead. A billionaire inventor soon offers Trace a cure — an artificial intelligence implant called STEM that will enhance his body. Now able to walk, Grey finds that he also has superhuman strength and agility — skills he uses to seek revenge against the thugs who destroyed his life.",
     "imageUrl": "https://images6.alphacoders.com/126/1265076.jpg"
   },
   {
-    "Title": "The Warriors (1979)",
+    "Title": "Wicked City (1987)",
     "STATUS": "",
-    "WATCHED": "👀",
+    "WATCHED": "",
     "OwnerShip": "PRIME",
-    "GENRE": "Action, Thriller, Crime",
-    "RUNTIME": "1h 30min",
-    "Link": "https://www.justwatch.com/us/movie/warriors",
-    "DESCRIPTION": "Prominent gang leader Cyrus calls a meeting of New York's gangs to set aside their turf wars and take over the city. At the meeting, a rival leader kills Cyrus, but a Coney Island gang called the Warriors is wrongly blamed for Cyrus' death. Before you know it, the cops and every gangbanger in town is hot on the Warriors' trail.",
-    "imageUrl": "https://images8.alphacoders.com/641/641473.jpg"
+    "GENRE": "Horror, Animation, Action & Adventure, Fantasy, Science-Fiction, Mystery & Thriller, Classic Japanese Anime",
+    "RUNTIME": "01:22",
+    "Link": "https://www.justwatch.com/us/movie/wicked-city",
+    "DESCRIPTION": "A peace treaty between the Earth and the Black World, a parallel universe of demons, is coming to an end. Two cops, Taki, a human male, and Maki, a female demon, are assigned to protect a diplomat who will help secure another treaty. A radical group of demons from the Black World are out to assassinate the diplomat and prevent the treaty; only the bond that forms between the two cops can save the Earth from destruction.",
+    "imageUrl": "https://fantasyanime.com/anime/images/slide-wicked.jpg"
   },
   {
     "Title": "When We Were Kings (1996)",
@@ -1433,7 +1259,7 @@
     "WATCHED": "",
     "OwnerShip": "Subscription",
     "GENRE": "History, Music & Musical, Documentary, Sport",
-    "RUNTIME": "1h 29min",
+    "RUNTIME": "01:29",
     "Link": "https://www.justwatch.com/us/movie/when-we-were-kings",
     "DESCRIPTION": "It's 1974. Muhammad Ali is 32 and thought by many to be past his prime. George Foreman is ten years younger and the heavyweight champion of the world. Promoter Don King wants to make a name for himself and offers both fighters five million dollars apiece to fight one another, and when they accept, King has only to come up with the money. He finds a willing backer in Mobutu Sese Suko, the dictator of Zaire, and the 'Rumble in the Jungle' is set, including a musical festival featuring some of America's top black performers, like James Brown and B.B. King.",
     "imageUrl": "https://images.justwatch.com/backdrop/173315787/s1440/when-we-were-kings.avif"
@@ -1444,7 +1270,7 @@
     "WATCHED": "👀",
     "OwnerShip": "Subscription",
     "GENRE": "Documentary, Comedy",
-    "RUNTIME": "2h 1min",
+    "RUNTIME": "02:01",
     "Link": "https://www.justwatch.com/us/movie/where-to-invade-next",
     "DESCRIPTION": "To understand firsthand what the United States of America can learn from other nations, Michael Moore playfully “invades” some to see what they have to offer.",
     "imageUrl": "https://images4.alphacoders.com/831/thumb-1920-831817.jpg"
@@ -1455,7 +1281,7 @@
     "WATCHED": "👀",
     "OwnerShip": "NETFLIX",
     "GENRE": "Drama, Music",
-    "RUNTIME": "1h 46min",
+    "RUNTIME": "01:46",
     "Link": "https://www.justwatch.com/us/movie/whiplash",
     "DESCRIPTION": "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
     "imageUrl": "https://wallpapercat.com/w/full/7/9/b/65718-1920x1080-desktop-full-hd-whiplash-background.jpg"
@@ -1466,7 +1292,7 @@
     "WATCHED": "👀",
     "OwnerShip": "PRIME",
     "GENRE": "Documentary, Music & Musical, Music Biopics",
-    "RUNTIME": "1h 30min",
+    "RUNTIME": "01:30",
     "Link": "https://www.justwatch.com/us/movie/zef-the-story-of-die-antwoord",
     "DESCRIPTION": "South African producer / director JON DAY spent the last 5 years making a documentary about the mysterious rap-rave group, DIE ANTWOORD. Art directed by surrealist photographer, ROGER BALLEN. Narrated by NINJA & ¥O-LANDI'S daughter, 16 JONES.",
     "imageUrl": "https://images.justwatch.com/backdrop/312764084/s1440/zef-the-story-of-die-antwoord.avif"
@@ -1477,7 +1303,7 @@
     "WATCHED": "",
     "OwnerShip": "Disney+",
     "GENRE": "Animation, Adventure, Comedy",
-    "RUNTIME": "1h 48min",
+    "RUNTIME": "01:48",
     "Link": "https://www.justwatch.com/us/movie/zootopia",
     "DESCRIPTION": "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.",
     "imageUrl": "https://wallpapers.com/images/hd/knockout-zootopia-tandem-vlrb7cnhhvi9zwwe.jpg"
