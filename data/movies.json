@@ -209,8 +209,19 @@
     "imageUrl": "https://images4.alphacoders.com/107/1070325.jpg"
   },
   {
-    "Title": "Blink Twice (2024)",
+    "Title": "Blazing Saddles (1974)",
     "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "max",
+    "GENRE": "Comedy, Western",
+    "RUNTIME": "01:33",
+    "Link": "https://www.justwatch.com/us/movie/blazing-saddles",
+    "DESCRIPTION": "A town—where everyone seems to be named Johnson—is in the way of the railroad and, in order to grab their land, Hedley Lamarr, a politically connected nasty person, sends in his henchmen to make the town unlivable. After the sheriff is killed, the town demands a new sheriff from the Governor, so Hedley convinces him to send the town the first black sheriff in the west.",
+    "imageUrl": "https://images.justwatch.com/backdrop/8720455/s1440/blazing-saddles.avif"
+  },
+  {
+    "Title": "Blink Twice (2024)",
+    "STATUS": "🟢",
     "WATCHED": "",
     "OwnerShip": "PRIME",
     "GENRE": "Mystery & Thriller, Dramedy",
@@ -273,6 +284,17 @@
     "Link": "https://www.justwatch.com/us/movie/bullet-train",
     "DESCRIPTION": "Unlucky assassin Ladybug is determined to do his job peacefully after too many gigs gone off the rails. Fate, however, may have other plans, as Ladybug's latest mission puts him on a collision course with lethal adversaries from around the globe—all with connected, yet conflicting, objectives—on the world's fastest train.",
     "imageUrl": "https://images8.alphacoders.com/126/thumb-1920-1262024.jpg"
+  },
+  {
+    "Title": "Call Me Miss Cleo (2022)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "max",
+    "GENRE": "Documentary, Biography",
+    "RUNTIME": "01:29",
+    "Link": "https://www.justwatch.com/us/movie/call-me-miss-cleo",
+    "DESCRIPTION": "This documentary chronicles the rise, fall, and reinvention of controversial and revered '90s television psychic Miss Cleo. Features testimonials from celebrities and those closest to her, providing a revealing look at the truth behind the memorable infomercial star.",
+    "imageUrl": "https://images.justwatch.com/backdrop/303183277/s1440/call-me-miss-cleo.avif"
   },
   {
     "Title": "Burn After Reading (2008)",
@@ -594,6 +616,17 @@
     "imageUrl": "https://images5.alphacoders.com/122/1229938.jpg"
   },
   {
+    "Title": "Fences (2016)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Paramount+",
+    "GENRE": "Drama",
+    "RUNTIME": "02:19",
+    "Link": "https://www.justwatch.com/us/movie/fences-2016",
+    "DESCRIPTION": "In 1950s Pittsburgh, a frustrated African-American father struggles with the constraints of poverty, racism, and his own inner demons as he tries to raise a family.",
+    "imageUrl": "https://images.justwatch.com/backdrop/32593947/s1440/fences.avif"
+  },
+  {
     "Title": "Field of Dreams (1989)",
     "STATUS": "",
     "WATCHED": "",
@@ -614,6 +647,17 @@
     "Link": "https://www.justwatch.com/us/movie/fight-club",
     "DESCRIPTION": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
     "imageUrl": "https://wallpapers.com/images/hd/actors-of-fight-club-ibgirl59hxvxr5y4.jpg"
+  },
+  {
+    "Title": "First Time Female Director (2024)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Peacock",
+    "GENRE": "Comedy",
+    "RUNTIME": "01:44",
+    "Link": "https://www.justwatch.com/us/movie/first-time-female-director",
+    "DESCRIPTION": "The head of a small experimental theater unexpectedly becomes the theater's new artistic director when her boss steps down. She attempts to direct her first play, a stage adaptation of Carrie, but faces challenges from unruly actors, poor morale, and impending budget cuts.",
+    "imageUrl": "https://images.justwatch.com/backdrop/312659469/s1440/first-time-female-director.avif"
   },
   {
     "Title": "Flamin' Hot (2023)",
@@ -638,6 +682,39 @@
     "imageUrl": "https://w0.peakpx.com/wallpaper/908/955/HD-wallpaper-movie-forrest-gump-tom-hanks.jpg"
   },
   {
+    "Title": "Free to Play (2014)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "YouTube",
+    "GENRE": "Documentary, Video Game",
+    "RUNTIME": "01:15",
+    "Link": "https://www.justwatch.com/us/movie/free-to-play",
+    "DESCRIPTION": "Follow three professional gamers - a former professional basketball player, a Dota 2 veteran, and a young up-and-coming talent - as they compete in the first million-dollar esports tournament for the game Dota 2.",
+    "imageUrl": "https://images.justwatch.com/backdrop/186522496/s1440/free-to-play.avif"
+  },
+  {
+    "Title": "Full Metal Jacket (1987)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "max",
+    "GENRE": "Drama, War",
+    "RUNTIME": "01:56",
+    "Link": "https://www.justwatch.com/us/movie/full-metal-jacket",
+    "DESCRIPTION": "A pragmatic U.S. Marine observes the dehumanizing effects the U.S.-Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.",
+    "imageUrl": "https://images.justwatch.com/backdrop/133193624/s1440/full-metal-jacket.avif"
+  },
+  {
+    "Title": "Fury (2014)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Action, Drama, War",
+    "RUNTIME": "02:14",
+    "Link": "https://www.justwatch.com/us/movie/fury-2014",
+    "DESCRIPTION": "In the last months of World War II, as the Allies make their final push in the European theatre, a battle-hardened U.S. Army sergeant named 'Wardaddy' commands a Sherman tank called 'Fury' and its five-man crew on a deadly mission behind enemy lines.",
+    "imageUrl": "https://images.justwatch.com/backdrop/11717504/s1440/fury-2014.avif"
+  },
+  {
     "Title": "Garden State (2004)",
     "STATUS": "",
     "WATCHED": "👀",
@@ -647,6 +724,39 @@
     "Link": "https://www.justwatch.com/us/movie/garden-state",
     "DESCRIPTION": "A quietly troubled young man returns home for his mother's funeral after being estranged from his family for a decade.",
     "imageUrl": "https://wallpapercave.com/wp/wp10909160.jpg"
+  },
+  {
+    "Title": "Gods and Monsters (1998)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Drama, Biography",
+    "RUNTIME": "01:45",
+    "Link": "https://www.justwatch.com/us/movie/gods-and-monsters",
+    "DESCRIPTION": "It's 1957, and James Whale's heyday as the director of 'Frankenstein,' 'Bride of Frankenstein' and 'The Invisible Man' is long behind him. Though recognized as one of the studios' few artists, he lives in retirement, haunted by his past.",
+    "imageUrl": "https://images.justwatch.com/backdrop/173385766/s1440/gods-and-monsters.avif"
+  },
+  {
+    "Title": "Good Time (2017)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Crime, Drama, Thriller",
+    "RUNTIME": "01:41",
+    "Link": "https://www.justwatch.com/us/movie/good-time",
+    "DESCRIPTION": "After a botched bank robbery lands his younger brother in prison, Connie Nikas embarks on a twisted odyssey through New York City's underworld to get his brother Nick out of jail.",
+    "imageUrl": "https://images.justwatch.com/backdrop/18538633/s1440/good-time.avif"
+  },
+  {
+    "Title": "Gran Turismo (2023)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Drama, Action, Sport",
+    "RUNTIME": "02:15",
+    "Link": "https://www.justwatch.com/us/movie/gran-turismo",
+    "DESCRIPTION": "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional race car driver.",
+    "imageUrl": "https://images.justwatch.com/backdrop/306892684/s1440/gran-turismo.avif"
   },
   {
     "Title": "Grosse Pointe Blank (1997)",
@@ -704,6 +814,39 @@
     "imageUrl": "https://images.alphacoders.com/126/1264271.jpg"
   },
   {
+    "Title": "Hoop Reality (2007)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Tubi",
+    "GENRE": "Documentary, Sport",
+    "RUNTIME": "01:35",
+    "Link": "https://www.justwatch.com/us/movie/hoop-reality",
+    "DESCRIPTION": "A follow-up to the 1995 documentary 'Hoop Dreams', this film follows Arthur Agee, star of the original documentary, as he pursues a career in basketball while mentoring a new generation of players from his old Chicago neighborhood.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTU2NDY2NzA4MF5BMl5BanBnXkFtZTcwOTU4NDU0MQ@@._V1_.jpg"
+  },
+  {
+    "Title": "House of Sand and Fog (2003)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Drama",
+    "RUNTIME": "02:06",
+    "Link": "https://www.justwatch.com/us/movie/house-of-sand-and-fog",
+    "DESCRIPTION": "An abandoned wife is evicted from her house and starts a tragic conflict with her house's new owners.",
+    "imageUrl": "https://images.justwatch.com/backdrop/238007940/s1440/house-of-sand-and-fog.avif"
+  },
+  {
+    "Title": "HyperNormalisation (2016)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "YouTube",
+    "GENRE": "Documentary",
+    "RUNTIME": "02:46",
+    "Link": "https://www.justwatch.com/us/movie/hypernormalisation",
+    "DESCRIPTION": "Adam Curtis explains how, at a time of confusing and inexplicable world events, politicians and the people they represent have retreated in to a damaging simplified version of what is happening.",
+    "imageUrl": "https://images.justwatch.com/backdrop/169341092/s1440/hypernormalisation.avif"
+  },
+  {
     "Title": "I Want You Back (2022)",
     "STATUS": "",
     "WATCHED": "👀",
@@ -724,6 +867,17 @@
     "Link": "https://www.justwatch.com/us/movie/in-the-mood-for-love",
     "DESCRIPTION": "A melancholy story about the love between a woman and a man who live in the same building and one day find out that their husband and wife had an affair with each other.",
     "imageUrl": "https://hypercritic.org/wp-content/uploads-webpc/uploads/2021/01/inthemoodforlove_img_14_down.jpg.webp"
+  },
+  {
+    "Title": "Invasion of the Body Snatchers (1978)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Science Fiction, Horror, Mystery",
+    "RUNTIME": "01:55",
+    "Link": "https://www.justwatch.com/us/movie/invasion-of-the-body-snatchers-1978",
+    "DESCRIPTION": "In San Francisco, a group of people discover the human race is being replaced one by one, with clones devoid of emotion.",
+    "imageUrl": "https://images.justwatch.com/backdrop/8722184/s1440/invasion-of-the-body-snatchers-1978.avif"
   },
   {
     "Title": "Iron Man (2008)",
@@ -759,6 +913,28 @@
     "imageUrl": "https://wallpapercave.com/wp/wp1886680.jpg"
   },
   {
+    "Title": "Jennifer Lopez: Halftime (2022)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Documentary, Biography, Music",
+    "RUNTIME": "01:35",
+    "Link": "https://www.justwatch.com/us/movie/jennifer-lopez-halftime",
+    "DESCRIPTION": "Global superstar Jennifer Lopez reflects on her multifaceted career and the pressure of life in the spotlight as she prepares to deliver the performance of a lifetime at the Super Bowl halftime show.",
+    "imageUrl": "https://images.justwatch.com/backdrop/291185938/s1440/jennifer-lopez-halftime.avif"
+  },
+  {
+    "Title": "Jiro Dreams of Sushi (2011)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "Hulu",
+    "GENRE": "Documentary, Food & Cooking",
+    "RUNTIME": "01:21",
+    "Link": "https://www.justwatch.com/us/movie/jiro-dreams-of-sushi",
+    "DESCRIPTION": "A documentary on 85-year-old sushi master Jiro Ono, his renowned Tokyo restaurant, and his relationship with his son and eventual heir, Yoshikazu.",
+    "imageUrl": "https://images.justwatch.com/backdrop/8723776/s1440/jiro-dreams-of-sushi.avif"
+  },
+  {
     "Title": "Judge Dredd (1995)",
     "STATUS": "",
     "WATCHED": "",
@@ -767,7 +943,7 @@
     "RUNTIME": "01:36",
     "Link": "https://www.justwatch.com/us/movie/judge-dredd-1995",
     "DESCRIPTION": "In a dystopian future, Dredd, the most famous judge (a cop with instant field judiciary powers) is convicted for a crime he did not commit while his murderous counterpart escapes.",
-    "imageUrl": "https://m.media-amazon.com/images/M/MV5BZWM0MjExNzMtNGJkMy00MDNhLTlkOTctNDFiYzVjNTVmNGFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BZWM0MjExNzMtNGJkMy00NTg0LWE1ZWQtYjk3YmY2ZTk2MDgxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     "Title": "L.A. Confidential (1997)",
@@ -1166,6 +1342,17 @@
     "imageUrl": "https://wallpapercave.com/wp/wp3776893.jpg"
   },
   {
+    "Title": "The UnRedacted (2022)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Documentary",
+    "RUNTIME": "01:35",
+    "Link": "https://www.justwatch.com/us/movie/the-unredacted",
+    "DESCRIPTION": "An unflinching look at government secrets and the journalists who work to expose them, featuring interviews with whistleblowers and examining the impact of classified information on democracy and national security.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BZGY0NmIwYTUtZDg2ZC00NzEyLTkxMWItNzg0YjUzMmM0OGRkXkEyXkFqcGc@._V1_.jpg"
+  },
+  {
     "Title": "The Warriors (1979)",
     "STATUS": "",
     "WATCHED": "👀",
@@ -1307,5 +1494,82 @@
     "Link": "https://www.justwatch.com/us/movie/zootopia",
     "DESCRIPTION": "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.",
     "imageUrl": "https://wallpapers.com/images/hd/knockout-zootopia-tandem-vlrb7cnhhvi9zwwe.jpg"
+  },
+  {
+    "Title": "Citizen Kane (1941)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "max",
+    "GENRE": "Drama, Mystery",
+    "RUNTIME": "01:59",
+    "Link": "https://www.justwatch.com/us/movie/citizen-kane",
+    "DESCRIPTION": "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: 'Rosebud.'",
+    "imageUrl": "https://images.justwatch.com/backdrop/174062756/s1440/citizen-kane.avif"
+  },
+  {
+    "Title": "Chungking Express (1994)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "max",
+    "GENRE": "Drama, Comedy, Romance",
+    "RUNTIME": "01:42",
+    "Link": "https://www.justwatch.com/us/movie/chungking-express",
+    "DESCRIPTION": "Two melancholic Hong Kong policemen fall in love: one with a mysterious underworld figure, the other with a beautiful and ethereal server at a late-night restaurant he frequents.",
+    "imageUrl": "https://images.justwatch.com/backdrop/197865100/s1440/chungking-express.avif"
+  },
+  {
+    "Title": "Citizenfour (2014)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Documentary, Biography",
+    "RUNTIME": "01:54",
+    "Link": "https://www.justwatch.com/us/movie/citizenfour",
+    "DESCRIPTION": "In June 2013, Laura Poitras and reporter Glenn Greenwald flew to Hong Kong for the first of many meetings with Edward Snowden. She brought her camera with her. The film that resulted from this series of tense encounters is absolutely unique in the history of cinema: a 100% real-life thriller unfolding minute by minute before our eyes.",
+    "imageUrl": "https://images.justwatch.com/backdrop/240797498/s1440/citizenfour.avif"
+  },
+  {
+    "Title": "Crazy Rich Asians (2018)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Comedy, Romance, Drama",
+    "RUNTIME": "02:00",
+    "Link": "https://www.justwatch.com/us/movie/crazy-rich-asians",
+    "DESCRIPTION": "An American-born Chinese economics professor accompanies her boyfriend to Singapore for his best friend's wedding, only to get thrust into the lives of Asia's rich and famous.",
+    "imageUrl": "https://images.justwatch.com/backdrop/42541008/s1440/crazy-rich-asians.avif"
+  },
+  {
+    "Title": "Cropsey (2009)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Documentary, Horror, Mystery",
+    "RUNTIME": "01:24",
+    "Link": "https://www.justwatch.com/us/movie/cropsey",
+    "DESCRIPTION": "Realizing the urban legend of their youth has actually come true; two filmmakers delve into the mystery surrounding five missing children and the real-life boogeyman linked to their disappearances.",
+    "imageUrl": "https://images.justwatch.com/backdrop/249392414/s1440/cropsey.avif"
+  },
+  {
+    "Title": "Da 5 Bloods (2020)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "NETFLIX",
+    "GENRE": "Drama, War, Adventure",
+    "RUNTIME": "02:35",
+    "Link": "https://www.justwatch.com/us/movie/da-5-bloods",
+    "DESCRIPTION": "Four African-American Vietnam veterans return to Vietnam. They are in search of the remains of their fallen squad leader and the promise of buried treasure. These heroes battle forces of humanity and nature while confronted by the lasting ravages of the immorality of the Vietnam War.",
+    "imageUrl": "https://images.justwatch.com/backdrop/177223098/s1440/da-5-bloods.avif"
+  },
+  {
+    "Title": "Crown Heights (2017)",
+    "STATUS": "",
+    "WATCHED": "",
+    "OwnerShip": "PRIME",
+    "GENRE": "Drama, Biography, Crime",
+    "RUNTIME": "01:39",
+    "Link": "https://www.justwatch.com/us/movie/crown-heights",
+    "DESCRIPTION": "When Colin Warner is wrongfully convicted of murder, his best friend Carl King devotes his life to proving Colin's innocence.",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjlhYjVlZTAtMzM1Mi00M2IzLWFjMWItMjQwMmZjNWVmOGZmXkEyXkFqcGc@._V1_.jpg"
   }
 ]
