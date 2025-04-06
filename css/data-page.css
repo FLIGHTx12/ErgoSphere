@@ -148,6 +148,35 @@ body.page-transition {
   background: rgba(128, 0, 128, 0.8);
 }
 
+/* Make expanded divs take up 80% of viewport width on smaller screens */
+@media (max-width: 768px) {
+  .item-row.expanded {
+    background-attachment: scroll; /* Disable parallax on mobile for better performance */
+    max-width: 100%; /* Increase from 70% to 100% on smaller screens */
+    width: 100%; /* Set explicit width to ensure consistency */
+    min-height: 400px; /* Reduce min-height for better fit on smaller screens */
+    padding: 15px; /* Slightly reduce padding */
+  }
+}
+
+/* Additional adjustments for very small screens like phones */
+@media (max-width: 480px) {
+  .item-row.expanded {
+    max-width: 100%; /* Use 100% width */
+    width: 100%; /* Ensure consistent width */
+    min-height: 350px; /* Further reduce minimum height */
+    padding: 12px; /* Further reduce padding */
+  }
+  
+  .item-row.expanded .item-title {
+    font-size: 1.1em; /* Slightly smaller font size for titles */
+  }
+  
+  .item-row.expanded .item-details {
+    font-size: 0.95em; /* Slightly smaller font size for details */
+  }
+}
+
 @media (max-width: 768px) {
   .item-row.expanded {
     background-attachment: scroll; /* Disable parallax on mobile for better performance */
