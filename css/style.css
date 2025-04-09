@@ -192,9 +192,30 @@ button:active {
   transform: translateX(100%);
 }
 
+/* Fix for sidebar on large screens */
 @media (min-width: 1024px) {
   #sidebar.hidden {
     transform: translateX(0); /* Ensure sidebar is not hidden on larger screens */
+  }
+}
+
+/* Additional rule for very large screens like TVs */
+@media (min-width: 1800px) {
+  #sidebar {
+    display: flex !important; /* Force sidebar to always display on very large screens */
+    transform: translateY(-50%) !important; /* Ensure the vertical position is maintained */
+    right: 0 !important; /* Ensure the sidebar stays on the right edge */
+    opacity: 1 !important; /* Ensure the sidebar is visible */
+  }
+  
+  #sidebar.hidden {
+    transform: translateY(-50%) !important; /* Override hidden state on very large screens */
+    transform: translateX(0) !important; /* Ensure no horizontal movement */
+  }
+  
+  /* Adjust main content to make room for the sidebar */
+  #main-content {
+    margin-right: 170px !important; /* Ensure there's space for the sidebar */
   }
 }
 

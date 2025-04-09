@@ -303,17 +303,42 @@
 
       function handleGesture() {
           const swipeDistance = touchendX - touchstartX;
-          if (swipeDistance > swipeThreshold) {
-              sidebar.classList.add('hidden');
-              sidebar.style.transform = 'translateX(100%)';
-              mainContent.classList.remove('sidebar-visible');
+          // Check if we're on a large screen before handling swipe gestures
+          const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
+          const isVeryLargeScreen = window.matchMedia('(min-width: 1800px)').matches;
+          
+          if (!isVeryLargeScreen) {
+            // Only hide sidebar on swipe when not on a very large screen
+            if (swipeDistance > swipeThreshold) {
+                sidebar.classList.add('hidden');
+                sidebar.style.transform = 'translateX(100%)';
+                mainContent.classList.remove('sidebar-visible');
+            }
+            if (swipeDistance < -swipeThreshold && !isLargeScreen) {
+                sidebar.classList.remove('hidden');
+                sidebar.style.transform = 'translateX(0)';
+                mainContent.classList.add('sidebar-visible');
+            }
           }
-          if (swipeDistance < -swipeThreshold) {
+      }
+
+      // Handle sidebar visibility based on screen size
+      function handleScreenSizeChange() {
+          const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
+          const isVeryLargeScreen = window.matchMedia('(min-width: 1800px)').matches;
+          
+          if (isLargeScreen || isVeryLargeScreen) {
               sidebar.classList.remove('hidden');
-              sidebar.style.transform = 'translateX(0)';
+              sidebar.style.transform = 'translateY(-50%)';
               mainContent.classList.add('sidebar-visible');
           }
       }
+      
+      // Run on page load
+      handleScreenSizeChange();
+      
+      // Add resize listener
+      window.addEventListener('resize', handleScreenSizeChange);
 
       document.addEventListener('touchstart', function(e) {
           touchstartX = e.changedTouches[0].screenX;

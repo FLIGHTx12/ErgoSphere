@@ -615,3 +615,41 @@ body.page-transition {
   background-color: rgba(128, 0, 128, 0.9);
   transform: scale(1.1);
 }
+
+/* Add these rules to ensure sidebar visibility on large screens */
+#sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+  #sidebar {
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  
+  #sidebar.hidden {
+    transform: translateY(-50%) !important;
+    transform: translateX(0) !important;
+  }
+  
+  /* Adjust the data container to accommodate the sidebar */
+  #data-container {
+    margin-right: 170px;
+  }
+}
+
+/* Additional rule for very large screens like TVs */
+@media (min-width: 1800px) {
+  #sidebar {
+    display: flex !important;
+    transform: translateY(-50%) !important;
+    right: 0 !important;
+    opacity: 1 !important;
+    z-index: 1001 !important;
+  }
+  
+  #data-container {
+    margin-right: 180px;
+  }
+}
