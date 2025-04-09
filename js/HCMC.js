@@ -7,6 +7,8 @@ let delay = 1000;
 let rampStartTime = null;
 let powerDownPlayed = false; // Add this with other state variables at the top
 let currentlyDisplayedChoice = null; // Add this with other state variables at top
+let godParticles = 0; // Current amount of God Particles the user has
+let isSelectingParticles = false; // Flag to track if we're in particle selection mode
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -18,6 +20,13 @@ const choiceContent = document.getElementById("choice-content");
 const lootButton = document.getElementById("loot-button");
 const pvpButton = document.getElementById("pvp-button");
 const coopButton = document.getElementById("coop-button");
+const godParticlesCounter = document.getElementById("god-particles-count");
+const spinsRemainingDisplay = document.getElementById("spins-remaining-display");
+const particlesInputModal = document.getElementById("particles-input-modal");
+const particlesInput = document.getElementById("particles-input");
+const confirmParticlesBtn = document.getElementById("confirm-particles");
+const cancelParticlesBtn = document.getElementById("cancel-particles");
+const acceptButton = document.getElementById("accept-button");
 
 const AUDIO = {
     click: new Audio('../assets/audio/click.mp3'),
@@ -53,19 +62,38 @@ function playClickSounds() {
     playSound('click');
 }
 
+// Add the missing stopAllAudio function
+function stopAllAudio() {
+    Object.values(AUDIO).forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+}
+
+// Improve loadChoices with better error handling
 function loadChoices(pool) {
+    console.log(`Loading choices for pool: ${pool}`);
     resetCycle();
     currentPool = pool.toUpperCase();
     currentCycleId = Math.random();
     
     return fetch(`../data/${pool}.json`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load ${pool}.json: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(async data => {
+            console.log(`Successfully loaded ${data.length} choices for pool ${pool}`);
             choices = data;
             await preloadAllImages(choices);
             populateStaticRewards();
         })
-        .catch(error => console.error('Error loading choices:', error));
+        .catch(error => {
+            console.error('Error loading choices:', error);
+            alert(`Failed to load ${pool} data. Please check the console for more information.`);
+        });
 }
 
 function createInfoOverlay(choice) {
@@ -123,12 +151,21 @@ function populateStaticRewards() {
 
     document.getElementById("filter-dropdown").addEventListener("change", filterChoices);
 
-    // Add click handler for reward items
+    // Add click handler for reward items that also shows preview
     staticRewards.querySelectorAll('.reward-item').forEach(item => {
         item.addEventListener('click', () => {
             const choice = choices.find(c => c.text === item.dataset.text);
             if (choice) {
+                // First, highlight this item
+                syncChoiceAndReward(choice);
+                
+                // Then show the detailed info
                 showRewardInfo(choice);
+                
+                // Only show image preview if not spinning
+                if (!spinning && !stopInitiated) {
+                    choiceImage.style.display = "block";
+                }
             }
         });
     });
@@ -257,6 +294,88 @@ function filterChoices() {
             <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
         </li>`)
         .join("");
+}
+
+// Add a new function to synchronize image and active reward
+function syncChoiceAndReward(choice) {
+    if (!choice) return;
+    
+    // Update the active item in the sidebar
+    updateActiveReward(choice);
+    
+    // Store the current choice for reference
+    currentlyDisplayedChoice = choice;
+    
+    // Update the displayed image based on state
+    if (spinning || stopInitiated) {
+        updateChoiceImage(choice);
+    } else {
+        // When not spinning, show the image clearly
+        displayFinalImage(choice);
+    }
+}
+
+// Add a function to clearly display the final image when spinning stops
+function displayFinalImage(choice) {
+    if (!choice) return;
+    
+    const imageUrl = getRandomImage(choice);
+    if (!imageUrl) return;
+    
+    // Ensure immediate display without fading
+    choiceImage.src = imageUrl;
+    choiceImage.style.display = "block";
+    choiceImage.style.opacity = "0.5"; // Always 50% opacity until accepted
+    lastImageUrl = imageUrl;
+}
+
+// Modify the updateChoiceImage function to use consistent opacity
+async function updateChoiceImage(choice) {
+    if (currentlyLoading) return; // Prevent multiple simultaneous updates
+    
+    try {
+        currentlyLoading = true;
+        const imageUrl = getRandomImage(choice);
+        
+        // Skip if no image
+        if (!imageUrl) {
+            currentlyLoading = false;
+            return;
+        }
+        
+        // Wait for image to load
+        await preloadImage(imageUrl);
+        
+        // Show image with appropriate opacity based on state
+        choiceImage.style.opacity = '0';
+        setTimeout(() => {
+            choiceImage.style.display = "block";
+            choiceImage.src = imageUrl;
+            
+            // Always use 50% opacity
+            choiceImage.style.opacity = '0.5';
+            lastImageUrl = imageUrl;
+        }, 100);
+    } catch (error) {
+        console.error('Error updating choice image:', error);
+        choiceImage.style.display = "none"; // Hide image on error
+    } finally {
+        currentlyLoading = false;
+    }
+}
+
+// Add a function to clearly display the final image when spinning stops
+function displayFinalImage(choice) {
+    if (!choice) return;
+    
+    const imageUrl = getRandomImage(choice);
+    if (!imageUrl) return;
+    
+    // Ensure immediate display without fading
+    choiceImage.src = imageUrl;
+    choiceImage.style.display = "block";
+    choiceImage.style.opacity = "1.0"; // Full opacity for final result
+    lastImageUrl = imageUrl;
 }
 
 function selectWeightedChoice(choices) {
@@ -449,12 +568,34 @@ async function updateChoiceImage(choice) {
     }
 }
 
+// Add a utility function to update button states based on God Particles
+function updateButtonStates() {
+    // Only show Spin Again if we have enough God Particles
+    if (godParticles >= 2 && !spinning && !stopInitiated && currentlyDisplayedChoice) {
+        controlButton.textContent = "Spin Again";
+        controlButton.classList.remove('hidden');
+    } else if (!spinning && !stopInitiated && currentlyDisplayedChoice) {
+        // If we have a choice but not enough particles, hide the Spin Again button
+        controlButton.textContent = "Need Particles";
+        controlButton.classList.add('disabled');
+    } else if (!spinning && !stopInitiated) {
+        // Default state - no spin in progress, no choice selected
+        controlButton.textContent = "Start";
+        controlButton.classList.remove('disabled');
+    }
+}
+
+// Simplify how we handle the spin completion
 function spin(cycleId) {
     if (cycleId !== currentCycleId) return;
 
+    // Add debug logging to help diagnose issues
+    console.log("Spinning with cycle ID:", cycleId);
+    
     const filterValue = document.getElementById("filter-dropdown").value;
     let filteredChoices = choices;
 
+    // Filter choices based on dropdown selection
     switch (filterValue) {
         case "active":
             filteredChoices = choices.filter(choice => 
@@ -481,48 +622,70 @@ function spin(cycleId) {
                 choice.genre?.toLowerCase() === 'hazzard');
             break;
         default:
-            // Fixed error: using an arrow function for proper filtering
             filteredChoices = choices.filter(choice => choice.copies > 0);
     }
 
-    // Check if we have any valid choices
-    const hasValidChoices = filteredChoices.some(choice => choice.copies > 0);
-    if (!hasValidChoices) {
+    // Check if we have any valid choices - improved error handling
+    if (!filteredChoices || filteredChoices.length === 0) {
+        console.error("No valid choices found for spinning");
         resetCycle();
         alert("No choices available in current filter!");
         return;
     }
 
+    // Ensure we have valid choices with copies > 0
+    const hasValidChoices = filteredChoices.some(choice => choice.copies > 0);
+    if (!hasValidChoices) {
+        console.error("No choices with copies > 0");
+        resetCycle();
+        alert("No choices with copies available in current filter!");
+        return;
+    }
+
     const choice = selectWeightedChoice(filteredChoices);
     if (!choice) {
+        console.error("selectWeightedChoice returned null");
         resetCycle();
         return;
     }
 
-    // Track currently displayed choice
-    currentlyDisplayedChoice = choice;
+    // Replace these three lines:
+    // currentlyDisplayedChoice = choice;
+    // updateChoiceImage(choice);
+    // updateActiveReward(choice);
+    
+    // With the new synchronized function:
+    syncChoiceAndReward(choice);
 
-    updateChoiceImage(choice); // Replace direct image assignment with new function
-    updateActiveReward(choice);
-
-    if (spinning) {
+    if (spinning && !stopInitiated) {
+        // Normal spinning - continue at increasing speed
         playSound('cycle');
-        // Changed from 0.95 to 0.98 for slower acceleration
-        delay = delay * 0.98;
+        delay = delay * 0.98; // Speed up slightly
         powerDownPlayed = false; // Reset flag when spinning
         updateVibrationIntensity();
         setTimeout(() => spin(cycleId), delay);
     } else if (stopInitiated) {
         if (Date.now() - rampStartTime < 5000) {
+            // During slowdown period
             if (!powerDownPlayed) {
+                // Play power down sound once
                 playSound('powerDown');
                 powerDownPlayed = true;
                 showFlashEffect();
                 stopVibration();
             }
+            
+            // Slow down spin rate
             delay = delay * 1.2;
             setTimeout(() => spin(cycleId), delay);
         } else {
+            // After the 5-second slowdown period, fully stop
+            spinning = false;
+            stopInitiated = false;
+            
+            // Make sure the final image is clearly displayed
+            displayFinalImage(choice);
+            
             // Play genre-specific sound before showing popup
             if (choice.genre) {
                 const genreSound = {
@@ -536,12 +699,99 @@ function spin(cycleId) {
                     playSound(genreSound);
                 }
             }
-            showOptionPopup(choice);
+            
+            // Always show the accept button
+            acceptButton.classList.remove('hidden');
+            
+            // Only show "Spin Again" if we have enough God Particles
+            if (godParticles >= 2) {
+                controlButton.textContent = "Spin Again";
+                controlButton.classList.remove('disabled');
+            } else {
+                controlButton.textContent = "Need Particles";
+                controlButton.classList.add('disabled');
+            }
+            
+            controlButton.classList.remove('stopping');
         }
     }
 }
 
-// Reset image cache when cycle ends
+// Add the missing saveGodParticles function
+function saveGodParticles() {
+    localStorage.setItem('godParticles', godParticles);
+}
+
+// Fix the control button click event handler
+controlButton.addEventListener("click", () => {
+    if (controlButton.classList.contains('disabled')) {
+        alert("You need at least 2 God Particles to spin again!");
+        return;
+    }
+    
+    if (!spinning && !stopInitiated) {
+        // Starting a new spin - check if user has enough GP
+        if (godParticles >= 2) {
+            // Deduct 2 God Particles and start spinning
+            godParticles -= 2;
+            updateGodParticlesDisplay();
+            saveGodParticles();
+            
+            playClickSounds();
+            playSound('spinUp');
+            resetCycle();
+            
+            // These flags should be set AFTER resetCycle to ensure proper start
+            spinning = true;
+            startVibration();
+            controlButton.textContent = "Stop";
+            controlButton.classList.add('stopping');
+            acceptButton.classList.add('hidden');
+            
+            // Use a timeout before starting spin to ensure UI updates first
+            setTimeout(() => {
+                const cycleId = currentCycleId;
+                spin(cycleId);
+            }, 100);
+        } else {
+            // Not enough GP
+            alert("You need at least 2 God Particles to spin!");
+        }
+    } else if (spinning) {
+        // User pressed Stop during spinning - initiate slowdown
+        stopInitiated = true;
+        rampStartTime = Date.now();
+        playClickSounds();
+        
+        // Stop all audio except click sounds - but DON'T stop power down which we need
+        Object.entries(AUDIO).forEach(([key, audio]) => {
+            if (!['mouseClick', 'click', 'powerDown'].includes(key)) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        });
+        
+        controlButton.textContent = "Stopping...";
+    }
+    // Button does nothing in other states
+});
+
+// Update accept button event listener to show image at full opacity when accepted
+acceptButton.addEventListener("click", () => {
+    playClickSounds();
+    if (currentlyDisplayedChoice) {
+        // Show the image at full opacity when accepted
+        choiceImage.style.opacity = '1.0';
+        
+        showOptionPopup(currentlyDisplayedChoice);
+        acceptButton.classList.add('hidden');
+        // Reset for next spin
+        controlButton.textContent = "Start";
+        currentlyDisplayedChoice = null;
+    }
+});
+
+// Simplified reset - remove spins remaining references
 function resetCycle() {
     spinning = false;
     stopInitiated = false;
@@ -552,6 +802,7 @@ function resetCycle() {
     choiceText.textContent = "";
     controlButton.textContent = "Start";
     controlButton.classList.remove('stopping');
+    acceptButton.classList.add('hidden');
     
     const rewardItems = staticRewards.querySelectorAll(".reward-item");
     rewardItems.forEach(item => item.classList.remove("active"));
@@ -567,6 +818,10 @@ function resetCycle() {
     currentlyLoading = false; // Reset loading state
     choiceImage.style.opacity = '0';
     currentlyDisplayedChoice = null; // Reset the tracked choice
+    
+    // Always keep spins remaining hidden
+    spinsRemainingDisplay.classList.add('hidden');
+    updateButtonStates(); // Update button states after reset
 }
 
 async function capturePopupScreenshot(element) {
@@ -627,6 +882,7 @@ async function capturePopupScreenshot(element) {
 
 function showOptionPopup(choice) {
     playSound('popup');
+    
     const popup = document.createElement("div");
     popup.id = "optionPopup";
     popup.style.position = "fixed";
@@ -677,12 +933,32 @@ function showOptionPopup(choice) {
     const overlay = createInfoOverlay(choice);
     popup.appendChild(overlay);
 
+    // Improved positioning of the info overlay
+    overlay.style.position = 'absolute';
+    
+    // Detect if we're on a small screen and position accordingly
+    const isSmallScreen = window.innerWidth < 1200;
+    if (isSmallScreen) {
+        // Position below on small screens
+        overlay.style.top = 'auto';
+        overlay.style.bottom = '-300px';
+        overlay.style.left = '0';
+        overlay.style.right = '0';
+        overlay.style.width = '100%';
+        overlay.style.maxHeight = '280px';
+    } else {
+        // Position to the right on larger screens
+        overlay.style.right = '-270px';
+        overlay.style.top = '50px';
+        overlay.style.width = '250px';
+    }
+
     // Show info with delay for popup
     const showInfo = () => {
         infoTimeout = setTimeout(() => {
             overlay.style.display = 'block';
             setTimeout(() => overlay.classList.add('visible'), 10);
-        }, 2000);
+        }, 1000); // Reduced delay from 2000ms to 1000ms for better UX
     };
 
     const hideInfo = () => {
@@ -713,84 +989,53 @@ function showOptionPopup(choice) {
     }, 0);
 }
 
-controlButton.addEventListener("click", () => {
-    if (!spinning && !stopInitiated) {
-        // Start spinning
-        playClickSounds();
-        playSound('spinUp');
-        resetCycle();
-        spinning = true;
-        startVibration();
-        controlButton.textContent = "Stop";
-        controlButton.classList.add('stopping');
-        const cycleId = currentCycleId;
-        spin(cycleId);
-    } else {
-        // Stop spinning
-        const wasSpinning = spinning;
-        if (spinning) {
-            spinning = false;
-            stopInitiated = true;
-            rampStartTime = Date.now();
-        } else {
-            resetCycle();
-        }
-        playClickSounds();
-        if (wasSpinning) {
-            Object.entries(AUDIO).forEach(([key, audio]) => {
-                if (!['mouseClick', 'click'].includes(key)) {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-            });
-        }
-    }
-});
+// Simplify particle handling functions
+function addGodParticles(amount) {
+    godParticles += amount;
+    updateGodParticlesDisplay(); // This now calls updateButtonStates
+    saveGodParticles();
+}
 
-// Add spacebar control
-document.addEventListener('keydown', (event) => {
-    // Check if spacebar was pressed and we're not typing in any input/textarea
-    if (event.code === 'Space' && 
-        !event.repeat && 
-        !(event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA')) {
-        event.preventDefault(); // Prevent page scrolling
-        controlButton.click(); // Simulate button click
-        
-        // Add visual feedback
-        controlButton.classList.add('press-animation');
-        setTimeout(() => controlButton.classList.remove('press-animation'), 200);
+// Load God Particles from localStorage
+function loadGodParticles() {
+    const savedParticles = localStorage.getItem('godParticles');
+    if (savedParticles !== null) {
+        godParticles = parseInt(savedParticles);
+        updateGodParticlesDisplay();
     }
-});
+}
 
-function stopAllAudio() {
-    Object.values(AUDIO).forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-    });
+// Only keep updateGodParticlesDisplay and hide the spinsRemaining display
+function updateGodParticlesDisplay() {
+    godParticlesCounter.textContent = godParticles;
+    updateButtonStates();
 }
 
 lootButton.addEventListener("click", async () => {
-  stopAllAudio();
-  playClickSounds();
-  highlightActiveButton(lootButton);
-  await loadChoices('loot');
-  localStorage.setItem('currentPool', 'loot'); // Save current selection
+    console.log("LOOT button clicked");
+    stopAllAudio();
+    playClickSounds();
+    highlightActiveButton(lootButton);
+    await loadChoices('loot');
+    localStorage.setItem('currentPool', 'loot'); // Save current selection
 });
 
 pvpButton.addEventListener("click", async () => {
-  stopAllAudio();
-  playClickSounds();
-  highlightActiveButton(pvpButton);
-  await loadChoices('pvp');
-  localStorage.setItem('currentPool', 'pvp'); // Save current selection
+    console.log("PVP button clicked");
+    stopAllAudio();
+    playClickSounds();
+    highlightActiveButton(pvpButton);
+    await loadChoices('pvp');
+    localStorage.setItem('currentPool', 'pvp'); // Save current selection
 });
 
 coopButton.addEventListener("click", async () => {
-  stopAllAudio();
-  playClickSounds();
-  highlightActiveButton(coopButton);
-  await loadChoices('coop');
-  localStorage.setItem('currentPool', 'coop'); // Save current selection
+    console.log("COOP button clicked");
+    stopAllAudio();
+    playClickSounds();
+    highlightActiveButton(coopButton);
+    await loadChoices('coop');
+    localStorage.setItem('currentPool', 'coop'); // Save current selection
 });
 
 function highlightActiveButton(activeButton) {
@@ -817,9 +1062,38 @@ function setRandomBackground() {
 setRandomBackground();
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadGodParticles();
   const savedPool = localStorage.getItem('currentPool') || 'loot';
   loadChoices(savedPool);
   highlightActiveButton(document.getElementById(`${savedPool}-button`));
+  
+  // Add test buttons for adding God Particles (for development)
+  const testButtonsContainer = document.createElement("div");
+  testButtonsContainer.style.position = "fixed";
+  testButtonsContainer.style.bottom = "10px";
+  testButtonsContainer.style.right = "10px";
+  testButtonsContainer.style.zIndex = "1000";
+  
+  const addOneButton = document.createElement("button");
+  addOneButton.textContent = "+1 GP";
+  addOneButton.addEventListener("click", () => addGodParticles(1));
+  
+  const addFiveButton = document.createElement("button");
+  addFiveButton.textContent = "+5 GP";
+  addFiveButton.addEventListener("click", () => addGodParticles(5));
+  
+  const addTenButton = document.createElement("button");
+  addTenButton.textContent = "+10 GP";
+  addTenButton.addEventListener("click", () => addGodParticles(10));
+  
+  testButtonsContainer.appendChild(addOneButton);
+  testButtonsContainer.appendChild(addFiveButton);
+  testButtonsContainer.appendChild(addTenButton);
+  
+  document.body.appendChild(testButtonsContainer);
+
+  // Hide the spins remaining display on load
+  spinsRemainingDisplay.classList.add('hidden');
 });
 
 function toggleSidebar() {

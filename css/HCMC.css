@@ -76,19 +76,20 @@
     width: 60%; /* Use percentage instead of fixed width */
     height: 50%; /* Use percentage instead of fixed height */
     object-fit: cover;
+    object-position: top; /* Always show the top of image and crop from bottom if needed */
     position: relative;
     top: 5%; /* Use percentage instead of fixed pixels */
     left: 16px; /* Added to move image right by 10px */
-    opacity: 0;
+    opacity: 0.5; /* Always use 50% transparency until accepted */
     margin: 0 auto; /* Center horizontally */
     transition: opacity 0.2s ease-in-out;
 }
 
 #control-button {
-    position: absolute;
-    bottom: 10px;
-    left: 52%;
-    transform: translateX(-50%);
+    position: relative; /* Changed from absolute to relative */
+    bottom: auto;
+    left: auto;
+    transform: none;
     padding: 12px 40px;
     background-color: #6a1b9a;
     background-image: linear-gradient(to bottom, #8e24aa, #6a1b9a);
@@ -108,10 +109,28 @@
     z-index: 10;
     min-width: 120px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    line-height: normal;
+    vertical-align: middle;
+    height: auto;
+}
+
+/* Add styles for disabled button */
+#control-button.disabled {
+    opacity: 0.5;
+    background-image: linear-gradient(to bottom, #777, #555);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#control-button.disabled:hover {
+    transform: none;
+    background-image: linear-gradient(to bottom, #777, #555);
+    box-shadow: none;
 }
 
 #control-button:hover {
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.05);
     background-image: linear-gradient(to bottom, #9c27b0, #7b1fa2);
     box-shadow: 
         0 6px 8px rgba(0, 0, 0, 0.4),
@@ -120,7 +139,7 @@
 }
 
 #control-button:active {
-    transform: translateX(-50%) scale(0.95);
+    transform: scale(0.95);
     background-image: linear-gradient(to top, #6a1b9a, #4a148c);
     box-shadow: 
         0 2px 4px rgba(0, 0, 0, 0.3),
@@ -130,7 +149,7 @@
 }
 
 #control-button.press-animation {
-    transform: translateX(-50%) scale(0.95);
+    transform: scale(0.95);
     box-shadow: 
         0 2px 4px rgba(0, 0, 0, 0.3),
         inset 0 2px 3px rgba(0, 0, 0, 0.4);
@@ -843,6 +862,37 @@ header {
     border-color: rgba(0, 0, 0, 0.95) transparent transparent transparent;
 }
 
+/* Style for popup tooltips - update to position beside the image */
+#optionPopup {
+    position: relative;
+}
+
+#optionPopup .info-overlay {
+    position: absolute;
+    right: -270px; /* Position to the right of the popup */
+    top: 50px; /* Position near the top but not at the very top */
+    transform: translateY(0);
+    width: 250px;
+    max-width: 250px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Add media query for small screens to position below instead of beside */
+@media (max-width: 1200px) {
+    #optionPopup .info-overlay {
+        right: 0;
+        left: 0;
+        top: auto;
+        bottom: -300px;
+        width: 100%;
+        max-width: 100%;
+        max-height: 280px;
+        margin: 0 auto;
+    }
+}
+
 /* Style for popup tooltips */
 #optionPopup {
     position: relative;
@@ -924,4 +974,167 @@ header {
 
 .reward-item {
     transition: background-color 0.3s ease;
+}
+
+/* God Particles UI */
+#god-particles-display {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #4CAF50;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #4CAF50;
+    z-index: 10;
+}
+
+#god-particles-count {
+    font-weight: bold;
+    font-size: 18px;
+    color: gold;
+}
+
+#spins-remaining-display {
+    display: none !important;
+}
+
+#spins-remaining {
+    font-weight: bold;
+    font-size: 18px;
+    color: #FF9800;
+}
+
+#particles-input-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.98));
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.modal-content p {
+    color: #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+#particles-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#control-buttons-container {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+    padding: 10px 0;
+}
+
+#control-button, #accept-button {
+    position: relative;
+    transform: none;
+    padding: 12px 40px;
+    background-color: #6a1b9a;
+    background-image: linear-gradient(to bottom, #8e24aa, #6a1b9a);
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    min-width: 120px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 0; /* Remove any margins to ensure alignment */
+    vertical-align: middle; /* Ensure vertical alignment */
+    height: auto;
+}
+
+#accept-button {
+    background-color: #388E3C;
+    background-image: linear-gradient(to bottom, #4CAF50, #388E3C);
+}
+
+#accept-button:hover {
+    transform: scale(1.05);
+    background-image: linear-gradient(to bottom, #5CDF60, #399E3C);
+    box-shadow: 
+        0 6px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+}
+
+#accept-button:active {
+    transform: scale(0.95);
+    background-image: linear-gradient(to top, #388E3C, #2E7D32);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 2px 3px rgba(0, 0, 0, 0.4);
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+
+.hidden {
+    display: none !important;
 }

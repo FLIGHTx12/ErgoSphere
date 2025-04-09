@@ -28,13 +28,22 @@
 <div id="main-wrapper">
   <div id="main-container">
     <div id="picker-container">
+      <div id="god-particles-display">
+        <span id="god-particles-count">0</span> God Particles
+      </div>
+      <div id="spins-remaining-display" class="hidden">
+        <span id="spins-remaining">0</span> Spins Remaining
+      </div>
       <div id="choice-display">
         <div id="choice-content">
           <img id="choice-image" src="" alt="">
           <p id="choice-text"></p>
         </div>
       </div>
-      <button id="control-button">Start</button>
+      <div id="control-buttons-container">
+        <button id="control-button">Start</button>
+        <button id="accept-button" class="hidden">Accept</button>
+      </div>
     </div>
   </div>
   <div id="static-rewards"></div>
@@ -43,6 +52,19 @@
     <div id="reward-info-content"></div>
   </div>
 </div>
+
+<div id="particles-input-modal" class="hidden">
+  <div class="modal-content">
+    <h3>Set Your God Particles</h3>
+    <p>(Each spin costs 2 God Particles)</p>
+    <input type="number" id="particles-input" min="2" step="2" value="10">
+    <div class="modal-buttons">
+      <button id="confirm-particles">Confirm</button>
+      <button id="cancel-particles">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <br>
 <br>
 <script src="../js/HCMC.js"></script>
