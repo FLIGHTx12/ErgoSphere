@@ -10,6 +10,7 @@ let currentlyDisplayedChoice = null; // Add this with other state variables at t
 let godParticles = 0; // Current amount of God Particles the user has
 let isSelectingParticles = false; // Flag to track if we're in particle selection mode
 let isSubsequentSpin = false; // Track if this is a subsequent spin
+let probabilityBoosts = {}; // Track probability boosts
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -131,13 +132,25 @@ function createInfoOverlay(choice) {
 }
 
 function populateStaticRewards() {
+    // Calculate total copies for percentage calculations (still needed for info display)
+    const totalCopies = choices.reduce((sum, choice) => sum + Math.max(0, choice.copies || 0), 0);
+    
     staticRewards.innerHTML = `<h3 style="text-align: center;">Available Rewards: ${currentPool}</h3><hr><ul>` +
         choices.filter(choice => choice.copies > 0)
-            .map(choice => `<li class="reward-item" data-text="${choice.text.trim()}">
-                ${choice.text.trim()}
-                <br>
-                <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
-            </li>`)
+            .map(choice => {
+                const boostBadge = probabilityBoosts[choice.text] ? 
+                    `<span class="boost-badge">+${probabilityBoosts[choice.text] * 5}%</span>` : '';
+                    
+                return `<li class="reward-item" data-text="${choice.text.trim()}">
+                    <div class="reward-content">
+                        ${choice.text.trim()}
+                        <br>
+                        <span style="font-size: 0.3em;">${'🟢'.repeat(choice.copies)}</span>
+                        ${boostBadge}
+                    </div>
+                    <button class="boost-btn" data-text="${choice.text.trim()}" title="Boost chance (+5%) - Costs 0.5 GP">+</button>
+                </li>`;
+            })
             .join("") +
         "</ul>" +
         `<select id="filter-dropdown">
@@ -154,7 +167,10 @@ function populateStaticRewards() {
 
     // Add click handler for reward items that also shows preview
     staticRewards.querySelectorAll('.reward-item').forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+            // Don't trigger if the boost button was clicked
+            if (e.target.classList.contains('boost-btn')) return;
+            
             const choice = choices.find(c => c.text === item.dataset.text);
             if (choice) {
                 // First, highlight this item
@@ -168,6 +184,15 @@ function populateStaticRewards() {
                     choiceImage.style.display = "block";
                 }
             }
+        });
+    });
+    
+    // Add click handlers for boost buttons
+    staticRewards.querySelectorAll('.boost-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering parent click
+            const itemText = btn.dataset.text;
+            boostProbability(itemText);
         });
     });
 }
@@ -197,12 +222,27 @@ function showRewardInfo(choice) {
         infoDisplay.style.backgroundImage = 'none';
     }
 
-    // Rest of the showRewardInfo function remains the same
+    // Add title and copies information
     let titleContent = choice.text;
     if (choice.link && choice.link.trim() !== '') {
         titleContent = `<a href="${choice.link}" target="_blank" style="color: #4CAF50; text-decoration: none; hover: underline;">${choice.text}</a>`;
     }
+    
+    // Add copies information with percentage chance
+    const totalCopies = choices.reduce((sum, c) => sum + Math.max(0, c.copies || 0), 0);
+    const percentage = totalCopies > 0 ? ((choice.copies || 0) / totalCopies * 100).toFixed(2) : 0;
     let content = `<h4>${titleContent}</h4>`;
+    content += `<p><strong>Copies:</strong> ${choice.copies || 0} (${percentage}% chance)</p>`;
+    
+    // Add details if available
+    if (choice.details && choice.details.trim() !== '') {
+        content += `<p><strong>Details:</strong> ${choice.details}</p>`;
+    }
+    
+    // Add cost if available
+    if (choice.cost && choice.cost.trim() !== '') {
+        content += `<p><strong>Cost:</strong> ${choice.cost}</p>`;
+    }
     
     // Add genre-specific information 
     if (choice.genre === 'ERGOvillians' && choice.Escape) {
@@ -224,12 +264,12 @@ function showRewardInfo(choice) {
         content += `<p><strong>Punishment:</strong> ${choice.punishment}</p>`;
     }
 
-    // Rest of properties display (removing 'details' from the list)
+    // Rest of properties display (removing 'details' and 'cost' from the list since they're displayed above)
     const properties = [
         { key: 'mode', label: 'Mode' },
         { key: 'genre', label: 'Genre' },
         { key: 'type', label: 'Type' },
-        { key: 'cost', label: 'Cost' },
+        // Removed 'cost' from here since we're showing it explicitly above
         { key: 'console', label: 'Console' },
         { key: 'time to beat', label: 'Time to Beat' },
         { key: 'owned', label: 'Owned', transform: val => val ? 'Yes' : 'No' },
@@ -288,13 +328,78 @@ function filterChoices() {
             filteredChoices = choices.filter(choice => choice.copies > 0);
     }
 
+    // Calculate total copies for percentage calculations (still needed for info display)
+    const totalCopies = filteredChoices.reduce((sum, choice) => sum + Math.max(0, choice.copies || 0), 0);
+
     staticRewards.querySelector("ul").innerHTML = filteredChoices
-        .map(choice => `<li class="reward-item" data-text="${choice.text}">
-            ${choice.text}
-            <br>
-            <span style="font-size: 0.6em;">${'🟢'.repeat(choice.copies)}</span>
-        </li>`)
+        .map(choice => {
+            const boostBadge = probabilityBoosts[choice.text] ? 
+                `<span class="boost-badge">+${probabilityBoosts[choice.text] * 5}%</span>` : '';
+                
+            return `<li class="reward-item" data-text="${choice.text}">
+                <div class="reward-content">
+                    ${choice.text}
+                    <br>
+                    <span style="font-size: 0.3em;">${'🟢'.repeat(choice.copies)}</span>
+                    ${boostBadge}
+                </div>
+                <button class="boost-btn" data-text="${choice.text}" title="Boost chance (+5%) - Costs 0.5 GP">+</button>
+            </li>`;
+        })
         .join("");
+        
+    // Re-add click handlers for boost buttons after filtering
+    staticRewards.querySelectorAll('.boost-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering parent click
+            const itemText = btn.dataset.text;
+            boostProbability(itemText);
+        });
+    });
+    
+    // Re-add click handlers for items
+    staticRewards.querySelectorAll('.reward-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Don't trigger if the boost button was clicked
+            if (e.target.classList.contains('boost-btn')) return;
+            
+            const choice = choices.find(c => c.text === item.dataset.text);
+            if (choice) {
+                syncChoiceAndReward(choice);
+                showRewardInfo(choice);
+                if (!spinning && !stopInitiated) {
+                    choiceImage.style.display = "block";
+                }
+            }
+        });
+    });
+}
+
+// Add function to boost probability
+function boostProbability(itemText) {
+    // Check if user has enough God Particles
+    if (godParticles < 0.5) {
+        alert("Not enough God Particles! You need 0.5 GP to boost an item.");
+        return;
+    }
+    
+    // Deduct particles
+    godParticles -= 0.5;
+    updateGodParticlesDisplay();
+    saveGodParticles();
+    
+    // Add boost (each level adds 5% chance)
+    probabilityBoosts[itemText] = (probabilityBoosts[itemText] || 0) + 1;
+    
+    // Play a sound
+    playSound('click');
+    
+    // Refresh the display
+    if (document.getElementById("filter-dropdown")) {
+        filterChoices();
+    } else {
+        populateStaticRewards();
+    }
 }
 
 // Add a new function to synchronize image and active reward
@@ -377,6 +482,9 @@ acceptButton.addEventListener("click", () => {
         updateGodParticlesDisplay();
         saveGodParticles();
         
+        // Reset probability boosts
+        probabilityBoosts = {};
+        
         showOptionPopup(currentlyDisplayedChoice);
         acceptButton.classList.add('hidden');
         // Reset for next spin
@@ -389,36 +497,42 @@ acceptButton.addEventListener("click", () => {
 });
 
 function selectWeightedChoice(choices) {
-  // Create array of choices where each copy is a separate instance
-  const weightedArray = choices.reduce((acc, choice) => {
-    let copies = Math.max(0, choice.copies || 0);
-    
-    // Add 15% more copies if this was the displayed choice when stopping
-    if (stopInitiated && currentlyDisplayedChoice && 
-        choice.text === currentlyDisplayedChoice.text) {
-      copies = Math.ceil(copies * 1.15); // 15% more copies
-    }
-    
-    // Add this choice to array once for each copy
-    for (let i = 0; i < copies; i++) {
-      acc.push(choice);
-    }
-    return acc;
-  }, []);
+    // Create array of choices where each copy is a separate instance
+    const weightedArray = choices.reduce((acc, choice) => {
+        let copies = Math.max(0, choice.copies || 0);
+        
+        // Add 15% more copies if this was the displayed choice when stopping
+        if (stopInitiated && currentlyDisplayedChoice && 
+            choice.text === currentlyDisplayedChoice.text) {
+            copies = Math.ceil(copies * 1.15); // 15% more copies
+        }
+        
+        // Add boost if any
+        const boostFactor = probabilityBoosts[choice.text] || 0;
+        if (boostFactor > 0) {
+            copies = copies * (1 + (boostFactor * 0.05)); // 5% boost per level
+        }
+        
+        // Add this choice to array once for each copy
+        for (let i = 0; i < copies; i++) {
+            acc.push(choice);
+        }
+        return acc;
+    }, []);
 
-  if (weightedArray.length === 0) {
-    return null;
-  }
+    if (weightedArray.length === 0) {
+        return null;
+    }
 
-  const randomIndex = Math.floor(Math.random() * weightedArray.length);
-  return weightedArray[randomIndex];
+    const randomIndex = Math.floor(Math.random() * weightedArray.length);
+    return weightedArray[randomIndex];
 }
 
 function updateActiveReward(currentChoice) {
-  const rewardItems = staticRewards.querySelectorAll(".reward-item");
-  rewardItems.forEach(item => item.classList.remove("active"));
-  const activeItem = staticRewards.querySelector(`.reward-item[data-text="${currentChoice.text}"]`);
-  if (activeItem) activeItem.classList.add("active");
+    const rewardItems = staticRewards.querySelectorAll(".reward-item");
+    rewardItems.forEach(item => item.classList.remove("active"));
+    const activeItem = staticRewards.querySelector(`.reward-item[data-text="${currentChoice.text}"]`);
+    if (activeItem) activeItem.classList.add("active");
 }
 
 function updateVibrationIntensity() {
@@ -830,6 +944,11 @@ function resetCycle() {
         isSubsequentSpin = false;
     }
     
+    // Only clear boosts if no choice is displayed (e.g., on pool change)
+    if (!currentlyDisplayedChoice) {
+        probabilityBoosts = {};
+    }
+    
     // Always keep spins remaining hidden
     spinsRemainingDisplay.classList.add('hidden');
     updateButtonStates(); // Update button states after reset
@@ -837,6 +956,20 @@ function resetCycle() {
 
 async function capturePopupScreenshot(element) {
     try {
+        // Show loading toast
+        const loadingToast = document.createElement('div');
+        loadingToast.textContent = 'Capturing screenshot...';
+        loadingToast.style.position = 'fixed';
+        loadingToast.style.bottom = '20px';
+        loadingToast.style.left = '50%';
+        loadingToast.style.transform = 'translateX(-50%)';
+        loadingToast.style.background = 'rgba(0, 0, 0, 0.8)';
+        loadingToast.style.color = 'white';
+        loadingToast.style.padding = '10px 20px';
+        loadingToast.style.borderRadius = '5px';
+        loadingToast.style.zIndex = '9999';
+        document.body.appendChild(loadingToast);
+
         // Save original styles
         const originalStyles = {
             transform: element.style.transform,
@@ -851,14 +984,17 @@ async function capturePopupScreenshot(element) {
         element.style.left = '0';
         element.style.top = '0';
 
-        const canvas = await html2canvas(element, {
-            backgroundColor: null,
-            scale: 2, // Increase quality
-            logging: false,
-            useCORS: true,
-            allowTaint: true,
-            windowWidth: element.scrollWidth,
-            windowHeight: element.scrollHeight
+        // Use dom-to-image to capture the screenshot
+        const blob = await domtoimage.toBlob(element, {
+            bgcolor: null,
+            quality: 0.95,
+            scale: 2,
+            height: element.scrollHeight,
+            width: element.scrollWidth,
+            style: {
+                'transform': 'none',
+                'transform-origin': '0 0'
+            }
         });
 
         // Restore original styles
@@ -867,27 +1003,46 @@ async function capturePopupScreenshot(element) {
         element.style.left = originalStyles.left;
         element.style.top = originalStyles.top;
 
-        canvas.toBlob(function(blob) {
-            const item = new ClipboardItem({ "image/png": blob });
-            navigator.clipboard.write([item]).then(() => {
-                const toast = document.createElement('div');
-                toast.textContent = 'Screenshot copied to clipboard!';
-                toast.style.position = 'fixed';
-                toast.style.bottom = '20px';
-                toast.style.left = '50%';
-                toast.style.transform = 'translateX(-50%)';
-                toast.style.background = 'rgba(0, 255, 0, 0.8)';
-                toast.style.color = 'white';
-                toast.style.padding = '10px 20px';
-                toast.style.borderRadius = '5px';
-                toast.style.zIndex = '9999';
-                
-                document.body.appendChild(toast);
-                setTimeout(() => toast.remove(), 2000);
-            });
-        });
+        // Copy to clipboard using ClipboardItem API
+        const item = new ClipboardItem({ "image/png": blob });
+        await navigator.clipboard.write([item]);
+        
+        // Remove loading toast
+        loadingToast.remove();
+        
+        // Show success toast
+        const toast = document.createElement('div');
+        toast.textContent = 'Screenshot copied to clipboard!';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = 'rgba(0, 255, 0, 0.8)';
+        toast.style.color = 'white';
+        toast.style.padding = '10px 20px';
+        toast.style.borderRadius = '5px';
+        toast.style.zIndex = '9999';
+        
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
     } catch (error) {
         console.error('Screenshot failed:', error);
+        
+        // Show error toast
+        const errorToast = document.createElement('div');
+        errorToast.textContent = `Screenshot failed: ${error.message}`;
+        errorToast.style.position = 'fixed';
+        errorToast.style.bottom = '20px';
+        errorToast.style.left = '50%';
+        errorToast.style.transform = 'translateX(-50%)';
+        errorToast.style.background = 'rgba(255, 0, 0, 0.8)';
+        errorToast.style.color = 'white';
+        errorToast.style.padding = '10px 20px';
+        errorToast.style.borderRadius = '5px';
+        errorToast.style.zIndex = '9999';
+        
+        document.body.appendChild(errorToast);
+        setTimeout(() => errorToast.remove(), 3000);
     }
 }
 
@@ -1052,8 +1207,42 @@ coopButton.addEventListener("click", async () => {
 function highlightActiveButton(activeButton) {
   [lootButton, pvpButton, coopButton].forEach(button => {
     button.classList.remove('active');
+    stopGlossyAnimation(button);
   });
   activeButton.classList.add('active');
+  startGlossyAnimation(activeButton);
+  
+  // Save current selection immediately
+  const buttonId = activeButton.id;
+  const poolName = buttonId.replace('-button', '');
+  localStorage.setItem('currentPool', poolName);
+}
+
+// Add glossy animation functions
+function startGlossyAnimation(button) {
+  // Initial animation
+  applyGlossyEffect(button);
+  
+  // Set up repeating animation every 35 seconds instead of 5
+  button.glossyInterval = setInterval(() => {
+    applyGlossyEffect(button);
+  }, 35000);
+}
+
+function stopGlossyAnimation(button) {
+  if (button.glossyInterval) {
+    clearInterval(button.glossyInterval);
+    button.glossyInterval = null;
+  }
+}
+
+function applyGlossyEffect(button) {
+  if (!button.classList.contains('active')) return;
+  
+  button.classList.add('glossy');
+  setTimeout(() => {
+    button.classList.remove('glossy');
+  }, 2000); // Animation duration
 }
 
 // Update setRandomBackground to use cached images
@@ -1076,7 +1265,16 @@ document.addEventListener('DOMContentLoaded', () => {
   loadGodParticles();
   const savedPool = localStorage.getItem('currentPool') || 'loot';
   loadChoices(savedPool);
-  highlightActiveButton(document.getElementById(`${savedPool}-button`));
+  
+  // Make sure we highlight the correct button
+  const buttonId = `${savedPool}-button`;
+  const activeButton = document.getElementById(buttonId);
+  if (activeButton) {
+    highlightActiveButton(activeButton);
+  } else {
+    // Fallback to loot button if the saved button doesn't exist
+    highlightActiveButton(lootButton);
+  }
   
   // Add test buttons for adding God Particles (for development)
   const testButtonsContainer = document.createElement("div");
@@ -1084,6 +1282,10 @@ document.addEventListener('DOMContentLoaded', () => {
   testButtonsContainer.style.bottom = "10px";
   testButtonsContainer.style.right = "10px";
   testButtonsContainer.style.zIndex = "1000";
+  
+  const addHalfButton = document.createElement("button");
+  addHalfButton.textContent = "+0.5 GP";
+  addHalfButton.addEventListener("click", () => addGodParticles(0.5));
   
   const addOneButton = document.createElement("button");
   addOneButton.textContent = "+1 GP";
@@ -1097,6 +1299,7 @@ document.addEventListener('DOMContentLoaded', () => {
   addTenButton.textContent = "+10 GP";
   addTenButton.addEventListener("click", () => addGodParticles(10));
   
+  testButtonsContainer.appendChild(addHalfButton);
   testButtonsContainer.appendChild(addOneButton);
   testButtonsContainer.appendChild(addFiveButton);
   testButtonsContainer.appendChild(addTenButton);
