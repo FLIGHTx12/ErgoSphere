@@ -39,9 +39,6 @@
 </header>
 <hr>
 
-
-
-
 <div id="sidebar" class="hidden">
   <button><a href="pages/BossFight.html">Boss Fight!</a></button>
   <button><a href="pages/ErgoBazaar.html">ErgoBazaar</a></button>
@@ -50,87 +47,164 @@
   
 </div>
 <main id="main-content">
- <div id="ergosphereRules">
-  <h3>🏆 BINGWA Challenge Rules 🏆</h3>
-  
-  <details><summary>📜 RULES 📜</summary>
-    <p>
-      <b>Bingwa</b> means Champion 💪, and <b>Kushindwa</b> means Failure 🤕.
-    </p>
+  <!-- New cyberpunk landing page sections -->
+  <div id="statusPanel" class="cyber-panel">
+    <h2 class="cyber-title">Current Champions</h2>
+    <div class="cyber-grid">
+      <div class="cyber-card">
+        <div class="card-header">
+          <span class="neon-text">WK15 Bingwa Champion</span>
+        </div>
+        <div class="card-content">
+          <span id="current-bingwa" class="champion-name">JAYBERS8</span>
+          <div class="status-decor"></div>
+        </div>
+      </div>
+      <div class="cyber-card">
+        <div class="card-header">
+          <span class="neon-text">WK15 Atletico <br>Champ</span>
+        </div>
+        <div class="card-content">
+          <span id="current-atletico" class="champion-name">JAYBERS8</span>
+          <div class="status-decor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <p>Every Sunday morning, contestants will play one Wii Sports game to determine the Bingwa (champion) for the week. 🎮 The Bingwa earns rewards and privileges for the following week. ✨ </p>
-    <p>All scores are final, even if there are controller issues or the game seems unfair. 🙅‍♂️🙅‍♀️  Contestants must shake hands at the end of the game to show good sportsmanship. 🤝 </p> 
-    <p>During the week of your birthday (Sunday-Saturday), you are automatically the Bingwa. 🎂🥳 If a contestant wins three times in a row, they receive a 100 Ducat bonus from the Bank. 💰💰💰 </p>
-  </details>
-  
-  <hr>
-  
-  <details><summary>🎁 REWARDS 🎁</summary>
-    <ul>
-      <li>🏆 The Kushindwa chooses the next week's game, except for the game they most recently picked. 🎮 </li>
-      <li>🏆 The Kushindwa cooks breakfast for the Bingwa on Sunday and makes dinner the following Saturday. 🍳🍽️ </li>
-      <li>🏆 The Bingwa enjoys "LUXURY HOUR" for the first hour of meal prep and while the Kushindwa cooks Saturday dinner. 🛀👑 </li>
-      <li>🏆 Bingwa gets to choose from:
-        1 bottle of complementary wine 🍷 , 3 Complementary snacks 😋, Schedule 2 hours of free Game time for the week 🎮,  Schedule 2 hours of free Cinema time for the week 🎬 or 1 free weekday Golden Ticket  🎟 (Bingwa Reward must be accepted or scheduled the day of the win or the rewards are void) </li>
-      <li>🏆 The Bingwa has the final say on the next week's schedule and can rearrange anything without argument or rebuttal. 🗓️ </li>
-      <li>🏆 The Bingwa chooses the week's movie, YouTube theater, and errand without argument or rebuttal. 🎬📺🚗 </li>
-      <li>🏆 The Bingwa can veto any one argument that week and postpone it for a day or week without argument or rebuttal. 🙊🙉🙈 </li>
-    </ul>
-  </details>
-  
-  <hr>
+  <div id="moviePanel" class="cyber-panel">
+    <h2 class="cyber-title">Movie Night</h2>
+    <div class="cyber-card wide-card">
+      <div class="card-header">
+        <span class="neon-text">Current Selection</span>
+      </div>
+      <div class="card-content">
+        <span id="current-movie" class="movie-title">A Scanner Darkly</span>
+        <div class="movie-decor"></div>
+      </div>
+    </div>
+  </div>
 
-  <details><summary>⭐ YEARLY REWARD ⭐</summary>
-    <p>
-      At the end of the year, the contestant who was Bingwa the most weeks receives the Honorary Yearly Bingwa Reward: 🏆<br>
-      • Automatic Bingwa for the last two weeks of the year (over the holiday travel season). 🎄🎁<br>
-      • Two spins of the Loot Wheel. 🎡<br>
-      • Honorary Eregosphere Trophy. 🏅<br>
-    </p>
-  </details>
+  <div id="countdownPanel" class="cyber-panel">
+    <h2 class="cyber-title">Countdowns</h2>
+    <div class="cyber-grid">
+      <div class="cyber-card">
+        <div class="card-header">
+          <span class="neon-text">Next ergoART Challenge</span>
+        </div>
+        <div class="card-content">
+          <div class="countdown-container">
+            <span class="countdown-segment"><span id="ergoart-days">00</span><span class="unit">d</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="ergoart-hours">00</span><span class="unit">h</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="ergoart-minutes">00</span><span class="unit">m</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="ergoart-seconds">00</span><span class="unit">s</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="cyber-card">
+        <div class="card-header">
+          <span class="neon-text">Quarter 3 <br>Begins</span>
+        </div>
+        <div class="card-content">
+          <div class="countdown-container">
+            <span class="countdown-segment"><span id="quarter-days">00</span><span class="unit">d</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="quarter-hours">00</span><span class="unit">h</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="quarter-minutes">00</span><span class="unit">m</span></span>
+            <span class="countdown-separator">:</span>
+            <span class="countdown-segment"><span id="quarter-seconds">00</span><span class="unit">s</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <hr>
-  
-  <details><summary>🎮 CHALLENGE GAMES 🎮</summary>
-    <ul>
-      <li>🏐 Volleyball - best of 3 🏐</li>
-      <li>🏸 Badminton - best of 3 🏸</li>
-      <li>🎾 Tennis - best of 3 🎾</li>
-      <li>⛳ Golf - 3 random holes ⛳</li>
-      <li>🤺 Chambara - best of 3 🤺</li>
-      <li>⚽ Soccer - 1 game of 4-on-4 ⚽</li>
-      <li>🎳 Bowling - 1 standard game 🎳</li>
-      <li>🎳❓ Bowling - 1 special game 🎳</li>
-    </ul>
+  <!-- Original content starts here -->
+  <div id="ergosphereRules">
+    <h3>🏆 BINGWA Challenge Rules 🏆</h3>
+    
+    <details><summary>📜 RULES 📜</summary>
+      <p>
+        <b>Bingwa</b> means Champion 💪, and <b>Kushindwa</b> means Failure 🤕.
+      </p>
 
-    <p>
-      <em> 
-        If the Bingwa wins two consecutive weeks in Switch Sports, the Kushindwa can evoke a "Kushindwa Rights Challenge" ❔ and challenge the Bingwa to any other two-player competitive game instead of Switch Sports until the Kushindwa wins. 💪<br>
-        • For Volleyball and Soccer, the CPU is set to "strong". 🤖<br>
-        • Players cannot choose the game they most recently picked. 🔄<br>
-        • In case of a tie, the game is played again. 🔁<br>
-        • If there's a second tie, the Kushindwa chooses any PVP game to determine the winner. 🎲
-      </em>
-    </p>
-  </details>
+      <p>Every Sunday morning, contestants will play one Wii Sports game to determine the Bingwa (champion) for the week. 🎮 The Bingwa earns rewards and privileges for the following week. ✨ </p>
+      <p>All scores are final, even if there are controller issues or the game seems unfair. 🙅‍♂️🙅‍♀️  Contestants must shake hands at the end of the game to show good sportsmanship. 🤝 </p> 
+      <p>During the week of your birthday (Sunday-Saturday), you are automatically the Bingwa. 🎂🥳 If a contestant wins three times in a row, they receive a 100 Ducat bonus from the Bank. 💰💰💰 </p>
+    </details>
+    
+    <hr>
+    
+    <details><summary>🎁 REWARDS 🎁</summary>
+      <ul>
+        <li>🏆 The Kushindwa chooses the next week's game, except for the game they most recently picked. 🎮 </li>
+        <li>🏆 The Kushindwa cooks breakfast for the Bingwa on Sunday and makes dinner the following Saturday. 🍳🍽️ </li>
+        <li>🏆 The Bingwa enjoys "LUXURY HOUR" for the first hour of meal prep and while the Kushindwa cooks Saturday dinner. 🛀👑 </li>
+        <li>🏆 Bingwa gets to choose from:
+          1 bottle of complementary wine 🍷 , 3 Complementary snacks 😋, Schedule 2 hours of free Game time for the week 🎮,  Schedule 2 hours of free Cinema time for the week 🎬 or 1 free weekday Golden Ticket  🎟 (Bingwa Reward must be accepted or scheduled the day of the win or the rewards are void) </li>
+        <li>🏆 The Bingwa has the final say on the next week's schedule and can rearrange anything without argument or rebuttal. 🗓️ </li>
+        <li>🏆 The Bingwa chooses the week's movie, YouTube theater, and errand without argument or rebuttal. 🎬📺🚗 </li>
+        <li>🏆 The Bingwa can veto any one argument that week and postpone it for a day or week without argument or rebuttal. 🙊🙉🙈 </li>
+      </ul>
+    </details>
+    
+    <hr>
 
-  <hr>
+    <details><summary>⭐ YEARLY REWARD ⭐</summary>
+      <p>
+        At the end of the year, the contestant who was Bingwa the most weeks receives the Honorary Yearly Bingwa Reward: 🏆<br>
+        • Automatic Bingwa for the last two weeks of the year (over the holiday travel season). 🎄🎁<br>
+        • Two spins of the Loot Wheel. 🎡<br>
+        • Honorary Eregosphere Trophy. 🏅<br>
+      </p>
+    </details>
 
-  <details><summary>❔ FAQ ❔</summary>
-    <p>
-      [FAQ content here]
-    </p>
-  </details>
+    <hr>
+    
+    <details><summary>🎮 CHALLENGE GAMES 🎮</summary>
+      <ul>
+        <li>🏐 Volleyball - best of 3 🏐</li>
+        <li>🏸 Badminton - best of 3 🏸</li>
+        <li>🎾 Tennis - best of 3 🎾</li>
+        <li>⛳ Golf - 3 random holes ⛳</li>
+        <li>🤺 Chambara - best of 3 🤺</li>
+        <li>⚽ Soccer - 1 game of 4-on-4 ⚽</li>
+        <li>🎳 Bowling - 1 standard game 🎳</li>
+        <li>🎳❓ Bowling - 1 special game 🎳</li>
+      </ul>
 
-  <hr>
+      <p>
+        <em> 
+          If the Bingwa wins two consecutive weeks in Switch Sports, the Kushindwa can evoke a "Kushindwa Rights Challenge" ❔ and challenge the Bingwa to any other two-player competitive game instead of Switch Sports until the Kushindwa wins. 💪<br>
+          • For Volleyball and Soccer, the CPU is set to "strong". 🤖<br>
+          • Players cannot choose the game they most recently picked. 🔄<br>
+          • In case of a tie, the game is played again. 🔁<br>
+          • If there's a second tie, the Kushindwa chooses any PVP game to determine the winner. 🎲
+        </em>
+      </p>
+    </details>
 
-  <details><summary>🚀 MODS 🚀</summary>
-    <p>
-      See <a href="MODS.html">MODS</a> page for details.
-    </p>
-  </details>
-  <hr>
-</div>
+    <hr>
+
+    <details><summary>❔ FAQ ❔</summary>
+      <p>
+        [FAQ content here]
+      </p>
+    </details>
+
+    <hr>
+
+    <details><summary>🚀 MODS 🚀</summary>
+      <p>
+        See <a href="MODS.html">MODS</a> page for details.
+      </p>
+    </details>
+    <hr>
+  </div>
   
 
 <div id="atleticoRules">

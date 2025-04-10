@@ -29,6 +29,7 @@ const particlesInput = document.getElementById("particles-input");
 const confirmParticlesBtn = document.getElementById("confirm-particles");
 const cancelParticlesBtn = document.getElementById("cancel-particles");
 const acceptButton = document.getElementById("accept-button");
+const aboutButton = document.getElementById("about-button");
 
 const AUDIO = {
     click: new Audio('../assets/audio/click.mp3'),
@@ -1353,4 +1354,52 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('hidden');
     }
     lastScrollPosition = currentScrollPosition;
+});
+
+// Replace the complex showRulesOverlay function with a simpler version
+function showRulesOverlay() {
+    playClickSounds();
+    
+    const rulesOverlay = document.getElementById('rules-overlay');
+    if (rulesOverlay) {
+        rulesOverlay.classList.remove('hidden');
+    } else {
+        console.error("Rules overlay element not found");
+    }
+}
+
+// Make sure event listeners are added when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for the about overlay
+    const aboutButton = document.getElementById('about-button');
+    if (aboutButton) {
+        aboutButton.addEventListener('click', showRulesOverlay);
+    }
+    
+    const closeRulesButton = document.getElementById('close-rules');
+    if (closeRulesButton) {
+        closeRulesButton.addEventListener('click', function() {
+            document.getElementById('rules-overlay').classList.add('hidden');
+        });
+    }
+    
+    // Add click handler to close when clicking outside the content
+    const rulesOverlay = document.getElementById('rules-overlay');
+    if (rulesOverlay) {
+        rulesOverlay.addEventListener('click', function(e) {
+            if (e.target === rulesOverlay) {
+                rulesOverlay.classList.add('hidden');
+            }
+        });
+    }
+    
+    // Add ESC key handler
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const rulesOverlay = document.getElementById('rules-overlay');
+            if (rulesOverlay && !rulesOverlay.classList.contains('hidden')) {
+                rulesOverlay.classList.add('hidden');
+            }
+        }
+    });
 });
