@@ -45,21 +45,51 @@ function handleScreenshotButtonClick(event) {
 
 // Countdown functionality
 function initializeCountdowns() {
-  // Set placeholder data - you can replace these with actual data
-  document.getElementById('current-bingwa').textContent = 'Player 1';
-  document.getElementById('current-atletico').textContent = 'Player 2';
-  document.getElementById('current-movie').textContent = 'Blade Runner 2049';
-  
-  // Start the countdowns
-  updateCountdowns();
+  try {
+    // Log to verify function is running
+    console.log("Initializing countdowns and champions data");
+    
+    // Set champion data with error checking
+    const bingwaElement = document.getElementById('current-bingwa');
+    const atleticoElement = document.getElementById('current-atletico');
+    const movieElement = document.getElementById('current-movie');
+    
+    if (bingwaElement) {
+      bingwaElement.textContent = 'Jayber8';
+      console.log("Bingwa champion set");
+    } else {
+      console.error("Element with ID 'current-bingwa' not found");
+    }
+    
+    if (atleticoElement) {
+      atleticoElement.textContent = 'Jaybers8';
+      console.log("Atletico champion set");
+    } else {
+      console.error("Element with ID 'current-atletico' not found");
+    }
+    
+    if (movieElement) {
+      movieElement.textContent = 'A Scanner Darkly';
+      console.log("Movie title set");
+    } else {
+      console.error("Element with ID 'current-movie' not found");
+    }
+    
+    // Start the countdowns
+    updateCountdowns();
+  } catch (error) {
+    console.error("Error in initializeCountdowns:", error);
+  }
 }
 
 function updateCountdowns() {
   // Get current date
   const now = new Date();
   
-  // Next ErgoArt Challenge - Example: First day of next month
-  let nextErgoArt = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  // Calculate the next ErgoArt Challenge date
+  // ErgoArt happens every 3 months on the second Saturday of the month
+  // Starting with April 12th, 2025
+  const nextErgoArt = calculateNextErgoArt(now);
   
   // End of Quarter - Calculate the end of the current quarter
   const currentMonth = now.getMonth();
@@ -85,6 +115,58 @@ function updateCountdowns() {
   
   // Update every second
   setTimeout(updateCountdowns, 1000);
+}
+
+// Function to calculate the next ErgoArt event
+function calculateNextErgoArt(currentDate) {
+  // First ErgoArt date: April 12th, 2025 (second Saturday)
+  const baseDate = new Date(2025, 3, 12); // April is month 3 (0-indexed)
+  
+  // If current date is before the first event, return the first event date
+  if (currentDate < baseDate) {
+    return baseDate;
+  }
+  
+  // Calculate the next date after currentDate
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth();
+  
+  // Determine how many months to add to get to the next ErgoArt month
+  // Starting from the base month (April 2025, which is month 3)
+  const baseMonth = 3; // April
+  const baseYear = 2025;
+  
+  // Calculate total months since base date
+  const totalMonthsSinceBase = (year - baseYear) * 12 + month - baseMonth;
+  
+  // Calculate how many 3-month intervals have passed
+  const intervalsPassedSinceBase = Math.floor(totalMonthsSinceBase / 3);
+  
+  // Calculate the next interval
+  const nextIntervalMonthsFromBase = (intervalsPassedSinceBase + 1) * 3;
+  
+  // Calculate the next month and year
+  const nextEventMonth = (baseMonth + nextIntervalMonthsFromBase) % 12;
+  const nextEventYear = baseYear + Math.floor((baseMonth + nextIntervalMonthsFromBase) / 12);
+  
+  // Find the second Saturday of that month
+  return getSecondSaturdayOfMonth(nextEventYear, nextEventMonth);
+}
+
+// Function to get the second Saturday of a given month
+function getSecondSaturdayOfMonth(year, month) {
+  let date = new Date(year, month, 1);
+  let saturdayCount = 0;
+  
+  // Find the first Saturday
+  while (date.getDay() !== 6) { // 6 is Saturday
+    date.setDate(date.getDate() + 1);
+  }
+  
+  // Find the second Saturday
+  date.setDate(date.getDate() + 7);
+  
+  return date;
 }
 
 function updateCountdown(id, targetDate) {

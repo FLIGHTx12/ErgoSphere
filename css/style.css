@@ -246,6 +246,7 @@ button:active {
   max-width: 1200px; /* Set a max-width for better readability on large screens */
   box-sizing: border-box;
   padding: 0 20px; /* Add some padding on the sides */
+  transform: translateX(-85px); /* Move content left to center it better */
 }
 
 /* Adjust main content for sidebar on large screens */
@@ -253,6 +254,7 @@ button:active {
   #main-content.sidebar-visible {
     margin-right: 160px;
     margin-left: auto;
+    transform: translateX(-100px); /* Smaller offset for larger screens */
   }
 }
 
@@ -262,6 +264,15 @@ button:active {
     margin-right: auto !important;
     margin-left: auto !important;
     padding-right: 170px !important; /* Use padding instead of margin to keep content centered */
+    transform: translateX(0) !important; /* No need for transform on very large screens */
+  }
+}
+
+/* Reset transform for small screens to prevent overflow */
+@media (max-width: 767px) {
+  #main-content {
+    transform: translateX(0); /* Remove the transform on small screens */
+    padding: 0 10px; /* Smaller padding for small screens */
   }
 }
 
@@ -528,12 +539,45 @@ li {
   border: 1px solid #0ff;
   border-radius: 5px;
   flex: 1;
-  min-width: 400px; /* Increased from 200px for wider cards */
+  min-width: 300px; /* Reduced from 400px for better fit on smaller screens */
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   transition: all 0.3s ease;
   overflow: hidden;
   position: relative;
+}
+
+/* Override for mobile screens */
+@media (max-width: 767px) {
+  .cyber-card {
+    min-width: 100%; /* Take full width on mobile */
+    margin-bottom: 15px; /* Add some space between stacked cards */
+  }
+  
+  .cyber-grid {
+    gap: 10px; /* Smaller gap on mobile */
+  }
+  
+  .card-content {
+    padding: 15px 10px; /* Smaller padding on mobile */
+  }
+}
+
+/* For very small screens */
+@media (max-width: 375px) {
+  .cyber-card {
+    min-width: 100%;
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  
+  .champion-name, .movie-title {
+    font-size: 1.3em; /* Smaller text on very small screens */
+  }
+  
+  .movie-title {
+    font-size: 1.6em; /* Smaller movie title on very small screens */
+  }
 }
 
 .wide-card {
@@ -657,18 +701,25 @@ li {
   }
   
   .countdown-segment {
-    font-size: 1.2em; /* Decreased from 1.5em */
+    font-size: 1.2em;
     padding: 3px;
-    min-width: 1.8em; /* Decreased from 2em */
+    min-width: 1.8em;
   }
   
   .countdown-separator {
-    font-size: 1.2em; /* Decreased from 1.5em */
+    font-size: 1.2em;
     margin: 0 1px;
   }
   
   .movie-title {
     font-size: 1.5em;
+  }
+  
+  /* More specific adjustments for the wide-card */
+  .wide-card {
+    min-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
