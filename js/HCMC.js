@@ -9,6 +9,7 @@ let powerDownPlayed = false; // Add this with other state variables at the top
 let currentlyDisplayedChoice = null; // Add this with other state variables at top
 let godParticles = 0; // Current amount of God Particles the user has
 let isSelectingParticles = false; // Flag to track if we're in particle selection mode
+let isSubsequentSpin = false; // Track if this is a subsequent spin
 
 const choiceDisplay = document.getElementById("choice-display");
 const choiceImage = document.getElementById("choice-image");
@@ -315,7 +316,7 @@ function syncChoiceAndReward(choice) {
     }
 }
 
-// Add a function to clearly display the final image when spinning stops
+// Fix the displayFinalImage function to always use 50% opacity
 function displayFinalImage(choice) {
     if (!choice) return;
     
@@ -325,7 +326,7 @@ function displayFinalImage(choice) {
     // Ensure immediate display without fading
     choiceImage.src = imageUrl;
     choiceImage.style.display = "block";
-    choiceImage.style.opacity = "0.5"; // Always 50% opacity until accepted
+    choiceImage.style.opacity = "0.5"; // Always 50% opacity until explicitly accepted
     lastImageUrl = imageUrl;
 }
 
@@ -364,19 +365,28 @@ async function updateChoiceImage(choice) {
     }
 }
 
-// Add a function to clearly display the final image when spinning stops
-function displayFinalImage(choice) {
-    if (!choice) return;
-    
-    const imageUrl = getRandomImage(choice);
-    if (!imageUrl) return;
-    
-    // Ensure immediate display without fading
-    choiceImage.src = imageUrl;
-    choiceImage.style.display = "block";
-    choiceImage.style.opacity = "1.0"; // Full opacity for final result
-    lastImageUrl = imageUrl;
-}
+// Update accept button event listener to remove all God Particles
+acceptButton.addEventListener("click", () => {
+    playClickSounds();
+    if (currentlyDisplayedChoice) {
+        // Show the image at full opacity when accepted
+        choiceImage.style.opacity = '1.0';
+        
+        // Remove all God Particles when accepting a choice
+        godParticles = 0;
+        updateGodParticlesDisplay();
+        saveGodParticles();
+        
+        showOptionPopup(currentlyDisplayedChoice);
+        acceptButton.classList.add('hidden');
+        // Reset for next spin
+        controlButton.textContent = "Start";
+        currentlyDisplayedChoice = null;
+        
+        // Reset the subsequent spin flag for the next game
+        isSubsequentSpin = false;
+    }
+});
 
 function selectWeightedChoice(choices) {
   // Create array of choices where each copy is a separate instance
@@ -422,7 +432,7 @@ function updateVibrationIntensity() {
     const timeRatio = Math.min(timeSinceStart / 30000, 1); // 30 seconds to reach max intensity
     const newDuration = baseIntensity * Math.pow(0.1, timeRatio);
     
-    // Clamp the duration between min and base intensity
+    // Clamp the duration between min and baseIntensity
     const clampedDuration = Math.max(minIntensity, Math.min(baseIntensity, newDuration));
     document.body.style.animationDuration = `${clampedDuration}s`;
 }
@@ -568,15 +578,79 @@ async function updateChoiceImage(choice) {
     }
 }
 
-// Add a utility function to update button states based on God Particles
+// Update the control button click handler for different costs
+controlButton.addEventListener("click", () => {
+    // Calculate required particles
+    const requiredParticles = isSubsequentSpin ? 3 : 2;
+    
+    if (controlButton.classList.contains('disabled')) {
+        alert(`You need at least ${requiredParticles} God Particles to spin again!`);
+        return;
+    }
+    
+    if (!spinning && !stopInitiated) {
+        // Starting a new spin - check if user has enough GP
+        if (godParticles >= requiredParticles) {
+            // Deduct appropriate God Particles and start spinning
+            godParticles -= requiredParticles;
+            updateGodParticlesDisplay();
+            saveGodParticles();
+            
+            playClickSounds();
+            playSound('spinUp');
+            resetCycle();
+            
+            // These flags should be set AFTER resetCycle to ensure proper start
+            spinning = true;
+            startVibration();
+            controlButton.textContent = "Stop";
+            controlButton.classList.add('stopping');
+            acceptButton.classList.add('hidden');
+            
+            // Use a timeout before starting spin to ensure UI updates first
+            setTimeout(() => {
+                const cycleId = currentCycleId;
+                spin(cycleId);
+            }, 100);
+        } else {
+            // Not enough GP
+            alert(`You need at least ${requiredParticles} God Particles to spin!`);
+        }
+    } else if (spinning) {
+        // User pressed Stop during spinning - initiate slowdown
+        stopInitiated = true;
+        rampStartTime = Date.now();
+        playClickSounds();
+        
+        // Set the flag for subsequent spin
+        isSubsequentSpin = true;
+        
+        // Stop all audio except click sounds - but DON'T stop power down which we need
+        Object.entries(AUDIO).forEach(([key, audio]) => {
+            if (!['mouseClick', 'click', 'powerDown'].includes(key)) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        });
+        
+        controlButton.textContent = "Stopping...";
+    }
+    // Button does nothing in other states
+});
+
+// Update utility function to consider different required particle counts
 function updateButtonStates() {
+    // Calculate required particles for current state
+    const requiredParticles = isSubsequentSpin ? 3 : 2;
+    
     // Only show Spin Again if we have enough God Particles
-    if (godParticles >= 2 && !spinning && !stopInitiated && currentlyDisplayedChoice) {
+    if (godParticles >= requiredParticles && !spinning && !stopInitiated && currentlyDisplayedChoice) {
         controlButton.textContent = "Spin Again";
         controlButton.classList.remove('hidden');
+        controlButton.classList.remove('disabled');
     } else if (!spinning && !stopInitiated && currentlyDisplayedChoice) {
-        // If we have a choice but not enough particles, hide the Spin Again button
-        controlButton.textContent = "Need Particles";
+        // If we have a choice but not enough particles, show disabled button
+        controlButton.textContent = `Need ${requiredParticles} Particles`;
         controlButton.classList.add('disabled');
     } else if (!spinning && !stopInitiated) {
         // Default state - no spin in progress, no choice selected
@@ -683,7 +757,7 @@ function spin(cycleId) {
             spinning = false;
             stopInitiated = false;
             
-            // Make sure the final image is clearly displayed
+            // Make sure the final image is displayed with 50% opacity
             displayFinalImage(choice);
             
             // Play genre-specific sound before showing popup
@@ -704,11 +778,12 @@ function spin(cycleId) {
             acceptButton.classList.remove('hidden');
             
             // Only show "Spin Again" if we have enough God Particles
-            if (godParticles >= 2) {
+            const requiredParticles = isSubsequentSpin ? 3 : 2;
+            if (godParticles >= requiredParticles) {
                 controlButton.textContent = "Spin Again";
                 controlButton.classList.remove('disabled');
             } else {
-                controlButton.textContent = "Need Particles";
+                controlButton.textContent = `Need ${requiredParticles} Particles`;
                 controlButton.classList.add('disabled');
             }
             
@@ -722,76 +797,7 @@ function saveGodParticles() {
     localStorage.setItem('godParticles', godParticles);
 }
 
-// Fix the control button click event handler
-controlButton.addEventListener("click", () => {
-    if (controlButton.classList.contains('disabled')) {
-        alert("You need at least 2 God Particles to spin again!");
-        return;
-    }
-    
-    if (!spinning && !stopInitiated) {
-        // Starting a new spin - check if user has enough GP
-        if (godParticles >= 2) {
-            // Deduct 2 God Particles and start spinning
-            godParticles -= 2;
-            updateGodParticlesDisplay();
-            saveGodParticles();
-            
-            playClickSounds();
-            playSound('spinUp');
-            resetCycle();
-            
-            // These flags should be set AFTER resetCycle to ensure proper start
-            spinning = true;
-            startVibration();
-            controlButton.textContent = "Stop";
-            controlButton.classList.add('stopping');
-            acceptButton.classList.add('hidden');
-            
-            // Use a timeout before starting spin to ensure UI updates first
-            setTimeout(() => {
-                const cycleId = currentCycleId;
-                spin(cycleId);
-            }, 100);
-        } else {
-            // Not enough GP
-            alert("You need at least 2 God Particles to spin!");
-        }
-    } else if (spinning) {
-        // User pressed Stop during spinning - initiate slowdown
-        stopInitiated = true;
-        rampStartTime = Date.now();
-        playClickSounds();
-        
-        // Stop all audio except click sounds - but DON'T stop power down which we need
-        Object.entries(AUDIO).forEach(([key, audio]) => {
-            if (!['mouseClick', 'click', 'powerDown'].includes(key)) {
-                audio.pause();
-                audio.currentTime = 0;
-            }
-        });
-        
-        controlButton.textContent = "Stopping...";
-    }
-    // Button does nothing in other states
-});
-
-// Update accept button event listener to show image at full opacity when accepted
-acceptButton.addEventListener("click", () => {
-    playClickSounds();
-    if (currentlyDisplayedChoice) {
-        // Show the image at full opacity when accepted
-        choiceImage.style.opacity = '1.0';
-        
-        showOptionPopup(currentlyDisplayedChoice);
-        acceptButton.classList.add('hidden');
-        // Reset for next spin
-        controlButton.textContent = "Start";
-        currentlyDisplayedChoice = null;
-    }
-});
-
-// Simplified reset - remove spins remaining references
+// Reset isSubsequentSpin flag when starting fresh
 function resetCycle() {
     spinning = false;
     stopInitiated = false;
@@ -818,6 +824,11 @@ function resetCycle() {
     currentlyLoading = false; // Reset loading state
     choiceImage.style.opacity = '0';
     currentlyDisplayedChoice = null; // Reset the tracked choice
+    
+    // Only reset subsequent spin flag if no choice is displayed
+    if (!currentlyDisplayedChoice) {
+        isSubsequentSpin = false;
+    }
     
     // Always keep spins remaining hidden
     spinsRemainingDisplay.classList.add('hidden');
@@ -992,7 +1003,7 @@ function showOptionPopup(choice) {
 // Simplify particle handling functions
 function addGodParticles(amount) {
     godParticles += amount;
-    updateGodParticlesDisplay(); // This now calls updateButtonStates
+    updateGodParticlesDisplay(); // This now calls updateButtonStates with correct cost
     saveGodParticles();
 }
 
