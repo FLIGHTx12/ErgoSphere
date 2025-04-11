@@ -713,3 +713,41 @@ body.page-transition {
     margin-bottom: 10px;
   }
 }
+
+.collapse-all-btn {
+  background: linear-gradient(
+    45deg,
+    #FF4500 25%,
+    #FF6347 30%,
+    #FF4500 45%,
+    #FF7F50 50%,
+    #FF4500 55%,
+    #FF6347 70%,
+    #FF4500 75%
+  );
+  background-size: 200% 200%;
+  animation: shine 3s linear infinite;
+  color: white;
+  border: 2px solid #800080;
+  outline: 1px solid black;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  transition: all 0.3s ease;
+}
+
+.collapse-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}

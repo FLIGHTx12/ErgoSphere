@@ -54,6 +54,71 @@ document.addEventListener('DOMContentLoaded', () => {
   sortFilter.appendChild(sortDropdown);
   navbar.appendChild(sortFilter);
 
+  // Create or get sidebar for the Collapse All button
+  let sidebar = document.getElementById('sidebar');
+  if (!sidebar) {
+    sidebar = document.createElement('div');
+    sidebar.id = 'sidebar';
+    sidebar.style.position = 'fixed';
+    sidebar.style.right = '10px';
+    sidebar.style.top = '50%';
+    sidebar.style.transform = 'translateY(-50%)';
+    sidebar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    sidebar.style.padding = '10px';
+    sidebar.style.borderRadius = '10px';
+    sidebar.style.zIndex = '999';
+    sidebar.style.display = 'flex';
+    sidebar.style.flexDirection = 'column';
+    sidebar.style.gap = '10px';
+    document.body.appendChild(sidebar);
+  }
+
+  // Add Collapse All button to sidebar
+  const collapseAllBtn = document.createElement('button');
+  collapseAllBtn.className = 'filter-btn collapse-all-btn';
+  collapseAllBtn.textContent = 'Collapse All';
+  collapseAllBtn.style.display = 'none'; // Initially hidden
+  sidebar.appendChild(collapseAllBtn);
+
+  // Event listener for Collapse All button
+  collapseAllBtn.addEventListener('click', () => {
+    const expandedItems = document.querySelectorAll('.item-row.expanded');
+    expandedItems.forEach(item => {
+      // Remove expanded class
+      item.classList.remove('expanded');
+      item.classList.remove('multi-expanded-2');
+      item.classList.remove('multi-expanded-3');
+      item.classList.remove('multi-expanded-4');
+      
+      // Remove collapse corner
+      const collapseCorner = item.querySelector('.collapse-corner');
+      if (collapseCorner) {
+        collapseCorner.remove();
+      }
+      
+      // Reset link and styling
+      const currentLink = item.querySelector('a.item-title-link');
+      if (currentLink) {
+        currentLink.removeAttribute('href');
+        currentLink.style.color = '';
+      }
+      
+      // Reset background and styling
+      item.style.backgroundImage = '';
+      item.style.color = '';
+      item.style.textShadow = '';
+    });
+    
+    // Hide the multi-expanded container if it exists
+    const multiContainer = document.getElementById('multi-expanded-container');
+    if (multiContainer) {
+      multiContainer.style.display = 'none';
+    }
+    
+    // Hide the Collapse All button since nothing is expanded now
+    collapseAllBtn.style.display = 'none';
+  });
+
   // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
     if (!genreFilter.contains(e.target)) {
@@ -901,6 +966,12 @@ document.addEventListener('DOMContentLoaded', () => {
           // Function to update layout based on number of expanded items
           function updateExpandedItemsLayout() {
             const expandedItems = container.querySelectorAll('.item-row.expanded');
+            
+            // Show or hide Collapse All button based on expanded items
+            collapseAllBtn.style.display = expandedItems.length > 0 ? 'block' : 'none';
+            
+            // Show or hide the sidebar based on if there are expanded items
+            sidebar.style.display = expandedItems.length > 0 ? 'flex' : 'none';
             
             // Remove all multi-expanded classes first
             expandedItems.forEach(item => {
