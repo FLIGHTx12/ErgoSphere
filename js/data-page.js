@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items.sort((a, b) => {
       const aTitle = a.querySelector('.item-title').textContent;
-      const bTitle = b.querySelector('.item-title').textContent;
+      const bTitle = a.querySelector('.item-title').textContent;
       const aDetails = a.querySelector('.item-details').textContent;
       const bDetails = a.querySelector('.item-details').textContent;
       const aFullText = aTitle + " " + aDetails;
@@ -774,19 +774,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
           container.appendChild(itemDiv);
 
-          // Updated click event: collapse other items and toggle expansion.
+          // Updated click event: allow multiple expanded items
           itemDiv.addEventListener('click', function(event) {
-            // Don't collapse when clicking on links or details
-            if (event.target.closest('.item-title-link') || 
-                event.target.closest('.item-details')) {
-              event.stopPropagation();
-              return;
-            }
-            
-            // If click is on the collapse corner, process it but don't return
+            // If click is on the collapse corner, process it
             if (event.target.closest('.collapse-corner')) {
               event.stopPropagation();
               this.classList.remove('expanded');
+              // Remove the multi-item class from this item
+              this.classList.remove('multi-expanded');
               const collapseCorner = this.querySelector('.collapse-corner');
               if (collapseCorner) {
                 collapseCorner.remove();
@@ -801,111 +796,154 @@ document.addEventListener('DOMContentLoaded', () => {
               this.style.backgroundImage = '';
               this.style.color = '';
               this.style.textShadow = '';
+              
+              // Recalculate layout for remaining expanded items
+              updateExpandedItemsLayout();
+              return;
+            }
+            
+            // If item is already expanded, don't collapse it when clicking anywhere else on it
+            if (this.classList.contains('expanded')) {
               return;
             }
             
             event.stopPropagation();
-            const allItems = container.querySelectorAll('.item-row');
             
-            // Remove collapse corner from all items
-            document.querySelectorAll('.collapse-corner').forEach(corner => {
-              corner.remove();
-            });
+            // Get currently expanded items
+            const expandedItems = container.querySelectorAll('.item-row.expanded');
             
-            allItems.forEach(el => {
-              if (el !== this) {
-                el.classList.remove('expanded');
-                el.style.backgroundImage = ''; // Remove background image from other items
-                // Disable links in closed items and reset styling
-                const link = el.querySelector('a.item-title-link');
-                if (link) {
-                  link.removeAttribute('href');
-                  link.style.color = '';
-                }
-              }
-            });
-            
-            this.classList.toggle('expanded');
-            
-            // If expanded, add collapse corner, enable link and style it
-            if (this.classList.contains('expanded')) {
-              // Add collapse corner
-              const collapseCorner = document.createElement('div');
-              collapseCorner.className = 'collapse-corner';
-              collapseCorner.innerHTML = '↕';
-              collapseCorner.title = 'Click to collapse';
-              
-              // Insert the button right after the item-title div to ensure it's at the top
-              const titleDiv = this.querySelector('.item-title');
-              if (titleDiv && titleDiv.nextSibling) {
-                this.insertBefore(collapseCorner, titleDiv.nextSibling);
-              } else {
-                // Fallback - just append it
-                this.appendChild(collapseCorner);
-              }
-              
-              // Make sure the button is positioned properly
-              collapseCorner.style.position = 'absolute';
-              collapseCorner.style.top = '10px';
-              collapseCorner.style.right = '10px';
-              collapseCorner.style.zIndex = '1000';
-              
-              // Enable link
-              const currentLink = this.querySelector('a.item-title-link');
-              if (currentLink) {
-                currentLink.setAttribute('href', currentLink.dataset.href);
-                currentLink.style.color = 'lightgreen';
-              }
-              
-              // Set background image from data attribute, imageUrl, or image array
-              let bgImage = this.getAttribute('data-bg-image') || '';
-              if (!bgImage) {
-                if (item.imageUrl) {
-                  bgImage = item.imageUrl;
-                } else if (item.image) {
-                  if (Array.isArray(item.image)) {
-                    bgImage = '../' + item.image[0];
-                  } else {
-                    bgImage = '../' + item.image;
-                  }
-                }
-              }
-
-              if (bgImage) {
-                this.style.backgroundImage = `url('${bgImage}')`;
-                this.style.backgroundSize = 'cover';
-                this.style.backgroundPosition = 'center';
-                this.style.backgroundRepeat = 'no-repeat';
-                this.style.color = 'white';
-                this.style.textShadow = '2px 2px 4px #000000';
-              }
-
-              // Add scroll listener for expanded div
-              let startY = 0;
-              let bgPos = 0;
-              
-              const handleScroll = (e) => {
-                const delta = e.deltaY;
-                bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
-                this.style.backgroundPosition = `center ${bgPos}%`;
-                e.preventDefault();
-              };
-              
-              this.addEventListener('wheel', handleScroll, { passive: false });
-              
-              // Remove scroll listener when collapsed
-              this.addEventListener('click', () => {
-                if (!this.classList.contains('expanded')) {
-                  this.removeEventListener('wheel', handleScroll);
-                }
-              }, { once: true });
-            } else {
-              // Reset styling when not expanded
-              this.style.backgroundImage = '';
-              this.style.color = '';
-              this.style.textShadow = '';
+            // Check if we already have 4 expanded items
+            if (expandedItems.length >= 4) {
+              // Optionally show a message or close the oldest item
+              alert('Please close one of the expanded items first (using the ↕ button)');
+              return;
             }
+            
+            // Now expand this item
+            this.classList.add('expanded');
+            
+            // Add appropriate class based on number of expanded items
+            updateExpandedItemsLayout();
+            
+            // Add collapse corner, enable link and style it
+            // Add collapse corner
+            const collapseCorner = document.createElement('div');
+            collapseCorner.className = 'collapse-corner';
+            collapseCorner.innerHTML = '↕';
+            collapseCorner.title = 'Click to collapse';
+            
+            // Insert the button right after the item-title div to ensure it's at the top
+            const titleDiv = this.querySelector('.item-title');
+            if (titleDiv && titleDiv.nextSibling) {
+              this.insertBefore(collapseCorner, titleDiv.nextSibling);
+            } else {
+              // Fallback - just append it
+              this.appendChild(collapseCorner);
+            }
+            
+            // Make sure the button is positioned properly
+            collapseCorner.style.position = 'absolute';
+            collapseCorner.style.top = '10px';
+            collapseCorner.style.right = '10px';
+            collapseCorner.style.zIndex = '1000';
+            
+            // Enable link
+            const currentLink = this.querySelector('a.item-title-link');
+            if (currentLink) {
+              currentLink.setAttribute('href', currentLink.dataset.href);
+              currentLink.style.color = 'lightgreen';
+            }
+            
+            // Set background image from data attribute, imageUrl, or image array
+            let bgImage = this.getAttribute('data-bg-image') || '';
+            if (!bgImage) {
+              if (item.imageUrl) {
+                bgImage = item.imageUrl;
+              } else if (item.image) {
+                if (Array.isArray(item.image)) {
+                  bgImage = '../' + item.image[0];
+                } else {
+                  bgImage = '../' + item.image;
+                }
+              }
+            }
+
+            if (bgImage) {
+              this.style.backgroundImage = `url('${bgImage}')`;
+              this.style.backgroundSize = 'cover';
+              this.style.backgroundPosition = 'center';
+              this.style.backgroundRepeat = 'no-repeat';
+              this.style.color = 'white';
+              this.style.textShadow = '2px 2px 4px #000000';
+            }
+
+            // Add scroll listener for expanded div
+            let startY = 0;
+            let bgPos = 0;
+            
+            const handleScroll = (e) => {
+              const delta = e.deltaY;
+              bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
+              this.style.backgroundPosition = `center ${bgPos}%`;
+              e.preventDefault();
+            };
+            
+            this.addEventListener('wheel', handleScroll, { passive: false });
+            
+            // Remove scroll listener when collapsed
+            this.addEventListener('click', () => {
+              if (!this.classList.contains('expanded')) {
+                this.removeEventListener('wheel', handleScroll);
+              }
+            }, { once: true });
           });
+          
+          // Function to update layout based on number of expanded items
+          function updateExpandedItemsLayout() {
+            const expandedItems = container.querySelectorAll('.item-row.expanded');
+            
+            // Remove all multi-expanded classes first
+            expandedItems.forEach(item => {
+              item.classList.remove('multi-expanded-2');
+              item.classList.remove('multi-expanded-3');
+              item.classList.remove('multi-expanded-4');
+            });
+            
+            // Add appropriate class based on count
+            if (expandedItems.length > 1) {
+              expandedItems.forEach(item => {
+                if (expandedItems.length === 2) {
+                  item.classList.add('multi-expanded-2');
+                } else if (expandedItems.length === 3) {
+                  item.classList.add('multi-expanded-3');
+                } else if (expandedItems.length === 4) {
+                  item.classList.add('multi-expanded-4');
+                }
+              });
+            }
+            
+            // Create or update the multi-expanded-container
+            let multiContainer = document.getElementById('multi-expanded-container');
+            
+            if (expandedItems.length > 1) {
+              if (!multiContainer) {
+                multiContainer = document.createElement('div');
+                multiContainer.id = 'multi-expanded-container';
+                document.body.appendChild(multiContainer);
+              }
+              
+              // Clear the container and add all expanded items to it
+              multiContainer.innerHTML = '';
+              expandedItems.forEach(item => {
+                multiContainer.appendChild(item.cloneNode(true));
+              });
+              
+              multiContainer.style.display = 'flex';
+            } else if (multiContainer) {
+              multiContainer.style.display = 'none';
+            }
+          }
+          
           return itemDiv;
         }
 

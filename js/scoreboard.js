@@ -795,6 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <li>Score: +1 per point</li>
         <li>Kills: +2 per kill</li>
         <li>Deaths: -3 per death</li>
+        <li>Win: +10 / Loss: -5</li>
       </ul>
     `;
     
@@ -814,6 +815,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="stat-input">
               <label for="deaths-${i}">Deaths <span class="stat-weight">(-3)</span></label>
               <input type="number" id="deaths-${i}" min="0" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-5)</span></label>
+              <select id="winloss-${i}">
+                <option value="">Select...</option>
+                <option value="win">Win</option>
+                <option value="loss">Loss</option>
+              </select>
             </div>
           </div>
         </div>
@@ -866,7 +875,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const weights = {
       score: 1,
       kills: 2,
-      deaths: -3
+      deaths: -3,
+      win: 10,
+      loss: -5
     };
     
     // Calculate score for each match
@@ -898,11 +909,21 @@ document.addEventListener('DOMContentLoaded', () => {
         matchBreakdown += `Deaths: ${deaths} × ${weights.deaths} = ${deathsTotal}, `;
       }
       
+      // Win/Loss
+      const winLoss = formElement.querySelector(`#winloss-${i}`).value;
+      if (winLoss === 'win') {
+        matchScore += weights.win;
+        matchBreakdown += `Win: +${weights.win}, `;
+      } else if (winLoss === 'loss') {
+        matchScore += weights.loss;
+        matchBreakdown += `Loss: ${weights.loss}, `;
+      }
+      
       // Remove trailing comma and space
       matchBreakdown = matchBreakdown.replace(/, $/, '');
       
       // Add match score to total if any selections were made
-      if (score > 0 || kills > 0 || deaths > 0) {
+      if (score > 0 || kills > 0 || deaths > 0 || winLoss) {
         totalScore += matchScore;
         breakdown += `<div>${matchBreakdown} = <strong>${matchScore}</strong></div>`;
       }

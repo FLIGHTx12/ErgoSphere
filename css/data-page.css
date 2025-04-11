@@ -623,6 +623,7 @@ body.page-transition {
 
 @media (min-width: 1024px) {
   #sidebar {
+    top: 50%; /* Vertically center the sidebar */
     transform: translateY(-50%) !important;
     display: flex !important;
     opacity: 1 !important;
@@ -651,5 +652,64 @@ body.page-transition {
   
   #data-container {
     margin-right: 180px;
+  }
+}
+
+/* Multi-expanded container */
+#multi-expanded-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1001;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+/* Styles for when 2 items are expanded */
+.item-row.multi-expanded-2 {
+  position: relative !important; /* Override fixed positioning */
+  width: calc(50% - 20px) !important;
+  min-height: 400px !important;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+/* Styles for when 3 items are expanded */
+.item-row.multi-expanded-3 {
+  position: relative !important;
+  width: calc(33.33% - 20px) !important;
+  min-height: 350px !important;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+/* Styles for when 4 items are expanded */
+.item-row.multi-expanded-4 {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  min-height: 300px !important;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+@media (max-width: 768px) {
+  .item-row.multi-expanded-2,
+  .item-row.multi-expanded-3,
+  .item-row.multi-expanded-4 {
+    width: 100% !important;
+    margin-bottom: 10px;
   }
 }
