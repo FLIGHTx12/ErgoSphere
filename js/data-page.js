@@ -530,6 +530,9 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsElement?.textContent.includes('WATCHED') ||
         detailsElement?.textContent.includes('LAST WATCHED');
       const hasCompletedStatus = detailsElement?.textContent.includes('🏆') || false;
+      const hasOwnedStatus = detailsElement?.textContent.includes('Physical') || 
+                             detailsElement?.textContent.includes('Movies Anywhere') || 
+                             detailsElement?.textContent.includes('Owned');
 
       switch(currentFilter) {
         case 'active':
@@ -549,6 +552,9 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
         case 'unwatched':
           shouldShow = shouldShow && !hasWatchedIndicator;
+          break;
+        case 'owned':
+          shouldShow = shouldShow && hasOwnedStatus;
           break;
       }
 
@@ -606,12 +612,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hasCompletedData) {
           currentFilter = 'completed';
           filterBtn.textContent = 'Status: Completed 🏆';
+        } else if (items.some(item => item.querySelector('.item-details')?.textContent.includes('Physical') || 
+                                       item.querySelector('.item-details')?.textContent.includes('Movies Anywhere') || 
+                                       item.querySelector('.item-details')?.textContent.includes('Owned'))) {
+          currentFilter = 'owned';
+          filterBtn.textContent = 'Status: Owned 💲';
         } else {
           currentFilter = 'all';
           filterBtn.textContent = 'Status: All';
         }
         break;
       case 'completed':
+        if (items.some(item => item.querySelector('.item-details')?.textContent.includes('Physical') || 
+                               item.querySelector('.item-details')?.textContent.includes('Movies Anywhere') || 
+                               item.querySelector('.item-details')?.textContent.includes('Owned'))) {
+          currentFilter = 'owned';
+          filterBtn.textContent = 'Status: Owned 💲';
+        } else {
+          currentFilter = 'all';
+          filterBtn.textContent = 'Status: All';
+        }
+        break;
+      case 'owned':
         currentFilter = 'all';
         filterBtn.textContent = 'Status: All';
         break;
