@@ -52,6 +52,210 @@ body.bingwa-theme select, body.bingwa-theme .ent-select {
   z-index: 1;
 }
 
+/* Futuristic Dropdown Styling */
+.ent-select {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  border: 1px solid #0f0;
+  border-radius: 0;
+  padding: 8px 12px;
+  margin: 5px 0;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  transition: all 0.3s ease;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 255, 0, 0.1), transparent),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='10'><polygon points='0,0 12,0 6,10' fill='%230f0'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: auto 8px, auto;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  width: 80%;
+}
+
+.ent-select::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 50%, rgba(0, 255, 0, 0.1) 51%, transparent 52%);
+  background-size: 10px 100%;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.ent-select:hover, .ent-select:focus {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  border-color: #0f0;
+  outline: none;
+  transform: scale(1.01);
+}
+
+.ent-select:focus {
+  animation: pulse 1.5s infinite alternate;
+}
+
+.ent-select option {
+  background-color: #000;
+  color: #0f0;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+/* User type dropdown special styling */
+#user-type {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  border: 2px solid #0f0;
+  border-radius: 0;
+  padding: 8px 12px;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  transition: all 0.3s ease;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 255, 0, 0.1), transparent),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='10'><polygon points='0,0 12,0 6,10' fill='%230f0'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+#user-type:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+}
+
+/* BINGWA theme override for dropdowns */
+body.bingwa-theme .ent-select,
+body.bingwa-theme #user-type {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: gold;
+  border-color: gold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  background-image: 
+    linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='10'><polygon points='0,0 12,0 6,10' fill='gold'/></svg>");
+}
+
+body.bingwa-theme .ent-select:hover,
+body.bingwa-theme .ent-select:focus,
+body.bingwa-theme #user-type:hover {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+body.bingwa-theme .ent-select option {
+  background-color: #000;
+  color: gold;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.4);
+  }
+}
+
+/* Category label styling to match dropdowns */
+.category label {
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  display: block;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+body.bingwa-theme .category label {
+  color: gold;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Live cart styling for consistency */
+#cart-sidebar {
+  position: fixed;
+  right: 0;
+  top: 120px;
+  width: 250px;
+  max-height: 70vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-left: 2px solid #0f0;
+  border-bottom: 2px solid #0f0;
+  border-top: 2px solid #0f0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 15px;
+  z-index: 9999;
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+#cart-sidebar.collapsed {
+  transform: translateX(235px);
+}
+
+#cart-sidebar h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #0f0;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+#cart-items {
+  margin-bottom: 15px;
+}
+
+.cart-category-title {
+  font-weight: bold;
+  color: #0f0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.cart-item {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+body.bingwa-theme #cart-sidebar {
+  border-color: gold;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+body.bingwa-theme #cart-sidebar h3,
+body.bingwa-theme .cart-category-title {
+  color: gold;
+  border-color: gold;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
 @media only screen and (max-width: 600px) {
   #ent-summary li {
     font-size: 10px;
@@ -67,6 +271,13 @@ body.bingwa-theme select, body.bingwa-theme .ent-select {
   }
   #entertainment {
     width: calc(100% + 10px);
+  }
+}
+
+/* Scale for mobile */
+@media only screen and (max-width: 768px) {
+  .ent-select {
+    width: 90%;
   }
 }
 
