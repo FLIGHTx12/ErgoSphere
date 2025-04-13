@@ -659,7 +659,7 @@ li {
   min-width: 2em; /* Reduced from 2.5em */
   text-align: center;
   border: none;
-  font-size: 1.4em; /* Decreased from 1.8em */
+  font-size: 1.1em; /* Reduced from 1.4em */
   color: #0f0;
   text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
   position: relative;
@@ -668,7 +668,7 @@ li {
 }
 
 .countdown-separator {
-  font-size: 1.4em; /* Decreased from 1.8em */
+  font-size: 1.1em; /* Reduced from 1.4em */
   color: #0f0;
   margin: 0 2px;
   text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
@@ -678,7 +678,7 @@ li {
 }
 
 .unit {
-  font-size: 0.5em; /* Decreased from 0.6em */
+  font-size: 0.4em; /* Reduced from 0.5em */
   vertical-align: top;
   margin-left: 1px; /* Reduced from 2px */
   opacity: 0.8;
@@ -701,13 +701,13 @@ li {
   }
   
   .countdown-segment {
-    font-size: 1.2em;
+    font-size: 1em; /* Reduced from 1.2em */
     padding: 3px;
     min-width: 1.8em;
   }
   
   .countdown-separator {
-    font-size: 1.2em;
+    font-size: 1em; /* Reduced from 1.2em */
     margin: 0 1px;
   }
   
@@ -729,15 +729,19 @@ li {
   }
   
   .countdown-segment {
-    font-size: 1em; /* Decreased from 1.2em */
+    font-size: 0.9em; /* Reduced from 1em */
     padding: 2px; /* Decreased from 3px */
     min-width: 1.5em; /* Decreased from 1.8em */
     margin: 1px;
   }
   
   .countdown-separator {
-    font-size: 1em; /* Decreased from 1.2em */
+    font-size: 0.9em; /* Reduced from 1em */
     margin: 0;
+  }
+  
+  .movie-title {
+    font-size: 1.5em;
   }
 }
 
