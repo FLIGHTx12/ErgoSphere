@@ -1125,7 +1125,7 @@ function showOptionPopup(choice) {
         infoTimeout = setTimeout(() => {
             overlay.style.display = 'block';
             setTimeout(() => overlay.classList.add('visible'), 10);
-        }, 1000); // Reduced delay from 2000ms to 1000ms for better UX
+        }, 3000); // Increased delay from 1000ms to 3000ms
     };
 
     const hideInfo = () => {

@@ -710,11 +710,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Use existing image URL if present
             backgroundImage = item.imageUrl;
           } else if (item.image) {
-            // Use existing image array if present
+            // Handle both URLs and relative paths in the image key
+            let imageSource = '';
             if (Array.isArray(item.image)) {
-              backgroundImage = '../' + item.image[0];
+              imageSource = item.image[0];
             } else {
-              backgroundImage = '../' + item.image;
+              imageSource = item.image;
+            }
+            
+            if (imageSource) {
+              if (imageSource.startsWith('http')) {
+                backgroundImage = imageSource; // It's a URL
+              } else {
+                backgroundImage = '../' + imageSource; // It's a relative path
+              }
             }
           } else {
             // Check for YouTube link and generate thumbnail
@@ -834,6 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const desc = item.description || item.DESCRIPTION;
             addDetail('Description', desc);
           }
+          addDetail('Details', item.details); // Add this line
           addDetail('Cost', item.cost);
           addDetail('After Spin', item['after spin']);
           addDetail('Series Length', item['Series Length']);
@@ -943,17 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Set background image from data attribute, imageUrl, or image array
             let bgImage = this.getAttribute('data-bg-image') || '';
-            if (!bgImage) {
-              if (item.imageUrl) {
-                bgImage = item.imageUrl;
-              } else if (item.image) {
-                if (Array.isArray(item.image)) {
-                  bgImage = '../' + item.image[0];
-                } else {
-                  bgImage = '../' + item.image;
-                }
-              }
-            }
+            // No need to re-determine the image source here, it's already in data-bg-image
 
             if (bgImage) {
               this.style.backgroundImage = `url('${bgImage}')`;
