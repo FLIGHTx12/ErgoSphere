@@ -2,52 +2,87 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-router.get('/:type', async (req, res) => {
-  const { type } = req.params;
+// Get all items
+router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM items WHERE type = $1 ORDER BY id', [type]);
+    const result = await pool.query('SELECT * FROM loot_items ORDER BY id');
     res.json(result.rows);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error getting items:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-router.post('/', async (req, res) => {
-  const { type, text, image, copies, details, genre, cost, after_spin, link } = req.body;
+// Get a specific item by ID
+router.get('/:id', async (req, res) => {
   try {
-    const result = await pool.query(
-      `INSERT INTO items (type, text, image, copies, details, genre, cost, after_spin, link)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-      [type, text, image, copies, details, genre, cost, after_spin, link]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-router.put('/:id', async (req, res) => {
-  const { id } = req.params;
-  const { text, image, copies, details, genre, cost, after_spin, link } = req.body;
-  try {
-    const result = await pool.query(
-      `UPDATE items SET text=$1, image=$2, copies=$3, details=$4, genre=$5, cost=$6,
-      after_spin=$7, link=$8 WHERE id=$9 RETURNING *`,
-      [text, image, copies, details, genre, cost, after_spin, link, id]
-    );
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM loot_items WHERE id = $1', [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error getting item:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+// Create a new item
+router.post('/', async (req, res) => {
   try {
-    await pool.query('DELETE FROM items WHERE id=$1', [id]);
-    res.json({ message: 'Item deleted' });
+    const { name, description, type, category } = req.body;
+    
+    const result = await pool.query(
+      'INSERT INTO loot_items (name, description, type, category) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, description, type, category]
+    );
+    
+    res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error creating item:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Update an existing item
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, type, category } = req.body;
+    
+    const result = await pool.query(
+      'UPDATE loot_items SET name = $1, description = $2, type = $3, category = $4 WHERE id = $5 RETURNING *',
+      [name, description, type, category, id]
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Error updating item:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Delete an item
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('DELETE FROM loot_items WHERE id = $1 RETURNING *', [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    
+    res.json({ message: 'Item deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting item:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

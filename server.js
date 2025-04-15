@@ -17,6 +17,12 @@ pool.query('SELECT NOW()', (err, result) => {
 app.use(express.static(__dirname)); // This serves the "data" folder if it exists in the project root
 app.use(express.json()); // For parsing application/json
 
+// Add more detailed logging for API requests
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
+
 // Security middleware to validate pool names
 const validatePoolName = (req, res, next) => {
   const validPools = ['loot', 'pvp', 'coop'];
@@ -30,17 +36,28 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Serve refreshment options from JSON files
-app.get('/api/options/:category', (req, res) => {
+// Serve refreshment options from database instead of JSON files
+app.get('/api/options/:category', async (req, res) => {
   const category = req.params.category;
-  const filePath = path.join(__dirname, 'data', `${category}.json`);
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('File read error:', err);
-      return res.status(500).json({ error: 'File read error.' });
+  try {
+    // Try to get from database first
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (result.rows.length > 0) {
+      return res.json(result.rows[0].data);
     }
+    
+    // Fallback to JSON file if not in database yet
+    const filePath = path.join(__dirname, 'data', `${category}.json`);
+    const data = await fs.readFile(filePath, 'utf8');
     res.json(JSON.parse(data));
-  });
+  } catch (err) {
+    console.error('Error retrieving options:', err);
+    res.status(500).json({ error: 'Error retrieving options' });
+  }
 });
 
 /* Updated API endpoints for ErgoShop using database */
@@ -141,11 +158,39 @@ app.post('/api/admin/ErgoShop/remove', (req, res) => {
   });
 });
 
-// Save pool endpoint
+// Update savePool endpoint to save to database
 app.post('/api/savePool', validatePoolName, async (req, res) => {
   try {
-    const { pool, data } = req.body;
-    const filePath = path.join(__dirname, 'data', `${pool}.json`);
+    const { pool: poolName, data } = req.body;
+    
+    // First create a backup in the database
+    await pool.query(
+      'INSERT INTO json_backups (category, data) VALUES ($1, $2)',
+      [poolName, data]
+    );
+    
+    // Check if this pool exists in the database
+    const existingResult = await pool.query(
+      'SELECT id FROM json_data WHERE category = $1',
+      [poolName]
+    );
+    
+    if (existingResult.rows.length > 0) {
+      // Update existing entry
+      await pool.query(
+        'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
+        [data, poolName]
+      );
+    } else {
+      // Insert new entry
+      await pool.query(
+        'INSERT INTO json_data (category, data) VALUES ($1, $2)',
+        [poolName, data]
+      );
+    }
+    
+    // Also save to file as a fallback
+    const filePath = path.join(__dirname, 'data', `${poolName}.json`);
     const backupDir = path.join(__dirname, 'data/backups');
     
     // Ensure backup directory exists
@@ -154,13 +199,13 @@ app.post('/api/savePool', validatePoolName, async (req, res) => {
     // Create backup of current file if it exists
     try {
       const currentData = await fs.readFile(filePath, 'utf8');
-      const backupPath = path.join(backupDir, `${pool}_${Date.now()}.json`);
+      const backupPath = path.join(backupDir, `${poolName}_${Date.now()}.json`);
       await fs.writeFile(backupPath, currentData);
     } catch (err) {
       console.log('No existing file to backup');
     }
 
-    // Write new data
+    // Write new data to file
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
     res.json({ success: true });
   } catch (error) {
@@ -169,32 +214,47 @@ app.post('/api/savePool', validatePoolName, async (req, res) => {
   }
 });
 
-// Add backup management endpoints
+// Update backups endpoint to retrieve from database
 app.get('/api/backups/:pool', async (req, res) => {
   try {
-    const backupDir = path.join(__dirname, 'data/backups');
-    const files = await fs.readdir(backupDir);
-    const poolBackups = files
-      .filter(f => f.startsWith(req.params.pool))
-      .map(f => ({
-        id: f.split('_')[1].replace('.json', ''),
-        date: new Date(parseInt(f.split('_')[1].replace('.json', ''))).toLocaleString(),
-        filename: f
-      }))
-      .sort((a, b) => b.id - a.id);
-    res.json(poolBackups);
+    const poolName = req.params.pool;
+    
+    // Get backups from database
+    const result = await pool.query(
+      'SELECT id, backup_date FROM json_backups WHERE category = $1 ORDER BY backup_date DESC',
+      [poolName]
+    );
+    
+    const backups = result.rows.map(row => ({
+      id: row.id,
+      date: new Date(row.backup_date).toLocaleString(),
+      filename: `${poolName}_${row.id}`
+    }));
+    
+    res.json(backups);
   } catch (error) {
+    console.error('Error retrieving backups:', error);
     res.status(500).json({ error: 'Failed to load backups' });
   }
 });
 
+// Update restore endpoint to retrieve from database
 app.get('/api/restore/:pool/:backupId', async (req, res) => {
   try {
-    const backupFile = path.join(__dirname, 'data/backups', 
-      `${req.params.pool}_${req.params.backupId}.json`);
-    const data = await fs.readFile(backupFile, 'utf8');
-    res.json(JSON.parse(data));
+    const backupId = req.params.backupId;
+    
+    const result = await pool.query(
+      'SELECT data FROM json_backups WHERE id = $1',
+      [backupId]
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Backup not found' });
+    }
+    
+    res.json(result.rows[0].data);
   } catch (error) {
+    console.error('Error restoring backup:', error);
     res.status(500).json({ error: 'Failed to restore backup' });
   }
 });
@@ -226,14 +286,52 @@ app.get('/api/images/:pool', async (req, res) => {
   }
 });
 
-// New endpoint to update an option's copies in a pool JSON file
+// Update option update endpoint to use database
 app.post('/api/options/update', async (req, res) => {
-  const { pool, text, copies } = req.body;
+  const { pool: poolName, text, copies } = req.body;
   try {
-    const filePath = path.join(__dirname, 'data', `${pool}.json`);
-    let data = JSON.parse(await fs.readFile(filePath, 'utf8'));
-    // Assume data is an object with container keys (e.g. "saltySnackContainer", etc.)
+    // Get current data from database
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [poolName]
+    );
+    
+    if (result.rows.length === 0) {
+      // Fallback to file if not in database yet
+      const filePath = path.join(__dirname, 'data', `${poolName}.json`);
+      let data = JSON.parse(await fs.readFile(filePath, 'utf8'));
+      
+      let updated = false;
+      Object.keys(data).forEach(container => {
+        data[container] = data[container].map(option => {
+          if (option.text === text) {
+            option.copies = copies;
+            updated = true;
+          }
+          return option;
+        });
+      });
+      
+      if (!updated) {
+        return res.status(404).json({ error: 'Option not found' });
+      }
+      
+      // Save updated data to database
+      await pool.query(
+        'INSERT INTO json_data (category, data) VALUES ($1, $2)',
+        [poolName, data]
+      );
+      
+      // Also update file
+      await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+      
+      return res.json({ success: true });
+    }
+    
+    // Update in database
+    let data = result.rows[0].data;
     let updated = false;
+    
     Object.keys(data).forEach(container => {
       data[container] = data[container].map(option => {
         if (option.text === text) {
@@ -243,10 +341,21 @@ app.post('/api/options/update', async (req, res) => {
         return option;
       });
     });
+    
     if (!updated) {
       return res.status(404).json({ error: 'Option not found' });
     }
+    
+    // Save updated data
+    await pool.query(
+      'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
+      [data, poolName]
+    );
+    
+    // Also update file as fallback
+    const filePath = path.join(__dirname, 'data', `${poolName}.json`);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    
     res.json({ success: true });
   } catch (error) {
     console.error("Error updating option:", error);
@@ -254,25 +363,57 @@ app.post('/api/options/update', async (req, res) => {
   }
 });
 
-// New route to handle PUT requests for JSON data files
-app.put('/data/:filename', (req, res) => {
+// Update PUT route for JSON data files to use database
+app.put('/data/:filename', async (req, res) => {
   const filename = req.params.filename;
+  const category = filename.replace('.json', '');
   const data = req.body;
-  const filePath = path.join(__dirname, 'data', filename);
-
-  fs.writeFile(filePath, JSON.stringify(data), err => {
-    if (err) {
-      console.error('Error writing JSON file:', err);
-      return res.status(500).send('Error saving data');
+  
+  try {
+    // Save to database
+    const existingResult = await pool.query(
+      'SELECT id FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (existingResult.rows.length > 0) {
+      await pool.query(
+        'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
+        [data, category]
+      );
+    } else {
+      await pool.query(
+        'INSERT INTO json_data (category, data) VALUES ($1, $2)',
+        [category, data]
+      );
     }
-    console.log('JSON file updated successfully!');
+    
+    // Also update file as fallback
+    const filePath = path.join(__dirname, 'data', filename);
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    
+    console.log('JSON file updated successfully in database and file!');
     res.send('Data saved');
-  });
+  } catch (err) {
+    console.error('Error updating data:', err);
+    res.status(500).send('Error saving data');
+  }
 });
 
 // Import and use the new items API routes
 const itemsRouter = require('./routes/items');
 app.use('/api/items', itemsRouter);
+
+// Add test endpoint to verify database connection
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ success: true, time: result.rows[0].now, message: 'Database connected successfully!' });
+  } catch (err) {
+    console.error('Database test error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Error handling
 app.use((err, req, res, next) => {
