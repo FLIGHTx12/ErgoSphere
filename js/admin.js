@@ -175,6 +175,37 @@ function saveItems(file, data) {
     });
 }
 
+// Save Admin state to localStorage
+function saveAdminState() {
+  const state = {};
+
+  // Save filter button states and item copies
+  document.querySelectorAll('.filter-button').forEach(button => {
+    state[button.dataset.filter] = button.textContent;
+  });
+  document.querySelectorAll('.copies-count').forEach(span => {
+    state[span.id || span.dataset.item] = span.textContent;
+  });
+
+  localStorage.setItem('adminState', JSON.stringify(state));
+}
+
+// Restore Admin state from localStorage
+function restoreAdminState() {
+  const state = JSON.parse(localStorage.getItem('adminState')) || {};
+
+  Object.keys(state).forEach(key => {
+    const button = document.querySelector(`.filter-button[data-filter="${key}"]`);
+    if (button) {
+      button.textContent = state[key];
+    }
+    const span = document.querySelector(`.copies-count[data-item="${key}"]`);
+    if (span) {
+      span.textContent = state[key];
+    }
+  });
+}
+
 // Load items from each JSON file with relative paths
 loadItems('../../data/coop.json', 'coop-items');
 loadItems('../../data/loot.json', 'loot-items');
@@ -187,6 +218,8 @@ loadItems('../../data/singleplayer.json', 'singleplayer-items');
 loadItems('../../data/youtube.json', 'youtube-items');
 
 document.addEventListener('DOMContentLoaded', function() {
+  restoreAdminState();
+
   const coll = document.getElementsByClassName("collapsible");
   const collapseAllButton = document.getElementById('collapse-all');
 
@@ -198,5 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
         coll[i].classList.remove("active");
       }
     }
+  });
+
+  document.querySelectorAll('.filter-button, .copies-count').forEach(element => {
+    element.addEventListener('input', saveAdminState);
   });
 });

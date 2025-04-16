@@ -30,6 +30,8 @@ function populateSelectOptions() {
 
 document.addEventListener('DOMContentLoaded', () => {
   populateSelectOptions();
+  restoreErgoShopState();
+
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
     "mealModsContainer", "prizesContainer", "replacementsContainer",
@@ -62,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     select.addEventListener('touchend', hideDescription); // Touch end
+  });
+
+  document.querySelectorAll('.custom-select, .quantity-input').forEach(element => {
+    element.addEventListener('input', saveErgoShopState);
   });
 });
 
@@ -230,4 +236,28 @@ function hideDescription() {
   if (descDiv) {
     descDiv.style.display = 'none';
   }
+}
+
+// Save ErgoShop state to localStorage
+function saveErgoShopState() {
+  const state = {};
+
+  // Save select and input values
+  document.querySelectorAll('.custom-select, .quantity-input').forEach(element => {
+    state[element.id || element.name] = element.value;
+  });
+
+  localStorage.setItem('ergoShopState', JSON.stringify(state));
+}
+
+// Restore ErgoShop state from localStorage
+function restoreErgoShopState() {
+  const state = JSON.parse(localStorage.getItem('ergoShopState')) || {};
+
+  Object.keys(state).forEach(key => {
+    const element = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+    if (element) {
+      element.value = state[key];
+    }
+  });
 }

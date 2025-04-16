@@ -147,7 +147,39 @@ const refreshAllCategories = () => {
   });
 };
 
+// Save ErgoBazaar state to localStorage
+function saveErgoBazaarState() {
+  const state = {};
+
+  // Save dropdown selections and user type
+  document.querySelectorAll('.ent-select').forEach(select => {
+    state[select.id || select.name] = select.value;
+  });
+  state['userType'] = userType;
+
+  localStorage.setItem('ergoBazaarState', JSON.stringify(state));
+}
+
+// Restore ErgoBazaar state from localStorage
+function restoreErgoBazaarState() {
+  const state = JSON.parse(localStorage.getItem('ergoBazaarState')) || {};
+
+  Object.keys(state).forEach(key => {
+    if (key === 'userType') {
+      userType = state[key];
+      document.getElementById('user-type').value = userType;
+    } else {
+      const element = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+      if (element) {
+        element.value = state[key];
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  restoreErgoBazaarState();
+
   // Initial population of dropdowns
   refreshAllCategories();
 
@@ -171,6 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  document.querySelectorAll('.ent-select').forEach(select => {
+    select.addEventListener('change', saveErgoBazaarState);
+  });
+
+  document.getElementById('user-type').addEventListener('change', saveErgoBazaarState);
+
   // Helper function to update a category's total cost.
   function updateCategoryTotal(categoryDiv) {
     // Determine cost multiplier based on user type.

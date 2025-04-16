@@ -9,8 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptContent) {
       receiptContent.addEventListener('click', captureReceiptContentScreenshot);
   }
+  restoreCasinoState();
+
+  document.querySelectorAll('select').forEach(select => {
+    select.addEventListener('change', saveCasinoState);
+  });
 });
 
+// Save Casino state to localStorage
+function saveCasinoState() {
+  const state = {};
+
+  // Save select values
+  document.querySelectorAll('select').forEach(select => {
+    state[select.id || select.name] = select.value;
+  });
+
+  localStorage.setItem('casinoState', JSON.stringify(state));
+}
+
+// Restore Casino state from localStorage
+function restoreCasinoState() {
+  const state = JSON.parse(localStorage.getItem('casinoState')) || {};
+
+  Object.keys(state).forEach(key => {
+    const element = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+    if (element) {
+      element.value = state[key];
+    }
+  });
+}
 
 const teams = {
   nfl: [

@@ -16,6 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize the countdowns
   initializeCountdowns();
+
+  // Update calendar week dynamically
+  updateCalendarWeek();
+
+  // Restore site state
+  restoreSiteState();
+
+  // Add event listeners to save state on input changes
+  document.querySelectorAll('input, select, textarea').forEach(element => {
+    element.addEventListener('input', saveSiteState);
+  });
+
+  // Update quarter countdown
+  updateQuarterCountdown();
+
+  // Add event listeners for expandable cards
+  document.querySelectorAll('.expandable').forEach(card => {
+    card.addEventListener('click', () => {
+      const expandedContent = card.querySelector('.expanded-content');
+      if (expandedContent) {
+        const isVisible = expandedContent.style.display === 'block';
+        expandedContent.style.display = isVisible ? 'none' : 'block';
+      }
+    });
+  });
 });
 
 function handleScreenshotButtonClick(event) {
@@ -169,22 +194,108 @@ function getSecondSaturdayOfMonth(year, month) {
   return date;
 }
 
+function addGlowEffectToCountdown(id, targetDate) {
+  const now = new Date();
+  const diff = targetDate - now;
+
+  // Check if the countdown is within 7 days
+  if (diff <= 7 * 24 * 60 * 60 * 1000) {
+    const countdownCard = document.querySelector(`#${id}-card`);
+    if (countdownCard) {
+      countdownCard.classList.add('glow-effect');
+    }
+  }
+}
+
+// Update the countdown function to include the glow effect
 function updateCountdown(id, targetDate) {
   const now = new Date();
   const diff = targetDate - now;
-  
+
   // If the target date has passed, recalculate for next occurrence
   if (diff <= 0) return;
-  
+
   // Calculate days, hours, minutes, and seconds
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
+
   // Update the HTML
   document.getElementById(`${id}-days`).textContent = days.toString().padStart(2, '0');
   document.getElementById(`${id}-hours`).textContent = hours.toString().padStart(2, '0');
   document.getElementById(`${id}-minutes`).textContent = minutes.toString().padStart(2, '0');
   document.getElementById(`${id}-seconds`).textContent = seconds.toString().padStart(2, '0');
+
+  // Add glow effect if within 7 days
+  addGlowEffectToCountdown(id, targetDate);
+}
+
+// Save site state to localStorage
+function saveSiteState() {
+  const state = {};
+
+  // Example: Save form inputs
+  document.querySelectorAll('input, select, textarea').forEach(element => {
+    state[element.id || element.name] = element.value;
+  });
+
+  // Save the state object to localStorage
+  localStorage.setItem('siteState', JSON.stringify(state));
+}
+
+// Restore site state from localStorage
+function restoreSiteState() {
+  const state = JSON.parse(localStorage.getItem('siteState')) || {};
+
+  // Example: Restore form inputs
+  Object.keys(state).forEach(key => {
+    const element = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+    if (element) {
+      element.value = state[key];
+    }
+  });
+}
+
+function updateCalendarWeek() {
+  const now = new Date();
+  const firstDayOfYear = new Date(now.getFullYear(), 0, 1);
+  const pastDaysOfYear = (now - firstDayOfYear + (firstDayOfYear.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000) / 86400000;
+  const currentWeek = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+
+  const bingwaElement = document.getElementById('current-bingwa');
+  const atleticoElement = document.getElementById('current-atletico');
+
+  if (bingwaElement) {
+    bingwaElement.previousElementSibling.innerHTML = `WK${currentWeek} Bingwa <br> Champion`;
+  }
+
+  if (atleticoElement) {
+    atleticoElement.previousElementSibling.innerHTML = `WK${currentWeek} Atletico <br>Champ`;
+  }
+}
+
+function calculateNextQuarterStart() {
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  let nextQuarterStart;
+
+  if (currentMonth < 3) {
+    nextQuarterStart = new Date(currentYear, 3, 1); // April 1st
+  } else if (currentMonth < 6) {
+    nextQuarterStart = new Date(currentYear, 6, 1); // July 1st
+  } else if (currentMonth < 9) {
+    nextQuarterStart = new Date(currentYear, 9, 1); // October 1st
+  } else {
+    nextQuarterStart = new Date(currentYear + 1, 0, 1); // January 1st of next year
+  }
+
+  return nextQuarterStart;
+}
+
+function updateQuarterCountdown() {
+  const nextQuarterStart = calculateNextQuarterStart();
+  updateCountdown('quarter', nextQuarterStart);
 }
