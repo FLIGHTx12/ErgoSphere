@@ -1322,7 +1322,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <h3>Predecessor Scoreboard</h3>
       <p>Match Results & Scoring Weights:</p>
       <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
-        <li>Kills: +10 each</li>
+        <li>Level: +2 per level</li>
+        <li>Kills: +30 each</li>
         <li>Deaths: -15 each</li>
         <li>Assists: +5 each</li>
         <li>Minions: +0.50 each</li>
@@ -1337,7 +1338,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="match-title">Match ${i}</div>
           <div class="stats-container">
             <div class="stat-input">
-              <label for="kills-${i}">Kills <span class="stat-weight">(+10)</span></label>
+              <label for="level-${i}">Level <span class="stat-weight">(+2)</span></label>
+              <input type="number" id="level-${i}" min="0" max="20" class="short-input">
+            </div>
+            <div class="stat-input">
+              <label for="kills-${i}">Kills <span class="stat-weight">(+30)</span></label>
               <input type="number" id="kills-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
@@ -1954,7 +1959,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Define weights
     const weights = {
-      kills: 10,
+      level: 2,
+      kills: 30,
       deaths: -15,
       assists: 5,
       minions: 0.5,
@@ -1967,6 +1973,14 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 1; i <= matches; i++) {
       let matchScore = 0;
       let matchBreakdown = `<strong>Match ${i}:</strong> `;
+      
+      // Level
+      const level = parseInt(formElement.querySelector(`#level-${i}`).value) || 0;
+      const levelTotal = level * weights.level;
+      matchScore += levelTotal;
+      if (level > 0) {
+        matchBreakdown += `Level: ${level} × ${weights.level} = ${levelTotal}, `;
+      }
       
       // Kills
       const kills = parseInt(formElement.querySelector(`#kills-${i}`).value) || 0;

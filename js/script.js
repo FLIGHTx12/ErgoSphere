@@ -36,8 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', () => {
       const expandedContent = card.querySelector('.expanded-content');
       if (expandedContent) {
-        const isVisible = expandedContent.style.display === 'block';
-        expandedContent.style.display = isVisible ? 'none' : 'block';
+        // Toggle the visible class
+        expandedContent.classList.toggle('visible');
+        
+        // Update display property for animation to work properly
+        if (expandedContent.classList.contains('visible')) {
+          expandedContent.style.display = 'block';
+        } else {
+          // Use setTimeout to allow animation to complete before hiding
+          setTimeout(() => {
+            expandedContent.style.display = 'none';
+          }, 500);
+        }
+        
+        // Toggle expanded class on the card
+        card.classList.toggle('expanded');
       }
     });
   });
