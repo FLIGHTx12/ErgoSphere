@@ -1139,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <li>Objective Final Blows: +1 per blow</li>
         <li>Advantage Points: +1 per point</li>
         <li>Zones Captured: +1 per zone</li>
-        <li>Win: +5 / Loss: -50</li>
+        <li>Win: +5 / Loss: -20</li>
       </ul>
     `;
     
@@ -1169,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="number" id="zones-captured-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
-              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+5/-50)</span></label>
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+5/-20)</span></label>
               <select id="winloss-${i}">
                 <option value="">Select...</option>
                 <option value="win">Win</option>
@@ -1328,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <li>Assists: +5 each</li>
         <li>Minions: +0.50 each</li>
         <li>Gold Earned: +0.003 per gold</li>
-        <li>Win: +10 / Loss: -50</li>
+        <li>Win: +10 / Loss: -20</li>
       </ul>
     `;
     
@@ -1362,7 +1362,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="number" id="gold-${i}" min="0" class="short-input">
             </div>
             <div class="stat-input">
-              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-50)</span></label>
+              <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-20)</span></label>
               <select id="winloss-${i}">
                 <option value="">Select...</option>
                 <option value="win">Win</option>
@@ -1727,7 +1727,7 @@ document.addEventListener('DOMContentLoaded', () => {
       advantagePoints: 1,
       zonesCaptured: 1,
       win: 5,
-      loss: -50
+      loss: -20
     };
     
     // Calculate score for each match
@@ -1963,10 +1963,10 @@ document.addEventListener('DOMContentLoaded', () => {
       kills: 30,
       deaths: -15,
       assists: 5,
-      minions: 0.5,
+      minions: 0.,
       gold: 0.003,
       win: 10,
-      loss: -50
+      loss: -20
     };
     
     // Calculate score for each match
