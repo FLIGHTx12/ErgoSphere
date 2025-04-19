@@ -53,7 +53,19 @@ const refreshCategoryOptions = async (category) => {
   const filePath = categoryFileMap[catName];
 
   if (filePath) {
-    const optionsArray = await fetchOptions(filePath);
+    let optionsArray = await fetchOptions(filePath); // Use let instead of const
+
+    // Sort options alphabetically specifically for Bingwa Movie Night
+    if (catName === "Bingwa Movie Night") {
+      optionsArray.sort((a, b) => {
+        const titleA = (a.Title || a.TITLE || '').toLowerCase();
+        const titleB = (b.Title || b.TITLE || '').toLowerCase();
+        if (titleA < titleB) return -1;
+        if (titleA > titleB) return 1;
+        return 0;
+      });
+    }
+
     category.querySelectorAll('.ent-select').forEach(select => {
       const currentValue = select.value;
       

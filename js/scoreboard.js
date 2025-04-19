@@ -1963,7 +1963,7 @@ document.addEventListener('DOMContentLoaded', () => {
       kills: 30,
       deaths: -15,
       assists: 5,
-      minions: 0.,
+      minions: 0.5,
       gold: 0.003,
       win: 10,
       loss: -20
