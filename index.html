@@ -39,7 +39,7 @@
 </header>
 <hr>
 
-<div id="sidebar" class="hidden">
+<div id="sidebar">
   <button><a href="pages/BossFight.html">Boss Fight!</a></button>
   <button><a href="pages/ErgoBazaar.html">ErgoBazaar</a></button>
   <button><a href="pages/HCMC.html">HCMC</a></button>
@@ -433,53 +433,82 @@
       let touchstartX = 0;
       let touchendX = 0;
       const swipeThreshold = 100; // Define a swipe threshold
+      const veryLargeScreenQuery = window.matchMedia('(min-width: 1800px)');
+      const largeScreenQuery = window.matchMedia('(min-width: 1024px)');
 
       function handleGesture() {
-          const swipeDistance = touchendX - touchstartX;
-          // Check if we're on a large screen before handling swipe gestures
-          const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
-          const isVeryLargeScreen = window.matchMedia('(min-width: 1800px)').matches;
-          
-          if (!isVeryLargeScreen) {
-            // Only hide sidebar on swipe when not on a very large screen
-            if (swipeDistance > swipeThreshold) {
-                sidebar.classList.add('hidden');
-                sidebar.style.transform = 'translateX(100%)';
-                mainContent.classList.remove('sidebar-visible');
-            }
-            if (swipeDistance < -swipeThreshold && !isLargeScreen) {
-                sidebar.classList.remove('hidden');
-                sidebar.style.transform = 'translateX(0)';
-                mainContent.classList.add('sidebar-visible');
-            }
+          // Only allow swipe gestures if not on a very large screen
+          if (!veryLargeScreenQuery.matches) {
+              const swipeDistance = touchendX - touchstartX;
+              // Swipe right to left (hide sidebar on smaller screens)
+              if (swipeDistance > swipeThreshold) {
+                  sidebar.classList.add('hidden');
+                  sidebar.style.transform = 'translateX(100%)'; // Or appropriate hide animation
+                  mainContent.classList.remove('sidebar-visible');
+              }
+              // Swipe left to right (show sidebar on smaller/medium screens)
+              if (swipeDistance < -swipeThreshold && !largeScreenQuery.matches) {
+                  sidebar.classList.remove('hidden');
+                  sidebar.style.transform = 'translateX(0)'; // Or appropriate show animation
+                  mainContent.classList.add('sidebar-visible');
+              }
           }
       }
 
       // Handle sidebar visibility based on screen size
       function handleScreenSizeChange() {
-          const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
-          const isVeryLargeScreen = window.matchMedia('(min-width: 1800px)').matches;
-          
-          if (isLargeScreen || isVeryLargeScreen) {
+          if (veryLargeScreenQuery.matches) {
+              // Always show sidebar on very large screens
               sidebar.classList.remove('hidden');
-              sidebar.style.transform = 'translateY(-50%)';
+              sidebar.style.transform = 'translateY(-50%)'; // Keep vertical centering if needed
               mainContent.classList.add('sidebar-visible');
+          } else if (largeScreenQuery.matches) {
+              // Show sidebar on large screens (but allow potential hiding via other means if needed later)
+              sidebar.classList.remove('hidden');
+              sidebar.style.transform = 'translateY(-50%)'; // Keep vertical centering
+              mainContent.classList.add('sidebar-visible');
+          } else {
+              // On smaller screens, initially hide the sidebar
+              sidebar.classList.add('hidden');
+              sidebar.style.transform = 'translateX(100%)'; // Start hidden off-screen
+              mainContent.classList.remove('sidebar-visible');
           }
       }
-      
+
       // Run on page load
       handleScreenSizeChange();
-      
+
       // Add resize listener
       window.addEventListener('resize', handleScreenSizeChange);
 
-      document.addEventListener('touchstart', function(e) {
-          touchstartX = e.changedTouches[0].screenX;
-      });
+      // Add touch listeners only if not on a very large screen initially
+      // Note: This might need adjustment if the screen resizes across the threshold
+      if (!veryLargeScreenQuery.matches) {
+          document.addEventListener('touchstart', function(e) {
+              // Only track swipes if the sidebar could potentially be hidden/shown
+              if (!veryLargeScreenQuery.matches) {
+                touchstartX = e.changedTouches[0].screenX;
+              }
+          }, { passive: true }); // Use passive listener for performance
 
-      document.addEventListener('touchend', function(e) {
-          touchendX = e.changedTouches[0].screenX;
-          handleGesture();
+          document.addEventListener('touchend', function(e) {
+              // Only handle gestures if the sidebar could potentially be hidden/shown
+              if (!veryLargeScreenQuery.matches) {
+                touchendX = e.changedTouches[0].screenX;
+                handleGesture();
+              }
+          }, { passive: true }); // Use passive listener for performance
+      }
+
+      // Optional: Re-evaluate touch listener binding on resize if needed
+      window.addEventListener('resize', () => {
+          // Basic example: If resizing makes it non-TV size, ensure listeners are attached
+          // This part might need more robust logic depending on exact requirements
+          if (!veryLargeScreenQuery.matches) {
+              // Consider adding listeners here if they weren't added initially
+              // and removing them if resizing makes it a very large screen.
+              // For simplicity, the initial check might suffice for most cases.
+          }
       });
     });
   </script>
