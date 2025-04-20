@@ -93,21 +93,21 @@ function initializeCountdowns() {
     const movieElement = document.getElementById('current-movie');
     
     if (bingwaElement) {
-      bingwaElement.textContent = 'FLIGHTx12'; // Change this to the new Bingwa champion name
+      bingwaElement.textContent = 'JAYBERS8'; // Change this to the new Bingwa champion name
       console.log("Bingwa champion set");
     } else {
       console.error("Element with ID 'current-bingwa' not found");
     }
     
     if (atleticoElement) {
-      atleticoElement.textContent = 'FLIGHTx12'; // Change this to the new Atletico champion name
+      atleticoElement.textContent = 'JAYBERS8'; // Change this to the new Atletico champion name
       console.log("Atletico champion set");
     } else {
       console.error("Element with ID 'current-atletico' not found");
     }
     
     if (movieElement) {
-      movieElement.textContent = 'Monkey Man (2024)'; // Change this to the new movie title
+      movieElement.textContent = 'Leave the World Behind (2023)'; // Change this to the new movie title
       console.log("Movie title set");
     } else {
       console.error("Element with ID 'current-movie' not found");
