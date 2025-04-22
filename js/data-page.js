@@ -19,11 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   filterBtn.textContent = 'Status: All';
   navbar.appendChild(filterBtn);
 
-  let currentFilter = 'all'; // Possible values: 'all', 'active', 'inactive', 'watched'
-  let hasWatchedData = false;
-  let hasCompletedData = false;
-  let hasSeasonalData = false;
-
   // After creating the filter button, add the genre filter
   const genreFilter = document.createElement('div');
   genreFilter.className = 'genre-filter';
@@ -39,20 +34,53 @@ document.addEventListener('DOMContentLoaded', () => {
   genreFilter.appendChild(genreDropdown);
   navbar.appendChild(genreFilter);
 
-  // Add sort button
-  const sortFilter = document.createElement('div');
-  sortFilter.className = 'sort-filter';
+  // Move search field to the right of the genre filter
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = 'Search...';
+  searchInput.className = 'navbar-search';
+  searchInput.style.margin = '0 10px';
+  searchInput.style.padding = '4px 8px'; // Half as tall (was 8px 12px)
+  searchInput.style.borderRadius = '10px';
+  searchInput.style.border = '2px solid #4682B4'; // Metallic blue border
+  searchInput.style.backgroundColor = '#e0e0e0'; // Grey background
+  searchInput.style.fontSize = '0.9em';
+  searchInput.style.minWidth = '60px'; // Half as wide (was 120px)
+  searchInput.style.width = 'auto'; // Allow to size with content
+  searchInput.style.transition = 'all 0.3s ease, border-color 0.5s ease, box-shadow 0.3s ease';
+  searchInput.style.color = '#333'; // Darker text for better contrast on grey
   
-  const sortBtn = document.createElement('button');
-  sortBtn.className = 'sort-btn';
-  sortBtn.textContent = 'Sort By';
+  // Add focus and input event styles
+  searchInput.addEventListener('focus', function() {
+    this.style.boxShadow = '0 0 5px #4682B4, 0 0 10px #4682B4';
+    this.style.borderColor = '#6CB4EE'; // Lighter blue when focused
+  });
   
-  const sortDropdown = document.createElement('div');
-  sortDropdown.className = 'sort-dropdown';
+  searchInput.addEventListener('blur', function() {
+    if (this.value.trim() === '') {
+      this.style.boxShadow = 'none';
+      this.style.borderColor = '#4682B4'; // Return to original border
+    }
+  });
   
-  sortFilter.appendChild(sortBtn);
-  sortFilter.appendChild(sortDropdown);
-  navbar.appendChild(sortFilter);
+  // Make border shine when typing
+  searchInput.addEventListener('input', function() {
+    if (this.value.trim() !== '') {
+      this.style.boxShadow = '0 0 5px #4682B4, 0 0 10px #4682B4';
+      this.style.borderColor = '#87CEFA'; // Light blue when typing
+    } else {
+      this.style.boxShadow = 'none';
+      this.style.borderColor = '#4682B4';
+    }
+  });
+  
+  // Insert after genreFilter
+  navbar.insertBefore(searchInput, genreFilter.nextSibling);
+
+  let currentFilter = 'all'; // Possible values: 'all', 'active', 'inactive', 'watched'
+  let hasWatchedData = false;
+  let hasCompletedData = false;
+  let hasSeasonalData = false;
 
   // Create or get sidebar for the Collapse All button
   let sidebar = document.getElementById('sidebar');
@@ -124,21 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!genreFilter.contains(e.target)) {
       genreDropdown.classList.remove('show');
     }
-    if (!sortFilter.contains(e.target)) {
-      sortDropdown.classList.remove('show');
-    }
   });
 
   // Toggle dropdown
   genreBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     genreDropdown.classList.toggle('show');
-  });
-
-  // Toggle dropdown
-  sortBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    sortDropdown.classList.toggle('show');
   });
 
   function populateGenreDropdown(data) {
@@ -645,6 +664,124 @@ document.addEventListener('DOMContentLoaded', () => {
     applyAllFilters();
   });
 
+  // Improved search filter logic: always filter from all items, not just visible ones
+  let allItemRows = [];
+
+  function refreshAllItemRows() {
+    // Always get the full set of .item-row elements from the DOM
+    allItemRows = Array.from(document.querySelectorAll('.item-row'));
+  }
+
+  function refreshSearchFilter() {
+    try {
+      const query = searchInput.value.trim().toLowerCase();
+      const container = document.getElementById('data-container');
+      
+      // Make sure we have all items to filter from
+      if (allItemRows.length === 0) {
+        refreshAllItemRows();
+      }
+      
+      // Always filter from the full set
+      const items = allItemRows;
+      
+      if (!query) {
+        // If search is empty, restore original order in alphabetical order
+        
+        // First, show all items
+        items.forEach(item => {
+          item.style.display = '';
+        });
+        
+        // Sort items alphabetically by their title text
+        const sortedItems = [...items].sort((a, b) => {
+          const aTitle = a.querySelector('.item-title')?.textContent.toLowerCase() || '';
+          const bTitle = b.querySelector('.item-title')?.textContent.toLowerCase() || '';
+          return aTitle.localeCompare(bTitle);
+        });
+        
+        // Remove all items and add them back in sorted order
+        items.forEach(item => {
+          try {
+            if (container.contains(item)) {
+              container.removeChild(item);
+            }
+          } catch (err) {
+            console.log('Error removing item:', err);
+          }
+        });
+        
+        // Re-append in alphabetical order
+        sortedItems.forEach(item => {
+          container.appendChild(item);
+        });
+        
+        // Apply any active filters
+        applyAllFilters();
+        return;
+      }
+      
+      // Separate items into title matches and detail matches
+      const titleMatches = [];
+      const detailMatches = [];
+      const noMatches = [];
+      
+      items.forEach(item => {
+        const title = item.querySelector('.item-title')?.textContent.toLowerCase() || '';
+        const details = item.querySelector('.item-details')?.textContent.toLowerCase() || '';
+        
+        if (title.includes(query)) {
+          titleMatches.push(item);
+        } else if (details.includes(query)) {
+          detailMatches.push(item);
+        } else {
+          noMatches.push(item);
+        }
+      });
+      
+      // Clone the DOM elements before manipulation to prevent issues
+      // when removing and re-adding elements
+      const allMatchingItems = [...titleMatches, ...detailMatches];
+      const allFilteredItems = [...titleMatches, ...detailMatches, ...noMatches];
+      
+      // First make sure all items are properly hidden/shown
+      allFilteredItems.forEach(item => {
+        if (allMatchingItems.includes(item)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Now reorder the visible items
+      titleMatches.forEach(item => container.appendChild(item));
+      detailMatches.forEach(item => container.appendChild(item));
+      
+    } catch (err) {
+      console.error('Error in refreshSearchFilter:', err);
+    }
+  }
+
+  // Add event listener for input to refresh filter on every keystroke
+  searchInput.addEventListener('input', function() {
+    refreshAllItemRows();
+    refreshSearchFilter();
+  });
+  
+  // Add event listeners for keyup and keydown to catch all keyboard interactions
+  searchInput.addEventListener('keyup', function() {
+    refreshAllItemRows();
+    refreshSearchFilter();
+  });
+  
+  searchInput.addEventListener('keydown', function() {
+    // Use setTimeout to allow the input value to update before filtering
+    setTimeout(() => {
+      refreshAllItemRows();
+      refreshSearchFilter();
+    }, 0);
+  });
+  
   const dataFile = getDataFile();
   const containerId = 'data-container';
 
@@ -1086,11 +1223,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Populate genre dropdown
         populateGenreDropdown(data);
 
-        // Populate sort options
-        populateSortOptions(data);
-
         // Apply initial filters and sort
         applyAllFilters();
+        if (searchInput) searchInput.value = '';
+        refreshAllItemRows();
       })
       .catch(error => console.error('Error loading data:', error));
   }
