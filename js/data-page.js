@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput.style.border = '2px solid #4682B4'; // Metallic blue border
   searchInput.style.backgroundColor = '#e0e0e0'; // Grey background
   searchInput.style.fontSize = '0.9em';
-  searchInput.style.minWidth = '60px'; // Half as wide (was 120px)
+  searchInput.style.minWidth = '30px'; // Half as wide (was 120px)
   searchInput.style.width = 'auto'; // Allow to size with content
   searchInput.style.transition = 'all 0.3s ease, border-color 0.5s ease, box-shadow 0.3s ease';
   searchInput.style.color = '#333'; // Darker text for better contrast on grey
@@ -77,10 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Insert after genreFilter
   navbar.insertBefore(searchInput, genreFilter.nextSibling);
 
-  let currentFilter = 'all'; // Possible values: 'all', 'active', 'inactive', 'watched'
+  let currentFilter = 'all'; // Possible values: 'all', 'active', 'inactive', 'watched', 'ergo'
   let hasWatchedData = false;
   let hasCompletedData = false;
   let hasSeasonalData = false;
+  let hasErgoContent = false; // Track if ERGO content exists
 
   // Create or get sidebar for the Collapse All button
   let sidebar = document.getElementById('sidebar');
@@ -536,9 +537,19 @@ document.addEventListener('DOMContentLoaded', () => {
         shouldShow = shouldShow && genreText.toLowerCase().includes(currentGenre.toLowerCase());
       }
 
-      // Apply status filter
+      // Check for ERGOarena or ERGOvillians content
       const titleElement = item.querySelector('.item-title');
       const detailsElement = item.querySelector('.item-details');
+      const titleText = titleElement?.textContent || '';
+      const detailsText = detailsElement?.textContent || '';
+      
+      const hasErgoContent = 
+        detailsText.includes('ERGOarena') || 
+        detailsText.includes('ERGOvillians') ||
+        titleText.includes('ERGO') ||
+        detailsText.includes('ERGO');
+      
+      // Apply status filter
       const hasActiveStatus = titleElement?.textContent.includes('🟢') || false;
       const hasSeasonalStatus = titleElement?.textContent.includes('🟣') || false;
       const hasWatchedStatus = detailsElement?.textContent.includes('👀') || false;
@@ -575,6 +586,13 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'owned':
           shouldShow = shouldShow && hasOwnedStatus;
           break;
+        case 'ergo':
+          shouldShow = shouldShow && hasErgoContent;
+          break;
+        case 'all':
+          // For 'all' filter, hide ERGO content by default
+          shouldShow = shouldShow && !hasErgoContent;
+          break;
       }
 
       item.style.display = shouldShow ? '' : 'none';
@@ -590,6 +608,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('data-container');
     const items = Array.from(container.getElementsByClassName('item-row'));
     const isSinglePlayerPage = window.location.pathname.includes('singleplayer.html');
+    
+    // Check if we have ERGO content in this page
+    hasErgoContent = items.some(item => {
+      const detailsText = item.querySelector('.item-details')?.textContent || '';
+      const titleText = item.querySelector('.item-title')?.textContent || '';
+      return detailsText.includes('ERGOarena') || 
+             detailsText.includes('ERGOvillians') ||
+             titleText.includes('ERGO') ||
+             detailsText.includes('ERGO');
+    });
 
     // Cycle through filter states based on data available
     switch(currentFilter) {
@@ -611,7 +639,23 @@ document.addEventListener('DOMContentLoaded', () => {
         filterBtn.textContent = 'Status: Inactive';
         break;
       case 'inactive':
-        // Only add watched state if we have watched data
+        // Check if we have ERGO content, add it to the cycle
+        if (hasErgoContent) {
+          currentFilter = 'ergo';
+          filterBtn.textContent = 'Status: Villians 😈';
+        } else if (hasWatchedData) {
+          currentFilter = 'watched';
+          filterBtn.textContent = 'Status: Watched 👀';
+        } else if (hasCompletedData) {
+          currentFilter = 'completed';
+          filterBtn.textContent = 'Status: Completed 🏆';
+        } else {
+          currentFilter = 'all';
+          filterBtn.textContent = 'Status: All';
+        }
+        break;
+      case 'ergo':
+        // If we have watched data, go there next
         if (hasWatchedData) {
           currentFilter = 'watched';
           filterBtn.textContent = 'Status: Watched 👀';
@@ -998,13 +1042,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
           itemDiv.innerHTML = `
             <div class="item-title">${itemLink}</div>
-            <div class="item-details">${detailsHTML}</div>
+            <div class="item-details"></div>
           `;
 
           // Store the background image URL as a data attribute for later use
           if (backgroundImage) {
             itemDiv.setAttribute('data-bg-image', backgroundImage);
           }
+
+          // Store the original item data for editing
+          itemDiv._itemData = item;
+
+          // Store the original details HTML for restoration
+          const detailsDiv = itemDiv.querySelector('.item-details');
+          detailsDiv.innerHTML = detailsHTML;
+          itemDiv._originalDetailsHTML = detailsHTML;
 
           container.appendChild(itemDiv);
 
@@ -1031,6 +1083,15 @@ document.addEventListener('DOMContentLoaded', () => {
               this.style.color = '';
               this.style.textShadow = '';
               
+              // Restore original details view
+              const detailsDiv = this.querySelector('.item-details');
+              if (detailsDiv && typeof this._originalDetailsHTML === 'string') {
+                detailsDiv.innerHTML = this._originalDetailsHTML;
+              }
+
+              // Remove edit mode if present
+              this.classList.remove('edit-mode');
+
               // Recalculate layout for remaining expanded items
               updateExpandedItemsLayout();
               return;
@@ -1120,6 +1181,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.removeEventListener('wheel', handleScroll);
               }
             }, { once: true });
+
+            // --- BEGIN: Add Edit button to expanded view ---
+            const detailsDiv = this.querySelector('.item-details');
+            if (detailsDiv) {
+              detailsDiv.innerHTML = this._originalDetailsHTML;
+              // Add Edit button
+              if (!this.classList.contains('edit-mode')) {
+                const editBtn = document.createElement('button');
+                editBtn.textContent = 'Edit';
+                editBtn.style.marginTop = '10px';
+                editBtn.style.backgroundColor = '#444';
+                editBtn.style.color = 'white';
+                editBtn.style.fontWeight = 'bold';
+                editBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  enterEditMode(this, detailsDiv);
+                });
+                detailsDiv.appendChild(editBtn);
+              }
+            }
+            // --- END: Add Edit button to expanded view ---
           });
           
           // Function to update layout based on number of expanded items
@@ -1230,4 +1312,122 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error loading data:', error));
   }
+
+  // --- BEGIN: Edit mode logic ---
+  function enterEditMode(itemDiv, detailsDiv) {
+    itemDiv.classList.add('edit-mode');
+    const itemData = itemDiv._itemData;
+    detailsDiv.innerHTML = '';
+    Object.keys(itemData).forEach(key => {
+      if (['image', 'imageUrl', 'LINK', 'link', 'Link'].includes(key)) return;
+      let value = itemData[key];
+      if (typeof value === 'undefined' || value === null) return;
+      if (typeof value === 'object') value = JSON.stringify(value);
+      if (String(value).length > 40) {
+        detailsDiv.innerHTML += `
+          <label style="display:block;margin-top:6px;"><strong>${key}:</strong>
+            <textarea data-edit-key="${key}" style="width:98%;">${value}</textarea>
+          </label>
+        `;
+      } else {
+        detailsDiv.innerHTML += `
+          <label style="display:block;margin-top:6px;"><strong>${key}:</strong>
+            <input data-edit-key="${key}" value="${value}" style="width:98%;" />
+          </label>
+        `;
+      }
+    });
+    // Save and Cancel buttons
+    const saveBtn = document.createElement('button');
+    saveBtn.textContent = 'Save';
+    saveBtn.style.marginTop = '10px';
+    saveBtn.style.backgroundColor = 'green';
+    saveBtn.style.color = 'white';
+    saveBtn.style.fontWeight = 'bold';
+    saveBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const inputs = detailsDiv.querySelectorAll('[data-edit-key]');
+      inputs.forEach(input => {
+        const key = input.getAttribute('data-edit-key');
+        let val = input.value;
+        try {
+          if (val.startsWith('{') || val.startsWith('[')) {
+            val = JSON.parse(val);
+          }
+        } catch {}
+        itemData[key] = val;
+      });
+      saveEditedItem(itemData);
+    });
+    detailsDiv.appendChild(saveBtn);
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.style.marginLeft = '10px';
+    cancelBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      detailsDiv.innerHTML = itemDiv._originalDetailsHTML;
+      itemDiv.classList.remove('edit-mode');
+      // Restore Edit button
+      const editBtn = document.createElement('button');
+      editBtn.textContent = 'Edit';
+      editBtn.style.marginTop = '10px';
+      editBtn.style.backgroundColor = '#444';
+      editBtn.style.color = 'white';
+      editBtn.style.fontWeight = 'bold';
+      editBtn.addEventListener('click', (e2) => {
+        e2.stopPropagation();
+        enterEditMode(itemDiv, detailsDiv);
+      });
+      detailsDiv.appendChild(editBtn);
+    });
+    detailsDiv.appendChild(cancelBtn);
+  }
+  // --- END: Edit mode logic ---
+
+  // --- BEGIN: Save edited item to backend ---
+  function saveEditedItem(editedItem) {
+    // Get data file name from URL
+    const path = window.location.pathname;
+    const filename = path.split('/').pop().replace('.html', '.json');
+    const apiUrl = `/data/${filename}`;
+    // Fetch current data, update the item, and PUT back
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        // Find and update the item (by TITLE/Title/text or other unique key)
+        let updated = false;
+        if (Array.isArray(data)) {
+          for (let i = 0; i < data.length; i++) {
+            if (
+              (data[i].TITLE && editedItem.TITLE && data[i].TITLE === editedItem.TITLE) ||
+              (data[i].Title && editedItem.Title && data[i].Title === editedItem.Title) ||
+              (data[i].text && editedItem.text && data[i].text === editedItem.text)
+            ) {
+              data[i] = { ...editedItem };
+              updated = true;
+              break;
+            }
+          }
+        }
+        if (updated) {
+          fetch(apiUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          .then(r => {
+            if (r.ok) {
+              // Reload page or refresh items
+              window.location.reload();
+            } else {
+              alert('Failed to save changes.');
+            }
+          });
+        } else {
+          alert('Could not find item to update.');
+        }
+      });
+  }
+  // --- END: Save edited item to backend ---
 });
