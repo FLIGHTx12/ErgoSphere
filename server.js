@@ -366,16 +366,32 @@ app.post('/api/options/update', async (req, res) => {
 // Update PUT route for JSON data files to use database
 app.put('/data/:filename', async (req, res) => {
   const filename = req.params.filename;
-  const category = filename.replace('.json', '');
   const data = req.body;
-  
+
+  // --- Validation & Security Enhancements ---
+  // Only allow .json files in the data directory
+  if (!/^[\w-]+\.json$/.test(filename)) {
+    return res.status(400).json({ error: 'Invalid filename. Only alphanumeric, dash, underscore, and .json allowed.' });
+  }
+
+  // Prevent directory traversal
+  if (filename.includes('..') || path.isAbsolute(filename)) {
+    return res.status(400).json({ error: 'Invalid filename.' });
+  }
+
+  // Validate JSON body is not empty and is an object or array
+  if (!data || (typeof data !== 'object')) {
+    return res.status(400).json({ error: 'Request body must be valid JSON.' });
+  }
+
+  const category = filename.replace('.json', '');
   try {
     // Save to database
     const existingResult = await pool.query(
       'SELECT id FROM json_data WHERE category = $1',
       [category]
     );
-    
+
     if (existingResult.rows.length > 0) {
       await pool.query(
         'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
@@ -387,16 +403,16 @@ app.put('/data/:filename', async (req, res) => {
         [category, data]
       );
     }
-    
+
     // Also update file as fallback
     const filePath = path.join(__dirname, 'data', filename);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
-    
-    console.log('JSON file updated successfully in database and file!');
-    res.send('Data saved');
+
+    console.log(`JSON file ${filename} updated successfully in database and file!`);
+    res.json({ success: true, message: 'Data saved.' });
   } catch (err) {
     console.error('Error updating data:', err);
-    res.status(500).send('Error saving data');
+    res.status(500).json({ error: 'Error saving data', details: err.message });
   }
 });
 
