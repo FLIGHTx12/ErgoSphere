@@ -3,6 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScrollTop = 0;
   const navbar = document.getElementById('navbar');
   
+  // Create save status indicator
+  const saveStatus = document.createElement('div');
+  saveStatus.id = 'save-status';
+  saveStatus.style.position = 'fixed';
+  saveStatus.style.bottom = '20px';
+  saveStatus.style.right = '20px';
+  saveStatus.style.padding = '10px';
+  saveStatus.style.borderRadius = '5px';
+  saveStatus.style.display = 'none';
+  saveStatus.style.zIndex = '1000';
+  saveStatus.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+  saveStatus.style.fontSize = '14px';
+  saveStatus.style.fontWeight = 'bold';
+  document.body.appendChild(saveStatus);
+  
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop) {
@@ -13,19 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollTop = scrollTop;
   });
 
-  // Add filter button to navbar
+  // Add filter button to navbar with smaller size
   const filterBtn = document.createElement('button');
   filterBtn.className = 'filter-btn';
   filterBtn.textContent = 'Status: All';
+  filterBtn.style.padding = '3px 6px';  // Smaller padding
+  filterBtn.style.fontSize = '0.85em';  // Smaller font
+  filterBtn.style.height = '24px';     // Explicit height
+  filterBtn.style.minWidth = '80px';   // Minimum width
   navbar.appendChild(filterBtn);
 
-  // After creating the filter button, add the genre filter
+  // After creating the filter button, add the genre filter with smaller size
   const genreFilter = document.createElement('div');
   genreFilter.className = 'genre-filter';
   
   const genreBtn = document.createElement('button');
   genreBtn.className = 'genre-btn';
   genreBtn.textContent = 'Genre: All';
+  genreBtn.style.padding = '3px 6px';  // Smaller padding
+  genreBtn.style.fontSize = '0.85em';  // Smaller font
+  genreBtn.style.height = '24px';     // Explicit height
+  genreBtn.style.minWidth = '80px';   // Minimum width
   
   const genreDropdown = document.createElement('div');
   genreDropdown.className = 'genre-dropdown';
@@ -34,43 +57,51 @@ document.addEventListener('DOMContentLoaded', () => {
   genreFilter.appendChild(genreDropdown);
   navbar.appendChild(genreFilter);
 
-  // Move search field to the right of the genre filter
+  // Move search field to the right of the genre filter with smaller size
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = 'Search...';
   searchInput.className = 'navbar-search';
-  searchInput.style.margin = '0 10px';
-  searchInput.style.padding = '4px 8px'; // Half as tall (was 8px 12px)
-  searchInput.style.borderRadius = '10px';
-  searchInput.style.border = '2px solid #4682B4'; // Metallic blue border
-  searchInput.style.backgroundColor = '#e0e0e0'; // Grey background
-  searchInput.style.fontSize = '0.9em';
-  searchInput.style.minWidth = '30px'; // Half as wide (was 120px)
-  searchInput.style.width = 'auto'; // Allow to size with content
-  searchInput.style.transition = 'all 0.3s ease, border-color 0.5s ease, box-shadow 0.3s ease';
-  searchInput.style.color = '#333'; // Darker text for better contrast on grey
+  searchInput.style.margin = '0 5px'; // Reduced margin
+  searchInput.style.padding = '1px 4px'; // Smaller padding
+  searchInput.style.borderRadius = '6px'; // Smaller border radius
+  searchInput.style.border = '1px solid #4682B4'; // Thinner border
+  searchInput.style.backgroundColor = '#e0e0e0';
+  searchInput.style.fontSize = '0.75em'; // Even smaller font
+  searchInput.style.minWidth = '15px'; // Smaller minimum width
+  searchInput.style.width = '60px'; // Fixed smaller width
+  searchInput.style.height = '16px'; // Reduced height
+  searchInput.style.transition = 'all 0.3s ease, width 0.3s ease, border-color 0.5s ease, box-shadow 0.3s ease';
+  searchInput.style.color = '#333';
   
   // Add focus and input event styles
   searchInput.addEventListener('focus', function() {
-    this.style.boxShadow = '0 0 5px #4682B4, 0 0 10px #4682B4';
-    this.style.borderColor = '#6CB4EE'; // Lighter blue when focused
+    this.style.boxShadow = '0 0 2px #4682B4, 0 0 3px #4682B4'; // Smaller shadow
+    this.style.borderColor = '#6CB4EE';
+    this.style.width = '100px'; // Expand width when focused
   });
   
   searchInput.addEventListener('blur', function() {
     if (this.value.trim() === '') {
       this.style.boxShadow = 'none';
-      this.style.borderColor = '#4682B4'; // Return to original border
+      this.style.borderColor = '#4682B4';
+      this.style.width = '60px'; // Revert to smaller width when not in use and empty
     }
   });
   
   // Make border shine when typing
   searchInput.addEventListener('input', function() {
     if (this.value.trim() !== '') {
-      this.style.boxShadow = '0 0 5px #4682B4, 0 0 10px #4682B4';
-      this.style.borderColor = '#87CEFA'; // Light blue when typing
+      this.style.boxShadow = '0 0 2px #4682B4, 0 0 3px #4682B4'; // Smaller shadow
+      this.style.borderColor = '#87CEFA';
+      this.style.width = '100px'; // Keep expanded while text is present
     } else {
       this.style.boxShadow = 'none';
       this.style.borderColor = '#4682B4';
+      // Don't shrink while focused
+      if (!document.activeElement === this) {
+        this.style.width = '60px';
+      }
     }
   });
   
@@ -111,9 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Event listener for Collapse All button
   collapseAllBtn.addEventListener('click', () => {
-    const expandedItems = document.querySelectorAll('.item-row.expanded');
+    const expandedItems = document.querySelectorAll('.item-row.expanded:not(.in-multi-container)');
     expandedItems.forEach(item => {
-      // Remove expanded class
+      // Use the collapseItem function defined in the processItem scope
+      // Since we can't access it directly, we'll simulate its behavior
       item.classList.remove('expanded');
       item.classList.remove('multi-expanded-2');
       item.classList.remove('multi-expanded-3');
@@ -136,12 +168,25 @@ document.addEventListener('DOMContentLoaded', () => {
       item.style.backgroundImage = '';
       item.style.color = '';
       item.style.textShadow = '';
+      
+      // Restore original details view
+      const detailsDiv = item.querySelector('.item-details');
+      if (detailsDiv && typeof item._originalDetailsHTML === 'string') {
+        detailsDiv.innerHTML = item._originalDetailsHTML;
+      }
+
+      // Remove edit mode if present
+      item.classList.remove('edit-mode');
+      
+      // Remove wheel event listener
+      item.onwheel = null;
     });
     
-    // Hide the multi-expanded container if it exists
+    // Hide the multi-expanded container
     const multiContainer = document.getElementById('multi-expanded-container');
     if (multiContainer) {
       multiContainer.style.display = 'none';
+      multiContainer.innerHTML = '';
     }
     
     // Hide the Collapse All button since nothing is expanded now
@@ -1005,7 +1050,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           function addDetail(label, value) {
             if (value && value.trim() !== '') {
-              detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+              // Special handling for descriptions to preserve paragraphs
+              if (label.toLowerCase() === 'description') {
+                detailsHTML += `<p class="description-text"><strong>${label}:</strong> ${value}</p>`;
+              } else {
+                detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+              }
             }
           }
 
@@ -1065,34 +1115,31 @@ document.addEventListener('DOMContentLoaded', () => {
             // If click is on the collapse corner, process it
             if (event.target.closest('.collapse-corner')) {
               event.stopPropagation();
-              this.classList.remove('expanded');
-              // Remove the multi-item class from this item
-              this.classList.remove('multi-expanded');
-              const collapseCorner = this.querySelector('.collapse-corner');
-              if (collapseCorner) {
-                collapseCorner.remove();
-              }
-              // Reset links and styling
-              const currentLink = this.querySelector('a.item-title-link');
-              if (currentLink) {
-                currentLink.removeAttribute('href');
-                currentLink.style.color = '';
-              }
-              // Reset background
-              this.style.backgroundImage = '';
-              this.style.color = '';
-              this.style.textShadow = '';
               
-              // Restore original details view
-              const detailsDiv = this.querySelector('.item-details');
-              if (detailsDiv && typeof this._originalDetailsHTML === 'string') {
-                detailsDiv.innerHTML = this._originalDetailsHTML;
+              // Get the original item if this is a clone in the multi-container
+              const multiContainer = document.getElementById('multi-expanded-container');
+              if (multiContainer && multiContainer.contains(this)) {
+                // Find the original item by matching data attributes
+                const originalItemTitle = this.querySelector('.item-title').textContent;
+                const originalItem = document.querySelector(`.item-row:not(.in-multi-container) .item-title`);
+                let foundOriginalItem = null;
+                
+                document.querySelectorAll('.item-row:not(.in-multi-container)').forEach(item => {
+                  if (item.querySelector('.item-title').textContent === originalItemTitle) {
+                    foundOriginalItem = item;
+                  }
+                });
+                
+                // If found the original, collapse it instead
+                if (foundOriginalItem) {
+                  collapseItem(foundOriginalItem);
+                  updateExpandedItemsLayout();
+                  return;
+                }
               }
-
-              // Remove edit mode if present
-              this.classList.remove('edit-mode');
-
-              // Recalculate layout for remaining expanded items
+              
+              // Normal collapse for the clicked item
+              collapseItem(this);
               updateExpandedItemsLayout();
               return;
             }
@@ -1115,12 +1162,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // Now expand this item
-            this.classList.add('expanded');
+            expandItem(this);
             
             // Add appropriate class based on number of expanded items
             updateExpandedItemsLayout();
+          });
+          
+          // Helper function to collapse an item
+          function collapseItem(item) {
+            item.classList.remove('expanded');
+            item.classList.remove('multi-expanded-2');
+            item.classList.remove('multi-expanded-3');
+            item.classList.remove('multi-expanded-4');
             
-            // Add collapse corner, enable link and style it
+            // Remove collapse corner
+            const collapseCorner = item.querySelector('.collapse-corner');
+            if (collapseCorner) {
+              collapseCorner.remove();
+            }
+            
+            // Reset link and styling
+            const currentLink = item.querySelector('a.item-title-link');
+            if (currentLink) {
+              currentLink.removeAttribute('href');
+              currentLink.style.color = '';
+            }
+            
+            // Reset background and styling
+            item.style.backgroundImage = '';
+            item.style.color = '';
+            item.style.textShadow = '';
+            
+            // Restore original details view
+            const detailsDiv = item.querySelector('.item-details');
+            if (detailsDiv && typeof item._originalDetailsHTML === 'string') {
+              detailsDiv.innerHTML = item._originalDetailsHTML;
+            }
+
+            // Remove edit mode if present
+            item.classList.remove('edit-mode');
+            
+            // Remove any wheel event listeners
+            item.onwheel = null;
+          }
+          
+          // Helper function to expand an item
+          function expandItem(item) {
+            item.classList.add('expanded');
+            
             // Add collapse corner
             const collapseCorner = document.createElement('div');
             collapseCorner.className = 'collapse-corner';
@@ -1128,12 +1217,12 @@ document.addEventListener('DOMContentLoaded', () => {
             collapseCorner.title = 'Click to collapse';
             
             // Insert the button right after the item-title div to ensure it's at the top
-            const titleDiv = this.querySelector('.item-title');
+            const titleDiv = item.querySelector('.item-title');
             if (titleDiv && titleDiv.nextSibling) {
-              this.insertBefore(collapseCorner, titleDiv.nextSibling);
+              item.insertBefore(collapseCorner, titleDiv.nextSibling);
             } else {
               // Fallback - just append it
-              this.appendChild(collapseCorner);
+              item.appendChild(collapseCorner);
             }
             
             // Make sure the button is positioned properly
@@ -1142,52 +1231,50 @@ document.addEventListener('DOMContentLoaded', () => {
             collapseCorner.style.right = '10px';
             collapseCorner.style.zIndex = '1000';
             
+            // Add event listener to the collapse corner
+            collapseCorner.addEventListener('click', function(e) {
+              e.stopPropagation();
+              collapseItem(item);
+              updateExpandedItemsLayout();
+            });
+            
             // Enable link
-            const currentLink = this.querySelector('a.item-title-link');
+            const currentLink = item.querySelector('a.item-title-link');
             if (currentLink) {
               currentLink.setAttribute('href', currentLink.dataset.href);
               currentLink.style.color = 'lightgreen';
             }
             
-            // Set background image from data attribute, imageUrl, or image array
-            let bgImage = this.getAttribute('data-bg-image') || '';
-            // No need to re-determine the image source here, it's already in data-bg-image
+            // Set background image from data attribute
+            let bgImage = item.getAttribute('data-bg-image') || '';
 
             if (bgImage) {
-              this.style.backgroundImage = `url('${bgImage}')`;
-              this.style.backgroundSize = 'cover';
-              this.style.backgroundPosition = 'center';
-              this.style.backgroundRepeat = 'no-repeat';
-              this.style.color = 'white';
-              this.style.textShadow = '2px 2px 4px #000000';
+              item.style.backgroundImage = `url('${bgImage}')`;
+              item.style.backgroundSize = 'cover';
+              item.style.backgroundPosition = 'center';
+              item.style.backgroundRepeat = 'no-repeat';
+              item.style.color = 'white';
+              item.style.textShadow = '2px 2px 4px #000000';
             }
 
             // Add scroll listener for expanded div
-            let startY = 0;
             let bgPos = 0;
             
             const handleScroll = (e) => {
               const delta = e.deltaY;
               bgPos = Math.max(0, Math.min(100, bgPos + (delta / 10)));
-              this.style.backgroundPosition = `center ${bgPos}%`;
+              item.style.backgroundPosition = `center ${bgPos}%`;
               e.preventDefault();
             };
             
-            this.addEventListener('wheel', handleScroll, { passive: false });
-            
-            // Remove scroll listener when collapsed
-            this.addEventListener('click', () => {
-              if (!this.classList.contains('expanded')) {
-                this.removeEventListener('wheel', handleScroll);
-              }
-            }, { once: true });
+            item.addEventListener('wheel', handleScroll, { passive: false });
 
             // --- BEGIN: Add Edit button to expanded view ---
-            const detailsDiv = this.querySelector('.item-details');
+            const detailsDiv = item.querySelector('.item-details');
             if (detailsDiv) {
-              detailsDiv.innerHTML = this._originalDetailsHTML;
+              detailsDiv.innerHTML = item._originalDetailsHTML;
               // Add Edit button
-              if (!this.classList.contains('edit-mode')) {
+              if (!item.classList.contains('edit-mode')) {
                 const editBtn = document.createElement('button');
                 editBtn.textContent = 'Edit';
                 editBtn.style.marginTop = '10px';
@@ -1196,13 +1283,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 editBtn.style.fontWeight = 'bold';
                 editBtn.addEventListener('click', (e) => {
                   e.stopPropagation();
-                  enterEditMode(this, detailsDiv);
+                  enterEditMode(item, detailsDiv);
                 });
                 detailsDiv.appendChild(editBtn);
               }
             }
             // --- END: Add Edit button to expanded view ---
-          });
+          }
           
           // Function to update layout based on number of expanded items
           function updateExpandedItemsLayout() {
@@ -1234,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
               });
             }
             
-            // Create or update the multi-expanded-container
+            // Create or update the multi-expanded container
             let multiContainer = document.getElementById('multi-expanded-container');
             
             if (expandedItems.length > 1) {
@@ -1244,15 +1331,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(multiContainer);
               }
               
-              // Clear the container and add all expanded items to it
+              // Clear the container
               multiContainer.innerHTML = '';
+              
+              // Clone and add all expanded items to the container
               expandedItems.forEach(item => {
-                multiContainer.appendChild(item.cloneNode(true));
+                const clone = item.cloneNode(true);
+                clone.classList.add('in-multi-container'); // Add class to mark as being in container
+                
+                // Ensure the background image is applied correctly to the clone
+                const bgImage = item.getAttribute('data-bg-image');
+                if (bgImage) {
+                  clone.style.backgroundImage = `url('${bgImage}')`;
+                  clone.style.backgroundSize = 'cover';
+                  clone.style.backgroundPosition = 'center';
+                  clone.style.backgroundRepeat = 'no-repeat';
+                  clone.style.color = 'white';
+                  clone.style.textShadow = '2px 2px 4px #000000';
+                }
+                
+                // Add click handler for collapse button in the clone
+                const collapseCorner = clone.querySelector('.collapse-corner');
+                if (collapseCorner) {
+                  collapseCorner.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Find and collapse the original item
+                    const originalItemTitle = clone.querySelector('.item-title').textContent;
+                    document.querySelectorAll('.item-row.expanded:not(.in-multi-container)').forEach(originalItem => {
+                      if (originalItem.querySelector('.item-title').textContent === originalItemTitle) {
+                        collapseItem(originalItem);
+                        updateExpandedItemsLayout();
+                      }
+                    });
+                  });
+                }
+                
+                multiContainer.appendChild(clone);
               });
               
               multiContainer.style.display = 'flex';
             } else if (multiContainer) {
               multiContainer.style.display = 'none';
+              multiContainer.innerHTML = '';
             }
           }
           
@@ -1387,15 +1507,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- BEGIN: Save edited item to backend ---
   function saveEditedItem(editedItem) {
-    // Get data file name from URL
+    // Show saving indicator
+    saveStatus.textContent = 'Saving...';
+    saveStatus.style.display = 'block';
+    saveStatus.style.backgroundColor = '#3498db';
+    saveStatus.style.color = 'white';
+    
     const path = window.location.pathname;
     const filename = path.split('/').pop().replace('.html', '.json');
     const apiUrl = `/data/${filename}`;
-    // Fetch current data, update the item, and PUT back
+    
+    console.log('Saving to:', apiUrl, 'Item:', editedItem);
+    
+    // Fetch current data
     fetch(apiUrl)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch current data: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then(data => {
-        // Find and update the item (by TITLE/Title/text or other unique key)
+        // Find and update the item
         let updated = false;
         if (Array.isArray(data)) {
           for (let i = 0; i < data.length; i++) {
@@ -1404,29 +1537,50 @@ document.addEventListener('DOMContentLoaded', () => {
               (data[i].Title && editedItem.Title && data[i].Title === editedItem.Title) ||
               (data[i].text && editedItem.text && data[i].text === editedItem.text)
             ) {
+              console.log('Found match, updating item at index:', i);
               data[i] = { ...editedItem };
               updated = true;
               break;
             }
           }
         }
+        
         if (updated) {
-          fetch(apiUrl, {
+          return fetch(apiUrl, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
-          })
-          .then(r => {
-            if (r.ok) {
-              // Reload page or refresh items
-              window.location.reload();
-            } else {
-              alert('Failed to save changes.');
-            }
           });
         } else {
-          alert('Could not find item to update.');
+          throw new Error('Could not find item to update in the data array');
         }
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => {
+            throw new Error(`Server rejected save: ${err.error || err.details || response.statusText}`);
+          });
+        }
+        
+        // Success
+        saveStatus.textContent = 'Saved successfully!';
+        saveStatus.style.backgroundColor = '#2ecc71';
+        
+        // Hide after 1.5 seconds and reload
+        setTimeout(() => {
+          saveStatus.style.display = 'none';
+          window.location.reload();
+        }, 1500);
+      })
+      .catch(err => {
+        console.error('Save error:', err);
+        saveStatus.textContent = `Error: ${err.message}`;
+        saveStatus.style.backgroundColor = '#e74c3c';
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+          saveStatus.style.display = 'none';
+        }, 5000);
       });
   }
   // --- END: Save edited item to backend ---

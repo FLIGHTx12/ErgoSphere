@@ -431,6 +431,54 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
+app.get('/api/debug/file-access', async (req, res) => {
+  try {
+    const dataDir = path.join(__dirname, 'data');
+    const testFile = path.join(dataDir, 'debug-test.json');
+    
+    // Check directory exists and is writable
+    const dirStats = await fs.stat(dataDir);
+    const dirWritable = await fs.access(dataDir, fs.constants.W_OK)
+      .then(() => true)
+      .catch(() => false);
+    
+    // Try to write a test file
+    const testData = { test: "File write test", time: new Date().toISOString() };
+    await fs.writeFile(testFile, JSON.stringify(testData));
+    
+    // Try to read the file back
+    const readData = await fs.readFile(testFile, 'utf8');
+    
+    // Check database access
+    const dbResult = await pool.query('SELECT NOW()');
+    
+    res.json({
+      success: true,
+      dataDir: {
+        exists: true,
+        isDirectory: dirStats.isDirectory(),
+        writable: dirWritable,
+        path: dataDir
+      },
+      fileTest: {
+        writeSuccess: true,
+        readSuccess: true,
+        dataMatches: JSON.stringify(testData) === readData.trim()
+      },
+      database: {
+        connectionSuccess: true,
+        timestamp: dbResult.rows[0].now
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: err.message,
+      stack: err.stack
+    });
+  }
+});
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err);

@@ -289,6 +289,37 @@ body.page-transition {
   text-decoration: none;
 }
 
+/* Add styles for preserving whitespace in description text */
+.item-row .item-details p {
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+    2px 2px 4px rgba(0,0,0,0.8);
+  margin: 8px 0;
+}
+
+.item-row .item-details p .description-content {
+  white-space: pre-line;  /* Preserve newlines but collapse whitespace */
+  display: block;
+  margin-top: 5px;
+}
+
+/* Style for description text to preserve newlines */
+.item-row .item-details p.description-text {
+  white-space: pre-line;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+    2px 2px 4px rgba(0,0,0,0.8);
+  margin: 8px 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
 .collapsible-item {
   width: 1000%;
   margin-bottom: 10px;
@@ -683,6 +714,8 @@ body.page-transition {
   transform: none !important;
   left: auto !important;
   top: auto !important;
+  background-size: cover !important; /* Ensure background covers entire area */
+  background-position: center center !important; /* Center the background image */
 }
 
 /* Styles for when 3 items are expanded */
@@ -693,6 +726,8 @@ body.page-transition {
   transform: none !important;
   left: auto !important;
   top: auto !important;
+  background-size: cover !important; /* Ensure background covers entire area */
+  background-position: center center !important; /* Center the background image */
 }
 
 /* Styles for when 4 items are expanded */
@@ -703,6 +738,40 @@ body.page-transition {
   transform: none !important;
   left: auto !important;
   top: auto !important;
+  background-size: cover !important; /* Ensure background covers entire area */
+  background-position: center center !important; /* Center the background image */
+}
+
+/* Ensure cloned items in multi-container also have proper background coverage */
+#multi-expanded-container .item-row {
+  background-size: cover !important;
+  background-position: center center !important;
+  overflow: auto; /* Add scrolling for content that overflows */
+}
+
+/* Make collapse corner in multi-expanded items stand out more */
+#multi-expanded-container .collapse-corner {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 0, 128, 0.9); /* More opaque */
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Add glowing effect */
+  pointer-events: auto; /* Ensure the button is clickable */
+}
+
+#multi-expanded-container .collapse-corner:hover {
+  background-color: purple;
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
@@ -711,6 +780,7 @@ body.page-transition {
   .item-row.multi-expanded-4 {
     width: 100% !important;
     margin-bottom: 10px;
+    min-height: 250px !important; /* Reduced height for smaller screens */
   }
 }
 
