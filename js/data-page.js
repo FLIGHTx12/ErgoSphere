@@ -200,6 +200,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Prevent dropdown from closing when clicking or scrolling inside it
+  genreDropdown.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+  });
+  genreDropdown.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  });
+  genreDropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
   // Toggle dropdown
   genreBtn.addEventListener('click', (e) => {
     e.stopPropagation();
