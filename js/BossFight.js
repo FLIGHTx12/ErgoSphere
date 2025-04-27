@@ -48,6 +48,91 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  let keyHandlerBound = false; // Track if key handler is active
+
+  // Key handler function
+  function handleGameKeys(e) {
+    // Only act if a monster is selected and visible
+    const monsterContainers = document.querySelectorAll(".monster-container");
+    const visibleContainer = Array.from(monsterContainers).find(c => c.style.display === "block");
+    if (!visibleContainer) return;
+
+    const attackButton = visibleContainer.querySelector("#attackButton");
+    const playerToggle = visibleContainer.querySelector("#playerToggle");
+    const addAttackButton = document.getElementById("addAttackButton");
+    const removeAttackButton = document.getElementById("removeAttackButton");
+    if (!attackButton || !playerToggle) return;
+
+    // Tab: cycle between attack inputs for the current player only
+    if (e.code === "Tab") {
+      // Find current player (by attackButton text)
+      let player = attackButton.textContent.includes("Jaybers8") ? 1 : 2;
+      const inputContainer = visibleContainer.querySelector(`#attackInputs${player}`);
+      if (inputContainer) {
+        const inputs = Array.from(inputContainer.querySelectorAll('input[type="number"]'));
+        if (inputs.length > 0) {
+          e.preventDefault();
+          // Find currently focused input
+          const active = document.activeElement;
+          let idx = inputs.indexOf(active);
+          idx = (idx + 1) % inputs.length;
+          inputs[idx].focus();
+          inputs[idx].select && inputs[idx].select();
+        }
+      }
+      return;
+    }
+
+    // + key: add attack input
+    if (
+      e.code === "NumpadAdd" ||
+      (e.code === "Equal" && (e.shiftKey || e.key === "+")) ||
+      (e.key === "+" && !e.ctrlKey && !e.altKey)
+    ) {
+      if (addAttackButton) {
+        e.preventDefault();
+        addAttackButton.click();
+      }
+      return;
+    }
+
+    // - key: remove attack input
+    if (
+      e.code === "NumpadSubtract" ||
+      e.code === "Minus" ||
+      (e.key === "-" && !e.ctrlKey && !e.altKey)
+    ) {
+      if (removeAttackButton) {
+        e.preventDefault();
+        removeAttackButton.click();
+      }
+      return;
+    }
+
+    if (e.code === "Space") {
+      e.preventDefault();
+      attackButton.click();
+    } else if (e.code === "Enter") {
+      e.preventDefault();
+      playerToggle.click();
+    }
+  }
+
+  // Bind keys when game starts
+  function bindGameKeys() {
+    if (!keyHandlerBound) {
+      document.addEventListener("keydown", handleGameKeys);
+      keyHandlerBound = true;
+    }
+  }
+  // Unbind keys when game ends
+  function unbindGameKeys() {
+    if (keyHandlerBound) {
+      document.removeEventListener("keydown", handleGameKeys);
+      keyHandlerBound = false;
+    }
+  }
+
   function startTimer() {
     let timeLeft = 365; // 5 minutes in seconds
     const timerElement = document.getElementById("timer");
@@ -62,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
       }
     }, 1000);
+    bindGameKeys(); // Bind keys when timer starts (game starts)
     return timer;
   }
 
@@ -112,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gameOverDiv.appendChild(restartButton);
 
     document.body.appendChild(gameOverDiv);
+    unbindGameKeys(); // Unbind keys when game ends
   }
 
   if (!document.getElementById("chooseOpponentBtn")) {
@@ -573,6 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
           timerStarted = true;
           timer = startTimer();
           playFightMusic();
+          // bindGameKeys(); // Already called in startTimer
         }
       }
     });
