@@ -100,14 +100,14 @@ function initializeCountdowns() {
     }
     
     if (atleticoElement) {
-      atleticoElement.textContent = 'JAYBERS8'; // Change this to the new Atletico champion name
+      atleticoElement.textContent = 'FLIGHTx12!'; // Change this to the new Atletico champion name
       console.log("Atletico champion set");
     } else {
       console.error("Element with ID 'current-atletico' not found");
     }
     
     if (movieElement) {
-      movieElement.textContent = 'Leave the World Behind (2023)'; // Change this to the new movie title
+      movieElement.textContent = 'LX 2048 (2020)'; // Change this to the new movie title
       console.log("Movie title set");
     } else {
       console.error("Element with ID 'current-movie' not found");
