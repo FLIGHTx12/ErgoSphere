@@ -1300,10 +1300,20 @@ document.addEventListener('DOMContentLoaded', () => {
   addTenButton.textContent = "+10 GP";
   addTenButton.addEventListener("click", () => addGodParticles(10));
   
+  // Add Clear button
+  const clearButton = document.createElement("button");
+  clearButton.textContent = "Clear";
+  clearButton.addEventListener("click", () => {
+    godParticles = 0;
+    updateGodParticlesDisplay();
+    saveGodParticles();
+  });
+  
   testButtonsContainer.appendChild(addHalfButton);
   testButtonsContainer.appendChild(addOneButton);
   testButtonsContainer.appendChild(addFiveButton);
   testButtonsContainer.appendChild(addTenButton);
+  testButtonsContainer.appendChild(clearButton);
   
   document.body.appendChild(testButtonsContainer);
 
@@ -1402,4 +1412,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+});
+
+// Add spacebar shortcut for control button
+document.addEventListener('keydown', function(e) {
+    // Ignore if focus is on an input, textarea, or contenteditable element
+    const active = document.activeElement;
+    if (
+        active && (
+            active.tagName === 'INPUT' ||
+            active.tagName === 'TEXTAREA' ||
+            active.isContentEditable
+        )
+    ) return;
+
+    // Only respond to spacebar (key === ' ' or key === 'Spacebar' for older browsers)
+    if (e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar') {
+        // Prevent default page scroll
+        e.preventDefault();
+
+        // Only trigger if control button is visible and not disabled
+        if (!controlButton.classList.contains('hidden') && !controlButton.classList.contains('disabled')) {
+            controlButton.click();
+        }
+    }
 });
