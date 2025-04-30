@@ -575,29 +575,135 @@ hitDialogues: {
       zero: [
         "Curve smirks: 'you are so predictable'.",
         "Curve smirks: 'Saw that a mile away pussy'.",
-        "Curve shrugs off the hit."],
+        "Curve shrugs off the hit.",
+        "Curve's eyes flicker, 'Irrelevant timeline.'",
+        "Curve says, 'That didn't even make a dent in my calculations.'",
+        "Curve says, 'You're wasting your time, I already know your next move.'",
+        "Curve says, 'Your attacks are like static noise to me.'",
+        "Curve says, 'I saw that coming before you even thought of it.'",
+        "Curve says, 'You're not fast enough to surprise me.'",
+        "Curve says, 'Prepare to face the consequences of your predictable actions!'"
+      ],
       "1-20": [
-        "Curve takes a light hit."],
+        "Curve takes a light hit.",
+        "Curve's visor cracks slightly, 'A minor deviation.'",
+        "Curve mutters, 'An anomaly, but within acceptable parameters.'",
+        "Curve says, 'That was a close one, but I'm still in control.'",
+        "Curve says, 'You've managed to catch me off guard.'",
+        "Curve says, 'This is a minor setback, I'll adjust my predictions.'",
+        "Curve says, 'I've accounted for this possibility.'",
+        "Curve says, 'You're not as predictable as I thought.'",
+        "Curve says, 'I'm impressed, but it won't happen again.'",
+        "Curve says, 'You're gonna regret that!'"
+      ],
       "21-35": [
-        "Curve grunts from the blow."],
+        "Curve grunts from the blow.",
+        "Curve's voice glitches, 'The timeline... it's shifting.'",
+        "Curve's hand clenches, 'You are disrupting the flow.'",
+        "Curve says, 'That actually caused a ripple in my calculations.'",
+        "Curve says, 'You've managed to disrupt my focus.'",
+        "Curve says, 'This is starting to become a problem.'",
+        "Curve says, 'You're making me recalculate my strategy.'",
+        "Curve says, 'You're not playing by the rules of time.'",
+        "Curve says, 'Don't think you're winning, this is just a temporary setback.'",
+        "Curve says, 'You're gonna face the consequences of your actions!'"
+      ],
       "36-75": [
-        "A strong hit! Curve feels the impact!"],
+        "A strong hit! Curve feels the impact!",
+        "Curve's body flickers, 'The future... it's uncertain.'",
+        "Curve's eyes widen, 'You dare defy destiny?'",
+        "Curve says, 'Okay, now you've done it!'",
+        "Curve says, 'That was a good one, but I'm still standing.'",
+        "Curve says, 'You're making me strain my precognitive abilities.'",
+        "Curve says, 'You're pushing your luck, time-bender.'",
+        "Curve says, 'This is getting interesting, but I'm still gonna win.'",
+        "Curve says, 'Prepare to face the wrath of time!'"
+      ],
       "76-99": [
-        "Curve is shaken by the force!"],
+        "Curve is shaken by the force!",
+        "Curve staggers back, 'The timelines... they're diverging.'",
+        "Curve's voice cracks, 'You're altering the course of events!'",
+        "Curve says, 'Okay, you're strong, but I'm stronger!'",
+        "Curve says, 'That was a close one, but I'm not going down yet.'",
+        "Curve says, 'You're making me use my full potential.'",
+        "Curve says, 'You're about to witness the true power of precognition!'",
+        "Curve says, 'This is the last time you hit me that hard!'",
+        "Curve says, 'You're gonna feel the full force of temporal energy!'"
+      ],
       "100+": [
-        "A powerful strike! Curve staggers."]
+        "A powerful strike! Curve staggers.",
+        "Curve collapses, 'The future... it's fading.'",
+        "Curve's form shimmers, 'The ErgoSphere... it rejects you.'",
+        "Curve's voice fades, 'The flow of time... it's unraveling...'",
+        "Curve says, 'I can't believe this is happening!'",
+        "Curve says, 'You're too unpredictable for me, but I'll be back!'",
+        "Curve says, 'I'm out of here, this isn't worth it!'",
+        "Curve says, 'You may have won this battle, but the war for time isn't over!'",
+        "Curve says, 'I'm retreating, but I'll come back with a clearer vision!'",
+        "Curve says, 'This isn't the end, it's just a temporary distortion!'"
+      ]
     },
     hitDialogues: {
       "1": [
-        "Curve lands a precise hit."],
+        "Curve lands a precise hit.",
+        "Curve's movements are fluid, 'The future bends to my will.'",
+        "Curve's eyes glow, 'You're moving exactly as I predicted.'",
+        "Curve says, 'A calculated strike.'",
+        "Curve says, 'First blood was inevitable.'",
+        "Curve says, 'You're falling into my trap.'",
+        "Curve says, 'I'm just toying with you.'",
+        "Curve says, 'You're not fast enough to avoid my sight.'",
+        "Curve says, 'Prepare to face your destiny!'",
+        "Curve says, 'The timeline favors me!'"
+      ],
       "2-3": [
-        "Curve strikes twice in quick succession!"],
+        "Curve strikes twice in quick succession!",
+        "Curve's hoverboard blurs, 'The past and present converge.'",
+        "Curve's attacks are swift and precise, 'Time is my weapon.'",
+        "Curve says, 'Two blows delivered, as foreseen.'",
+        "Curve says, 'You're becoming predictable.'",
+        "Curve says, 'I'm just getting started.'",
+        "Curve says, 'You're too slow to react to my foresight.'",
+        "Curve says, 'Feel the weight of inevitability!'",
+        "Curve says, 'Prepare to be erased from the timeline!'",
+        "Curve says, 'The future is mine to control!'"
+      ],
       "4-5": [
-        "A series of hits from Curve!"],
+        "A series of hits from Curve!",
+        "Curve's attacks are relentless, 'The flow of time is on my side.'",
+        "Curve's form shifts, 'You cannot escape what is written.'",
+        "Curve says, 'You're getting overwhelmed, aren't you?'",
+        "Curve says, 'I'm just showing you a glimpse of what's to come!'",
+        "Curve says, 'You're too easy to read.'",
+        "Curve says, 'You can't change your fate.'",
+        "Curve says, 'Prepare for a temporal onslaught!'",
+        "Curve says, 'Feel the power of precognition!'",
+        "Curve says, 'Your destiny is sealed!'"
+      ],
       "6-9": [
-        "Curve's relentless assault is fierce!"],
+        "Curve's relentless assault is fierce!",
+        "Curve's attacks are like a cascade of future events, 'The past is immutable.'",
+        "Curve's power intensifies, 'You cannot alter the timeline.'",
+        "Curve says, 'You're getting desperate.'",
+        "Curve says, 'I'm about to unleash my full predictive potential!'",
+        "Curve says, 'You're no match for my temporal awareness.'",
+        "Curve says, 'You're gonna feel the full force of time itself!'",
+        "Curve says, 'This is the end of your resistance!'",
+        "Curve says, 'Prepare to face the master of time!'",
+        "Curve says, 'Your time is up!'"
+      ],
       "10+": [
-        "A devastating barrage from Curve!"]
+        "A devastating barrage from Curve!",
+        "Curve unleashes the full force of temporal energy, 'The future is absolute!'",
+        "Curve's power reaches its zenith, 'Your fate is sealed!'",
+        "Curve's voice reverberates, 'The ErgoSphere is mine to control!'",
+        "Curve says, 'You're finished, this is your end!'",
+        "Curve says, 'I am the architect of time!'",
+        "Curve says, 'You cannot defy destiny!'",
+        "Curve says, 'You're about to witness the ultimate temporal power!'",
+        "Curve says, 'Prepare to face the inevitable!'",
+        "Curve says, 'The end of your timeline is here!'"
+      ]
     },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
@@ -628,9 +734,14 @@ hitDialogues: {
         "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Your chaos... it interferes with my sight, Belkan.'</span>",
         "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'I know how this plays out, Belkan... and you lose.'</span>",
         "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'The threads of fate... they resist your touch, Belkan.'</span>",
-        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Time is on my side, Belkan.'</span>"
-    ],
-    player2: [
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Time is on my side, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'You're a glitch in the timeline, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'I've calculated every possibility, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'Your actions are predetermined, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'You're fighting a losing battle against time, Belkan.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to Jaybers8: 'The future is written, and you're not in it, Belkan.'</span>"
+      ],
+      player2: [
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Your moves... predictable. But not for long, Dilardian.'</span>",
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'I saw this coming... almost, Dilardian.'</span>",
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'You disrupt the flow, Dilardian.'</span>",
@@ -640,7 +751,12 @@ hitDialogues: {
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Your chaos... it interferes with my sight, Dilardian.'</span>",
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'I know how this plays out, Dilardian... and you lose.'</span>",
         "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'The threads of fate... they resist your touch, Dilardian.'</span>",
-        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Time is on my side, Dilardian.'</span>"
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Time is on my side, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'You're a glitch in the timeline, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'I've calculated every possibility, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'Your actions are predetermined, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'You're fighting a losing battle against time, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>CURVE says to FLIGHTx12!: 'The future is written, and you're not in it, Dilardian.'</span>"
       ]
     }
   },
@@ -724,39 +840,149 @@ hitDialogues: {
           ]
         }
   },
-  {name: "Bennu",
+  { name: "Bennu",
     attackType: "PERCEPTION",
     health: adjustHealthByQuarter(722),
     hitNumbers: [15, 16, 17, 18, 19, 20],
-    Rewards:"Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
-    Punishment:"{Borracho} Each party member must play on level above the Gig Game requirement during the next weekly Rockband session. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.", 
+    Rewards: "Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
+    Punishment: "{Borracho} Each party member must play on level above the Gig Game requirement during the next weekly Rockband session. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
     imageSrc: "https://i.ibb.co/fVN7Xhdh/Bennu-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "Bennu shrugs off the hit."],
+        "Bennu shrugs off the hit.",
+        "Bennu giggles, 'Nice try, flatty.'",
+        "Bennu rolls her eyes, 'Whatever.'",
+        "Bennu yawns, 'You call that an attack?'",
+        "Bennu laughs, 'Do you even lift bro?'",
+        "Bennu taunts, 'Come on, show me what you got!'",
+        "Bennu says, 'Is that all you got, seriously?'",
+        "Bennu smirks, 'You hit like a baby dragon.'",
+        "Bennu sighs, 'This is so boring.'",
+        "Bennu says, 'I've faced tougher foes in a bar fight.'"
+      ],
       "1-20": [
-        "Bennu takes a light hit."],
+        "Bennu takes a light hit.",
+        "Bennu winces, 'Ouch, party foul.'",
+        "Bennu stumbles slightly, 'Alright, you got my attention.'",
+        "Bennu flicks her tail, 'That tickled more than hurt.'",
+        "Bennu mutters, 'Okay, that was a little spicy.'",
+        "Bennu says, 'Not bad, but I'm just getting warmed up.'",
+        "Bennu says, 'You're lucky I'm not using my full strength.'",
+        "Bennu says, 'Alright, alright, you got a lucky shot.'",
+        "Bennu says, 'Don't get cocky, it won't happen again.'",
+        "Bennu says, 'You're gonna pay for that!'"
+      ],
       "21-35": [
-        "Bennu grunts from the blow."],
+        "Bennu grunts from the blow.",
+        "Bennu clutches her arm, 'Okay, that's gonna leave a mark.'",
+        "Bennu scowls, 'You're harshing my mellow.'",
+        "Bennu's wings flutter, 'Getting serious now, huh?'",
+        "Bennu says, 'Alright, you're starting to piss me off.'",
+        "Bennu says, 'That actually hurt, I'll give you that.'",
+        "Bennu says, 'You're messing up my vibe!'",
+        "Bennu says, 'You're lucky I'm in a good mood.'",
+        "Bennu says, 'Don't think you're winning, this is just foreplay.'",
+        "Bennu says, 'You're gonna regret making me angry.'"
+      ],
       "36-75": [
-        "A strong hit! Bennu feels the impact!"],
+        "A strong hit! Bennu feels the impact!",
+        "Bennu gasps, 'Woah, strong hit dude!'",
+        "Bennu's scales shimmer, 'Alright, time to bring the heat!'",
+        "Bennu snarls, 'You're gonna regret that.'",
+        "Bennu says, 'Okay, now you've done it!'",
+        "Bennu says, 'That was a good one, but I'm still standing.'",
+        "Bennu says, 'You're making me work up a sweat.'",
+        "Bennu says, 'You're pushing your luck, chummer.'",
+        "Bennu says, 'This is getting interesting, but I'm still gonna win.'",
+        "Bennu says, 'Prepare to feel my wrath!'"
+      ],
       "76-99": [
-        "Bennu is shaken by the force!"],
+        "Bennu is shaken by the force!",
+        "Bennu staggers back, 'Damn, you hit like a truck!'",
+        "Bennu's eyes flash, 'This party's over, pal.'",
+        "Bennu roars, 'You're pushing your luck!'",
+        "Bennu says, 'Okay, you're strong, but I'm stronger!'",
+        "Bennu says, 'That was a close one, but I'm not going down yet.'",
+        "Bennu says, 'You're making me use my big girl voice!'",
+        "Bennu says, 'You're about to get dragon-punched!'",
+        "Bennu says, 'This is the last time you hit me that hard!'",
+        "Bennu says, 'You're gonna feel the full force of my power!'"
+      ],
       "100+": [
-        "A powerful strike! Bennu staggers."]
+        "A powerful strike! Bennu staggers.",
+        "Bennu collapses, 'Okay, okay, you win... for now.'",
+        "Bennu's form flickers, 'I'll get you for this!'",
+        "Bennu growls weakly, 'Party's over...'",
+        "Bennu says, 'I can't believe this is happening!'",
+        "Bennu says, 'You're too strong for me, but I'll be back!'",
+        "Bennu says, 'I'm out of here, this isn't worth it!'",
+        "Bennu says, 'You may have won this battle, but the war isn't over!'",
+        "Bennu says, 'I'm retreating, but I'll come back stronger!'",
+        "Bennu says, 'This isn't the end, it's just a temporary setback!'"
+      ]
     },
     hitDialogues: {
       "1": [
-        "Bennu lands a precise hit."],
+        "Bennu lands a precise hit.",
+        "Bennu smirks, 'Beginner's luck.'",
+        "Bennu's tail whips out, 'Too slow!'",
+        "Bennu's eyes gleam, 'Gotcha!'",
+        "Bennu singes your hair 'Oops sorry not sorry' ",
+        "Bennu says, 'First blood goes to me!'",
+        "Bennu says, 'You're not even trying!'",
+        "Bennu says, 'I'm just playing with you.'",
+        "Bennu says, 'You're no match for my speed.'",
+        "Bennu says, 'Prepare to be roasted!'"
+      ],
       "2-3": [
-        "Bennu strikes twice in quick succession!"],
+        "Bennu strikes twice in quick succession!",
+        "Bennu's claws rake across you, 'Double the fun!'",
+        "Bennu's wings buffet you, 'Can't keep up?'",
+        "Bennu's tail smacks you then she laughs 'Did that sting'",
+        "Bennu's hits you with a fireball 'Hot Hot Hot!'",
+        "Bennu says, 'Two for the price of one!'",
+        "Bennu says, 'You're getting sloppy.'",
+        "Bennu says, 'I'm just warming up.'",
+        "Bennu says, 'You're not fast enough to dodge my attacks.'",
+        "Bennu says, 'Feel the burn!'"
+      ],
       "4-5": [
-        "A series of hits from Bennu!"],
+        "A series of hits from Bennu!",
+        "Bennu's attacks are relentless, 'Party's just getting started!'",
+        "Bennu's form blurs, 'Where'd I go?'",
+        "Bennu's hits you with a barrage of fire and scales 'You're on fire!'",
+        "Bennu's wing smacks you knocking you off your feet 'BAM!'",
+        "Bennu says, 'You're getting overwhelmed, aren't you?'",
+        "Bennu says, 'I'm just getting started!'",
+        "Bennu says, 'You're too predictable.'",
+        "Bennu says, 'You can't handle my dragon breath.'",
+        "Bennu says, 'Prepare for a dragon-sized beatdown!'"
+      ],
       "6-9": [
-        "Bennu's relentless assault is fierce!"],
+        "Bennu's relentless assault is fierce!",
+        "Bennu's claws tear at you, 'Having fun yet?'",
+        "Bennu's power intensifies, 'Feel the burn!'",
+        "Bennu's fire breath engulfs you 'BBQ TIME!'",
+        "Bennu's tail constricts you 'Squeeze Squeeze Squeeze'",
+        "Bennu says, 'You're getting desperate.'",
+        "Bennu says, 'I'm about to unleash my full power!'",
+        "Bennu says, 'You're no match for my dragon strength.'",
+        "Bennu says, 'You're gonna feel the heat of a thousand suns!'",
+        "Bennu says, 'Prepare for the dragon's fury!'"
+      ],
       "10+": [
-        "A devastating barrage from Bennu!"]
+        "A devastating barrage from Bennu!",
+        "Bennu unleashes her full draconic fury!",
+        "Bennu's flames sear you, 'Party's over, game over!'",
+        "Bennu's roar shatters the air 'THIS IS MY HOUSE!'",
+        "Bennu grabs you in her tail and slams you repeatedly into the ground 'Ragdoll Ragdoll Ragdoll'",
+        "Bennu says, 'You're finished, this is the end!'",
+        "Bennu says, 'I'm the queen of this ErgoSphere!'",
+        "Bennu says, 'You can't defeat the dragon!'",
+        "Bennu says, 'You're about to witness the ultimate dragon attack!'",
+        "Bennu says, 'Prepare to face the dragon's wrath!'"
+      ]
     },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
@@ -775,7 +1001,7 @@ hitDialogues: {
       if (hitCount >= 10) return selectDialogue(this.hitDialogues["10+"]);
       return "";
     },
-    About:"The Bennu is in battle." ,
+    About: "The Bennu is in battle.",
     toggleDialogues: {
       player1: [
         "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Hey there, Belkan! You wanna party or fight? Either way, let's make it quick, I got places to be.'</span>",
@@ -787,9 +1013,14 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'This ErgoSphere is wild, but you're bringing it down, Belkan.'</span>",
         "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Come on, Belkan, where's the fun in this?'</span>",
         "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You're harshing my buzz, Belkan.'</span>",
-        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Look, Belkan, can we just skip this and grab a drink?'</span>"
-    ],
-    player2: [
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Look, Belkan, can we just skip this and grab a drink?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'I'm about to roast you Belkan'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You fight like an old man Belkan'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'Don't get in my way, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'You're not invited to my party, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to Jaybers8: 'This is my turf, Belkan.'</span>"
+      ],
+      player2: [
         "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Hey there, Dilardian! You wanna party or fight? Either way, let's make it quick, I got places to be.'</span>",
         "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'This is getting boring. Where's the music, Dilardian?'</span>",
         "<span class='toggle-dialogue'>Bennu yawns: 'Fighting already? It's barely noon in the ErgoSphere, Dilardian.'</span>",
@@ -799,8 +1030,13 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'This ErgoSphere is wild, but you're bringing it down, Dilardian.'</span>",
         "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Come on, Dilardian, where's the fun in this?'</span>",
         "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You're harshing my buzz, Dilardian.'</span>",
-        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Look, Dilardian, can we just skip this and grab a drink?'</span>"
-    ]
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Look, Dilardian, can we just skip this and grab a drink?'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'I'm about to roast you Dilardian'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You fight like an old man Dilardian'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'Don't get in my way, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'You're not invited to my party, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Bennu says to FLIGHTx12!: 'This is my turf, Dilardian.'</span>"
+      ]
     }
   },
   { name: "Forbearer Tren",
@@ -813,29 +1049,139 @@ hitDialogues: {
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "Forbearer Tren shrugs off the hit."],
+        "Forbearer Tren shrugs off the hit.",
+        "Tren's eyes dim, 'Your efforts are meaningless.'",
+        "Tren sighs, 'You cannot harm what is already timeless.'",
+        "Tren gestures dismissively, 'A flicker of annoyance, nothing more.'",
+        "Tren's voice echoes, 'You strike at shadows.'",
+        "Tren says, 'You're like a fly buzzing around my head.'",
+        "Tren says, 'Your attacks are futile against my ancient power.'",
+        "Tren says, 'I've endured far worse than this.'",
+        "Tren says, 'You're wasting your energy.'",
+        "Tren says, 'I am beyond your reach.'"
+      ],
       "1-20": [
-        "Forbearer Tren takes a light hit."],
+        "Forbearer Tren takes a light hit.",
+        "Tren's brow furrows, 'A momentary sting.'",
+        "Tren murmurs, 'The pain is... familiar.'",
+        "Tren's staff trembles slightly, 'You have pierced the veil.'",
+        "Tren says, 'A small wound, but it will not deter me.'",
+        "Tren says, 'You've managed to scratch the surface.'",
+        "Tren says, 'This is a mere setback.'",
+        "Tren says, 'I've felt worse from a papercut.'",
+        "Tren says, 'You're not even trying.'",
+        "Tren says, 'You're gonna pay for that!'"
+      ],
       "21-35": [
-        "Forbearer Tren grunts from the blow."],
+        "Forbearer Tren grunts from the blow.",
+        "Tren's voice cracks, 'The past echoes with your strike.'",
+        "Tren's gaze hardens, 'You have drawn my ire.'",
+        "Tren's cloak ripples, 'The ErgoSphere itself trembles.'",
+        "Tren says, 'You've managed to wound me.'",
+        "Tren says, 'That actually hurt, I'll give you that.'",
+        "Tren says, 'You're starting to get annoying.'",
+        "Tren says, 'You're lucky I'm feeling generous.'",
+        "Tren says, 'Don't think you're winning, this is just a scratch.'",
+        "Tren says, 'You're gonna regret this!'"
+      ],
       "36-75": [
-        "A strong hit! Forbearer Tren feels the impact!"],
+        "A strong hit! Forbearer Tren feels the impact!",
+        "Tren's eyes flash, 'The memories burn with your attack.'",
+        "Tren's form flickers, 'You dare disrupt the flow?'",
+        "Tren's voice booms, 'The ErgoSphere cries out in pain!'",
+        "Tren says, 'Okay, now you've done it!'",
+        "Tren says, 'That was a good one, but I'm still standing.'",
+        "Tren says, 'You're making me use my ancient knowledge.'",
+        "Tren says, 'You're pushing your luck, little one.'",
+        "Tren says, 'This is getting interesting, but I'm still gonna win.'",
+        "Tren says, 'Prepare to face the consequences!'"
+      ],
       "76-99": [
-        "Forbearer Tren is shaken by the force!"],
+        "Forbearer Tren is shaken by the force!",
+        "Tren's body convulses, 'The ages tremble before your might.'",
+        "Tren's staff glows with power, 'You have disturbed the balance!'",
+        "Tren's voice resonates, 'The ErgoSphere itself is in turmoil!'",
+        "Tren says, 'Okay, you're strong, but I'm stronger!'",
+        "Tren says, 'That was a close one, but I'm not going down yet.'",
+        "Tren says, 'You're making me use my full strength.'",
+        "Tren says, 'You're about to face my ancient fury!'",
+        "Tren says, 'This is the last time you hit me that hard!'",
+        "Tren says, 'You're gonna feel the full force of the ErgoSphere!'"
+      ],
       "100+": [
-        "A powerful strike! Forbearer Tren staggers."]
+        "A powerful strike! Forbearer Tren staggers.",
+        "Tren collapses, 'The cycle... it ends here?'",
+        "Tren's form shimmers, 'The ErgoSphere... it rejects you.'",
+        "Tren's voice fades, 'The flow... it ceases...'",
+        "Tren says, 'I can't believe this is happening!'",
+        "Tren says, 'You're too powerful for me, but I'll be back!'",
+        "Tren says, 'I'm out of here, this isn't worth it!'",
+        "Tren says, 'You may have won this battle, but the war isn't over!'",
+        "Tren says, 'I'm retreating, but I'll come back stronger!'",
+        "Tren says, 'This isn't the end, it's just a temporary setback!'"
+      ]
     },
     hitDialogues: {
       "1": [
-        "Forbearer Tren lands a precise hit."],
+        "Forbearer Tren lands a precise hit.",
+        "Tren's staff crackles with energy, 'The past strikes with me.'",
+        "Tren's eyes gleam with ancient knowledge, 'You are but a fleeting moment.'",
+        "Tren's voice whispers, 'The flow guides my hand.'",
+        "Tren says, 'A taste of eternity!'",
+        "Tren says, 'First blood goes to the ancients!'",
+        "Tren says, 'You're not even a challenge!'",
+        "Tren says, 'I'm just testing your resolve.'",
+        "Tren says, 'You're no match for my wisdom.'",
+        "Tren says, 'Prepare to face the ages!'"
+      ],
       "2-3": [
-        "Forbearer Tren strikes twice in quick succession!"],
+        "Forbearer Tren strikes twice in quick succession!",
+        "Tren's staff blurs, 'The past and present collide.'",
+        "Tren's movements are swift and precise, 'Time is my weapon.'",
+        "Tren's voice echoes, 'The flow is relentless.'",
+        "Tren says, 'Two for the price of time!'",
+        "Tren says, 'You're getting careless.'",
+        "Tren says, 'I'm just getting warmed up.'",
+        "Tren says, 'You're not quick enough to evade me.'",
+        "Tren says, 'Feel the weight of history!'",
+        "Tren says, 'Prepare to be erased!'"
+      ],
       "4-5": [
-        "A series of hits from Forbearer Tren!"],
+        "A series of hits from Forbearer Tren!",
+        "Tren's staff unleashes a barrage of energy, 'The flow is unyielding.'",
+        "Tren's form flickers, 'You cannot grasp the depths of time.'",
+        "Tren's voice resonates, 'The ErgoSphere itself is my ally.'",
+        "Tren says, 'You're getting overwhelmed, aren't you?'",
+        "Tren says, 'I'm just beginning to fight!'",
+        "Tren says, 'You're too predictable.'",
+        "Tren says, 'You can't withstand the power of the ages.'",
+        "Tren says, 'Prepare for an ancient onslaught!'",
+        "Tren says, 'Feel the power of time!'"
+      ],
       "6-9": [
-        "Forbearer Tren's relentless assault is fierce!"],
+        "Forbearer Tren's relentless assault is fierce!",
+        "Tren's staff crackles with ancient magic, 'The past is unforgiving.'",
+        "Tren's power intensifies, 'You cannot control the flow.'",
+        "Tren's voice booms, 'The ErgoSphere's fury is upon you!'",
+        "Tren says, 'You're getting desperate.'",
+        "Tren says, 'I'm about to unleash my full potential!'",
+        "Tren says, 'You're no match for my ancient might.'",
+        "Tren says, 'You're gonna feel the force of time itself!'",
+        "Tren says, 'This is the end of the line!'",
+        "Tren says, 'Prepare to face the ancient one!'"
+      ],
       "10+": [
-        "A devastating barrage from Forbearer Tren!"]
+        "A devastating barrage from Forbearer Tren!",
+        "Tren unleashes the full power of the ErgoSphere, 'The flow consumes all!'",
+        "Tren's staff glows with blinding light, 'Your time is over!'",
+        "Tren's voice shatters the air, 'The ErgoSphere claims you!'",
+        "Tren says, 'You're finished, this is your end!'",
+        "Tren says, 'I am the master of time!'",
+        "Tren says, 'You cannot defeat the ages!'",
+        "Tren says, 'You're about to witness the ultimate power!'",
+        "Tren says, 'Prepare to face the ancient one!'",
+        "Tren says, 'The end is here!'"
+      ]
     },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
@@ -866,9 +1212,14 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Forebearer Tren gestures: 'The creatures of the ErgoSphere heed my call, Belkan. They will decide your fate.'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'You fight against the inevitable, Belkan. Rest, and let the ErgoSphere take its course.'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'Your magic is crude, Belkan. You cannot comprehend the true forces at play.'</span>",
-        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'I offer you a choice, Belkan: Yield, or be lost.'</span>"
-    ],
-    player2: [
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'I offer you a choice, Belkan: Yield, or be lost.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'You remind me of a forgotten age, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'Your efforts are but ripples in the flow of time, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'The ErgoSphere whispers of your insignificance, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'You are a mere echo in the corridors of time, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to Jaybers8: 'The past will devour you, Belkan.'</span>"
+      ],
+      player2: [
         "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You remind me of old Belka, child, but your path is foolish.'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren gestures wearily: 'The ErgoSphere... it does not change, why should you, Dilardian?'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren murmurs to FLIGHTx12!: 'You seek to alter the flow, Dilardian, but the flow will consume you.'</span>",
@@ -878,8 +1229,13 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Forebearer Tren gestures: 'The creatures of the ErgoSphere heed my call, Dilardian. They will decide your fate.'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You fight against the inevitable, Dilardian. Rest, and let the ErgoSphere take its course.'</span>",
         "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'Your magic is crude, Dilardian. You cannot comprehend the true forces at play.'</span>",
-        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'I offer you a choice, Dilardian: Yield, or be lost.'</span>"
-    ]
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'I offer you a choice, Dilardian: Yield, or be lost.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You remind me of a forgotten age, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'Your efforts are but ripples in the flow of time, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'The ErgoSphere whispers of your insignificance, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'You are a mere echo in the corridors of time, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Forebearer Tren says to FLIGHTx12!: 'The past will devour you, Dilardian.'</span>"
+      ]
     }
   },
   {name: "Tash-Nadia",
@@ -892,29 +1248,139 @@ hitDialogues: {
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "Tash-Nadia shrugs off the hit."],
+        "Tash-Nadia shrugs off the hit.",
+        "Tash-Nadia's eyes gleam, 'You fight like a guppy.'",
+        "Tash-Nadia laughs, 'Your strength is but a ripple.'",
+        "Tash-Nadia's armor deflects your blow, 'Pathetic.'",
+        "Tash-Nadia says, 'You think that can stop me?'",
+        "Tash-Nadia says, 'I have withstood the crushing depths, you cannot harm me.'",
+        "Tash-Nadia says, 'You fight like a landlubber.'",
+        "Tash-Nadia says, 'Your attacks are as weak as the tide.'",
+        "Tash-Nadia says, 'Feel the pressure of my rage!'",
+        "Tash-Nadia says, 'You cannot defeat the ocean's fury!'"
+      ],
       "1-20": [
-        "Tash-Nadia takes a light hit."],
+        "Tash-Nadia takes a light hit.",
+        "Tash-Nadia winces, 'A mere scratch.'",
+        "Tash-Nadia's gills flare, 'Annoying, surface dweller.'",
+        "Tash-Nadia's armor hisses, 'You dare pierce my hide?'",
+        "Tash-Nadia says, 'A small wound, but it will not deter me.'",
+        "Tash-Nadia says, 'You've managed to make me flinch.'",
+        "Tash-Nadia says, 'This is just a flesh wound.'",
+        "Tash-Nadia says, 'I've endured far worse than this.'",
+        "Tash-Nadia says, 'You're just scratching the scales.'",
+        "Tash-Nadia says, 'You're gonna pay for that!'"
+      ],
       "21-35": [
-        "Tash-Nadia grunts from the blow."],
+        "Tash-Nadia grunts from the blow.",
+        "Tash-Nadia's voice rumbles, 'The abyss echoes with your strike.'",
+        "Tash-Nadia's webbed hands clench, 'You have drawn my wrath.'",
+        "Tash-Nadia's armor groans, 'The pressure intensifies.'",
+        "Tash-Nadia says, 'You've managed to wound me.'",
+        "Tash-Nadia says, 'That actually hurt, I'll give you that.'",
+        "Tash-Nadia says, 'You're starting to get on my nerves.'",
+        "Tash-Nadia says, 'You're lucky I'm feeling merciful.'",
+        "Tash-Nadia says, 'Don't think you're winning, this is just a taste of my power.'",
+        "Tash-Nadia says, 'You're gonna regret making me angry!'"
+      ],
       "36-75": [
-        "A strong hit! Tash-Nadia feels the impact!"],
+        "A strong hit! Tash-Nadia feels the impact!",
+        "Tash-Nadia's eyes burn, 'The deeps boil with your attack.'",
+        "Tash-Nadia's form flickers, 'You dare disrupt the ancient ones?'",
+        "Tash-Nadia's voice booms, 'The ocean trembles with my rage!'",
+        "Tash-Nadia says, 'Okay, now you've done it!'",
+        "Tash-Nadia says, 'That was a good one, but I'm still standing.'",
+        "Tash-Nadia says, 'You're making me exert myself.'",
+        "Tash-Nadia says, 'You're pushing your luck, surface creature.'",
+        "Tash-Nadia says, 'This is getting interesting, but I'm still gonna win.'",
+        "Tash-Nadia says, 'Prepare to feel the ocean's fury!'"
+      ],
       "76-99": [
-        "Tash-Nadia is shaken by the force!"],
+        "Tash-Nadia is shaken by the force!",
+        "Tash-Nadia's body convulses, 'The tides rage before your might.'",
+        "Tash-Nadia's armor cracks, 'You have disturbed the ancient balance!'",
+        "Tash-Nadia's voice resonates, 'The ErgoSphere itself is in turmoil!'",
+        "Tash-Nadia says, 'Okay, you're strong, but I'm stronger!'",
+        "Tash-Nadia says, 'That was a close one, but I'm not going down yet.'",
+        "Tash-Nadia says, 'You're making me use my full strength.'",
+        "Tash-Nadia says, 'You're about to face my true form!'",
+        "Tash-Nadia says, 'This is the last time you hit me that hard!'",
+        "Tash-Nadia says, 'You're gonna feel the full force of the abyss!'"
+      ],
       "100+": [
-        "A powerful strike! Tash-Nadia staggers."]
+        "A powerful strike! Tash-Nadia staggers.",
+        "Tash-Nadia collapses, 'The depths... they reclaim me?'",
+        "Tash-Nadia's form shimmers, 'The ErgoSphere... it rejects you.'",
+        "Tash-Nadia's voice fades, 'The currents... they pull me under...'",
+        "Tash-Nadia says, 'I can't believe this is happening!'",
+        "Tash-Nadia says, 'You're too powerful for me, but I'll be back!'",
+        "Tash-Nadia says, 'I'm out of here, this isn't worth it!'",
+        "Tash-Nadia says, 'You may have won this battle, but the war isn't over!'",
+        "Tash-Nadia says, 'I'm retreating, but I'll come back stronger!'",
+        "Tash-Nadia says, 'This isn't the end, it's just a temporary setback!'"
+      ]
     },
     hitDialogues: {
       "1": [
-        "Tash-Nadia lands a precise hit."],
+        "Tash-Nadia lands a precise hit.",
+        "Tash-Nadia's trident strikes with the force of a tidal wave, 'The deeps strike with me.'",
+        "Tash-Nadia's eyes gleam with ancient power, 'You are but a speck in the ocean.'",
+        "Tash-Nadia's voice whispers, 'The currents guide my hand.'",
+        "Tash-Nadia says, 'A taste of the abyss!'",
+        "Tash-Nadia says, 'First blood goes to the deep!'",
+        "Tash-Nadia says, 'You're not even a challenge!'",
+        "Tash-Nadia says, 'I'm just testing your mettle.'",
+        "Tash-Nadia says, 'You're no match for my aquatic strength.'",
+        "Tash-Nadia says, 'Prepare to be dragged into the depths!'"
+      ],
       "2-3": [
-        "Tash-Nadia strikes twice in quick succession!"],
+        "Tash-Nadia strikes twice in quick succession!",
+        "Tash-Nadia's trident blurs, 'The past and present collide in the ocean.'",
+        "Tash-Nadia's movements are swift and precise, 'Water is my weapon.'",
+        "Tash-Nadia's voice echoes, 'The tides are relentless.'",
+        "Tash-Nadia says, 'Two for the price of the sea!'",
+        "Tash-Nadia says, 'You're getting careless.'",
+        "Tash-Nadia says, 'I'm just warming up.'",
+        "Tash-Nadia says, 'You're not quick enough to evade me.'",
+        "Tash-Nadia says, 'Feel the wrath of the ocean!'",
+        "Tash-Nadia says, 'Prepare to be drowned!'"
+      ],
       "4-5": [
-        "A series of hits from Tash-Nadia!"],
+        "A series of hits from Tash-Nadia!",
+        "Tash-Nadia's trident unleashes a barrage of water, 'The ocean is unyielding.'",
+        "Tash-Nadia's form flickers, 'You cannot grasp the power of the deep.'",
+        "Tash-Nadia's voice resonates, 'The ErgoSphere itself is my ally.'",
+        "Tash-Nadia says, 'You're getting overwhelmed, aren't you?'",
+        "Tash-Nadia says, 'I'm just beginning to fight!'",
+        "Tash-Nadia says, 'You're too predictable.'",
+        "Tash-Nadia says, 'You can't withstand the crushing pressure.'",
+        "Tash-Nadia says, 'Prepare for an aquatic assault!'",
+        "Tash-Nadia says, 'Feel the power of the tides!'"
+      ],
       "6-9": [
-        "Tash-Nadia's relentless assault is fierce!"],
+        "Tash-Nadia's relentless assault is fierce!",
+        "Tash-Nadia's trident crackles with ancient magic, 'The deeps are unforgiving.'",
+        "Tash-Nadia's power intensifies, 'You cannot control the currents.'",
+        "Tash-Nadia's voice booms, 'The ErgoSphere's fury is upon you!'",
+        "Tash-Nadia says, 'You're getting desperate.'",
+        "Tash-Nadia says, 'I'm about to unleash my full potential!'",
+        "Tash-Nadia says, 'You're no match for my aquatic might.'",
+        "Tash-Nadia says, 'You're gonna feel the force of the ocean itself!'",
+        "Tash-Nadia says, 'This is the end of the line!'",
+        "Tash-Nadia says, 'Prepare to face the ancient one!'"
+      ],
       "10+": [
-        "A devastating barrage from Tash-Nadia!"]
+        "A devastating barrage from Tash-Nadia!",
+        "Tash-Nadia unleashes the full power of the ErgoSphere, 'The ocean consumes all!'",
+        "Tash-Nadia's trident glows with blinding light, 'Your time is over!'",
+        "Tash-Nadia's voice shatters the air, 'The ErgoSphere claims you!'",
+        "Tash-Nadia says, 'You're finished, this is your end!'",
+        "Tash-Nadia says, 'I am the master of the seas!'",
+        "Tash-Nadia says, 'You cannot defeat the depths!'",
+        "Tash-Nadia says, 'You're about to witness the ultimate power!'",
+        "Tash-Nadia says, 'Prepare to face the ancient one!'",
+        "Tash-Nadia says, 'The end is here!'"
+      ]
     },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
@@ -945,9 +1411,14 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The abyss awaits, Belkan.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'Your struggles are futile, Belkan.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The water will claim you, Belkan.'</span>",
-        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'You will drown in the ErgoSphere, Belkan.'</span>"
-    ],
-    player2: [
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'You will drown in the ErgoSphere, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'You are but a ripple in my ocean, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The ancient ones stir in the depths, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The ErgoSphere is my domain, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'Your strength is as fleeting as seafoam, Belkan.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to Jaybers8: 'The ocean's heart beats within me, Belkan.'</span>"
+      ],
+      player2: [
         "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The depths call for you, Dilardian.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia's voice rumbles: 'You fight with the ferocity of surface dwellers, Dilardian.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The currents of fate pull you under, Dilardian.'</span>",
@@ -957,8 +1428,13 @@ hitDialogues: {
         "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The abyss awaits, Dilardian.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'Your struggles are futile, Dilardian.'</span>",
         "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The water will claim you, Dilardian.'</span>",
-        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'You will drown in the ErgoSphere, Dilardian.'</span>"
-    ]
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'You will drown in the ErgoSphere, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'You are but a ripple in my ocean, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The ancient ones stir in the depths, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The ErgoSphere is my domain, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'Your strength is as fleeting as seafoam, Dilardian.'</span>",
+        "<span class='toggle-dialogue'>Tash Nadia says to FLIGHTx12!: 'The ocean's heart beats within me, Dilardian.'</span>"
+      ]
     }
-  }
+  },
 ];

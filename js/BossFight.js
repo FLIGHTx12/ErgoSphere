@@ -447,113 +447,8 @@ document.addEventListener("DOMContentLoaded", () => {
           historyContainer.innerHTML += `<p style="font-size:32px; font-weight:bold; color:#FF0000;">${playerName} defeated the ${monster.name}!</p>`;
           image.src = monster.defeatedImageSrc;
           
-          // Create and add a copy log button
-          const copyLogButton = document.createElement("button");
-          copyLogButton.textContent = "Copy Battle Log";
-          copyLogButton.classList.add("copy-log-button");
-          copyLogButton.style.display = "block";
-          copyLogButton.style.margin = "10px auto";
-          copyLogButton.style.backgroundColor = "#2c3e50";
-          copyLogButton.style.color = "white";
-          copyLogButton.style.border = "2px solid #0ff";
-          copyLogButton.style.borderRadius = "5px";
-          copyLogButton.style.padding = "8px 15px";
-          copyLogButton.style.fontWeight = "bold";
-          copyLogButton.style.cursor = "pointer";
-          copyLogButton.style.boxShadow = "0 0 10px #0ff";
-          
-          // Add click handler for the copy button
-          copyLogButton.addEventListener("click", () => {
-            // Create a temporary div to hold and process the history content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = historyContainer.innerHTML;
-            
-            // Remove the copy button and timer from our clone
-            const buttonClone = tempDiv.querySelector('.copy-log-button');
-            if (buttonClone) buttonClone.remove();
-            const timerClone = tempDiv.querySelector('#timer');
-            if (timerClone) timerClone.remove();
-            
-            // Get all paragraphs and headings, extract their text content
-            const paragraphs = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-            let battleLog = "";
-            
-            paragraphs.forEach(p => {
-              const text = p.textContent.trim();
-              if (text) {
-                battleLog += text + "\n\n";
-              }
-            });
-            
-            // Remove extra line breaks and trim
-            battleLog = battleLog.replace(/\n\s*\n\s*\n/g, "\n\n").trim();
-            
-            // Add a title at the top
-            battleLog = `BATTLE LOG: ${monster.name}\n` + 
-                        `${new Date().toLocaleString()}\n` +
-                        `===================\n\n` + 
-                        battleLog;
-            
-            // Try to use the clipboard API with fallback for older browsers
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(battleLog)
-                .then(() => {
-                  copyLogButton.textContent = "Copied!";
-                  copyLogButton.style.backgroundColor = "#27ae60";
-                  setTimeout(() => {
-                    copyLogButton.textContent = "Copy Battle Log";
-                    copyLogButton.style.backgroundColor = "#2c3e50";
-                  }, 2000);
-                })
-                .catch(err => {
-                  console.error("Clipboard API error:", err);
-                  fallbackCopyMethod(battleLog);
-                });
-            } else {
-              // Fallback for browsers without clipboard API
-              fallbackCopyMethod(battleLog);
-            }
-            
-            // Fallback copying method using a textarea
-            function fallbackCopyMethod(text) {
-              // Create temporary textarea
-              const textArea = document.createElement("textarea");
-              textArea.value = text;
-              textArea.style.position = "fixed";  // Make it invisible
-              textArea.style.opacity = "0";
-              document.body.appendChild(textArea);
-              textArea.focus();
-              textArea.select();
-              
-              try {
-                // Execute copy command
-                const successful = document.execCommand('copy');
-                if (successful) {
-                  copyLogButton.textContent = "Copied!";
-                  copyLogButton.style.backgroundColor = "#27ae60";
-                } else {
-                  copyLogButton.textContent = "Copy Failed";
-                  copyLogButton.style.backgroundColor = "#e74c3c";
-                }
-              } catch (err) {
-                console.error('Failed to copy text: ', err);
-                copyLogButton.textContent = "Copy Failed";
-                copyLogButton.style.backgroundColor = "#e74c3c";
-              }
-              
-              // Clean up
-              document.body.removeChild(textArea);
-              
-              // Reset button after delay
-              setTimeout(() => {
-                copyLogButton.textContent = "Copy Battle Log";
-                copyLogButton.style.backgroundColor = "#2c3e50";
-              }, 2000);
-            }
-          });
-          
-          // Add button to history container
-          historyContainer.appendChild(copyLogButton);
+          // Always add the copy log button after updating innerHTML
+          ensureCopyLogButton(monster, historyContainer);
         }
 
         // Use the monster-specific dialogue methods:
@@ -597,6 +492,11 @@ document.addEventListener("DOMContentLoaded", () => {
         historyContainer.innerHTML += `<p style="color:#888; font-size:0.9em;">Time Remaining: ${timeElement.textContent}</p>`;
         historyContainer.innerHTML += `<hr>`;
         historyContainer.scrollTop = historyContainer.scrollHeight;
+
+        // If the copy log button is present (boss defeated), re-append it after updating innerHTML
+        if (historyContainer.querySelector('.copy-log-button')) {
+          ensureCopyLogButton(monster, historyContainer);
+        }
 
         for (let i = 1; i < currentContainer.children.length; i++) {
           currentContainer.children[i].value = "";
@@ -685,5 +585,92 @@ document.addEventListener("DOMContentLoaded", () => {
     // Remove any background images that might interfere
     attackButton.style.backgroundImage = "none";
     playerToggle.style.backgroundImage = "none";
+  }
+
+  // Helper to add/re-add the copy log button and handler
+  function ensureCopyLogButton(monster, historyContainer) {
+    // Remove any existing button
+    const oldBtn = historyContainer.querySelector('.copy-log-button');
+    if (oldBtn) oldBtn.remove();
+
+    const copyLogButton = document.createElement("button");
+    copyLogButton.textContent = "Copy Battle Log";
+    copyLogButton.classList.add("copy-log-button");
+    copyLogButton.style.display = "block";
+    copyLogButton.style.margin = "10px auto";
+    copyLogButton.style.backgroundColor = "#2c3e50";
+    copyLogButton.style.color = "white";
+    copyLogButton.style.border = "2px solid #0ff";
+    copyLogButton.style.borderRadius = "5px";
+    copyLogButton.style.padding = "8px 15px";
+    copyLogButton.style.fontWeight = "bold";
+    copyLogButton.style.cursor = "pointer";
+    copyLogButton.style.boxShadow = "0 0 10px #0ff";
+
+    copyLogButton.addEventListener("click", () => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = historyContainer.innerHTML;
+      const buttonClone = tempDiv.querySelector('.copy-log-button');
+      if (buttonClone) buttonClone.remove();
+      const timerClone = tempDiv.querySelector('#timer');
+      if (timerClone) timerClone.remove();
+      const paragraphs = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+      let battleLog = "";
+      paragraphs.forEach(p => {
+        const text = p.textContent.trim();
+        if (text) {
+          battleLog += text + "\n\n";
+        }
+      });
+      battleLog = battleLog.replace(/\n\s*\n\s*\n/g, "\n\n").trim();
+      battleLog = `BATTLE LOG: ${monster.name}\n` + 
+                  `${new Date().toLocaleString()}\n` +
+                  `===================\n\n` + 
+                  battleLog;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(battleLog)
+          .then(() => {
+            copyLogButton.textContent = "Copied!";
+            copyLogButton.style.backgroundColor = "#27ae60";
+            setTimeout(() => {
+              copyLogButton.textContent = "Copy Battle Log";
+              copyLogButton.style.backgroundColor = "#2c3e50";
+            }, 2000);
+          })
+          .catch(err => {
+            fallbackCopyMethod(battleLog);
+          });
+      } else {
+        fallbackCopyMethod(battleLog);
+      }
+      function fallbackCopyMethod(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            copyLogButton.textContent = "Copied!";
+            copyLogButton.style.backgroundColor = "#27ae60";
+          } else {
+            copyLogButton.textContent = "Copy Failed";
+            copyLogButton.style.backgroundColor = "#e74c3c";
+          }
+        } catch (err) {
+          copyLogButton.textContent = "Copy Failed";
+          copyLogButton.style.backgroundColor = "#e74c3c";
+        }
+        document.body.removeChild(textArea);
+        setTimeout(() => {
+          copyLogButton.textContent = "Copy Battle Log";
+          copyLogButton.style.backgroundColor = "#2c3e50";
+        }, 2000);
+      }
+    });
+    historyContainer.appendChild(copyLogButton);
   }
 });
