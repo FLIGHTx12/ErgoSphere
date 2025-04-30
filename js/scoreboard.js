@@ -250,6 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   scoreForm.innerHTML = createPredecessorForm();
                 } else if (gameName === 'Splitgate') {
                   scoreForm.innerHTML = createSplitgateForm();
+                } else if (gameName === 'Overwatch 2') {
+                  scoreForm.innerHTML = createOverwatch2Form();
                 } else {
                   // Create generic score form for other games
                   scoreForm.innerHTML = createGenericScoreForm(gameName);
@@ -282,6 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
                       calculatePredecessorScore(scoreForm);
                     } else if (gameName === 'Splitgate') {
                       calculateSplitgateScore(scoreForm);
+                    } else if (gameName === 'Overwatch 2') {
+                      calculateOverwatch2Score(scoreForm);
                     } else {
                       calculateGenericScore(scoreForm);
                     }
@@ -2162,7 +2166,7 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
   }
   
   // Number of steps in the animation
-  const steps = 15;
+  const steps = 550;
   const stepDuration = duration / steps;
   
   // Generate random numbers that converge toward the final score
@@ -2193,6 +2197,11 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
       element.classList.remove('cycling-number');
     }, 50);
     
+    // Cycle through colors during animation
+    const colors = ['#6441a5', '#4caf50', '#f44336', '#ff9800', '#03a9f4'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    element.style.color = randomColor;
+    
     // Continue animation or finish
     currentStep++;
     
@@ -2209,6 +2218,9 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
       setTimeout(() => {
         flashElement.style.opacity = '0';
       }, 300);
+      
+      // Set final color based on score
+      element.style.color = finalScore >= 0 ? '#4caf50' : '#f44336';
     }
   }
   
@@ -2251,4 +2263,222 @@ function simpleHash(str) {
     hash = hash & hash; // Convert to 32bit integer
   }
   return Math.abs(hash);
+}
+
+// Function to create the Overwatch 2 score form
+function createOverwatch2Form() {
+  const matches = 4;
+  let formHTML = `
+    <h3>Overwatch 2 Scoreboard</h3>
+    <p>Match Results & Scoring Weights:</p>
+    <ul style="margin-top: 6px; margin-bottom: 6px; padding-left: 20px;">
+      <li>Eliminations: +1 each</li>
+      <li>Assists: +1 each</li>
+      <li>Deaths: -2 each</li>
+      <li>Damage: +0.10%</li>
+      <li>Healing: +0.10%</li>
+      <li>Mitigation: +0.10%</li>
+      <li>Win: +10 / Loss: -5</li>
+    </ul>
+  `;
+  
+  for (let i = 1; i <= matches; i++) {
+    formHTML += `
+      <div class="match-container" data-match="${i}">
+        <div class="match-title">Match ${i}</div>
+        <div class="stats-container">
+          <div class="stat-input">
+            <label for="eliminations-${i}">Eliminations <span class="stat-weight">(+1)</span></label>
+            <input type="number" id="eliminations-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="assists-${i}">Assists <span class="stat-weight">(+1)</span></label>
+            <input type="number" id="assists-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="deaths-${i}">Deaths <span class="stat-weight">(-2)</span></label>
+            <input type="number" id="deaths-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="damage-${i}">Damage <span class="stat-weight">(+0.10%)</span></label>
+            <input type="number" id="damage-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="healing-${i}">Healing <span class="stat-weight">(+0.10%)</span></label>
+            <input type="number" id="healing-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="mitigation-${i}">Mitigation <span class="stat-weight">(+0.10%)</span></label>
+            <input type="number" id="mitigation-${i}" min="0" class="short-input">
+          </div>
+          <div class="stat-input">
+            <label for="winloss-${i}">Win/Loss <span class="stat-weight">(+10/-5)</span></label>
+            <select id="winloss-${i}">
+              <option value="">Select...</option>
+              <option value="win">Win</option>
+              <option value="loss">Loss</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  formHTML += `
+    <button class="calculate-btn">Calculate Score</button>
+    <div class="score-result">
+      <div class="payout-container">
+        <div class="payout-label">PAYOUT</div>
+        <div class="payout-value" id="total-score">0</div>
+      </div>
+      <div class="stat-breakdown"></div>
+    </div>
+    <button class="screenshot-btn" title="Copy scoreboard to clipboard">Take Screenshot</button>
+  `;
+  
+  // Add additional event listeners after form is created
+  setTimeout(() => {
+    const formInputs = document.querySelectorAll('.stat-input input, .stat-input select');
+    
+    formInputs.forEach(input => {
+      // Add input event listener to detect changes
+      input.addEventListener('input', function() {
+        if (this.value) {
+          this.classList.add('input-has-value');
+        } else {
+          this.classList.remove('input-has-value');
+        }
+      });
+      
+      // Check initial state (for cases where input might already have a value)
+      if (input.value) {
+        input.classList.add('input-has-value');
+      }
+    });
+  }, 100);
+  
+  return formHTML;
+}
+
+// Function to calculate the score for Overwatch 2
+function calculateOverwatch2Score(formElement) {
+  const matches = 4;
+  let totalScore = 0;
+  let breakdown = '';
+  
+  // Define weights
+  const weights = {
+    eliminations: 1,
+    assists: 1,
+    deaths: -2,
+    damage: 0.001,
+    healing: 0.001,
+    mitigation: 0.001,
+    win: 10,
+    loss: -5
+  };
+  
+  // Calculate score for each match
+  for (let i = 1; i <= matches; i++) {
+    let matchScore = 0;
+    let matchBreakdown = `<strong>Match ${i}:</strong> `;
+    
+    // Eliminations
+    const eliminations = parseInt(formElement.querySelector(`#eliminations-${i}`).value) || 0;
+    const eliminationsTotal = eliminations * weights.eliminations;
+    matchScore += eliminationsTotal;
+    if (eliminations > 0) {
+      matchBreakdown += `Eliminations: ${eliminations} × ${weights.eliminations} = ${eliminationsTotal}, `;
+    }
+    
+    // Assists
+    const assists = parseInt(formElement.querySelector(`#assists-${i}`).value) || 0;
+    const assistsTotal = assists * weights.assists;
+    matchScore += assistsTotal;
+    if (assists > 0) {
+      matchBreakdown += `Assists: ${assists} × ${weights.assists} = ${assistsTotal}, `;
+    }
+    
+    // Deaths
+    const deaths = parseInt(formElement.querySelector(`#deaths-${i}`).value) || 0;
+    const deathsTotal = deaths * weights.deaths;
+    matchScore += deathsTotal;
+    if (deaths > 0) {
+      matchBreakdown += `Deaths: ${deaths} × ${weights.deaths} = ${deathsTotal}, `;
+    }
+    
+    // Damage
+    const damage = parseInt(formElement.querySelector(`#damage-${i}`).value) || 0;
+    const damageTotal = damage * weights.damage;
+    matchScore += damageTotal;
+    if (damage > 0) {
+      matchBreakdown += `Damage: ${damage} × ${weights.damage} = ${damageTotal.toFixed(1)}, `;
+    }
+    
+    // Healing
+    const healing = parseInt(formElement.querySelector(`#healing-${i}`).value) || 0;
+    const healingTotal = healing * weights.healing;
+    matchScore += healingTotal;
+    if (healing > 0) {
+      matchBreakdown += `Healing: ${healing} × ${weights.healing} = ${healingTotal.toFixed(1)}, `;
+    }
+    
+    // Mitigation
+    const mitigation = parseInt(formElement.querySelector(`#mitigation-${i}`).value) || 0;
+    const mitigationTotal = mitigation * weights.mitigation;
+    matchScore += mitigationTotal;
+    if (mitigation > 0) {
+      matchBreakdown += `Mitigation: ${mitigation} × ${weights.mitigation} = ${mitigationTotal.toFixed(1)}, `;
+    }
+    
+    // Win/Loss
+    const winLoss = formElement.querySelector(`#winloss-${i}`).value;
+    if (winLoss === 'win') {
+      matchScore += weights.win;
+      matchBreakdown += `Win: +${weights.win}, `;
+    } else if (winLoss === 'loss') {
+      matchScore += weights.loss;
+      matchBreakdown += `Loss: ${weights.loss}, `;
+    }
+    
+    // Remove trailing comma and space
+    matchBreakdown = matchBreakdown.replace(/, $/, '');
+    
+    // Add match score to total if any selections were made
+    if (eliminations > 0 || assists > 0 || deaths > 0 || damage > 0 || healing > 0 || mitigation > 0 || winLoss) {
+      totalScore += matchScore;
+      breakdown += `<div>${matchBreakdown} = <strong>${matchScore.toFixed(1)}</strong></div>`;
+    }
+  }
+  
+  // Display the result
+  const resultElement = formElement.querySelector('.score-result');
+  const totalScoreElement = formElement.querySelector('#total-score');
+  const breakdownElement = formElement.querySelector('.stat-breakdown');
+  
+  // First set to zero, then animate to final score
+  totalScoreElement.textContent = '0';
+  breakdownElement.innerHTML = breakdown || '<div>No scores entered yet</div>';
+  
+  // Show result before animation
+  resultElement.classList.add('show');
+  
+  // Add win/loss class based on total score
+  if (totalScore > 0) {
+    totalScoreElement.className = 'payout-value win';
+    resultElement.classList.add('positive-result');
+    resultElement.classList.remove('negative-result');
+  } else if (totalScore < 0) {
+    totalScoreElement.className = 'payout-value loss';
+    resultElement.classList.add('negative-result');
+    resultElement.classList.remove('positive-result');
+  } else {
+    totalScoreElement.className = 'payout-value';
+    resultElement.classList.remove('positive-result', 'negative-result');
+  }
+  
+  // Animate to final score
+  setTimeout(() => {
+    animateScoreCalculation(totalScoreElement, Math.round(totalScore));
+  }, 100);
 }

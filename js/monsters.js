@@ -771,29 +771,139 @@ hitDialogues: {
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {
       zero: [
-        "Dulguun Bolor shrugs off the hit."],
+        "Dulguun Bolor shrugs off the hit.",
+        "Dulguun Bolor's flesh ripples, the fungus unyielding.",
+        "Dulguun Bolor's empty eyes stare, 'Your blows are fleeting.'",
+        "Dulguun Bolor's form distorts, spores swirling around the impact.",
+        "Dulguun Bolor says, 'You cannot harm what is already dead.'",
+        "Dulguun Bolor says, 'The fungus hungers for more than this.'",
+        "Dulguun Bolor says, 'Your attacks are like rain on ancient stone.'",
+        "Dulguun Bolor says, 'I am one with the rot, your strikes are meaningless.'",
+        "Dulguun Bolor says, 'Feel the resilience of decay!'",
+        "Dulguun Bolor says, 'You cannot defeat the ancient rot!'"
+      ],
       "1-20": [
-        "Dulguun Bolor takes a light hit."],
+        "Dulguun Bolor takes a light hit.",
+        "Dulguun Bolor's body twitches, spores puffing from the wound.",
+        "Dulguun Bolor's voice hisses, 'A sting, nothing more.'",
+        "Dulguun Bolor's fungal growths recoil, then quickly regenerate.",
+        "Dulguun Bolor says, 'A small wound, but the spores will mend me.'",
+        "Dulguun Bolor says, 'You've managed to pierce the decay.'",
+        "Dulguun Bolor says, 'This is a minor inconvenience.'",
+        "Dulguun Bolor says, 'The fungus consumes the pain.'",
+        "Dulguun Bolor says, 'You're just scratching the bark.'",
+        "Dulguun Bolor says, 'You're gonna pay for that!'"
+      ],
       "21-35": [
-        "Dulguun Bolor grunts from the blow."],
+        "Dulguun Bolor grunts from the blow.",
+        "Dulguun Bolor's form convulses, spores erupting from the wound in greater numbers.",
+        "Dulguun Bolor's voice cracks, 'The rot resists your feeble attacks.'",
+        "Dulguun Bolor's fungal growths writhe, tendrils reaching out to reattach.",
+        "Dulguun Bolor says, 'You've managed to wound the host.'",
+        "Dulguun Bolor says, 'That actually hurt, I'll admit.'",
+        "Dulguun Bolor says, 'You're starting to irritate the fungus.'",
+        "Dulguun Bolor says, 'You're lucky the spores are feeling merciful.'",
+        "Dulguun Bolor says, 'Don't think you're winning, this is just a scratch on the bark.'",
+        "Dulguun Bolor says, 'You're gonna feel the rot's vengeance!'"
+      ],
       "36-75": [
-        "A strong hit! Dulguun Bolor feels the impact!"],
+        "A strong hit! Dulguun Bolor feels the impact!",
+        "Dulguun Bolor's body shudders, spores bursting forth in a cloud of decay.",
+        "Dulguun Bolor's eyes glow brighter, 'You dare threaten the cycle of life and death?'",
+        "Dulguun Bolor's fungal growths pulse, releasing a wave of spores.",
+        "Dulguun Bolor says, 'Okay, now you've done it!'",
+        "Dulguun Bolor says, 'That was a good one, but I'm still standing.'",
+        "Dulguun Bolor says, 'You're making the fungus angry.'",
+        "Dulguun Bolor says, 'You're pushing your luck, little morsel.'",
+        "Dulguun Bolor says, 'This is getting interesting, but I'm still gonna win.'",
+        "Dulguun Bolor says, 'Prepare to feel the rot's embrace!'"
+      ],
       "76-99": [
-        "Dulguun Bolor is shaken by the force!"],
+        "Dulguun Bolor is shaken by the force!",
+        "Dulguun Bolor's form contorts, spores exploding from the wound in a putrid cloud.",
+        "Dulguun Bolor's voice booms, 'The cycle cannot be broken!'",
+        "Dulguun Bolor's fungal growths convulse, tendrils burrowing deeper into the host.",
+        "Dulguun Bolor says, 'Okay, you're strong, but the rot is stronger!'",
+        "Dulguun Bolor says, 'That was a close one, but I'm not going down yet.'",
+        "Dulguun Bolor says, 'You're making me use my full fungal potential.'",
+        "Dulguun Bolor says, 'You're about to face the wrath of decay!'",
+        "Dulguun Bolor says, 'This is the last time you hit me that hard!'",
+        "Dulguun Bolor says, 'You're gonna feel the full power of the ErgoSphere's rot!'"
+      ],
       "100+": [
-        "A powerful strike! Dulguun Bolor staggers."]
+        "A powerful strike sends Dulguun Bolor reeling!",
+        "Dulguun Bolor's form wavers, but the fungus holds her together.",
+        "Dulguun Bolor's ancient eyes widen, 'Such power... but it cannot stop the inevitable.'",
+        "Dulguun Bolor's fungal growths strain, struggling to maintain their hold.",
+        "Dulguun Bolor says, 'I can't believe you possess such strength!'",
+        "Dulguun Bolor says, 'You're pushing me to my limits, but I will endure!'",
+        "Dulguun Bolor says, 'I'm not defeated yet, not while the rot remains!'",
+        "Dulguun Bolor says, 'You may have wounded me, but the cycle continues!'",
+        "Dulguun Bolor says, 'I'm still standing, but barely!'",
+        "Dulguun Bolor says, 'This isn't the end, the decay will rise again!'"
+      ]
     },
     hitDialogues: {
       "1": [
-        "Dulguun Bolor lands a precise hit."],
+        "Dulguun Bolor lands a precise hit.",
+        "Dulguun Bolor's claws drip with fungal ichor, 'The rot claims its due.'",
+        "Dulguun Bolor's eyes gleam with an unholy light, 'You are but compost.'",
+        "Dulguun Bolor's voice whispers, 'The spores guide my hand.'",
+        "Dulguun Bolor says, 'A taste of the inevitable!'",
+        "Dulguun Bolor says, 'First blood goes to the decay!'",
+        "Dulguun Bolor says, 'You're not even a challenge!'",
+        "Dulguun Bolor says, 'I'm just testing your resistance.'",
+        "Dulguun Bolor says, 'You're no match for the cycle of life and death.'",
+        "Dulguun Bolor says, 'Prepare to become one with the rot!'"
+      ],
       "2-3": [
-        "Dulguun Bolor strikes twice in quick succession!"],
+        "Dulguun Bolor strikes twice in quick succession!",
+        "Dulguun Bolor's claws tear through you, 'The rot consumes all.'",
+        "Dulguun Bolor's movements are swift and unsettling, 'The cycle is relentless.'",
+        "Dulguun Bolor's voice echoes, 'The spores spread with each blow.'",
+        "Dulguun Bolor says, 'Two for the price of the sea!'",
+        "Dulguun Bolor says, 'You're getting careless.'",
+        "Dulguun Bolor says, 'I'm just getting warmed up.'",
+        "Dulguun Bolor says, 'You're not quick enough to evade me.'",
+        "Dulguun Bolor says, 'Feel the weight of history!'",
+        "Dulguun says, 'Prepare to be erased!'"
+      ],
       "4-5": [
-        "A series of hits from Dulguun Bolor!"],
+        "A series of hits from Dulguun Bolor!",
+        "Dulguun Bolor's attacks are relentless, 'The decay is unyielding.'",
+        "Dulguun Bolor's form shifts, 'You cannot escape the cycle.'",
+        "Dulguun Bolor's voice resonates, 'The ErgoSphere itself is my ally.'",
+        "Dulguun Bolor says, 'You're getting overwhelmed, aren't you?'",
+        "Dulguun Bolor says, 'I'm just beginning to fight!'",
+        "Dulguun Bolor says, 'You're too predictable.'",
+        "Dulguun Bolor says, 'You can't withstand the power of the ages.'",
+        "Dulguun Bolor says, 'Prepare for an ancient onslaught!'",
+        "Dulguun says, 'Feel the power of time!'"
+      ],
       "6-9": [
-        "Dulguun Bolor's relentless assault is fierce!"],
+        "Dulguun Bolor's relentless assault is fierce!",
+        "Dulguun Bolor's claws drip with putrescence, 'The rot is unforgiving.'",
+        "Dulguun Bolor's power intensifies, 'You cannot control the cycle.'",
+        "Dulguun Bolor's voice booms, 'The ErgoSphere's fury is upon you!'",
+        "Dulguun Bolor says, 'You're getting desperate.'",
+        "Dulguun Bolor says, 'I'm about to unleash my full potential!'",
+        "Dulguun Bolor says, 'You're no match for my ancient might.'",
+        "Dulguun Bolor says, 'You're gonna feel the force of time itself!'",
+        "Dulguun Bolor says, 'This is the end of the line!'",
+        "Dulguun says, 'Prepare to face the ancient one!'"
+      ],
       "10+": [
-        "A devastating barrage from Dulguun Bolor!"]
+        "A devastating barrage from Dulguun Bolor!",
+        "Dulguun Bolor unleashes the full power of the ErgoSphere, 'The ocean consumes all!'",
+        "Dulguun Bolor's staff glows with blinding light, 'Your time is over!'",
+        "Dulguun Bolor's voice shatters the air, 'The ErgoSphere claims you!'",
+        "Dulguun says, 'You're finished, this is your end!'",
+        "Dulguun says, 'I am the master of time!'",
+        "Dulguun says, 'You cannot defeat the ages!'",
+        "Dulguun says, 'You're about to witness the ultimate power!'",
+        "Dulguun says, 'Prepare to face the ancient one!'",
+        "Dulguun says, 'The end is here!'"
+      ]
     },
     getDamageDialogue(damage, playerName) {
       if (damage === 0) return selectDialogue(this.damageDialogues.zero);
@@ -824,7 +934,12 @@ hitDialogues: {
             "<span class='toggle-dialogue'>Dulguun Bolor's fungal voice whispers: 'Join us, Jaybers8, become one with the ErgoSphere.'</span>",
             "<span class='toggle-dialogue'>Dulguun Bolor's eyes fixate on Jaybers8: 'The ancient hunt begins anew.'</span>",
             "<span class='toggle-dialogue'>A chilling growl emanates from Dulguun Bolor: 'Belkan, you cannot escape the inevitable.'</span>",
-            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, Jaybers8!'</span>"
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, Jaybers8!'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to Jaybers8: 'You are but a vessel for the spores, Belkan.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to Jaybers8: 'The rot hungers for your essence, Belkan.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to Jaybers8: 'Your life is a fleeting bloom in the cycle of decay.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to Jaybers8: 'The fungus will claim you, Belkan.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to Jaybers8: 'The ErgoSphere's rot will consume all.'</span>"
         ],
         player2: [
             "<span class='toggle-dialogue'>Dulguun Bolor's ancient voice rumbles: 'FLIGHTx12!, your strength will wither like the old world.'</span>",
@@ -836,7 +951,12 @@ hitDialogues: {
             "<span class='toggle-dialogue'>Dulguun Bolor's fungal voice whispers: 'Join us, FLIGHTx12!, become one with the ErgoSphere.'</span>",
             "<span class='toggle-dialogue'>Dulguun Bolor's eyes fixate on FLIGHTx12!: 'The ancient hunt begins anew.'</span>",
             "<span class='toggle-dialogue'>A chilling growl emanates from Dulguun Bolor: 'Dilardian, you cannot escape the inevitable.'</span>",
-            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, FLIGHTx12!'</span>"
+            "<span class='toggle-dialogue'>Dulguun Bolor's voice booms: 'Your resistance is futile, FLIGHTx12!'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to FLIGHTx12!: 'You are but a vessel for the spores, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to FLIGHTx12!: 'The rot hungers for your essence, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to FLIGHTx12!: 'Your life is a fleeting bloom in the cycle of decay.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to FLIGHTx12!: 'The fungus will claim you, Dilardian.'</span>",
+            "<span class='toggle-dialogue'>Dulguun Bolor says to FLIGHTx12!: 'The ErgoSphere's rot will consume all.'</span>"
           ]
         }
   },
