@@ -289,6 +289,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                       calculateGenericScore(scoreForm);
                     }
+                  
+                    // Scroll to the score-result div at the bottom after calculation
+                    const scoreResult = scoreForm.querySelector('.score-result');
+                    if (scoreResult) {
+                      scoreResult.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }
                   });
                 }
 
@@ -547,6 +553,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         statBreakdown.style.backgroundColor = 'rgba(30, 30, 30, 0.9)';
                         statBreakdown.style.padding = '15px';
                         statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                      }
+                      
+                      // Enhance the score-result container
+                      const scoreResult = container.querySelector('.score-result');
+                      if (scoreResult) {
+                        scoreResult.style.backgroundColor = 'rgba(50, 50, 50, 0.95)';
+                        scoreResult.style.padding = '20px';
+                        scoreResult.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+                        scoreResult.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.7)';
+                      }
+                      
+                      // Add color border based on score result
+                      const totalScoreElement = container.querySelector('#total-score');
+                      const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
+                      
+                      if (scoreValue > 0) {
+                        container.style.border = '3px solid rgba(76, 175, 80, 0.7)';
+                        container.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.5)';
+                      } else if (scoreValue < 0) {
+                        container.style.border = '3px solid rgba(244, 67, 54, 0.7)';
+                        container.style.boxShadow = '0 0 15px rgba(244, 67, 54, 0.5)';
                       }
                       
                       return container;
@@ -2129,6 +2156,33 @@ document.addEventListener('DOMContentLoaded', () => {
       statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
     }
     
+    // Enhance the score-result container
+    const scoreResult = container.querySelector('.score-result');
+    if (scoreResult) {
+      scoreResult.style.backgroundColor = 'rgba(50, 50, 50, 0.95)';
+      scoreResult.style.padding = '20px';
+      scoreResult.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+      scoreResult.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.7)';
+      scoreResult.style.backgroundColor = 'rgba(0, 0, 0, 0.95)'; // Darker background for contrast
+      scoreResult.style.padding = '30px'; // Increase padding for better spacing
+      scoreResult.style.border = '4px solid rgba(255, 255, 255, 0.8)'; // Bright border for visibility
+      scoreResult.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)'; // Glow effect for emphasis
+      scoreResult.style.zIndex = '10'; // Ensure it is above other elements
+      scoreResult.style.position = 'relative'; // Ensure proper stacking context
+
+      // Customize border and glow based on win/loss
+      const totalScoreElement = container.querySelector('#total-score');
+      const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
+
+      if (scoreValue > 0) {
+        scoreResult.style.border = '4px solid rgba(76, 175, 80, 0.9)';
+        scoreResult.style.boxShadow = '0 0 40px rgba(76, 175, 80, 0.8)';
+      } else if (scoreValue < 0) {
+        scoreResult.style.border = '4px solid rgba(244, 67, 54, 0.9)';
+        scoreResult.style.boxShadow = '0 0 40px rgba(244, 67, 54, 0.8)';
+      }
+    }
+    
     // Add color border based on score result
     const totalScoreElement = container.querySelector('#total-score');
     const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
@@ -2143,11 +2197,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     return container;
   }
-  
-  // Add this function call to the screenshot button's event listener
-  // Inside the screenshot button click handler, find and modify:
-  // Just before html2canvas is called, add:
-  // enhanceScreenshotContainer(container);
 });
 
 // Function to animate score calculation with number cycling effect
@@ -2163,6 +2212,15 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
     redFlash.id = 'red-flash';
     redFlash.className = 'screen-flash red-flash';
     document.body.appendChild(redFlash);
+  }
+  
+  // Clear any existing classes that might indicate result type
+  const scoreResult = element.closest('.score-result');
+  if (scoreResult) {
+    scoreResult.classList.remove('positive-result', 'negative-result');
+    // Set initial neutral border
+    scoreResult.style.transition = 'border-color 0.3s';
+    scoreResult.style.border = '2px solid #444';
   }
   
   // Number of steps in the animation
@@ -2202,6 +2260,12 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     element.style.color = randomColor;
     
+    // Cycle border color of score-result container
+    if (scoreResult) {
+      scoreResult.style.borderColor = randomColor;
+      scoreResult.style.boxShadow = `0 0 10px ${randomColor}40`;
+    }
+    
     // Continue animation or finish
     currentStep++;
     
@@ -2221,11 +2285,131 @@ function animateScoreCalculation(element, finalScore, duration = 1000) {
       
       // Set final color based on score
       element.style.color = finalScore >= 0 ? '#4caf50' : '#f44336';
+      
+      // Set final border color
+      if (scoreResult) {
+        scoreResult.style.borderColor = finalScore >= 0 ? '#4caf50' : '#f44336';
+        scoreResult.style.boxShadow = finalScore >= 0 
+          ? '0 0 15px rgba(76, 175, 80, 0.5)' 
+          : '0 0 15px rgba(244, 67, 54, 0.5)';
+      }
+      
+      // Add confetti if score is positive
+      if (finalScore > 0) {
+        startConfetti();
+      }
     }
   }
   
   // Start the animation
   updateDisplay();
+}
+
+// Function to start confetti animation with better script loading handling
+let confettiLoaded = false; // Flag to track if confetti script is loaded
+let confettiLoadingPromise = null; // Promise to track loading state
+
+function startConfetti() {
+  if (typeof confetti === 'function') {
+    // Confetti script is already available
+    launchConfetti();
+    return;
+  }
+  
+  // If we're already loading the script, wait for it
+  if (confettiLoadingPromise) {
+    confettiLoadingPromise.then(() => launchConfetti()).catch(() => {
+      console.log('Failed to load confetti script');
+    });
+    return;
+  }
+
+  // Start loading the script
+  confettiLoadingPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+    
+    script.onload = () => {
+      confettiLoaded = true;
+      console.log('Confetti script loaded successfully');
+      resolve();
+    };
+    
+    script.onerror = () => {
+      console.error('Failed to load confetti script');
+      reject();
+    };
+    
+    document.head.appendChild(script);
+  });
+
+  // Launch confetti when script is loaded
+  confettiLoadingPromise.then(() => launchConfetti()).catch(() => {
+    console.log('Unable to show confetti animation');
+  });
+}
+
+// Separate function to launch the actual confetti
+function launchConfetti() {
+  if (typeof confetti !== 'function') {
+    console.error('Confetti function not available');
+    return;
+  }
+  
+  // Brighter confetti with larger particles and more vibrant colors
+  const canvasOptions = {
+    particleCount: 150,
+    spread: 80,
+    origin: { y: 0.6 },
+    colors: ['#FF3F8E', '#4CC9F0', '#4EF037', '#F3F51D', '#FFFFFF'],
+    disableForReducedMotion: true,
+    scalar: 1.5, // Larger particles
+  };
+  
+  // Center shot - big burst
+  confetti({
+    ...canvasOptions,
+    origin: { y: 0.6, x: 0.5 },
+    gravity: 0.8, // Slower fall
+    startVelocity: 35,
+  });
+  
+  // Left side shot
+  setTimeout(() => {
+    confetti({
+      ...canvasOptions,
+      origin: { y: 0.7, x: 0.1 },
+      angle: 60,
+    });
+  }, 150);
+  
+  // Right side shot
+  setTimeout(() => {
+    confetti({
+      ...canvasOptions,
+      origin: { y: 0.7, x: 0.9 },
+      angle: 120,
+    });
+  }, 300);
+  
+  // Additional shots for more festive effect
+  setTimeout(() => {
+    confetti({
+      ...canvasOptions,
+      particleCount: 80,
+      origin: { y: 0.8, x: 0.3 },
+      colors: ['#FF9999', '#88FF88', '#9999FF', '#FFFF77'],
+    });
+  }, 450);
+  
+  setTimeout(() => {
+    confetti({
+      ...canvasOptions,
+      particleCount: 80,
+      origin: { y: 0.8, x: 0.7 },
+      colors: ['#FF9999', '#88FF88', '#9999FF', '#FFFF77'],
+    });
+  }, 600);
 }
 
 // Add placeholder attributes to number inputs
