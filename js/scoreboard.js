@@ -535,39 +535,54 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     function enhanceScreenshotContainer(container) {
-                      // Add extra styling to make results more visible in screenshots
-                      container.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-                      
-                      // Enhance the payout display in screenshots
+                      // Detect mobile/high-DPR and adjust overlay opacity for readability
+                      const isMobileOrHighDPR = window.innerWidth < 768 || window.devicePixelRatio > 1.5;
+
+                      // Use lighter backgrounds/overlays on mobile/high-DPR
+                      const bgAlpha = isMobileOrHighDPR ? 0.7 : 0.95;
+                      const overlayAlpha = isMobileOrHighDPR ? 0.5 : 0.85;
+
+                      container.style.backgroundColor = `rgba(0, 0, 0, ${overlayAlpha})`;
+
                       const payoutContainer = container.querySelector('.payout-container');
                       if (payoutContainer) {
                         payoutContainer.style.padding = '20px';
-                        payoutContainer.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+                        payoutContainer.style.backgroundColor = `rgba(20, 20, 20, ${bgAlpha})`;
                         payoutContainer.style.border = '2px solid rgba(255, 255, 255, 0.2)';
                         payoutContainer.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
                       }
-                      
-                      // Enhance the stat breakdown for better readability
+
                       const statBreakdown = container.querySelector('.stat-breakdown');
                       if (statBreakdown) {
-                        statBreakdown.style.backgroundColor = 'rgba(30, 30, 30, 0.9)';
+                        statBreakdown.style.backgroundColor = `rgba(30, 30, 30, ${bgAlpha})`;
                         statBreakdown.style.padding = '15px';
                         statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
                       }
-                      
-                      // Enhance the score-result container
+
                       const scoreResult = container.querySelector('.score-result');
                       if (scoreResult) {
-                        scoreResult.style.backgroundColor = 'rgba(50, 50, 50, 0.95)';
-                        scoreResult.style.padding = '20px';
-                        scoreResult.style.border = '2px solid rgba(255, 255, 255, 0.2)';
-                        scoreResult.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.7)';
+                        scoreResult.style.backgroundColor = `rgba(0, 0, 0, ${bgAlpha})`;
+                        scoreResult.style.padding = '30px';
+                        scoreResult.style.border = '4px solid rgba(255, 255, 255, 0.8)';
+                        scoreResult.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)';
+                        scoreResult.style.zIndex = '10';
+                        scoreResult.style.position = 'relative';
+
+                        const totalScoreElement = container.querySelector('#total-score');
+                        const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
+
+                        if (scoreValue > 0) {
+                          scoreResult.style.border = '4px solid rgba(76, 175, 80, 0.9)';
+                          scoreResult.style.boxShadow = '0 0 40px rgba(76, 175, 80, 0.8)';
+                        } else if (scoreValue < 0) {
+                          scoreResult.style.border = '4px solid rgba(244, 67, 54, 0.9)';
+                          scoreResult.style.boxShadow = '0 0 40px rgba(244, 67, 54, 0.8)';
+                        }
                       }
-                      
-                      // Add color border based on score result
+
                       const totalScoreElement = container.querySelector('#total-score');
                       const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
-                      
+
                       if (scoreValue > 0) {
                         container.style.border = '3px solid rgba(76, 175, 80, 0.7)';
                         container.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.5)';
@@ -575,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         container.style.border = '3px solid rgba(244, 67, 54, 0.7)';
                         container.style.boxShadow = '0 0 15px rgba(244, 67, 54, 0.5)';
                       }
-                      
+
                       return container;
                     }
                     
@@ -2136,41 +2151,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modify screenshot generation to ensure better visibility
   function enhanceScreenshotContainer(container) {
-    // Add extra styling to make results more visible in screenshots
-    container.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-    
-    // Enhance the payout display in screenshots
+    // Detect mobile/high-DPR and adjust overlay opacity for readability
+    const isMobileOrHighDPR = window.innerWidth < 768 || window.devicePixelRatio > 1.5;
+
+    // Use lighter backgrounds/overlays on mobile/high-DPR
+    const bgAlpha = isMobileOrHighDPR ? 0.7 : 0.95;
+    const overlayAlpha = isMobileOrHighDPR ? 0.5 : 0.85;
+
+    container.style.backgroundColor = `rgba(0, 0, 0, ${overlayAlpha})`;
+
     const payoutContainer = container.querySelector('.payout-container');
     if (payoutContainer) {
       payoutContainer.style.padding = '20px';
-      payoutContainer.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+      payoutContainer.style.backgroundColor = `rgba(20, 20, 20, ${bgAlpha})`;
       payoutContainer.style.border = '2px solid rgba(255, 255, 255, 0.2)';
       payoutContainer.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
     }
-    
-    // Enhance the stat breakdown for better readability
+
     const statBreakdown = container.querySelector('.stat-breakdown');
     if (statBreakdown) {
-      statBreakdown.style.backgroundColor = 'rgba(30, 30, 30, 0.9)';
+      statBreakdown.style.backgroundColor = `rgba(30, 30, 30, ${bgAlpha})`;
       statBreakdown.style.padding = '15px';
       statBreakdown.style.border = '1px solid rgba(255, 255, 255, 0.1)';
     }
-    
-    // Enhance the score-result container
+
     const scoreResult = container.querySelector('.score-result');
     if (scoreResult) {
-      scoreResult.style.backgroundColor = 'rgba(50, 50, 50, 0.95)';
-      scoreResult.style.padding = '20px';
-      scoreResult.style.border = '2px solid rgba(255, 255, 255, 0.2)';
-      scoreResult.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.7)';
-      scoreResult.style.backgroundColor = 'rgba(0, 0, 0, 0.95)'; // Darker background for contrast
-      scoreResult.style.padding = '30px'; // Increase padding for better spacing
-      scoreResult.style.border = '4px solid rgba(255, 255, 255, 0.8)'; // Bright border for visibility
-      scoreResult.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)'; // Glow effect for emphasis
-      scoreResult.style.zIndex = '10'; // Ensure it is above other elements
-      scoreResult.style.position = 'relative'; // Ensure proper stacking context
+      scoreResult.style.backgroundColor = `rgba(0, 0, 0, ${bgAlpha})`;
+      scoreResult.style.padding = '30px';
+      scoreResult.style.border = '4px solid rgba(255, 255, 255, 0.8)';
+      scoreResult.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)';
+      scoreResult.style.zIndex = '10';
+      scoreResult.style.position = 'relative';
 
-      // Customize border and glow based on win/loss
       const totalScoreElement = container.querySelector('#total-score');
       const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
 
@@ -2182,11 +2195,10 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreResult.style.boxShadow = '0 0 40px rgba(244, 67, 54, 0.8)';
       }
     }
-    
-    // Add color border based on score result
+
     const totalScoreElement = container.querySelector('#total-score');
     const scoreValue = parseInt(totalScoreElement?.textContent) || 0;
-    
+
     if (scoreValue > 0) {
       container.style.border = '3px solid rgba(76, 175, 80, 0.7)';
       container.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.5)';
@@ -2194,7 +2206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       container.style.border = '3px solid rgba(244, 67, 54, 0.7)';
       container.style.boxShadow = '0 0 15px rgba(244, 67, 54, 0.5)';
     }
-    
+
     return container;
   }
 });
