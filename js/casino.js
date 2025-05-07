@@ -73,42 +73,42 @@ const teamsData = {
     teams: teams.nfl,
     categories: {
       INDIVIDUAL: [
-        {text: "Most catches", value: "10/50"},
-        {text: "Most TDs Scored (non QB)", value: "10/50"},
-        {text: "Most INTs", value: "20/70"},
-        {text: "Most Sacks", value: "20/70"},
-        {text: "Most yards Overall", value: "30/100"},
-        {text: "Most Tackles", value: "30/100"}
+        {text: "Most catches", value: "High"},
+        {text: "Most TDs Scored (non QB)", value: "High"},
+        {text: "Most INTs", value: "High"},
+        {text: "Most Sacks", value: "High"},
+        {text: "Most yards Overall", value: "High"},
+        {text: "Most Tackles", value: "High"}
       ],
       STAT_HUNTING: [
-        {text: "Reach 220 Passing", value: "10/30"},
-        {text: "Reach 50 Rushing", value: "10/30"},
-        {text: "Reach 2 FG made (non extra point)", value: "20/50"},
-        {text: "Reach 1 Sack", value: "20/70"},
-        {text: "Reach 1 INT", value: "20/70"},
-        {text: "Reach 320 Passing", value: "15/80"},
-        {text: "Reach 100 Rushing", value: "15/80"},
-        {text: "Reach 4 FG made", value: "10/85"},
-        {text: "Reach 2 Sacks", value: "10/90"},
-        {text: "Reach 2 INT", value: "10/110"}
+        {text: "Reach 220 Passing", value: "Medium"},
+        {text: "Reach 50 Rushing", value: "Medium"},
+        {text: "Reach 2 FG made (non extra point)", value: "Medium"},
+        {text: "Reach 1 Sack", value: "Medium"},
+        {text: "Reach 1 INT", value: "Medium"},
+        {text: "Reach 320 Passing", value: "High"},
+        {text: "Reach 100 Rushing", value: "High"},
+        {text: "Reach 4 FG made", value: "High"},
+        {text: "Reach 2 Sacks", value: "High"},
+        {text: "Reach 2 INT", value: "High"}
       ],
       TEAM: [
-        {text: "Team Running Yards", value: "20/40"},
-        {text: "Team Passing Yards", value: "20/40"},
-        {text: "Team Yards Overall", value: "20/50"},
-        {text: "Team Interceptions (def)", value: "20/50"},
-        {text: "Team Sacks (def)", value: "30/70"},
-        {text: "Team Most Possession Time", value: "30/70"}
+        {text: "Team Running Yards", value: "Medium"},
+        {text: "Team Passing Yards", value: "Medium"},
+        {text: "Team Yards Overall", value: "Medium"},
+        {text: "Team Interceptions (def)", value: "Medium"},
+        {text: "Team Sacks (def)", value: "Medium"},
+        {text: "Team Most Possession Time", value: "Medium"}
       ],
       WILD_CARD: [
-        {text: "Other team misses a Field goal in the 4th", value: "2/30"},
-        {text: "1st TD is a run play", value: "15/30"},
-        {text: "Other team does the Griddy at some point during game (on tv)", value: "20/50"},
-        {text: "First Vikings possession is a TD or FG", value: "10/50"},
-        {text: "QB touchdown for Vikings", value: "10/60"},
-        {text: "Vikings lead going into halftime", value: "30/70"},
-        {text: "Defensive TD Vikings", value: "20/90"},
-        {text: "Kick return for a TD", value: "10/100"}
+        {text: "Other team misses a Field goal in the 4th", value: "High"},
+        {text: "1st TD is a run play", value: "High"},
+        {text: "Other team does the Griddy at some point during game (on tv)", value: "High"},
+        {text: "First Vikings possession is a TD or FG", value: "High"},
+        {text: "QB touchdown for Vikings", value: "High"},
+        {text: "Vikings lead going into halftime", value: "High"},
+        {text: "Defensive TD Vikings", value: "High"},
+        {text: "Kick return for a TD", value: "High"}
       ]
     },
     players:   [
@@ -253,63 +253,65 @@ const teamsData = {
     teams: teams.wnba,
     categories: {
       INDIVIDUAL: [
-        {text: "Most FG attempted", value: "50/90"},
-        {text: "Most FG made", value: "50/100"},
-        {text: "Most blocks", value: "50/100"},
-        {text: "Most Points", value: "50/100"}, 
-        {text: "Most Rebounds", value: "50/150"},
-        {text: "Most Threes Made", value: "50/150"},
-        {text: "Most Assist", value: "50/200"},
-        {text: "Most Steals", value: "50/200"}
+        {text: "Most FG attempted", value: "High"},
+        {text: "Most FG made", value: "High"},
+        {text: "Most blocks", value: "High"},
+        {text: "Most Points", value: "High"}, 
+        {text: "Most Rebounds", value: "High"},
+        {text: "Most Threes Made", value: "High"},
+        {text: "Most Assist", value: "High"},
+        {text: "Most Steals", value: "High"}
       ],
       STAT_HUNTING: [
-        {text: "Reach 1 Steal", value: "2/10"},
-        {text: "Reach 1 Block", value: "2/10"},
-        {text: "Reach +/- over 0", value: "2/10"},
-        {text: "Reach 20 points", value: "10/30"},
-        {text: "Reach 6 rebounds", value: "10/30"},
-        {text: "Reach 3 Three Pointers Made", value: "10/30"},
-        {text: "Reach 6 assists", value: "20/50"},
-        {text: "Reach 2 Blocks", value: "20/50"},
-        {text: "Reach +/- over 10", value: "20/50"},
-        {text: "Reach 2 Steals", value: "30/70"},
-        {text: "Reach a Doubling double", value: "40/90"},
-        {text: "Reach 30 points", value: "40/90"},
-        {text: "Reach 11 rebounds", value: "40/90"},
-        {text: "Reach 4 Three Pointers Made", value: "40/90"},
-        {text: "Reach +/- over 20", value: "50/110"},
-        {text: "Reach 10 assists", value: "50/110"},
-        {text: "Reach 3 Blocks", value: "50/110"},
-        {text: "Reach 3 Steals", value: "50/120"},
-        {text: "Reach a Tripple double", value: "50/150"}
+        {text: "Reach 1 Steal", value: "Low"},
+        {text: "Reach 1 Block", value: "Low"},
+        {text: "Reach +/- over 0", value: "Low"},
+        {text: "Reach 20 points", value: "Medium"},
+        {text: "Reach 6 rebounds", value: "Medium"},
+        {text: "Reach 3 Three Pointers Made", value: "Medium"},
+        {text: "Reach 6 assists", value: "Medium"},
+        {text: "Reach 2 Blocks", value: "Medium"},
+        {text: "Reach +/- over 10", value: "Medium"},
+        {text: "Reach 2 Steals", value: "Medium"},
+        {text: "Reach a Doubling double", value: "High"},
+        {text: "Reach 30 points", value: "High"},
+        {text: "Reach 11 rebounds", value: "High"},
+        {text: "Reach 4 Three Pointers Made", value: "High"},
+        {text: "Reach +/- over 20", value: "High"},
+        {text: "Reach 10 assists", value: "High"},
+        {text: "Reach 3 Blocks", value: "High"},
+        {text: "Reach 3 Steals", value: "High"},
+        {text: "Reach a Triple double", value: "High"}
       ],
       TEAM: [
-        {text: "Team Field goal attempts", value: "2/10"},
-        {text: "Team Total Rebounds", value: "2/10"},
-        {text: "Team Field Goal %", value: "10/20"},
-        {text: "Team Def. Rebounds", value: "10/20"},
-        {text: "Team Off. Rebounds", value: "20/40"},
-        {text: "Team Free-throws taken", value: "20/40"},
-        {text: "Team steals", value: "20/40"},
-        {text: "Team blocks", value: "20/40"},
-        {text: "Team assists", value: "30/60"},
-        {text: "Team Points in the Paint", value: "30/60"},
-        {text: "Team Points off Turnovers", value: "30/60"},
-        {text: "Team Fast Break Points", value: "40/90"},
-        {text: "Team Turnovers (less wins)", value: "40/90"},
-        {text: "Team fouls (less wins)", value: "40/90"}
+        {text: "Team Field goal attempts", value: "Medium"},
+        {text: "Team Total Rebounds", value: "Medium"},
+        {text: "Team Field Goal %", value: "Medium"},
+        {text: "Team Def. Rebounds", value: "Medium"},
+        {text: "Team Off. Rebounds", value: "Medium"},
+        {text: "Team Free-throws taken", value: "Medium"},
+        {text: "Team steals", value: "Medium"},
+        {text: "Team blocks", value: "Medium"},
+        {text: "Team assists", value: "Medium"},
+        {text: "Team Points in the Paint", value: "Medium"},
+        {text: "Team Points off Turnovers", value: "Medium"},
+        {text: "Team Fast Break Points", value: "Medium"},
+        {text: "Team Turnovers (less wins)", value: "Medium"},
+        {text: "Team fouls (less wins)", value: "Medium"}
       ],
       WILD_CARD: [
-        {text: "MN has most fast break points", value: "2/10"},
-        {text: "MN win tip off", value: "10/30"},
-        {text: "Other team misses 2 free-throws in a row", value: "20/50"},
-        {text: "MN has the biggest lead of the game", value: "20/50"},
-        {text: "First MN FG is a 2 pointer.", value: "40/80"},
-        {text: "First MN FG is a 3 pointer", value: "40/100"},
-        {text: "Technical foul is called this game (either team)", value: "40/120"},
-        {text: "Flagrant foul is called this game (either team)", value: "50/150"},
-        {text: "Game goes into overtime", value: "50/150"},
-        {text: "Half+ court shot made", value: "50/250"}
+        {text: "MN win tip off", value: "High"},
+        {text: "MN wins by 5+ points", value: "Low"},
+        {text: "Other team misses 2 free-throws in a row", value: "High"},
+        {text: "MN has the biggest lead of the game", value: "High"},
+        {text: "First MN FG is a 2 pointer.", value: "High"},
+        {text: "First MN FG is a 3 pointer", value: "High"},
+        {text: "MN wins by 10+ points", value: "Medium"},
+        {text: "Technical foul is called this game (either team)", value: "High"},
+        {text: "Flagrant foul is called this game (either team)", value: "High"},
+        {text: "Game goes into overtime", value: "High"},
+        {text: "MN wins by 20+ points", value: "High"},
+        {text: "Half+ court shot made", value: "High"}
       ]
     },
     players: [
@@ -335,65 +337,65 @@ const teamsData = {
     teams: teams.nba,
     categories: {
       INDIVIDUAL: [
-        {text: "Most FG attempted", value: "50/90"},
-        {text: "Most FG made", value: "50/100"},
-        {text: "Most blocks", value: "50/100"},
-        {text: "Most Points", value: "50/100"}, 
-        {text: "Most Rebounds", value: "50/150"},
-        {text: "Most Threes Made", value: "50/150"},
-        {text: "Most Assist", value: "50/200"},
-        {text: "Most Steals", value: "50/200"}
+        {text: "Most FG attempted", value: "High"},
+        {text: "Most FG made", value: "High"},
+        {text: "Most blocks", value: "High"},
+        {text: "Most Points", value: "High"}, 
+        {text: "Most Rebounds", value: "High"},
+        {text: "Most Threes Made", value: "High"},
+        {text: "Most Assist", value: "High"},
+        {text: "Most Steals", value: "High"}
       ],
       STAT_HUNTING: [
-        {text: "Reach 1 Steal", value: "2/10"},
-        {text: "Reach 1 Block", value: "2/10"},
-        {text: "Reach +/- over 0", value: "2/10"},
-        {text: "Reach 20 points", value: "10/30"},
-        {text: "Reach 6 rebounds", value: "10/30"},
-        {text: "Reach 3 Three Pointers Made", value: "10/30"},
-        {text: "Reach 6 assists", value: "20/50"},
-        {text: "Reach 2 Blocks", value: "20/50"},
-        {text: "Reach +/- over 10", value: "20/50"},
-        {text: "Reach 2 Steals", value: "30/70"},
-        {text: "Reach a Doubling double", value: "40/90"},
-        {text: "Reach 30 points", value: "40/90"},
-        {text: "Reach 11 rebounds", value: "40/90"},
-        {text: "Reach 4 Three Pointers Made", value: "40/90"},
-        {text: "Reach +/- over 20", value: "50/110"},
-        {text: "Reach 10 assists", value: "50/110"},
-        {text: "Reach 3 Blocks", value: "50/110"},
-        {text: "Reach 3 Steals", value: "50/120"},
-        {text: "Reach a Tripple double", value: "50/150"}
+        {text: "Reach 1 Steal", value: "Low"},
+        {text: "Reach 1 Block", value: "Low"},
+        {text: "Reach +/- over 0", value: "Low"},
+        {text: "Reach 20 points", value: "Medium"},
+        {text: "Reach 6 rebounds", value: "Medium"},
+        {text: "Reach 3 Three Pointers Made", value: "Medium"},
+        {text: "Reach 6 assists", value: "Medium"},
+        {text: "Reach 2 Blocks", value: "Medium"},
+        {text: "Reach +/- over 10", value: "Medium"},
+        {text: "Reach 2 Steals", value: "Medium"},
+        {text: "Reach a Doubling double", value: "High"},
+        {text: "Reach 30 points", value: "High"},
+        {text: "Reach 11 rebounds", value: "High"},
+        {text: "Reach 4 Three Pointers Made", value: "High"},
+        {text: "Reach +/- over 20", value: "High"},
+        {text: "Reach 10 assists", value: "High"},
+        {text: "Reach 3 Blocks", value: "High"},
+        {text: "Reach 3 Steals", value: "High"},
+        {text: "Reach a Triple double", value: "High"}
       ],
       TEAM: [
-        {text: "Team Field goal attempts", value: "2/10"},
-        {text: "Team Field Goal %", value: "10/20"},
-        {text: "Team Def. Rebounds", value: "10/20"},
-        {text: "Team Off. Rebounds", value: "20/40"},
-        {text: "Team Free-throws taken", value: "20/40"},
-        {text: "Team steals", value: "20/40"},
-        {text: "Team blocks", value: "20/40"},
-        {text: "Team assists", value: "30/60"},
-        {text: "Team Points in the Paint", value: "30/60"},
-        {text: "Team Points off Turnovers", value: "30/60"},
-        {text: "Team Fast Break Points", value: "40/90"},
-        {text: "Team Turnovers (less wins)", value: "40/90"},
-        {text: "Team fouls (less wins)", value: "40/90"}
+        {text: "Team Field goal attempts", value: "Medium"},
+        {text: "Team Total Rebounds", value: "Medium"},
+        {text: "Team Field Goal %", value: "Medium"},
+        {text: "Team Def. Rebounds", value: "Medium"},
+        {text: "Team Off. Rebounds", value: "Medium"},
+        {text: "Team Free-throws taken", value: "Medium"},
+        {text: "Team steals", value: "Medium"},
+        {text: "Team blocks", value: "Medium"},
+        {text: "Team assists", value: "Medium"},
+        {text: "Team Points in the Paint", value: "Medium"},
+        {text: "Team Points off Turnovers", value: "Medium"},
+        {text: "Team Fast Break Points", value: "Medium"},
+        {text: "Team Turnovers (less wins)", value: "Medium"},
+        {text: "Team fouls (less wins)", value: "Medium"}
       ],
       WILD_CARD: [
-        {text: "MN has most fast break points", value: "2/10"},
-        {text: "MN win tip off", value: "10/30"},
-        {text: "MN wins by 5+ points", value: "10/30"},
-        {text: "Other team misses 2 free-throws in a row", value: "20/50"},
-        {text: "MN has the biggest lead of the game", value: "20/50"},
-        {text: "First MN FG is a 2 pointer.", value: "40/80"},
-        {text: "First MN FG is a 3 pointer", value: "40/100"},
-        {text: "MN wins by 10+ points", value: "40/100"},
-        {text: "Technical foul is called this game (either team)", value: "40/120"},
-        {text: "Flagrant foul is called this game (either team)", value: "50/150"},
-        {text: "Game goes into overtime", value: "50/150"},
-        {text: "MN wins by 20+ points", value: "50/200"},
-        {text: "Half+ court shot made", value: "50/250"}
+        {text: "MN win tip off", value: "High"},
+        {text: "MN wins by 5+ points", value: "Low"},
+        {text: "Other team misses 2 free-throws in a row", value: "High"},
+        {text: "MN has the biggest lead of the game", value: "High"},
+        {text: "First MN FG is a 2 pointer.", value: "High"},
+        {text: "First MN FG is a 3 pointer", value: "High"},
+        {text: "MN wins by 10+ points", value: "Medium"},
+        {text: "Technical foul is called this game (either team)", value: "High"},
+        {text: "Flagrant foul is called this game (either team)", value: "High"},
+        {text: "Game goes into overtime", value: "High"},
+        {text: "MN wins by 20+ points", value: "High"},
+        {text: "Half+ court shot made", value: "High"}
       ]
     },
     players: [
@@ -421,6 +423,13 @@ const teamsData = {
       "⭐Rudy Gobert",      
     ]
   }
+};
+
+// Define risk percentages
+const riskPayouts = {
+  "Low": 0.3,    // 30% payout
+  "Medium": 0.6, // 60% payout
+  "High": 0.9    // 90% payout
 };
 
 function updateBets() {
@@ -480,14 +489,32 @@ function updateLines(betNum) {
   const category = document.getElementById(`category${betNum}`).value;
   const lineSelect = document.getElementById(`line${betNum}`);
   const playerSelect = document.getElementById(`player${betNum}`);
+  const betAmountInput = document.getElementById(`betAmount${betNum}`);
+  
+  // Make sure bet amount input is visible when category is selected
+  if (category) {
+    if (!betAmountInput) {
+      // Create bet amount input if it doesn't exist
+      const container = lineSelect.parentElement;
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.id = `betAmount${betNum}`;
+      input.className = 'bet-amount';
+      input.placeholder = 'Bet Amount';
+      input.min = '1';
+      container.appendChild(input);
+    } else {
+      betAmountInput.style.display = 'block';
+    }
+  }
 
   const lines = teamsData[league]?.categories[category];
   if (lines) {
     lineSelect.innerHTML = '<option value="">Select Line</option>';
     lines.forEach(line => {
-      const [wager, win] = line.value.split('/');
-      // Display as (wager/win) followed by bet text
-      lineSelect.innerHTML += `<option value="${line.value}">(${wager}/${win}) ${line.text}</option>`;
+      const riskLevel = line.value; // Now this is "Low", "Medium", or "High"
+      // Display risk level alongside bet text
+      lineSelect.innerHTML += `<option value="${riskLevel}">[${riskLevel}] ${line.text}</option>`;
     });
   } else {
     lineSelect.innerHTML = '<option value="">Select Line</option>';
@@ -509,38 +536,65 @@ function submitBets() {
   const awayTeam = document.getElementById("awayTeam").value;
   const homeTeam = document.getElementById("homeTeam").value;
   let bets = [];
-  let totalCost = 0;
+  let totalBetAmount = 0;
+  let totalPotentialWinnings = 0;
 
   for (let i = 1; i <= 3; i++) {
     const category = document.getElementById(`category${i}`).value;
     const lineSelect = document.getElementById(`line${i}`);
-    const line = lineSelect.options[lineSelect.selectedIndex]?.value;
-    const lineText = lineSelect.options[lineSelect.selectedIndex]?.text;
+    const riskLevel = lineSelect.value; // This is now "Low", "Medium", or "High"
+    const betText = lineSelect.options[lineSelect.selectedIndex]?.text || '';
     const player = document.getElementById(`player${i}`).value;
-
+    const betAmountInput = document.getElementById(`betAmount${i}`);
+    
     // Validate player selection for INDIVIDUAL and STAT_HUNTING categories.
     if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && !player) {
       alert("Please select a player for bet " + i);
       return;
     }
-
-    if (line) {
-      const [cost] = line.split('/');
-      totalCost += parseInt(cost, 10);
-      bets.push({ line, lineText, player: player || 'N/A' });
+    
+    // Validate bet amount
+    if (riskLevel && betAmountInput) {
+      const betAmount = parseInt(betAmountInput.value, 10);
+      if (isNaN(betAmount) || betAmount <= 0) {
+        alert("Please enter a valid bet amount for bet " + i);
+        return;
+      }
+      
+      // Calculate potential winnings based on risk level
+      const payoutRate = riskPayouts[riskLevel];
+      const potentialWin = Math.round(betAmount * payoutRate);
+      
+      totalBetAmount += betAmount;
+      totalPotentialWinnings += potentialWin;
+      
+      // Clean up the bet text to remove the risk level prefix
+      const cleanBetText = betText.replace(/\[Low\]|\[Medium\]|\[High\]/g, '').trim();
+      
+      bets.push({ 
+        betText: cleanBetText, 
+        player: player !== 'N/A' ? player : '',
+        betAmount,
+        potentialWin,
+        riskLevel
+      });
     }
   }
 
   if (league && awayTeam && homeTeam && bets.length > 0) {
-    const betLines = bets.map(bet => 
-      `<div class="bet-line">${bet.lineText} : ${bet.player !== 'N/A' ? bet.player : ''}</div>`
-    ).join("");
+    const betLines = bets.map(bet => {
+      const totalWinAmount = bet.betAmount + bet.potentialWin;
+      return `<div class="bet-line">${bet.betText} : ${bet.player}<br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
+    }).join("");
+    
     const receiptContent = `
       <div class="matchup">
-        ${awayTeam} @ ${homeTeam}
+        ${awayTeam}<br>@<br>${homeTeam}
       </div>
       ${betLines}
-      <div class="wager-total">Wager: ${totalCost} 💷</div>
+      <div class="wager-total">Wager: ${totalBetAmount} 💷</div>
+      <div class="potential-winnings">Potential Win: ${totalPotentialWinnings} 💷</div>
+      <div class="actual-winnings">PAYOUT: ____________ 💷</div>
     `;
     document.getElementById("receipt-content").innerHTML = receiptContent;
   } else {
@@ -573,5 +627,22 @@ function captureReceiptScreenshot() {
       });
   }).catch(err => {
       console.error('Failed to capture screenshot:', err);
+  });
+}
+
+function captureReceiptContentScreenshot() {
+  const receiptContentElement = document.getElementById('receipt-content');
+  html2canvas(receiptContentElement, { useCORS: true, allowTaint: true }).then(canvas => {
+      canvas.toBlob(blob => {
+          navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+          ]).then(() => {
+              alert('Receipt content screenshot copied to clipboard!');
+          }).catch(err => {
+              console.error('Failed to copy content screenshot:', err);
+          });
+      });
+  }).catch(err => {
+      console.error('Failed to capture content screenshot:', err);
   });
 }
