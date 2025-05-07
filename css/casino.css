@@ -219,6 +219,43 @@ select.wnba {
   color: white; /* Font color for WNBA */
 }
 
+.bet-amount {
+  width: 70px;
+  max-width: 90px;
+  min-width: 90px;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: .8em;
+  border: 1.5px solid #0f0;
+  background: #181818;
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(0,255,0,0.08);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.bet-amount:focus {
+  outline: none;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 8px #FFD700;
+}
+
+.bet-entry label[for^="betAmount"] {
+  display: block;
+  text-align: center;
+  font-size: .2em;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #receipt {
   border: 2px solid #0f0;
   box-shadow: 0 0 10px #0f0;
@@ -227,7 +264,8 @@ select.wnba {
   margin-top: 20px;
   background-color: black;
   color: white;
-  max-width: 500px;
+  max-width: 1100px;
+  min-width: 600px;
 }
 
 #receipt h2 {
@@ -253,7 +291,7 @@ select.wnba {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 #receipt .wager-total {
@@ -277,4 +315,11 @@ select.wnba {
 @keyframes pan-navbar {
   from { background-position: center top; }
   to { background-position: bottom; }
+}
+
+/* Style for bet line descriptions in dropdown */
+.line-desc {
+  font-style: italic;
+  font-size: 0.95em;
+  color: #666;
 }

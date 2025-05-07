@@ -65,7 +65,9 @@ const teams = {
     " 😼Minnesota Lynx", "Atlanta Dream", "Chicago Sky", "Connecticut Sun", "Dallas Wings",
     "Indiana Fever", "Las Vegas Aces", "Los Angeles Sparks", 
     "New York Liberty", "Phoenix Mercury", "Seattle Storm", "Washington Mystics" 
-  ]
+  ],
+  ergoball: ["Belkans", "Dilardians"],
+  ergogolf: ["Belkans", "Dilardians"]
 };
 
 const teamsData = {
@@ -260,7 +262,7 @@ const teamsData = {
         {text: "Most Rebounds", value: "High"},
         {text: "Most Threes Made", value: "High"},
         {text: "Most Assist", value: "High"},
-        {text: "Most Steals", value: "High"}
+        {text: "Most Steals", value: "Extreme"}
       ],
       STAT_HUNTING: [
         {text: "Reach 1 Steal", value: "Low"},
@@ -281,7 +283,7 @@ const teamsData = {
         {text: "Reach 10 assists", value: "High"},
         {text: "Reach 3 Blocks", value: "High"},
         {text: "Reach 3 Steals", value: "High"},
-        {text: "Reach a Triple double", value: "High"}
+        {text: "Reach a Triple double", value: "Extreme"}
       ],
       TEAM: [
         {text: "Team Field goal attempts", value: "Medium"},
@@ -301,17 +303,17 @@ const teamsData = {
       ],
       WILD_CARD: [
         {text: "MN win tip off", value: "High"},
-        {text: "MN wins by 5+ points", value: "Low"},
+        {text: "MN wins by 5+ points", value: "Medium"},
         {text: "Other team misses 2 free-throws in a row", value: "High"},
         {text: "MN has the biggest lead of the game", value: "High"},
-        {text: "First MN FG is a 2 pointer.", value: "High"},
+        {text: "First MN FG is a 2 pointer.", value: "Medium"},
         {text: "First MN FG is a 3 pointer", value: "High"},
         {text: "MN wins by 10+ points", value: "Medium"},
         {text: "Technical foul is called this game (either team)", value: "High"},
         {text: "Flagrant foul is called this game (either team)", value: "High"},
         {text: "Game goes into overtime", value: "High"},
-        {text: "MN wins by 20+ points", value: "High"},
-        {text: "Half+ court shot made", value: "High"}
+        {text: "MN wins by 20+ points", value: "Extreme"},
+        {text: "Half+ court shot made", value: "Extreme"}
       ]
     },
     players: [
@@ -344,7 +346,7 @@ const teamsData = {
         {text: "Most Rebounds", value: "High"},
         {text: "Most Threes Made", value: "High"},
         {text: "Most Assist", value: "High"},
-        {text: "Most Steals", value: "High"}
+        {text: "Most Steals", value: "Extreme"}
       ],
       STAT_HUNTING: [
         {text: "Reach 1 Steal", value: "Low"},
@@ -365,7 +367,7 @@ const teamsData = {
         {text: "Reach 10 assists", value: "High"},
         {text: "Reach 3 Blocks", value: "High"},
         {text: "Reach 3 Steals", value: "High"},
-        {text: "Reach a Triple double", value: "High"}
+        {text: "Reach a Triple double", value: "Extreme"}
       ],
       TEAM: [
         {text: "Team Field goal attempts", value: "Medium"},
@@ -385,17 +387,17 @@ const teamsData = {
       ],
       WILD_CARD: [
         {text: "MN win tip off", value: "High"},
-        {text: "MN wins by 5+ points", value: "Low"},
+        {text: "MN wins by 5+ points", value: "Medium"},
         {text: "Other team misses 2 free-throws in a row", value: "High"},
         {text: "MN has the biggest lead of the game", value: "High"},
-        {text: "First MN FG is a 2 pointer.", value: "High"},
+        {text: "First MN FG is a 2 pointer.", value: "Medium"},
         {text: "First MN FG is a 3 pointer", value: "High"},
         {text: "MN wins by 10+ points", value: "Medium"},
         {text: "Technical foul is called this game (either team)", value: "High"},
         {text: "Flagrant foul is called this game (either team)", value: "High"},
         {text: "Game goes into overtime", value: "High"},
-        {text: "MN wins by 20+ points", value: "High"},
-        {text: "Half+ court shot made", value: "High"}
+        {text: "MN wins by 20+ points", value: "Extreme"},
+        {text: "Half+ court shot made", value: "Extreme"}
       ]
     },
     players: [
@@ -422,6 +424,38 @@ const teamsData = {
       "Naz Reid",      
       "⭐Rudy Gobert",      
     ]
+  },
+  ErgoBall: {
+    teams: teams.ergoball,
+    categories: {
+      LINES: [
+        { text: "NO SWEAT", value: "Low", desc: "Win by 3 or more" },
+        { text: "VOLLEYBALL", value: "Medium", desc: "Get 2 or more blocks" },
+        { text: "LONG DISTANCE CALL", value: "High", desc: "3 or more 2 pointers made" },
+        { text: "FORGOT SOMETHIN?", value: "Medium", desc: "Get at least 2 steals" },
+        { text: "SNIPER WATCH", value: "Medium", desc: "Go full game using only jumpers and fades." },
+        { text: "FLOOR GENERAL", value: "High", desc: "No turnovers or airballs. Every shot must either be a make or hit rim." },
+        { text: "SUPREME VICTORY", value: "Extreme", desc: "Opponent scores no points" },
+        { text: "ORBITAL CANNON", value: "Extreme", desc: "Make a half court shot before the end of the game." }
+      ]
+    },
+    players: ["Jaybers8", "FLIGHTx12!"]
+  },
+  ErgoGolf: {
+    teams: teams.ergogolf,
+    categories: {
+      LINES: [
+        { text: "NO SWEAT", value: "Low", desc: "Must win by 3 or more" },
+        { text: "NO BATHS", value: "Medium", desc: "Must go full game without hitting water. Water traps are instant loss." },
+        { text: "SANDSTORM", value: "Low", desc: "Must go full game without hitting sand traps. Sand traps are instant loss." },
+        { text: "COOL HAND", value: "Medium", desc: "Make your first 3 putts without a miss." },
+        { text: "LAWN CARE", value: "Medium", desc: "Go full game without hitting the rough." },
+        { text: "SURGICAL", value: "High", desc: "Go full game without getting an OB at all." },
+        { text: "SUPREME VICTORY", value: "Extreme", desc: "Opponent scores no points." },
+        { text: "EAGLE!", value: "Extreme", desc: "Get a 10+ before the game ends." }
+      ]
+    },
+    players: ["Jaybers8", "FLIGHTx12!"]
   }
 };
 
@@ -429,7 +463,8 @@ const teamsData = {
 const riskPayouts = {
   "Low": 0.3,    // 30% payout
   "Medium": 0.6, // 60% payout
-  "High": 0.9    // 90% payout
+  "High": 0.9,   // 90% payout
+  "Extreme": 1.9 // 190% payout
 };
 
 function updateBets() {
@@ -465,8 +500,8 @@ function updateBets() {
   const awayTeamSelect = document.getElementById("awayTeam");
   const homeTeamSelect = document.getElementById("homeTeam");
 
-  awayTeamSelect.innerHTML = '<option value="">Select Away Team</option>';
-  homeTeamSelect.innerHTML = '<option value="">Select Home Team</option>';
+  awayTeamSelect.innerHTML = '<option value="">Away Team</option>';
+  homeTeamSelect.innerHTML = '<option value="">Home Team</option>';
 
   leagueTeams.forEach(team => {
       awayTeamSelect.innerHTML += `<option value="${team}">${team}</option>`;
@@ -508,20 +543,55 @@ function updateLines(betNum) {
     }
   }
 
-  const lines = teamsData[league]?.categories[category];
-  if (lines) {
-    lineSelect.innerHTML = '<option value="">Select Line</option>';
-    lines.forEach(line => {
-      const riskLevel = line.value; // Now this is "Low", "Medium", or "High"
-      // Display risk level alongside bet text
-      lineSelect.innerHTML += `<option value="${riskLevel}">[${riskLevel}] ${line.text}</option>`;
-    });
+  // Special handling for ErgoBall and ErgoGolf: only one category 'LINES'
+  if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
+    const lines = teamsData[league]?.categories.LINES;
+    if (lines) {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      lines.forEach((line, idx) => {
+        lineSelect.innerHTML += `<option value="${idx}">[${line.value}] ${line.text}</option>`;
+      });
+    }
+    // Show description below dropdown when a line is selected
+    lineSelect.onchange = function() {
+      const idx = parseInt(this.value, 10);
+      const descDiv = document.getElementById(`line-desc${betNum}`);
+      if (!isNaN(idx) && lines[idx]) {
+        descDiv.style.display = '';
+        descDiv.innerHTML = `<span class='line-desc'>${lines[idx].desc}</span>`;
+      } else {
+        descDiv.innerHTML = '';
+        descDiv.style.display = 'none';
+      }
+    };
+    // Always hide description div initially
+    const descDiv = document.getElementById(`line-desc${betNum}`);
+    if (descDiv) descDiv.style.display = 'none';
   } else {
-    lineSelect.innerHTML = '<option value="">Select Line</option>';
+    const lines = teamsData[league]?.categories[category];
+    if (lines) {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      lines.forEach((line, idx) => {
+        lineSelect.innerHTML += `<option value="${line.value}">[${line.value}] ${line.text}</option>`;
+      });
+      // Hide description div for NFL, NBA, WNBA
+      const descDiv = document.getElementById(`line-desc${betNum}`);
+      if (descDiv) descDiv.style.display = 'none';
+      lineSelect.onchange = null;
+    } else {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      const descDiv = document.getElementById(`line-desc${betNum}`);
+      if (descDiv) descDiv.style.display = 'none';
+    }
   }
 
   // For INDIVIDUAL and STAT_HUNTING, require player selection; otherwise, set to N/A.
-  if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players) {
+  if ((["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players)) {
+    playerSelect.innerHTML = '<option value="">Select Player</option>';
+    teamsData[league].players.forEach(player => {
+      playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
+    });
+  } else if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
     playerSelect.innerHTML = '<option value="">Select Player</option>';
     teamsData[league].players.forEach(player => {
       playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
@@ -546,7 +616,17 @@ function submitBets() {
     const betText = lineSelect.options[lineSelect.selectedIndex]?.text || '';
     const player = document.getElementById(`player${i}`).value;
     const betAmountInput = document.getElementById(`betAmount${i}`);
-    
+    let betDesc = '';
+
+    // For ErgoBall/ErgoGolf, get description from teamsData
+    if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES' && riskLevel !== '') {
+      const idx = parseInt(riskLevel, 10);
+      const lineObj = teamsData[league].categories.LINES[idx];
+      if (lineObj) betDesc = lineObj.desc;
+    }
+    // For other leagues, try to get description if present
+    // (future-proof: if desc is added to other leagues)
+
     // Validate player selection for INDIVIDUAL and STAT_HUNTING categories.
     if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && !player) {
       alert("Please select a player for bet " + i);
@@ -562,21 +642,26 @@ function submitBets() {
       }
       
       // Calculate potential winnings based on risk level
-      const payoutRate = riskPayouts[riskLevel];
+      let payoutRate = riskPayouts[riskLevel];
+      // For ErgoBall/ErgoGolf, riskLevel is index, so get value from lineObj
+      if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
+        const idx = parseInt(riskLevel, 10);
+        const lineObj = teamsData[league].categories.LINES[idx];
+        payoutRate = riskPayouts[lineObj.value];
+      }
+      if (!payoutRate) continue;
       const potentialWin = Math.round(betAmount * payoutRate);
-      
       totalBetAmount += betAmount;
       totalPotentialWinnings += potentialWin;
-      
       // Clean up the bet text to remove the risk level prefix
-      const cleanBetText = betText.replace(/\[Low\]|\[Medium\]|\[High\]/g, '').trim();
-      
+      const cleanBetText = betText.replace(/\[Low\]|\[Medium\]|\[High\]|\[Extreme\]/g, '').replace(/\(Extreme\)/g, '').trim();
       bets.push({ 
         betText: cleanBetText, 
         player: player !== 'N/A' ? player : '',
         betAmount,
         potentialWin,
-        riskLevel
+        riskLevel,
+        betDesc
       });
     }
   }
@@ -584,7 +669,7 @@ function submitBets() {
   if (league && awayTeam && homeTeam && bets.length > 0) {
     const betLines = bets.map(bet => {
       const totalWinAmount = bet.betAmount + bet.potentialWin;
-      return `<div class="bet-line">${bet.betText} : ${bet.player}<br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
+      return `<div class="bet-line">${bet.betText} : ${bet.player}<br><small><em>${bet.betDesc ? bet.betDesc : ''}</em></small><br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
     }).join("");
     
     const receiptContent = `
