@@ -286,3 +286,119 @@ body.bingwa-theme .cart-category-title {
     width: calc(100% - 10px);
   }
 }
+
+#cashout {
+  background: linear-gradient(90deg, #181818 70%, #2d004d 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #0f08, 0 0 0 2px #0f0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+#overall-total-preview {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: gold;
+  min-width: 140px;
+  margin-left: 32px;
+  letter-spacing: 1px;
+}
+
+/* Reset only the CHILDREN of ergobazaar-info, not the container itself */
+.ergobazaar-info > * {
+  /* Reset for children only */
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  background-image: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Style for the container itself - move this AFTER the reset styles */
+.ergobazaar-info {
+  margin: 36px auto 0 auto;
+  max-width: 720px;
+  background: linear-gradient(120deg, #23234a 60%, #4e006e 100%) !important;
+  color: #fffbe7 !important;
+  border: 2.5px solid #00ffe7 !important;
+  border-radius: 26px;
+  box-shadow: 0 8px 36px 0 rgba(0,0,0,0.32), 0 0 0 2px #00ffe799 !important;
+  padding: 32px 38px 26px 38px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.16em;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  backdrop-filter: blur(1.5px);
+}
+
+/* Now restore specific styles for child elements that need them */
+.ergobazaar-info h2 {
+  color: #00ffe7 !important;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-shadow: 0 2px 8px #000, 0 0 12px #00ffe799 !important;
+  letter-spacing: 1px;
+}
+
+.ergobazaar-info ul {
+  margin: 0 0 1em 1.2em;
+  padding: 0;
+}
+
+.ergobazaar-info li {
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.symbol-explain {
+  display: inline-block;
+  min-width: 70px;
+}
+
+.category-explain {
+  display: inline-block;
+  min-width: 140px;
+  font-weight: bold;
+  color: #00ffe7;
+}
+
+@media (max-width: 700px) {
+  .ergobazaar-info {
+    max-width: 99%;
+    padding: 14px 6px 10px 6px;
+    font-size: 1em;
+  }
+}
+
+/* Fix for ergobazaar-info to completely remove any background image */
+#ergobazaar-info.ergobazaar-info {
+  background: linear-gradient(120deg, #23234a 60%, #4e006e 100%) !important;
+  background-image: none !important;
+  background-position: unset !important;
+  background-size: unset !important;
+  background-repeat: no-repeat !important;
+  background-blend-mode: normal !important;
+  border: 2.5px solid #00ffe7 !important;
+  color: #fffbe7 !important;
+  box-shadow: 0 8px 36px 0 rgba(0,0,0,0.32), 0 0 0 2px #00ffe799 !important;
+  /* Keep other properties */
+  margin: 36px auto 0 auto;
+  border-radius: 26px;
+  padding: 32px 38px 26px 38px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.16em;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Ensure children don't inherit any background properties */
+#ergobazaar-info.ergobazaar-info > * {
+  background: none !important;
+  background-image: none !important;
+}

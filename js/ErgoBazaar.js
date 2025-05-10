@@ -189,6 +189,67 @@ function restoreErgoBazaarState() {
   });
 }
 
+// Helper function to update a category's total cost.
+function updateCategoryTotal(categoryDiv) {
+  // Get category name to check if it's YouTube Theater
+  const catName = categoryDiv.getAttribute('data-category');
+  
+  // Determine cost multiplier based on user type and category
+  let multiplier = (userType === "KUSHINDWA") ? 30 : 20;
+  
+  // Special pricing for YouTube Theater
+  if (catName === "YouTube Theater") {
+    multiplier = (userType === "KUSHINDWA") ? 20 : 10;
+  }
+  
+  let count = 0;
+  let discountEyeCount = 0;
+  let greenDotCost = 0;
+
+  categoryDiv.querySelectorAll('.ent-select').forEach(select => {
+    if (select.selectedIndex > 0) {
+      count++;
+      const selectedText = select.options[select.selectedIndex].text;
+      // Count eye emojis in the selected option for discount calculation
+      const eyeCount = (selectedText.match(/👀/g) || []).length;
+      discountEyeCount += eyeCount;
+      // Count 🟢 and add 2 per each
+      const greenCount = (selectedText.match(/🟢/g) || []).length;
+      greenDotCost += greenCount * 2;
+    }
+  });
+
+  // Calculate base cost and discount
+  const baseCost = count * multiplier + greenDotCost;
+  const discountPercentage = discountEyeCount * 0.2; // 20% per eye emoji
+  const discountAmount = Math.round((count * multiplier) * discountPercentage); // discount only applies to base, not greenDotCost
+  const finalCost = baseCost - discountAmount;
+
+  // Update the visible total inside the category div.
+  const totalElem = categoryDiv.querySelector('.category-total');
+  if (totalElem) {
+    let display = `${finalCost} 💷`;
+    if (greenDotCost > 0) display += ` (+${greenDotCost}🟢)`;
+    if (discountAmount > 0) display += ` (${discountAmount} off)`;
+    totalElem.textContent = display;
+  }
+  // Return the final cost for use in overall total
+  return finalCost;
+}
+
+// New: Update all category totals and the overall preview total
+function updateAllCategoryTotalsAndOverall() {
+  let overallTotal = 0;
+  document.querySelectorAll('#entertainment .category').forEach(cat => {
+    overallTotal += updateCategoryTotal(cat);
+  });
+  // Update the overall total preview (now inside #cashout)
+  const overallTotalElem = document.getElementById('overall-total-preview');
+  if (overallTotalElem) {
+    overallTotalElem.textContent = `Total Preview: ${overallTotal} 💷`;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   restoreErgoBazaarState();
 
@@ -209,52 +270,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('bingwa-theme');
       }
       // Update all category totals after multiplier change.
-      document.querySelectorAll('#entertainment .category').forEach(cat => {
-        updateCategoryTotal(cat);
-      });
+      updateAllCategoryTotalsAndOverall();
     });
   }
   
+  // Update category total and overall total live as user changes dropdowns
   document.querySelectorAll('.ent-select').forEach(select => {
-    select.addEventListener('change', saveErgoBazaarState);
+    select.addEventListener('change', function() {
+      saveErgoBazaarState();
+      // Find the parent category div and update its total
+      const categoryDiv = select.closest('.category');
+      if (categoryDiv) {
+        updateCategoryTotal(categoryDiv);
+      }
+      updateAllCategoryTotalsAndOverall();
+    });
   });
 
   document.getElementById('user-type').addEventListener('change', saveErgoBazaarState);
 
-  // Helper function to update a category's total cost.
-  function updateCategoryTotal(categoryDiv) {
-    // Determine cost multiplier based on user type.
-    const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
-    let count = 0;
-    let discountEyeCount = 0;
-    
-    categoryDiv.querySelectorAll('.ent-select').forEach(select => {
-      if (select.selectedIndex > 0) {
-        count++;
-        // Count eye emojis in the selected option for discount calculation
-        const selectedText = select.options[select.selectedIndex].text;
-        const eyeCount = (selectedText.match(/👀/g) || []).length;
-        discountEyeCount += eyeCount;
-      }
-    });
-    
-    // Calculate base cost and discount
-    const baseCost = count * multiplier;
-    const discountPercentage = discountEyeCount * 0.2; // 20% per eye emoji
-    const discountAmount = Math.round(baseCost * discountPercentage);
-    const finalCost = baseCost - discountAmount;
-    
-    // Update the visible total inside the category div.
-    const totalElem = categoryDiv.querySelector('.category-total');
-    if (totalElem) {
-      if (discountAmount > 0) {
-        totalElem.textContent = `${finalCost} 💷 (${discountAmount} off)`;
-      } else {
-        totalElem.textContent = `${baseCost} 💷`;
-      }
-    }
-  }
-  
+  // Initial update of all totals
+  updateAllCategoryTotalsAndOverall();
+
   const submitBtn = document.getElementById('ent-submit');
   const summaryDiv = document.getElementById('ent-summary');
   
@@ -272,40 +309,51 @@ document.addEventListener('DOMContentLoaded', () => {
         let selections = [];
         let catCount = 0;
         let categoryEyeCount = 0;
+        let categoryGreenDotCost = 0;
         
         selects.forEach(select => {
           if (select.selectedIndex > 0) {
             const selectedText = select.options[select.selectedIndex].text;
             selections.push(selectedText);
             catCount++;
-            
             // Count eye emojis for discount
             const eyeCount = (selectedText.match(/👀/g) || []).length;
             categoryEyeCount += eyeCount;
+            // Count 🟢 for extra cost
+            const greenCount = (selectedText.match(/🟢/g) || []).length;
+            categoryGreenDotCost += greenCount * 2;
           }
         });
         
-        // Determine cost multiplier based on user type.
-        const multiplier = (userType === "KUSHINDWA") ? 30 : 20;
+        // Determine cost multiplier based on user type and category
+        let multiplier = (userType === "KUSHINDWA") ? 30 : 20;
+        
+        // Special pricing for YouTube Theater
+        if (catName === "YouTube Theater") {
+          multiplier = (userType === "KUSHINDWA") ? 20 : 10;
+        }
+        
         const baseCatTotal = catCount * multiplier;
         const discountPercentage = categoryEyeCount * 0.2; // 20% per eye emoji
         const discountAmount = Math.round(baseCatTotal * discountPercentage);
-        const finalCatTotal = baseCatTotal - discountAmount;
+        const finalCatTotal = baseCatTotal + categoryGreenDotCost - discountAmount;
         
         overallTotal += finalCatTotal;
         overallDiscount += discountAmount;
         
         if (selections.length > 0) {
           let catSummary = `<li><strong><u>${catName}:</u></strong><br>${selections.join('<br>')}`;
-          
+          catSummary += ` - <em>${baseCatTotal} 💷`;
+          if (categoryGreenDotCost > 0) catSummary += ` +${categoryGreenDotCost}🟢`;
+          catSummary += `</em>`;
           if (discountAmount > 0) {
-            catSummary += ` - <em>${baseCatTotal} 💷</em>`;
             catSummary += ` <span style="color:lightgreen">(-${discountAmount} 💷 discount)</span>`;
             catSummary += ` = <em>${finalCatTotal} 💷</em>`;
+          } else if (categoryGreenDotCost > 0) {
+            catSummary += ` = <em>${finalCatTotal} 💷</em>`;
           } else {
-            catSummary += ` - <em>${finalCatTotal} 💷</em>`;
+            catSummary += ` = <em>${finalCatTotal} 💷</em>`;
           }
-          
           catSummary += '</li><br>';
           summaryHTML += catSummary;
         }

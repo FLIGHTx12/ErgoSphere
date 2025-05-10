@@ -139,12 +139,49 @@
         <span class="category-total" style="float:right;">0 💷</span>
       </div>
       <!-- Cashout input -->
-      <div id="cashout">
-        <label>CASHOUT REQUEST (DUCATS):</label>
-        <input type="number" id="cashout-input" value="0" min="0">
+      <div style="display: flex; align-items: center; gap: 32px; margin-top: 2px;">
+        <div id="cashout" style="display: flex; align-items: center; gap: 24px; background: linear-gradient(90deg, #181818 70%, #2d004d 100%); border-radius: 18px; box-shadow: 0 2px 16px #0f08, 0 0 0 2px #0f0; padding: 6px 24px;">
+          <label style="margin-right: 10px;">CASHOUT REQUEST:</label>
+          <input type="number" id="cashout-input" value="0" min="0">
+          <span id="overall-total-preview" style="font-size: 1.0em; font-weight: bold; color: gold; min-width: 140px; margin-left: 32px; letter-spacing: 1px;">
+            Total Preview: 0 💷
+          </span>
+        </div>
       </div>
       <button type="button" id="ent-submit">Submit</button>
       <div id="ent-summary" style="display:none;"></div>
+    </div>
+    <div id="ergobazaar-info" class="ergobazaar-info">
+      <h2>How to Use ErgoBazaar</h2>
+      <ul>
+        <li>Select your <strong>STATUS</strong> (KUSHINDWA or 👑BINGWA👑) for different pricing.</li>
+        <li>Pick your desired options in each category. Each selection increases your total.</li>
+        <li>
+          <span class="symbol-explain"><span style="font-size:1.2em;">👀</span> <b>Eye</b>:</span>
+          Each <b>👀</b> in a selection gives you <b>20% off</b> that category's base cost.
+        </li>
+        <li>
+          <span class="symbol-explain"><span style="font-size:1.2em;">🟢</span> <b>Green Dot</b>:</span>
+          Each <b>🟢</b> in a selection adds <b>+2💷</b> to that category's cost.
+        </li>
+        <li>
+          <span class="symbol-explain"><span style="font-size:1.2em;">💷</span> <b>Gold Note</b>:</span>
+          Indicates the cost in Ducats.
+        </li>
+        <li>
+          <span class="category-explain"><b>YouTube Theater</b>:</span>
+          Special pricing: <b>10💷</b> for BINGWA, <b>20💷</b> for KUSHINDWA (instead of standard 20/30).
+        </li>
+        <li>
+          The <b>Total Preview</b> shows your running total as you make selections.
+        </li>
+        <li>
+          Click <b>Submit</b> to see your full receipt. Click the receipt to save a screenshot.
+        </li>
+      </ul>
+      <ul>
+        <li>Discounts from 👀 apply only to the base cost, not to extra <b>🟢</b> charges.</li>
+      </ul>
     </div>
     <!-- ...existing main content if any... -->
 
