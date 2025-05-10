@@ -17,6 +17,9 @@ let userType = "KUSHINDWA";
 // Cache object to store last modified timestamps
 const fileCache = {};
 
+// Add a flag to track if any dropdown is currently in use
+let isDropdownActive = false;
+
 // Function to fetch options from JSON file with cache validation
 const fetchOptions = async (filePath) => {
   try {
@@ -85,7 +88,9 @@ const refreshCategoryOptions = async (category) => {
           case "Bingwa Movie Night":
             const movieWatched = item.WATCHED || '';
             const ownership = item.OwnerShip ? `[${item.OwnerShip}]` : '';
-            optionText = `${title} ┃ ${status} ${movieWatched} ${ownership}`.trim();
+            // Add runtime to movie information
+            const runtime = item.RUNTIME ? `${item.RUNTIME}` : '';
+            optionText = `${title} ┃ ${runtime} ┃ ${status} ${movieWatched} ${ownership}`.trim();
             break;
             
           case "YouTube Theater":
@@ -115,8 +120,31 @@ const refreshCategoryOptions = async (category) => {
                 watchCountShows = '👀'.repeat(parseInt(seasonMatch[1]));
               }
             }
-            const seriesLength = item["Series Length"] || '';
-            optionText = `${title} ┃ ${status} ${watchCountShows} ┃ ${seriesLength}`.trim();
+            
+            // Calculate seasons left
+            let seasonsLeft = '';
+            if (item["Series Length"] && item["LAST WATCHED"]) {
+              // Extract total seasons from Series Length
+              const seriesLengthMatch = item["Series Length"].match(/(\d+)\s*seasons?/i);
+              // Extract current season from LAST WATCHED
+              const lastWatchedMatch = item["LAST WATCHED"].match(/se(\d+)/i);
+              
+              if (seriesLengthMatch && lastWatchedMatch) {
+                const totalSeasons = parseInt(seriesLengthMatch[1]);
+                const currentSeason = parseInt(lastWatchedMatch[1]);
+                const remaining = totalSeasons - currentSeason;
+                if (remaining > 0) {
+                  seasonsLeft = `${remaining} seasons left`;
+                } else if (remaining === 0) {
+                  seasonsLeft = 'Complete';
+                }
+              }
+            } else if (item["Series Length"]) {
+              // Just show the series length if LAST WATCHED isn't available
+              seasonsLeft = item["Series Length"];
+            }
+            
+            optionText = `${title} ┃ ${status} ${watchCountShows} ┃ ${seasonsLeft}`.trim();
             break;
             
           case "Single Player Games":
@@ -126,13 +154,23 @@ const refreshCategoryOptions = async (category) => {
             optionText = `${title} ┃ ${status} ${completed} ┃ ${timeToBeat} ${playability}`.trim();
             break;
             
-          default: // PVP and Co-op Games
+          case "Spin the wheel PVP Games":
+          case "Spin the wheel Co-op Games":
             let copies = '';
             if (item.copies > 0) {
               copies = '🟢'.repeat(item.copies);
             }
+            // Remove details and mode information for PVP and Co-op games
+            optionText = `${title} ┃ ${status} ${copies}`.trim();
+            break;
+            
+          default: // Other categories
+            let copiesDefault = '';
+            if (item.copies > 0) {
+              copiesDefault = '🟢'.repeat(item.copies);
+            }
             const gameMode = item.mode || '';
-            optionText = `${title} ┃ ${status} ${copies} ┃ ${gameMode}`.trim();
+            optionText = `${title} ┃ ${status} ${copiesDefault} ┃ ${gameMode}`.trim();
         }
 
         const opt = document.createElement('option');
@@ -154,6 +192,12 @@ const refreshCategoryOptions = async (category) => {
 
 // Function to refresh all categories
 const refreshAllCategories = () => {
+  // Skip refresh if a dropdown is currently active/open
+  if (isDropdownActive) {
+    console.log("Dropdown active, skipping refresh");
+    return;
+  }
+  
   document.querySelectorAll('#entertainment .category').forEach(category => {
     refreshCategoryOptions(category);
   });
@@ -258,6 +302,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set up periodic refresh (every 30 seconds)
   setInterval(refreshAllCategories, 30000);
+  
+  // Track when dropdowns are being actively used
+  document.querySelectorAll('.ent-select').forEach(select => {
+    // When user clicks on a dropdown
+    select.addEventListener('mousedown', function() {
+      isDropdownActive = true;
+    });
+    
+    // When dropdown loses focus or a selection is made
+    select.addEventListener('change', function() {
+      setTimeout(() => { isDropdownActive = false; }, 100);
+      saveErgoBazaarState();
+      // Find the parent category div and update its total
+      const categoryDiv = select.closest('.category');
+      if (categoryDiv) {
+        updateCategoryTotal(categoryDiv);
+      }
+      updateAllCategoryTotalsAndOverall();
+    });
+    
+    // When dropdown loses focus without selection
+    select.addEventListener('blur', function() {
+      setTimeout(() => { isDropdownActive = false; }, 100);
+    });
+  });
+
+  // Add global click handler to detect clicks outside of dropdowns
+  document.addEventListener('click', function(event) {
+    if (!event.target.matches('.ent-select')) {
+      setTimeout(() => { isDropdownActive = false; }, 100);
+    }
+  });
   
   // Add dropdown-based user type listener.
   const userTypeDropdown = document.getElementById('user-type');
