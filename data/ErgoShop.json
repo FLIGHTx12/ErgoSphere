@@ -55,7 +55,7 @@
   ],
   "replacementsContainer": [
     { "text": "🌃🍽 DINE OUT - 300💷", "value": 300, "description": "Replace weekday meal, dine out instead " },
-    { "text": "🍕🥡TAKEOUT NIGHT! - 500💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
+    { "text": "🍕🥡TAKEOUT NIGHT! - 400💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
   ],
   "entertainmentContainer": [   
     { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch 30 mins of any show or movie." },

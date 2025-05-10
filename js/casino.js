@@ -497,6 +497,9 @@ function updateBets() {
       }
   });
 
+  // Reset all bet-related dropdowns and inputs when league changes
+  resetBetInputs();
+
   const awayTeamSelect = document.getElementById("awayTeam");
   const homeTeamSelect = document.getElementById("homeTeam");
 
@@ -649,8 +652,22 @@ function submitBets() {
         const lineObj = teamsData[league].categories.LINES[idx];
         payoutRate = riskPayouts[lineObj.value];
       }
+
+      // Apply 9% boost if player does not have a ⭐ in front of their name and is not N/A or empty
+      let playerBoost = 1;
+      let rolePlayerBoost = false;
+      if (
+        player &&
+        player !== 'N/A' &&
+        typeof player === 'string' &&
+        !player.trim().startsWith('⭐')
+      ) {
+        playerBoost = 1.09;
+        rolePlayerBoost = true;
+      }
+
       if (!payoutRate) continue;
-      const potentialWin = Math.round(betAmount * payoutRate);
+      const potentialWin = Math.round(betAmount * payoutRate * playerBoost);
       totalBetAmount += betAmount;
       totalPotentialWinnings += potentialWin;
       // Clean up the bet text to remove the risk level prefix
@@ -661,7 +678,8 @@ function submitBets() {
         betAmount,
         potentialWin,
         riskLevel,
-        betDesc
+        betDesc,
+        rolePlayerBoost
       });
     }
   }
@@ -669,7 +687,9 @@ function submitBets() {
   if (league && awayTeam && homeTeam && bets.length > 0) {
     const betLines = bets.map(bet => {
       const totalWinAmount = bet.betAmount + bet.potentialWin;
-      return `<div class="bet-line">${bet.betText} : ${bet.player}<br><small><em>${bet.betDesc ? bet.betDesc : ''}</em></small><br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
+      return `<div class="bet-line">${bet.betText} : ${bet.player}${
+        bet.rolePlayerBoost ? ' <span style="color:#FFD700;font-weight:bold;">(Role Player +9%)</span>' : ''
+      }<br><small><em>${bet.betDesc ? bet.betDesc : ''}</em></small><br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
     }).join("");
     
     const receiptContent = `
@@ -682,6 +702,17 @@ function submitBets() {
       <div class="actual-winnings">PAYOUT: ____________ 💷</div>
     `;
     document.getElementById("receipt-content").innerHTML = receiptContent;
+
+    // Log bet to localStorage
+    logSubmittedBet({
+      date: new Date().toLocaleString(),
+      league,
+      awayTeam,
+      homeTeam,
+      bets
+    });
+
+    renderBetLog();
   } else {
     alert("Please complete at least one bet before submitting.");
   }
@@ -696,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptContent) {
       receiptContent.addEventListener('click', captureReceiptContentScreenshot);
   }
+  renderBetLog();
 });
 
 function captureReceiptScreenshot() {
@@ -729,5 +761,103 @@ function captureReceiptContentScreenshot() {
       });
   }).catch(err => {
       console.error('Failed to capture content screenshot:', err);
+  });
+}
+
+// Reset all bet-related dropdowns and inputs (except league)
+function resetBetInputs() {
+  // Reset team selects
+  document.getElementById("awayTeam").innerHTML = '<option value="">Away Team</option>';
+  document.getElementById("homeTeam").innerHTML = '<option value="">Home Team</option>';
+  // Reset bet entries
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`category${i}`).innerHTML = '<option value="">Select Category</option>';
+    document.getElementById(`line${i}`).innerHTML = '<option value="">Select Line</option>';
+    document.getElementById(`player${i}`).innerHTML = '<option value="">Select Player</option>';
+    // Remove bet amount input if present
+    const betAmountInput = document.getElementById(`betAmount${i}`);
+    if (betAmountInput && betAmountInput.parentElement) {
+      betAmountInput.parentElement.removeChild(betAmountInput);
+    }
+    // Hide line description
+    const descDiv = document.getElementById(`line-desc${i}`);
+    if (descDiv) descDiv.style.display = 'none';
+  }
+}
+
+// On page load, always reset league dropdown to default and reset bet inputs
+document.addEventListener('DOMContentLoaded', () => {
+  // Reset league dropdown and bet inputs on load
+  const leagueSelect = document.getElementById('league');
+  if (leagueSelect) {
+    leagueSelect.selectedIndex = 0; // Set to "Select League"
+  }
+  resetBetInputs();
+});
+
+// Utility: Get current week key (Sunday-Saturday, e.g. "2024-07-07")
+function getCurrentWeekKey() {
+  const now = new Date();
+  // Get Sunday of this week
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() - now.getDay());
+  // Format as YYYY-MM-DD
+  return sunday.toISOString().slice(0, 10);
+}
+
+// Save submitted bet to localStorage log for the week
+function logSubmittedBet(betObj) {
+  const weekKey = getCurrentWeekKey();
+  let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+  if (!betLog[weekKey]) betLog[weekKey] = [];
+  betLog[weekKey].push(betObj);
+  localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+}
+
+// Render bet log for the current week, with delete buttons for each bet
+function renderBetLog() {
+  const weekKey = getCurrentWeekKey();
+  const betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+  const logDiv = document.getElementById('bet-log');
+  if (!logDiv) return;
+  const weekBets = betLog[weekKey] || [];
+  if (weekBets.length === 0) {
+    logDiv.innerHTML = "<h2>This Week's Bets</h2><div class='bet-log-empty'>No bets submitted this week.</div>";
+    return;
+  }
+  logDiv.innerHTML = `
+    <h2>This Week's Bets</h2>
+    <div class="bet-log-list">
+      ${weekBets.map((bet, idx) => {
+        return `<div class="bet-log-entry">
+          <button class="delete-bet-entry-btn" data-betidx="${idx}" title="Delete this bet">&times;</button>
+          <b>${bet.date}</b> | <span>${bet.league}</span> | <span>${bet.awayTeam} @ ${bet.homeTeam}</span>
+          <ul>
+            ${bet.bets.map(b => `<li>${b.betText} : ${b.player} (${b.betAmount}/${b.potentialWin + b.betAmount} 💷)${b.rolePlayerBoost ? ' <span style="color:#FFD700;font-weight:bold;">(Role Player +9%)</span>' : ''}</li>`).join('')}
+          </ul>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  // Add event listeners for each delete button
+  logDiv.querySelectorAll('.delete-bet-entry-btn').forEach(btn => {
+    btn.onclick = function() {
+      const idx = parseInt(this.getAttribute('data-betidx'), 10);
+      if (!isNaN(idx)) {
+        if (confirm("Delete this bet entry? This cannot be undone.")) {
+          let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+          if (betLog[weekKey]) {
+            betLog[weekKey].splice(idx, 1);
+            // If no bets left for the week, remove the week key
+            if (betLog[weekKey].length === 0) {
+              delete betLog[weekKey];
+            }
+            localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+            renderBetLog();
+          }
+        }
+      }
+    };
   });
 }
