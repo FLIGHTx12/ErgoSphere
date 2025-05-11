@@ -554,6 +554,11 @@ li {
   position: relative;
 }
 
+.cyber-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
+}
+
 /* Override for mobile screens */
 @media (max-width: 767px) {
   .cyber-card {
@@ -591,11 +596,6 @@ li {
   min-width: 90%;
 }
 
-.cyber-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
-}
-
 .card-header {
   background-color: rgba(0, 60, 60, 0.5);
   padding: 10px;
@@ -622,6 +622,11 @@ li {
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   position: relative;
   z-index: 2;
+  text-align: center;
+  display: block;
+  margin: 0 auto 25px auto; /* Add bottom margin to make space for edit indicator */
+  padding: 5px 0;
+  font-weight: bold;
 }
 
 .movie-title {
@@ -701,50 +706,6 @@ li {
   animation: pulse 2s infinite;
 }
 
-/* Styles for expandable cards */
-.expandable {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.expandable:hover {
-  border-color: #f0f;
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
-}
-
-.expanded-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  margin-top: 10px;
-}
-
-.expanded-content.visible {
-  max-height: 1000px; /* Large enough value to accommodate content */
-}
-
-/* Add a visual indicator that the card is expandable */
-.expandable::after {
-  content: "▼";
-  color: #f0f;
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
-  font-size: 12px;
-  transition: transform 0.3s ease;
-}
-
-.expandable.expanded::after {
-  transform: rotate(180deg);
-}
-
-/* Styling for the inner content cards */
-.expanded-content .cyber-card {
-  margin: 10px 0;
-  width: 100%;
-  min-width: 100%;
-}
-
 /* Styles for edit indicator and clickable areas */
 .edit-link {
   cursor: pointer;
@@ -756,17 +717,7 @@ li {
 }
 
 .edit-indicator {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 14px;
-  color: #f0f;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.edit-link:hover .edit-indicator {
-  opacity: 1;
+  display: none; /* Hide the edit indicator */
 }
 
 @keyframes pulse {

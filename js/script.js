@@ -19,6 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update calendar week dynamically
   updateCalendarWeek();
+  
+  // Update the calendar week number at midnight each day
+  setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0) {
+      updateCalendarWeek();
+    }
+  }, 60000); // Check every minute
 
   // Restore site state
   restoreSiteState();
@@ -30,30 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update quarter countdown
   updateQuarterCountdown();
-
-  // Add event listeners for expandable cards
-  document.querySelectorAll('.expandable').forEach(card => {
-    card.addEventListener('click', () => {
-      const expandedContent = card.querySelector('.expanded-content');
-      if (expandedContent) {
-        // Toggle the visible class
-        expandedContent.classList.toggle('visible');
-        
-        // Update display property for animation to work properly
-        if (expandedContent.classList.contains('visible')) {
-          expandedContent.style.display = 'block';
-        } else {
-          // Use setTimeout to allow animation to complete before hiding
-          setTimeout(() => {
-            expandedContent.style.display = 'none';
-          }, 500);
-        }
-        
-        // Toggle expanded class on the card
-        card.classList.toggle('expanded');
-      }
-    });
-  });
+  
+  // Removed expandable card event listeners
 });
 
 function handleScreenshotButtonClick(event) {
@@ -316,15 +302,16 @@ function updateCalendarWeek() {
   const pastDaysOfYear = (now - firstDayOfYear + (firstDayOfYear.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000) / 86400000;
   const currentWeek = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
 
-  const bingwaElement = document.getElementById('current-bingwa');
-  const atleticoElement = document.getElementById('current-atletico');
-
-  if (bingwaElement) {
-    bingwaElement.previousElementSibling.innerHTML = `WK${currentWeek} Bingwa <br> Champion`;
+  // Update the Bingwa Champion week number
+  const bingwaCardHeader = document.querySelector('#bingwa-card .card-header .neon-text');
+  if (bingwaCardHeader) {
+    bingwaCardHeader.innerHTML = `WK${currentWeek} Bingwa <br> Champion`;
   }
 
-  if (atleticoElement) {
-    atleticoElement.previousElementSibling.innerHTML = `WK${currentWeek} Atletico <br>Champ`;
+  // Update the Atletico Champ week number
+  const atleticoCardHeader = document.querySelector('#atletico-card .card-header .neon-text');
+  if (atleticoCardHeader) {
+    atleticoCardHeader.innerHTML = `WK${currentWeek} Atletico <br> Champ`;
   }
 }
 
