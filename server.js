@@ -23,6 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// Import selection routes
+const selectionsRoute = require('./routes/selections');
+app.use('/api/selections', selectionsRoute);
+
 // Security middleware to validate pool names
 const validatePoolName = (req, res, next) => {
   const validPools = ['loot', 'pvp', 'coop'];

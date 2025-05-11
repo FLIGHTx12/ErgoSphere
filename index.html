@@ -48,16 +48,16 @@
 </div>
 <main id="main-content">
   <!-- New cyberpunk landing page sections -->
-  <div id="statusPanel" class="cyber-panel">
+  <div id="statusPanel" class="cyber-panel glass-effect">
     <h2 class="cyber-title">Current Champions</h2>
-    <div class="cyber-grid">
-      <div class="cyber-card expandable" id="bingwa-card">
+    <div class="cyber-grid">      <div class="cyber-card expandable" id="bingwa-card">
         <div class="card-header">
           <span class="neon-text">WK19 Bingwa <br> Champion</span>
         </div>
-        <div class="card-content">
+        <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
           <span id="current-bingwa" class="champion-name">JAYBERS8</span>
           <div class="status-decor"></div>
+          <div class="edit-indicator">✎ Edit</div>
         </div>
         <div class="expanded-content" style="display: none;">
           <div class="cyber-card">
@@ -90,14 +90,14 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="cyber-card expandable" id="atletico-card">
+      </div>      <div class="cyber-card expandable" id="atletico-card">
         <div class="card-header">
           <span class="neon-text">WK19 Atletico <br> Champ</span>
         </div>
-        <div class="card-content">
+        <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
           <span id="current-atletico" class="champion-name">FLIGHTx12</span>
           <div class="status-decor"></div>
+          <div class="edit-indicator">✎ Edit</div>
         </div>
         <div class="expanded-content" style="display: none;">
           <div class="cyber-card">
@@ -131,20 +131,20 @@
     </div>
   </div>
 
-  <div id="moviePanel" class="cyber-panel">
+  <div id="moviePanel" class="cyber-panel glass-effect">
     <h2 class="cyber-title">Movie Night</h2>
     <div class="cyber-card wide-card">
       <div class="card-header">
         <span class="neon-text">Current Selection</span>
-      </div>
-      <div class="card-content">
+      </div>      <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
         <span id="current-movie" class="movie-title">NEW_MOVIE_TITLE</span>
         <div class="movie-decor"></div>
+        <div class="edit-indicator">✎ Edit</div>
       </div>
     </div>
   </div>
 
-  <div id="countdownPanel" class="cyber-panel">
+  <div id="countdownPanel" class="cyber-panel glass-effect">
     <h2 class="cyber-title">Countdowns</h2>
     <div class="cyber-grid">
       <div class="cyber-card">
@@ -181,9 +181,8 @@
       </div>
     </div>
   </div>
-
   <!-- Original content starts here -->
-  <div id="ergosphereRules">
+  <div id="ergosphereRules" class="glass-effect">
     <h3>🏆 BINGWA Challenge Rules 🏆</h3>
     
     <details><summary>📜 RULES 📜</summary>
@@ -266,7 +265,7 @@
   </div>
   
 
-<div id="atleticoRules">
+<div id="atleticoRules" class="glass-effect">
   <h3>🏆 Atlético Challenge Rules 🏆</h3>
 
   <details>
@@ -360,7 +359,7 @@
   <hr>
 </div>
 
-<div id="ErgoBazaarRules">
+<div id="ErgoBazaarRules" class="glass-effect">
   <h3>🛒 ErgoBazaar Rules 🛒</h3>
 
   <details>

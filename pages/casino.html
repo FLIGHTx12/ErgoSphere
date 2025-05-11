@@ -27,8 +27,7 @@
 </header>
 <hr>
 
-<main>
-    <div id="betting-system">
+<main>    <div id="betting-system" class="glass-effect">
         <label for="league">Select League:</label>
         <select id="league" onchange="updateBets()">
             <option value="">Select League</option>
@@ -92,12 +91,12 @@
  <button onclick="submitBets()">Submit Bets</button>
     </div> <!-- Add the closing tag for the #betting-system div here -->
 
-<div id="receipt" class="receipt" onclick="screenshotDiv()">
+<div id="receipt" class="receipt glass-effect" onclick="screenshotDiv()">
   <h2>Bet Receipt</h2>
   <div id="receipt-content"></div>
 </div>
 
-<div id="bet-log" class="bet-log"></div>
+<div id="bet-log" class="bet-log glass-effect"></div>
 
 <div id="bet-info" class="bet-info">
   <h2>How Betting Works</h2>

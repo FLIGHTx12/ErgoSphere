@@ -44,7 +44,20 @@ div {
   border-bottom: 2px solid #0f0;
 }
 
-div::before {
+/* Removed global div::before - use .glass-effect class instead */
+
+/* Ensure all content in divs has proper z-index */
+div * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glass Effect class for specific divs */
+.glass-effect {
+  position: relative;
+}
+
+.glass-effect::before {
   content: "";
   position: absolute;
   top: 0;
@@ -55,11 +68,6 @@ div::before {
   z-index: -2;
   pointer-events: none;
   animation: zoomInOut 10s infinite alternate;
-}
-
-div * {
-  position: relative;
-  z-index: 2;
 }
 
 @keyframes zoomInOut {

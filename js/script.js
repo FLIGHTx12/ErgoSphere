@@ -87,36 +87,76 @@ function initializeCountdowns() {
     // Log to verify function is running
     console.log("Initializing countdowns and champions data");
     
-    // Set champion data with error checking
-    const bingwaElement = document.getElementById('current-bingwa');
-    const atleticoElement = document.getElementById('current-atletico');
-    const movieElement = document.getElementById('current-movie');
+    // Default data in case API fails
+    const defaultData = {
+      bingwaChampion: 'JAYBERS8',
+      atleticoChamp: 'FLIGHTx12!',
+      movieNight: 'Underwater (2020)'
+    };
     
-    if (bingwaElement) {
-      bingwaElement.textContent = 'FLIGHTx12!'; // Change this to the new Bingwa champion name
-      console.log("Bingwa champion set");
-    } else {
-      console.error("Element with ID 'current-bingwa' not found");
-    }
-    
-    if (atleticoElement) {
-      atleticoElement.textContent = 'JAYBERS8'; // Change this to the new Atletico champion name
-      console.log("Atletico champion set");
-    } else {
-      console.error("Element with ID 'current-atletico' not found");
-    }
-    
-    if (movieElement) {
-      movieElement.textContent = 'Underwater (2020)'; // Change this to the new movie title
-      console.log("Movie title set");
-    } else {
-      console.error("Element with ID 'current-movie' not found");
-    }
+    // Fetch data from the server API
+    fetch('/api/selections')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(ergosphereData => {
+        // Set champion data with error checking
+        const bingwaElement = document.getElementById('current-bingwa');
+        const atleticoElement = document.getElementById('current-atletico');
+        const movieElement = document.getElementById('current-movie');
+        
+        if (bingwaElement) {
+          bingwaElement.textContent = ergosphereData.bingwaChampion || defaultData.bingwaChampion;
+          console.log("Bingwa champion set to:", bingwaElement.textContent);
+        } else {
+          console.error("Element with ID 'current-bingwa' not found");
+        }
+        
+        if (atleticoElement) {
+          atleticoElement.textContent = ergosphereData.atleticoChamp || defaultData.atleticoChamp;
+          console.log("Atletico champion set to:", atleticoElement.textContent);
+        } else {
+          console.error("Element with ID 'current-atletico' not found");
+        }
+        
+        if (movieElement) {
+          movieElement.textContent = ergosphereData.movieNight || defaultData.movieNight;
+          console.log("Movie title set to:", movieElement.textContent);
+        } else {
+          console.error("Element with ID 'current-movie' not found");
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching selections:", error);
+        // Use default data if fetch fails
+        applyDefaultSelections(defaultData);
+      });
     
     // Start the countdowns
     updateCountdowns();
   } catch (error) {
     console.error("Error in initializeCountdowns:", error);
+  }
+}
+
+function applyDefaultSelections(defaultData) {
+  const bingwaElement = document.getElementById('current-bingwa');
+  const atleticoElement = document.getElementById('current-atletico');
+  const movieElement = document.getElementById('current-movie');
+  
+  if (bingwaElement) {
+    bingwaElement.textContent = defaultData.bingwaChampion;
+  }
+  
+  if (atleticoElement) {
+    atleticoElement.textContent = defaultData.atleticoChamp;
+  }
+  
+  if (movieElement) {
+    movieElement.textContent = defaultData.movieNight;
   }
 }
 

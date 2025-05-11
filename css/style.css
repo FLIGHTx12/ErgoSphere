@@ -39,6 +39,7 @@ div {
   color: white;
   background-color: black;
   overflow: hidden;
+  /* Glass effect removed from global div and moved to .glass-effect class */
 }
 
 @media (min-width: 1024px) {
@@ -53,7 +54,13 @@ div {
   }
 }
 
-div::before {
+/* New class for glass effect instead of applying to all divs */
+.glass-effect {
+  position: relative; /* Ensure relative positioning for the pseudo-element */
+  /* This class should be applied to specific divs that need the glass effect */
+}
+
+.glass-effect::before {
   content: "";
   position: absolute;
   top: 0;
@@ -66,7 +73,7 @@ div::before {
   animation: zoomInOut 10s infinite alternate;
 }
 
-div * {
+.glass-effect * {
   position: relative;
   z-index: 2;
 }
@@ -736,6 +743,30 @@ li {
   margin: 10px 0;
   width: 100%;
   min-width: 100%;
+}
+
+/* Styles for edit indicator and clickable areas */
+.edit-link {
+  cursor: pointer;
+  position: relative;
+}
+
+.edit-link:hover {
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+}
+
+.edit-indicator {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 14px;
+  color: #f0f;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.edit-link:hover .edit-indicator {
+  opacity: 1;
 }
 
 @keyframes pulse {

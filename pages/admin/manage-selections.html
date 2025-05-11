@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Selections - ErgoSphere Admin</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .admin-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #0ff;
+    }
+    
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #0ff;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border-radius: 4px;
+    }
+    
+    .form-group select {
+      height: 36px;
+    }
+    
+    .submit-btn {
+      background-color: #f0f;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: #d0d;
+      transform: translateY(-2px);
+    }
+    
+    .notification {
+      padding: 10px;
+      margin: 15px 0;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .success {
+      background-color: rgba(0, 255, 0, 0.2);
+      border: 1px solid #0f0;
+      color: #0f0;
+    }
+    
+    .error {
+      background-color: rgba(255, 0, 0, 0.2);
+      border: 1px solid #f00;
+      color: #f00;
+    }
+
+    .preview-card {
+      border: 1px solid #0ff;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+    .preview-title {
+      color: #0ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+      .preview-content {
+      color: white;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    
+    .last-updated {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 20px;
+      border-top: 1px solid rgba(0,255,255,0.2);
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <button><a href="../../index.html">HOME</a></button>
+    <button><a href="../ErgoShop.html">ErgoShop</a></button>
+    <button><a href="../MODS.html">MODS</a></button>
+    <button><a href="../casino.html">CASINO</a></button>
+    <button><a href="../scoreboard.html">SCOREBOARD</a></button>
+    <button><a href="../contracts.html">CONTRACTS</a></button>
+  </nav>
+
+  <hr>
+  <header>
+    <h1>ErgoSphere Admin</h1>
+  </header>
+  <hr>
+
+  <main id="main-content">
+    <div class="cyber-panel admin-form">
+      <h2 class="cyber-title">Manage Weekly Selections</h2>
+      
+      <div id="notification" class="notification"></div>
+      
+      <form id="selectionsForm">
+        <div class="form-group">
+          <label for="bingwaChampion">Bingwa Champion:</label>
+          <select id="bingwaChampion" name="bingwaChampion" required>
+            <option value="JAYBERS8">JAYBERS8</option>
+            <option value="FLIGHTx12!">FLIGHTx12!</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="atleticoChamp">Atletico Champion:</label>
+          <select id="atleticoChamp" name="atleticoChamp" required>
+            <option value="FLIGHTx12!">FLIGHTx12!</option>
+            <option value="JAYBERS8">JAYBERS8</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="movieNight">Movie Night Selection:</label>
+          <select id="movieNight" name="movieNight" required>
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="submit-btn">Update Selections</button>        <div class="preview-card">
+          <div class="preview-title">Preview</div>
+          <div class="preview-content">
+            <p><strong>Bingwa Champion:</strong> <span id="preview-bingwa"></span></p>
+            <p><strong>Atletico Champion:</strong> <span id="preview-atletico"></span></p>
+            <p><strong>Movie Night:</strong> <span id="preview-movie"></span></p>
+            <p class="last-updated"><em>Last updated: <span id="last-updated">Never</span></em></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {      // Load movie options from movies.json
+      fetch('../../data/movies.json')
+        .then(response => {
+          // Remove comments from JSON file if they exist
+          return response.text().then(text => {
+            // Remove any comments that start with //
+            const jsonString = text.replace(/^\s*\/\/.*$/gm, '');
+            try {
+              return JSON.parse(jsonString);
+            } catch (e) {
+              console.error('Error parsing JSON:', e);
+              throw e;
+            }
+          });
+        })
+        .then(data => {
+          const movieSelect = document.getElementById('movieNight');
+          // Clear the loading option
+          movieSelect.innerHTML = '';
+          
+          // Add only movies with STATUS of 🟢 to the select dropdown
+          data.forEach(movie => {
+            if (movie.Title && movie.STATUS === "🟢") {
+              const option = document.createElement('option');
+              option.value = movie.Title;
+              option.textContent = movie.Title;
+              movieSelect.appendChild(option);
+            }
+          });
+          
+          // Load current selections from localStorage
+          loadCurrentSelections();
+        })
+        .catch(error => {
+          console.error('Error loading movies:', error);
+          document.getElementById('movieNight').innerHTML = '<option value="Error">Error loading movies</option>';
+        });        // Form submission
+      document.getElementById('selectionsForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const bingwaChampion = document.getElementById('bingwaChampion').value;
+        const atleticoChamp = document.getElementById('atleticoChamp').value;
+        const movieNight = document.getElementById('movieNight').value;
+        
+        // Show loading state
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Saving...';
+        submitBtn.disabled = true;
+        
+        // Update server via API - now using the PostgreSQL database
+        fetch('/api/selections', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            bingwaChampion,
+            atleticoChamp,
+            movieNight
+          })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })        .then(data => {
+          showNotification('Selections updated successfully!', 'success');
+          updatePreview();
+          
+          // Reset button state
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        })
+        .catch(error => {
+          console.error('Error updating selections:', error);
+          showNotification('Error updating selections. Please try again.', 'error');
+          
+          // Reset button state
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        });
+      });
+
+      // Update preview when selection changes
+      document.getElementById('bingwaChampion').addEventListener('change', updatePreview);
+      document.getElementById('atleticoChamp').addEventListener('change', updatePreview);
+      document.getElementById('movieNight').addEventListener('change', updatePreview);
+        function loadCurrentSelections() {
+        // Fetch current selections from server
+        fetch('/api/selections')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(ergosphereData => {
+            if (ergosphereData.bingwaChampion) {
+              document.getElementById('bingwaChampion').value = ergosphereData.bingwaChampion;
+            }
+            
+            if (ergosphereData.atleticoChamp) {
+              document.getElementById('atleticoChamp').value = ergosphereData.atleticoChamp;
+            }
+              if (ergosphereData.movieNight) {
+              const movieSelect = document.getElementById('movieNight');
+              // Try to find and select the stored movie
+              let found = false;
+              
+              for (let i = 0; i < movieSelect.options.length; i++) {
+                if (movieSelect.options[i].value === ergosphereData.movieNight) {
+                  movieSelect.value = ergosphereData.movieNight;
+                  found = true;
+                  break;
+                }
+              }
+              
+              // If not found (maybe it was removed from the movies.json), add it as an option
+              if (!found && ergosphereData.movieNight) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.movieNight;
+                option.textContent = ergosphereData.movieNight;
+                movieSelect.appendChild(option);
+                movieSelect.value = ergosphereData.movieNight;
+              }
+            }
+            
+            // Update last updated time if available
+            if (ergosphereData.lastUpdated) {
+              const lastUpdated = new Date(ergosphereData.lastUpdated);
+              document.getElementById('last-updated').textContent = lastUpdated.toLocaleString();
+            }
+
+            updatePreview();
+          })
+          .catch(error => {
+            console.error('Error loading selections:', error);
+            showNotification('Error loading current selections', 'error');
+          });
+      }
+      
+      function updatePreview() {
+        document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
+        document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
+        document.getElementById('preview-movie').textContent = document.getElementById('movieNight').value;
+      }
+      
+      function showNotification(message, type) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.className = 'notification ' + type;
+        notification.style.display = 'block';
+        
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>

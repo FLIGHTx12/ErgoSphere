@@ -56,9 +56,7 @@ const refreshCategoryOptions = async (category) => {
   const filePath = categoryFileMap[catName];
 
   if (filePath) {
-    let optionsArray = await fetchOptions(filePath); // Use let instead of const
-
-    // Sort options alphabetically specifically for Bingwa Movie Night
+    let optionsArray = await fetchOptions(filePath); // Use let instead of const    // Sort options alphabetically specifically for Bingwa Movie Night
     if (catName === "Bingwa Movie Night") {
       optionsArray.sort((a, b) => {
         const titleA = (a.Title || a.TITLE || '').toLowerCase();
