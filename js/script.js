@@ -161,6 +161,11 @@ function initializeCountdowns() {
         } else if (youtubeContent) {
           youtubeContent.textContent = 'SELECT A VIDEO';
         }
+
+        const brunchElement = document.getElementById('current-brunch');
+        if (brunchElement) {
+          brunchElement.textContent = ergosphereData.brunchMeal || 'SELECT A BRUNCH';
+        }
       })
       .catch(error => {
         console.error("Error fetching selections:", error);

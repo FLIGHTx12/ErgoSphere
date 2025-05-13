@@ -796,3 +796,8 @@ li {
   display: none; /* Hide the tooltip */
 }
 
+.yt-selected-video {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
