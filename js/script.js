@@ -407,18 +407,19 @@ if (window.location.pathname.endsWith('movies.html')) {
     const hash = window.location.hash;
     if (hash) {
       const targetId = hash.replace('#', '');
-      const target = document.getElementById(targetId);
+      // Try both id and data-title attributes for flexibility
+      let target = document.getElementById(targetId);
+      if (!target) {
+        target = document.querySelector(`[data-title="${targetId}"]`);
+      }
       if (target) {
-        // Scroll to the movie div
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Expand if it's a details/summary or has a collapsed class
         if (target.classList.contains('collapsed')) {
           target.classList.remove('collapsed');
         }
         if (target.tagName.toLowerCase() === 'details') {
           target.open = true;
         }
-        // Optionally add a highlight effect
         target.style.boxShadow = '0 0 20px 5px #0ff';
         setTimeout(() => { target.style.boxShadow = ''; }, 2000);
       }
