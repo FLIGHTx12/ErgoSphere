@@ -112,8 +112,9 @@ function initializeCountdowns() {
         
         if (movieElement) {
           const movieTitle = ergosphereData.movieNight || defaultData.movieNight;
-          // Link to movies.html#movie-title (replace spaces with dashes)
-          const anchor = `movies.html#${movieTitle.replace(/\s+/g, '-')}`;
+          // Create a safe id for the anchor (lowercase, dashes, remove special chars)
+          const safeId = movieTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          const anchor = `movies.html#${safeId}`;
           movieElement.innerHTML = `<a href="pages/admin/${anchor}" class="movie-title-link" style="color:inherit;text-decoration:underline;">${movieTitle}</a>`;
           console.log("Movie title set to:", movieTitle);
         } else {
@@ -398,4 +399,29 @@ function calculateNextQuarterStart() {
 function updateQuarterCountdown() {
   const nextQuarterStart = calculateNextQuarterStart();
   updateCountdown('quarter', nextQuarterStart);
+}
+
+// Add this logic to movies.html via script injection if hash is present
+if (window.location.pathname.endsWith('movies.html')) {
+  document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.replace('#', '');
+      const target = document.getElementById(targetId);
+      if (target) {
+        // Scroll to the movie div
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Expand if it's a details/summary or has a collapsed class
+        if (target.classList.contains('collapsed')) {
+          target.classList.remove('collapsed');
+        }
+        if (target.tagName.toLowerCase() === 'details') {
+          target.open = true;
+        }
+        // Optionally add a highlight effect
+        target.style.boxShadow = '0 0 20px 5px #0ff';
+        setTimeout(() => { target.style.boxShadow = ''; }, 2000);
+      }
+    }
+  });
 }
