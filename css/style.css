@@ -783,7 +783,7 @@ li {
   }
   
   .movie-title, .meal-title {
-    font-size: 1.5em;
+    font-size: .9em;
   }
 }
 
@@ -799,5 +799,10 @@ li {
 .yt-selected-video {
   font-size: 1em;
   line-height: 1.4;
+}
+
+.yt-selected-video .movie-title {
+  font-size: 1em !important;
+  font-weight: normal;
 }
 
