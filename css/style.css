@@ -640,7 +640,7 @@ li {
 }
 
 .movie-title, .meal-title {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .status-decor, .movie-decor, .meal-decor {
@@ -754,7 +754,7 @@ li {
   }
   
   .movie-title, .meal-title {
-    font-size: 1.5em;
+    font-size: 1em;
   }
   
   /* More specific adjustments for the wide-card */
@@ -802,7 +802,7 @@ li {
 }
 
 .yt-selected-video .movie-title {
-  font-size: 1em !important;
+  font-size: .5em !important;
   font-weight: normal;
 }
 

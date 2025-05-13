@@ -111,8 +111,11 @@ function initializeCountdowns() {
         }
         
         if (movieElement) {
-          movieElement.textContent = ergosphereData.movieNight || defaultData.movieNight;
-          console.log("Movie title set to:", movieElement.textContent);
+          const movieTitle = ergosphereData.movieNight || defaultData.movieNight;
+          // Link to movies.html#movie-title (replace spaces with dashes)
+          const anchor = `movies.html#${movieTitle.replace(/\s+/g, '-')}`;
+          movieElement.innerHTML = `<a href="pages/admin/${anchor}" class="movie-title-link" style="color:inherit;text-decoration:underline;">${movieTitle}</a>`;
+          console.log("Movie title set to:", movieTitle);
         } else {
           console.error("Element with ID 'current-movie' not found");
         }
