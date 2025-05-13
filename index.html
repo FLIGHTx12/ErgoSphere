@@ -18,6 +18,27 @@
           width: 65vw;
         }
       }
+      
+      /* Additional centering styles */
+      header, #main-content, hr {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        max-width: 1200px;
+        box-sizing: border-box;
+      }
+      
+      /* Fix specific div alignment */
+      #main-content > div {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Ensure HR is centered */
+      hr {
+        display: block;
+        width: 90%;
+      }
     </style>
 
 </head>
@@ -52,19 +73,19 @@
     <h2 class="cyber-title">Current Champions</h2>
     <div class="cyber-grid">      
       <div class="cyber-card" id="bingwa-card">
-        <div class="card-header">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
           <span class="neon-text" >WK19 Bingwa <br> Champion</span>
         </div>        
-        <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+        <div class="card-content">
           <span id="current-bingwa" class="champion-name">JAYBERS8</span>
           <div class="status-decor"></div>
         </div>
       </div>      
       <div class="cyber-card" id="atletico-card">
-        <div class="card-header">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
           <span class="neon-text">WK19 Atletico <br> Champ</span>
         </div>
-        <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+        <div class="card-content">
           <span id="current-atletico" class="champion-name">FLIGHTx12</span>
           <div class="status-decor"></div>
         </div>
@@ -75,11 +96,48 @@
   <div id="moviePanel" class="cyber-panel glass-effect">
     <h2 class="cyber-title">Movie Night</h2>
     <div class="cyber-card wide-card">
-      <div class="card-header">
+      <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
         <span class="neon-text">Current Selection</span>
       </div>      
-      <div class="card-content edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+      <div class="card-content">
         <span id="current-movie" class="movie-title">NEW_MOVIE_TITLE</span>
+        <div class="movie-decor"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="banquetPanel" class="cyber-panel glass-effect">
+    <h2 class="cyber-title">Bingwa Banquet & Brunch</h2>
+    <div class="cyber-grid">
+      <div class="cyber-card wide-card">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+          <span class="neon-text">Sunday Brunch</span>
+        </div>
+        <div class="card-content">
+          <span id="current-brunch" class="meal-title">SELECT A BRUNCH</span>
+          <div class="meal-decor"></div>
+        </div>
+      </div>
+      <div class="cyber-card wide-card">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+          <span class="neon-text">Saturday Dinner</span>
+        </div>
+        <div class="card-content">
+          <span id="current-banquet" class="meal-title">SELECT A MEAL</span>
+          <div class="meal-decor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="youtubePanel" class="cyber-panel glass-effect">
+    <h2 class="cyber-title">YouTube Theater</h2>
+    <div class="cyber-card wide-card">
+      <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+        <span class="neon-text">Current Selection</span>
+      </div>
+      <div class="card-content">
+        <span id="current-youtube" class="movie-title">SELECT A VIDEO</span>
         <div class="movie-decor"></div>
       </div>
     </div>
@@ -139,7 +197,7 @@
     <hr>
     
     <details><summary>🎁 REWARDS 🎁</summary>
-      <ul>
+      <ul></ul>
         <li>🏆 The Kushindwa chooses the next week's game, except for the game they most recently picked. 🎮 </li>
         <li>🏆 The Kushindwa cooks breakfast for the Bingwa on Sunday and makes dinner the following Saturday. 🍳🍽️ </li>
         <li>🏆 The Bingwa enjoys "LUXURY HOUR" for the first hour of meal prep and while the Kushindwa cooks Saturday dinner. 🛀👑 </li>
@@ -211,7 +269,7 @@
 
   <details>
     <summary>🏀 ErgoHOOPS RULES 🏀</summary>
-    <p>
+    <p></p>
       <b>Objective:</b> The offensive player tries to score, and the defensive player tries to prevent the offensive player from scoring. 🛡️ The first player to 10 points wins and is allowed to decide the first chore for each player during Saturday cleaning hour. 🧹
     </p>
 
@@ -238,7 +296,7 @@
       </li>
       <li>The offensive player can drive for a layup, take a jump shot, or shoot from the 3-point line where they are starting. ⛹️‍♀️⛹️‍♂️</li>
       <li>Once the offensive player starts dribbling, the defensive player can leave their position and defend. 🏃‍♀️🏃‍♂️
-        <ul class="rules-list">
+        <ul class="rules-list"></ul>
           <li>If the defender leaves their starting spot before the offensive player starts dribbling, the offensive player is allowed a free throw and regains possession. 🏀</li>
         </ul>
       </li>
@@ -263,7 +321,7 @@
   </details>
     <details>
     <summary>⛳ ErgoGOLF RULES ⛳</summary>
-    <p>
+    <p></p>
       <b>Objective:</b> Be the first player to reach 10 points and win the game! 🏅 The winner gets to choose the 🏋🏽‍♀️🏋🏽‍♂️ATLETICO CHAMP GROUP WOROUT! on Wednesday morning and decide the first chore for each player during Saturday cleaning hour. 🧹
     </p>
 
@@ -450,6 +508,15 @@
               // For simplicity, the initial check might suffice for most cases.
           }
       });
+    });
+    
+    // Additional script to ensure alignment is correct on load
+    window.addEventListener('load', function() {
+      // Force recalculation of styles to ensure proper centering
+      document.body.style.display = 'none';
+      setTimeout(function() {
+        document.body.style.display = '';
+      }, 10);
     });
   </script>
 </body>

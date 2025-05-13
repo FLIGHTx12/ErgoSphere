@@ -23,6 +23,10 @@ header {
   box-sizing: border-box;
   text-shadow: -3px 1px 4px rgba(169, 175, 185, 0.6);
   text-align: center; /* Center the header content */
+  position: relative; /* Add position relative */
+  left: 0; /* Ensure header is not offset */
+  right: 0;
+  margin: 0 auto; /* Center the header */
 }
 
 div {
@@ -253,15 +257,19 @@ button:active {
   max-width: 1200px; /* Set a max-width for better readability on large screens */
   box-sizing: border-box;
   padding: 0 20px; /* Add some padding on the sides */
-  transform: translateX(-85px); /* Move content left to center it better */
+  /* Remove the transform that was causing offset on larger screens */
+  transform: none;
 }
 
 /* Adjust main content for sidebar on large screens */
 @media (min-width: 1024px) {
   #main-content.sidebar-visible {
-    margin-right: 160px;
+    margin-right: auto;
     margin-left: auto;
-    transform: translateX(-100px); /* Smaller offset for larger screens */
+    /* Remove transform offset */
+    transform: none;
+    /* Add padding instead to make room for sidebar */
+    padding-right: 170px;
   }
 }
 
@@ -271,14 +279,14 @@ button:active {
     margin-right: auto !important;
     margin-left: auto !important;
     padding-right: 170px !important; /* Use padding instead of margin to keep content centered */
-    transform: translateX(0) !important; /* No need for transform on very large screens */
+    transform: none !important; /* No transform needed */
   }
 }
 
 /* Reset transform for small screens to prevent overflow */
 @media (max-width: 767px) {
   #main-content {
-    transform: translateX(0); /* Remove the transform on small screens */
+    transform: none; /* Use consistant centering approach across all screen sizes */
     padding: 0 10px; /* Smaller padding for small screens */
   }
 }
@@ -504,6 +512,8 @@ li {
   position: relative;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
   padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cyber-panel::before {
@@ -616,7 +626,7 @@ li {
   z-index: 3; /* Increase z-index to ensure content is above decorative elements */
 }
 
-.champion-name, .movie-title {
+.champion-name, .movie-title, .meal-title {
   font-size: 1.5em;
   color: #0ff;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
@@ -629,11 +639,11 @@ li {
   font-weight: bold;
 }
 
-.movie-title {
+.movie-title, .meal-title {
   font-size: 2em;
 }
 
-.status-decor, .movie-decor {
+.status-decor, .movie-decor, .meal-decor {
   position: absolute;
   top: 0;
   left: 0;
@@ -702,7 +712,7 @@ li {
   z-index: 10;
 }
 
-.countdown-segment, .champion-name, .movie-title {
+.countdown-segment, .champion-name, .movie-title, .meal-title {
   animation: pulse 2s infinite;
 }
 
@@ -743,7 +753,7 @@ li {
     margin: 0 1px;
   }
   
-  .movie-title {
+  .movie-title, .meal-title {
     font-size: 1.5em;
   }
   
@@ -772,8 +782,17 @@ li {
     margin: 0;
   }
   
-  .movie-title {
+  .movie-title, .meal-title {
     font-size: 1.5em;
   }
+}
+
+/* Banquet recipe status indicator */
+.meal-title[data-recipe-status="incomplete"]::after {
+  display: none; /* Hide the warning indicator */
+}
+
+.recipe-status-tooltip {
+  display: none; /* Hide the tooltip */
 }
 

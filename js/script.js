@@ -77,7 +77,8 @@ function initializeCountdowns() {
     const defaultData = {
       bingwaChampion: 'JAYBERS8',
       atleticoChamp: 'FLIGHTx12!',
-      movieNight: 'Underwater (2020)'
+      movieNight: 'Underwater (2020)',
+      banquetMeal: 'Spaghetti and side salad'
     };
     
     // Fetch data from the server API
@@ -88,11 +89,12 @@ function initializeCountdowns() {
         }
         return response.json();
       })
-      .then(ergosphereData => {
+      .then(async ergosphereData => {
         // Set champion data with error checking
         const bingwaElement = document.getElementById('current-bingwa');
         const atleticoElement = document.getElementById('current-atletico');
         const movieElement = document.getElementById('current-movie');
+        const banquetElement = document.getElementById('current-banquet');
         
         if (bingwaElement) {
           bingwaElement.textContent = ergosphereData.bingwaChampion || defaultData.bingwaChampion;
@@ -114,6 +116,51 @@ function initializeCountdowns() {
         } else {
           console.error("Element with ID 'current-movie' not found");
         }
+
+        // Set banquet meal - removed recipe status indicator code
+        if (banquetElement) {
+          banquetElement.textContent = ergosphereData.banquetMeal || defaultData.banquetMeal;
+          console.log("Banquet meal set to:", banquetElement.textContent);
+          // Removed recipe status checking code
+        } else {
+          console.error("Element with ID 'current-banquet' not found");
+        }
+
+        // --- YouTube Theater MULTI ---
+        const youtubePanel = document.getElementById('youtubePanel');
+        const youtubeContent = document.getElementById('current-youtube');
+        if (youtubeContent && ergosphereData.youtubeTheater && Array.isArray(ergosphereData.youtubeTheater)) {
+          // Fetch all YouTube video data
+          let videoData = [];
+          try {
+            const res = await fetch('data/youtube.json');
+            const text = await res.text();
+            const jsonString = text.replace(/^\s*\/\/.*$/gm, '');
+            videoData = JSON.parse(jsonString);
+          } catch (e) {
+            console.error('Could not load youtube.json', e);
+          }
+          // Map selected titles to video objects
+          const selectedVideos = ergosphereData.youtubeTheater.map(title =>
+            videoData.find(v => v.TITLE === title)
+          ).filter(Boolean);
+          // Build HTML for all selected videos
+          if (selectedVideos.length) {
+            youtubeContent.innerHTML = selectedVideos.map(video => {
+              let link = video.Link || '';
+              let runtime = video.RUNTIME || '';
+              let safeTitle = video.TITLE || '';
+              return `<div class="yt-selected-video">
+                <a href="${link}" target="_blank" class="movie-title">${safeTitle}</a>
+                <span class="yt-runtime">${runtime ? ' (' + runtime + ')' : ''}</span>
+              </div>`;
+            }).join('');
+          } else {
+            youtubeContent.textContent = 'SELECT A VIDEO';
+          }
+        } else if (youtubeContent) {
+          youtubeContent.textContent = 'SELECT A VIDEO';
+        }
       })
       .catch(error => {
         console.error("Error fetching selections:", error);
@@ -132,6 +179,7 @@ function applyDefaultSelections(defaultData) {
   const bingwaElement = document.getElementById('current-bingwa');
   const atleticoElement = document.getElementById('current-atletico');
   const movieElement = document.getElementById('current-movie');
+  const banquetElement = document.getElementById('current-banquet');
   
   if (bingwaElement) {
     bingwaElement.textContent = defaultData.bingwaChampion;
@@ -143,6 +191,10 @@ function applyDefaultSelections(defaultData) {
   
   if (movieElement) {
     movieElement.textContent = defaultData.movieNight;
+  }
+
+  if (banquetElement) {
+    banquetElement.textContent = defaultData.banquetMeal;
   }
 }
 

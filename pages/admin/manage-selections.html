@@ -148,12 +148,44 @@
           </select>
         </div>
         
-        <button type="submit" class="submit-btn">Update Selections</button>        <div class="preview-card">
+        <div class="form-group">
+          <label for="banquetMeal">Bingwa Banquet Meal:</label>
+          <select id="banquetMeal" name="banquetMeal" required>
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bingwaBrunch">Bingwa Brunch:</label>
+          <select id="bingwaBrunch" name="bingwaBrunch" required>
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="youtubeTheater1">YouTube Theater Selection:</label>
+          <select id="youtubeTheater1" name="youtubeTheater1" required>
+            <option value="">-- Select Video 1 --</option>
+          </select>
+          <select id="youtubeTheater2" name="youtubeTheater2">
+            <option value="">-- Select Video 2 (optional) --</option>
+          </select>
+          <select id="youtubeTheater3" name="youtubeTheater3">
+            <option value="">-- Select Video 3 (optional) --</option>
+          </select>
+          <div id="youtube-runtime-warning" style="color:#f00; display:none; font-size:0.95em; margin-top:4px;"></div>
+        </div>
+        
+        <button type="submit" class="submit-btn">Update Selections</button>        
+        <div class="preview-card">
           <div class="preview-title">Preview</div>
           <div class="preview-content">
             <p><strong>Bingwa Champion:</strong> <span id="preview-bingwa"></span></p>
             <p><strong>Atletico Champion:</strong> <span id="preview-atletico"></span></p>
             <p><strong>Movie Night:</strong> <span id="preview-movie"></span></p>
+            <p><strong>Bingwa Banquet:</strong> <span id="preview-banquet"></span></p>
+            <p><strong>Bingwa Brunch:</strong> <span id="preview-brunch"></span></p>
+            <p><strong>YouTube Theater:</strong> <span id="preview-youtube"></span></p>
             <p class="last-updated"><em>Last updated: <span id="last-updated">Never</span></em></p>
           </div>
         </div>
@@ -162,7 +194,8 @@
   </main>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {      // Load movie options from movies.json
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load movie options from movies.json
       fetch('../../data/movies.json')
         .then(response => {
           // Remove comments from JSON file if they exist
@@ -192,19 +225,96 @@
             }
           });
           
-          // Load current selections from localStorage
+          // Now load meal options from meals.json
+          return fetch('../../data/meals.json');
+        })
+        .then(response => {
+          return response.text().then(text => {
+            const jsonString = text.replace(/^\s*\/\/.*$/gm, '');
+            try {
+              return JSON.parse(jsonString);
+            } catch (e) {
+              console.error('Error parsing meals JSON:', e);
+              throw e;
+            }
+          });
+        })
+        .then(data => {
+          const banquetSelect = document.getElementById('banquetMeal');
+          const brunchSelect = document.getElementById('bingwaBrunch');
+          // Clear the loading option
+          banquetSelect.innerHTML = '';
+          brunchSelect.innerHTML = '';
+          // Add all meal options to the banquet dropdown
+          data.forEach(meal => {
+            const option = document.createElement('option');
+            option.value = meal.meal;
+            option.textContent = meal.meal;
+            banquetSelect.appendChild(option);
+          });
+          // Add only Bingwa Brunch options to the brunch dropdown
+          data.filter(meal => meal.mealType === 'bingwa_brunch').forEach(meal => {
+            const option = document.createElement('option');
+            option.value = meal.meal;
+            option.textContent = meal.meal;
+            brunchSelect.appendChild(option);
+          });
+          // Now load YouTube options from youtube.json
+          return fetch('../../data/youtube.json');
+        })
+        .then(response => {
+          return response.text().then(text => {
+            const jsonString = text.replace(/^\s*\/\/.*$/gm, '');
+            try {
+              return JSON.parse(jsonString);
+            } catch (e) {
+              console.error('Error parsing youtube JSON:', e);
+              throw e;
+            }
+          });
+        })
+        .then(data => {
+          const yt1 = document.getElementById('youtubeTheater1');
+          const yt2 = document.getElementById('youtubeTheater2');
+          const yt3 = document.getElementById('youtubeTheater3');
+          [yt1, yt2, yt3].forEach(select => {
+            select.innerHTML = `<option value="">-- Select Video${select === yt1 ? ' 1' : select === yt2 ? ' 2 (optional)' : ' 3 (optional)'} --</option>`;
+            data.forEach(video => {
+              if (video.TITLE && video.STATUS === '🟢') {
+                const option = document.createElement('option');
+                let label = video.TITLE + (video.RUNTIME ? ` (${video.RUNTIME})` : '');
+                if (video["TIMES SEEN"] && video["TIMES SEEN"].includes('👀')) {
+                  label += ' 👀';
+                }
+                option.value = video.TITLE;
+                option.textContent = label;
+                option.setAttribute('data-runtime', video.RUNTIME || '0:00');
+                select.appendChild(option);
+              }
+            });
+          });
           loadCurrentSelections();
         })
         .catch(error => {
-          console.error('Error loading movies:', error);
+          console.error('Error loading data:', error);
           document.getElementById('movieNight').innerHTML = '<option value="Error">Error loading movies</option>';
-        });        // Form submission
+          document.getElementById('banquetMeal').innerHTML = '<option value="Error">Error loading meals</option>';
+        });
+
+      // Form submission
       document.getElementById('selectionsForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const bingwaChampion = document.getElementById('bingwaChampion').value;
         const atleticoChamp = document.getElementById('atleticoChamp').value;
         const movieNight = document.getElementById('movieNight').value;
+        const banquetMeal = document.getElementById('banquetMeal').value;
+        const brunchMeal = document.getElementById('bingwaBrunch').value;
+        const youtubeTheater = [
+          document.getElementById('youtubeTheater1').value,
+          document.getElementById('youtubeTheater2').value,
+          document.getElementById('youtubeTheater3').value
+        ].filter(Boolean);
         
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
@@ -212,7 +322,12 @@
         submitBtn.textContent = 'Saving...';
         submitBtn.disabled = true;
         
-        // Update server via API - now using the PostgreSQL database
+        if (!checkYouTubeRuntimeLimit()) {
+          e.preventDefault();
+          return;
+        }
+
+        // Update server via API
         fetch('/api/selections', {
           method: 'POST',
           headers: {
@@ -221,7 +336,10 @@
           body: JSON.stringify({
             bingwaChampion,
             atleticoChamp,
-            movieNight
+            movieNight,
+            banquetMeal,
+            brunchMeal,
+            youtubeTheater
           })
         })
         .then(response => {
@@ -229,7 +347,8 @@
             throw new Error('Network response was not ok');
           }
           return response.json();
-        })        .then(data => {
+        })
+        .then(data => {
           showNotification('Selections updated successfully!', 'success');
           updatePreview();
           
@@ -251,7 +370,17 @@
       document.getElementById('bingwaChampion').addEventListener('change', updatePreview);
       document.getElementById('atleticoChamp').addEventListener('change', updatePreview);
       document.getElementById('movieNight').addEventListener('change', updatePreview);
-        function loadCurrentSelections() {
+      document.getElementById('banquetMeal').addEventListener('change', updatePreview);
+      document.getElementById('bingwaBrunch').addEventListener('change', updatePreview);
+      ['youtubeTheater1','youtubeTheater2','youtubeTheater3'].forEach(id => {
+        document.getElementById(id).addEventListener('change', function() {
+          updatePreview();
+          checkYouTubeRuntimeLimit();
+          updateYouTubeDropdowns();
+        });
+      });
+
+      function loadCurrentSelections() {
         // Fetch current selections from server
         fetch('/api/selections')
           .then(response => {
@@ -268,7 +397,8 @@
             if (ergosphereData.atleticoChamp) {
               document.getElementById('atleticoChamp').value = ergosphereData.atleticoChamp;
             }
-              if (ergosphereData.movieNight) {
+            
+            if (ergosphereData.movieNight) {
               const movieSelect = document.getElementById('movieNight');
               // Try to find and select the stored movie
               let found = false;
@@ -281,7 +411,7 @@
                 }
               }
               
-              // If not found (maybe it was removed from the movies.json), add it as an option
+              // If not found, add it as an option
               if (!found && ergosphereData.movieNight) {
                 const option = document.createElement('option');
                 option.value = ergosphereData.movieNight;
@@ -289,6 +419,79 @@
                 movieSelect.appendChild(option);
                 movieSelect.value = ergosphereData.movieNight;
               }
+            }
+
+            // Handle banquet meal selection
+            if (ergosphereData.banquetMeal) {
+              const banquetSelect = document.getElementById('banquetMeal');
+              let found = false;
+              
+              for (let i = 0; i < banquetSelect.options.length; i++) {
+                if (banquetSelect.options[i].value === ergosphereData.banquetMeal) {
+                  banquetSelect.value = ergosphereData.banquetMeal;
+                  found = true;
+                  break;
+                }
+              }
+              
+              // If not found, add it as an option
+              if (!found && ergosphereData.banquetMeal) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.banquetMeal;
+                option.textContent = ergosphereData.banquetMeal;
+                banquetSelect.appendChild(option);
+                banquetSelect.value = ergosphereData.banquetMeal;
+              }
+            }
+
+            // Handle brunch meal selection
+            if (ergosphereData.brunchMeal) {
+              const brunchSelect = document.getElementById('bingwaBrunch');
+              let found = false;
+              
+              for (let i = 0; i < brunchSelect.options.length; i++) {
+                if (brunchSelect.options[i].value === ergosphereData.brunchMeal) {
+                  brunchSelect.value = ergosphereData.brunchMeal;
+                  found = true;
+                  break;
+                }
+              }
+              
+              // If not found, add it as an option
+              if (!found && ergosphereData.brunchMeal) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.brunchMeal;
+                option.textContent = ergosphereData.brunchMeal;
+                brunchSelect.appendChild(option);
+                brunchSelect.value = ergosphereData.brunchMeal;
+              }
+            }
+
+            // Handle YouTube Theater selection
+            if (ergosphereData.youtubeTheater) {
+              const yt1 = document.getElementById('youtubeTheater1');
+              const yt2 = document.getElementById('youtubeTheater2');
+              const yt3 = document.getElementById('youtubeTheater3');
+              const selected = ergosphereData.youtubeTheater;
+              [yt1, yt2, yt3].forEach((select, idx) => {
+                if (selected[idx]) {
+                  let found = false;
+                  for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === selected[idx]) {
+                      select.value = selected[idx];
+                      found = true;
+                      break;
+                    }
+                  }
+                  if (!found) {
+                    const option = document.createElement('option');
+                    option.value = selected[idx];
+                    option.textContent = selected[idx];
+                    select.appendChild(option);
+                    select.value = selected[idx];
+                  }
+                }
+              });
             }
             
             // Update last updated time if available
@@ -309,6 +512,78 @@
         document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
         document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
         document.getElementById('preview-movie').textContent = document.getElementById('movieNight').value;
+        document.getElementById('preview-banquet').textContent = document.getElementById('banquetMeal').value;
+        document.getElementById('preview-brunch').textContent = document.getElementById('bingwaBrunch').value;
+        const yt1 = document.getElementById('youtubeTheater1');
+        const yt2 = document.getElementById('youtubeTheater2');
+        const yt3 = document.getElementById('youtubeTheater3');
+        const selected = [yt1, yt2, yt3].map(select => {
+          if (select.value) {
+            const runtime = select.selectedOptions[0]?.getAttribute('data-runtime') || '';
+            return select.value + (runtime ? ` (${runtime})` : '');
+          }
+          return null;
+        }).filter(Boolean);
+        document.getElementById('preview-youtube').textContent = selected.length ? selected.join(', ') : 'None';
+        // Show total runtime in preview
+        let totalSeconds = 0;
+        [yt1, yt2, yt3].forEach(select => {
+          const runtime = select.selectedOptions[0]?.getAttribute('data-runtime') || '0:00';
+          if (select.value) {
+            const match = runtime.match(/(\d+):(\d+)/);
+            if (match) {
+              totalSeconds += parseInt(match[1], 10) * 60 + parseInt(match[2], 10);
+            }
+          }
+        });
+        if (selected.length) {
+          const mins = Math.floor(totalSeconds / 60);
+          const secs = totalSeconds % 60;
+          document.getElementById('preview-youtube').textContent += ` (Total: ${mins}:${secs.toString().padStart(2, '0')})`;
+        }
+      }
+      
+      function checkYouTubeRuntimeLimit() {
+        const yt1 = document.getElementById('youtubeTheater1');
+        const yt2 = document.getElementById('youtubeTheater2');
+        const yt3 = document.getElementById('youtubeTheater3');
+        const warning = document.getElementById('youtube-runtime-warning');
+        let totalSeconds = 0;
+        [yt1, yt2, yt3].forEach(select => {
+          const runtime = select.selectedOptions[0]?.getAttribute('data-runtime') || '0:00';
+          if (select.value) {
+            const match = runtime.match(/(\d+):(\d+)/);
+            if (match) {
+              totalSeconds += parseInt(match[1], 10) * 60 + parseInt(match[2], 10);
+            }
+          }
+        });
+        if (totalSeconds > 3660) { // 1 hour 1 minute = 3660 seconds
+          warning.style.display = 'block';
+          warning.textContent = 'Total runtime must be under 1 hour 1 minute (01:01:00). Please remove some selections.';
+          return false;
+        } else {
+          warning.style.display = 'none';
+          warning.textContent = '';
+          return true;
+        }
+      }
+      
+      function updateYouTubeDropdowns() {
+        // Prevent duplicate selections
+        const yt1 = document.getElementById('youtubeTheater1');
+        const yt2 = document.getElementById('youtubeTheater2');
+        const yt3 = document.getElementById('youtubeTheater3');
+        const selected = [yt1.value, yt2.value, yt3.value].filter(Boolean);
+        [yt1, yt2, yt3].forEach((select, idx) => {
+          Array.from(select.options).forEach(opt => {
+            if (opt.value && selected.includes(opt.value) && select.value !== opt.value) {
+              opt.disabled = true;
+            } else {
+              opt.disabled = false;
+            }
+          });
+        });
       }
       
       function showNotification(message, type) {
