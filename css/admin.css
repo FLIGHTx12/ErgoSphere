@@ -332,7 +332,8 @@ button:active {
   border: 1px solid purple;
   background-color: #333; /* Dark background for the input */
   color: white; /* Light text color */
-  flex-grow: 1; /* Allow search bar to take available space */
+  flex-grow: 0; /* Don't allow to grow beyond base size */
+  width: 150px; /* Set a fixed base width, adjust as needed */
   margin-left: 5px; /* Optional: add some space if needed */
   margin-right: 5px; /* Optional: add some space if needed */
 }

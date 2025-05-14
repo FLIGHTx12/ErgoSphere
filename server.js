@@ -385,6 +385,7 @@ app.post('/api/options/update', async (req, res) => {
 
 // Update PUT route for JSON data files to use database
 app.put('/data/:filename', async (req, res) => {
+  console.log('!!!!!! PUT /data/:filename ROUTE HIT !!!!!!'); // Added for prominent logging
   console.log(`Updating file: ${req.params.filename}`);
   const filename = req.params.filename;
   const data = req.body;
@@ -441,7 +442,7 @@ app.put('/data/:filename', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (err) {
-    console.error('Error updating data:', err);
+    console.error('Error updating data:', err, err.stack); // Added err.stack for more details
     // Create a detailed error response
     res.status(500).json({ 
       error: 'Error saving data', 
@@ -517,7 +518,7 @@ app.get('/api/debug/file-access', async (req, res) => {
 
 // Error handling
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.error('!!!!!! GLOBAL ERROR HANDLER HIT !!!!!!', err, err.stack); // Made log more prominent and detailed
   res.status(500).json({ error: 'Internal server error' });
 });
   

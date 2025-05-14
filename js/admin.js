@@ -140,15 +140,25 @@ function loadItems(file, containerId) {
         container.appendChild(itemDiv);
       });
 
-      // Add filter functionality
-      const filterButtons = container.querySelectorAll('.filter-button');
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.dataset.filter;
-          // For 'all', 'has-status', etc., the third argument isn't used by filterItems
-          filterItems(containerId, filter, null);
+      // Add filter functionality for the cycling button
+      const cyclingFilterButton = container.querySelector('.cycling-filter-button');
+      if (cyclingFilterButton) {
+        const filterStates = cyclingFilterButton.dataset.filterStates.split(',');
+        const displayNames = cyclingFilterButton.dataset.displayNames.split(',');
+        let currentIndex = parseInt(cyclingFilterButton.dataset.currentFilterIndex, 10);
+
+        // Set initial text based on current index
+        cyclingFilterButton.textContent = `Filter: ${displayNames[currentIndex]}`;
+
+        cyclingFilterButton.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % filterStates.length;
+          cyclingFilterButton.dataset.currentFilterIndex = currentIndex;
+          const currentFilterValue = filterStates[currentIndex];
+          cyclingFilterButton.textContent = `Filter: ${displayNames[currentIndex]}`;
+          filterItems(containerId, currentFilterValue, null);
+          saveAdminState(); // Save state on filter change
         });
-      });
+      }
 
       // Add event listener for the search bar
       const searchBar = container.querySelector('.search-bar');
@@ -185,8 +195,16 @@ function refreshData(file, containerId) {
   // Clear the container
   const container = document.getElementById(containerId);
   if (container) {
-    // Save current filter state
-    const currentFilter = container.querySelector('.filter-button.active')?.dataset?.filter || 'all';
+    // Save current filter state and search term
+    let currentFilterStateValue = 'all';
+    const cyclingButtonOld = container.querySelector('.cycling-filter-button');
+    if (cyclingButtonOld) {
+        const filterStates = cyclingButtonOld.dataset.filterStates.split(',');
+        const currentIndex = parseInt(cyclingButtonOld.dataset.currentFilterIndex, 10);
+        if (filterStates[currentIndex]) {
+            currentFilterStateValue = filterStates[currentIndex];
+        }
+    }
     const currentSearchTerm = container.querySelector('.search-bar')?.value || '';
     
     container.innerHTML = '';
@@ -195,22 +213,17 @@ function refreshData(file, containerId) {
     const filters = document.createElement('div');
     filters.className = 'filters';
     
-    // Determine which filter buttons to add based on container ID
+    let filterButtonHTML = '';
     if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
-      filters.innerHTML = `
-        <button class="filter-button" data-filter="all">All</button>
-        <button class="filter-button" data-filter="has-copies">ACTIVE</button>
-        <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
-        <input type="text" class="search-bar" placeholder="Search..." data-container="${containerId}">
-      `;
+      filterButtonHTML = `<button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>`;
     } else {
-      filters.innerHTML = `
-        <button class="filter-button" data-filter="all">All</button>
-        <button class="filter-button" data-filter="has-status">ACTIVE</button>
-        <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
-        <input type="text" class="search-bar" placeholder="Search..." data-container="${containerId}">
-      `;
+      filterButtonHTML = `<button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>`;
     }
+    
+    filters.innerHTML = `
+      ${filterButtonHTML}
+      <input type="text" class="search-bar" placeholder="Search..." data-container="${containerId}">
+    `;
     // Always add refresh button
     const refreshButton = document.createElement('button');
     refreshButton.className = 'refresh-button';
@@ -237,17 +250,28 @@ function refreshData(file, containerId) {
     // Restore search term and re-apply filter if necessary
     setTimeout(() => {
       const searchBar = container.querySelector('.search-bar');
+      const cyclingButtonNew = container.querySelector('.cycling-filter-button');
+      
       if (searchBar && currentSearchTerm) {
         searchBar.value = currentSearchTerm;
-        // Trigger search if there was a term
-         filterItems(containerId, 'search', currentSearchTerm.toLowerCase());
-      } else if (currentFilter && currentFilter !== 'all') { // Else, if there was another active filter
-        const filterButton = container.querySelector(`.filter-button[data-filter="${currentFilter}"]`);
-        if (filterButton) {
-          filterButton.click(); // This will call filterItems
+        filterItems(containerId, 'search', currentSearchTerm.toLowerCase());
+      } else if (cyclingButtonNew && currentFilterStateValue && currentFilterStateValue !== 'all') {
+        const filterStates = cyclingButtonNew.dataset.filterStates.split(',');
+        const displayNames = cyclingButtonNew.dataset.displayNames.split(',');
+        const savedFilterIndex = filterStates.indexOf(currentFilterStateValue);
+        if (savedFilterIndex !== -1) {
+          cyclingButtonNew.dataset.currentFilterIndex = savedFilterIndex;
+          cyclingButtonNew.textContent = `Filter: ${displayNames[savedFilterIndex]}`;
+          filterItems(containerId, currentFilterStateValue, null);
+        } else {
+          cyclingButtonNew.dataset.currentFilterIndex = 0;
+          cyclingButtonNew.textContent = `Filter: ${displayNames[0]}`;
+          filterItems(containerId, 'all', null);
         }
-      } else {
-        // Default to 'all' if no specific filter or search was active
+      } else if (cyclingButtonNew) { // Default to 'all'
+        const displayNames = cyclingButtonNew.dataset.displayNames.split(',');
+        cyclingButtonNew.dataset.currentFilterIndex = 0;
+        cyclingButtonNew.textContent = `Filter: ${displayNames[0]}`;
         filterItems(containerId, 'all', null);
       }
     }, 500);
@@ -369,9 +393,19 @@ function saveAdminState() {
   // Save active filters and search terms for each container
   document.querySelectorAll('.item-container').forEach(container => {
     const id = container.id;
-    const activeFilter = container.querySelector('.filter-button.active')?.dataset?.filter || 'all';
+    const cyclingButton = container.querySelector('.cycling-filter-button');
+    let currentFilter = 'all';
+    if (cyclingButton) {
+        const filterStates = cyclingButton.dataset.filterStates.split(',');
+        // Ensure currentIndex is valid before accessing filterStates
+        const currentIndex = parseInt(cyclingButton.dataset.currentFilterIndex, 10);
+        if (filterStates && currentIndex >= 0 && currentIndex < filterStates.length) {
+            currentFilter = filterStates[currentIndex];
+        }
+    }
+    
     const searchTerm = container.querySelector('.search-bar')?.value || '';
-    state.activeFilters[id] = activeFilter;
+    state.activeFilters[id] = currentFilter;
     state.searchTerms[id] = searchTerm; // Save search term
   });
   
@@ -390,20 +424,34 @@ function restoreAdminState() {
         Object.keys(savedState.activeFilters).forEach(containerId => {
           const container = document.getElementById(containerId);
           if (container) {
-            const filterValue = savedState.activeFilters[containerId];
+            const savedFilterValue = savedState.activeFilters[containerId];
             const searchTerm = savedState.searchTerms ? (savedState.searchTerms[containerId] || '') : '';
 
             const searchBar = container.querySelector('.search-bar');
+            const cyclingButton = container.querySelector('.cycling-filter-button');
+
             if (searchBar && searchTerm) {
               searchBar.value = searchTerm;
               filterItems(containerId, 'search', searchTerm.toLowerCase()); // Apply search
-            } else if (filterValue && filterValue !== 'all') { // Apply filter if no search term or search not active
-              const filterButton = container.querySelector(`.filter-button[data-filter="${filterValue}"]`);
-              if (filterButton) {
-                filterButton.click(); // This will trigger filterItems
+            } else if (cyclingButton && savedFilterValue && savedFilterValue !== 'all') {
+              const filterStates = cyclingButton.dataset.filterStates.split(',');
+              const displayNames = cyclingButton.dataset.displayNames.split(',');
+              const savedFilterIndex = filterStates.indexOf(savedFilterValue);
+
+              if (savedFilterIndex !== -1) {
+                cyclingButton.dataset.currentFilterIndex = savedFilterIndex;
+                cyclingButton.textContent = `Filter: ${displayNames[savedFilterIndex]}`;
+                filterItems(containerId, savedFilterValue, null);
+              } else { // Default to 'all' if problem
+                cyclingButton.dataset.currentFilterIndex = 0;
+                cyclingButton.textContent = `Filter: ${displayNames[0] || 'All'}`; // Ensure displayNames[0] exists
+                filterItems(containerId, 'all', null);
               }
-            } else {
-                 filterItems(containerId, 'all', null); // Default to all if no specific filter/search
+            } else if (cyclingButton) { // Default to 'all'
+              const displayNames = cyclingButton.dataset.displayNames.split(',');
+              cyclingButton.dataset.currentFilterIndex = 0;
+              cyclingButton.textContent = `Filter: ${displayNames[0] || 'All'}`; // Ensure displayNames[0] exists
+              filterItems(containerId, 'all', null);
             }
           }
         });
@@ -443,8 +491,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  document.querySelectorAll('.filter-button, .copies-count, .search-bar').forEach(element => { // Added .search-bar
-    element.addEventListener('input', saveAdminState); // Changed to 'input' for search-bar for immediate saving
+  // document.querySelectorAll('.filter-button, .copies-count, .search-bar').forEach(element => { // Added .search-bar
+  //   element.addEventListener('input', saveAdminState); // Changed to 'input' for search-bar for immediate saving
+  // });
+  // Cycling filter button saves state in its own handler.
+  // +/- buttons trigger saveItems which calls saveAdminState.
+  // Search bar needs to save state on input.
+  document.querySelectorAll('.search-bar').forEach(element => {
+    element.addEventListener('input', saveAdminState);
   });
   
   // Add event listeners for refresh buttons

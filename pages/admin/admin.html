@@ -36,9 +36,7 @@
       <button class="collapsible">CO-OP</button>
       <div id="coop-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
-          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="coop-items">
           <button class="refresh-button" data-file="../../data/coop.json" data-container="coop-items">↻</button>
         </div>
@@ -48,9 +46,7 @@
       <button class="collapsible">LOOT</button>
       <div id="loot-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
-          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="loot-items">
           <button class="refresh-button" data-file="../../data/loot.json" data-container="loot-items">↻</button>
         </div>
@@ -60,9 +56,7 @@
       <button class="collapsible">PVP</button>
       <div id="pvp-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-copies">ACTIVE</button>
-          <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="pvp-items">
           <button class="refresh-button" data-file="../../data/pvp.json" data-container="pvp-items">↻</button>
         </div>
@@ -72,9 +66,7 @@
       <button class="collapsible">MOVIES</button>
       <div id="movies-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="movies-items">
           <button class="refresh-button" data-file="../../data/movies.json" data-container="movies-items">↻</button>
         </div>
@@ -84,9 +76,7 @@
       <button class="collapsible">ANIME</button>
       <div id="anime-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="anime-items">
           <button class="refresh-button" data-file="../../data/anime.json" data-container="anime-items">↻</button>
         </div>
@@ -96,9 +86,7 @@
       <button class="collapsible">SUNDAY MORNING</button>
       <div id="sundaymorning-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="sundaymorning-items">
           <button class="refresh-button" data-file="../../data/sundaymorning.json" data-container="sundaymorning-items">↻</button>
         </div>
@@ -108,9 +96,7 @@
       <button class="collapsible">SUNDAY NIGHT</button>
       <div id="sundaynight-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="sundaynight-items">
           <button class="refresh-button" data-file="../../data/sundaynight.json" data-container="sundaynight-items">↻</button>
         </div>
@@ -120,9 +106,7 @@
       <button class="collapsible">SINGLE PLAYER</button>
       <div id="singleplayer-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="singleplayer-items">
           <button class="refresh-button" data-file="../../data/singleplayer.json" data-container="singleplayer-items">↻</button>
         </div>
@@ -132,9 +116,7 @@
       <button class="collapsible">YOUTUBE</button>
       <div id="youtube-items" class="content item-container">
         <div class="filters">
-          <button class="filter-button" data-filter="all">All</button>
-          <button class="filter-button" data-filter="has-status">ACTIVE</button>
-          <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
           <input type="text" class="search-bar" placeholder="Search..." data-container="youtube-items">
           <button class="refresh-button" data-file="../../data/youtube.json" data-container="youtube-items">↻</button>
         </div>
