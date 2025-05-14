@@ -457,6 +457,10 @@ app.put('/data/:filename', async (req, res) => {
 const itemsRouter = require('./routes/items');
 app.use('/api/items', itemsRouter);
 
+// Import and use the casino bets routes
+const betsRouter = require('./routes/bets');
+app.use('/api/bets', betsRouter);
+
 // Add test endpoint to verify database connection
 app.get('/api/test-db', async (req, res) => {
   try {
