@@ -23,6 +23,22 @@ app.use((req, res, next) => {
   next();
 });
 
+// Add proper caching headers for JSON files
+app.use((req, res, next) => {
+  // For static JSON files
+  if (req.method === 'GET' && req.path.endsWith('.json')) {
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    
+    // Add Last-Modified header for auto-sync feature
+    if (!res.getHeader('Last-Modified')) {
+      res.setHeader('Last-Modified', new Date().toUTCString());
+    }
+  }
+  next();
+});
+
 // Import selection routes
 const selectionsRoute = require('./routes/selections');
 app.use('/api/selections', selectionsRoute);
@@ -355,12 +371,12 @@ app.post('/api/options/update', async (req, res) => {
       'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
       [data, poolName]
     );
-    
-    // Also update file as fallback
+      // Also update file as fallback
     const filePath = path.join(__dirname, 'data', `${poolName}.json`);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    console.log(`Saved file: ${filePath}`);
     
-    res.json({ success: true });
+    res.json({ success: true, message: `${poolName} updated successfully` });
   } catch (error) {
     console.error("Error updating option:", error);
     res.status(500).json({ error: 'Failed to update option' });
@@ -369,34 +385,42 @@ app.post('/api/options/update', async (req, res) => {
 
 // Update PUT route for JSON data files to use database
 app.put('/data/:filename', async (req, res) => {
+  console.log(`Updating file: ${req.params.filename}`);
   const filename = req.params.filename;
   const data = req.body;
 
   // --- Validation & Security Enhancements ---
   // Only allow .json files in the data directory
   if (!/^[\w-]+\.json$/.test(filename)) {
+    console.error(`Invalid filename format: ${filename}`);
     return res.status(400).json({ error: 'Invalid filename. Only alphanumeric, dash, underscore, and .json allowed.' });
   }
 
   // Prevent directory traversal
   if (filename.includes('..') || path.isAbsolute(filename)) {
+    console.error(`Directory traversal attempt: ${filename}`);
     return res.status(400).json({ error: 'Invalid filename.' });
   }
 
   // Validate JSON body is not empty and is an object or array
   if (!data || (typeof data !== 'object')) {
+    console.error(`Invalid JSON body for ${filename}`);
     return res.status(400).json({ error: 'Request body must be valid JSON.' });
   }
+  
+  console.log(`Data validation passed for ${filename}`)
 
   const category = filename.replace('.json', '');
-  try {
-    // Save to database
+  try {    // Save to database
     const existingResult = await pool.query(
       'SELECT id FROM json_data WHERE category = $1',
       [category]
     );
 
+    console.log(`Saving ${category} to database`);
+    
     if (existingResult.rows.length > 0) {
+      console.log(`Updating existing record for ${category}`);
       await pool.query(
         'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
         [data, category]
@@ -406,17 +430,25 @@ app.put('/data/:filename', async (req, res) => {
         'INSERT INTO json_data (category, data) VALUES ($1, $2)',
         [category, data]
       );
-    }
-
-    // Also update file as fallback
+    }    // Also update file as fallback
     const filePath = path.join(__dirname, 'data', filename);
+    console.log(`Writing updated data to ${filePath}`);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
-
-    console.log(`JSON file ${filename} updated successfully in database and file!`);
-    res.json({ success: true, message: 'Data saved.' });
+    console.log(`File ${filename} successfully updated`);    console.log(`JSON file ${filename} updated successfully in database and file!`);
+    res.json({ 
+      success: true, 
+      message: `Data saved successfully to ${filename}`,
+      timestamp: new Date().toISOString()
+    });
   } catch (err) {
     console.error('Error updating data:', err);
-    res.status(500).json({ error: 'Error saving data', details: err.message });
+    // Create a detailed error response
+    res.status(500).json({ 
+      error: 'Error saving data', 
+      details: err.message,
+      stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined,
+      timestamp: new Date().toISOString()
+    });
   }
 });
 

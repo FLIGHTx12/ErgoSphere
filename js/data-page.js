@@ -2,21 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add navbar scroll behavior
   let lastScrollTop = 0;
   const navbar = document.getElementById('navbar');
-  
-  // Create save status indicator
-  const saveStatus = document.createElement('div');
-  saveStatus.id = 'save-status';
-  saveStatus.style.position = 'fixed';
-  saveStatus.style.bottom = '20px';
-  saveStatus.style.right = '20px';
-  saveStatus.style.padding = '10px';
-  saveStatus.style.borderRadius = '5px';
-  saveStatus.style.display = 'none';
-  saveStatus.style.zIndex = '1000';
-  saveStatus.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-  saveStatus.style.fontSize = '14px';
-  saveStatus.style.fontWeight = 'bold';
-  document.body.appendChild(saveStatus);
+    // No save status indicator needed
   
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -173,12 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const detailsDiv = item.querySelector('.item-details');
       if (detailsDiv && typeof item._originalDetailsHTML === 'string') {
         detailsDiv.innerHTML = item._originalDetailsHTML;
-      }
-
-      // Remove edit mode if present
-      item.classList.remove('edit-mode');
-      
-      // Remove wheel event listener
+      }      // Remove wheel event listener
       item.onwheel = null;
     });
     
@@ -1205,12 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const detailsDiv = item.querySelector('.item-details');
             if (detailsDiv && typeof item._originalDetailsHTML === 'string') {
               detailsDiv.innerHTML = item._originalDetailsHTML;
-            }
-
-            // Remove edit mode if present
-            item.classList.remove('edit-mode');
-            
-            // Remove any wheel event listeners
+            }            // Remove any wheel event listeners
             item.onwheel = null;
           }
           
@@ -1274,29 +1250,13 @@ document.addEventListener('DOMContentLoaded', () => {
               item.style.backgroundPosition = `center ${bgPos}%`;
               e.preventDefault();
             };
-            
-            item.addEventListener('wheel', handleScroll, { passive: false });
+              item.addEventListener('wheel', handleScroll, { passive: false });
 
-            // --- BEGIN: Add Edit button to expanded view ---
+            // Simply restore original details view without edit button
             const detailsDiv = item.querySelector('.item-details');
             if (detailsDiv) {
               detailsDiv.innerHTML = item._originalDetailsHTML;
-              // Add Edit button
-              if (!item.classList.contains('edit-mode')) {
-                const editBtn = document.createElement('button');
-                editBtn.textContent = 'Edit';
-                editBtn.style.marginTop = '10px';
-                editBtn.style.backgroundColor = '#444';
-                editBtn.style.color = 'white';
-                editBtn.style.fontWeight = 'bold';
-                editBtn.addEventListener('click', (e) => {
-                  e.stopPropagation();
-                  enterEditMode(item, detailsDiv);
-                });
-                detailsDiv.appendChild(editBtn);
-              }
             }
-            // --- END: Add Edit button to expanded view ---
           }
           
           // Function to update layout based on number of expanded items
@@ -1441,155 +1401,5 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error loading data:', error));
   }
 
-  // --- BEGIN: Edit mode logic ---
-  function enterEditMode(itemDiv, detailsDiv) {
-    itemDiv.classList.add('edit-mode');
-    const itemData = itemDiv._itemData;
-    detailsDiv.innerHTML = '';
-    Object.keys(itemData).forEach(key => {
-      if (['image', 'imageUrl', 'LINK', 'link', 'Link'].includes(key)) return;
-      let value = itemData[key];
-      if (typeof value === 'undefined' || value === null) return;
-      if (typeof value === 'object') value = JSON.stringify(value);
-      if (String(value).length > 40) {
-        detailsDiv.innerHTML += `
-          <label style="display:block;margin-top:6px;"><strong>${key}:</strong>
-            <textarea data-edit-key="${key}" style="width:98%;">${value}</textarea>
-          </label>
-        `;
-      } else {
-        detailsDiv.innerHTML += `
-          <label style="display:block;margin-top:6px;"><strong>${key}:</strong>
-            <input data-edit-key="${key}" value="${value}" style="width:98%;" />
-          </label>
-        `;
-      }
-    });
-    // Save and Cancel buttons
-    const saveBtn = document.createElement('button');
-    saveBtn.textContent = 'Save';
-    saveBtn.style.marginTop = '10px';
-    saveBtn.style.backgroundColor = 'green';
-    saveBtn.style.color = 'white';
-    saveBtn.style.fontWeight = 'bold';
-    saveBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const inputs = detailsDiv.querySelectorAll('[data-edit-key]');
-      inputs.forEach(input => {
-        const key = input.getAttribute('data-edit-key');
-        let val = input.value;
-        try {
-          if (val.startsWith('{') || val.startsWith('[')) {
-            val = JSON.parse(val);
-          }
-        } catch {}
-        itemData[key] = val;
-      });
-      saveEditedItem(itemData);
-    });
-    detailsDiv.appendChild(saveBtn);
-
-    const cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
-    cancelBtn.style.marginLeft = '10px';
-    cancelBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      detailsDiv.innerHTML = itemDiv._originalDetailsHTML;
-      itemDiv.classList.remove('edit-mode');
-      // Restore Edit button
-      const editBtn = document.createElement('button');
-      editBtn.textContent = 'Edit';
-      editBtn.style.marginTop = '10px';
-      editBtn.style.backgroundColor = '#444';
-      editBtn.style.color = 'white';
-      editBtn.style.fontWeight = 'bold';
-      editBtn.addEventListener('click', (e2) => {
-        e2.stopPropagation();
-        enterEditMode(itemDiv, detailsDiv);
-      });
-      detailsDiv.appendChild(editBtn);
-    });
-    detailsDiv.appendChild(cancelBtn);
-  }
-  // --- END: Edit mode logic ---
-
-  // --- BEGIN: Save edited item to backend ---
-  function saveEditedItem(editedItem) {
-    // Show saving indicator
-    saveStatus.textContent = 'Saving...';
-    saveStatus.style.display = 'block';
-    saveStatus.style.backgroundColor = '#3498db';
-    saveStatus.style.color = 'white';
-    
-    const path = window.location.pathname;
-    const filename = path.split('/').pop().replace('.html', '.json');
-    const apiUrl = `/data/${filename}`;
-    
-    console.log('Saving to:', apiUrl, 'Item:', editedItem);
-    
-    // Fetch current data
-    fetch(apiUrl)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`Failed to fetch current data: ${res.status} ${res.statusText}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        // Find and update the item
-        let updated = false;
-        if (Array.isArray(data)) {
-          for (let i = 0; i < data.length; i++) {
-            if (
-              (data[i].TITLE && editedItem.TITLE && data[i].TITLE === editedItem.TITLE) ||
-              (data[i].Title && editedItem.Title && data[i].Title === editedItem.Title) ||
-              (data[i].text && editedItem.text && data[i].text === editedItem.text)
-            ) {
-              console.log('Found match, updating item at index:', i);
-              data[i] = { ...editedItem };
-              updated = true;
-              break;
-            }
-          }
-        }
-        
-        if (updated) {
-          return fetch(apiUrl, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
-        } else {
-          throw new Error('Could not find item to update in the data array');
-        }
-      })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(err => {
-            throw new Error(`Server rejected save: ${err.error || err.details || response.statusText}`);
-          });
-        }
-        
-        // Success
-        saveStatus.textContent = 'Saved successfully!';
-        saveStatus.style.backgroundColor = '#2ecc71';
-        
-        // Hide after 1.5 seconds and reload
-        setTimeout(() => {
-          saveStatus.style.display = 'none';
-          window.location.reload();
-        }, 1500);
-      })
-      .catch(err => {
-        console.error('Save error:', err);
-        saveStatus.textContent = `Error: ${err.message}`;
-        saveStatus.style.backgroundColor = '#e74c3c';
-        
-        // Hide after 5 seconds
-        setTimeout(() => {
-          saveStatus.style.display = 'none';
-        }, 5000);
-      });
-  }
-  // --- END: Save edited item to backend ---
+  
 });

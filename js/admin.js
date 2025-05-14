@@ -1,38 +1,45 @@
 // Function to load and display items from a JSON file
 function loadItems(file, containerId) {
   fetch(file)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then(data => {
-      console.log('Data:', data); // Debug: log parsed JSON data
+      console.log(`Loaded data for ${containerId}:`, data.length || 'object'); 
       const container = document.getElementById(containerId);
 
-      // Extract genres based on the container ID
-      let genres = [];
-      if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
-        genres = [...new Set(data.flatMap(item => (item.genre || '').split(',').map(s => s.trim())))];
-      } else {
-        genres = [...new Set(data.flatMap(item => (item.GENRE || '').split(',').map(s => s.trim())))];
-      }
+      // Remove genre extraction and button logic
+      // let genres = [];
+      // if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
+      //   genres = [...new Set(data.flatMap(item => (item.genre || '').split(',').map(s => s.trim())))];
+      // } else {
+      //   genres = [...new Set(data.flatMap(item => (item.GENRE || '').split(',').map(s => s.trim())))];
+      // }
 
-      const genreButton = container.querySelector('.filter-button[data-filter="genre"]');
-      let currentGenreIndex = 0;
+      // const genreButton = container.querySelector('.filter-button[data-filter="genre"]');
+      // let currentGenreIndex = 0;
 
-      genreButton.addEventListener('click', () => {
-        currentGenreIndex = (currentGenreIndex + 1) % genres.length;
-        genreButton.textContent = genres[currentGenreIndex];
-        filterItems(containerId, 'genre', genres[currentGenreIndex]);
-      });
+      // if (genreButton) { // Check if genreButton exists
+      //   genreButton.addEventListener('click', () => {
+      //     currentGenreIndex = (currentGenreIndex + 1) % genres.length;
+      //     genreButton.textContent = genres[currentGenreIndex];
+      //     filterItems(containerId, 'genre', genres[currentGenreIndex]);
+      //   });
+      // }
 
       data.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-        // Set the genre dataset based on the container ID
+        // Set the genre dataset based on the container ID (can be kept if genre data is still useful for other purposes or future use)
         let itemGenres = item.GENRE || item.genre || '';
         if (typeof itemGenres === 'string') {
           itemGenres = itemGenres.split(',').map(s => s.trim());
         }
-        itemDiv.dataset.genre = JSON.stringify(itemGenres);
+        itemDiv.dataset.genre = JSON.stringify(itemGenres); // Keep for potential future use or if other logic depends on it
 
         let itemText = '';
         let statusText = '';
@@ -63,6 +70,8 @@ function loadItems(file, containerId) {
           ${statusText}
           ${buttonsHTML}
         `;
+        // Store itemText on the element for searching
+        itemDiv.dataset.itemText = itemText.toLowerCase();
 
         // Add event listeners for buttons
         if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
@@ -70,26 +79,39 @@ function loadItems(file, containerId) {
           const increaseButton = itemDiv.querySelector('.increase-button');
           const copiesCountSpan = itemDiv.querySelector('.copies-count');
 
-          const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');
-
-          decreaseButton.addEventListener('click', () => {
+          const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');          
+          decreaseButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
             clickSound.play();
+            
+            // Provide immediate button feedback
+            decreaseButton.style.backgroundColor = "#4a235a";
+            setTimeout(() => { decreaseButton.style.backgroundColor = ""; }, 300);
+            
             if (item.copies > 0) {
               item.copies--;
               copiesCountSpan.textContent = item.copies;
               if (item.copies === 0) {
                 copiesCountSpan.classList.add('zero');
+                copiesCountSpan.style.backgroundColor = 'red';
               }
               saveItems(file, data);
             }
           });
 
-          increaseButton.addEventListener('click', () => {
+          increaseButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
             clickSound.play();
+            
+            // Provide immediate button feedback
+            increaseButton.style.backgroundColor = "#4a235a";
+            setTimeout(() => { increaseButton.style.backgroundColor = ""; }, 300);
+            
             item.copies++;
             copiesCountSpan.textContent = item.copies;
             if (item.copies > 0) {
               copiesCountSpan.classList.remove('zero');
+              copiesCountSpan.style.backgroundColor = 'green';
             }
             saveItems(file, data);
           });
@@ -97,14 +119,20 @@ function loadItems(file, containerId) {
           const toggleButton = itemDiv.querySelector('.toggle-button');
           const statusTextSpan = itemDiv.querySelector('.status-text');
 
-          const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');
-
-          toggleButton.addEventListener('click', () => {
+          const clickSound = new Audio('../../assets/audio/mouse-click-deep.mp3');          
+          toggleButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
             clickSound.play();
+            
+            // Provide immediate button feedback
+            toggleButton.style.backgroundColor = "#4a235a";
+            setTimeout(() => { toggleButton.style.backgroundColor = ""; }, 300);
+            
             item.STATUS = item.STATUS === '🟢' ? '' : '🟢';
             toggleButton.textContent = item.STATUS === '🟢' ? '🟢' : 'OFF';
             statusTextSpan.textContent = item.STATUS || ' ';
             statusTextSpan.classList.toggle('active', item.STATUS === '🟢');
+            statusTextSpan.style.backgroundColor = item.STATUS === '🟢' ? 'green' : 'transparent';
             saveItems(file, data);
           });
         }
@@ -117,49 +145,182 @@ function loadItems(file, containerId) {
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
           const filter = button.dataset.filter;
-          filterItems(containerId, filter, genres[currentGenreIndex]);
+          // For 'all', 'has-status', etc., the third argument isn't used by filterItems
+          filterItems(containerId, filter, null);
         });
       });
-    })
+
+      // Add event listener for the search bar
+      const searchBar = container.querySelector('.search-bar');
+      if (searchBar) {
+        searchBar.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          filterItems(containerId, 'search', searchTerm);
+        });
+      }
+    })    
     .catch(error => {
-      console.error('Error loading or parsing JSON:', error); // Error handling
+      console.error('Error loading or parsing JSON:', error);
+      
+      // Show error message to user
+      const errorMsg = document.createElement('div');
+      errorMsg.textContent = `Error loading data: ${error.message}`;
+      errorMsg.style.color = 'red';
+      errorMsg.style.padding = '10px';
+      errorMsg.style.margin = '10px 0';
+      errorMsg.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+      errorMsg.style.borderRadius = '5px';
+      errorMsg.style.border = '1px solid red';
+      
+      const container = document.getElementById(containerId);
+      if (container) {
+        container.innerHTML = ''; // Clear previous content
+        container.appendChild(errorMsg);
+      }
     });
 }
 
-function filterItems(containerId, filter, genre) {
+// Function to refresh data from the server
+function refreshData(file, containerId) {
+  // Clear the container
+  const container = document.getElementById(containerId);
+  if (container) {
+    // Save current filter state
+    const currentFilter = container.querySelector('.filter-button.active')?.dataset?.filter || 'all';
+    const currentSearchTerm = container.querySelector('.search-bar')?.value || '';
+    
+    container.innerHTML = '';
+    
+    // Re-add the filter buttons and search bar
+    const filters = document.createElement('div');
+    filters.className = 'filters';
+    
+    // Determine which filter buttons to add based on container ID
+    if (containerId === 'coop-items' || containerId === 'loot-items' || containerId === 'pvp-items') {
+      filters.innerHTML = `
+        <button class="filter-button" data-filter="all">All</button>
+        <button class="filter-button" data-filter="has-copies">ACTIVE</button>
+        <button class="filter-button" data-filter="zero-copies">NOT ACTIVE</button>
+        <input type="text" class="search-bar" placeholder="Search..." data-container="${containerId}">
+      `;
+    } else {
+      filters.innerHTML = `
+        <button class="filter-button" data-filter="all">All</button>
+        <button class="filter-button" data-filter="has-status">ACTIVE</button>
+        <button class="filter-button" data-filter="no-status">NOT ACTIVE</button>
+        <input type="text" class="search-bar" placeholder="Search..." data-container="${containerId}">
+      `;
+    }
+    // Always add refresh button
+    const refreshButton = document.createElement('button');
+    refreshButton.className = 'refresh-button';
+    refreshButton.dataset.file = file;
+    refreshButton.dataset.container = containerId;
+    refreshButton.innerHTML = '↻';
+    filters.appendChild(refreshButton);
+    
+    container.appendChild(filters);
+    
+    // Show loading indicator
+    const loading = document.createElement('div');
+    loading.textContent = 'Refreshing data...';
+    loading.style.padding = '10px';
+    loading.style.textAlign = 'center';
+    loading.style.color = 'white';
+    loading.style.marginTop = '10px';
+    container.appendChild(loading);
+    
+    // Reload the data with a cache-busting query parameter
+    const cacheBuster = `?t=${Date.now()}`;
+    loadItems(`${file}${cacheBuster}`, containerId);
+    
+    // Restore search term and re-apply filter if necessary
+    setTimeout(() => {
+      const searchBar = container.querySelector('.search-bar');
+      if (searchBar && currentSearchTerm) {
+        searchBar.value = currentSearchTerm;
+        // Trigger search if there was a term
+         filterItems(containerId, 'search', currentSearchTerm.toLowerCase());
+      } else if (currentFilter && currentFilter !== 'all') { // Else, if there was another active filter
+        const filterButton = container.querySelector(`.filter-button[data-filter="${currentFilter}"]`);
+        if (filterButton) {
+          filterButton.click(); // This will call filterItems
+        }
+      } else {
+        // Default to 'all' if no specific filter or search was active
+        filterItems(containerId, 'all', null);
+      }
+    }, 500);
+  }
+}
+
+function filterItems(containerId, filter, value) { // Renamed 'genre' to 'value' for broader use
   const container = document.getElementById(containerId);
   const items = container.querySelectorAll('.item');
+  const searchTerm = (filter === 'search' && value) ? value.toLowerCase() : null;
 
   items.forEach(item => {
+    let showItem = false;
+    const itemText = item.dataset.itemText || ''; // Get stored item text
+
     switch (filter) {
       case 'all':
-        item.style.display = 'flex';
+        showItem = true;
         break;
       case 'has-status':
-        item.style.display = item.querySelector('.status-text').textContent === '🟢' ? 'flex' : 'none';
+        showItem = item.querySelector('.status-text').textContent === '🟢';
         break;
       case 'no-status':
-        item.style.display = item.querySelector('.status-text').textContent !== '🟢' ? 'flex' : 'none';
+        showItem = item.querySelector('.status-text').textContent !== '🟢';
         break;
       case 'has-copies':
-        item.style.display = parseInt(item.querySelector('.copies-count').textContent) > 0 ? 'flex' : 'none';
+        showItem = parseInt(item.querySelector('.copies-count').textContent) > 0;
         break;
       case 'zero-copies':
-        item.style.display = parseInt(item.querySelector('.copies-count').textContent) === 0 ? 'flex' : 'none';
+        showItem = parseInt(item.querySelector('.copies-count').textContent) === 0;
         break;
-      case 'genre':
-        const itemGenres = JSON.parse(item.dataset.genre);
-        item.style.display = itemGenres.includes(genre) ? 'flex' : 'none';
+      // case 'genre': // Removed genre case
+      //   const itemGenres = JSON.parse(item.dataset.genre);
+      //   showItem = itemGenres.includes(value);
+      //   break;
+      case 'search':
+        showItem = searchTerm ? itemText.includes(searchTerm) : true; // Show all if search term is empty
         break;
       default:
-        item.style.display = 'flex';
+        showItem = true;
     }
+    item.style.display = showItem ? 'flex' : 'none';
   });
 }
 
 // Function to save the updated JSON data back to the file
 function saveItems(file, data) {
-  fetch(`/data/${file.split('/').pop()}`, {
+  const filename = file.split('/').pop();
+  
+  // Add visual feedback
+  const statusMsg = document.getElementById('save-status') || (() => {
+    const el = document.createElement('div');
+    el.id = 'save-status';
+    el.style.position = 'fixed';
+    el.style.bottom = '20px';
+    el.style.right = '20px';
+    el.style.padding = '10px';
+    el.style.borderRadius = '5px';
+    el.style.backgroundColor = '#3498db';
+    el.style.color = 'white';
+    el.style.fontWeight = 'bold';
+    el.style.zIndex = '1000';
+    document.body.appendChild(el);
+    return el;
+  })();
+    statusMsg.textContent = 'Saving...';
+  statusMsg.style.display = 'block';
+  
+  // Find container ID from the file path
+  const containerId = filename.replace('.json', '-items');
+  console.log(`Saving ${filename} with ${Array.isArray(data) ? data.length : 'object'} items to container ${containerId}`);
+  
+  fetch(`/data/${filename}`, {
     method: 'PUT', // Use PUT to update the resource
     headers: {
       'Content-Type': 'application/json'
@@ -167,43 +328,92 @@ function saveItems(file, data) {
     body: JSON.stringify(data)
   })
     .then(response => {
-      if (response.ok) {
-        console.log('JSON data saved successfully!');
-      } else {
-        console.error('Error saving JSON data:', response.status);
+      if (!response.ok) {
+        throw new Error(`Failed to save: ${response.status} ${response.statusText}`);
       }
+      return response.json();
+    })    
+    .then(result => {
+      console.log('JSON data saved successfully!', result);
+      statusMsg.textContent = result.message || 'Saved successfully!';
+      statusMsg.style.backgroundColor = '#2ecc71';
+      
+      // Store this change in localStorage for persistence
+      saveAdminState();
+      
+      // Hide the message after 1.5 seconds
+      setTimeout(() => {
+        statusMsg.style.display = 'none';
+      }, 1500);
+    })
+    .catch(error => {
+      console.error('Error saving JSON data:', error);
+      statusMsg.textContent = `Error: ${error.message}`;
+      statusMsg.style.backgroundColor = '#e74c3c';
+      
+      // Hide the message after 5 seconds
+      setTimeout(() => {
+        statusMsg.style.display = 'none';
+      }, 5000);
     });
 }
 
-// Save Admin state to localStorage
+// Function to save the current admin state (filters, etc.) to localStorage
 function saveAdminState() {
-  const state = {};
-
-  // Save filter button states and item copies
-  document.querySelectorAll('.filter-button').forEach(button => {
-    state[button.dataset.filter] = button.textContent;
+  const state = {
+    activeFilters: {},
+    searchTerms: {}, // Add search terms
+    timestamp: Date.now()
+  };
+  
+  // Save active filters and search terms for each container
+  document.querySelectorAll('.item-container').forEach(container => {
+    const id = container.id;
+    const activeFilter = container.querySelector('.filter-button.active')?.dataset?.filter || 'all';
+    const searchTerm = container.querySelector('.search-bar')?.value || '';
+    state.activeFilters[id] = activeFilter;
+    state.searchTerms[id] = searchTerm; // Save search term
   });
-  document.querySelectorAll('.copies-count').forEach(span => {
-    state[span.id || span.dataset.item] = span.textContent;
-  });
-
+  
   localStorage.setItem('adminState', JSON.stringify(state));
 }
 
-// Restore Admin state from localStorage
+// Function to restore the admin state from localStorage
 function restoreAdminState() {
-  const state = JSON.parse(localStorage.getItem('adminState')) || {};
+  try {
+    const savedState = JSON.parse(localStorage.getItem('adminState'));
+    
+    if (savedState) {
+      // Set a timeout to ensure the DOM is fully loaded
+      setTimeout(() => {
+        // Restore active filters and search terms for each container
+        Object.keys(savedState.activeFilters).forEach(containerId => {
+          const container = document.getElementById(containerId);
+          if (container) {
+            const filterValue = savedState.activeFilters[containerId];
+            const searchTerm = savedState.searchTerms ? (savedState.searchTerms[containerId] || '') : '';
 
-  Object.keys(state).forEach(key => {
-    const button = document.querySelector(`.filter-button[data-filter="${key}"]`);
-    if (button) {
-      button.textContent = state[key];
+            const searchBar = container.querySelector('.search-bar');
+            if (searchBar && searchTerm) {
+              searchBar.value = searchTerm;
+              filterItems(containerId, 'search', searchTerm.toLowerCase()); // Apply search
+            } else if (filterValue && filterValue !== 'all') { // Apply filter if no search term or search not active
+              const filterButton = container.querySelector(`.filter-button[data-filter="${filterValue}"]`);
+              if (filterButton) {
+                filterButton.click(); // This will trigger filterItems
+              }
+            } else {
+                 filterItems(containerId, 'all', null); // Default to all if no specific filter/search
+            }
+          }
+        });
+      }, 500); // Increased timeout slightly to ensure all elements are ready
     }
-    const span = document.querySelector(`.copies-count[data-item="${key}"]`);
-    if (span) {
-      span.textContent = state[key];
-    }
-  });
+  } catch (err) {
+    console.error('Error restoring admin state:', err);
+    // Clear potentially corrupted state
+    localStorage.removeItem('adminState');
+  }
 }
 
 // Load items from each JSON file with relative paths
@@ -233,7 +443,55 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  document.querySelectorAll('.filter-button, .copies-count').forEach(element => {
-    element.addEventListener('input', saveAdminState);
+  document.querySelectorAll('.filter-button, .copies-count, .search-bar').forEach(element => { // Added .search-bar
+    element.addEventListener('input', saveAdminState); // Changed to 'input' for search-bar for immediate saving
+  });
+  
+  // Add event listeners for refresh buttons
+  document.querySelectorAll('.refresh-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const file = this.dataset.file;
+      const containerId = this.dataset.container;
+      
+      // Visual feedback for refresh button
+      this.classList.add('refreshing');
+      this.disabled = true;
+      
+      // Show refresh notification
+      const statusMsg = document.getElementById('save-status') || (() => {
+        const el = document.createElement('div');
+        el.id = 'save-status';
+        el.style.position = 'fixed';
+        el.style.bottom = '20px';
+        el.style.right = '20px';
+        el.style.padding = '10px';
+        el.style.borderRadius = '5px';
+        el.style.backgroundColor = '#3498db';
+        el.style.color = 'white';
+        el.style.fontWeight = 'bold';
+        el.style.zIndex = '1000';
+        document.body.appendChild(el);
+        return el;
+      })();
+      
+      statusMsg.textContent = 'Refreshing data...';
+      statusMsg.style.display = 'block';
+      statusMsg.style.backgroundColor = '#3498db';
+      
+      // Refresh the data
+      refreshData(file, containerId);
+      
+      // Reset the button after refresh
+      setTimeout(() => {
+        this.classList.remove('refreshing');
+        this.disabled = false;
+        statusMsg.textContent = 'Data refreshed!';
+        statusMsg.style.backgroundColor = '#2ecc71';
+        
+        setTimeout(() => {
+          statusMsg.style.display = 'none';
+        }, 1500);
+      }, 1000);
+    });
   });
 });

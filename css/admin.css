@@ -15,7 +15,10 @@ body {
     transform: translateX(-100%);
   }
 
-
+  header { /* Added style for header */
+    text-align: center;
+    width: 100%;
+  }
   
   #navbar {
     position: fixed;
@@ -243,21 +246,22 @@ button:active {
 
 .container {
   display: flex;
-  flex-direction: column; /* Changed to column */
-  flex-wrap: wrap;
-  width: 50%; /* Reduced width by 50% */
-  margin-left: auto; /* Added to center horizontally */
-  margin-right: auto; /* Added to center horizontally */
-  margin-right: 160px; /* Adjust margin to accommodate sidebar */
+  flex-direction: column; /* Default to column for mobile-first */
+  width: 95%; /* Adjusted for mobile */
+  margin-left: auto; /* Center container on mobile */
+  margin-right: auto; /* Center container on mobile */
+  /* Removed fixed margin-right: 160px; from base */
+  /* flex-wrap: wrap; */ /* Removed from base, will be added in media query */
 }
 
 .container.sidebar-visible {
-  margin-right: 310px; /* Adjust margin when sidebar is visible */
+  /* This style is primarily for when sidebar is manually opened on smaller screens */
+  /* margin-right: 310px; */ /* This seems too large for a 150px sidebar, consider adjusting if issues persist on sub-1024px screens with sidebar open */
 }
 
 .column {
   flex: 1;
-  margin: 10px;
+  margin: 10px 0; /* Adjusted for vertical stacking on mobile */
 }
 
 #sidebar {
@@ -321,17 +325,137 @@ button:active {
   background-color: darkviolet;
 }
 
+/* Search bar styling */
+.search-bar {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid purple;
+  background-color: #333; /* Dark background for the input */
+  color: white; /* Light text color */
+  flex-grow: 1; /* Allow search bar to take available space */
+  margin-left: 5px; /* Optional: add some space if needed */
+  margin-right: 5px; /* Optional: add some space if needed */
+}
+
+.search-bar::placeholder {
+  color: #aaa; /* Lighter placeholder text */
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: darkviolet;
+  box-shadow: 0 0 5px darkviolet;
+}
+
+/* Refresh button styling */
+.refresh-button {
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto;
+  transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.refresh-button:hover {
+  background-color: darkviolet;
+  transform: rotate(180deg);
+}
+
+.refresh-button.refreshing {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Save status notification */
+#save-status, #sync-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  z-index: 9999;
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  text-align: center;
+}
+
+#save-status {
+  display: none; /* Initially hidden */
+}
+
+#sync-notification {
+  bottom: 60px; /* Position above save status */
+  background-color: #3498db;
+  color: white;
+  display: block; /* Always in the DOM */
+  opacity: 0; /* But initially invisible */
+  transition: opacity 0.3s ease-in-out;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1024px) {
   #sidebar.hidden {
     transform: translateX(100%); /* Ensure sidebar is hidden on smaller screens */
   }
 
   .container {
-    margin-right: 0; /* Remove margin on smaller screens */
+    /* margin-right: 0; */ /* Base style is now auto, so this might not be needed */
   }
 
   .container.sidebar-visible {
-    margin-right: 150px; /* Adjust margin when sidebar is visible on smaller screens */
+    margin-right: 150px; /* Adjust margin when sidebar is swiped open on smaller screens */
+  }
+}
+
+@media (min-width: 768px) { /* Optional: Tablet specific adjustments if needed */
+  .container {
+    /* Styles for tablets, if different from mobile and large desktop */
+    /* For now, it will inherit mobile styles or 1024px+ styles if screen is larger */
+  }
+}
+
+@media (min-width: 1024px) { /* Styles for PC/Desktop */
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Or space-around if preferred */
+    margin-left: 20px;
+    margin-right: 170px; /* Account for 150px sidebar + 20px gap */
+    width: auto; /* Allow it to fill available space */
+  }
+
+  .column {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(50% - 20px); /* Two columns, accounting for 10px margin on each side */
+    margin: 10px; /* Re-apply horizontal and vertical margins */
+    min-width: 320px; /* Prevent columns from becoming too narrow */
   }
 }
 
