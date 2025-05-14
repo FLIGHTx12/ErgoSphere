@@ -1,3 +1,13 @@
+// Utility: Safely get element or its value
+function safeGetElement(id) {
+  return document.getElementById(id);
+}
+
+function safeGetElementValue(id, defaultValue = "") {
+  const element = document.getElementById(id);
+  return element ? element.value : defaultValue;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const selectElements = document.querySelectorAll('select');
   const receiptDiv = document.getElementById('receipt');
@@ -18,13 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Update user and apply styling based on selection
 function updateUser() {
-  const user = document.getElementById("user").value;
-  const leagueSelect = document.getElementById("league");
-  const betContainer = document.getElementById("bet-container");
-  const receipt = document.getElementById("receipt");
+  const user = safeGetElementValue("user");
+  const leagueSelect = safeGetElement("league");
+  const betContainer = safeGetElement("bet-container");
+  const receipt = safeGetElement("receipt");
 
-  // Only enable league selection if user is selected
-  leagueSelect.disabled = !user;
+  // Only enable league selection if user is selected and element exists
+  if (leagueSelect) {
+    leagueSelect.disabled = !user;
+  }
 
   // Apply background image based on user selection
   if (user === "FLIGHTx12!") {
@@ -510,14 +522,17 @@ const riskPayouts = {
 };
 
 function updateBets() {
-  const user = document.getElementById("user").value;
-  const league = document.getElementById("league").value;
-  const bettingSystem = document.getElementById("betting-system");
+  const user = safeGetElementValue("user");
+  const league = safeGetElementValue("league");
+  const bettingSystem = safeGetElement("betting-system");
   
   // If no user is selected, prompt to select user first
   if (!user) {
     alert("Please select a user first.");
-    document.getElementById("league").value = "";
+    const leagueSelect = safeGetElement("league");
+    if (leagueSelect) {
+      leagueSelect.value = "";
+    }
     return;
   }
 
@@ -574,24 +589,29 @@ function updateBets() {
 }
 
 function updateLines(betNum) {
-  const league = document.getElementById("league").value;
-  const category = document.getElementById(`category${betNum}`).value;
-  const lineSelect = document.getElementById(`line${betNum}`);
-  const playerSelect = document.getElementById(`player${betNum}`);
-  const betAmountInput = document.getElementById(`betAmount${betNum}`);
+  const league = safeGetElementValue("league");
+  const category = safeGetElementValue(`category${betNum}`);
+  const lineSelect = safeGetElement(`line${betNum}`);
+  const playerSelect = safeGetElement(`player${betNum}`);
+  const betAmountInput = safeGetElement(`betAmount${betNum}`);
+  
+  // Safety check - if lineSelect doesn't exist, we can't continue
+  if (!lineSelect) return;
   
   // Make sure bet amount input is visible when category is selected
   if (category) {
     if (!betAmountInput) {
       // Create bet amount input if it doesn't exist
       const container = lineSelect.parentElement;
-      const input = document.createElement('input');
-      input.type = 'number';
-      input.id = `betAmount${betNum}`;
-      input.className = 'bet-amount';
-      input.placeholder = 'Bet Amount';
-      input.min = '1';
-      container.appendChild(input);
+      if (container) {
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = `betAmount${betNum}`;
+        input.className = 'bet-amount';
+        input.placeholder = 'Bet Amount';
+        input.min = '1';
+        container.appendChild(input);
+      }
     } else {
       betAmountInput.style.display = 'block';
     }
@@ -605,21 +625,22 @@ function updateLines(betNum) {
       lines.forEach((line, idx) => {
         lineSelect.innerHTML += `<option value="${idx}">[${line.value}] ${line.text}</option>`;
       });
-    }
-    // Show description below dropdown when a line is selected
+    }    // Show description below dropdown when a line is selected
     lineSelect.onchange = function() {
       const idx = parseInt(this.value, 10);
-      const descDiv = document.getElementById(`line-desc${betNum}`);
-      if (!isNaN(idx) && lines[idx]) {
-        descDiv.style.display = '';
-        descDiv.innerHTML = `<span class='line-desc'>${lines[idx].desc}</span>`;
-      } else {
-        descDiv.innerHTML = '';
-        descDiv.style.display = 'none';
+      const descDiv = safeGetElement(`line-desc${betNum}`);
+      if (descDiv) {
+        if (!isNaN(idx) && lines[idx]) {
+          descDiv.style.display = '';
+          descDiv.innerHTML = `<span class='line-desc'>${lines[idx].desc}</span>`;
+        } else {
+          descDiv.innerHTML = '';
+          descDiv.style.display = 'none';
+        }
       }
     };
     // Always hide description div initially
-    const descDiv = document.getElementById(`line-desc${betNum}`);
+    const descDiv = safeGetElement(`line-desc${betNum}`);
     if (descDiv) descDiv.style.display = 'none';
   } else {
     const lines = teamsData[league]?.categories[category];
@@ -628,13 +649,11 @@ function updateLines(betNum) {
       lines.forEach((line, idx) => {
         lineSelect.innerHTML += `<option value="${line.value}">[${line.value}] ${line.text}</option>`;
       });
-      // Hide description div for NFL, NBA, WNBA
-      const descDiv = document.getElementById(`line-desc${betNum}`);
+      // Hide description div for NFL, NBA, WNBA      const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
       lineSelect.onchange = null;
     } else {
-      lineSelect.innerHTML = '<option value="">Select Line</option>';
-      const descDiv = document.getElementById(`line-desc${betNum}`);
+      lineSelect.innerHTML = '<option value="">Select Line</option>';      const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
     }
   }
@@ -656,20 +675,21 @@ function updateLines(betNum) {
 }
 
 async function submitBets() {
-  const league = document.getElementById("league").value;
-  const awayTeam = document.getElementById("awayTeam").value;
-  const homeTeam = document.getElementById("homeTeam").value;
+  const league = safeGetElementValue("league");
+  const awayTeam = safeGetElementValue("awayTeam");
+  const homeTeam = safeGetElementValue("homeTeam");
   let bets = [];
   let totalBetAmount = 0;
   let totalPotentialWinnings = 0;
-
   for (let i = 1; i <= 3; i++) {
-    const category = document.getElementById(`category${i}`).value;
-    const lineSelect = document.getElementById(`line${i}`);
+    const category = safeGetElementValue(`category${i}`);
+    const lineSelect = safeGetElement(`line${i}`);
+    if (!lineSelect) continue; // Skip this iteration if lineSelect is null
+    
     const riskLevel = lineSelect.value; // This is now "Low", "Medium", or "High"
     const betText = lineSelect.options[lineSelect.selectedIndex]?.text || '';
-    const player = document.getElementById(`player${i}`).value;
-    const betAmountInput = document.getElementById(`betAmount${i}`);
+    const player = safeGetElementValue(`player${i}`);
+    const betAmountInput = safeGetElement(`betAmount${i}`);
     let betDesc = '';
 
     // For ErgoBall/ErgoGolf, get description from teamsData
@@ -706,8 +726,7 @@ async function submitBets() {
 
       // Apply 9% boost if player does not have a ⭐ in front of their name and is not N/A or empty
       let playerBoost = 1;
-      let rolePlayerBoost = false;
-      if (
+      let rolePlayerBoost = false;      if (
         player &&
         player !== 'N/A' &&
         typeof player === 'string' &&
@@ -750,9 +769,14 @@ async function submitBets() {
       ${betLines}
       <div class="wager-total">Wager: ${totalBetAmount} 💷</div>
       <div class="potential-winnings">Potential Win: ${totalPotentialWinnings} 💷</div>
-      <div class="actual-winnings">PAYOUT: ____________ 💷</div>
-    `;    document.getElementById("receipt-content").innerHTML = receiptContent;    // Log bet to localStorage and database
-    const userName = document.getElementById("user").value;
+      <div class="actual-winnings">PAYOUT: ____________ 💷</div>    `;    
+    const receiptContentEl = safeGetElement("receipt-content");
+    if (receiptContentEl) {
+      receiptContentEl.innerHTML = receiptContent;
+    }
+    
+    // Log bet to localStorage and database
+    const userName = safeGetElementValue("user");
     await logSubmittedBet({
       date: new Date().toLocaleString(),
       league,
@@ -869,9 +893,8 @@ function createPayoutReceipt(bet) {
   if (existingReceipt) {
     existingReceipt.remove();
   }
-  
-  // Handle different data formats for local vs. database bets
-  const isLocal = bet.id && bet.id.toString().startsWith('local-');
+    // Handle different data formats for local vs. database bets
+  const isLocal = bet.id && typeof bet.id.toString === 'function' && bet.id.toString().startsWith('local-');
   const betData = isLocal ? bet.bet_data : bet.bet_data;
   const betStatus = bet.bet_status || {};
   const payoutData = bet.payout_data || {};
@@ -1000,20 +1023,30 @@ function capturePayoutReceiptScreenshot(receiptElement) {
 // Reset all bet-related dropdowns and inputs (except league)
 function resetBetInputs() {
   // Reset team selects
-  document.getElementById("awayTeam").innerHTML = '<option value="">Away Team</option>';
-  document.getElementById("homeTeam").innerHTML = '<option value="">Home Team</option>';
+  const awayTeamEl = safeGetElement("awayTeam");
+  const homeTeamEl = safeGetElement("homeTeam");
+  
+  if (awayTeamEl) awayTeamEl.innerHTML = '<option value="">Away Team</option>';
+  if (homeTeamEl) homeTeamEl.innerHTML = '<option value="">Home Team</option>';
+  
   // Reset bet entries
   for (let i = 1; i <= 3; i++) {
-    document.getElementById(`category${i}`).innerHTML = '<option value="">Select Category</option>';
-    document.getElementById(`line${i}`).innerHTML = '<option value="">Select Line</option>';
-    document.getElementById(`player${i}`).innerHTML = '<option value="">Select Player</option>';
+    const categoryEl = safeGetElement(`category${i}`);
+    const lineEl = safeGetElement(`line${i}`);
+    const playerEl = safeGetElement(`player${i}`);
+    
+    if (categoryEl) categoryEl.innerHTML = '<option value="">Select Category</option>';
+    if (lineEl) lineEl.innerHTML = '<option value="">Select Line</option>';
+    if (playerEl) playerEl.innerHTML = '<option value="">Select Player</option>';
+    
     // Remove bet amount input if present
-    const betAmountInput = document.getElementById(`betAmount${i}`);
+    const betAmountInput = safeGetElement(`betAmount${i}`);
     if (betAmountInput && betAmountInput.parentElement) {
       betAmountInput.parentElement.removeChild(betAmountInput);
     }
+    
     // Hide line description
-    const descDiv = document.getElementById(`line-desc${i}`);
+    const descDiv = safeGetElement(`line-desc${i}`);
     if (descDiv) descDiv.style.display = 'none';
   }
 }
@@ -1051,7 +1084,7 @@ function getCurrentWeekNumber() {
 // Save submitted bet to both localStorage log and database
 async function logSubmittedBet(betObj) {
   const weekKey = getCurrentWeekKey();
-  const userName = document.getElementById("user").value;
+  const userName = safeGetElementValue("user");
   
   // Add userName to betObj for localStorage
   betObj.userName = userName;
@@ -1092,7 +1125,7 @@ async function logSubmittedBet(betObj) {
 // Render bet log for the current week, with delete buttons for each bet
 async function renderBetLog() {
   const weekKey = getCurrentWeekKey();
-  const logDiv = document.getElementById('bet-log');
+  const logDiv = safeGetElement('bet-log');
   if (!logDiv) return;
   
   try {
@@ -1139,7 +1172,7 @@ async function renderBetLog() {
         ${weekBets.map(bet => {          // Extract bet data from DB format or use as is for localStorage
           const betData = bet.bet_data || bet;
           const betId = bet.id || `local-${bet.localIdx}`;
-          const isLocal = betId.startsWith('local-');
+          const isLocal = betId && typeof betId === 'string' ? betId.startsWith('local-') : false;
           const displayDate = bet.bet_date || bet.date;
           const userName = bet.user_name || document.getElementById("user").value;
           
