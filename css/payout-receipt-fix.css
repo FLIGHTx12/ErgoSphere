@@ -1,0 +1,247 @@
+/* Fix for receipt background image covering content */
+
+.payout-receipt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh; /* Limit height to 90% of viewport height */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Add semi-transparent background */
+    overflow-y: auto; /* Make scrollable if content overflows */
+    display: flex;
+    flex-direction: column;
+}
+
+.payout-receipt .receipt-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-right: 5px; /* Space for scrollbar */
+}
+
+/* Responsive styling for mobile devices */
+@media (max-width: 768px) {
+    .payout-receipt {
+        width: 98%;
+        padding: 10px;
+        top: 45%; /* Move slightly higher to show more content */
+    }
+}
+
+.payout-receipt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4; /* Make background image more transparent */
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.payout-receipt h2, 
+.payout-receipt div,
+.payout-receipt ul,
+.payout-receipt button {
+    position: relative;
+    z-index: 2; /* Ensure content appears above the background */
+}
+
+.payout-receipt .bet-details,
+.payout-receipt .payout-summary {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.payout-receipt .bet-details ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.payout-receipt .bet-details li {
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.payout-receipt .bet-details li::before {
+    content: "•";
+    display: inline-block;
+    width: 1em;
+    margin-right: 5px;
+    color: inherit;
+}
+
+/* User-specific styles */
+.payout-receipt.user-flight::before {
+    background-color: rgba(0, 100, 0, 0.4); /* Green tint for FLIGHT */
+}
+
+.payout-receipt.user-jaybers::before {
+    background-color: rgba(100, 0, 100, 0.4); /* Purple tint for Jaybers */
+}
+
+.payout-receipt .payout-receipt-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: rgba(200, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.payout-receipt .bet-won {
+    color: #5efc03; /* Bright green */
+}
+
+.payout-receipt .bet-lost {
+    color: #fc0303; /* Bright red */
+}
+
+.payout-receipt h2 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.payout-receipt .receipt-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.payout-receipt .matchup {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.payout-receipt .copy-receipt-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    width: 80%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payout-receipt .payout-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #FFD700; /* Gold */
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .payout-receipt .copy-receipt-btn {
+        width: 95%;
+        padding: 12px 5px;
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+}
+
+/* Mobile-specific adjustments for payout receipt */
+@media (max-width: 480px) {
+    .payout-receipt {
+        width: 98%;
+        max-height: 80vh;
+        padding: 10px 5px;
+        font-size: 0.95em;
+    }
+    
+    .payout-receipt h2 {
+        font-size: 1.4em;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .payout-receipt .bet-details, 
+    .payout-receipt .payout-summary {
+        padding: 8px 5px;
+    }
+    
+    .payout-receipt .bet-details li {
+        padding: 3px 0;
+        margin-bottom: 3px;
+        line-height: 1.3;
+    }
+    
+    .payout-receipt .payout-value {
+        font-size: 1.3em;
+        padding: 8px;
+    }
+}
+
+/* Additional receipt styles */
+.receipt {
+    position: relative;
+    color: white;
+}
+
+.receipt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.receipt h2, 
+#receipt-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}

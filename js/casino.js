@@ -641,36 +641,54 @@ function updateLines(betNum) {
     };
     // Always hide description div initially
     const descDiv = safeGetElement(`line-desc${betNum}`);
-    if (descDiv) descDiv.style.display = 'none';
-  } else {
+    if (descDiv) descDiv.style.display = 'none';  } else {
     const lines = teamsData[league]?.categories[category];
     if (lines) {
       lineSelect.innerHTML = '<option value="">Select Line</option>';
       lines.forEach((line, idx) => {
         lineSelect.innerHTML += `<option value="${line.value}">[${line.value}] ${line.text}</option>`;
       });
-      // Hide description div for NFL, NBA, WNBA      const descDiv = safeGetElement(`line-desc${betNum}`);
+      // Hide description div for NFL, NBA, WNBA      
+      const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
       lineSelect.onchange = null;
     } else {
-      lineSelect.innerHTML = '<option value="">Select Line</option>';      const descDiv = safeGetElement(`line-desc${betNum}`);
+      lineSelect.innerHTML = '<option value="">Select Line</option>';      
+      const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
     }
   }
-
   // For INDIVIDUAL and STAT_HUNTING, require player selection; otherwise, set to N/A.
+  console.log(`Updating player dropdown for: league=${league}, category=${category}`);
+  console.log(`Player select element:`, playerSelect);
+  console.log(`Available players for ${league}:`, teamsData[league]?.players);
+  
+  if (!playerSelect) {
+    console.error(`Player select for bet #${betNum} not found`);
+    return;
+  }
+
   if ((["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players)) {
+    console.log(`Populating player selection for ${category} in ${league}`);
     playerSelect.innerHTML = '<option value="">Select Player</option>';
+    
     teamsData[league].players.forEach(player => {
       playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
     });
+    
+    console.log(`Player select now has ${playerSelect.options.length} options`);
   } else if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
+    console.log(`Populating player selection for ${category} in ${league}`);
     playerSelect.innerHTML = '<option value="">Select Player</option>';
+    
     teamsData[league].players.forEach(player => {
       playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
     });
+    
+    console.log(`Player select now has ${playerSelect.options.length} options`);
   } else {
     playerSelect.innerHTML = '<option value="">N/A</option>';
+    console.log(`Set player selection to N/A for ${category} in ${league}`);
   }
 }
 
@@ -814,17 +832,35 @@ function captureReceiptScreenshot() {
   // Add a class to ensure content is visible during capture
   receiptElement.classList.add('capturing');
   
+  // Store original background-image
+  const originalBgImage = receiptElement.style.backgroundImage;
+  
+  // Temporarily adjust styles for better screenshot
+  receiptElement.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+  
+  // Ensure all content is visible
+  const contentElement = document.getElementById('receipt-content');
+  if (contentElement) {
+    contentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    contentElement.style.padding = '10px';
+    contentElement.style.borderRadius = '5px';
+    contentElement.style.margin = '10px 0';
+    contentElement.style.position = 'relative';
+    contentElement.style.zIndex = '2';
+  }
+  
   html2canvas(receiptElement, { 
     useCORS: true, 
     allowTaint: true,
-    backgroundColor: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
     removeContainer: true,
     foreignObjectRendering: false,
     logging: false,
     scale: 2 // Increase quality
   }).then(canvas => {
-      // Remove the capturing class
+      // Remove the capturing class and restore original background
       receiptElement.classList.remove('capturing');
+      receiptElement.style.backgroundImage = originalBgImage;
       
       canvas.toBlob(blob => {
           navigator.clipboard.write([
@@ -844,6 +880,7 @@ function captureReceiptScreenshot() {
   }).catch(err => {
       console.error('Failed to capture screenshot:', err);
       receiptElement.classList.remove('capturing');
+      receiptElement.style.backgroundImage = originalBgImage;
       alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
   });
 }
@@ -989,14 +1026,32 @@ function capturePayoutReceiptScreenshot(receiptElement) {
   // Add a class to ensure content is visible during capture
   receiptElement.classList.add('capturing');
   
+  // Store original background-image
+  const originalBgImage = receiptElement.style.backgroundImage;
+  
+  // Temporarily adjust styles for better screenshot
+  receiptElement.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+  
+  // Ensure all content is visible
+  const contentElements = receiptElement.querySelectorAll('.bet-details, .payout-summary, .receipt-info');
+  contentElements.forEach(el => {
+    el.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    el.style.padding = '10px';
+    el.style.borderRadius = '5px';
+    el.style.margin = '10px 0';
+    el.style.position = 'relative';
+    el.style.zIndex = '2';
+  });
+  
   html2canvas(receiptElement, {
     useCORS: true,
     allowTaint: true,
-    backgroundColor: null,
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
     scale: 2 // Increase quality
   }).then(canvas => {
-    // Remove the capturing class
+    // Remove the capturing class and restore original styles
     receiptElement.classList.remove('capturing');
+    receiptElement.style.backgroundImage = originalBgImage;
     
     canvas.toBlob(blob => {
       navigator.clipboard.write([
@@ -1016,6 +1071,7 @@ function capturePayoutReceiptScreenshot(receiptElement) {
   }).catch(err => {
     console.error('Failed to capture payout receipt:', err);
     receiptElement.classList.remove('capturing');
+    receiptElement.style.backgroundImage = originalBgImage;
     alert('Failed to capture payout receipt. Please try again.');
   });
 }
