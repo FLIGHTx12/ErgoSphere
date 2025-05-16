@@ -912,6 +912,10 @@ function captureReceiptScreenshot() {
     const img = new Image();
     img.src = bgUrl.replace(/["']/g, ''); // Clean quotes if present
     img.onload = () => captureWithHtml2Canvas(); // Capture once image is loaded
+    img.onerror = () => { // If image fails to load, capture anyway
+        console.error("Failed to load background image for screenshot, capturing without it.");
+        captureWithHtml2Canvas();
+    };
   } else {
     captureWithHtml2Canvas(); // No background image, capture right away
   }
@@ -928,13 +932,19 @@ function captureReceiptScreenshot() {
         width: receiptElement.offsetWidth,
         height: contentHeight,
         onclone: function(clonedDoc) {
-          // Ensure styles are carried over to the clone
           const clonedElement = clonedDoc.getElementById(receiptElement.id);
           if (clonedElement) {
-            clonedElement.style.backgroundImage = receiptElement.style.backgroundImage;
-            clonedElement.style.backgroundSize = receiptElement.style.backgroundSize;
-            clonedElement.style.backgroundPosition = receiptElement.style.backgroundPosition;
-            clonedElement.style.backgroundColor = receiptElement.style.backgroundColor;
+            const computedStyles = getComputedStyle(receiptElement);
+            clonedElement.style.backgroundImage = computedStyles.backgroundImage;
+            clonedElement.style.backgroundSize = computedStyles.backgroundSize;
+            clonedElement.style.backgroundPosition = computedStyles.backgroundPosition;
+            clonedElement.style.backgroundRepeat = computedStyles.backgroundRepeat;
+
+            if (computedStyles.backgroundImage && computedStyles.backgroundImage !== 'none') {
+              clonedElement.style.backgroundColor = 'transparent'; // Ensure canvas background (null) is used
+            } else {
+              clonedElement.style.backgroundColor = computedStyles.backgroundColor;
+            }
           }
         }
       }).then(canvas => {
@@ -959,7 +969,7 @@ function captureReceiptScreenshot() {
           } else {
             fallbackDownload(blob, 'bet-receipt.png');
           }
-        });
+        }, 'image/png', 1.0); // Highest quality PNG
       }).catch(err => {
         console.error('Failed to capture screenshot:', err);
         
@@ -973,10 +983,10 @@ function captureReceiptScreenshot() {
         
         alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
       });
-    }, 100); // Short delay to ensure styles are applied
+    }, 150); // Adjusted delay
   }
   
-  // Helper function for fallback download
+  // Helper function for fallback download (remains unchanged)
   function fallbackDownload(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

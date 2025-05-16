@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Create payout receipt element
       const receiptDiv = document.createElement('div');
       receiptDiv.className = 'payout-receipt';
+      receiptDiv.id = 'dynamic-payout-receipt'; // Added ID
       
       // Determine which user's styling to use
       let userClass = '';
