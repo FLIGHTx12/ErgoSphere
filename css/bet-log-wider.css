@@ -1,0 +1,127 @@
+/* WIDER BET LOG STYLES
+   Makes the bet log much wider (1200px) and removes bullet points from lists
+   while maintaining all functionality */
+
+/* Wider bet log container */
+.bet-log {
+  max-width: 1200px !important; /* Much wider than the original 700px */
+  width: 90%;  /* Use percentage width for better responsiveness */
+  padding: 18px 25px 15px 25px; /* More padding in the wider container */
+}
+
+/* Enhanced bet log entry styling */
+.bet-log-entry {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  margin: 15px 0; /* More vertical separation between entries */
+  border-radius: 10px;
+}
+
+/* Remove bullets from list items */
+.bet-log-entry ul {
+  list-style-type: none; /* Removes bullets as requested */
+  padding-left: 0; /* Remove default left padding since bullets are gone */
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+/* Enhanced list item styling without bullets */
+.bet-log-entry li {
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  position: relative;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bet-log-entry li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced user name display */
+.bet-log-entry .user-name {
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  display: block;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  padding-bottom: 8px;
+}
+
+/* Adjust bet content for wider layout */
+.bet-line-content {
+  width: calc(100% - 130px);
+  display: inline-block;
+}
+
+/* Position status controls better in wider layout */
+.bet-status-controls {
+  right: 10px;
+}
+
+/* Better spacing for the bet date */
+.bet-log-entry .bet-date {
+  margin-top: 10px;
+  display: block;
+  text-align: right;
+  padding-top: 5px;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+  .bet-log {
+    max-width: 90% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .bet-log {
+    max-width: 95% !important;
+    width: 95%;
+    padding: 15px 20px 12px 20px;
+  }
+  
+  .bet-log-entry {
+    padding: 12px 15px;
+  }
+  
+  .bet-line-content {
+    width: calc(100% - 120px);
+  }
+  
+  .bet-log-entry li {
+    padding: 5px 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bet-log {
+    max-width: 98% !important;
+    width: 98%;
+    padding: 15px 10px 10px 10px;
+  }
+  
+  .bet-log-entry {
+    padding: 10px;
+  }
+  
+  .bet-log-entry .user-name {
+    margin-bottom: 8px;
+  }
+  
+  .bet-line-content {
+    width: calc(100% - 110px);
+  }
+  
+  .bet-status-controls button {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+  
+  .bet-log-entry li {
+    padding: 4px 5px;
+  }
+}

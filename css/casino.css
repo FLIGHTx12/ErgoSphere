@@ -425,7 +425,7 @@ select:disabled {
 
 .bet-log {
   margin: 32px auto 0 auto;
-  max-width: 700px;
+  max-width: 900px;
   background: linear-gradient(135deg, #0a0a1a 80%, #2a0033 100%);
   color: #fff;
   border: 2px solid #0ff;
