@@ -68,6 +68,7 @@
   text-align: right;
   padding-top: 5px;
   border-top: 1px solid rgba(0, 255, 255, 0.2);
+  clear: right; /* Ensure it clears the floated delete button */
 }
 
 /* Responsive adjustments */
