@@ -120,14 +120,26 @@ function fallbackDownload(blob) {
 
 // Initialize screenshot buttons when the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Add screenshot buttons to each contract div
-    const elementsToScreenshot = document.querySelectorAll('.contract'); // Changed selector
+    let elementsToScreenshot = [];
+    const currentPage = window.location.pathname.split('/').pop();
+
+    if (currentPage === 'MODS.html') {
+        elementsToScreenshot = document.querySelectorAll('div.mod');
+    } else if (currentPage === 'contracts.html') {
+        elementsToScreenshot = document.querySelectorAll('div.contract');
+    }
 
     elementsToScreenshot.forEach((element, index) => {
         // Set unique ID if not already set
         if (!element.id) {
-            // Simplified ID generation since we are only targeting .contract
-            element.id = `contract-screenshotable-${index}`; 
+            // Generate ID based on page and element type
+            let idPrefix = 'screenshotable';
+            if (currentPage === 'MODS.html') {
+                idPrefix = 'mod-screenshotable';
+            } else if (currentPage === 'contracts.html') {
+                idPrefix = 'contract-screenshotable';
+            }
+            element.id = `${idPrefix}-${index}`;
         }
 
         // Create screenshot button
