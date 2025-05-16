@@ -75,6 +75,21 @@
     margin: 8px 0;
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center; /* Center align contents of payout-summary */
+}
+
+/* New styles for compact wager and bets won info */
+.payout-receipt .payout-summary-details {
+    display: flex;
+    justify-content: space-around; /* Distribute space between items */
+    align-items: center;
+    font-size: 0.8em; /* Smaller font size */
+    margin-bottom: 8px; /* Space before the total payout */
+    color: #ccc; /* Lighter color for less emphasis */
+}
+
+.payout-receipt .payout-summary-details span {
+    padding: 0 5px; /* Add some horizontal padding between items */
 }
 
 .payout-receipt .bet-details ul {
@@ -136,7 +151,7 @@
     height: 28px;
     font-size: 14px;
     cursor: pointer;
-    z-index: 3;
+    z-index: 10; /* Increased z-index to be above other receipt content (which is z-index 5) */
     line-height: 1;
 }
 
@@ -207,7 +222,7 @@
     font-size: 1.25em;
     font-weight: bold;
     color: #FFD700; /* Gold */
-    margin: 8px auto;
+    margin: 0 auto; /* Adjusted margin, as text-align center on parent handles horizontal */
     padding: 8px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.8);
@@ -250,6 +265,13 @@
     .payout-receipt .payout-summary {
         padding: 6px;
     }
+
+    /* Adjust payout summary details for smaller screens */
+    .payout-receipt .payout-summary-details {
+        font-size: 0.75em; /* Even smaller on small screens */
+        flex-direction: column; /* Stack them on very small screens if needed */
+        gap: 3px; /* Add small gap if stacked */
+    }
     
     .payout-receipt .bet-details li {
         padding: 5px;
@@ -279,8 +301,14 @@
     }
     
     .payout-receipt .bet-details li,
-    .payout-receipt .payout-summary div {
+    .payout-receipt .payout-summary div:not(.payout-value) { /* Target divs in summary except payout-value */
         font-size: 0.85em;
+    }
+
+    .payout-receipt .payout-summary-details {
+        font-size: 0.7em; /* Further reduce for very small screens */
+        flex-direction: column; /* Ensure stacking */
+        gap: 2px;
     }
 }
 

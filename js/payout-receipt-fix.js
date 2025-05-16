@@ -91,8 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div class="payout-summary">
-              <div>Total Wager: ${totalWager} 💷</div>
-              <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
+              <div class="payout-summary-details">
+                <span>Total Wager: ${totalWager} 💷</span>
+                <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
+              </div>
               <div class="payout-value">TOTAL PAYOUT: ${totalWinnings} 💷</div>
             </div>
             

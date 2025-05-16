@@ -52,7 +52,8 @@
   display: block;
   width: 100%;
   position: relative;
-  padding-right: 60px;
+  padding-right: 60px; /* Space for buttons on the right */
+  padding-left: 8px; /* Added padding on the left for content */
   box-sizing: border-box;
 }
 
@@ -67,12 +68,13 @@
 
 .bet-log-entry ul {
   margin: 8px 0;
-  padding-left: 20px;
+  padding-left: 0; /* Remove default list indentation */
+  list-style-type: none; /* Remove default list bullets */
 }
 
 .bet-log-entry li {
   margin-bottom: 6px;
-  padding: 4px;
+  padding: 4px 0; /* Vertical padding only, allow full width */
   border-radius: 3px;
   transition: background-color 0.2s;
 }
