@@ -25,7 +25,9 @@ function initializeCountdowns() {
       bingwaChampion: 'JAYBERS8',
       atleticoChamp: 'FLIGHTx12!',
       movieNight: 'Underwater (2020)',
-      banquetMeal: 'Spaghetti and side salad'
+      banquetMeal: 'Spaghetti and side salad',
+      brunchMeal: 'Pancakes & Syrup', // Added default brunch
+      youtubeTheater: 'No featured video' // Added default YouTube
     };
     
     // Fetch data from the server API
@@ -43,11 +45,27 @@ function initializeCountdowns() {
         const atleticoElement = document.getElementById('current-atletico');
         const movieElement = document.getElementById('current-movie');
         const banquetElement = document.getElementById('current-banquet');
+        const brunchElement = document.getElementById('current-brunch'); // Get brunch element
+        const youtubeElement = document.getElementById('current-youtube'); // Get YouTube element
 
         if (bingwaElement) bingwaElement.textContent = ergosphereData.bingwaChampion || defaultData.bingwaChampion;
         if (atleticoElement) atleticoElement.textContent = ergosphereData.atleticoChamp || defaultData.atleticoChamp;
         if (movieElement) movieElement.textContent = ergosphereData.movieNight || defaultData.movieNight;
         if (banquetElement) banquetElement.textContent = ergosphereData.banquetMeal || defaultData.banquetMeal;
+        if (brunchElement) brunchElement.textContent = ergosphereData.brunchMeal || defaultData.brunchMeal;
+        
+        if (youtubeElement) {
+          let youtubeText = defaultData.youtubeTheater;
+          if (ergosphereData.youtubeTheater && Array.isArray(ergosphereData.youtubeTheater) && ergosphereData.youtubeTheater.length > 0) {
+            youtubeText = ergosphereData.youtubeTheater.join(', ');
+          } else if (typeof ergosphereData.youtubeTheater === 'string' && ergosphereData.youtubeTheater.trim() !== '') {
+            // Handle if API sometimes returns a string directly (though backend sends array or null)
+            youtubeText = ergosphereData.youtubeTheater;
+          } else if (ergosphereData.youtubeTheater && Array.isArray(ergosphereData.youtubeTheater) && ergosphereData.youtubeTheater.length === 0) {
+            youtubeText = 'No video selected'; // Specific message for empty array from API
+          }
+          youtubeElement.textContent = youtubeText;
+        }
         
         // Start the countdowns
         updateCountdowns();
@@ -72,6 +90,8 @@ function applyDefaultSelections(defaultData) {
   const atleticoElement = document.getElementById('current-atletico');
   const movieElement = document.getElementById('current-movie');
   const banquetElement = document.getElementById('current-banquet');
+  const brunchElement = document.getElementById('current-brunch'); // Get brunch element
+  const youtubeElement = document.getElementById('current-youtube'); // Get YouTube element
   
   if (bingwaElement) {
     bingwaElement.textContent = defaultData.bingwaChampion;
@@ -87,6 +107,14 @@ function applyDefaultSelections(defaultData) {
 
   if (banquetElement) {
     banquetElement.textContent = defaultData.banquetMeal;
+  }
+
+  if (brunchElement) { // Set default brunch
+    brunchElement.textContent = defaultData.brunchMeal;
+  }
+
+  if (youtubeElement) { // Set default YouTube
+    youtubeElement.textContent = defaultData.youtubeTheater;
   }
 }
 
