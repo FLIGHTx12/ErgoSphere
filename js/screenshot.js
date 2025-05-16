@@ -120,36 +120,37 @@ function fallbackDownload(blob) {
 
 // Initialize screenshot buttons when the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Add screenshot buttons to each mod div
-    const modDivs = document.querySelectorAll('.mod');
-    
-    modDivs.forEach((modDiv, index) => {
+    // Add screenshot buttons to each contract div
+    const elementsToScreenshot = document.querySelectorAll('.contract'); // Changed selector
+
+    elementsToScreenshot.forEach((element, index) => {
         // Set unique ID if not already set
-        if (!modDiv.id) {
-            modDiv.id = `mod-${index}`;
+        if (!element.id) {
+            // Simplified ID generation since we are only targeting .contract
+            element.id = `contract-screenshotable-${index}`; 
         }
-        
+
         // Create screenshot button
         const screenshotBtn = document.createElement('button');
-        screenshotBtn.className = 'screenshot-btn';
+        screenshotBtn.className = 'screenshot-btn'; // Use existing class for styling
         screenshotBtn.innerHTML = '📸';
         screenshotBtn.setAttribute('title', 'Copy to clipboard');
-        
+
         // Add click event listener
         screenshotBtn.addEventListener('click', function(e) {
             e.stopPropagation(); // Prevent any parent click events
-            
+
             // Temporarily hide the button for cleaner screenshot
             this.style.display = 'none';
-            
-            // Capture the screenshot
-            captureScreenshot(modDiv).then(() => {
+
+            // Capture the screenshot of the current element
+            captureScreenshot(element).then(() => {
                 // Show the button again after capturing
                 this.style.display = 'block';
             });
         });
-        
-        // Append button to mod div
-        modDiv.appendChild(screenshotBtn);
+
+        // Append button to the element
+        element.appendChild(screenshotBtn);
     });
 });

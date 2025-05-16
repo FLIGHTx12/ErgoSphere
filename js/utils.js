@@ -1,7 +1,19 @@
 function setDateAndTimeInputs() {
     const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().substr(0, 10);
-    const formattedTime = currentDate.toTimeString().substr(0, 5);
+
+    // Format date as MM/DD/YYYY
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = currentDate.getFullYear();
+    const formattedDate = `${month}/${day}/${year}`;
+
+    // Format time as HH:MM AM/PM
+    let hours = currentDate.getHours();
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const formattedTime = `${String(hours).padStart(2, '0')}:${minutes} ${ampm}`;
 
     document.querySelectorAll('input[type="date"]').forEach(dateInput => {
         dateInput.value = formattedDate;
