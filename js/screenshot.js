@@ -11,8 +11,25 @@ function captureScreenshot(element) {
         if (bgUrl) {
             const img = new Image();
             img.src = bgUrl;
+            
+            // Set crossOrigin attribute if it's a remote URL (not a data URL)
+            if (!bgUrl.startsWith('data:')) {
+                img.crossOrigin = 'anonymous';
+            }
         }
     }
+    
+    // Store original dimensions and styles
+    const originalStyles = {
+        height: element.style.height,
+        maxHeight: element.style.maxHeight,
+        overflow: element.style.overflow
+    };
+    
+    // Make sure element shows all content
+    element.style.height = 'auto';
+    element.style.maxHeight = 'none';
+    element.style.overflow = 'visible';
     
     // Add slight delay to ensure background is rendered
     return new Promise(resolve => {
@@ -20,7 +37,7 @@ function captureScreenshot(element) {
             html2canvas(element, {
                 allowTaint: true,
                 useCORS: true,
-                backgroundColor: null,
+                backgroundColor: null, // Keep background transparent to preserve the element's background
                 logging: false,
                 scale: 2, // Higher quality
                 onclone: function(clonedDoc) {
@@ -34,9 +51,25 @@ function captureScreenshot(element) {
                         clonedElement.style.backgroundPosition = styles.backgroundPosition;
                         clonedElement.style.backgroundRepeat = styles.backgroundRepeat;
                         clonedElement.style.backgroundColor = styles.backgroundColor;
+                        
+                        // Add custom styling to enhance visibility of content
+                        if (element.classList.contains('receipt') || element.id === 'receipt') {
+                            // Add special styling for receipt elements
+                            clonedElement.querySelectorAll('.matchup, .bet-line, .wager-total').forEach(el => {
+                                el.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                                el.style.textShadow = '1px 1px 3px black';
+                                el.style.padding = '5px';
+                                el.style.borderRadius = '5px';
+                                el.style.margin = '5px 0';
+                            });
+                        }
                     }
-                }
-            }).then(canvas => {
+                }            }).then(canvas => {
+                // Restore original styles
+                element.style.height = originalStyles.height;
+                element.style.maxHeight = originalStyles.maxHeight;
+                element.style.overflow = originalStyles.overflow;
+                
                 canvas.toBlob(blob => {
                     if (!blob) {
                         console.error('Canvas is empty');
@@ -58,12 +91,17 @@ function captureScreenshot(element) {
                         fallbackDownload(blob);
                         resolve();
                     }
-                });
+                }, 'image/png', 1.0); // Use highest quality PNG
             }).catch(err => {
+                // Restore original styles even if capture fails
+                element.style.height = originalStyles.height;
+                element.style.maxHeight = originalStyles.maxHeight;
+                element.style.overflow = originalStyles.overflow;
+                
                 console.error('Failed to capture screenshot:', err);
                 resolve();
             });
-        }, 100); // Short delay to ensure rendering
+        }, 250); // Longer delay to ensure complete rendering
     });
 }
 

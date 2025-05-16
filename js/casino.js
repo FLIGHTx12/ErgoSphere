@@ -865,57 +865,129 @@ function captureReceiptScreenshot() {
   // Add a class to ensure content is visible during capture
   receiptElement.classList.add('capturing');
   
-  // Store original background-image
-  const originalBgImage = receiptElement.style.backgroundImage;
+  // Store original styles
+  const originalStyles = {
+    backgroundImage: receiptElement.style.backgroundImage,
+    backgroundColor: receiptElement.style.backgroundColor,
+    height: receiptElement.style.height,
+    maxHeight: receiptElement.style.maxHeight,
+    overflow: receiptElement.style.overflow
+  };
   
-  // Temporarily adjust styles for better screenshot
-  receiptElement.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-  
-  // Ensure all content is visible
+  // Calculate the full height of the content
   const contentElement = document.getElementById('receipt-content');
-  if (contentElement) {
-    contentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    contentElement.style.padding = '10px';
-    contentElement.style.borderRadius = '5px';
-    contentElement.style.margin = '10px 0';
-    contentElement.style.position = 'relative';
-    contentElement.style.zIndex = '2';
+  const contentHeight = contentElement ? contentElement.scrollHeight : receiptElement.scrollHeight;
+  
+  // Ensure the element shows its full height during capture
+  receiptElement.style.height = contentHeight + 'px';
+  receiptElement.style.maxHeight = 'none';
+  receiptElement.style.overflow = 'visible';
+  
+  // Force background styling to be visible
+  if (!receiptElement.style.backgroundImage || receiptElement.style.backgroundImage === 'none') {
+    const computedStyle = getComputedStyle(receiptElement);
+    if (computedStyle.backgroundImage !== 'none') {
+      receiptElement.style.backgroundImage = computedStyle.backgroundImage;
+      receiptElement.style.backgroundSize = computedStyle.backgroundSize;
+      receiptElement.style.backgroundPosition = computedStyle.backgroundPosition;
+    } else {
+      // User-specific backgrounds based on currently selected user
+      const currentUser = document.getElementById('user')?.value;
+      if (currentUser === "FLIGHTx12!") {
+        receiptElement.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+      } else if (currentUser === "Jaybers8") {
+        receiptElement.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
+      }
+      receiptElement.style.backgroundSize = 'cover';
+      receiptElement.style.backgroundPosition = 'center';
+    }
   }
   
-  html2canvas(receiptElement, { 
-    useCORS: true, 
-    allowTaint: true,
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-    removeContainer: true,
-    foreignObjectRendering: false,
-    logging: false,
-    scale: 2 // Increase quality
-  }).then(canvas => {
-      // Remove the capturing class and restore original background
-      receiptElement.classList.remove('capturing');
-      receiptElement.style.backgroundImage = originalBgImage;
-      
-      canvas.toBlob(blob => {
-          navigator.clipboard.write([
+  // Make sure receipt has a solid background color as fallback
+  receiptElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+  
+  // Preload background image to ensure it's fully rendered before capture
+  const bgUrl = receiptElement.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+  if (bgUrl && bgUrl !== 'none') {
+    const img = new Image();
+    img.src = bgUrl.replace(/["']/g, ''); // Clean quotes if present
+    img.onload = () => captureWithHtml2Canvas(); // Capture once image is loaded
+  } else {
+    captureWithHtml2Canvas(); // No background image, capture right away
+  }
+  
+  function captureWithHtml2Canvas() {
+    // Add slight delay to ensure styles are applied
+    setTimeout(() => {
+      html2canvas(receiptElement, { 
+        useCORS: true, 
+        allowTaint: true,
+        backgroundColor: null, // Keep it transparent to preserve background
+        logging: false,
+        scale: 2, // Higher quality
+        width: receiptElement.offsetWidth,
+        height: contentHeight,
+        onclone: function(clonedDoc) {
+          // Ensure styles are carried over to the clone
+          const clonedElement = clonedDoc.getElementById(receiptElement.id);
+          if (clonedElement) {
+            clonedElement.style.backgroundImage = receiptElement.style.backgroundImage;
+            clonedElement.style.backgroundSize = receiptElement.style.backgroundSize;
+            clonedElement.style.backgroundPosition = receiptElement.style.backgroundPosition;
+            clonedElement.style.backgroundColor = receiptElement.style.backgroundColor;
+          }
+        }
+      }).then(canvas => {
+        // Restore original styles
+        receiptElement.classList.remove('capturing');
+        receiptElement.style.backgroundImage = originalStyles.backgroundImage;
+        receiptElement.style.backgroundColor = originalStyles.backgroundColor;
+        receiptElement.style.height = originalStyles.height;
+        receiptElement.style.maxHeight = originalStyles.maxHeight;
+        receiptElement.style.overflow = originalStyles.overflow;
+        
+        canvas.toBlob(blob => {
+          if (navigator.clipboard && navigator.clipboard.write) {
+            navigator.clipboard.write([
               new ClipboardItem({ 'image/png': blob })
-          ]).then(() => {
+            ]).then(() => {
               alert('Receipt screenshot copied to clipboard!');
-          }).catch(err => {
+            }).catch(err => {
               console.error('Failed to copy screenshot:', err);
-              // Fallback - offer direct download if clipboard fails
-              const link = document.createElement('a');
-              link.download = 'bet-receipt.png';
-              link.href = canvas.toDataURL('image/png');
-              link.click();
-              alert('Receipt saved as image (clipboard access failed).');
-          });
+              fallbackDownload(blob, 'bet-receipt.png');
+            });
+          } else {
+            fallbackDownload(blob, 'bet-receipt.png');
+          }
+        });
+      }).catch(err => {
+        console.error('Failed to capture screenshot:', err);
+        
+        // Restore original styles
+        receiptElement.classList.remove('capturing');
+        receiptElement.style.backgroundImage = originalStyles.backgroundImage;
+        receiptElement.style.backgroundColor = originalStyles.backgroundColor;
+        receiptElement.style.height = originalStyles.height;
+        receiptElement.style.maxHeight = originalStyles.maxHeight;
+        receiptElement.style.overflow = originalStyles.overflow;
+        
+        alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
       });
-  }).catch(err => {
-      console.error('Failed to capture screenshot:', err);
-      receiptElement.classList.remove('capturing');
-      receiptElement.style.backgroundImage = originalBgImage;
-      alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
-  });
+    }, 100); // Short delay to ensure styles are applied
+  }
+  
+  // Helper function for fallback download
+  function fallbackDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    alert('Receipt saved as image (clipboard access failed).');
+  }
 }
 
 function captureReceiptContentScreenshot() {

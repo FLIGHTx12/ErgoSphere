@@ -124,48 +124,86 @@ document.addEventListener('DOMContentLoaded', function() {
         capturePayoutReceiptScreenshot(receiptDiv);
       });
     };
-    
-    // Replace the original capturePayoutReceiptScreenshot function with improved version
+      // Replace the original capturePayoutReceiptScreenshot function with improved version
     window.capturePayoutReceiptScreenshot = function(receiptElement) {
       // First prepare the receipt for capture
       prepareForCapture(receiptElement).then(() => {
         // Add capturing class for special styling
         receiptElement.classList.add('capturing');
         
-        // Calculate ideal dimensions based on content
-        const contentWrapper = receiptElement.querySelector('.receipt-content-wrapper');
-        const contentHeight = contentWrapper ? contentWrapper.scrollHeight : receiptElement.scrollHeight;
-        const contentWidth = receiptElement.clientWidth;
+        // Ensure background image is properly set for the user
+        const userName = receiptElement.querySelector('.receipt-user')?.textContent || 
+                         document.getElementById('user')?.value || '';
         
-        // Set temporary fixed height to ensure all content is captured
-        const originalHeight = receiptElement.style.height;
-        const originalMaxHeight = receiptElement.style.maxHeight;
-        const originalOverflow = receiptElement.style.overflow;
+        let bgImageUrl = receiptElement.style.backgroundImage;
         
-        receiptElement.style.height = contentHeight + 'px';
-        receiptElement.style.maxHeight = 'none';
-        receiptElement.style.overflow = 'visible';
-        
-        // Configure html2canvas options for better mobile capture
-        html2canvas(receiptElement, { 
-          useCORS: true, 
-          allowTaint: true,
-          backgroundColor: null, // Use element's own background
-          scale: window.devicePixelRatio || 2, // Use device pixel ratio for better quality
-          width: contentWidth,
-          height: contentHeight,
-          scrollX: 0,
-          scrollY: -window.scrollY, // Adjust for page scroll
-          logging: false,
-          onclone: function(clonedDoc, clonedElement) {
-            // Further enhance the clone for better visibility
-            clonedElement.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
-              el.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-              el.style.color = 'white';
-              el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 1)';
-            });
+        // If no background is set or it's 'none', apply user-specific background
+        if (!bgImageUrl || bgImageUrl === 'none') {
+          if (userName.includes('FLIGHT')) {
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+          } else if (userName.includes('Jaybers')) {
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
+          } else {
+            // Default background if user not recognized
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
           }
-        }).then(canvas => {
+          receiptElement.style.backgroundImage = bgImageUrl;
+          receiptElement.style.backgroundSize = 'cover';
+          receiptElement.style.backgroundPosition = 'center';
+        }
+        
+        // Preload background image to ensure it's fully loaded before capture
+        const bgUrl = bgImageUrl.replace(/url\(['"]?(.*?)['"]?\)/i, '$1').replace(/["']/g, '');
+        const preloadImage = new Image();
+        preloadImage.crossOrigin = "anonymous"; // Enable CORS
+        preloadImage.src = bgUrl;
+        
+        // Function to continue with capture after ensuring background is loaded
+        const continueCapture = () => {
+          // Calculate ideal dimensions based on content
+          const contentWrapper = receiptElement.querySelector('.receipt-content-wrapper');
+          const contentHeight = contentWrapper ? contentWrapper.scrollHeight : receiptElement.scrollHeight;
+          const contentWidth = receiptElement.clientWidth;
+          
+          // Set temporary fixed height to ensure all content is captured
+          const originalHeight = receiptElement.style.height;
+          const originalMaxHeight = receiptElement.style.maxHeight;
+          const originalOverflow = receiptElement.style.overflow;
+          
+          receiptElement.style.height = contentHeight + 'px';
+          receiptElement.style.maxHeight = 'none';
+          receiptElement.style.overflow = 'visible';
+          
+          // Configure html2canvas options for better mobile capture
+          html2canvas(receiptElement, { 
+            useCORS: true, 
+            allowTaint: true,
+            backgroundColor: null, // Use element's own background
+            scale: window.devicePixelRatio || 2, // Use device pixel ratio for better quality
+            width: contentWidth,
+            height: contentHeight,
+            scrollX: 0,
+            scrollY: -window.scrollY, // Adjust for page scroll
+            logging: false,
+            onclone: function(clonedDoc, clonedElement) {
+              // Copy background properties explicitly
+              const styles = getComputedStyle(receiptElement);
+              clonedElement.style.backgroundImage = styles.backgroundImage;
+              clonedElement.style.backgroundSize = styles.backgroundSize;
+              clonedElement.style.backgroundPosition = styles.backgroundPosition;
+              clonedElement.style.backgroundRepeat = styles.backgroundRepeat;
+              
+              // Further enhance the clone for better visibility
+              clonedElement.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
+                el.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                el.style.color = 'white';
+                el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 1)';
+                el.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                el.style.borderRadius = '5px';
+                el.style.padding = '8px';
+                el.style.margin = '8px 0';
+              });
+            }        }).then(canvas => {
           // Restore original styles
           receiptElement.classList.remove('capturing');
           receiptElement.style.height = originalHeight;
@@ -186,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
               link.click();
               alert('Receipt saved as image (clipboard access failed).');
             });
-          });
+          }, 'image/png', 1.0); // Use highest quality PNG
         }).catch(err => {
           console.error('Failed to capture screenshot:', err);
           receiptElement.classList.remove('capturing');
@@ -197,6 +235,31 @@ document.addEventListener('DOMContentLoaded', function() {
           receiptElement.style.maxHeight = originalMaxHeight;
           receiptElement.style.overflow = originalOverflow;
         });
+        };
+        
+        // Check if background image needs to be preloaded
+        if (bgUrl && bgUrl !== "none") {
+          // Wait for image to load or timeout after 2 seconds
+          const timeout = setTimeout(() => {
+            console.log('Background image load timed out, continuing with capture');
+            continueCapture();
+          }, 2000);
+          
+          preloadImage.onload = () => {
+            clearTimeout(timeout);
+            console.log('Background image loaded successfully');
+            setTimeout(continueCapture, 100); // Small delay after load
+          };
+          
+          preloadImage.onerror = () => {
+            clearTimeout(timeout);
+            console.error('Failed to load background image');
+            continueCapture(); // Continue anyway
+          };
+        } else {
+          // No background to preload, continue directly
+          continueCapture();
+        }
       }).catch(err => {
         console.error('Failed to prepare for capture:', err);
         alert('Failed to prepare for screenshot. Please try again.');

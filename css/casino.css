@@ -748,11 +748,11 @@ select:disabled {
 /* Ensure receipt content is visible during capturing */
 #receipt.capturing::before,
 #receipt-content.capturing::before {
-  opacity: 0.3; /* Make background more subtle during capture */
+  opacity: 1.0; /* Keep background fully visible during capture */
 }
 
 #receipt.capturing {
-  background-color: black !important; /* Force solid background during capture */
+  background-color: transparent !important; /* Allow real background to show through */
 }
 
 #receipt-content {
