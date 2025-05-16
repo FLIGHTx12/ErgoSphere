@@ -55,16 +55,15 @@ function initializeCountdowns() {
         if (brunchElement) brunchElement.textContent = ergosphereData.brunchMeal || defaultData.brunchMeal;
         
         if (youtubeElement) {
-          let youtubeText = defaultData.youtubeTheater;
+          let youtubeHTML = defaultData.youtubeTheater; // Default to a string
           if (ergosphereData.youtubeTheater && Array.isArray(ergosphereData.youtubeTheater) && ergosphereData.youtubeTheater.length > 0) {
-            youtubeText = ergosphereData.youtubeTheater.join(', ');
+            youtubeHTML = ergosphereData.youtubeTheater.join('<br>');
           } else if (typeof ergosphereData.youtubeTheater === 'string' && ergosphereData.youtubeTheater.trim() !== '') {
-            // Handle if API sometimes returns a string directly (though backend sends array or null)
-            youtubeText = ergosphereData.youtubeTheater;
+            youtubeHTML = ergosphereData.youtubeTheater; // Already a string, use as is
           } else if (ergosphereData.youtubeTheater && Array.isArray(ergosphereData.youtubeTheater) && ergosphereData.youtubeTheater.length === 0) {
-            youtubeText = 'No video selected'; // Specific message for empty array from API
+            youtubeHTML = 'No video selected'; // Specific message for empty array from API
           }
-          youtubeElement.textContent = youtubeText;
+          youtubeElement.innerHTML = youtubeHTML; // Use innerHTML to render <br>
         }
         
         // Start the countdowns
@@ -114,7 +113,7 @@ function applyDefaultSelections(defaultData) {
   }
 
   if (youtubeElement) { // Set default YouTube
-    youtubeElement.textContent = defaultData.youtubeTheater;
+    youtubeElement.innerHTML = defaultData.youtubeTheater; // Use innerHTML for default as well
   }
 }
 
