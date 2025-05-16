@@ -92,16 +92,18 @@
     display: block; /* Changed from flex to block for better wrapping */
     background-color: rgba(0, 0, 0, 0.6); /* Background on each list item */
     border-radius: 4px;
+    width: 100%; /* Ensure it uses full width of its parent ul */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 /* Additional - Make receipt easier to read when capturing */
 .payout-receipt.capturing::before {
-    opacity: 0; /* Completely invisible during capture */
+    opacity: 0.3; /* Make background more visible during capture than normal (0.08) */
 }
 
 .payout-receipt.capturing {
     background-color: rgba(0, 0, 0, 0.95) !important;
-    background-image: none !important;
+    /* background-image: none !important; */ /* Removed to allow background image capture */
 }
 
 .payout-receipt.capturing .bet-details,
@@ -163,7 +165,15 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 8px; /* Add spacing between elements */
+    gap: 4px; /* Reduced spacing between elements for compactness */
+}
+
+/* New style for user and date line */
+.payout-receipt .receipt-user-date {
+    font-size: 0.75em; /* Smaller font size */
+    opacity: 0.8; /* Slightly less prominent */
+    margin-bottom: 2px; /* Reduced bottom margin */
+    text-align: center; /* Center align user/date */
 }
 
 .payout-receipt .matchup {

@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2>Payout Receipt</h2>
         <div class="receipt-content-wrapper">
           <div class="receipt-info">
-            <div><b>${bet.user_name}</b> | ${betDate}</div>
+            <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
             <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
             
             <div class="bet-details">
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         html2canvas(receiptElement, { 
           useCORS: true, 
           allowTaint: true,
-          backgroundColor: 'rgba(0, 0, 0, 0.95)',
+          backgroundColor: null, // Use element's own background
           scale: window.devicePixelRatio || 2, // Use device pixel ratio for better quality
           width: contentWidth,
           height: contentHeight,
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // Force dark background for better text visibility during capture
           element.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-          element.style.backgroundImage = 'none';
+          // Do NOT hide the element's background image, allow ::before to inherit it
           
           // Ensure all content is visible
           element.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
