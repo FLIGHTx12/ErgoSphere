@@ -80,15 +80,15 @@ function populateSelect(selectElement, optionsArray) {
   defaultOption.text = "Select";
   defaultOption.hidden = true; // hide the default option
   selectElement.appendChild(defaultOption);
-  
-  optionsArray.forEach(option => {
-    const optionElement = document.createElement("option");
-    optionElement.value = option.value;
-    optionElement.text = option.text;
-    if (option.description) {
-      optionElement.dataset.description = option.description; // store description
+
+  optionsArray.forEach(optionData => {
+    const option = document.createElement("option");
+    option.value = optionData.value;
+    option.text = optionData.text;
+    if (optionData.description) {
+      option.dataset.description = optionData.description; // Store description in dataset
     }
-    selectElement.appendChild(optionElement);
+    selectElement.appendChild(option);
   });
 }
 
@@ -125,14 +125,22 @@ function submitSelection() {
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);
     if (container) {
-      const selectElements = container.querySelectorAll('.custom-select');
-      const quantityInputs = container.querySelectorAll('.quantity-input');
-      selectElements.forEach((select, index) => {
-        const quantity = parseInt(quantityInputs[index].value, 10);
-        if (select.selectedIndex !== 0) { // ignore default option
-          const itemName = select.options[select.selectedIndex].text;
-          selectedItems.push(itemName + ' x ' + quantity);
-          totalValue += parseInt(select.value, 10) * quantity;
+      const selects = container.querySelectorAll('select.custom-select');
+      const quantities = container.querySelectorAll('input.quantity-input');
+      selects.forEach((select, index) => {
+        const selectedOption = select.options[select.selectedIndex];
+        const quantity = parseInt(quantities[index].value);
+        if (selectedOption && selectedOption.value !== "0" && quantity > 0) {
+          const itemName = selectedOption.text.split(' - ')[0];
+          const itemValue = parseInt(selectedOption.value);
+          const itemDescription = selectedOption.dataset.description; // Get description
+          const totalItemValue = itemValue * quantity;
+          let itemText = `${itemName} (x${quantity}) - ${totalItemValue}💷`;
+          if (itemDescription) {
+            itemText += `<br><small><em>${itemDescription}</em></small>`; // Add description
+          }
+          selectedItems.push(itemText);
+          totalValue += totalItemValue;
         }
       });
     }

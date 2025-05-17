@@ -37,6 +37,14 @@
   border-bottom: 1px dashed #ccc;
 }
 
+#summary li small {
+  display: block; /* Ensures the description is on a new line */
+  margin-top: 2px; /* Adds a little space above the description */
+  font-size: 0.8em; /* Makes the text smaller */
+  font-style: italic; /* Makes the text italic */
+  color: #555; /* Slightly lighter color for the description */
+}
+
 #summary p {
   font-size: 1.1em;
   font-weight: bold;
