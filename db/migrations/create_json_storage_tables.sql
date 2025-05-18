@@ -1,23 +1,22 @@
--- filepath: c:\Users\fligh\OneDrive\ErgoSphere\db\migrations\create_json_storage_tables.sql
 -- Create a table for general JSON data storage
-CREATE TABLE IF NOT EXISTS json_data (
-  id SERIAL PRIMARY KEY,
+CREATE TABLE json_data (
+  id INT IDENTITY(1,1) PRIMARY KEY,
   category VARCHAR(50) NOT NULL,  -- e.g., 'loot', 'pvp', 'coop'
-  data JSONB NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  data NVARCHAR(MAX) NOT NULL,
+  created_at DATETIME DEFAULT GETDATE(),
+  updated_at DATETIME DEFAULT GETDATE()
 );
 
 -- Create index for faster lookups by category
-CREATE INDEX IF NOT EXISTS idx_json_data_category ON json_data(category);
+CREATE INDEX idx_json_data_category ON json_data(category);
 
 -- Create a table for backups
-CREATE TABLE IF NOT EXISTS json_backups (
-  id SERIAL PRIMARY KEY,
+CREATE TABLE json_backups (
+  id INT IDENTITY(1,1) PRIMARY KEY,
   category VARCHAR(50) NOT NULL,
-  data JSONB NOT NULL,
-  backup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  data NVARCHAR(MAX) NOT NULL,
+  backup_date DATETIME DEFAULT GETDATE()
 );
 
 -- Create index for faster lookups by category
-CREATE INDEX IF NOT EXISTS idx_json_backups_category ON json_backups(category);
+CREATE INDEX idx_json_backups_category ON json_backups(category);
