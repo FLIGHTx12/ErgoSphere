@@ -263,10 +263,11 @@ select:disabled {
   background-color: black;
   color: white;
   max-width: 1100px;
-  min-width: 800px;
+  /* Removed min-width: 800px; to fix mobile display */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 90%; /* Add percentage width for better responsiveness */
 }
 
 #receipt h2 {
@@ -1475,4 +1476,38 @@ select:disabled {
   color: white !important; 
   position: relative !important;
   z-index: 5 !important;
+}
+
+/* Add responsive styles for bet receipt on mobile devices */
+@media (max-width: 768px) {
+  #receipt {
+    padding: 15px;
+    width: 95%;
+  }
+  
+  #receipt .matchup {
+    font-size: 1.2em;
+  }
+  
+  #receipt .bet-line {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  #receipt {
+    padding: 12px 8px;
+    width: 98%;
+  }
+  
+  #receipt .matchup {
+    font-size: 1.1em;
+  }
+  
+  #receipt .wager-total,
+  #receipt .potential-winnings,
+  #receipt .actual-winnings {
+    font-size: 0.9em;
+  }
 }
