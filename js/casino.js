@@ -624,8 +624,18 @@ function updateLines(betNum) {
   const playerSelect = safeGetElement(`player${betNum}`);
   const betAmountInput = safeGetElement(`betAmount${betNum}`);
   
-  // Safety check - if lineSelect doesn't exist, we can't continue
-  if (!lineSelect) return;
+  console.log(`⚙️ updateLines(${betNum}): league=${league}, category=${category}`);
+  
+  // Safety check - if lineSelect or playerSelect doesn't exist, we can't continue
+  if (!lineSelect) {
+    console.error(`Line select #${betNum} not found`);
+    return;
+  }
+  
+  if (!playerSelect) {
+    console.error(`Player select #${betNum} not found`);
+    return;
+  }
   
   // Make sure bet amount input is visible when category is selected
   if (category) {
@@ -654,7 +664,8 @@ function updateLines(betNum) {
       lines.forEach((line, idx) => {
         lineSelect.innerHTML += `<option value="${idx}">[${line.value}] ${line.text}</option>`;
       });
-    }    // Show description below dropdown when a line is selected
+    }
+    // Show description below dropdown when a line is selected
     lineSelect.onchange = function() {
       const idx = parseInt(this.value, 10);
       const descDiv = safeGetElement(`line-desc${betNum}`);
@@ -670,7 +681,8 @@ function updateLines(betNum) {
     };
     // Always hide description div initially
     const descDiv = safeGetElement(`line-desc${betNum}`);
-    if (descDiv) descDiv.style.display = 'none';  } else {
+    if (descDiv) descDiv.style.display = 'none';
+  } else {
     const lines = teamsData[league]?.categories[category];
     if (lines) {
       lineSelect.innerHTML = '<option value="">Select Line</option>';
@@ -687,38 +699,42 @@ function updateLines(betNum) {
       if (descDiv) descDiv.style.display = 'none';
     }
   }
+
   // For INDIVIDUAL and STAT_HUNTING, require player selection; otherwise, set to N/A.
   console.log(`Updating player dropdown for: league=${league}, category=${category}`);
-  console.log(`Player select element:`, playerSelect);
-  console.log(`Available players for ${league}:`, teamsData[league]?.players);
   
-  if (!playerSelect) {
-    console.error(`Player select for bet #${betNum} not found`);
-    return;
-  }
-
-  if ((["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players)) {
-    console.log(`Populating player selection for ${category} in ${league}`);
-    playerSelect.innerHTML = '<option value="">Select Player</option>';
+  // Always clear the player select first
+  playerSelect.innerHTML = '<option value="">Select Player</option>';
+  
+  if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players) {
+    console.log(`Populating ${teamsData[league].players.length} players for ${category} in ${league}`);
     
+    // Populate players for this league
     teamsData[league].players.forEach(player => {
-      playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
+      const option = document.createElement('option');
+      option.value = player;
+      option.textContent = player;
+      playerSelect.appendChild(option);
     });
     
-    console.log(`Player select now has ${playerSelect.options.length} options`);
   } else if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
-    console.log(`Populating player selection for ${category} in ${league}`);
-    playerSelect.innerHTML = '<option value="">Select Player</option>';
+    console.log(`Populating ${teamsData[league].players.length} players for ${league}`);
     
+    // Populate players for ErgoBall or ErgoGolf
     teamsData[league].players.forEach(player => {
-      playerSelect.innerHTML += `<option value="${player}">${player}</option>`;
+      const option = document.createElement('option');
+      option.value = player;
+      option.textContent = player;
+      playerSelect.appendChild(option);
     });
     
-    console.log(`Player select now has ${playerSelect.options.length} options`);
   } else {
-    playerSelect.innerHTML = '<option value="">N/A</option>';
+    // For other categories, set to N/A
+    playerSelect.innerHTML = '<option value="N/A">N/A</option>';
     console.log(`Set player selection to N/A for ${category} in ${league}`);
   }
+  
+  console.log(`Player select now has ${playerSelect.options.length} options`);
 }
 
 async function submitBets() {
@@ -1032,12 +1048,14 @@ function createPayoutReceipt(bet) {
   let winsCount = 0;
   let totalWager = 0;
   let totalWinnings = 0;
+  let totalReturn = 0; // Add this to track payout including original bet
   
   betData.bets.forEach((b, idx) => {
     totalWager += b.betAmount;
     if (betStatus[idx] === 'won') {
       winsCount++;
       totalWinnings += b.potentialWin;
+      totalReturn += b.potentialWin + b.betAmount; // Add both winnings and original bet
     }
   });
   
@@ -1060,7 +1078,7 @@ function createPayoutReceipt(bet) {
               <li class="${statusClass}">
                 ${b.betText} : ${b.player} - 
                 <b>${status.toUpperCase()}</b> 
-                ${status === 'won' ? `<span>(+${b.potentialWin} 💷)</span>` : ''}
+                ${status === 'won' ? `<span>(+${b.potentialWin} 💷, Bet: ${b.betAmount} 💷)</span>` : ''}
               </li>
             `;
           }).join('')}
@@ -1070,7 +1088,7 @@ function createPayoutReceipt(bet) {
       <div class="payout-summary">
         <div>Total Wager: ${totalWager} 💷</div>
         <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
-        <div class="payout-value">TOTAL PAYOUT: ${totalWinnings} 💷</div>
+        <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
       </div>
       
       <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
@@ -1147,6 +1165,8 @@ function capturePayoutReceiptScreenshot(receiptElement) {
 
 // Reset all bet-related dropdowns and inputs (except league)
 function resetBetInputs() {
+  console.log("🧹 Resetting bet inputs");
+  
   // Reset team selects
   const awayTeamEl = safeGetElement("awayTeam");
   const homeTeamEl = safeGetElement("homeTeam");
@@ -1167,12 +1187,16 @@ function resetBetInputs() {
     // Remove bet amount input if present
     const betAmountInput = safeGetElement(`betAmount${i}`);
     if (betAmountInput && betAmountInput.parentElement) {
-      betAmountInput.parentElement.removeChild(betAmountInput);
+      betAmountInput.value = "";
+      betAmountInput.style.display = 'none';
     }
     
     // Hide line description
     const descDiv = safeGetElement(`line-desc${i}`);
-    if (descDiv) descDiv.style.display = 'none';
+    if (descDiv) {
+      descDiv.innerHTML = '';
+      descDiv.style.display = 'none';
+    }
   }
 }
 
@@ -1815,12 +1839,14 @@ document.addEventListener('DOMContentLoaded', function() {
       let winsCount = 0;
       let totalWager = 0;
       let totalWinnings = 0;
+      let totalReturn = 0; // Add this to track payout including original bet
       
       betData.bets.forEach((b, idx) => {
         totalWager += b.betAmount;
         if (betStatus[idx] === 'won') {
           winsCount++;
           totalWinnings += b.potentialWin;
+          totalReturn += b.potentialWin + b.betAmount; // Add both winnings and original bet
         }
       });
 
@@ -1850,7 +1876,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li class="${statusClass}">
                       ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
                       <br><b>${status.toUpperCase()}</b> 
-                      ${status === 'won' ? `<span>(+${b.potentialWin} 💷)</span>` : ''}
+                      ${status === 'won' ? `<span>(+${b.potentialWin} 💷, Bet: ${b.betAmount} 💷)</span>` : ''}
                     </li>
                   `;
                 }).join('')}
@@ -1862,7 +1888,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>Total Wager: ${totalWager} 💷</span>
                 <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
               </div>
-              <div class="payout-value">TOTAL PAYOUT: ${totalWinnings} 💷</div>
+              <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
             </div>
             
             <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
