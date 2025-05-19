@@ -1746,3 +1746,578 @@ function createBetSignature(bet) {
   
   return betSignature;
 }
+// Visual feedback for clicked buttons
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to add visual feedback to bet status buttons
+  const enhanceBetStatusButtons = function() {
+    const buttons = document.querySelectorAll('.bet-won-btn, .bet-lost-btn');
+    buttons.forEach(btn => {
+      // Store original background color
+      const originalColor = btn.classList.contains('bet-won-btn') 
+        ? 'rgba(0, 180, 0, 0.8)' 
+        : 'rgba(180, 0, 0, 0.8)';
+      
+      // Replace onclick with addEventListener
+      const originalOnClick = btn.onclick;
+      if (originalOnClick) {
+        btn.onclick = null;
+        btn.addEventListener('click', async function(e) {
+          // Visual feedback
+          const originalText = this.innerText;
+          const originalBgColor = this.style.backgroundColor;
+          
+          this.innerText = '...';
+          this.disabled = true;
+          this.style.backgroundColor = 'rgba(100, 100, 100, 0.5)';
+          
+          try {
+            // Call the original onclick handler
+            await originalOnClick.call(this, e);
+          } catch (err) {
+            console.error('Error processing button click:', err);
+            // Restore button state if there's an error
+            this.innerText = originalText;
+            this.disabled = false;
+            this.style.backgroundColor = originalBgColor;
+            alert('Failed to update bet status. Please try again.');
+          }
+        });
+      }
+    });
+  };
+
+  // Initial enhancement
+  enhanceBetStatusButtons();
+
+  // Create a MutationObserver to detect when new bet entries are added
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        // Check if any of the added nodes contain bet buttons
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1 && (node.classList?.contains('bet-log-list') || 
+             node.querySelector?.('.bet-won-btn, .bet-lost-btn'))) {
+            enhanceBetStatusButtons();
+          }
+        });
+      }
+    });
+  });
+
+  // Watch for changes in the bet-log element
+  const betLog = document.getElementById('bet-log');
+  if (betLog) {
+    observer.observe(betLog, { childList: true, subtree: true });
+  }
+});
+// Fixed version of createPayoutReceipt function to fix background image issues
+
+// Override the original createPayoutReceipt function
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof window.createPayoutReceipt === 'function') {
+    const originalCreatePayoutReceipt = window.createPayoutReceipt;
+    
+    window.createPayoutReceipt = function(bet) {
+      // Remove any existing payout receipt
+      const existingReceipt = document.querySelector('.payout-receipt');
+      if (existingReceipt) {
+        existingReceipt.remove();
+      }
+        
+      // Handle different data formats for local vs. database bets
+      const isLocal = bet.id && typeof bet.id === 'string' ? bet.id.startsWith('local-') : false;
+      const betData = isLocal ? bet.bet_data : bet.bet_data;
+      const betStatus = bet.bet_status || {};
+      const payoutData = bet.payout_data || {};
+      
+      // Create payout receipt element
+      const receiptDiv = document.createElement('div');
+      receiptDiv.className = 'payout-receipt';
+      receiptDiv.id = 'dynamic-payout-receipt'; // Added ID
+      
+      // Determine which user's styling to use
+      let userClass = '';
+      if (bet.user_name === "FLIGHTx12!") {
+        userClass = 'user-flight';
+      } else if (bet.user_name === "Jaybers8") {
+        userClass = 'user-jaybers';
+      }
+      
+      // Add user class
+      if (userClass) {
+        receiptDiv.classList.add(userClass);
+      }
+      
+      // Format date nicely
+      const betDate = new Date(bet.bet_date).toLocaleDateString('en-US', {
+        year: 'numeric', 
+        month: 'short', // Use short month name to save space
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      // Count wins and calculate payout
+      let winsCount = 0;
+      let totalWager = 0;
+      let totalWinnings = 0;
+      
+      betData.bets.forEach((b, idx) => {
+        totalWager += b.betAmount;
+        if (betStatus[idx] === 'won') {
+          winsCount++;
+          totalWinnings += b.potentialWin;
+        }
+      });
+
+      // Create receipt HTML with improved structure for mobile visibility
+      receiptDiv.innerHTML = `
+        <button class="payout-receipt-close">&times;</button>
+        <h2>Payout Receipt</h2>
+        <div class="receipt-content-wrapper">
+          <div class="receipt-info">
+            <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
+            <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
+            
+            <div class="bet-details">
+              <h3>Bet Results:</h3>
+              <ul>
+                ${betData.bets.map((b, idx) => {
+                  const status = betStatus[idx] || 'pending';
+                  const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
+                  
+                  // Format player name to be shorter if needed
+                  let playerName = b.player;
+                  if (playerName && playerName.length > 15) {
+                    playerName = playerName.substring(0, 13) + '...';
+                  }
+                  
+                  return `
+                    <li class="${statusClass}">
+                      ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
+                      <br><b>${status.toUpperCase()}</b> 
+                      ${status === 'won' ? `<span>(+${b.potentialWin} 💷)</span>` : ''}
+                    </li>
+                  `;
+                }).join('')}
+              </ul>
+            </div>
+            
+            <div class="payout-summary">
+              <div class="payout-summary-details">
+                <span>Total Wager: ${totalWager} 💷</span>
+                <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
+              </div>
+              <div class="payout-value">TOTAL PAYOUT: ${totalWinnings} 💷</div>
+            </div>
+            
+            <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
+          </div>
+        </div>
+      `;
+      
+      // Add to document
+      document.body.appendChild(receiptDiv);
+      
+      // Apply background image AFTER the element is in the DOM with delay for proper rendering
+      setTimeout(() => {
+        if (bet.user_name === "FLIGHTx12!") {
+          receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+        } else if (bet.user_name === "Jaybers8") {
+          receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
+        }
+      }, 10);
+      
+      // Add event listeners
+      receiptDiv.querySelector('.payout-receipt-close').addEventListener('click', () => {
+        receiptDiv.remove();
+      });
+      
+      receiptDiv.querySelector('#copy-payout-receipt').addEventListener('click', () => {
+        capturePayoutReceiptScreenshot(receiptDiv);
+      });
+    };
+      // Replace the original capturePayoutReceiptScreenshot function with improved version
+    window.capturePayoutReceiptScreenshot = function(receiptElement) {
+      // First prepare the receipt for capture
+      prepareForCapture(receiptElement).then(() => {
+        // Add capturing class for special styling
+        receiptElement.classList.add('capturing');
+        
+        // Ensure background image is properly set for the user
+        const userName = receiptElement.querySelector('.receipt-user')?.textContent || 
+                         document.getElementById('user')?.value || '';
+        
+        let bgImageUrl = receiptElement.style.backgroundImage;
+        
+        // If no background is set or it's 'none', apply user-specific background
+        if (!bgImageUrl || bgImageUrl === 'none') {
+          if (userName.includes('FLIGHT')) {
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+          } else if (userName.includes('Jaybers')) {
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
+          } else {
+            // Default background if user not recognized
+            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+          }
+          receiptElement.style.backgroundImage = bgImageUrl;
+          receiptElement.style.backgroundSize = 'cover';
+          receiptElement.style.backgroundPosition = 'center';
+        }
+        
+        // Preload background image to ensure it's fully loaded before capture
+        const bgUrl = bgImageUrl.replace(/url\(['"]?(.*?)['"]?\)/i, '$1').replace(/["']/g, '');
+        const preloadImage = new Image();
+        preloadImage.crossOrigin = "anonymous"; // Enable CORS
+        preloadImage.src = bgUrl;
+        
+        // Function to continue with capture after ensuring background is loaded
+        const continueCapture = () => {
+          // Calculate ideal dimensions based on content
+          const contentWrapper = receiptElement.querySelector('.receipt-content-wrapper');
+          const contentHeight = contentWrapper ? contentWrapper.scrollHeight : receiptElement.scrollHeight;
+          const contentWidth = receiptElement.clientWidth;
+          
+          // Set temporary fixed height to ensure all content is captured
+          const originalHeight = receiptElement.style.height;
+          const originalMaxHeight = receiptElement.style.maxHeight;
+          const originalOverflow = receiptElement.style.overflow;
+          
+          receiptElement.style.height = contentHeight + 'px';
+          receiptElement.style.maxHeight = 'none';
+          receiptElement.style.overflow = 'visible';
+          
+          // Configure html2canvas options for better mobile capture
+          html2canvas(receiptElement, { 
+            useCORS: true, 
+            allowTaint: true,
+            backgroundColor: null, // Use element's own background
+            scale: window.devicePixelRatio || 2, // Use device pixel ratio for better quality
+            width: contentWidth,
+            height: contentHeight,
+            scrollX: 0,
+            scrollY: -window.scrollY, // Adjust for page scroll
+            logging: false,
+            onclone: function(clonedDoc, clonedElement) {
+              // Copy background properties explicitly
+              const styles = getComputedStyle(receiptElement);
+              clonedElement.style.backgroundImage = styles.backgroundImage;
+              clonedElement.style.backgroundSize = styles.backgroundSize;
+              clonedElement.style.backgroundPosition = styles.backgroundPosition;
+              clonedElement.style.backgroundRepeat = styles.backgroundRepeat;
+              
+              // Further enhance the clone for better visibility
+              clonedElement.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
+                el.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                el.style.color = 'white';
+                el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 1)';
+                el.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                el.style.borderRadius = '5px';
+                el.style.padding = '8px';
+                el.style.margin = '8px 0';
+              });
+            }        }).then(canvas => {
+          // Restore original styles
+          receiptElement.classList.remove('capturing');
+          receiptElement.style.height = originalHeight;
+          receiptElement.style.maxHeight = originalMaxHeight;
+          receiptElement.style.overflow = originalOverflow;
+          
+          canvas.toBlob(blob => {
+            navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]).then(() => {
+              alert('Receipt screenshot copied to clipboard!');
+            }).catch(err => {
+              console.error('Failed to copy screenshot:', err);
+              // Fallback - offer direct download if clipboard fails
+              const link = document.createElement('a');
+              link.download = 'payout-receipt.png';
+              link.href = canvas.toDataURL('image/png');
+              link.click();
+              alert('Receipt saved as image (clipboard access failed).');
+            });
+          }, 'image/png', 1.0); // Use highest quality PNG
+        }).catch(err => {
+          console.error('Failed to capture screenshot:', err);
+          receiptElement.classList.remove('capturing');
+          alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
+          
+          // Restore original styles
+          receiptElement.style.height = originalHeight;
+          receiptElement.style.maxHeight = originalMaxHeight;
+          receiptElement.style.overflow = originalOverflow;
+        });
+        };
+        
+        // Check if background image needs to be preloaded
+        if (bgUrl && bgUrl !== "none") {
+          // Wait for image to load or timeout after 2 seconds
+          const timeout = setTimeout(() => {
+            console.log('Background image load timed out, continuing with capture');
+            continueCapture();
+          }, 2000);
+          
+          preloadImage.onload = () => {
+            clearTimeout(timeout);
+            console.log('Background image loaded successfully');
+            setTimeout(continueCapture, 100); // Small delay after load
+          };
+          
+          preloadImage.onerror = () => {
+            clearTimeout(timeout);
+            console.error('Failed to load background image');
+            continueCapture(); // Continue anyway
+          };
+        } else {
+          // No background to preload, continue directly
+          continueCapture();
+        }
+      }).catch(err => {
+        console.error('Failed to prepare for capture:', err);
+        alert('Failed to prepare for screenshot. Please try again.');
+      });
+    };
+    
+    // Helper function to prepare the receipt for capture
+    function prepareForCapture(element) {
+      return new Promise((resolve, reject) => {
+        try {
+          // Store original background-image
+          const originalBgImage = element.style.backgroundImage;
+          
+          // Force dark background for better text visibility during capture
+          element.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+          // Do NOT hide the element's background image, allow ::before to inherit it
+          
+          // Ensure all content is visible
+          element.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
+            el.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+            el.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+            el.style.textShadow = '1px 1px 3px black';
+          });
+          
+          // Ensure text colors are bold and visible
+          element.querySelectorAll('.payout-value').forEach(el => {
+            el.style.textShadow = '1px 1px 3px black';
+            el.style.fontWeight = 'bold';
+          });
+          
+          // Make sure the copy button is hidden during capture
+          const copyButton = element.querySelector('#copy-payout-receipt');
+          if (copyButton) {
+            copyButton.style.display = 'none';
+          }
+          
+          // Wait a small amount of time for styles to apply
+          setTimeout(() => {
+            resolve();
+          }, 50);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+    
+    console.log("✅ Payout receipt display fix installed");
+  } else {
+    console.error("⚠️ createPayoutReceipt function not found, fix not applied");
+  }
+});
+// Fix for player selection dropdown issues
+
+// Improved updateLines function with better player selection handling
+function updateLines(betNum) {
+  const league = safeGetElementValue("league");
+  const category = safeGetElementValue(`category${betNum}`);
+  const lineSelect = safeGetElement(`line${betNum}`);
+  const playerSelect = safeGetElement(`player${betNum}`);
+  const betAmountInput = safeGetElement(`betAmount${betNum}`);
+  
+  console.log(`⚙️ updateLines(${betNum}): league=${league}, category=${category}`);
+  
+  // Safety check - if lineSelect or playerSelect doesn't exist, we can't continue
+  if (!lineSelect) {
+    console.error(`Line select #${betNum} not found`);
+    return;
+  }
+  
+  if (!playerSelect) {
+    console.error(`Player select #${betNum} not found`);
+    return;
+  }
+  
+  // Make sure bet amount input is visible when category is selected
+  if (category) {
+    if (!betAmountInput) {
+      // Create bet amount input if it doesn't exist
+      const container = lineSelect.parentElement;
+      if (container) {
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = `betAmount${betNum}`;
+        input.className = 'bet-amount';
+        input.placeholder = 'Bet Amount';
+        input.min = '1';
+        container.appendChild(input);
+      }
+    } else {
+      betAmountInput.style.display = 'block';
+    }
+  }
+
+  // Special handling for ErgoBall and ErgoGolf: only one category 'LINES'
+  if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
+    const lines = teamsData[league]?.categories.LINES;
+    if (lines) {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      lines.forEach((line, idx) => {
+        lineSelect.innerHTML += `<option value="${idx}">[${line.value}] ${line.text}</option>`;
+      });
+    }
+    // Show description below dropdown when a line is selected
+    lineSelect.onchange = function() {
+      const idx = parseInt(this.value, 10);
+      const descDiv = safeGetElement(`line-desc${betNum}`);
+      if (descDiv) {
+        if (!isNaN(idx) && lines[idx]) {
+          descDiv.style.display = '';
+          descDiv.innerHTML = `<span class='line-desc'>${lines[idx].desc}</span>`;
+        } else {
+          descDiv.innerHTML = '';
+          descDiv.style.display = 'none';
+        }
+      }
+    };
+    // Always hide description div initially
+    const descDiv = safeGetElement(`line-desc${betNum}`);
+    if (descDiv) descDiv.style.display = 'none';
+  } else {
+    const lines = teamsData[league]?.categories[category];
+    if (lines) {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';
+      lines.forEach((line, idx) => {
+        lineSelect.innerHTML += `<option value="${line.value}">[${line.value}] ${line.text}</option>`;
+      });
+      // Hide description div for NFL, NBA, WNBA      
+      const descDiv = safeGetElement(`line-desc${betNum}`);
+      if (descDiv) descDiv.style.display = 'none';
+      lineSelect.onchange = null;
+    } else {
+      lineSelect.innerHTML = '<option value="">Select Line</option>';      
+      const descDiv = safeGetElement(`line-desc${betNum}`);
+      if (descDiv) descDiv.style.display = 'none';
+    }
+  }
+
+  // For INDIVIDUAL and STAT_HUNTING, require player selection; otherwise, set to N/A.
+  console.log(`Updating player dropdown for: league=${league}, category=${category}`);
+  
+  // Always clear the player select first
+  playerSelect.innerHTML = '<option value="">Select Player</option>';
+  
+  if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players) {
+    console.log(`Populating ${teamsData[league].players.length} players for ${category} in ${league}`);
+    
+    // Populate players for this league
+    teamsData[league].players.forEach(player => {
+      const option = document.createElement('option');
+      option.value = player;
+      option.textContent = player;
+      playerSelect.appendChild(option);
+    });
+    
+  } else if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
+    console.log(`Populating ${teamsData[league].players.length} players for ${league}`);
+    
+    // Populate players for ErgoBall or ErgoGolf
+    teamsData[league].players.forEach(player => {
+      const option = document.createElement('option');
+      option.value = player;
+      option.textContent = player;
+      playerSelect.appendChild(option);
+    });
+    
+  } else {
+    // For other categories, set to N/A
+    playerSelect.innerHTML = '<option value="N/A">N/A</option>';
+    console.log(`Set player selection to N/A for ${category} in ${league}`);
+  }
+  
+  console.log(`Player select now has ${playerSelect.options.length} options`);
+}
+
+// Improved resetBetInputs function that properly resets player selections
+function resetBetInputs() {
+  console.log("🧹 Resetting bet inputs");
+  
+  // Reset team selects
+  const awayTeamEl = safeGetElement("awayTeam");
+  const homeTeamEl = safeGetElement("homeTeam");
+  
+  if (awayTeamEl) awayTeamEl.innerHTML = '<option value="">Away Team</option>';
+  if (homeTeamEl) homeTeamEl.innerHTML = '<option value="">Home Team</option>';
+  
+  // Reset bet entries
+  for (let i = 1; i <= 3; i++) {
+    const categoryEl = safeGetElement(`category${i}`);
+    const lineEl = safeGetElement(`line${i}`);
+    const playerEl = safeGetElement(`player${i}`);
+    
+    if (categoryEl) categoryEl.innerHTML = '<option value="">Select Category</option>';
+    if (lineEl) lineEl.innerHTML = '<option value="">Select Line</option>';
+    if (playerEl) playerEl.innerHTML = '<option value="">Select Player</option>';
+    
+    // Remove bet amount input if present
+    const betAmountInput = safeGetElement(`betAmount${i}`);
+    if (betAmountInput && betAmountInput.parentElement) {
+      betAmountInput.value = "";
+      betAmountInput.style.display = 'none';
+    }
+    
+    // Hide line description
+    const descDiv = safeGetElement(`line-desc${i}`);
+    if (descDiv) {
+      descDiv.innerHTML = '';
+      descDiv.style.display = 'none';
+    }
+  }
+}
+
+// Fix for the TypeError: betId.startsWith is not a function
+// This is a monkey patch for any function that uses betId.startsWith
+const originalCreatePayoutReceipt = window.createPayoutReceipt;
+function fixedCreatePayoutReceipt(bet) {
+  try {
+    // Handle different data formats for local vs. database bets
+    const betId = bet.id;
+    const isLocal = betId && typeof betId === 'string' && betId.startsWith('local-');
+    
+    // Store this safely on the bet object to avoid the type error later
+    bet._isLocal = isLocal;
+    
+    // Call the original function with our safely processed bet object
+    return originalCreatePayoutReceipt(bet);
+  } catch (error) {
+    console.error("Error in createPayoutReceipt:", error);
+    alert("There was an error creating the payout receipt. Please try again.");
+  }
+}
+
+// Override the original functions on document load
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("🔧 Installing casino.js fixes");
+  
+  // Override the updateLines function
+  window.updateLines = updateLines;
+  
+  // Override the resetBetInputs function
+  window.resetBetInputs = resetBetInputs;
+  
+  // Fix the TypeError: betId.startsWith issue
+  if (window.createPayoutReceipt) {
+    window.createPayoutReceipt = fixedCreatePayoutReceipt;
+  }
+  
+  console.log("✅ Casino.js fixes installed");
+});
