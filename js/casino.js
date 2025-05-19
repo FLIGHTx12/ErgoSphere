@@ -15,10 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptDiv) {
       receiptDiv.addEventListener('click', captureReceiptScreenshot);
   }
-  const receiptContent = document.getElementById('receipt-content');
-  if (receiptContent) {
-      receiptContent.addEventListener('click', captureReceiptContentScreenshot);
-  }
   
   // Prevent errors from script.js trying to initialize countdowns
   if (window.initializeCountdowns) {
@@ -848,10 +844,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptDiv) {
       receiptDiv.addEventListener('click', captureReceiptScreenshot);
   }
-  const receiptContent = document.getElementById('receipt-content');
-  if (receiptContent) {
-      receiptContent.addEventListener('click', captureReceiptContentScreenshot);
-  }
   
   // Initialize bet log
   renderBetLog().catch(error => {
@@ -998,44 +990,6 @@ function captureReceiptScreenshot() {
     URL.revokeObjectURL(url);
     alert('Receipt saved as image (clipboard access failed).');
   }
-}
-
-function captureReceiptContentScreenshot() {
-  const receiptContentElement = document.getElementById('receipt-content');
-  
-  // Add a class to ensure content is visible during capture
-  receiptContentElement.classList.add('capturing');
-  
-  html2canvas(receiptContentElement, { 
-    useCORS: true, 
-    allowTaint: true,
-    backgroundColor: null,
-    removeContainer: true,
-    scale: 2 // Increase quality
-  }).then(canvas => {
-      // Remove the capturing class
-      receiptContentElement.classList.remove('capturing');
-      
-      canvas.toBlob(blob => {
-          navigator.clipboard.write([
-              new ClipboardItem({ 'image/png': blob })
-          ]).then(() => {
-              alert('Receipt content screenshot copied to clipboard!');
-          }).catch(err => {
-              console.error('Failed to copy content screenshot:', err);
-              // Fallback - offer direct download if clipboard fails
-              const link = document.createElement('a');
-              link.download = 'bet-receipt-content.png';
-              link.href = canvas.toDataURL('image/png');
-              link.click();
-              alert('Receipt content saved as image (clipboard access failed).');
-          });
-      });
-  }).catch(err => {
-      console.error('Failed to capture content screenshot:', err);
-      receiptContentElement.classList.remove('capturing');
-      alert('Failed to capture content screenshot. Please try again.');
-  });
 }
 
 // Function to create and display the payout receipt
