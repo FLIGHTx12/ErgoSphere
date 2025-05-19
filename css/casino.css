@@ -52,49 +52,16 @@ div * {
   z-index: 2;
 }
 
-/* Glass Effect class for specific divs */
-.glass-effect {
-  position: relative;
-}
-
-.glass-effect::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://i.ibb.co/CtB1Dvz/black-glass.jpg");
-  z-index: -2;
-  pointer-events: none;
-  animation: zoomInOut 10s infinite alternate;
-}
-
-@keyframes zoomInOut {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
 
 h1 {
   text-align: center;
   margin: auto;
 }
 
-.contractGif {
-  border: 3px solid purple;
-  display: block;
-  margin: 0 auto;
-}
-
-.mod.clicked {
-  transition: transform 0.3s ease;
-  transform: scale(0.95);
-}
-
 button {
   background-color: purple;
   background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
+  border-radius: 9px;
   color: black;
   cursor: pointer;
   font-weight: 900;
@@ -222,7 +189,7 @@ section a {
 
 .bet-entry {
   margin-bottom: 10px;
-  max-width: 70%;
+  max-width: 99%;
 }
 
 
@@ -252,7 +219,7 @@ select:disabled {
 .bet-amount {
   width: 60px;
   max-width: 90px;
-  min-width: 50px;
+  min-width: 81px;
   border-radius: 8px;
   padding: 6px 10px;
   font-size: .8em;
@@ -262,6 +229,7 @@ select:disabled {
   box-shadow: 0 1px 6px rgba(0,255,0,0.08);
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15px;
   display: block;
   text-align: center;
   transition: border 0.2s, box-shadow 0.2s;
@@ -451,6 +419,7 @@ select:disabled {
   border-radius: 8px;
   padding: 10px;
   margin: 10px 0;
+  max-width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -536,7 +505,7 @@ select:disabled {
 /* Bet status styling */
 .bet-line-content {
   display: inline-block;
-  width: calc(100% - 120px);
+  width: 100%;
   vertical-align: middle;
 }
 
@@ -657,7 +626,7 @@ select:disabled {
   border: 3px solid gold;
   padding: 20px;
   z-index: 1000;
-  max-width: 500px;
+  max-width: 800px;
   width: 80%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   text-align: center;
@@ -1422,21 +1391,7 @@ select:disabled {
 }
 
 /* Enhance receipt screenshot capture functionality */
-.receipt.glass-effect::before,
-.payout-receipt::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  z-index: 0;
-  opacity: 0.8;
-}
+
 
 #receipt.capturing {
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.6) !important;
