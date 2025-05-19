@@ -42,8 +42,7 @@
   "mealModsContainer": [  
     { "text": "🍴Lunch Snack - 2💷", "value": 2 },
     { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
-    { "text": "🍞Toast Nightcap (butter/peanut)- 2💷", "value": 2 },
-    { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 }
+    { "text": "🍞Toast Nightcap (butter/peanut)- 2💷", "value": 2 }
   ],
   "prizesContainer": [
     { "text": "✨⭐⭐🌟LUXURY🌟⭐⭐✨- 0💷", "value": 0 },
@@ -54,6 +53,7 @@
     { "text": "🧞🧞🧞 Djinn Wish (3/3) - 0💷", "value": 0 }
   ],
   "replacementsContainer": [
+    { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
     { "text": "🌃🍽 DINE OUT - 300💷", "value": 300, "description": "Replace weekday meal, dine out instead " },
     { "text": "🍕🥡TAKEOUT NIGHT! - 400💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
   ],

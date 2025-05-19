@@ -29,6 +29,30 @@ function populateSelectOptions() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Convert any remaining input type=number to select dropdowns
+  document.querySelectorAll('input.quantity-input[type="number"]').forEach(input => {
+    const value = input.value || 1;
+    const parent = input.parentNode;
+    
+    // Create replacement dropdown
+    const select = document.createElement('select');
+    select.className = 'quantity-input';
+    
+    // Add options 1-10
+    for (let i = 1; i <= 10; i++) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      if (i === parseInt(value)) {
+        option.selected = true;
+      }
+      select.appendChild(option);
+    }
+    
+    // Replace the input with the select
+    parent.replaceChild(select, input);
+  });
+
   populateSelectOptions();
   restoreErgoShopState();
 
@@ -103,48 +127,67 @@ function addNewSelection(selectContainerId) {
       clonedSelect.selectedIndex = 0; // reset selection
       selectContainer.insertBefore(clonedSelect, addButton);
     }
-    // Also add a new quantity input
-    const newQuantityInput = document.createElement('input');
-    newQuantityInput.type = 'number';
-    newQuantityInput.classList.add('quantity-input');
-    newQuantityInput.value = 1;
-    newQuantityInput.min = 0;
-    selectContainer.insertBefore(newQuantityInput, addButton);
+    // Create a new quantity dropdown
+    const newQuantitySelect = document.createElement('select');
+    newQuantitySelect.classList.add('quantity-input');
+    
+    // Add options 1-10
+    for (let i = 1; i <= 10; i++) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      newQuantitySelect.appendChild(option);
+    }
+    
+    selectContainer.insertBefore(newQuantitySelect, addButton);
   }
 }
 
 function submitSelection() {
   let selectedItems = [];
   let totalValue = 0;
-  // Updated container list to include new categories
+  
   const selectContainers = [
     "saltySnackContainer", "sweetSnackContainer", "frozenSnackContainer", "concoctionsContainer",
     "mealModsContainer", "prizesContainer", "replacementsContainer",
     "entertainmentContainer", "schedulemodsContainer", "wantsvsneedsContainer"
   ];
+  
   selectContainers.forEach(selectContainerId => {
     const container = document.getElementById(selectContainerId);
     if (container) {
       const selects = container.querySelectorAll('select.custom-select');
-      const quantities = container.querySelectorAll('input.quantity-input');
+      
+      // Select both input and select quantity elements to handle all cases
+      const quantities = container.querySelectorAll('.quantity-input');
+      
       selects.forEach((select, index) => {
-        const selectedOption = select.options[select.selectedIndex];
-        const quantity = parseInt(quantities[index].value);
-        if (selectedOption && selectedOption.value !== "0" && quantity > 0) {
-          const itemName = selectedOption.text.split(' - ')[0];
-          const itemValue = parseInt(selectedOption.value);
-          const itemDescription = selectedOption.dataset.description; // Get description
-          const totalItemValue = itemValue * quantity;
-          let itemText = `${itemName} (x${quantity}) - ${totalItemValue}💷`;
-          if (itemDescription) {
-            itemText += `<br><small><em>${itemDescription}</em></small>`; // Add description
+        // Check if we have a matching quantity element
+        if (index < quantities.length) {
+          const quantityElement = quantities[index];
+          // Get value whether it's an input or select element
+          const quantity = parseInt(quantityElement.value);
+          
+          // Continue with original logic
+          const selectedOption = select.options[select.selectedIndex];
+          if (selectedOption && select.selectedIndex !== 0 && quantity > 0) {
+            const itemName = selectedOption.text.split(' - ')[0];
+            const itemValue = parseInt(selectedOption.value);
+            const itemDescription = selectedOption.dataset.description;
+            const totalItemValue = itemValue * quantity;
+            let itemText = `${itemName} (x${quantity}) - ${totalItemValue}💷`;
+            if (itemDescription) {
+              itemText += `<br><small><em>${itemDescription}</em></small>`;
+            }
+            selectedItems.push(itemText);
+            totalValue += totalItemValue;
           }
-          selectedItems.push(itemText);
-          totalValue += totalItemValue;
         }
       });
     }
   });
+  
+  // Create the receipt
   const summary = document.getElementById('summary');
   summary.innerHTML = `
       <hr>
@@ -154,12 +197,16 @@ function submitSelection() {
       <hr>
       <p class="wager-total">TOTAL: ${totalValue} 💷</p>
   `;
+  
+  // Make the receipt visible with reduced width
   summary.style.display = 'block';
   if (window.innerWidth < 768) {
-    summary.style.width = '90%';
+    summary.style.width = '70%'; // Reduced from 90%
   } else {
-    summary.style.width = '50%'; // changed from '25%' to '50%'
+    summary.style.width = '35%'; // Reduced from 50%
   }
+  
+  // Show the action buttons
   document.querySelectorAll('.action-button.copy-clear').forEach(button => {
     button.style.display = 'inline-block';
   });
