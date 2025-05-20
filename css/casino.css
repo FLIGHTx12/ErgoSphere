@@ -1545,3 +1545,17 @@ select:disabled {
     font-size: 0.9em;
   }
 }
+
+/* Same Player Boost visual indicator */
+.bet-log-entry .boost-same-player,
+.boost-same-player {
+  background: #1e88e5;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 6px;
+  font-size: 0.95em;
+  font-weight: bold;
+  box-shadow: 0 1px 4px rgba(30,136,229,0.15);
+  display: inline-block;
+}

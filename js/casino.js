@@ -1049,13 +1049,31 @@ function createPayoutReceipt(bet) {
   let totalWager = 0;
   let totalWinnings = 0;
   let totalReturn = 0; // Add this to track payout including original bet
-  
+  let samePlayerBoostApplied = false;
+  let samePlayerName = null;
+  let samePlayerEligible = false;
+
+  // Check if all bets have the same non-empty player (and at least 3 bets)
+  if (betData.bets && betData.bets.length === 3) {
+    const playerNames = betData.bets.map(b => (b.player || '').trim());
+    if (playerNames[0] && playerNames.every(p => p === playerNames[0])) {
+      samePlayerEligible = true;
+      samePlayerName = playerNames[0];
+    }
+  }
+
   betData.bets.forEach((b, idx) => {
     totalWager += b.betAmount;
+    let winAmount = b.potentialWin;
+    // Apply 15% boost if all players are the same and this bet is a win
     if (betStatus[idx] === 'won') {
       winsCount++;
-      totalWinnings += b.potentialWin;
-      totalReturn += b.potentialWin + b.betAmount; // Add both winnings and original bet
+      if (samePlayerEligible) {
+        winAmount = Math.round(winAmount * 1.15 * 100) / 100; // 15% boost, rounded to 2 decimals
+        samePlayerBoostApplied = true;
+      }
+      totalWinnings += winAmount;
+      totalReturn += winAmount + b.betAmount;
     }
   });
   
@@ -1069,16 +1087,22 @@ function createPayoutReceipt(bet) {
       
       <div class="bet-details">
         <h3>Bet Results:</h3>
+        ${samePlayerBoostApplied ? `<div class="boost boost-same-player" style="margin-bottom:8px;">SAME PLAYER BOOST: All 3 bets use <b>${samePlayerName}</b> &mdash; <b>+15% payout</b> on each win!</div>` : ''}
         <ul>
           ${betData.bets.map((b, idx) => {
             const status = betStatus[idx] || 'pending';
             const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
-            
+            let boostText = '';
+            let winAmount = b.potentialWin;
+            if (status === 'won' && samePlayerEligible) {
+              winAmount = Math.round(winAmount * 1.15 * 100) / 100;
+              boostText = ` <span class="boost boost-same-player">(+15% Same Player Boost: +${(winAmount - b.potentialWin).toFixed(2)} 💷)</span>`;
+            }
             return `
               <li class="${statusClass}">
                 ${b.betText} : ${b.player} - 
                 <b>${status.toUpperCase()}</b> 
-                ${status === 'won' ? `<span>(+${b.potentialWin} 💷, Bet: ${b.betAmount} 💷)</span>` : ''}
+                ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
               </li>
             `;
           }).join('')}
@@ -1089,6 +1113,7 @@ function createPayoutReceipt(bet) {
         <div>Total Wager: ${totalWager} 💷</div>
         <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
         <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
+        ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
       </div>
       
       <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
@@ -1840,16 +1865,34 @@ document.addEventListener('DOMContentLoaded', function() {
       let totalWager = 0;
       let totalWinnings = 0;
       let totalReturn = 0; // Add this to track payout including original bet
-      
+      let samePlayerBoostApplied = false;
+      let samePlayerName = null;
+      let samePlayerEligible = false;
+
+      // Check if all bets have the same non-empty player (and at least 3 bets)
+      if (betData.bets && betData.bets.length === 3) {
+        const playerNames = betData.bets.map(b => (b.player || '').trim());
+        if (playerNames[0] && playerNames.every(p => p === playerNames[0])) {
+          samePlayerEligible = true;
+          samePlayerName = playerNames[0];
+        }
+      }
+
       betData.bets.forEach((b, idx) => {
         totalWager += b.betAmount;
+        let winAmount = b.potentialWin;
+        // Apply 15% boost if all players are the same and this bet is a win
         if (betStatus[idx] === 'won') {
           winsCount++;
-          totalWinnings += b.potentialWin;
-          totalReturn += b.potentialWin + b.betAmount; // Add both winnings and original bet
+          if (samePlayerEligible) {
+            winAmount = Math.round(winAmount * 1.15 * 100) / 100; // 15% boost, rounded to 2 decimals
+            samePlayerBoostApplied = true;
+          }
+          totalWinnings += winAmount;
+          totalReturn += winAmount + b.betAmount;
         }
       });
-
+      
       // Create receipt HTML with improved structure for mobile visibility
       receiptDiv.innerHTML = `
         <button class="payout-receipt-close">&times;</button>
@@ -1861,6 +1904,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="bet-details">
               <h3>Bet Results:</h3>
+              ${samePlayerBoostApplied ? `<div class="boost boost-same-player" style="margin-bottom:8px;">SAME PLAYER BOOST: All 3 bets use <b>${samePlayerName}</b> &mdash; <b>+15% payout</b> on each win!</div>` : ''}
               <ul>
                 ${betData.bets.map((b, idx) => {
                   const status = betStatus[idx] || 'pending';
@@ -1876,7 +1920,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li class="${statusClass}">
                       ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
                       <br><b>${status.toUpperCase()}</b> 
-                      ${status === 'won' ? `<span>(+${b.potentialWin} 💷, Bet: ${b.betAmount} 💷)</span>` : ''}
+                      ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
                     </li>
                   `;
                 }).join('')}
@@ -1889,6 +1933,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
               </div>
               <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
+              ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
             </div>
             
             <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
