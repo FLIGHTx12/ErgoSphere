@@ -1069,9 +1069,10 @@ function createPayoutReceipt(bet) {
     if (betStatus[idx] === 'won') {
       winsCount++;
       if (samePlayerEligible) {
-        winAmount = Math.round(winAmount * 1.15 * 100) / 100; // 15% boost, rounded to 2 decimals
+        winAmount = Math.ceil(winAmount * 1.15); // 15% boost, always round up
         samePlayerBoostApplied = true;
       }
+      winAmount = Math.ceil(winAmount); // Always round up to whole number
       totalWinnings += winAmount;
       totalReturn += winAmount + b.betAmount;
     }
@@ -1087,17 +1088,17 @@ function createPayoutReceipt(bet) {
       
       <div class="bet-details">
         <h3>Bet Results:</h3>
-        ${samePlayerBoostApplied ? `<div class="boost boost-same-player" style="margin-bottom:8px;">SAME PLAYER BOOST: All 3 bets use <b>${samePlayerName}</b> &mdash; <b>+15% payout</b> on each win!</div>` : ''}
         <ul>
           ${betData.bets.map((b, idx) => {
             const status = betStatus[idx] || 'pending';
             const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
-            let boostText = '';
             let winAmount = b.potentialWin;
+            let boostText = '';
             if (status === 'won' && samePlayerEligible) {
-              winAmount = Math.round(winAmount * 1.15 * 100) / 100;
-              boostText = ` <span class="boost boost-same-player">(+15% Same Player Boost: +${(winAmount - b.potentialWin).toFixed(2)} 💷)</span>`;
+              winAmount = Math.ceil(winAmount * 1.15);
+              boostText = ' <span class="boost boost-same-player">(+15% Same Player Boost)</span>';
             }
+            winAmount = Math.ceil(winAmount); // Always round up
             return `
               <li class="${statusClass}">
                 ${b.betText} : ${b.player} - 
@@ -1112,7 +1113,7 @@ function createPayoutReceipt(bet) {
       <div class="payout-summary">
         <div>Total Wager: ${totalWager} 💷</div>
         <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
-        <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
+        <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
         ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
       </div>
       
@@ -1885,9 +1886,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (betStatus[idx] === 'won') {
           winsCount++;
           if (samePlayerEligible) {
-            winAmount = Math.round(winAmount * 1.15 * 100) / 100; // 15% boost, rounded to 2 decimals
+            winAmount = Math.ceil(winAmount * 1.15); // 15% boost, always round up
             samePlayerBoostApplied = true;
           }
+          winAmount = Math.ceil(winAmount); // Always round up to whole number
           totalWinnings += winAmount;
           totalReturn += winAmount + b.betAmount;
         }
@@ -1904,7 +1906,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="bet-details">
               <h3>Bet Results:</h3>
-              ${samePlayerBoostApplied ? `<div class="boost boost-same-player" style="margin-bottom:8px;">SAME PLAYER BOOST: All 3 bets use <b>${samePlayerName}</b> &mdash; <b>+15% payout</b> on each win!</div>` : ''}
               <ul>
                 ${betData.bets.map((b, idx) => {
                   const status = betStatus[idx] || 'pending';
@@ -1932,7 +1933,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>Total Wager: ${totalWager} 💷</span>
                 <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
               </div>
-              <div class="payout-value">TOTAL PAYOUT: ${totalReturn} 💷</div>
+              <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
               ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
             </div>
             
