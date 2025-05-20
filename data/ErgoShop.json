@@ -58,8 +58,8 @@
     { "text": "🍕🥡TAKEOUT NIGHT! - 400💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
   ],
   "entertainmentContainer": [   
-    { "text": "🎬 CINEMA SESSH (30min) - 20💶", "value": 20, "description": "Watch 30 mins of any show or movie." },
     { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Play 30 mins of any game." },
+    { "text": "🎬 CINEMA SESSH (Binge) - 60💶", "value": 60, "description": "Binge a show for the remainder of the day (Must stop before schedueled bed time.)" },
     { "text": "🎟 Golden Ticket (1screening) - 300💶", "value": 300, "description": "Attend a theatre showing. Wipe scheduled events" }
   ],
   "schedulemodsContainer": [
