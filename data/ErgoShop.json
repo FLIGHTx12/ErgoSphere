@@ -65,7 +65,9 @@
     { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'." },
     { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage during vacation." },
     { "text": "😴 SLEEP IN (2hrs)- 100💶", "value": 100, "description": "Skip Scheduled morning events." },
-    { "text": "🛌🏾 BINGE DAY (1day) - 500💶", "value": 500, "description": "All day show or game binge." }
+    { "text": "⛲👩🏻‍🤝‍🧑🏾Weekly Errand Mod (CLOSE)- 100💶", "value": 100, "description": "Mod weekly errand to visit a location UNDER 30mins away" },
+    { "text": "⛲➡👩🏻‍🤝‍🧑🏾Weekly Errand Mod (FAR)- 200💶", "value": 200, "description": "Mod weekly errand to visit a location OVER 30mins away" },
+    { "text": "🛌🏾 BINGE DAY (1day) - 500💶", "value": 500, "description": "All day show or game binge (Removes all other scheduled events)." }
   ],
   "wantsvsneedsContainer": [
     { "text": "💱👑BINGWA CURRENCY EXCHANGE (2💷 per full dollar)", "value": 2, "description": "Use 20 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)" },
