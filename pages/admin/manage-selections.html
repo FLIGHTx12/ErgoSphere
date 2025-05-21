@@ -161,9 +161,7 @@
           <select id="bingwaBrunch" name="bingwaBrunch" required>
             <option value="Loading...">Loading...</option>
           </select>
-        </div>
-
-        <div class="form-group">
+        </div>        <div class="form-group">
           <label for="youtubeTheater1">YouTube Theater Selection:</label>
           <select id="youtubeTheater1" name="youtubeTheater1" required>
             <option value="">-- Select Video 1 --</option>
@@ -177,8 +175,44 @@
           <div id="youtube-runtime-warning" style="color:#f00; display:none; font-size:0.95em; margin-top:4px;"></div>
         </div>
         
-        <button type="submit" class="submit-btn">Update Selections</button>        
-        <div class="preview-card">
+        <div class="form-group section-separator">
+          <h3>Quarterly Games & Art</h3>
+        </div>
+        
+        <div class="form-group">
+          <label for="q1Game">Q1 Game (Jan-Mar):</label>
+          <select id="q1Game" name="q1Game">
+            <option value="">-- Select Q1 Game --</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="q2Game">Q2 Game (Apr-Jun):</label>
+          <select id="q2Game" name="q2Game">
+            <option value="">-- Select Q2 Game --</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="q3Game">Q3 Game (Jul-Sep):</label>
+          <select id="q3Game" name="q3Game">
+            <option value="">-- Select Q3 Game --</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="q4Game">Q4 Game (Oct-Dec):</label>
+          <select id="q4Game" name="q4Game">
+            <option value="">-- Select Q4 Game --</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="ergoArtSubject">ErgoArt Subject:</label>
+          <input type="text" id="ergoArtSubject" name="ergoArtSubject" placeholder="Enter current ErgoArt subject">
+        </div>
+        
+        <button type="submit" class="submit-btn">Update Selections</button>        <div class="preview-card">
           <div class="preview-title">Preview</div>
           <div class="preview-content">
             <p><strong>Bingwa Champion:</strong> <span id="preview-bingwa"></span></p>
@@ -187,15 +221,63 @@
             <p><strong>Bingwa Banquet:</strong> <span id="preview-banquet"></span></p>
             <p><strong>Bingwa Brunch:</strong> <span id="preview-brunch"></span></p>
             <p><strong>YouTube Theater:</strong> <span id="preview-youtube"></span></p>
+            <hr>
+            <p><strong>Q1 Game:</strong> <span id="preview-q1game"></span></p>
+            <p><strong>Q2 Game:</strong> <span id="preview-q2game"></span></p>
+            <p><strong>Q3 Game:</strong> <span id="preview-q3game"></span></p>
+            <p><strong>Q4 Game:</strong> <span id="preview-q4game"></span></p>
+            <p><strong>ErgoArt Subject:</strong> <span id="preview-ergoart"></span></p>
             <p class="last-updated"><em>Last updated: <span id="last-updated">Never</span></em></p>
           </div>
         </div>
       </form>
     </div>
   </main>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Load singleplayer games for quarterly game dropdowns
+      fetch('../../data/singleplayer.json')
+        .then(response => {
+          return response.text().then(text => {
+            const jsonString = text.replace(/^\s*\/\/.*$/gm, '');
+            try {
+              return JSON.parse(jsonString);
+            } catch (e) {
+              console.error('Error parsing singleplayer JSON:', e);
+              throw e;
+            }
+          });
+        })
+        .then(data => {
+          const q1Select = document.getElementById('q1Game');
+          const q2Select = document.getElementById('q2Game');
+          const q3Select = document.getElementById('q3Game');
+          const q4Select = document.getElementById('q4Game');
+          
+          const quarterlySelects = [q1Select, q2Select, q3Select, q4Select];
+          
+          // Clear the loading options
+          quarterlySelects.forEach(select => {
+            select.innerHTML = '<option value="">-- Select Game --</option>';
+          });
+          
+          // Add all singleplayer games to the quarterly game dropdowns
+          data.forEach(game => {
+            if (game.TITLE || game.Title) {
+              const title = game.TITLE || game.Title;
+              quarterlySelects.forEach(select => {
+                const option = document.createElement('option');
+                option.value = title;
+                option.textContent = title + (game.STATUS ? ` ${game.STATUS}` : '');
+                select.appendChild(option);
+              });
+            }
+          });
+        })
+        .catch(error => {
+          console.error('Error loading singleplayer games:', error);
+        });
+      
       // Load movie options from movies.json
       fetch('../../data/movies.json')
         .then(response => {
@@ -305,8 +387,7 @@
       // Form submission
       document.getElementById('selectionsForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const bingwaChampion = document.getElementById('bingwaChampion').value;
+          const bingwaChampion = document.getElementById('bingwaChampion').value;
         const atleticoChamp = document.getElementById('atleticoChamp').value;
         const movieNight = document.getElementById('movieNight').value;
         const banquetMeal = document.getElementById('banquetMeal').value;
@@ -316,6 +397,17 @@
           document.getElementById('youtubeTheater2').value,
           document.getElementById('youtubeTheater3').value
         ].filter(Boolean);
+        
+        // Get quarterly games
+        const quarterlyGames = {
+          q1: document.getElementById('q1Game').value,
+          q2: document.getElementById('q2Game').value,
+          q3: document.getElementById('q3Game').value,
+          q4: document.getElementById('q4Game').value
+        };
+        
+        // Get ErgoArt subject
+        const ergoArtSubject = document.getElementById('ergoArtSubject').value;
         
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
@@ -333,14 +425,15 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
+          },          body: JSON.stringify({
             bingwaChampion,
             atleticoChamp,
             movieNight,
             banquetMeal,
             brunchMeal,
-            youtubeTheater
+            youtubeTheater,
+            quarterlyGames,
+            ergoArtSubject
           })
         })
         .then(response => {
@@ -365,23 +458,27 @@
           submitBtn.textContent = originalBtnText;
           submitBtn.disabled = false;
         });
-      });
-
-      // Update preview when selection changes
+      });      // Update preview when selection changes
       document.getElementById('bingwaChampion').addEventListener('change', updatePreview);
       document.getElementById('atleticoChamp').addEventListener('change', updatePreview);
       document.getElementById('movieNight').addEventListener('change', updatePreview);
       document.getElementById('banquetMeal').addEventListener('change', updatePreview);
       document.getElementById('bingwaBrunch').addEventListener('change', updatePreview);
+      
+      // Add event listeners for quarterly games and ErgoArt subject
+      document.getElementById('q1Game').addEventListener('change', updatePreview);
+      document.getElementById('q2Game').addEventListener('change', updatePreview);
+      document.getElementById('q3Game').addEventListener('change', updatePreview);
+      document.getElementById('q4Game').addEventListener('change', updatePreview);
+      document.getElementById('ergoArtSubject').addEventListener('change', updatePreview);
+      
       ['youtubeTheater1','youtubeTheater2','youtubeTheater3'].forEach(id => {
         document.getElementById(id).addEventListener('change', function() {
           updatePreview();
           checkYouTubeRuntimeLimit();
           updateYouTubeDropdowns();
         });
-      });
-
-      function loadCurrentSelections() {
+      });      function loadCurrentSelections() {
         // Fetch current selections from server
         fetch('/api/selections')
           .then(response => {
@@ -391,6 +488,27 @@
             return response.json();
           })
           .then(ergosphereData => {
+            // Load quarterly games if available
+            if (ergosphereData.quarterlyGames) {
+              if (ergosphereData.quarterlyGames.q1) {
+                document.getElementById('q1Game').value = ergosphereData.quarterlyGames.q1;
+              }
+              if (ergosphereData.quarterlyGames.q2) {
+                document.getElementById('q2Game').value = ergosphereData.quarterlyGames.q2;
+              }
+              if (ergosphereData.quarterlyGames.q3) {
+                document.getElementById('q3Game').value = ergosphereData.quarterlyGames.q3;
+              }
+              if (ergosphereData.quarterlyGames.q4) {
+                document.getElementById('q4Game').value = ergosphereData.quarterlyGames.q4;
+              }
+            }
+            
+            // Load ErgoArt subject if available
+            if (ergosphereData.ergoArtSubject) {
+              document.getElementById('ergoArtSubject').value = ergosphereData.ergoArtSubject;
+            }
+            
             if (ergosphereData.bingwaChampion) {
               document.getElementById('bingwaChampion').value = ergosphereData.bingwaChampion;
             }
@@ -508,13 +626,22 @@
             showNotification('Error loading current selections', 'error');
           });
       }
-      
-      function updatePreview() {
+        function updatePreview() {
         document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
         document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
         document.getElementById('preview-movie').textContent = document.getElementById('movieNight').value;
         document.getElementById('preview-banquet').textContent = document.getElementById('banquetMeal').value;
         document.getElementById('preview-brunch').textContent = document.getElementById('bingwaBrunch').value;
+        
+        // Update quarterly games preview
+        document.getElementById('preview-q1game').textContent = document.getElementById('q1Game').value || 'None selected';
+        document.getElementById('preview-q2game').textContent = document.getElementById('q2Game').value || 'None selected';
+        document.getElementById('preview-q3game').textContent = document.getElementById('q3Game').value || 'None selected';
+        document.getElementById('preview-q4game').textContent = document.getElementById('q4Game').value || 'None selected';
+        
+        // Update ErgoArt subject preview
+        document.getElementById('preview-ergoart').textContent = document.getElementById('ergoArtSubject').value || 'None set';
+        
         const yt1 = document.getElementById('youtubeTheater1');
         const yt2 = document.getElementById('youtubeTheater2');
         const yt3 = document.getElementById('youtubeTheater3');

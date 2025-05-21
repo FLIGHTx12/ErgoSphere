@@ -526,6 +526,27 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
   
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Run database migrations
+const runMigration = require('./runMigration');
+
+// Start the server after attempting migration
+const startServer = async () => {
+  try {
+    // Run the quarterly games migration
+    const migrationResult = await runMigration();
+    if (migrationResult.success) {
+      console.log('Database migration successful');
+    } else {
+      console.error('Database migration failed:', migrationResult.error);
+    }
+  } catch (err) {
+    console.error('Error running migrations:', err);
+  }
+  
+  // Start the server regardless of migration result
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+};
+
+startServer();

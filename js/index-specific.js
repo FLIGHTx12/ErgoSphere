@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update calendar week dynamically
   updateCalendarWeek();
   
+  // Fetch the current quarter's solo game
+  fetchCurrentQuarterSoloGame();
+  
   // Update the calendar week number at midnight each day
   setInterval(() => {
     const now = new Date();
@@ -321,4 +324,140 @@ function calculateNextQuarterStart() {
     nextQuarterStartYear = currentYear + 1;
   }
   return new Date(nextQuarterStartYear, nextQuarterStartMonth, 1);
+}
+
+// Function to fetch the current quarter's solo game from selections.json
+function fetchCurrentQuarterSoloGame() {
+  try {
+    console.log("Fetching current quarter's solo game");
+    
+    // Get current date to determine the current quarter
+    const now = new Date();
+    const currentMonth = now.getMonth(); // 0-11
+    let currentQuarter;
+    let quarterNumber;
+    
+    if (currentMonth < 3) { // Q1 (Jan-Mar)
+      currentQuarter = 'q1';
+      quarterNumber = 1;
+    } else if (currentMonth < 6) { // Q2 (Apr-Jun)
+      currentQuarter = 'q2';
+      quarterNumber = 2;
+    } else if (currentMonth < 9) { // Q3 (Jul-Sep)
+      currentQuarter = 'q3';
+      quarterNumber = 3;
+    } else { // Q4 (Oct-Dec)
+      currentQuarter = 'q4';
+      quarterNumber = 4;
+    }
+      // Update the quarter number display
+    const quarterElement = document.getElementById('current-quarter');
+    if (quarterElement) {
+      quarterElement.textContent = quarterNumber;
+      
+      // Also update the parent element's text to ensure proper formatting
+      const quarterHeader = document.querySelector('.card-header .neon-text:has(#current-quarter)');
+      if (quarterHeader) {
+        quarterHeader.innerHTML = `ErgoSphere QTR: <span id="current-quarter">${quarterNumber}</span>`;
+      }
+    }
+      // Fetch data from API endpoint which has the quarterly game selections
+    fetch('/api/selections')
+      .then(response => {
+        if (!response.ok) {
+          console.error('Failed to fetch selections data from API.');
+          // Fallback to local JSON file if API fails
+          return fetch('/data/selections.json').then(response => {
+            if (!response.ok) {
+              console.error('Failed to fetch selections data from local file.');
+              return {};
+            }
+            return response.json();
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Get the solo game element
+        const soloGameElement = document.getElementById('current-solo-game');
+          // Update ErgoArt subject if it's available
+        if (data.ergoArtSubject) {
+          const ergoArtSubjectElement = document.getElementById('ergo-art-subject');
+          if (ergoArtSubjectElement) {
+            ergoArtSubjectElement.textContent = data.ergoArtSubject;
+          } else {
+            // Fallback to the old method if the new ID isn't found
+            const ergoArtElements = document.querySelectorAll('.card-header .neon-text');
+            for (let i = 0; i < ergoArtElements.length; i++) {
+              if (ergoArtElements[i].textContent.includes('quarter') && ergoArtElements[i].textContent.includes('subject')) {
+                ergoArtElements[i].innerHTML = `This quarter's subject is:<br> "${data.ergoArtSubject}"`;
+                break;
+              }
+            }
+          }
+        }
+          // Update solo game if available
+        if (data.quarterlyGames && data.quarterlyGames[currentQuarter] && data.quarterlyGames[currentQuarter].trim() !== '') {
+          if (soloGameElement) {
+            soloGameElement.textContent = data.quarterlyGames[currentQuarter];
+            console.log(`Displaying ${currentQuarter} game: ${data.quarterlyGames[currentQuarter]}`);
+          }
+        } else if (soloGameElement) {
+          console.log('No quarterly game found for the current quarter, falling back to purple status game');
+          // Fallback to purple status game if no quarterly game is set
+          fetch('/data/singleplayer.json')
+            .then(response => {
+              if (!response.ok) {
+                console.error('Failed to fetch singleplayer games.');
+                return [];
+              }
+              return response.json();
+            })
+            .then(games => {
+              // Filter games with 🟣 status
+              const purpleStatusGames = games.filter(game => 
+                game.STATUS && game.STATUS.includes('🟣')
+              );
+              
+              // Update the element with the game title if found
+              if (purpleStatusGames.length > 0 && soloGameElement) {
+                // Sort by name and take the first one, or implement your own priority logic
+                const selectedGame = purpleStatusGames[0];
+                soloGameElement.textContent = selectedGame.TITLE || selectedGame.Title || 'Current Quarter Game';
+              } else if (soloGameElement) {
+                soloGameElement.textContent = 'No quarterly game selected';
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching or processing singleplayer games:', error);
+              if (soloGameElement) {
+                soloGameElement.textContent = 'No quarterly game selected';
+              }
+            });
+        }
+      })      .catch(error => {
+        console.error('Error fetching or processing selections data:', error);
+        const soloGameElement = document.getElementById('current-solo-game');
+        if (soloGameElement) {
+          soloGameElement.textContent = 'Error loading quarterly game';
+        }
+        
+        const ergoArtSubjectElement = document.getElementById('ergo-art-subject');
+        if (ergoArtSubjectElement) {
+          ergoArtSubjectElement.textContent = 'Mars'; // Default fallback
+        }
+      });
+    
+  } catch (error) {
+    console.error("Error in fetchCurrentQuarterSoloGame:", error);
+    const soloGameElement = document.getElementById('current-solo-game');
+    if (soloGameElement) {
+      soloGameElement.textContent = 'Error loading quarterly game';
+    }
+    
+    const ergoArtSubjectElement = document.getElementById('ergo-art-subject');
+    if (ergoArtSubjectElement) {
+      ergoArtSubjectElement.textContent = 'Mars'; // Default fallback
+    }
+  }
 }

@@ -13,6 +13,11 @@ router.get('/', async (req, res) => {
         banquet_meal AS "banquetMeal",
         brunch_meal AS "brunchMeal",
         youtube_theater AS "youtubeTheater",
+        q1_game AS "q1",
+        q2_game AS "q2",
+        q3_game AS "q3", 
+        q4_game AS "q4",
+        ergoart_subject AS "ergoArtSubject",
         updated_at AS "lastUpdated"
       FROM weekly_selections ORDER BY id DESC LIMIT 1`
     );
@@ -24,6 +29,24 @@ router.get('/', async (req, res) => {
       } else {
         row.youtubeTheater = [];
       }
+      
+      // Format quarterly games into an object
+      const quarterlyGames = {
+        q1: row.q1 || "",
+        q2: row.q2 || "",
+        q3: row.q3 || "",
+        q4: row.q4 || ""
+      };
+      
+      // Delete individual quarter fields from response
+      delete row.q1;
+      delete row.q2;
+      delete row.q3;
+      delete row.q4;
+      
+      // Add the quarterlyGames object
+      row.quarterlyGames = quarterlyGames;
+      
       res.json(row);
     } else {
       // Return default values if no data found
@@ -34,6 +57,13 @@ router.get('/', async (req, res) => {
         banquetMeal: '',
         brunchMeal: '',
         youtubeTheater: [],
+        quarterlyGames: {
+          q1: "",
+          q2: "",
+          q3: "",
+          q4: ""
+        },
+        ergoArtSubject: 'Mars',
         lastUpdated: new Date().toISOString()
       };
       res.json(defaultData);
@@ -47,7 +77,7 @@ router.get('/', async (req, res) => {
 // POST endpoint to update the selections
 router.post('/', async (req, res) => {
   try {
-    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater } = req.body;
+    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater, quarterlyGames, ergoArtSubject } = req.body;
     // Validate required fields
     if (!bingwaChampion || !atleticoChamp || !movieNight) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -55,17 +85,32 @@ router.post('/', async (req, res) => {
     // Insert new selections (keep history by creating new records)
     const result = await pool.query(
       `INSERT INTO weekly_selections 
-        (bingwa_champion, atletico_champ, movie_night, banquet_meal, brunch_meal, youtube_theater)
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+        (bingwa_champion, atletico_champ, movie_night, banquet_meal, brunch_meal, youtube_theater, 
+         q1_game, q2_game, q3_game, q4_game, ergoart_subject)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
       [
         bingwaChampion,
         atleticoChamp,
         movieNight,
         banquetMeal || null,
         brunchMeal || null,
-        youtubeTheater ? JSON.stringify(youtubeTheater) : null
+        youtubeTheater ? JSON.stringify(youtubeTheater) : null,
+        quarterlyGames?.q1 || null,
+        quarterlyGames?.q2 || null,
+        quarterlyGames?.q3 || null,
+        quarterlyGames?.q4 || null,
+        ergoArtSubject || null
       ]
     );
+    
+    // Format quarterly games into an object for response
+    const formattedQuarterlyGames = {
+      q1: result.rows[0].q1_game || "",
+      q2: result.rows[0].q2_game || "",
+      q3: result.rows[0].q3_game || "",
+      q4: result.rows[0].q4_game || ""
+    };
+    
     res.json({ 
       success: true, 
       message: 'Selections updated successfully',
@@ -76,6 +121,8 @@ router.post('/', async (req, res) => {
         banquetMeal: result.rows[0].banquet_meal,
         brunchMeal: result.rows[0].brunch_meal,
         youtubeTheater: result.rows[0].youtube_theater ? JSON.parse(result.rows[0].youtube_theater) : [],
+        quarterlyGames: formattedQuarterlyGames,
+        ergoArtSubject: result.rows[0].ergoart_subject || "",
         lastUpdated: result.rows[0].updated_at
       }
     });
