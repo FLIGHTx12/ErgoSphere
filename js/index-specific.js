@@ -395,16 +395,17 @@ function fetchCurrentQuarterSoloGame() {
               }
             }
           }
-        }
-          // Update solo game if available
-        if (data.quarterlyGames && data.quarterlyGames[currentQuarter] && data.quarterlyGames[currentQuarter].trim() !== '') {
+        }        // Update solo game if available
+        if (data.quarterlyGames && data.quarterlyGames[currentQuarter] && data.quarterlyGames[currentQuarter].trim() !== '' && 
+            !data.quarterlyGames[currentQuarter].includes('No Q') && 
+            !data.quarterlyGames[currentQuarter].includes('No Game')) {
           if (soloGameElement) {
             soloGameElement.textContent = data.quarterlyGames[currentQuarter];
             console.log(`Displaying ${currentQuarter} game: ${data.quarterlyGames[currentQuarter]}`);
           }
         } else if (soloGameElement) {
           console.log('No quarterly game found for the current quarter, falling back to purple status game');
-          // Fallback to purple status game if no quarterly game is set
+          // Fallback to purple status game if no quarterly game is set or it has a default "No Game" value
           fetch('/data/singleplayer.json')
             .then(response => {
               if (!response.ok) {
@@ -423,15 +424,14 @@ function fetchCurrentQuarterSoloGame() {
               if (purpleStatusGames.length > 0 && soloGameElement) {
                 // Sort by name and take the first one, or implement your own priority logic
                 const selectedGame = purpleStatusGames[0];
-                soloGameElement.textContent = selectedGame.TITLE || selectedGame.Title || 'Current Quarter Game';
-              } else if (soloGameElement) {
-                soloGameElement.textContent = 'No quarterly game selected';
+                soloGameElement.textContent = selectedGame.TITLE || selectedGame.Title || 'Current Quarter Game';              } else if (soloGameElement) {
+                soloGameElement.textContent = '-- Select a quarterly game --';
               }
             })
             .catch(error => {
               console.error('Error fetching or processing singleplayer games:', error);
               if (soloGameElement) {
-                soloGameElement.textContent = 'No quarterly game selected';
+                soloGameElement.textContent = '-- Select a quarterly game --';
               }
             });
         }

@@ -4,11 +4,9 @@ const { Pool } = require('pg');
 const pool = require('../db');
 
 async function runMigration() {
-  try {
-    console.log('Running quarterly games migration...');
-    
-    // Read the SQL file
-    const sqlPath = path.join(__dirname, '../db/migrations/add_quarterly_games_ergoart_to_weekly_selections.sql');
+  try {    console.log('Running quarterly games migration...');
+      // Read the SQL file
+    const sqlPath = path.join(__dirname, '../db/migrations/add_quarterly_games_ergoart_to_weekly_selections_fixed_new.sql');
     const sql = fs.readFileSync(sqlPath, 'utf8');
     
     // Execute the SQL

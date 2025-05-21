@@ -66,7 +66,7 @@ Two scripts have been added for syncing between the database and the `selections
 
 ## Migration
 
-A database migration script (`add_quarterly_games_ergoart_to_weekly_selections.sql`) has been added to create the required columns in the database.
+A database migration script (`add_quarterly_games_ergoart_to_weekly_selections_fixed.sql`) has been added to create the required columns in the database.
 
 ## Error Handling
 

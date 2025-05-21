@@ -125,18 +125,18 @@
       
       <div id="notification" class="notification"></div>
       
-      <form id="selectionsForm">
-        <div class="form-group">
+      <form id="selectionsForm">        <div class="form-group">
           <label for="bingwaChampion">Bingwa Champion:</label>
           <select id="bingwaChampion" name="bingwaChampion" required>
+            <option value="N/A">N/A</option>
             <option value="JAYBERS8">JAYBERS8</option>
             <option value="FLIGHTx12!">FLIGHTx12!</option>
           </select>
         </div>
-        
-        <div class="form-group">
+          <div class="form-group">
           <label for="atleticoChamp">Atletico Champion:</label>
           <select id="atleticoChamp" name="atleticoChamp" required>
+            <option value="N/A">N/A</option>
             <option value="FLIGHTx12!">FLIGHTx12!</option>
             <option value="JAYBERS8">JAYBERS8</option>
           </select>
@@ -292,11 +292,16 @@
               throw e;
             }
           });
-        })
-        .then(data => {
+        })        .then(data => {
           const movieSelect = document.getElementById('movieNight');
           // Clear the loading option
           movieSelect.innerHTML = '';
+          
+          // Add N/A option first
+          const naOption = document.createElement('option');
+          naOption.value = "N/A";
+          naOption.textContent = "N/A";
+          movieSelect.appendChild(naOption);
           
           // Add only movies with STATUS of 🟢 to the select dropdown
           data.forEach(movie => {
@@ -322,12 +327,24 @@
             }
           });
         })
-        .then(data => {
-          const banquetSelect = document.getElementById('banquetMeal');
+        .then(data => {          const banquetSelect = document.getElementById('banquetMeal');
           const brunchSelect = document.getElementById('bingwaBrunch');
           // Clear the loading option
           banquetSelect.innerHTML = '';
           brunchSelect.innerHTML = '';
+          
+          // Add N/A option first to banquet dropdown
+          const naOptionBanquet = document.createElement('option');
+          naOptionBanquet.value = "N/A";
+          naOptionBanquet.textContent = "N/A";
+          banquetSelect.appendChild(naOptionBanquet);
+          
+          // Add N/A option first to brunch dropdown
+          const naOptionBrunch = document.createElement('option');
+          naOptionBrunch.value = "N/A";
+          naOptionBrunch.textContent = "N/A";
+          brunchSelect.appendChild(naOptionBrunch);
+          
           // Add all meal options to the banquet dropdown
           data.forEach(meal => {
             const option = document.createElement('option');
@@ -487,20 +504,26 @@
             }
             return response.json();
           })
-          .then(ergosphereData => {
-            // Load quarterly games if available
+          .then(ergosphereData => {            // Load quarterly games if available
             if (ergosphereData.quarterlyGames) {
-              if (ergosphereData.quarterlyGames.q1) {
+              if (ergosphereData.quarterlyGames.q1 && !ergosphereData.quarterlyGames.q1.includes('No Q1 Game')) {
                 document.getElementById('q1Game').value = ergosphereData.quarterlyGames.q1;
+              } else {
+                document.getElementById('q1Game').value = '';
               }
-              if (ergosphereData.quarterlyGames.q2) {
+              if (ergosphereData.quarterlyGames.q2 && !ergosphereData.quarterlyGames.q2.includes('No Q2 Game')) {
                 document.getElementById('q2Game').value = ergosphereData.quarterlyGames.q2;
+              } else {
+                document.getElementById('q2Game').value = '';
               }
-              if (ergosphereData.quarterlyGames.q3) {
+              if (ergosphereData.quarterlyGames.q3 && !ergosphereData.quarterlyGames.q3.includes('No Q3 Game')) {
                 document.getElementById('q3Game').value = ergosphereData.quarterlyGames.q3;
-              }
-              if (ergosphereData.quarterlyGames.q4) {
+              } else {
+                document.getElementById('q3Game').value = '';
+              }              if (ergosphereData.quarterlyGames.q4 && !ergosphereData.quarterlyGames.q4.includes('No Q4 Game')) {
                 document.getElementById('q4Game').value = ergosphereData.quarterlyGames.q4;
+              } else {
+                document.getElementById('q4Game').value = '';
               }
             }
             
