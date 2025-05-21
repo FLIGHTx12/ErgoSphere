@@ -3,9 +3,12 @@ body {
   color: white;
   margin: 0;
   padding: 0;
-  background-image: url("https://i.ibb.co/wKZgsqP/star-sky.jpg");
+  background-image: url("../assets/img/backgrounds/nightSky.jpg");
+  background-repeat: no-repeat; /* updated to prevent tiling */
+  /* background-size: cover; */ /* removed for animation */
   transition: transform 0.3s ease-in-out;
-  animation: pan-body 650s linear infinite;
+  animation: pan-bg 350s linear infinite;
+  background-attachment: fixed; /* added to move with the viewport */
 }
 
 body.page-transition {

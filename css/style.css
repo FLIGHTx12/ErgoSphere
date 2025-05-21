@@ -1,20 +1,130 @@
+/* ======================================================
+   ErgoSphere CSS - Main Stylesheet
+   
+   TABLE OF CONTENTS:
+   
+   1. Base & Reset
+      1.1 Body & HTML
+      1.2 Typography
+      1.3 Links
+   
+   2. Layout
+      2.1 Header
+      2.2 Main Content
+      2.3 Containers
+      2.4 Section Elements
+      2.5 Horizontal Rules
+   
+   3. Navigation
+      3.1 Navbar
+      3.2 Sidebar
+   
+   4. Components
+      4.1 Special Effects (Glass Effect)
+      4.2 Media Elements (Images & Media)
+      4.3 Buttons
+      4.4 Cards & Panels
+      4.5 Mod Components
+      4.6 Action Buttons
+      4.7 Summary Section
+      4.8 Tooltips & Popups
+   
+   5. Typography & Text Styling
+      5.1 Headers & Titles
+      5.2 Special Text Effects
+      5.3 Lists
+   
+   6. Forms & Inputs
+      6.1 Form Elements
+      6.2 Input Controls
+      6.3 Validation
+   
+   7. Animations
+      7.1 Background Animations
+      7.2 Element Animations
+      7.3 Transitions
+   
+   8. Utilities
+      8.1 Spacing & Positioning
+      8.2 Borders & Shadows
+      8.3 Helper Classes
+   
+   9. Media Queries
+      9.1 Mobile (< 600px)
+      9.2 Tablet (601px - 1023px)
+      9.3 Desktop (1024px - 1799px)
+      9.4 Large Screens (1800px+)
+   ====================================================== */
+
+/* ====================================
+   1. Base & Reset
+   ==================================== */
+
+/* 1.1 Body & HTML */
 body {
   background-color: rgb(7, 7, 7);
   color: white;
   margin: 0;
   padding: 0;
   background-image: url("../assets/img/backgrounds/nightSky.jpg");
-  background-repeat: no-repeat; /* updated to prevent tiling */
-  /* background-size: cover; */ /* removed for animation */
+  background-repeat: no-repeat; /* Prevents background image tiling */
   transition: transform 0.3s ease-in-out;
   animation: pan-bg 350s linear infinite;
-  background-attachment: fixed; /* added to move with the viewport */
+  background-attachment: fixed; /* Background moves with viewport */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  line-height: 1.5;
 }
 
 body.page-transition {
   transform: translateX(-100%);
 }
 
+/* 1.2 Typography */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0px 3px 5px rgb(19, 80, 28);
+}
+
+h1 {
+  font-size: 2em;
+  margin: auto;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* 1.4 Links */
+a {
+  color: #0ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #f0f;
+  text-decoration: underline;
+}
+
+/* ====================================
+   2. Layout
+   ==================================== */
+   
+/* 2.1 Header */
 header {
   border: 2rem purple;
   padding-top: 120px;
@@ -22,13 +132,25 @@ header {
   max-width: 100vw;
   box-sizing: border-box;
   text-shadow: -3px 1px 4px rgba(169, 175, 185, 0.6);
-  text-align: center; /* Center the header content */
-  position: relative; /* Add position relative */
-  left: 0; /* Ensure header is not offset */
+  text-align: center;
+  position: relative;
+  left: 0;
   right: 0;
-  margin: 0 auto; /* Center the header */
+  margin: 0 auto;
+  z-index: 10;
 }
 
+/* 2.2 Main Content */
+#main-content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  transform: none;
+}
+
+/* 2.3 Containers */
 div {
   border: 2px solid purple;
   border-radius: 20px;
@@ -43,9 +165,32 @@ div {
   color: white;
   background-color: black;
   overflow: hidden;
-  /* Glass effect removed from global div and moved to .glass-effect class */
 }
 
+/* 2.4 Section Elements */
+section {
+  border: #333;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+section a {
+  color: white;
+}
+
+/* 2.5 Horizontal Rules */
+hr {
+  color: purple;
+  width: 90%;
+  max-width: 100%;
+  margin: 20px auto;
+  border: 0;
+  border-top: 1px solid purple;
+  height: 1px;
+}
+
+/* Container Responsiveness */
 @media (min-width: 1024px) {
   div {
     max-width: 900px;
@@ -54,14 +199,145 @@ div {
 
 @media (max-width: 600px) {
   div {
-    width: 95%; /* Increase width of main divs for smaller screens */
+    width: 95%;
   }
 }
 
-/* New class for glass effect instead of applying to all divs */
+
+
+/* ====================================
+   3. Navigation
+   ==================================== */
+   
+/* 3.1 Navbar */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+  background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+  background-color: rgb(14, 13, 13);
+  transition: top 0.3s;
+  animation: pan-navbar 90s linear infinite;
+}
+
+/* Navbar state variations */
+#navbar.hidden {
+  top: -100px;
+}
+
+/* Navbar links */
+#navbar a {
+  color: rgb(12, 12, 12);
+  text-decoration: none;
+}
+
+/* Navbar buttons - overriding general button styles */
+#navbar button {
+  background-color: purple;
+  background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.5s ease, transform 0.2s ease;
+  width: auto;
+  min-width: 100px;
+  height: auto;
+  box-sizing: border-box;
+  font-weight: 900;
+  text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+  padding: 5px 10px;
+  box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(128, 0, 128, 0.7);
+}
+
+#navbar button:hover {
+  transform: scale(1.05);
+}
+
+#navbar button:active {
+  transform: translateY(2px);
+}
+
+/* Override any conflicting general button styles to ensure 3D appearance */
+#navbar button {
+  padding: 5px 10px !important; 
+  box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(128, 0, 128, 0.7) !important;
+  max-height: none !important;
+}
+
+/* 3.2 Sidebar */
+#sidebar {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid purple;
+  border-radius: 10px 0 0 10px;
+  z-index: 1000;
+  width: 150px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar state variations */
+#sidebar.hidden {
+  transform: translateX(100%);
+}
+
+/* Sidebar buttons - overriding general button styles */
+#sidebar button {
+  background-color: purple;
+  color: white;
+  font-size: 1em;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#sidebar button a {
+  color: white;
+  text-decoration: none;
+}
+
+#sidebar button:hover {
+  background-color: darkviolet;
+}
+
+.active-sidebar-button {
+  border: 0.9cap solid #FFD700; /* Gold border */
+  box-shadow: 0 0 5px 1.5px #FFD700; /* Glowing effect */
+  color: gold;
+}
+
+/* ====================================
+   4. Components
+   ==================================== */
+
+/* 4.1 Special Effects */
+/* Glass effect class - applied to specific divs that need this effect */
+/* Special Effects - Glass Effect */
 .glass-effect {
-  position: relative; /* Ensure relative positioning for the pseudo-element */
-  /* This class should be applied to specific divs that need the glass effect */
+  position: relative;
 }
 
 .glass-effect::before {
@@ -82,15 +358,11 @@ div {
   z-index: 2;
 }
 
-@keyframes zoomInOut {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-h1 {
-  text-align: center;
-  margin: auto;
+/* 4.2 Media Elements */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .contractGif {
@@ -99,11 +371,12 @@ h1 {
   margin: 0 auto;
 }
 
-.mod.clicked {
-  transition: transform 0.3s ease;
-  transform: scale(0.95);
+.logo {
+  margin: 0 auto;
+  display: block;
 }
 
+/* 4.3 Buttons */
 button {
   background-color: purple;
   background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
@@ -119,10 +392,22 @@ button {
   box-sizing: border-box;
   white-space: normal;
   max-width: auto;
-  max-height: 200px;
-  padding: auto;
+  max-height: 100px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+/* Button link styling */
 button a {
   color: black;
   background-color: transparent;
@@ -135,81 +420,35 @@ button a {
   z-index: 0;
 }
 
-button:active {
-  transform: translateY(2px); /* Indent effect on click */
-}
-
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-  box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
-  background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
-  background-color: rgb(14, 13, 13);
-  transition: top 0.3s;
-  animation: pan-navbar 90s linear infinite;
-}
-
-#navbar.hidden {
-  top: -100px;
-}
-
-#navbar a {
-  color: rgb(12, 12, 12);
-  text-decoration: none;
-}
-
-#navbar button {
+/* Item button styling */
+.item .decrease-button, 
+.item .increase-button {
+  flex: 1;
+  margin-bottom: -3px;
+  padding: 1px;
+  border-radius: 5px;
   background-color: purple;
   color: white;
-  text-align: center;
-  display: inline-block;
-  font-size: 14px;
-  margin: 2px;
+  border: none;
   cursor: pointer;
-  border-radius: 12px;
-  transition: background-color 0.5s ease;
-  width: auto;
-  min-width: 100px;
-  height: auto;
-  box-sizing: border-box;
+  text-align: center;
+  font-size: 18px;
+  border-top: 2px solid purple;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-#sidebar {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 2px solid purple;
-  border-radius: 10px 0 0 10px;
-  z-index: 1000;
-  width: 150px; /* Shorten the sidebar */
-  transition: transform 0.3s ease-in-out;
+.item .decrease-button:hover, 
+.item .increase-button:hover {
+  background-color: darkviolet;
+  transform: scale(1.1);
 }
 
-#sidebar.hidden {
-  transform: translateX(100%);
+.item .decrease-button:active, 
+.item .increase-button:active {
+  transform: translateY(2px);
 }
 
-/* Fix for sidebar on large screens */
-@media (min-width: 1024px) {
-  #sidebar.hidden {
-    transform: translateX(0); /* Ensure sidebar is not hidden on larger screens */
-  }
-}
+/* This section has been moved to its proper place in the document structure */
 
 /* Additional rule for very large screens like TVs */
 @media (min-width: 1800px) {
@@ -231,26 +470,7 @@ button:active {
   }
 }
 
-#sidebar button {
-  background-color: purple;
-  color: white;
-  font-size: 1em; /* Adjust font size */
-  padding: 5px; /* Adjust padding */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#sidebar button a {
-  color: white;
-  text-decoration: none;
-}
-
-#sidebar button:hover {
-  background-color: darkviolet;
-}
-
+/* 2.4 Main Content Layout */
 #main-content {
   margin-left: auto;
   margin-right: auto;
@@ -261,6 +481,25 @@ button:active {
   transform: none;
 }
 
+/* 2.5 Section Elements */
+section {
+  border: #333;
+  border-radius: 15px;
+}
+
+section a {
+  color: white;
+}
+
+/* 2.6 Horizontal Rule */
+hr {
+  color: purple;
+  width: 90%;
+  max-width: 100%;
+  margin: auto;
+}
+
+/* Main content responsiveness */
 /* Adjust main content for sidebar on large screens */
 @media (min-width: 1024px) {
   #main-content.sidebar-visible {
@@ -291,30 +530,7 @@ button:active {
   }
 }
 
-section {
-  border: #333;
-  border-radius: 15px;
-}
-
-section a {
-  color: white;
-}
-
-hr {
-  color: purple;
-  width: 90%;
-  max-width: 100%;
-  margin: auto;
-}
-
-li {
-  list-style-type: none;
-}
-
-.modDescription {
-  font-style: italic;
-}
-
+/* This section has been moved to the Forms & Inputs section */
 .custom-select {
   border: 2px solid green;
   border-radius: 8px;
@@ -323,17 +539,6 @@ li {
   color: white;
   max-width: 100%;
   box-sizing: border-box;
-}
-
-#modNav {
-  text-align: center;
-  margin: auto;
-}
-
-.modTitle {
-  color: rgb(217, 233, 213);
-  text-shadow: #cc1c1c;
-  text-decoration: underline;
 }
 
 .quantity-input {
@@ -351,6 +556,23 @@ li {
   height: 2em;
 }
 
+/* This section has been moved and consolidated under Components */
+#modNav {
+  text-align: center;
+  margin: auto;
+}
+
+.modTitle {
+  color: rgb(217, 233, 213);
+  text-shadow: #cc1c1c;
+  text-decoration: underline;
+}
+
+.modDescription {
+  font-style: italic;
+}
+
+/* This section has been moved and consolidated under Components */
 .action-button {
   margin: -15px 0px 0px 0px;
   padding: 10px;
@@ -360,6 +582,7 @@ li {
   cursor: pointer;
 }
 
+/* Action buttons responsiveness */
 @media (min-width: 1024px) {
   .action-button {
     margin-right: 500px; /* Move buttons 200px to the left on larger screens */
@@ -369,6 +592,7 @@ li {
   }
 }
 
+/* This section has been moved and consolidated under Components */
 #summary {
   border: 5px solid rgb(0, 128, 11);
   margin-top: 100px;
@@ -386,7 +610,7 @@ li {
   margin-left: 200px;
 }
 
-
+/* Hidden by default until triggered */
 #summary,
 .action-button.copy-clear {
   display: none;
