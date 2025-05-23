@@ -1,8 +1,17 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
+const http = require('http');
+const WebSocket = require('ws');
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Create HTTP server and WebSocket server
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+// Store connected WebSocket clients
+const connectedClients = new Set();
 
 // Pool setup and connection test
 const pool = require('./db');
@@ -13,6 +22,59 @@ pool.query('SELECT NOW()', (err, result) => {
     console.log('Postgres connected:', result.rows[0]);
   }
 });
+
+// WebSocket connection handling
+wss.on('connection', (ws, req) => {
+  console.log('New WebSocket connection established');
+  connectedClients.add(ws);
+
+  // Send initial connection confirmation
+  ws.send(JSON.stringify({
+    type: 'connection',
+    status: 'connected',
+    timestamp: new Date().toISOString()
+  }));
+
+  // Handle incoming messages
+  ws.on('message', (message) => {
+    try {
+      const data = JSON.parse(message);
+      console.log('WebSocket message received:', data);
+      
+      // Handle ping/pong for connection health
+      if (data.type === 'ping') {
+        ws.send(JSON.stringify({ type: 'pong', timestamp: new Date().toISOString() }));
+      }
+    } catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+
+  // Handle connection close
+  ws.on('close', () => {
+    console.log('WebSocket connection closed');
+    connectedClients.delete(ws);
+  });
+
+  // Handle connection errors
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+    connectedClients.delete(ws);
+  });
+});
+
+// Function to broadcast messages to all connected clients
+function broadcastToClients(message) {
+  const messageString = JSON.stringify(message);
+  connectedClients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(messageString);
+    }
+  });
+}
+
+// Make broadcast function available to routes
+app.locals.broadcastToClients = broadcastToClients;
 
 app.use(express.static(__dirname)); // This serves the "data" folder if it exists in the project root
 app.use(express.json()); // For parsing application/json
@@ -542,10 +604,10 @@ const startServer = async () => {
   } catch (err) {
     console.error('Error running migrations:', err);
   }
-  
-  // Start the server regardless of migration result
-  app.listen(port, () => {
+    // Start the server regardless of migration result
+  server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+    console.log(`WebSocket server is running on ws://localhost:${port}`);
   });
 };
 

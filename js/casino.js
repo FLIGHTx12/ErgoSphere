@@ -860,11 +860,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptDiv) {
       receiptDiv.addEventListener('click', captureReceiptScreenshot);
   }
-  
-  // Initialize bet log
+    // Initialize bet log
   renderBetLog().catch(error => {
     console.error('Error rendering bet log:', error);
   });
+  
+  // Initialize casino sync manager for real-time updates
+  if (window.CasinoSyncManager) {
+    window.casinoSyncManager = new CasinoSyncManager();
+    window.casinoSyncManager.connect();
+  }
 });
 
 function captureReceiptScreenshot() {
@@ -1335,6 +1340,11 @@ async function logSubmittedBet(betObj) {
       console.info('Using localStorage for bet storage (API error):', error);
     }
   }
+  
+  // Notify sync manager of the new bet
+  if (window.casinoSyncManager) {
+    window.casinoSyncManager.notifyBetChange(weekKey);
+  }
 }
 
 // Render bet log for the current week, with delete buttons for each bet
@@ -1462,8 +1472,7 @@ async function renderBetLog() {
         const isLocal = this.getAttribute('data-local') === 'true';
         
         if (confirm("Delete this bet entry? This cannot be undone.")) {
-          if (isLocal) {
-            // Handle local storage deletion
+          if (isLocal) {            // Handle local storage deletion
             const localIdx = parseInt(betId.split('-')[1], 10);
             let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
             if (betLog[weekKey]) {
@@ -1473,8 +1482,12 @@ async function renderBetLog() {
                 delete betLog[weekKey];
               }
               localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
-            }
-          } else {
+              
+              // Notify sync manager of bet deletion
+              if (window.casinoSyncManager) {
+                window.casinoSyncManager.notifyBetChange(weekKey);
+              }
+            }          } else {
             // Handle database deletion
             try {
               const response = await fetch(`/api/bets/${betId}`, {
@@ -1483,6 +1496,11 @@ async function renderBetLog() {
               
               if (!response.ok) {
                 console.error('Failed to delete bet from database:', await response.text());
+              } else {
+                // Notify sync manager of bet deletion
+                if (window.casinoSyncManager) {
+                  window.casinoSyncManager.notifyBetChange(weekKey);
+                }
               }
             } catch (error) {
               console.error('Error deleting bet from database:', error);
@@ -1556,10 +1574,14 @@ async function renderBetLog() {
                 evaluatedAt: new Date().toISOString()
               };
             }
-            
-            // Save updates to localStorage
+              // Save updates to localStorage
             betLog[weekKey][localIdx] = localBet;
             localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+            
+            // Notify sync manager of the bet status update
+            if (window.casinoSyncManager) {
+              window.casinoSyncManager.notifyBetChange(weekKey);
+            }
             
             // Refresh bet log
             renderBetLog();
@@ -1614,10 +1636,14 @@ async function renderBetLog() {
                 payoutData
               })
             });
-            
-            if (!updateResponse.ok) {
+              if (!updateResponse.ok) {
               console.error('Failed to update bet status');
               return;
+            }
+            
+            // Notify sync manager of the bet status update
+            if (window.casinoSyncManager) {
+              window.casinoSyncManager.notifyBetChange(bet.week_key || weekKey);
             }
             
             // Refresh bet log
@@ -1682,8 +1708,7 @@ async function renderBetLog() {
       deleteAllBtn.onclick = async function() {
         if (confirm("Delete ALL bets for this week? This cannot be undone!")) {
           const userName = document.getElementById("user").value;
-          
-          // Clear localStorage first
+            // Clear localStorage first
           let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
           if (betLog[weekKey]) {
             delete betLog[weekKey];
@@ -1708,6 +1733,11 @@ async function renderBetLog() {
             } catch (error) {
               console.error('Error deleting all bets from database:', error);
             }
+          }
+          
+          // Notify sync manager of bulk bet deletion
+          if (window.casinoSyncManager) {
+            window.casinoSyncManager.notifyBetChange(weekKey);
           }
           
           // Refresh the bet log

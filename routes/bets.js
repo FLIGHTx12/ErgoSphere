@@ -52,7 +52,19 @@ router.post('/', async (req, res) => {
       [userName, league, awayTeam, homeTeam, weekKey, betData]
     );
     
-    res.status(201).json(result.rows[0]);
+    const newBet = result.rows[0];
+    
+    // Broadcast the new bet to all connected WebSocket clients
+    if (req.app.locals.broadcastToClients) {
+      req.app.locals.broadcastToClients({
+        type: 'bet_created',
+        data: newBet,
+        weekKey: weekKey,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    res.status(201).json(newBet);
   } catch (err) {
     console.error('Error creating bet:', err);
     res.status(500).json({ error: 'Internal server error' });
@@ -67,6 +79,18 @@ router.delete('/:id', async (req, res) => {
     
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Bet not found' });
+    }
+    
+    const deletedBet = result.rows[0];
+    
+    // Broadcast the bet deletion to all connected WebSocket clients
+    if (req.app.locals.broadcastToClients) {
+      req.app.locals.broadcastToClients({
+        type: 'bet_deleted',
+        data: deletedBet,
+        weekKey: deletedBet.week_key,
+        timestamp: new Date().toISOString()
+      });
     }
     
     res.json({ message: 'Bet deleted successfully' });
@@ -95,7 +119,20 @@ router.put('/:id/status', async (req, res) => {
       return res.status(404).json({ error: 'Bet not found' });
     }
     
-    res.json(result.rows[0]);
+    const updatedBet = result.rows[0];
+    
+    // Broadcast the bet status update to all connected WebSocket clients
+    if (req.app.locals.broadcastToClients) {
+      req.app.locals.broadcastToClients({
+        type: 'bet_updated',
+        data: updatedBet,
+        weekKey: updatedBet.week_key,
+        updateType: 'status',
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    res.json(updatedBet);
   } catch (err) {
     console.error('Error updating bet status:', err);
     res.status(500).json({ error: 'Internal server error' });

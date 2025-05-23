@@ -13,11 +13,19 @@
     <button><a href="../index.html">HOME</a></button>
     <button><a href="casino.html">CASINO</a></button>  
     <button><a href="https://www.365scores.com/en-us/my-scores">365scores</a></button> 
+<!-- Compact connection status indicator - clickable to open test page -->
+<a href="casino-sync-test.html" title="Click to open sync test page" class="connection-status-link">
+    <div id="connection-status" class="connection-status-compact disconnected">
+        <span class="status-dot"></span>
+        <span class="status-text">Offline</span>
+    </div>
+</a>
 </nav>
 <hr>
 <header>
     <h1>ErgoSphere CASINO</h1>
 </header>
+
 <hr>
 
 <main>    <div id="betting-system" class="">
@@ -140,6 +148,7 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/casino.js"></script>
+<script src="../js/casino-sync.js"></script>
 <!-- Add the new receipt capture fix script -->
 <script src="../js/receipt-capture-fix.js"></script>
 </body>

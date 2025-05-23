@@ -1050,472 +1050,6 @@ select:disabled {
   }
 }
 
-@media (max-width: 600px) {
-  .bet-log {
-    max-width: 98% !important;
-    width: 98%;
-    padding: 15px 10px 10px 10px;
-  }
-  
-  .bet-log-entry {
-    padding: 10px;
-  }
-  
-  .bet-log-entry .user-name {
-    margin-bottom: 8px;
-  }
-  
-  .bet-line-content {
-    width: calc(100% - 110px);
-  }
-  
-  .bet-status-controls button {
-    padding: 2px 5px;
-    font-size: 9px;
-  }
-  
-  .bet-log-entry li {
-    padding: 4px 5px;
-  }
-}
-/* Additional compact styles for bet lines */
-.bet-line-content {
-  word-break: break-word;
-  line-height: 1.4;
-  min-height: 24px;
-}
-
-/* Make the Won/Lost buttons more prominent but compact */
-.bet-status-controls button {
-  min-width: 24px;
-  text-align: center;
-}
-
-/* Style for bet results with compact spacing */
-.bet-status-indicator {
-  display: inline-block;
-  vertical-align: middle;
-}
-/* Fix for receipt background image covering content */
-
-.payout-receipt {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh; /* Limit height to 90% of viewport height */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
-    overflow-y: auto; /* Make scrollable if content overflows */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Added - Better container for receipt content */
-.payout-receipt .receipt-content-wrapper {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 5px 0;
-}
-
-/* Modified - Background handling */
-.payout-receipt::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: inherit;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.08; /* Extremely low opacity for better text visibility */
-    z-index: -1;
-    border-radius: 10px;
-}
-
-/* Modified - Ensure content appears above the background */
-.payout-receipt h2, 
-.payout-receipt div,
-.payout-receipt ul,
-.payout-receipt button,
-.payout-receipt .bet-details,
-.payout-receipt .payout-summary,
-.payout-receipt .bet-details ul li,
-.payout-receipt .payout-value,
-.payout-receipt .receipt-info > div,
-.payout-receipt .matchup {
-    position: relative;
-    z-index: 5; 
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1); /* Stronger text shadow */
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-/* Improved container backgrounds for better visibility */
-.payout-receipt .bet-details,
-.payout-receipt .payout-summary {
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 10px 8px;
-    border-radius: 5px;
-    margin: 8px 0;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: center; /* Center align contents of payout-summary */
-}
-
-/* New styles for compact wager and bets won info */
-.payout-receipt .payout-summary-details {
-    display: flex;
-    justify-content: space-around; /* Distribute space between items */
-    align-items: center;
-    font-size: 0.8em; /* Smaller font size */
-    margin-bottom: 8px; /* Space before the total payout */
-    color: #ccc; /* Lighter color for less emphasis */
-}
-
-.payout-receipt .payout-summary-details span {
-    padding: 0 5px; /* Add some horizontal padding between items */
-}
-
-.payout-receipt .bet-details ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    width: 100%;
-}
-
-.payout-receipt .bet-details li {
-    padding: 6px;
-    margin-bottom: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    display: block; /* Changed from flex to block for better wrapping */
-    background-color: rgba(0, 0, 0, 0.6); /* Background on each list item */
-    border-radius: 4px;
-    width: 100%; /* Ensure it uses full width of its parent ul */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-/* Additional - Make receipt easier to read when capturing */
-.payout-receipt.capturing::before {
-    opacity: 0.3; /* Make background more visible during capture than normal (0.08) */
-}
-
-.payout-receipt.capturing {
-    background-color: rgba(0, 0, 0, 0.95) !important;
-    /* background-image: none !important; */ /* Removed to allow background image capture */
-}
-
-.payout-receipt.capturing .bet-details,
-.payout-receipt.capturing .payout-summary,
-.payout-receipt.capturing .matchup {
-    background-color: rgba(0, 0, 0, 0.85); /* Darker during capture */
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-/* User-specific styles - simplified */
-.payout-receipt.user-flight .payout-value {
-    color: #5efc03; /* Green for Flight */
-    background: rgba(0, 40, 0, 0.7);
-}
-
-.payout-receipt.user-jaybers .payout-value {
-    color: #f8c0ff; /* Light purple for Jaybers */
-    background: rgba(40, 0, 40, 0.7);
-}
-
-.payout-receipt .payout-receipt-close {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    background: rgba(200, 0, 0, 0.8);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-    cursor: pointer;
-    z-index: 10; /* Increased z-index to be above other receipt content (which is z-index 5) */
-    line-height: 1;
-}
-
-/* Status indicator styles */
-.payout-receipt .bet-won {
-    color: #5efc03; /* Bright green */
-    border-left: 3px solid #5efc03;
-    padding-left: 6px;
-}
-
-.payout-receipt .bet-lost {
-    color: #fc0303; /* Bright red */
-    border-left: 3px solid #fc0303;
-    padding-left: 6px;
-}
-
-.payout-receipt h2 {
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 12px;
-    font-size: 1.3em;
-}
-
-.payout-receipt .receipt-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 4px; /* Reduced spacing between elements for compactness */
-}
-
-/* New style for user and date line */
-.payout-receipt .receipt-user-date {
-    font-size: 0.75em; /* Smaller font size */
-    opacity: 0.8; /* Slightly less prominent */
-    margin-bottom: 2px; /* Reduced bottom margin */
-    text-align: center; /* Center align user/date */
-}
-
-.payout-receipt .matchup {
-    text-align: center;
-    font-weight: bold;
-    margin: 8px 0;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    width: 100%;
-}
-
-/* Improved button styling */
-.payout-receipt .copy-receipt-btn {
-    background: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px auto;
-    font-weight: bold;
-    width: 90%;
-    text-align: center;
-    display: block;
-    font-size: 1em;
-}
-
-/* Improved payout value display */
-.payout-receipt .payout-value {
-    font-size: 1.25em;
-    font-weight: bold;
-    color: #FFD700; /* Gold */
-    margin: 0 auto; /* Adjusted margin, as text-align center on parent handles horizontal */
-    padding: 8px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    width: 100%;
-}
-
-/* Modified - Responsive styling for mobile devices */
-@media (max-width: 768px) {
-    .payout-receipt {
-        width: 96%;
-        padding: 12px 8px;
-        top: 45%; /* Move slightly higher to show more content */
-        max-height: 85vh; /* Slightly smaller for better positioning */
-    }
-    
-    .payout-receipt .bet-details li,
-    .payout-receipt .payout-value {
-        font-size: 0.95em; /* Slightly smaller text */
-        line-height: 1.3;
-    }
-}
-
-/* Better mobile sizing for buttons */
-@media (max-width: 480px) {
-    .payout-receipt {
-        width: 98%;
-        padding: 10px 5px 5px 5px;
-        font-size: 0.95em;
-    }
-    
-    .payout-receipt h2 {
-        font-size: 1.2em;
-        margin-top: 5px;
-        margin-bottom: 8px;
-    }
-    
-    .payout-receipt .bet-details, 
-    .payout-receipt .payout-summary {
-        padding: 6px;
-    }
-
-    /* Adjust payout summary details for smaller screens */
-    .payout-receipt .payout-summary-details {
-        font-size: 0.75em; /* Even smaller on small screens */
-        flex-direction: column; /* Stack them on very small screens if needed */
-        gap: 3px; /* Add small gap if stacked */
-    }
-    
-    .payout-receipt .bet-details li {
-        padding: 5px;
-        margin-bottom: 3px;
-        line-height: 1.2;
-        font-size: 0.9em;
-    }
-    
-    .payout-receipt .payout-value {
-        font-size: 1.2em;
-        padding: 6px;
-    }
-    
-    .payout-receipt .copy-receipt-btn {
-        padding: 8px 5px;
-        font-size: 0.95em;
-        width: 95%;
-    }
-}
-
-/* Additional mobile optimizations for very small screens */
-@media (max-width: 360px) {
-    .payout-receipt {
-        width: 99%;
-        padding: 8px 4px;
-        max-height: 90vh; /* Use more space on very small screens */
-    }
-    
-    .payout-receipt .bet-details li,
-    .payout-receipt .payout-summary div:not(.payout-value) { /* Target divs in summary except payout-value */
-        font-size: 0.85em;
-    }
-
-    .payout-receipt .payout-summary-details {
-        font-size: 0.7em; /* Further reduce for very small screens */
-        flex-direction: column; /* Ensure stacking */
-        gap: 2px;
-    }
-}
-
-/* Additional receipt styles */
-.receipt {
-    position: relative;
-    color: white;
-}
-
-.receipt::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: inherit;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.4;
-    z-index: -1;
-    border-radius: 10px;
-}
-
-.receipt h2, 
-#receipt-content {
-    position: relative;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Enhance receipt screenshot capture functionality */
-
-#receipt.capturing {
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.6) !important;
-  background-size: cover !important;
-  background-position: center !important;
-  z-index: 100 !important;
-  opacity: 1 !important;
-  /* Ensure it expands to content and nothing is clipped */
-  height: auto !important; 
-  min-height: 0 !important; /* Reset min-height that might conflict */
-  overflow: visible !important; 
-}
-
-#receipt.capturing::before {
-  opacity: 0.9 !important; 
-  z-index: 1 !important; 
-  filter: none !important; /* Removing blur as it can interfere with capture */
-}
-
-/* Styles for #receipt-content and its children specifically during capture */
-#receipt.capturing #receipt-content {
-  color: white !important;
-  text-shadow: 0px 0px 3px black, 1px 1px 2px black !important;
-  z-index: 10 !important; 
-  height: auto !important; /* Allow #receipt-content to expand fully */
-  overflow: visible !important; /* Ensure #receipt-content doesn't clip its own children */
-  background-color: transparent !important; /* #receipt should have the main background */
-  padding-bottom: 1px; /* Ensure scrollHeight includes bottom padding/margin of last child */
-}
-
-/* Ensure all direct children of #receipt-content are also visible and expand */
-#receipt.capturing #receipt-content > div {
-    overflow: visible !important;
-    height: auto !important;
-}
-
-/* Make sure text is highly visible in receipt */
-#receipt.capturing .matchup,
-#receipt.capturing .bet-line,
-#receipt.capturing .wager-total,
-#receipt.capturing .potential-winnings,
-#receipt.capturing .actual-winnings {
-  background-color: rgba(0, 0, 0, 0.8) !important; /* Darker for better contrast */
-  padding: 8px !important;
-  border-radius: 4px !important;
-  margin: 5px 0 !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) !important;
-  text-shadow: 1px 1px 2px black, 0 0 5px black !important; 
-  border: 1px solid rgba(255, 255, 255, 0.2) !important; 
-  color: white !important; 
-  position: relative !important; 
-  z-index: 15 !important; 
-  overflow: visible !important; 
-  height: auto !important; 
-}
-
-/* Make sure text is highly visible in receipt */
-#receipt .matchup,
-#receipt .bet-line,
-#receipt .wager-total,
-#receipt .potential-winnings,
-#receipt .actual-winnings {
-  background-color: rgba(0, 0, 0, 0.7) !important;
-  padding: 8px !important;
-  border-radius: 4px !important;
-  margin: 5px 0 !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) !important;
-  text-shadow: 1px 1px 2px black !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: white !important; 
-  position: relative !important;
-  z-index: 5 !important;
-}
-
-/* Add responsive styles for bet receipt on mobile devices */
 @media (max-width: 768px) {
   #receipt {
     padding: 15px;
@@ -1529,106 +1063,6 @@ select:disabled {
   #receipt .bet-line {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  #receipt {
-    padding: 12px 8px;
-    width: 98%;
-  }
-  
-  #receipt .matchup {
-    font-size: 1.1em;
-  }
-  
-  #receipt .wager-total,
-  #receipt .potential-winnings,
-  #receipt .actual-winnings {
-    font-size: 0.9em;
-  }
-}
-
-/* Same Player Boost visual indicator */
-.bet-log-entry .boost-same-player,
-.boost-same-player {
-  background: #1e88e5;
-  color: #fff;
-  border-radius: 4px;
-  padding: 2px 6px;
-  margin-left: 6px;
-  font-size: 0.95em;
-  font-weight: bold;
-  box-shadow: 0 1px 4px rgba(30,136,229,0.15);
-  display: inline-block;
-}
-
-/*******************************************************************************
- * 8. Media Queries & Responsive Design
- ******************************************************************************/
-
-/* Limit betting system width on larger screens */
-@media (min-width: 900px) {
-  #betting-system {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-/* General media queries */
-@media (max-width: 1300px) {
-  .bet-log {
-    max-width: 90% !important;
-  }
-}
-
-@media (max-width: 900px) {
-  .bet-log {
-    max-width: 95% !important;
-    width: 95%;
-    padding: 15px 20px 12px 20px;
-  }
-  
-  .bet-log-entry {
-    padding: 12px 15px;
-  }
-  
-  .bet-line-content {
-    width: calc(100% - 120px);
-  }
-  
-  .bet-log-entry li {
-    padding: 5px 6px;
-  }
-}
-
-@media (max-width: 768px) {
-  #receipt {
-    padding: 15px;
-    width: 95%;
-  }
-  
-  #receipt .matchup {
-    font-size: 1.2em;
-  }
-  
-  #receipt .bet-line {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .payout-receipt {
-    width: 96%;
-    padding: 12px 8px;
-    top: 45%;
-    max-height: 85vh;
-  }
-  
-  .payout-receipt .bet-details li,
-  .payout-receipt .payout-value {
-    font-size: 0.95em;
-    line-height: 1.3;
   }
 }
 
@@ -1773,4 +1207,110 @@ select:disabled {
     flex-direction: column;
     gap: 2px;
   }
+}
+
+/* Compact WebSocket connection status indicator */
+.connection-status-compact {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 2px 5px;
+  border-radius: 12px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  max-width: 80px; /* Limiting the width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: rgba(42, 42, 42, 0.7);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.connection-status-compact:hover {
+  background-color: rgba(42, 42, 42, 0.95);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.connection-status-compact.connected .status-dot { 
+  background-color: #4CAF50; 
+}
+
+.connection-status-compact.disconnected .status-dot { 
+  background-color: #F44336; 
+}
+
+.connection-status-compact.connecting .status-dot { 
+  background-color: #FF9800; 
+}
+
+.connection-status-link {
+  text-decoration: none;
+  display: block;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.connection-status-link:hover .connection-status-compact {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Existing connection status compact styles */
+.connection-status-compact {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 2px 5px;
+  border-radius: 12px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  max-width: 80px; /* Limiting the width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: rgba(42, 42, 42, 0.7);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.connection-status-compact:hover {
+  background-color: rgba(42, 42, 42, 0.95);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.connection-status-compact.connected .status-dot { 
+  background-color: #4CAF50; 
+}
+
+.connection-status-compact.disconnected .status-dot { 
+  background-color: #F44336; 
+}
+
+.connection-status-compact.connecting .status-dot { 
+  background-color: #FF9800; 
 }
