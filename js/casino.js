@@ -1120,18 +1120,17 @@ function createPayoutReceipt(bet) {
       totalReturn += winAmount + b.betAmount;
     }
   });
-  
-  // Create receipt HTML
+    // Create receipt HTML
   receiptDiv.innerHTML = `
-    <button class="payout-receipt-close">&times;</button>
-    <h2>Payout Receipt</h2>
-    <div>
-      <div><b>${bet.user_name}</b> | ${betDate}</div>
+    <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
+    <div class="receipt-content-wrapper">
+      <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
       <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
       
       <div class="bet-details">
         <h3>Bet Results:</h3>
-        <ul>          ${betData.bets.map((b, idx) => {
+        <ul>
+          ${betData.bets.map((b, idx) => {
             const status = betStatus[idx] || 'pending';
             const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
             let winAmount = b.potentialWin;
@@ -1181,32 +1180,58 @@ function capturePayoutReceiptScreenshot(receiptElement) {
   // Add a class to ensure content is visible during capture
   receiptElement.classList.add('capturing');
   
-  // Store original background-image
-  const originalBgImage = receiptElement.style.backgroundImage;
+  // Store original styles before modification
+  const originalStyles = {
+    backgroundImage: receiptElement.style.backgroundImage,
+    backgroundColor: receiptElement.style.backgroundColor,
+    position: receiptElement.style.position,
+    zIndex: receiptElement.style.zIndex,
+    boxShadow: receiptElement.style.boxShadow,
+    border: receiptElement.style.border
+  };
   
-  // Temporarily adjust styles for better screenshot
-  receiptElement.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+  // Enhance appearance for screenshot
+  receiptElement.style.position = 'fixed';
+  receiptElement.style.zIndex = '9999';
+  receiptElement.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.8)';
+  receiptElement.style.border = '4px solid gold';
   
-  // Ensure all content is visible
-  const contentElements = receiptElement.querySelectorAll('.bet-details, .payout-summary, .receipt-info');
-  contentElements.forEach(el => {
-    el.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    el.style.padding = '10px';
-    el.style.borderRadius = '5px';
-    el.style.margin = '10px 0';
-    el.style.position = 'relative';
-    el.style.zIndex = '2';
-  });
-  
-  html2canvas(receiptElement, {
+  // Hide the copy button during screenshot
+  const copyButton = receiptElement.querySelector('#copy-payout-receipt');
+  if (copyButton) {
+    copyButton.style.display = 'none';
+  }
+    html2canvas(receiptElement, {
     useCORS: true,
     allowTaint: true,
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-    scale: 2 // Increase quality
+    backgroundColor: null, // Allow transparent background for better image quality
+    scale: 3, // Increase quality even more for high definition
+    logging: false,
+    onclone: function(clonedDoc) {
+      const clonedReceipt = clonedDoc.getElementById(receiptElement.id);
+      if (clonedReceipt) {
+        // Enhance text visibility for screenshot
+        clonedReceipt.querySelectorAll('.bet-details li, .payout-summary, .matchup, .receipt-user-date')
+          .forEach(el => {
+            el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 0.9)';
+            el.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+            el.style.borderRadius = '5px';
+          });
+      }
+    }
   }).then(canvas => {
     // Remove the capturing class and restore original styles
     receiptElement.classList.remove('capturing');
-    receiptElement.style.backgroundImage = originalBgImage;
+    
+    // Restore all original styles
+    Object.keys(originalStyles).forEach(key => {
+      receiptElement.style[key] = originalStyles[key];
+    });
+    
+    // Show the copy button again
+    if (copyButton) {
+      copyButton.style.display = '';
+    }
     
     canvas.toBlob(blob => {
       navigator.clipboard.write([
@@ -1961,51 +1986,52 @@ document.addEventListener('DOMContentLoaded', function() {
           totalReturn += winAmount + b.betAmount;
         }
       });
-      
-      // Create receipt HTML with improved structure for mobile visibility
+        // Create receipt HTML with improved structure for mobile visibility
       receiptDiv.innerHTML = `
-        <button class="payout-receipt-close">&times;</button>
-        <h2>Payout Receipt</h2>
+        <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
         <div class="receipt-content-wrapper">
-          <div class="receipt-info">
-            <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
-            <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
-            
-            <div class="bet-details">
-              <h3>Bet Results:</h3>
-              <ul>
-                ${betData.bets.map((b, idx) => {
-                  const status = betStatus[idx] || 'pending';
-                  const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
-                  
-                  // Format player name to be shorter if needed
-                  let playerName = b.player;
-                  if (playerName && playerName.length > 15) {
-                    playerName = playerName.substring(0, 13) + '...';
-                  }
-                  
-                  return `
-                    <li class="${statusClass}">
-                      ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
-                      <br><b>${status.toUpperCase()}</b> 
-                      ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
-                    </li>
-                  `;
-                }).join('')}
-              </ul>
-            </div>
-            
-            <div class="payout-summary">
-              <div class="payout-summary-details">
-                <span>Total Wager: ${totalWager} 💷</span>
-                <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
-              </div>
-              <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
-              ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
-            </div>
-            
-            <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
+          <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
+          <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
+          
+          <div class="bet-details">
+            <h3>Bet Results:</h3>
+            <ul>
+              ${betData.bets.map((b, idx) => {
+                const status = betStatus[idx] || 'pending';
+                const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
+                let winAmount = b.potentialWin;
+                let boostText = '';
+                
+                if (status === 'won' && samePlayerEligible) {
+                  winAmount = Math.ceil(winAmount * 1.15);
+                  boostText = ' <span class="boost boost-same-player">(+15% Same Player Boost)</span>';
+                }
+                
+                // Format player name to be shorter if needed
+                let playerName = b.player;
+                if (playerName && playerName.length > 15) {
+                  playerName = playerName.substring(0, 13) + '...';
+                }
+                
+                return `
+                  <li class="${statusClass}">
+                    ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
+                    <br><b>${status.toUpperCase()}</b> 
+                    ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
+                  </li>
+                `;
+              }).join('')}
+            </ul>
           </div>
+          
+          <div class="payout-summary">
+            <div>Total Wager: ${totalWager} 💷</div>
+            <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
+            <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
+            ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
+          </div>
+          
+          <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
         </div>
       `;
       
