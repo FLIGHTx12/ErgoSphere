@@ -1180,6 +1180,14 @@ function capturePayoutReceiptScreenshot(receiptElement) {
   // Add a class to ensure content is visible during capture
   receiptElement.classList.add('capturing');
   
+  // Show loading state on button if it exists
+  const copyButton = receiptElement.querySelector('#copy-payout-receipt');
+  if (copyButton) {
+    copyButton.classList.add('loading');
+    copyButton.textContent = 'Creating image...';
+    copyButton.disabled = true;
+  }
+  
   // Store original styles before modification
   const originalStyles = {
     backgroundImage: receiptElement.style.backgroundImage,
@@ -1187,40 +1195,142 @@ function capturePayoutReceiptScreenshot(receiptElement) {
     position: receiptElement.style.position,
     zIndex: receiptElement.style.zIndex,
     boxShadow: receiptElement.style.boxShadow,
-    border: receiptElement.style.border
+    border: receiptElement.style.border,
+    maxHeight: receiptElement.style.maxHeight,
+    height: receiptElement.style.height,
+    overflow: receiptElement.style.overflow,
+    transform: receiptElement.style.transform,
+    top: receiptElement.style.top,
+    left: receiptElement.style.left
   };
   
-  // Enhance appearance for screenshot
+  // Calculate total height of content
+  const contentWrapper = receiptElement.querySelector('.receipt-content-wrapper');
+  const contentHeight = contentWrapper ? contentWrapper.scrollHeight : receiptElement.scrollHeight;
+  
+  // Enhance appearance for screenshot and ensure all content is visible
   receiptElement.style.position = 'fixed';
   receiptElement.style.zIndex = '9999';
   receiptElement.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.8)';
   receiptElement.style.border = '4px solid gold';
-  
-  // Hide the copy button during screenshot
-  const copyButton = receiptElement.querySelector('#copy-payout-receipt');
-  if (copyButton) {
-    copyButton.style.display = 'none';
-  }
-    html2canvas(receiptElement, {
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: null, // Allow transparent background for better image quality
-    scale: 3, // Increase quality even more for high definition
-    logging: false,
-    onclone: function(clonedDoc) {
-      const clonedReceipt = clonedDoc.getElementById(receiptElement.id);
-      if (clonedReceipt) {
-        // Enhance text visibility for screenshot
-        clonedReceipt.querySelectorAll('.bet-details li, .payout-summary, .matchup, .receipt-user-date')
-          .forEach(el => {
-            el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 0.9)';
-            el.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
-            el.style.borderRadius = '5px';
-          });
-      }
+  receiptElement.style.maxHeight = 'none';
+  receiptElement.style.height = 'auto';
+  receiptElement.style.overflow = 'visible';
+  receiptElement.style.transform = 'none';
+  receiptElement.style.top = '50%';
+  receiptElement.style.left = '50%';  
+  // Give browser a moment to render with new styles
+  setTimeout(() => {
+    // Hide the copy button during screenshot
+    if (copyButton) {
+      copyButton.style.display = 'none';
     }
-  }).then(canvas => {
-    // Remove the capturing class and restore original styles
+    
+    // Find share button if it exists and hide it too
+    const shareButton = receiptElement.querySelector('.share-receipt-btn');
+    if (shareButton) {
+      shareButton.style.display = 'none';
+    }
+    
+    // Hide compact mode toggle if it exists
+    const compactToggle = receiptElement.querySelector('.compact-mode-toggle');
+    if (compactToggle) {
+      compactToggle.style.display = 'none';
+    }
+    
+    html2canvas(receiptElement, {
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null, // Allow transparent background for better image quality
+      scale: 2, // Balance between quality and performance
+      logging: false,
+      windowWidth: document.documentElement.clientWidth,
+      windowHeight: document.documentElement.clientHeight,
+      scrollX: 0,
+      scrollY: 0,
+      width: receiptElement.offsetWidth,
+      height: receiptElement.scrollHeight, // Use scrollHeight to capture full content
+      onclone: function(clonedDoc) {
+        const clonedReceipt = clonedDoc.querySelector('.payout-receipt');
+        if (clonedReceipt) {
+          // Ensure cloned receipt has good dimensions for capture
+          clonedReceipt.style.height = 'auto';
+          clonedReceipt.style.position = 'absolute';
+          clonedReceipt.style.maxHeight = 'none';
+          clonedReceipt.style.overflow = 'visible';
+          
+          // Enhance text visibility for screenshot
+          clonedReceipt.querySelectorAll('.bet-details li, .payout-summary, .matchup, .receipt-user-date')
+            .forEach(el => {
+              el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 0.9)';
+              el.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+              el.style.borderRadius = '5px';
+            });
+        }
+      }
+    }).then(canvas => {
+      processCanvas(canvas);
+    }).catch(err => {
+      console.error('Failed to capture payout receipt:', err);
+      alert('Failed to capture payout receipt. Please try again.');
+      cleanupAndRestoreStyles();
+    });
+  }, 100); // Short timeout to ensure styles are applied before capture
+  
+  // Process the canvas after capture
+  function processCanvas(canvas) {
+    // Create a cleaner version of the image by drawing to a new canvas
+    const cleanCanvas = document.createElement('canvas');
+    const ctx = cleanCanvas.getContext('2d');
+    
+    // Set dimensions to the visible receipt size
+    cleanCanvas.width = canvas.width;
+    cleanCanvas.height = canvas.height;
+    
+    // Draw original canvas onto clean canvas
+    ctx.drawImage(canvas, 0, 0);
+    
+    canvas.toBlob(blob => {
+      navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob })
+      ]).then(() => {
+        // Success - show feedback
+        const successMessage = document.createElement('div');
+        successMessage.textContent = '✓ Copied to clipboard!';
+        successMessage.style.position = 'absolute';
+        successMessage.style.top = '50%';
+        successMessage.style.left = '50%';
+        successMessage.style.transform = 'translate(-50%, -50%)';
+        successMessage.style.backgroundColor = 'rgba(0, 128, 0, 0.8)';
+        successMessage.style.color = 'white';
+        successMessage.style.padding = '10px 20px';
+        successMessage.style.borderRadius = '5px';
+        successMessage.style.zIndex = '10000';
+        document.body.appendChild(successMessage);
+        
+        // Remove the success message after 2 seconds
+        setTimeout(() => {
+          document.body.removeChild(successMessage);
+        }, 2000);
+        
+        cleanupAndRestoreStyles();
+      }).catch(err => {
+        console.error('Failed to copy payout receipt:', err);
+        
+        // Fallback - offer direct download if clipboard fails
+        const link = document.createElement('a');
+        link.download = 'payout-receipt.png';
+        link.href = cleanCanvas.toDataURL('image/png');
+        link.click();
+        
+        alert('Receipt image downloaded (clipboard access failed)');
+        cleanupAndRestoreStyles();
+      });
+    }, 'image/png', 0.95);
+  }
+  
+  function cleanupAndRestoreStyles() {
+    // Remove the capturing class
     receiptElement.classList.remove('capturing');
     
     // Restore all original styles
@@ -1231,29 +1341,16 @@ function capturePayoutReceiptScreenshot(receiptElement) {
     // Show the copy button again
     if (copyButton) {
       copyButton.style.display = '';
+      copyButton.classList.remove('loading');
+      copyButton.textContent = 'Copy Receipt';
+      copyButton.disabled = false;
     }
     
-    canvas.toBlob(blob => {
-      navigator.clipboard.write([
-        new ClipboardItem({ 'image/png': blob })
-      ]).then(() => {
-        alert('Payout receipt copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy payout receipt:', err);
-        // Fallback - offer direct download if clipboard fails
-        const link = document.createElement('a');
-        link.download = 'payout-receipt.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        alert('Payout receipt saved as image (clipboard access failed).');
-      });
-    });
-  }).catch(err => {
-    console.error('Failed to capture payout receipt:', err);
-    receiptElement.classList.remove('capturing');
-    receiptElement.style.backgroundImage = originalBgImage;
-    alert('Failed to capture payout receipt. Please try again.');
-  });
+    // Show share button again if it exists
+    const shareButton = receiptElement.querySelector('.share-receipt-btn');
+    if (shareButton) {
+      shareButton.style.display = '';
+    }  }
 }
 
 // Reset all bet-related dropdowns and inputs (except league)
@@ -1479,12 +1576,21 @@ async function renderBetLog() {
       <h2>WEEK ${weekNumber} BETS</h2>
       <button id="delete-all-bets" class="delete-bet-log-btn">Delete All Bets</button>
       <div class="bet-log-list">
-        ${weekBets.map(bet => {
-          // Extract bet data from DB format or use as is for localStorage
+        ${weekBets.map(bet => {          // Extract bet data from DB format or use as is for localStorage
           const betData = bet.bet_data || bet;
           const betId = bet.id || `local-${bet.localIdx}`;
           const isLocal = betId && typeof betId === 'string' ? betId.startsWith('local-') : false;
-          const displayDate = bet.bet_date || bet.date;
+          
+          // Format date nicely
+          const rawDate = bet.bet_date || bet.date;
+          const displayDate = new Date(rawDate).toLocaleDateString('en-US', {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+          
           const userName = bet.user_name || document.getElementById("user").value;
           
           // Determine background class based on user
@@ -2235,14 +2341,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
           reject(error);
         }
-      });
-    }
+      });    }
     
     console.log("✅ Payout receipt display fix installed");
   } else {
     console.error("⚠️ createPayoutReceipt function not found, fix not applied");
   }
-});
+}); // Closing the earlier anonymous function that was missing its closing parenthesis
 // Fix for player selection dropdown issues
 
 // Improved updateLines function with better player selection handling

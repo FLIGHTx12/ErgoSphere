@@ -156,13 +156,59 @@ document.addEventListener('DOMContentLoaded', () => {
         matchup.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.5)';
       });
     }
-    
-    // Make copy button more interactive
-    const copyBtn = receiptElement.querySelector('.copy-receipt-btn');
-    if (copyBtn) {
+      // Make copy button more interactive
+  const copyBtn = receiptElement.querySelector('.copy-receipt-btn');
+  if (copyBtn) {
+    try {
+      // Add compact mode toggle button
+      const compactToggle = document.createElement('button');
+      compactToggle.textContent = '📏 Compact Mode';
+      compactToggle.className = 'compact-mode-toggle';
+      compactToggle.style.position = 'absolute';
+      compactToggle.style.right = '10px';
+      compactToggle.style.bottom = '10px';
+      compactToggle.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      compactToggle.style.color = '#ddd';
+      compactToggle.style.border = '1px solid #444';
+      compactToggle.style.borderRadius = '4px';
+      compactToggle.style.padding = '4px 8px';
+      compactToggle.style.fontSize = '0.8em';
+      compactToggle.style.cursor = 'pointer';
+      compactToggle.style.zIndex = '5';
+      
+      compactToggle.addEventListener('mouseover', () => {
+        compactToggle.style.backgroundColor = 'rgba(30,30,30,0.9)';
+      });
+      
+      compactToggle.addEventListener('mouseout', () => {
+        compactToggle.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      });
+      
+      // Toggle compact mode
+      compactToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        receiptElement.classList.toggle('compact-mode');
+        if (receiptElement.classList.contains('compact-mode')) {
+          compactToggle.textContent = '🔍 Full Mode';
+        } else {
+          compactToggle.textContent = '📏 Compact Mode';
+        }
+      });
+      
+      // Add the toggle button to the receipt
+      const wrapper = receiptElement.querySelector('.receipt-content-wrapper');
+      if (wrapper) {
+        wrapper.appendChild(compactToggle);
+      }
+      
+      // Handle click on copy button
       copyBtn.addEventListener('click', () => {
         if (window.clickSound) {
-          window.clickSound.play().catch(() => {});
+          try {
+            window.clickSound.play().catch(() => {});
+          } catch (e) {
+            console.log('Error playing sound:', e);
+          }
         }
         copyBtn.textContent = 'Creating Receipt Image...';
         copyBtn.disabled = true;
@@ -173,7 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
           copyBtn.disabled = false;
         }, 2000);
       });
+    } catch (error) {
+      console.error('Error setting up compact mode toggle:', error);
     }
+  }
   }  // Add share capabilities for the payout receipt
   function addShareCapabilities(receiptElement) {
     // Check if Share API is supported
