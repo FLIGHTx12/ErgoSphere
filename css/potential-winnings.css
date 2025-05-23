@@ -1,0 +1,56 @@
+/* 
+ * CSS for potential winnings calculator display
+ * Adds styling for the real-time winnings display while users input bet amounts
+ */
+
+.potential-winnings-display {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #0f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-top: 8px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.potential-winnings-display .win-amount {
+  color: #0f0;
+  font-weight: bold;
+}
+
+.potential-winnings-display .total-return {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.potential-winnings-display .role-player-boost {
+  color: #FFD700;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhance the visibility of the bet amount input when focused */
+.bet-amount:focus + .potential-winnings-display {
+  border: 1px solid #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .potential-winnings-display {
+    font-size: 0.8em;
+    padding: 4px 6px;
+  }
+}

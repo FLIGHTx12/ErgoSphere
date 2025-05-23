@@ -105,8 +105,7 @@ class CasinoSyncManager {
     try {
       const message = JSON.parse(event.data);
       console.log('🎰 Received WebSocket message:', message);
-      
-      switch (message.type) {
+        switch (message.type) {
         case 'BET_CREATED':
         case 'BET_UPDATED':
         case 'BET_DELETED':
@@ -120,6 +119,11 @@ class CasinoSyncManager {
           
         case 'PONG':
           // Handle ping/pong for connection keep-alive
+          break;
+
+        case 'connection':
+          // Handle connection status updates from the server
+          console.log('🎰 Connection status update:', message.status);
           break;
           
         default:

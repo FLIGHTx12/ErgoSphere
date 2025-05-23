@@ -649,10 +649,30 @@ function updateLines(betNum) {
         input.className = 'bet-amount';
         input.placeholder = 'Bet Amount';
         input.min = '1';
+        
+        // Add event listener for real-time calculation
+        input.addEventListener('input', function() {
+          // If we have the potential-winnings.js script, it will handle this
+          // This is just a fallback in case the separate script isn't loaded
+          if (typeof calculateAndDisplayWinnings === 'function') {
+            calculateAndDisplayWinnings(this);
+          }
+        });
+        
         container.appendChild(input);
+        
+        // Create potential winnings display
+        if (typeof ensureWinningsDisplay === 'function') {
+          ensureWinningsDisplay(input);
+        }
       }
     } else {
       betAmountInput.style.display = 'block';
+      
+      // Ensure winnings display exists when showing the input
+      if (typeof ensureWinningsDisplay === 'function') {
+        ensureWinningsDisplay(betAmountInput);
+      }
     }
   }
 
@@ -678,10 +698,13 @@ function updateLines(betNum) {
           descDiv.style.display = 'none';
         }
       }
+      
+      // Recalculate potential winnings if bet amount exists
+      const betAmountInput = safeGetElement(`betAmount${betNum}`);
+      if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+        calculateAndDisplayWinnings(betAmountInput);
+      }
     };
-    // Always hide description div initially
-    const descDiv = safeGetElement(`line-desc${betNum}`);
-    if (descDiv) descDiv.style.display = 'none';
   } else {
     const lines = teamsData[league]?.categories[category];
     if (lines) {
@@ -692,7 +715,14 @@ function updateLines(betNum) {
       // Hide description div for NFL, NBA, WNBA      
       const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
-      lineSelect.onchange = null;
+      
+      // Add onchange handler for recalculating potential winnings
+      lineSelect.onchange = function() {
+        const betAmountInput = safeGetElement(`betAmount${betNum}`);
+        if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+          calculateAndDisplayWinnings(betAmountInput);
+        }
+      };
     } else {
       lineSelect.innerHTML = '<option value="">Select Line</option>';      
       const descDiv = safeGetElement(`line-desc${betNum}`);
@@ -733,6 +763,14 @@ function updateLines(betNum) {
     playerSelect.innerHTML = '<option value="N/A">N/A</option>';
     console.log(`Set player selection to N/A for ${category} in ${league}`);
   }
+  
+  // Add onchange handler for player select to recalculate potential winnings
+  playerSelect.onchange = function() {
+    const betAmountInput = safeGetElement(`betAmount${betNum}`);
+    if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+      calculateAndDisplayWinnings(betAmountInput);
+    }
+  };
   
   console.log(`Player select now has ${playerSelect.options.length} options`);
 }
@@ -1096,7 +1134,7 @@ function createPayoutReceipt(bet) {
         <ul>
           ${betData.bets.map((b, idx) => {
             const status = betStatus[idx] || 'pending';
-            const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
+            const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
             let winAmount = b.potentialWin;
             let boostText = '';
             if (status === 'won' && samePlayerEligible) {
@@ -1449,9 +1487,8 @@ async function renderBetLog() {
                     <span class="bet-status-controls" data-betid="${betId}" data-betindex="${idx}" data-local="${isLocal}">
                       ${betLineStatus === 'pending' ? `
                         <button class="bet-won-btn" title="Mark as won">W</button>
-                        <button class="bet-lost-btn" title="Mark as lost">L</button>
-                      ` : `
-                        <span class="bet-status-indicator">${betLineStatus.toUpperCase()}</span>
+                        <button class="bet-lost-btn" title="Mark as lost">L</button>                      ` : `
+                        <span class="bet-status-indicator" title="Click to change status">${betLineStatus.toUpperCase()}</span>
                       `}
                     </span>
                   </div>
@@ -1730,7 +1767,7 @@ async function renderBetLog() {
                   });
                 }
               }
-            } catch (error) {
+            } catch ( error) {
               console.error('Error deleting all bets from database:', error);
             }
           }
@@ -1739,13 +1776,14 @@ async function renderBetLog() {
           if (window.casinoSyncManager) {
             window.casinoSyncManager.notifyBetChange(weekKey);
           }
-          
+
           // Refresh the bet log
           renderBetLog();
         }
       };
     }
   } catch (error) {
+   
     console.error('Error rendering bet log:', error);
     logDiv.innerHTML = `<h2>This Week's Bets</h2><div class='bet-log-empty'>Error loading bets. Please try again later.</div>`;
   }
@@ -1939,7 +1977,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <ul>
                 ${betData.bets.map((b, idx) => {
                   const status = betStatus[idx] || 'pending';
-                  const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
+                  const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
                   
                   // Format player name to be shorter if needed
                   let playerName = b.player;
@@ -2021,7 +2059,7 @@ document.addEventListener('DOMContentLoaded', function() {
           receiptElement.style.backgroundPosition = 'center';
         }
         
-        // Preload background image to ensure it's fully loaded before capture
+        // Preload background image to ensure it's fully rendered before capture
         const bgUrl = bgImageUrl.replace(/url\(['"]?(.*?)['"]?\)/i, '$1').replace(/["']/g, '');
         const preloadImage = new Image();
         preloadImage.crossOrigin = "anonymous"; // Enable CORS
@@ -2215,10 +2253,30 @@ function updateLines(betNum) {
         input.className = 'bet-amount';
         input.placeholder = 'Bet Amount';
         input.min = '1';
+        
+        // Add event listener for real-time calculation
+        input.addEventListener('input', function() {
+          // If we have the potential-winnings.js script, it will handle this
+          // This is just a fallback in case the separate script isn't loaded
+          if (typeof calculateAndDisplayWinnings === 'function') {
+            calculateAndDisplayWinnings(this);
+          }
+        });
+        
         container.appendChild(input);
+        
+        // Create potential winnings display
+        if (typeof ensureWinningsDisplay === 'function') {
+          ensureWinningsDisplay(input);
+        }
       }
     } else {
       betAmountInput.style.display = 'block';
+      
+      // Ensure winnings display exists when showing the input
+      if (typeof ensureWinningsDisplay === 'function') {
+        ensureWinningsDisplay(betAmountInput);
+      }
     }
   }
 
@@ -2244,10 +2302,13 @@ function updateLines(betNum) {
           descDiv.style.display = 'none';
         }
       }
+      
+      // Recalculate potential winnings if bet amount exists
+      const betAmountInput = safeGetElement(`betAmount${betNum}`);
+      if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+        calculateAndDisplayWinnings(betAmountInput);
+      }
     };
-    // Always hide description div initially
-    const descDiv = safeGetElement(`line-desc${betNum}`);
-    if (descDiv) descDiv.style.display = 'none';
   } else {
     const lines = teamsData[league]?.categories[category];
     if (lines) {
@@ -2258,7 +2319,14 @@ function updateLines(betNum) {
       // Hide description div for NFL, NBA, WNBA      
       const descDiv = safeGetElement(`line-desc${betNum}`);
       if (descDiv) descDiv.style.display = 'none';
-      lineSelect.onchange = null;
+      
+      // Add onchange handler for recalculating potential winnings
+      lineSelect.onchange = function() {
+        const betAmountInput = safeGetElement(`betAmount${betNum}`);
+        if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+          calculateAndDisplayWinnings(betAmountInput);
+        }
+      };
     } else {
       lineSelect.innerHTML = '<option value="">Select Line</option>';      
       const descDiv = safeGetElement(`line-desc${betNum}`);
@@ -2299,6 +2367,14 @@ function updateLines(betNum) {
     playerSelect.innerHTML = '<option value="N/A">N/A</option>';
     console.log(`Set player selection to N/A for ${category} in ${league}`);
   }
+  
+  // Add onchange handler for player select to recalculate potential winnings
+  playerSelect.onchange = function() {
+    const betAmountInput = safeGetElement(`betAmount${betNum}`);
+    if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
+      calculateAndDisplayWinnings(betAmountInput);
+    }
+  };
   
   console.log(`Player select now has ${playerSelect.options.length} options`);
 }
@@ -2376,4 +2452,163 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   console.log("✅ Casino.js fixes installed");
+});
+
+// Add event delegation for bet status indicator click to revert to choice buttons
+
+// Define the function for marking bet status from the event delegation
+async function markBetStatus(betId, betIndex, status, isLocal) {
+  console.log('markBetStatus called:', betId, betIndex, status, isLocal);
+  
+  try {
+    if (isLocal) {
+      // Handle local bet status updates
+      const weekKey = getCurrentWeekKey();
+      const localIdx = parseInt(betId.split('-')[1], 10);
+      
+      // Get current local bets
+      let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+      if (!betLog[weekKey] || !betLog[weekKey][localIdx]) {
+        console.error('Local bet not found');
+        return;
+      }
+      
+      // Update bet status
+      const localBet = betLog[weekKey][localIdx];
+      localBet.betStatus = localBet.betStatus || {};
+      localBet.betStatus[betIndex] = status;
+      
+      // Calculate payout data if all bets have been evaluated
+      const bets = localBet.bets || [];
+      const currentStatus = localBet.betStatus;
+      
+      const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
+      if (allEvaluated) {
+        // Calculate total win amount
+        let totalWager = 0;
+        let totalWin = 0;
+        
+        bets.forEach((b, idx) => {
+          totalWager += b.betAmount;
+          if (currentStatus[idx] === 'won') {
+            totalWin += b.potentialWin;
+          }
+        });
+        
+        localBet.payoutData = {
+          totalWager,
+          totalWin,
+          netPayout: totalWin,
+          evaluatedAt: new Date().toISOString()
+        };
+      }
+      
+      // Save updates to localStorage
+      betLog[weekKey][localIdx] = localBet;
+      localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+      
+      // Notify sync manager of the bet status update
+      if (window.casinoSyncManager) {
+        window.casinoSyncManager.notifyBetChange(weekKey);
+      }
+      
+      // Refresh bet log
+      renderBetLog();
+    } else {
+      // Handle database bet status updates
+      // Get current bet details
+      const response = await fetch(`/api/bets/${betId}`);
+      if (!response.ok) {
+        console.error('Failed to get bet details');
+        return;
+      }
+      
+      const bet = await response.json();
+      const currentStatus = bet.bet_status || {};
+      const bets = bet.bet_data.bets || [];
+      
+      // Update status for this specific bet line
+      currentStatus[betIndex] = status;
+      
+      // Calculate payout data if all bets have been evaluated
+      let payoutData = null;
+      const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
+      
+      if (allEvaluated) {
+        // Calculate total win amount
+        let totalWager = 0;
+        let totalWin = 0;
+        
+        bets.forEach((b, idx) => {
+          totalWager += b.betAmount;
+          if (currentStatus[idx] === 'won') {
+            totalWin += b.potentialWin;
+          }
+        });
+        
+        payoutData = {
+          totalWager,
+          totalWin,
+          netPayout: totalWin,
+          evaluatedAt: new Date().toISOString()
+        };
+      }
+      
+      // Update bet status in the database
+      const updateResponse = await fetch(`/api/bets/${betId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          betStatus: currentStatus,
+          payoutData
+        })
+      });
+      
+      if (!updateResponse.ok) {
+        console.error('Failed to update bet status');
+        return;
+      }
+      
+      // Notify sync manager of the bet status update
+      if (window.casinoSyncManager) {
+        window.casinoSyncManager.notifyBetChange(bet.week_key || weekKey);
+      }
+      
+      // Refresh bet log
+      renderBetLog();
+    }
+  } catch (error) {
+    console.error('Error updating bet status:', error);
+  }
+}
+
+document.addEventListener('click', function(e) {
+  // Only handle clicks on bet status indicators
+  if (e.target.classList.contains('bet-status-indicator')) {
+    const li = e.target.closest('li');
+    if (!li) return;
+    // Find the controls container
+    const controls = li.querySelector('.bet-status-controls');
+    if (!controls) return;
+    // Get betid and betindex from controls
+    const betId = controls.getAttribute('data-betid');
+    const betIndex = controls.getAttribute('data-betindex');
+    const isLocal = controls.getAttribute('data-local');
+    // Replace the indicator with the win/loss buttons
+    controls.innerHTML = `
+      <button class="bet-won-btn" title="Mark as won">W</button>
+      <button class="bet-lost-btn" title="Mark as lost">L</button>
+    `;
+    // Re-attach the event listeners for the new buttons
+    controls.querySelector('.bet-won-btn').addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      markBetStatus(betId, betIndex, 'won', isLocal);
+    });
+    controls.querySelector('.bet-lost-btn').addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      markBetStatus(betId, betIndex, 'lost', isLocal);
+    });
+  }
 });
