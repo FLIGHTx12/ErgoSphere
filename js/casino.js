@@ -1131,10 +1131,9 @@ function createPayoutReceipt(bet) {
       
       <div class="bet-details">
         <h3>Bet Results:</h3>
-        <ul>
-          ${betData.bets.map((b, idx) => {
+        <ul>          ${betData.bets.map((b, idx) => {
             const status = betStatus[idx] || 'pending';
-            const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
+            const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
             let winAmount = b.potentialWin;
             let boostText = '';
             if (status === 'won' && samePlayerEligible) {
@@ -1977,7 +1976,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <ul>
                 ${betData.bets.map((b, idx) => {
                   const status = betStatus[idx] || 'pending';
-                  const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
+                  const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
                   
                   // Format player name to be shorter if needed
                   let playerName = b.player;
