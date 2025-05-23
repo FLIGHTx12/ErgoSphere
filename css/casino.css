@@ -1562,3 +1562,215 @@ select:disabled {
   box-shadow: 0 1px 4px rgba(30,136,229,0.15);
   display: inline-block;
 }
+
+/*******************************************************************************
+ * 8. Media Queries & Responsive Design
+ ******************************************************************************/
+
+/* Limit betting system width on larger screens */
+@media (min-width: 900px) {
+  #betting-system {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* General media queries */
+@media (max-width: 1300px) {
+  .bet-log {
+    max-width: 90% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .bet-log {
+    max-width: 95% !important;
+    width: 95%;
+    padding: 15px 20px 12px 20px;
+  }
+  
+  .bet-log-entry {
+    padding: 12px 15px;
+  }
+  
+  .bet-line-content {
+    width: calc(100% - 120px);
+  }
+  
+  .bet-log-entry li {
+    padding: 5px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  #receipt {
+    padding: 15px;
+    width: 95%;
+  }
+  
+  #receipt .matchup {
+    font-size: 1.2em;
+  }
+  
+  #receipt .bet-line {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .payout-receipt {
+    width: 96%;
+    padding: 12px 8px;
+    top: 45%;
+    max-height: 85vh;
+  }
+  
+  .payout-receipt .bet-details li,
+  .payout-receipt .payout-value {
+    font-size: 0.95em;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 700px) {
+  .bet-entry {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bet-info {
+    max-width: 98%;
+    padding: 12px 6px 10px 6px;
+    font-size: 1em;
+  }
+  
+  .bet-log {
+    max-width: 98%;
+    padding: 10px 4px 8px 4px;
+    font-size: 0.98em;
+  }
+}
+
+@media (max-width: 600px) {
+  .bet-log {
+    max-width: 98% !important;
+    width: 98%;
+    padding: 15px 10px 10px 10px;
+  }
+  
+  .bet-log-entry {
+    padding: 10px;
+  }
+  
+  .bet-log-entry .user-name {
+    margin-bottom: 8px;
+  }
+  
+  .bet-line-content {
+    width: calc(100% - 110px);
+  }
+  
+  .bet-status-controls button {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+  
+  .bet-log-entry li {
+    padding: 4px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  #receipt {
+    padding: 12px 8px;
+    width: 98%;
+  }
+  
+  #receipt .matchup {
+    font-size: 1.1em;
+  }
+  
+  #receipt .wager-total,
+  #receipt .potential-winnings,
+  #receipt .actual-winnings {
+    font-size: 0.9em;
+  }
+  
+  .bet-line-content {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 5px;
+  }
+  
+  .bet-status-controls {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    text-align: right;
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .payout-receipt {
+    width: 98%;
+    padding: 10px 5px 5px 5px;
+    font-size: 0.95em;
+  }
+  
+  .payout-receipt h2 {
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+  
+  .payout-receipt .bet-details, 
+  .payout-receipt .payout-summary {
+    padding: 6px;
+  }
+  
+  .payout-receipt .payout-summary-details {
+    font-size: 0.75em;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .payout-receipt .bet-details li {
+    padding: 5px;
+    margin-bottom: 3px;
+    line-height: 1.2;
+    font-size: 0.9em;
+  }
+  
+  .payout-receipt .payout-value {
+    font-size: 1.2em;
+    padding: 6px;
+  }
+  
+  .payout-receipt .copy-receipt-btn {
+    padding: 8px 5px;
+    font-size: 0.95em;
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .payout-receipt {
+    width: 99%;
+    padding: 8px 4px;
+    max-height: 90vh;
+  }
+  
+  .payout-receipt .bet-details li,
+  .payout-receipt .payout-summary div:not(.payout-value) {
+    font-size: 0.85em;
+  }
+
+  .payout-receipt .payout-summary-details {
+    font-size: 0.7em;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
