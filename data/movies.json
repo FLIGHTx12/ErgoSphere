@@ -1747,7 +1747,7 @@
     },
     {
       "Title": "Monster Hunter (2020)",
-      "STATUS": "",
+      "STATUS": "🟢",
       "WATCHED": "",
       "OwnerShip": "Netflix",
       "GENRE": "Action, Fantasy",
@@ -1847,7 +1847,7 @@
     {
       "Title": "Polite Society (2023)",
       "STATUS": "",
-      "WATCHED": "",
+      "WATCHED": "🟢",
       "OwnerShip": "prime",
       "GENRE": "Action, Comedy",
       "RUNTIME": "01:44",
@@ -2613,7 +2613,7 @@
     },
     {
       "Title": "Tenet (2020)",
-      "STATUS": "",
+      "STATUS": "🟢",
       "WATCHED": "👀",
       "OwnerShip": "Movies Anywhere",
       "GENRE": "Action, Adventure, Mystery, Thriller, SyFy, Cerebral",
@@ -2646,7 +2646,7 @@
     },
     {
       "Title": "The New Mutants (2020)",
-      "STATUS": "",
+      "STATUS": "🟢",
       "WATCHED": "👀",
       "OwnerShip": "Movies Anywhere",
       "GENRE": "Action & Adventure, Horror, SyFy",
@@ -2798,7 +2798,7 @@
       "imageUrl": "https://images6.alphacoders.com/643/643084.jpg"
     },
     {"Title": "The Dark Tower (2017)",
-      "STATUS": "",
+      "STATUS": "🟢",
       "WATCHED": "👀",
       "OwnerShip": "Movies Anywhere",
       "GENRE": "Action & Adventure, Fantasy, Horror",
