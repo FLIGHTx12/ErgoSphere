@@ -423,10 +423,10 @@
     },
     {"TITLE": "Recycling is literally a scam",
       "imageUrl": "",
-      "STATUS": "",
+      "STATUS": "🟢",
       "CHANNEL": "JAKE TRAN",
       "GENRE": "",
-      "RUNTIME": "20min",
+      "RUNTIME": "00:20",
       "Link": "https://www.youtube.com/watch?v=LELvVUIz5pY&pp=ygUdUmVjeWNsaW5nIGlzIGxpdGVyYWxseSBhIHNjYW0%3D",
       "TIMES SEEN": "",
       "DESCRIPTION": ""
@@ -434,7 +434,7 @@
     {
       "TITLE": "The CIA’s Plot to Assassinate Julian Assange",
       "imageUrl": "",
-      "STATUS": "🟢",
+      "STATUS": "",
       "CHANNEL": "JAKE TRAN",
       "GENRE": "",
       "RUNTIME": "00:21",
