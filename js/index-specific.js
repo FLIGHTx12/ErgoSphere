@@ -2,20 +2,86 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize the countdowns
   initializeCountdowns();
 
-  // Update calendar week dynamically
-  updateCalendarWeek();
+  // Initialize the week tracker if not already initialized
+  if (typeof WeekTracker !== 'undefined') {
+    WeekTracker.init();
+  }
+  
+  // Update calendar display with week tracker data
+  updateCalendarDisplay();
   
   // Fetch the current quarter's solo game
   fetchCurrentQuarterSoloGame();
   
-  // Update the calendar week number at midnight each day
-  setInterval(() => {
-    const now = new Date();
-    if (now.getHours() === 0 && now.getMinutes() === 0) {
-      updateCalendarWeek();
-    }
-  }, 60000); // Check every minute
+  // Initialize week management UI
+  initWeekManagementUI();
+  
+  // Listen for week updates from the WeekTracker
+  document.addEventListener('weekUIUpdate', function(event) {
+    updateCalendarDisplay();
+  });
+  
+  // Listen for week change events
+  document.addEventListener('weekChange', function(event) {
+    console.log('Week changed:', event.detail);
+    updateCalendarDisplay();
+  });
 });
+
+// New function to update calendar display using WeekTracker
+function updateCalendarDisplay() {
+  // Get week and quarter from WeekTracker if available
+  let currentWeek = (typeof WeekTracker !== 'undefined') ? 
+    WeekTracker.getCurrentWeekNumber() : 
+    calculateWeekNumber();
+  
+  let currentQuarter = (typeof WeekTracker !== 'undefined') ? 
+    WeekTracker.getCurrentQuarter() : 
+    calculateQuarter();
+  
+  // Update the Bingwa Champion week number
+  const bingwaCardHeader = document.querySelector('#bingwa-card .card-header .neon-text');
+  if (bingwaCardHeader) {
+    bingwaCardHeader.innerHTML = `WK${currentWeek} Bingwa <br> Champion`;
+  }
+
+  // Update the Atletico Champ week number
+  const atleticoCardHeader = document.querySelector('#atletico-card .card-header .neon-text');
+  if (atleticoCardHeader) {
+    atleticoCardHeader.innerHTML = `WK${currentWeek} Atletico <br> Champ`;
+  }
+  
+  // Update the quarter number display
+  const quarterElement = document.getElementById('current-quarter');
+  if (quarterElement) {
+    quarterElement.textContent = currentQuarter;
+    
+    // Also update the parent element's text to ensure proper formatting
+    const quarterHeader = document.querySelector('.card-header .neon-text:has(#current-quarter)');
+    if (quarterHeader) {
+      quarterHeader.innerHTML = `ErgoSphere QTR: <span id="current-quarter">${currentQuarter}</span>`;
+    }
+  }
+}
+
+// Fallback function if WeekTracker is not available
+function calculateWeekNumber() {
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const dayOfYear = (now - startOfYear + ((startOfYear.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000)) / 86400000;
+  return Math.ceil((dayOfYear + startOfYear.getDay() + 1) / 7);
+}
+
+// Fallback function if WeekTracker is not available
+function calculateQuarter() {
+  const now = new Date();
+  const month = now.getMonth(); // 0-11
+  
+  if (month < 3) return 1;      // Q1: Jan-Mar
+  else if (month < 6) return 2; // Q2: Apr-Jun
+  else if (month < 9) return 3; // Q3: Jul-Sep
+  else return 4;                // Q4: Oct-Dec
+}
 
 // Countdown functionality
 function initializeCountdowns() {
@@ -459,5 +525,127 @@ function fetchCurrentQuarterSoloGame() {
     if (ergoArtSubjectElement) {
       ergoArtSubjectElement.textContent = 'Mars'; // Default fallback
     }
+  }
+}
+
+/**
+ * Initialize the week management UI controls
+ */
+function initWeekManagementUI() {
+  // Get references to UI elements
+  const startNewWeekBtn = document.getElementById('start-new-week');
+  const refreshWeekBtn = document.getElementById('refresh-week');
+  const weekStartDate = document.getElementById('week-start-date');
+  
+  if (!startNewWeekBtn || !refreshWeekBtn || !weekStartDate) {
+    console.warn('Week management UI elements not found');
+    return;
+  }
+  
+  // Update the week start date display
+  updateWeekStartDateDisplay();
+  
+  // Event listener for start new week button
+  startNewWeekBtn.addEventListener('click', () => {
+    if (typeof WeekTracker !== 'undefined') {
+      // Confirm with user
+      if (confirm('Are you sure you want to start a new week? This will affect all week-based features.')) {
+        try {
+          // Start a new week
+          const newWeekKey = WeekTracker.startNewWeek();
+          
+          // Show success message
+          showMessage(`New week started successfully! (${newWeekKey})`, 'success');
+          
+          // Update the UI
+          updateWeekStartDateDisplay();
+        } catch (error) {
+          console.error('Error starting new week:', error);
+          showMessage('Error starting new week: ' + error.message, 'error');
+        }
+      }
+    } else {
+      showMessage('Week tracker not available', 'error');
+    }
+  });
+  
+  // Event listener for refresh week data button
+  refreshWeekBtn.addEventListener('click', () => {
+    if (typeof WeekTracker !== 'undefined') {
+      try {
+        // Refresh the week data
+        WeekTracker.refreshState();
+        
+        // Update the UI
+        WeekTracker.updateUI();
+        updateWeekStartDateDisplay();
+        
+        // Show success message
+        showMessage('Week data refreshed successfully!', 'success');
+      } catch (error) {
+        console.error('Error refreshing week data:', error);
+        showMessage('Error refreshing week data: ' + error.message, 'error');
+      }
+    } else {
+      showMessage('Week tracker not available', 'error');
+    }
+  });
+  
+  // Listen for week change events
+  document.addEventListener('weekChange', () => {
+    // Update the week start date display
+    updateWeekStartDateDisplay();
+  });
+}
+
+/**
+ * Update the week start date display
+ */
+function updateWeekStartDateDisplay() {
+  const weekStartDate = document.getElementById('week-start-date');
+  if (!weekStartDate) return;
+  
+  if (typeof WeekTracker !== 'undefined') {
+    const weekKey = WeekTracker.getCurrentWeekKey();
+    // Create a Date object from the week key, which is in YYYY-MM-DD format
+    const date = new Date(weekKey + 'T10:00:00'); // Add T10:00:00 for 10 AM
+    
+    // Format the date with day and time
+    const options = { 
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    
+    weekStartDate.textContent = date.toLocaleDateString('en-US', options);
+  } else {
+    weekStartDate.textContent = 'Week tracker not available';
+  }
+}
+
+/**
+ * Show a message to the user
+ * @param {string} message - The message to show
+ * @param {string} type - The type of message ('success' or 'error')
+ */
+function showMessage(message, type = 'success') {
+  // Create message element
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message', type);
+  messageElement.textContent = message;
+  
+  // Find admin section
+  const adminSection = document.querySelector('.admin-section');
+  if (adminSection) {
+    // Insert message at the top
+    adminSection.insertBefore(messageElement, adminSection.firstChild);
+    
+    // Remove message after animation completes
+    setTimeout(() => {
+      messageElement.remove();
+    }, 6000); // 3s display + 3s fadeout
   }
 }

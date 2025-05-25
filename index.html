@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EregoSphere</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/week-tracker.css" />
     
     
     <style>
@@ -426,12 +426,45 @@
    
   </ul>
 </div>
-</main>
-  <script src="js/utils.js"></script>
+
+<hr>
+
+  <details>
+    <summary>⚙️ ADMIN CONTROLS ⚙️</summary>
+    <div class="admin-section">
+      <h3>Week Management</h3>
+      <div class="week-info">
+        <p>Current Week: <span id="current-week-display" class="week-number"></span></p>
+        <p>Week Start Date: <span id="week-start-date"></span></p>
+        <p>Current Quarter: <span class="quarter-number"></span></p>
+      </div>
+      <div class="admin-controls">
+        <button id="start-new-week" class="admin-button">Start New Week</button>
+        <button id="refresh-week" class="admin-button">Refresh Week Data</button>
+      </div>
+      <p class="hint-text">Note: Starting a new week will affect all week-based features across ErgoSphere.</p>
+    </div>
+  </details>
+
+  <hr>
+
+  <p><b>Additional Notes:</b></p>
+  <ul>
+    <li>As an admin, you have the power to manage the weekly events and challenges. Use these controls wisely!</li>
+    <li>Always double-check the week start date and current quarter before starting a new week.</li>
+    <li>If you encounter any issues, refer to the admin guidelines or contact support.</li>
+  </ul>
+</div>
+</main>  <script src="js/utils.js"></script>
+  <script src="js/week-tracker.js"></script>
   <script src="js/script.js"></script>
-  <script src="js/index-specific.js"></script> <!-- Added new script for index.html specific functions -->
-  <script>
+  <script src="js/index-specific.js"></script> <!-- Added new script for index.html specific functions -->  <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize the universal week tracker
+      WeekTracker.init();
+      
+      // Initialize week management UI
+      initWeekManagementUI();
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('main-content');
       let touchstartX = 0;

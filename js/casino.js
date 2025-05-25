@@ -9,6 +9,18 @@ function safeGetElementValue(id, defaultValue = "") {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize the week tracker if available
+  if (typeof WeekTracker !== 'undefined') {
+    WeekTracker.init();
+    
+    // Listen for week change events
+    document.addEventListener('weekChange', (event) => {
+      console.log('Week changed in casino:', event.detail);
+      // Refresh the bet log to reflect the new week
+      renderBetLog();
+    });
+  }
+  
   const selectElements = document.querySelectorAll('select');
   const receiptDiv = document.getElementById('receipt');
 
@@ -1120,7 +1132,7 @@ function createPayoutReceipt(bet) {
       totalReturn += winAmount + b.betAmount;
     }
   });
-    // Create receipt HTML
+    // Create receipt HTML with improved structure for mobile visibility
   receiptDiv.innerHTML = `
     <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
     <div class="receipt-content-wrapper">
@@ -1135,15 +1147,22 @@ function createPayoutReceipt(bet) {
             const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
             let winAmount = b.potentialWin;
             let boostText = '';
+            
             if (status === 'won' && samePlayerEligible) {
               winAmount = Math.ceil(winAmount * 1.15);
               boostText = ' <span class="boost boost-same-player">(+15% Same Player Boost)</span>';
             }
-            winAmount = Math.ceil(winAmount); // Always round up
+            
+            // Format player name to be shorter if needed
+            let playerName = b.player;
+            if (playerName && playerName.length > 15) {
+              playerName = playerName.substring(0, 13) + '...';
+            }
+            
             return `
               <li class="${statusClass}">
-                ${b.betText} : ${b.player} - 
-                <b>${status.toUpperCase()}</b> 
+                ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
+                <br><b>${status.toUpperCase()}</b> 
                 ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
               </li>
             `;
@@ -1164,6 +1183,15 @@ function createPayoutReceipt(bet) {
   
   // Add to document
   document.body.appendChild(receiptDiv);
+  
+  // Apply background image AFTER the element is in the DOM with delay for proper rendering
+  setTimeout(() => {
+    if (bet.user_name === "FLIGHTx12!") {
+      receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
+    } else if (bet.user_name === "Jaybers8") {
+      receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
+    }
+  }, 10);
   
   // Add event listeners
   receiptDiv.querySelector('.payout-receipt-close').addEventListener('click', () => {
@@ -1395,6 +1423,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Utility: Get current week key (Sunday-Saturday, e.g. "2024-07-07")
 function getCurrentWeekKey() {
+  // Use WeekTracker if available, otherwise fallback to original implementation
+  if (typeof WeekTracker !== 'undefined') {
+    return WeekTracker.getCurrentWeekKey();
+  }
+  
+  // Fallback implementation
   const now = new Date();
   // Get Sunday of this week
   const sunday = new Date(now);
@@ -1404,6 +1438,12 @@ function getCurrentWeekKey() {
 }
 
 function getCurrentWeekNumber() {
+  // Use WeekTracker if available, otherwise fallback to original implementation
+  if (typeof WeekTracker !== 'undefined') {
+    return WeekTracker.getCurrentWeekNumber();
+  }
+  
+  // Fallback implementation
   const now = new Date();
   // Create a new date object for the first day of the year
   const firstDayOfYear = new Date(now.getFullYear(), 0, 1);
@@ -1734,7 +1774,8 @@ async function renderBetLog() {
                 evaluatedAt: new Date().toISOString()
               };
             }
-              // Save updates to localStorage
+            
+            // Save updates to localStorage
             betLog[weekKey][localIdx] = localBet;
             localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
             
@@ -1796,7 +1837,8 @@ async function renderBetLog() {
                 payoutData
               })
             });
-              if (!updateResponse.ok) {
+            
+            if (!updateResponse.ok) {
               console.error('Failed to update bet status');
               return;
             }
