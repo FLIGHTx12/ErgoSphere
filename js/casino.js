@@ -1225,17 +1225,10 @@ function capturePayoutReceiptScreenshot(receiptElement) {
     if (copyButton) {
       copyButton.style.display = 'none';
     }
-    
-    // Find share button if it exists and hide it too
+      // Find share button if it exists and hide it too
     const shareButton = receiptElement.querySelector('.share-receipt-btn');
     if (shareButton) {
       shareButton.style.display = 'none';
-    }
-    
-    // Hide compact mode toggle if it exists
-    const compactToggle = receiptElement.querySelector('.compact-mode-toggle');
-    if (compactToggle) {
-      compactToggle.style.display = 'none';
     }
     
     html2canvas(receiptElement, {
