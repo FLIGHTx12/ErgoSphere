@@ -191,8 +191,20 @@ section a {
 }
 
 .bet-entry {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   max-width: 99%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.bet-entry:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -416,13 +428,13 @@ select:disabled {
   text-shadow: 0 2px 8px #000;
 }
 .bet-log-entry {
-  border-bottom: 1px solid #0ff;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  margin-bottom: 15px;
+  padding-bottom: 12px;
   position: relative;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 0;
+  border-radius: 15px;
+  padding: 15px 18px;
+  margin: 12px 0;
   max-width: 100%;
   background-size: cover;
   background-position: center;
@@ -430,6 +442,14 @@ select:disabled {
   overflow: hidden;
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.bet-log-entry:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
 }
 
 /* User-specific styling for bet entries */
@@ -456,7 +476,8 @@ select:disabled {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.75); /* Darker overlay for better readability */
+  background: rgba(0, 0, 0, 0.5); /* 50% transparent background as requested */
+  border-radius: 15px;
   z-index: 0;
   pointer-events: none;
 }
@@ -490,11 +511,16 @@ select:disabled {
   padding: 0;
 }
 .bet-log-entry li {
-  margin-bottom: 0.2em;
+  margin-bottom: 8px;
   line-height: 1.4;
   text-shadow: 0 0 4px rgba(0, 0, 0, 1), 1px 1px 3px rgba(0, 0, 0, 1);
   color: white;
-  font-weight: 500; /* Medium weight for better visibility */
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 .bet-log-entry .bet-date {
   font-size: 0.8em;
@@ -511,6 +537,17 @@ select:disabled {
   display: inline-block;
   width: 100%;
   vertical-align: middle;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 2px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.bet-line-content:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .bet-status-controls {
@@ -851,14 +888,18 @@ select:disabled {
 }
 
 .bet-log-entry li {
-  margin-bottom: 6px;
-  padding: 4px 0; /* Vertical padding only, allow full width */
-  border-radius: 3px;
-  transition: background-color 0.2s;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .bet-log-entry li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
 }
 
 .bet-log-entry::before {
@@ -1340,4 +1381,173 @@ select:disabled {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Bet log controls styling - Modern sleek design */
+.bet-log-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sync-bet-log-btn {
+  background: linear-gradient(135deg, #1e7e34, #28a745);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-height: 36px;
+}
+
+.sync-bet-log-btn:hover {
+  background: linear-gradient(135deg, #155724, #1e7e34);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sync-bet-log-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.filter-controls label {
+  color: #0ff;
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.league-filter-select {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.league-filter-select:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: #00ffff;
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.1);
+}
+
+.league-filter-select:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.league-filter-select option {
+  background: #000;
+  color: white;
+  padding: 5px;
+}
+
+/* Responsive styling for bet log controls */
+@media (max-width: 768px) {
+  .bet-log-controls {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 10px 15px;
+  }
+  
+  .filter-controls {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 10px;
+  }
+  
+  .league-filter-select {
+    min-width: 120px;
+    max-width: 180px;
+  }
+  
+  .bet-entry {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .bet-line-content {
+    padding: 6px 10px;
+  }
+  
+  .bet-log-entry li {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bet-log-controls {
+    padding: 8px 12px;
+  }
+  
+  .sync-bet-log-btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    gap: 6px;
+    padding: 5px 8px;
+  }
+  
+  .league-filter-select {
+    width: 100%;
+    max-width: 160px;
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+  
+  .bet-entry {
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+  
+  .bet-line-content {
+    padding: 5px 8px;
+    border-radius: 6px;
+  }
+  
+  .bet-log-entry {
+    padding: 12px 15px;
+    border-radius: 12px;
+  }
+  
+  .bet-log-entry li {
+    padding: 5px 8px;
+    border-radius: 8px;
+  }
 }

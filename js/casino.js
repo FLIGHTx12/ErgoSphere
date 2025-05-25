@@ -1090,10 +1090,15 @@ function createPayoutReceipt(bet) {
     receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
   }
   
+  // Add user class
+  if (userClass) {
+    receiptDiv.classList.add(userClass);
+  }
+  
   // Format date nicely
   const betDate = new Date(bet.bet_date).toLocaleDateString('en-US', {
     year: 'numeric', 
-    month: 'long', 
+    month: 'short', // Use short month name to save space
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit'
@@ -1505,6 +1510,7 @@ async function logSubmittedBet(betObj) {
   let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
   if (!betLog[weekKey]) betLog[weekKey] = [];
   betLog[weekKey].push(betObj);
+  localStorage.setItem('casinoState', JSON.stringify(betObj));
   localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
   
   // Save to database if user is selected (but use fallback if API fails)
@@ -1544,17 +1550,17 @@ async function renderBetLog() {
   const weekKey = getCurrentWeekKey();
   const logDiv = safeGetElement('bet-log');
   if (!logDiv) return;
-  
+
   try {
     // Fetch bets for all users from database for the current week
     let weekBets = [];
-    
+
     // First try to get all bets for the current week from the database
     const response = await fetchWithFallback(`/api/bets/${weekKey}`);
     if (response.ok) {
       weekBets = await response.json();
     }
-    
+
     // Always merge with localStorage bets to ensure we have everything
     const betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
     const localBets = (betLog[weekKey] || []).map((bet, idx) => ({
@@ -1563,11 +1569,11 @@ async function renderBetLog() {
       localIdx: idx, // Keep track of localStorage index
       user_name: bet.userName || document.getElementById("user").value // Ensure we have a user name
     }));
-    
+
     // Improved deduplication: Create a unique signature for each bet
     const uniqueBets = [];
     const seenSignatures = new Set();
-    
+
     // Process database bets first (they take priority)
     weekBets.forEach(bet => {
       // Create a signature based on key bet properties
@@ -1575,7 +1581,7 @@ async function renderBetLog() {
       seenSignatures.add(signature);
       uniqueBets.push(bet);
     });
-    
+
     // Then add local bets that aren't duplicates
     localBets.forEach(localBet => {
       const signature = createBetSignature(localBet);
@@ -1584,48 +1590,58 @@ async function renderBetLog() {
         uniqueBets.push(localBet);
       }
     });
-    
+
     // Use uniqueBets instead of the combined arrays
     weekBets = uniqueBets;
-  
+
     // Get the current week number
     const weekNumber = getCurrentWeekNumber();
-  
+
     if (weekBets.length === 0) {
       logDiv.innerHTML = `<h2>WEEK ${weekNumber} BETS</h2><div class='bet-log-empty'>No bets submitted this week.</div>`;
       return;
     }
-    
+
     // Sort by date, with newest bets first
     weekBets.sort((a, b) => {
       // For database entries, use bet_date
       const dateA = a.bet_date || a.date;
       const dateB = b.bet_date || b.date;
       return new Date(dateB) - new Date(dateA);
-    });
-    
-    // Continue with existing code...
+    });    // Continue with existing code...
     logDiv.innerHTML = `
       <h2>WEEK ${weekNumber} BETS</h2>
-      <button id="delete-all-bets" class="delete-bet-log-btn">Delete All Bets</button>
+      <div class="bet-log-controls">
+        <button id="sync-bets-btn" class="sync-bet-log-btn casino-action-btn">Sync with Server</button>
+        <div class="filter-controls">
+          <label for="league-filter">Filter by League:</label>
+          <select id="league-filter" class="league-filter-select">
+            <option value="">All Leagues</option>
+            <option value="NFL">NFL</option>
+            <option value="NBA">NBA</option>
+            <option value="WNBA">WNBA</option>
+            <option value="ErgoBall">ErgoBall</option>
+            <option value="ErgoGolf">ErgoGolf</option>
+          </select>
+        </div>
+      </div>
       <div class="bet-log-list">
         ${weekBets.map(bet => {          // Extract bet data from DB format or use as is for localStorage
           const betData = bet.bet_data || bet;
           const betId = bet.id || `local-${bet.localIdx}`;
           const isLocal = betId && typeof betId === 'string' ? betId.startsWith('local-') : false;
-          
+
           // Format date nicely
           const rawDate = bet.bet_date || bet.date;
           const displayDate = new Date(rawDate).toLocaleDateString('en-US', {
-            year: 'numeric', 
-            month: 'long', 
+            year: 'numeric',
+            month: 'long',
             day: 'numeric',
             hour: '2-digit',
             minute: '2-digit'
           });
-          
+
           const userName = bet.user_name || document.getElementById("user").value;
-          
           // Determine background class based on user
           let userClass = '';
           if (userName === "FLIGHTx12!") {
@@ -1635,7 +1651,7 @@ async function renderBetLog() {
           }            // Check if the bet has status information
             const betStatus = bet.bet_status || {};
             const payoutData = bet.payout_data || {};
-            
+
             return `<div class="bet-log-entry ${userClass}">
             <button class="delete-bet-entry-btn" data-betid="${betId}" data-local="${isLocal}" title="Delete this bet">&times;</button>
             <span class="bet-date">${displayDate}</span> | <span>${betData.league}</span> | <b class="user-name">${userName}</b>
@@ -1657,7 +1673,7 @@ async function renderBetLog() {
                   </div>
                 </li>`;
               }).join('')}            </ul>
-            ${Object.keys(betStatus).length > 0 ? `
+            ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
               <div class="bet-actions">
                 <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
               </div>
@@ -1665,7 +1681,8 @@ async function renderBetLog() {
           </div>`;
         }).join('')}
       </div>
-    `;    // Add event listeners for each delete button
+    `;
+    // Add event listeners for each delete button
     logDiv.querySelectorAll('.delete-bet-entry-btn').forEach(btn => {
       btn.onclick = async function() {
         const betId = this.getAttribute('data-betid');
@@ -1737,6 +1754,7 @@ async function renderBetLog() {
             // Handle local bet status updates
             const weekKey = getCurrentWeekKey();
             const localIdx = parseInt(betId.split('-')[1], 10);
+            
             
             // Get current local bets
             let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
@@ -1903,50 +1921,380 @@ async function renderBetLog() {
         }
       };
     });
-    
-    // Add event listener for delete all button
-    const deleteAllBtn = document.getElementById('delete-all-bets');
-    if (deleteAllBtn) {
-      deleteAllBtn.onclick = async function() {
-        if (confirm("Delete ALL bets for this week? This cannot be undone!")) {
-          const userName = document.getElementById("user").value;
-            // Clear localStorage first
-          let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
-          if (betLog[weekKey]) {
-            delete betLog[weekKey];
-            localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
-          }
-          
-          // If user is selected, delete from database as well
-          if (userName) {
-            try {
-              // For database, we have to delete each bet one by one
-              const response = await fetch(`/api/bets/${weekKey}?userName=${encodeURIComponent(userName)}`);
-              if (response.ok) {
-                const bets = await response.json();
-                
-                // Delete each bet from database
-                for (const bet of bets) {
-                  await fetch(`/api/bets/${bet.id}`, {
-                    method: 'DELETE'
-                  });
-                }
-              }
-            } catch ( error) {
-              console.error('Error deleting all bets from database:', error);
+      // Add event listener for the new "Sync with Server" button
+    const syncBetsBtn = document.getElementById('sync-bets-btn');
+    if (syncBetsBtn) {
+      syncBetsBtn.onclick = async function() {
+        if (window.casinoSyncManager && typeof window.casinoSyncManager.forceSync === 'function') {
+          try {
+            window.casinoSyncManager.forceSync(); // This will trigger renderBetLog again
+
+            // Show notification
+            if (window.casinoSyncManager.showConnectionStatus) {
+              window.casinoSyncManager.showConnectionStatus("Bet log sync initiated. View will update.", "success");
+            } else {
+              alert("Bet log sync initiated. View will update.");
+            }
+          } catch (error) {
+            console.error('Error during force sync:', error);
+            if (window.casinoSyncManager && window.casinoSyncManager.showConnectionStatus) {
+              window.casinoSyncManager.showConnectionStatus("Error syncing bet log.", "error");
+            } else {
+              alert("Error syncing bet log.");
             }
           }
-          
-          // Notify sync manager of bulk bet deletion
-          if (window.casinoSyncManager) {
-            window.casinoSyncManager.notifyBetChange(weekKey);
+        } else {
+          alert("Casino sync manager is not available to sync bets.");
+          // Fallback: attempt to re-render the log directly if sync manager is missing
+          console.warn("CasinoSyncManager not found, attempting direct renderBetLog for sync.");
+          try {
+            await renderBetLog(); // Re-render to fetch latest
+             if (window.casinoSyncManager && window.casinoSyncManager.showConnectionStatus) {
+                window.casinoSyncManager.showConnectionStatus("Bet log refreshed.", "success");
+            } else {
+                alert("Bet log refreshed.");
+            }
+          } catch (e) {
+            alert("Error refreshing bet log.");
           }
-
-          // Refresh the bet log
-          renderBetLog();
         }
       };
     }
+
+    // Add event listener for the league filter
+    const leagueFilter = document.getElementById('league-filter');
+    if (leagueFilter) {
+      leagueFilter.onchange = function() {
+        filterBetsByLeague(weekBets, this.value);
+      };
+    }
+
+    // Function to filter and re-render bet entries based on selected league
+    function filterBetsByLeague(allBets, selectedLeague) {
+      const betLogList = document.querySelector('.bet-log-list');
+      if (!betLogList) return;
+
+      // Filter bets based on selected league
+      const filteredBets = selectedLeague ? 
+        allBets.filter(bet => {
+          const betData = bet.bet_data || bet;
+          return betData.league === selectedLeague;
+        }) : 
+        allBets;
+
+      // Re-render the bet entries
+      betLogList.innerHTML = filteredBets.map(bet => {
+        const betData = bet.bet_data || bet;
+        const betId = bet.id || `local-${bet.localIdx}`;
+        const isLocal = betId && typeof betId === 'string' ? betId.startsWith('local-') : false;
+
+        // Format date nicely
+        const rawDate = bet.bet_date || bet.date;
+        const displayDate = new Date(rawDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        const userName = bet.user_name || document.getElementById("user").value;
+        // Determine background class based on user
+        let userClass = '';
+        if (userName === "FLIGHTx12!") {
+          userClass = 'user-flight';
+        } else if (userName === "Jaybers8") {
+          userClass = 'user-jaybers';
+        }
+
+        const betStatus = bet.bet_status || {};
+        const payoutData = bet.payout_data || {};
+
+        return `<div class="bet-log-entry ${userClass}">
+          <button class="delete-bet-entry-btn" data-betid="${betId}" data-local="${isLocal}" title="Delete this bet">&times;</button>
+          <span class="bet-date">${displayDate}</span> | <span>${betData.league}</span> | <b class="user-name">${userName}</b>
+          <br>
+          <span>${betData.awayTeam} @ ${betData.homeTeam}</span>
+          <ul>
+            ${betData.bets.map((b, idx) => {
+              const betLineStatus = betStatus[idx] || 'pending';
+              const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
+              return `<li class="${statusClass}">
+                <div class="bet-line-content">
+                  ${b.betText} : ${b.player} (${b.betAmount}/${b.potentialWin + b.betAmount} 💷)${b.rolePlayerBoost ? ' <span style="color:#FFD700;font-weight:bold;">(Role Player +9%)</span>' : ''}
+                  <span class="bet-status-controls" data-betid="${betId}" data-betindex="${idx}" data-local="${isLocal}">
+                    ${betLineStatus === 'pending' ? `
+                      <button class="bet-won-btn" title="Mark as won">W</button>
+                      <button class="bet-lost-btn" title="Mark as lost">L</button>
+                    ` : `
+                      <span class="bet-status-indicator" title="Click to change status">${betLineStatus.toUpperCase()}</span>
+                    `}
+                  </span>
+                </div>
+              </li>`;
+            }).join('')}
+          </ul>
+          ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
+            <div class="bet-actions">
+              <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
+            </div>
+          ` : ''}
+        </div>`;
+      }).join('');
+
+      // Re-attach event listeners for the filtered results
+      reattachBetLogEventListeners();
+    }
+
+    // Function to reattach event listeners after filtering
+    function reattachBetLogEventListeners() {
+      // Add event listeners for each delete button
+      logDiv.querySelectorAll('.delete-bet-entry-btn').forEach(btn => {
+        btn.onclick = async function() {
+          const betId = this.getAttribute('data-betid');
+          const isLocal = this.getAttribute('data-local') === 'true';
+          
+          if (confirm("Delete this bet entry? This cannot be undone.")) {
+            if (isLocal) {
+              // Handle local storage deletion
+              const localIdx = parseInt(betId.split('-')[1], 10);
+              let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+              if (betLog[weekKey]) {
+                betLog[weekKey].splice(localIdx, 1);
+                // If no bets left for the week, remove the week key
+                if (betLog[weekKey].length === 0) {
+                  delete betLog[weekKey];
+                }
+                localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+                
+                // Notify sync manager of bet deletion
+                if (window.casinoSyncManager) {
+                  window.casinoSyncManager.notifyBetChange(weekKey);
+                }
+              }
+            } else {
+              // Handle database deletion
+              try {
+                const response = await fetch(`/api/bets/${betId}`, {
+                  method: 'DELETE'
+                });
+                
+                if (!response.ok) {
+                  console.error('Failed to delete bet from database:', await response.text());
+                } else {
+                  // Notify sync manager of bet deletion
+                  if (window.casinoSyncManager) {
+                    window.casinoSyncManager.notifyBetChange(weekKey);
+                  }
+                }
+              } catch (error) {
+                console.error('Error deleting bet from database:', error);
+              }
+            }
+            
+            // Refresh the bet log
+            renderBetLog();
+          }
+        };
+      });
+
+      // Add event listeners for won/lost buttons
+      console.log('Adding event listeners to', logDiv.querySelectorAll('.bet-won-btn, .bet-lost-btn').length, 'buttons');
+      logDiv.querySelectorAll('.bet-won-btn, .bet-lost-btn').forEach(btn => {
+        btn.onclick = async function() {
+          console.log('Button clicked:', this.innerText);
+          // Use 'this' instead of 'btn' to correctly identify which button was clicked
+          const status = this.classList.contains('bet-won-btn') ? 'won' : 'lost';
+          console.log('Status:', status);
+          const controlsElement = this.closest('.bet-status-controls');
+          console.log('Controls element:', controlsElement);
+          const betId = controlsElement ? controlsElement.getAttribute('data-betid') : null;
+          const betIndex = controlsElement ? parseInt(controlsElement.getAttribute('data-betindex'), 10) : null;
+          const isLocal = controlsElement ? controlsElement.getAttribute('data-local') === 'true' : false;
+          console.log('Bet ID:', betId, 'Index:', betIndex, 'Local:', isLocal);
+          
+          if (!controlsElement) {
+            console.error('Could not find .bet-status-controls element');
+            return;
+          }
+          
+          try {
+            if (isLocal) {
+              // Handle local bet status updates
+              const weekKey = getCurrentWeekKey();
+              const localIdx = parseInt(betId.split('-')[1], 10);
+              
+              // Get current local bets
+              let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+              if (!betLog[weekKey] || !betLog[weekKey][localIdx]) {
+                console.error('Local bet not found');
+                return;
+              }
+              
+              // Update bet status
+              const localBet = betLog[weekKey][localIdx];
+              localBet.betStatus = localBet.betStatus || {};
+              localBet.betStatus[betIndex] = status;
+              
+              // Calculate payout data if all bets have been evaluated
+              const bets = localBet.bets || [];
+              const currentStatus = localBet.betStatus;
+              
+              const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
+              if (allEvaluated) {
+                // Calculate total win amount
+                let totalWager = 0;
+                let totalWin = 0;
+                
+                bets.forEach((b, idx) => {
+                  totalWager += b.betAmount;
+                  if (currentStatus[idx] === 'won') {
+                    totalWin += b.potentialWin;
+                  }
+                });
+                
+                localBet.payoutData = {
+                  totalWager,
+                  totalWin,
+                  netPayout: totalWin,
+                  evaluatedAt: new Date().toISOString()
+                };
+              }
+              
+              // Save updates to localStorage
+              betLog[weekKey][localIdx] = localBet;
+              localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
+              
+              // Notify sync manager of the bet status update
+              if (window.casinoSyncManager) {
+                window.casinoSyncManager.notifyBetChange(weekKey);
+              }
+              
+              // Refresh bet log
+              renderBetLog();
+            } else {
+              // Handle database bet status updates
+              // Get current bet details
+              const response = await fetch(`/api/bets/${betId}`);
+              if (!response.ok) {
+                console.error('Failed to get bet details');
+                return;
+              }
+              
+              const bet = await response.json();
+              const currentStatus = bet.bet_status || {};
+              const bets = bet.bet_data.bets || [];
+              
+              // Update status for this specific bet line
+              currentStatus[betIndex] = status;
+              
+              // Calculate payout data if all bets have been evaluated
+              let payoutData = null;
+              const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
+              
+              if (allEvaluated) {
+                // Calculate total win amount
+                let totalWager = 0;
+                let totalWin = 0;
+                
+                bets.forEach((b, idx) => {
+                  totalWager += b.betAmount;
+                  if (currentStatus[idx] === 'won') {
+                    totalWin += b.potentialWin;
+                  }
+                });
+                
+                payoutData = {
+                  totalWager,
+                  totalWin,
+                  netPayout: totalWin,
+                  evaluatedAt: new Date().toISOString()
+                };
+              }
+              
+              // Update bet status in the database
+              const updateResponse = await fetch(`/api/bets/${betId}/status`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  betStatus: currentStatus,
+                  payoutData
+                })
+              });
+              
+              if (!updateResponse.ok) {
+                console.error('Failed to update bet status');
+                return;
+              }
+              
+              // Notify sync manager of the bet status update
+              if (window.casinoSyncManager) {
+                window.casinoSyncManager.notifyBetChange(bet.week_key || weekKey);
+              }
+              
+              // Refresh bet log
+              renderBetLog();
+            }
+          } catch (error) {
+            console.error('Error updating bet status:', error);
+          }
+        };
+      });
+
+      // Add event listeners for creating payout receipts
+      logDiv.querySelectorAll('.create-payout-receipt-btn').forEach(btn => {
+        btn.onclick = async function() {
+          const betId = this.getAttribute('data-betid');
+          const isLocal = this.getAttribute('data-local') === 'true';
+          
+          try {
+            if (isLocal) {
+              // Handle local bet payout receipt
+              const weekKey = getCurrentWeekKey();
+              const localIdx = parseInt(betId.split('-')[1], 10);
+              
+              // Get current local bets
+              let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
+              if (!betLog[weekKey] || !betLog[weekKey][localIdx]) {
+                console.error('Local bet not found');
+                return;
+              }
+              
+              // Create a bet object in the same format as the database for createPayoutReceipt
+              const localBet = betLog[weekKey][localIdx];
+              const formattedBet = {
+                id: betId,
+                user_name: localBet.userName || document.getElementById("user").value,
+                bet_date: localBet.date,
+                bet_data: localBet,
+                bet_status: localBet.betStatus,
+                payout_data: localBet.payoutData
+              };
+              
+              createPayoutReceipt(formattedBet);
+            } else {
+              // Handle database bet payout receipt
+              const response = await fetch(`/api/bets/${betId}/payout`);
+              if (!response.ok) {
+                console.error('Failed to get payout data');
+                return;
+              }
+              
+              const data = await response.json();
+              createPayoutReceipt(data.bet);
+            }
+          } catch (error) {
+            console.error('Error creating payout receipt:', error);
+          }
+        };
+      });
+    }
+
+    // Initial render with all bets
+    filterBetsByLeague(weekBets, '');
+
   } catch (error) {
    
     console.error('Error rendering bet log:', error);
@@ -2045,735 +2393,5 @@ document.addEventListener('DOMContentLoaded', function() {
   const betLog = document.getElementById('bet-log');
   if (betLog) {
     observer.observe(betLog, { childList: true, subtree: true });
-  }
-});
-// Fixed version of createPayoutReceipt function to fix background image issues
-
-// Override the original createPayoutReceipt function
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof window.createPayoutReceipt === 'function') {
-    const originalCreatePayoutReceipt = window.createPayoutReceipt;
-    
-    window.createPayoutReceipt = function(bet) {
-      // Remove any existing payout receipt
-      const existingReceipt = document.querySelector('.payout-receipt');
-      if (existingReceipt) {
-        existingReceipt.remove();
-      }
-        
-      // Handle different data formats for local vs. database bets
-      const isLocal = bet.id && typeof bet.id === 'string' ? bet.id.startsWith('local-') : false;
-      const betData = isLocal ? bet.bet_data : bet.bet_data;
-      const betStatus = bet.bet_status || {};
-      const payoutData = bet.payout_data || {};
-      
-      // Create payout receipt element
-      const receiptDiv = document.createElement('div');
-      receiptDiv.className = 'payout-receipt';
-      receiptDiv.id = 'dynamic-payout-receipt'; // Added ID
-      
-      // Determine which user's styling to use
-      let userClass = '';
-      if (bet.user_name === "FLIGHTx12!") {
-        userClass = 'user-flight';
-      } else if (bet.user_name === "Jaybers8") {
-        userClass = 'user-jaybers';
-      }
-      
-      // Add user class
-      if (userClass) {
-        receiptDiv.classList.add(userClass);
-      }
-      
-      // Format date nicely
-      const betDate = new Date(bet.bet_date).toLocaleDateString('en-US', {
-        year: 'numeric', 
-        month: 'short', // Use short month name to save space
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      
-      // Count wins and calculate payout
-      let winsCount = 0;
-      let totalWager = 0;
-      let totalWinnings = 0;
-      let totalReturn = 0; // Add this to track payout including original bet
-      let samePlayerBoostApplied = false;
-      let samePlayerName = null;
-      let samePlayerEligible = false;
-
-      // Check if all bets have the same non-empty player (and at least 3 bets)
-      if (betData.bets && betData.bets.length === 3) {
-        const playerNames = betData.bets.map(b => (b.player || '').trim());
-        if (playerNames[0] && playerNames.every(p => p === playerNames[0])) {
-          samePlayerEligible = true;
-          samePlayerName = playerNames[0];
-        }
-      }
-
-      betData.bets.forEach((b, idx) => {
-        totalWager += b.betAmount;
-        let winAmount = b.potentialWin;
-        // Apply 15% boost if all players are the same and this bet is a win
-        if (betStatus[idx] === 'won') {
-          winsCount++;
-          if (samePlayerEligible) {
-            winAmount = Math.ceil(winAmount * 1.15); // 15% boost, always round up
-            samePlayerBoostApplied = true;
-          }
-          winAmount = Math.ceil(winAmount); // Always round up to whole number
-          totalWinnings += winAmount;
-          totalReturn += winAmount + b.betAmount;
-        }
-      });
-        // Create receipt HTML with improved structure for mobile visibility
-      receiptDiv.innerHTML = `
-        <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
-        <div class="receipt-content-wrapper">
-          <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
-          <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
-          
-          <div class="bet-details">
-            <h3>Bet Results:</h3>
-            <ul>
-              ${betData.bets.map((b, idx) => {
-                const status = betStatus[idx] || 'pending';
-                const statusClass = status === 'won' ? 'bet-won' : status === 'lost' ? 'bet-lost' : '';
-                let winAmount = b.potentialWin;
-                let boostText = '';
-                
-                if (status === 'won' && samePlayerEligible) {
-                  winAmount = Math.ceil(winAmount * 1.15);
-                  boostText = ' <span class="boost boost-same-player">(+15% Same Player Boost)</span>';
-                }
-                
-                // Format player name to be shorter if needed
-                let playerName = b.player;
-                if (playerName && playerName.length > 15) {
-                  playerName = playerName.substring(0, 13) + '...';
-                }
-                
-                return `
-                  <li class="${statusClass}">
-                    ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
-                    <br><b>${status.toUpperCase()}</b> 
-                    ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
-                  </li>
-                `;
-              }).join('')}
-            </ul>
-          </div>
-          
-          <div class="payout-summary">
-            <div>Total Wager: ${totalWager} 💷</div>
-            <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
-            <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
-            ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
-          </div>
-          
-          <button id="copy-payout-receipt" class="copy-receipt-btn">Copy Receipt</button>
-        </div>
-      `;
-      
-      // Add to document
-      document.body.appendChild(receiptDiv);
-      
-      // Apply background image AFTER the element is in the DOM with delay for proper rendering
-      setTimeout(() => {
-        if (bet.user_name === "FLIGHTx12!") {
-          receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
-        } else if (bet.user_name === "Jaybers8") {
-          receiptDiv.style.backgroundImage = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
-        }
-      }, 10);
-      
-      // Add event listeners
-      receiptDiv.querySelector('.payout-receipt-close').addEventListener('click', () => {
-        receiptDiv.remove();
-      });
-      
-      receiptDiv.querySelector('#copy-payout-receipt').addEventListener('click', () => {
-        capturePayoutReceiptScreenshot(receiptDiv);
-      });
-    };
-      // Replace the original capturePayoutReceiptScreenshot function with improved version
-    window.capturePayoutReceiptScreenshot = function(receiptElement) {
-      // First prepare the receipt for capture
-      prepareForCapture(receiptElement).then(() => {
-        // Add capturing class for special styling
-        receiptElement.classList.add('capturing');
-        
-        // Ensure background image is properly set for the user
-        const userName = receiptElement.querySelector('.receipt-user')?.textContent || 
-                         document.getElementById('user')?.value || '';
-        
-        let bgImageUrl = receiptElement.style.backgroundImage;
-        
-        // If no background is set or it's 'none', apply user-specific background
-        if (!bgImageUrl || bgImageUrl === 'none') {
-          if (userName.includes('FLIGHT')) {
-            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
-          } else if (userName.includes('Jaybers')) {
-            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundpurp.jpg')";
-          } else {
-            // Default background if user not recognized
-            bgImageUrl = "url('../assets/img/backgrounds/betdivbackgroundgreen.jpg')";
-          }
-          receiptElement.style.backgroundImage = bgImageUrl;
-          receiptElement.style.backgroundSize = 'cover';
-          receiptElement.style.backgroundPosition = 'center';
-        }
-        
-        // Preload background image to ensure it's fully rendered before capture
-        const bgUrl = bgImageUrl.replace(/url\(['"]?(.*?)['"]?\)/i, '$1').replace(/["']/g, '');
-        const preloadImage = new Image();
-        preloadImage.crossOrigin = "anonymous"; // Enable CORS
-        preloadImage.src = bgUrl;
-        
-        // Function to continue with capture after ensuring background is loaded
-        const continueCapture = () => {
-          // Calculate ideal dimensions based on content
-          const contentWrapper = receiptElement.querySelector('.receipt-content-wrapper');
-          const contentHeight = contentWrapper ? contentWrapper.scrollHeight : receiptElement.scrollHeight;
-          const contentWidth = receiptElement.clientWidth;
-          
-          // Set temporary fixed height to ensure all content is captured
-          const originalHeight = receiptElement.style.height;
-          const originalMaxHeight = receiptElement.style.maxHeight;
-          const originalOverflow = receiptElement.style.overflow;
-          
-          receiptElement.style.height = contentHeight + 'px';
-          receiptElement.style.maxHeight = 'none';
-          receiptElement.style.overflow = 'visible';
-          
-          // Configure html2canvas options for better mobile capture
-          html2canvas(receiptElement, { 
-            useCORS: true, 
-            allowTaint: true,
-            backgroundColor: null, // Use element's own background
-            scale: window.devicePixelRatio || 2, // Use device pixel ratio for better quality
-            width: contentWidth,
-            height: contentHeight,
-            scrollX: 0,
-            scrollY: -window.scrollY, // Adjust for page scroll
-            logging: false,
-            onclone: function(clonedDoc, clonedElement) {
-              // Copy background properties explicitly
-              const styles = getComputedStyle(receiptElement);
-              clonedElement.style.backgroundImage = styles.backgroundImage;
-              clonedElement.style.backgroundSize = styles.backgroundSize;
-              clonedElement.style.backgroundPosition = styles.backgroundPosition;
-              clonedElement.style.backgroundRepeat = styles.backgroundRepeat;
-              
-              // Further enhance the clone for better visibility
-              clonedElement.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
-                el.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                el.style.color = 'white';
-                el.style.textShadow = '1px 1px 3px rgba(0, 0, 0, 1)';
-                el.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-                el.style.borderRadius = '5px';
-                el.style.padding = '8px';
-                el.style.margin = '8px 0';
-              });
-            }        }).then(canvas => {
-          // Restore original styles
-          receiptElement.classList.remove('capturing');
-          receiptElement.style.height = originalHeight;
-          receiptElement.style.maxHeight = originalMaxHeight;
-          receiptElement.style.overflow = originalOverflow;
-          
-          canvas.toBlob(blob => {
-            navigator.clipboard.write([
-              new ClipboardItem({ 'image/png': blob })
-            ]).then(() => {
-              alert('Receipt screenshot copied to clipboard!');
-            }).catch(err => {
-              console.error('Failed to copy screenshot:', err);
-              // Fallback - offer direct download if clipboard fails
-              const link = document.createElement('a');
-              link.download = 'payout-receipt.png';
-              link.href = canvas.toDataURL('image/png');
-              link.click();
-              alert('Receipt saved as image (clipboard access failed).');
-            });
-          }, 'image/png', 1.0); // Use highest quality PNG
-        }).catch(err => {
-          console.error('Failed to capture screenshot:', err);
-          receiptElement.classList.remove('capturing');
-          alert('Failed to capture screenshot. Please try again or use a browser screenshot tool.');
-          
-          // Restore original styles
-          receiptElement.style.height = originalHeight;
-          receiptElement.style.maxHeight = originalMaxHeight;
-          receiptElement.style.overflow = originalOverflow;
-        });
-        };
-        
-        // Check if background image needs to be preloaded
-        if (bgUrl && bgUrl !== "none") {
-          // Wait for image to load or timeout after 2 seconds
-          const timeout = setTimeout(() => {
-            console.log('Background image load timed out, continuing with capture');
-            continueCapture();
-          }, 2000);
-          
-          preloadImage.onload = () => {
-            clearTimeout(timeout);
-            console.log('Background image loaded successfully');
-            setTimeout(continueCapture, 100); // Small delay after load
-          };
-          
-          preloadImage.onerror = () => {
-            clearTimeout(timeout);
-            console.error('Failed to load background image');
-            continueCapture(); // Continue anyway
-          };
-        } else {
-          // No background to preload, continue directly
-          continueCapture();
-        }
-      }).catch(err => {
-        console.error('Failed to prepare for capture:', err);
-        alert('Failed to prepare for screenshot. Please try again.');
-      });
-    };
-    
-    // Helper function to prepare the receipt for capture
-    function prepareForCapture(element) {
-      return new Promise((resolve, reject) => {
-        try {
-          // Store original background-image
-          const originalBgImage = element.style.backgroundImage;
-          
-          // Force dark background for better text visibility during capture
-          element.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-          // Do NOT hide the element's background image, allow ::before to inherit it
-          
-          // Ensure all content is visible
-          element.querySelectorAll('.bet-details, .payout-summary, .matchup').forEach(el => {
-            el.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-            el.style.border = '1px solid rgba(255, 255, 255, 0.3)';
-            el.style.textShadow = '1px 1px 3px black';
-          });
-          
-          // Ensure text colors are bold and visible
-          element.querySelectorAll('.payout-value').forEach(el => {
-            el.style.textShadow = '1px 1px 3px black';
-            el.style.fontWeight = 'bold';
-          });
-          
-          // Make sure the copy button is hidden during capture
-          const copyButton = element.querySelector('#copy-payout-receipt');
-          if (copyButton) {
-            copyButton.style.display = 'none';
-          }
-          
-          // Wait a small amount of time for styles to apply
-          setTimeout(() => {
-            resolve();
-          }, 50);
-        } catch (error) {
-          reject(error);
-        }
-      });    }
-    
-    console.log("✅ Payout receipt display fix installed");
-  } else {
-    console.error("⚠️ createPayoutReceipt function not found, fix not applied");
-  }
-}); // Closing the earlier anonymous function that was missing its closing parenthesis
-// Fix for player selection dropdown issues
-
-// Improved updateLines function with better player selection handling
-function updateLines(betNum) {
-  const league = safeGetElementValue("league");
-  const category = safeGetElementValue(`category${betNum}`);
-  const lineSelect = safeGetElement(`line${betNum}`);
-  const playerSelect = safeGetElement(`player${betNum}`);
-  const betAmountInput = safeGetElement(`betAmount${betNum}`);
-  
-  console.log(`⚙️ updateLines(${betNum}): league=${league}, category=${category}`);
-  
-  // Safety check - if lineSelect or playerSelect doesn't exist, we can't continue
-  if (!lineSelect) {
-    console.error(`Line select #${betNum} not found`);
-    return;
-  }
-  
-  if (!playerSelect) {
-    console.error(`Player select #${betNum} not found`);
-    return;
-  }
-  
-  // Make sure bet amount input is visible when category is selected
-  if (category) {
-    if (!betAmountInput) {
-      // Create bet amount input if it doesn't exist
-      const container = lineSelect.parentElement;
-      if (container) {
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.id = `betAmount${betNum}`;
-        input.className = 'bet-amount';
-        input.placeholder = 'Bet Amount';
-        input.min = '1';
-        
-        // Add event listener for real-time calculation
-        input.addEventListener('input', function() {
-          // If we have the potential-winnings.js script, it will handle this
-          // This is just a fallback in case the separate script isn't loaded
-          if (typeof calculateAndDisplayWinnings === 'function') {
-            calculateAndDisplayWinnings(this);
-          }
-        });
-        
-        container.appendChild(input);
-        
-        // Create potential winnings display
-        if (typeof ensureWinningsDisplay === 'function') {
-          ensureWinningsDisplay(input);
-        }
-      }
-    } else {
-      betAmountInput.style.display = 'block';
-      
-      // Ensure winnings display exists when showing the input
-      if (typeof ensureWinningsDisplay === 'function') {
-        ensureWinningsDisplay(betAmountInput);
-      }
-    }
-  }
-
-  // Special handling for ErgoBall and ErgoGolf: only one category 'LINES'
-  if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
-    const lines = teamsData[league]?.categories.LINES;
-    if (lines) {
-      lineSelect.innerHTML = '<option value="">Select Line</option>';
-      lines.forEach((line, idx) => {
-        lineSelect.innerHTML += `<option value="${idx}">[${line.value}] ${line.text}</option>`;
-      });
-    }
-    // Show description below dropdown when a line is selected
-    lineSelect.onchange = function() {
-      const idx = parseInt(this.value, 10);
-      const descDiv = safeGetElement(`line-desc${betNum}`);
-      if (descDiv) {
-        if (!isNaN(idx) && lines[idx]) {
-          descDiv.style.display = '';
-          descDiv.innerHTML = `<span class='line-desc'>${lines[idx].desc}</span>`;
-        } else {
-          descDiv.innerHTML = '';
-          descDiv.style.display = 'none';
-        }
-      }
-      
-      // Recalculate potential winnings if bet amount exists
-      const betAmountInput = safeGetElement(`betAmount${betNum}`);
-      if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
-        calculateAndDisplayWinnings(betAmountInput);
-      }
-    };
-  } else {
-    const lines = teamsData[league]?.categories[category];
-    if (lines) {
-      lineSelect.innerHTML = '<option value="">Select Line</option>';
-      lines.forEach((line, idx) => {
-        lineSelect.innerHTML += `<option value="${line.value}">[${line.value}] ${line.text}</option>`;
-      });
-      // Hide description div for NFL, NBA, WNBA      
-      const descDiv = safeGetElement(`line-desc${betNum}`);
-      if (descDiv) descDiv.style.display = 'none';
-      
-      // Add onchange handler for recalculating potential winnings
-      lineSelect.onchange = function() {
-        const betAmountInput = safeGetElement(`betAmount${betNum}`);
-        if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
-          calculateAndDisplayWinnings(betAmountInput);
-        }
-      };
-    } else {
-      lineSelect.innerHTML = '<option value="">Select Line</option>';      
-      const descDiv = safeGetElement(`line-desc${betNum}`);
-      if (descDiv) descDiv.style.display = 'none';
-    }
-  }
-
-  // For INDIVIDUAL and STAT_HUNTING, require player selection; otherwise, set to N/A.
-  console.log(`Updating player dropdown for: league=${league}, category=${category}`);
-  
-  // Always clear the player select first
-  playerSelect.innerHTML = '<option value="">Select Player</option>';
-  
-  if (["INDIVIDUAL", "STAT_HUNTING"].includes(category) && teamsData[league]?.players) {
-    console.log(`Populating ${teamsData[league].players.length} players for ${category} in ${league}`);
-    
-    // Populate players for this league
-    teamsData[league].players.forEach(player => {
-      const option = document.createElement('option');
-      option.value = player;
-      option.textContent = player;
-      playerSelect.appendChild(option);
-    });
-    
-  } else if ((league === 'ErgoBall' || league === 'ErgoGolf') && category === 'LINES') {
-    console.log(`Populating ${teamsData[league].players.length} players for ${league}`);
-    
-    // Populate players for ErgoBall or ErgoGolf
-    teamsData[league].players.forEach(player => {
-      const option = document.createElement('option');
-      option.value = player;
-      option.textContent = player;
-      playerSelect.appendChild(option);
-    });
-    
-  } else {
-    // For other categories, set to N/A
-    playerSelect.innerHTML = '<option value="N/A">N/A</option>';
-    console.log(`Set player selection to N/A for ${category} in ${league}`);
-  }
-  
-  // Add onchange handler for player select to recalculate potential winnings
-  playerSelect.onchange = function() {
-    const betAmountInput = safeGetElement(`betAmount${betNum}`);
-    if (betAmountInput && betAmountInput.value && typeof calculateAndDisplayWinnings === 'function') {
-      calculateAndDisplayWinnings(betAmountInput);
-    }
-  };
-  
-  console.log(`Player select now has ${playerSelect.options.length} options`);
-}
-
-// Improved resetBetInputs function that properly resets player selections
-function resetBetInputs() {
-  console.log("🧹 Resetting bet inputs");
-  
-  // Reset team selects
-  const awayTeamEl = safeGetElement("awayTeam");
-  const homeTeamEl = safeGetElement("homeTeam");
-  
-  if (awayTeamEl) awayTeamEl.innerHTML = '<option value="">Away Team</option>';
-  if (homeTeamEl) homeTeamEl.innerHTML = '<option value="">Home Team</option>';
-  
-  // Reset bet entries
-  for (let i = 1; i <= 3; i++) {
-    const categoryEl = safeGetElement(`category${i}`);
-    const lineEl = safeGetElement(`line${i}`);
-    const playerEl = safeGetElement(`player${i}`);
-    
-    if (categoryEl) categoryEl.innerHTML = '<option value="">Select Category</option>';
-    if (lineEl) lineEl.innerHTML = '<option value="">Select Line</option>';
-    if (playerEl) playerEl.innerHTML = '<option value="">Select Player</option>';
-    
-    // Remove bet amount input if present
-    const betAmountInput = safeGetElement(`betAmount${i}`);
-    if (betAmountInput && betAmountInput.parentElement) {
-      betAmountInput.value = "";
-      betAmountInput.style.display = 'none';
-    }
-    
-    // Hide line description
-    const descDiv = safeGetElement(`line-desc${i}`);
-    if (descDiv) {
-      descDiv.innerHTML = '';
-      descDiv.style.display = 'none';
-    }
-  }
-}
-
-// Fix for the TypeError: betId.startsWith is not a function
-// This is a monkey patch for any function that uses betId.startsWith
-const originalCreatePayoutReceipt = window.createPayoutReceipt;
-function fixedCreatePayoutReceipt(bet) {
-  try {
-    // Handle different data formats for local vs. database bets
-    const betId = bet.id;
-    const isLocal = betId && typeof betId === 'string' && betId.startsWith('local-');
-    
-    // Store this safely on the bet object to avoid the type error later
-    bet._isLocal = isLocal;
-    
-    // Call the original function with our safely processed bet object
-    return originalCreatePayoutReceipt(bet);
-  } catch (error) {
-    console.error("Error in createPayoutReceipt:", error);
-    alert("There was an error creating the payout receipt. Please try again.");
-  }
-}
-
-// Override the original functions on document load
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("🔧 Installing casino.js fixes");
-  
-  // Override the updateLines function
-  window.updateLines = updateLines;
-  
-  // Override the resetBetInputs function
-  window.resetBetInputs = resetBetInputs;
-  
-  // Fix the TypeError: betId.startsWith issue
-  if (window.createPayoutReceipt) {
-    window.createPayoutReceipt = fixedCreatePayoutReceipt;
-  }
-  
-  console.log("✅ Casino.js fixes installed");
-});
-
-// Add event delegation for bet status indicator click to revert to choice buttons
-
-// Define the function for marking bet status from the event delegation
-async function markBetStatus(betId, betIndex, status, isLocal) {
-  console.log('markBetStatus called:', betId, betIndex, status, isLocal);
-  
-  try {
-    if (isLocal) {
-      // Handle local bet status updates
-      const weekKey = getCurrentWeekKey();
-      const localIdx = parseInt(betId.split('-')[1], 10);
-      
-      // Get current local bets
-      let betLog = JSON.parse(localStorage.getItem('casinoBetLog') || '{}');
-      if (!betLog[weekKey] || !betLog[weekKey][localIdx]) {
-        console.error('Local bet not found');
-        return;
-      }
-      
-      // Update bet status
-      const localBet = betLog[weekKey][localIdx];
-      localBet.betStatus = localBet.betStatus || {};
-      localBet.betStatus[betIndex] = status;
-      
-      // Calculate payout data if all bets have been evaluated
-      const bets = localBet.bets || [];
-      const currentStatus = localBet.betStatus;
-      
-      const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
-      if (allEvaluated) {
-        // Calculate total win amount
-        let totalWager = 0;
-        let totalWin = 0;
-        
-        bets.forEach((b, idx) => {
-          totalWager += b.betAmount;
-          if (currentStatus[idx] === 'won') {
-            totalWin += b.potentialWin;
-          }
-        });
-        
-        localBet.payoutData = {
-          totalWager,
-          totalWin,
-          netPayout: totalWin,
-          evaluatedAt: new Date().toISOString()
-        };
-      }
-      
-      // Save updates to localStorage
-      betLog[weekKey][localIdx] = localBet;
-      localStorage.setItem('casinoBetLog', JSON.stringify(betLog));
-      
-      // Notify sync manager of the bet status update
-      if (window.casinoSyncManager) {
-        window.casinoSyncManager.notifyBetChange(weekKey);
-      }
-      
-      // Refresh bet log
-      renderBetLog();
-    } else {
-      // Handle database bet status updates
-      // Get current bet details
-      const response = await fetch(`/api/bets/${betId}`);
-      if (!response.ok) {
-        console.error('Failed to get bet details');
-        return;
-      }
-      
-      const bet = await response.json();
-      const currentStatus = bet.bet_status || {};
-      const bets = bet.bet_data.bets || [];
-      
-      // Update status for this specific bet line
-      currentStatus[betIndex] = status;
-      
-      // Calculate payout data if all bets have been evaluated
-      let payoutData = null;
-      const allEvaluated = bets.every((b, idx) => currentStatus[idx]);
-      
-      if (allEvaluated) {
-        // Calculate total win amount
-        let totalWager = 0;
-        let totalWin = 0;
-        
-        bets.forEach((b, idx) => {
-          totalWager += b.betAmount;
-          if (currentStatus[idx] === 'won') {
-            totalWin += b.potentialWin;
-          }
-        });
-        
-        payoutData = {
-          totalWager,
-          totalWin,
-          netPayout: totalWin,
-          evaluatedAt: new Date().toISOString()
-        };
-      }
-      
-      // Update bet status in the database
-      const updateResponse = await fetch(`/api/bets/${betId}/status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          betStatus: currentStatus,
-          payoutData
-        })
-      });
-      
-      if (!updateResponse.ok) {
-        console.error('Failed to update bet status');
-        return;
-      }
-      
-      // Notify sync manager of the bet status update
-      if (window.casinoSyncManager) {
-        window.casinoSyncManager.notifyBetChange(bet.week_key || weekKey);
-      }
-      
-      // Refresh bet log
-      renderBetLog();
-    }
-  } catch (error) {
-    console.error('Error updating bet status:', error);
-  }
-}
-
-document.addEventListener('click', function(e) {
-  // Only handle clicks on bet status indicators
-  if (e.target.classList.contains('bet-status-indicator')) {
-    const li = e.target.closest('li');
-    if (!li) return;
-    // Find the controls container
-    const controls = li.querySelector('.bet-status-controls');
-    if (!controls) return;
-    // Get betid and betindex from controls
-    const betId = controls.getAttribute('data-betid');
-    const betIndex = controls.getAttribute('data-betindex');
-    const isLocal = controls.getAttribute('data-local');
-    // Replace the indicator with the win/loss buttons
-    controls.innerHTML = `
-      <button class="bet-won-btn" title="Mark as won">W</button>
-      <button class="bet-lost-btn" title="Mark as lost">L</button>
-    `;
-    // Re-attach the event listeners for the new buttons
-    controls.querySelector('.bet-won-btn').addEventListener('click', function(ev) {
-      ev.stopPropagation();
-      markBetStatus(betId, betIndex, 'won', isLocal);
-    });
-    controls.querySelector('.bet-lost-btn').addEventListener('click', function(ev) {
-      ev.stopPropagation();
-      markBetStatus(betId, betIndex, 'lost', isLocal);
-    });
   }
 });
