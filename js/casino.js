@@ -1687,9 +1687,7 @@ async function renderBetLog() {
             }).join('')}
           </ul>
           ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
-            <div class="bet-actions">
-              <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
-            </div>
+            <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
           ` : ''}
         </div>`;
       }).join('');

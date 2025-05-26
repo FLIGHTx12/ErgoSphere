@@ -570,12 +570,12 @@ select:disabled {
 }
 
 .bet-status-controls button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 5px rgba(255,255,255,0.7);
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(255,255,255,0.7);
 }
 
 .bet-status-controls button:active {
-  transform: scale(0.95);
+  transform: scale(0.9);
 }
 
 .bet-status-controls button::after {
@@ -658,12 +658,77 @@ select:disabled {
 }
 
 .create-payout-receipt-btn {
-  background-color: rgba(120, 60, 190, 0.8);
-  border: 1px solid purple;
-  padding: 4px 10px;
-  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(120, 60, 190, 0.9), rgba(90, 30, 160, 0.95));
+  border: 1px solid rgba(180, 120, 240, 0.8);
+  padding: 8px 15px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  box-shadow: 
+    0 3px 10px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(180, 120, 240, 0.5);
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: 15px;
+  display: block;
+  float: right;
+  position: relative;
+  overflow: hidden;
+}
+
+.create-payout-receipt-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.create-payout-receipt-btn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: transparent;
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 15px 5px rgba(180, 120, 240, 0.7);
+}
+
+.create-payout-receipt-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, rgba(140, 80, 210, 0.95), rgba(110, 50, 180, 1));
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(200, 150, 255, 0.6);
+  border-color: rgba(200, 150, 255, 0.9);
+}
+
+.create-payout-receipt-btn:hover::before {
+  left: 100%;
+}
+
+.create-payout-receipt-btn:hover::after {
+  opacity: 0.6;
+}
+
+.create-payout-receipt-btn:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.3),
+    0 0 3px rgba(180, 120, 240, 0.3);
+  background: linear-gradient(135deg, rgba(100, 40, 170, 1), rgba(80, 20, 140, 1));
 }
 
 /* Payout receipt styles */
@@ -816,18 +881,21 @@ select:disabled {
 /* Additional styles for casino.css to fix button issues */
 .bet-status-controls {
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 50%;
   transform: translateY(-50%);
   white-space: nowrap;
+  display: flex;
+  min-width: 70px;
+  justify-content: flex-end;
 }
 
 .bet-status-controls button {
-  padding: 2px 6px;
-  margin: 0 1px;
-  font-size: 10px;
+  padding: 2px 8px;
+  margin: 0 2px;
+  font-size: 11px;
   font-weight: bold;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
@@ -867,8 +935,8 @@ select:disabled {
   display: block;
   width: 100% !important;
   box-sizing: border-box;
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 80px;
+  padding-left: 15px;
   margin-bottom: 0;
 }
 
@@ -1012,28 +1080,29 @@ select:disabled {
 
 /* Let's modify this to be more responsive */
 .bet-line-content {
-  width: calc(100% - 75px); /* Less space reserved for controls */
+  width: calc(100% - 85px); /* More space reserved for controls */
   display: inline-block;
   box-sizing: border-box;
-  padding-right: 5px; /* Small padding to prevent text touching buttons */
+  padding-right: 10px; /* Increased padding to prevent text touching buttons */
 }
 
 /* And add media queries to adjust for different screen sizes */
 @media (max-width: 600px) {
   .bet-line-content {
-    width: calc(100% - 65px); /* Even less space on small screens */
+    width: calc(100% - 75px); /* Even less space on small screens */
     font-size: 0.9em; /* Slightly smaller font to fit better */
   }
   
   /* Make the bet status controls more compact on small screens */
   .bet-status-controls {
     right: 5px; /* Move closer to edge */
+    min-width: 65px;
   }
   
   .bet-status-controls button {
-    padding: 1px 4px;
-    font-size: 9px;
-    min-width: 20px;
+    padding: 2px 6px;
+    font-size: 10px;
+    min-width: 22px;
   }
 }
 
@@ -1554,4 +1623,56 @@ select:disabled {
     padding: 5px 8px;
     border-radius: 8px;
   }
+}
+
+@media (max-width: 768px) {
+  .create-payout-receipt-btn {
+    padding: 7px 12px;
+    font-size: 13px;
+    margin-right: 10px;
+    clear: both;
+  }
+}
+
+@media (max-width: 600px) {
+  .create-payout-receipt-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-payout-receipt-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+    margin-top: 10px;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 80%;
+  }
+}
+
+@keyframes button-pulse {
+  0% {
+    box-shadow: 
+      0 3px 10px rgba(0, 0, 0, 0.3),
+      0 0 5px rgba(180, 120, 240, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 3px 10px rgba(0, 0, 0, 0.3),
+      0 0 12px rgba(180, 120, 240, 0.8);
+  }
+  100% {
+    box-shadow: 
+      0 3px 10px rgba(0, 0, 0, 0.3),
+      0 0 5px rgba(180, 120, 240, 0.5);
+  }
+}
+
+.create-payout-receipt-btn:hover {
+  animation: button-pulse 1.5s infinite;
 }
