@@ -1,0 +1,37 @@
+/* Additional styles for bet entries to ensure proper layout */
+.bet-text {
+  display: inline-block;
+  max-width: 65%;
+  vertical-align: top;
+}
+
+.bet-status {
+  display: inline-block;
+  text-align: right;
+  float: right;
+  max-width: 35%;
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .bet-text {
+    max-width: 60%;
+  }
+  
+  .bet-status {
+    max-width: 40%;
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 400px) {
+  .bet-text {
+    max-width: 55%;
+    font-size: 0.9em;
+  }
+  
+  .bet-status {
+    max-width: 45%;
+    font-size: 0.8em;
+  }
+}
