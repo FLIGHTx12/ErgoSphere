@@ -812,24 +812,27 @@ function createPayoutReceipt(bet) {
               winAmount = Math.ceil(winAmount * 1.15);
               boostText = ' <span class="boost boost-same-player">(+15% Same Player Boost)</span>';
             }
-            
-            // Format player name to be shorter if needed
+              // Format player name to be shorter if needed
             let playerName = b.player;
             if (playerName && playerName.length > 15) {
               playerName = playerName.substring(0, 13) + '...';
             }              return `
               <li class="${statusClass}">
                 <span class="bet-text">${b.betText.trim()} ${playerName ? ': ' + playerName : ''}</span> 
-                <span class="bet-status"><b>${status.toUpperCase()}</b> 
-                ${status === 'won' ? `(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}` : ''}</span>
+                <span class="bet-status">
+                  <b>${status.toUpperCase()}</b>
+                  ${status === 'won' ? `<div>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</div>` : ''}
+                </span>
               </li>
             `;
           }).join('')}
         </ul>
       </div>
-      
-      <div class="payout-summary">
-        <div class="payout-summary-details">Total Wager: ${totalWager} 💷 | Bets Won: ${winsCount} of ${betData.bets.length}</div>
+        <div class="payout-summary">
+        <div class="payout-summary-details">
+          <span>Total Wager: ${totalWager} 💷</span>
+          <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
+        </div>
         <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
         ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
       </div>

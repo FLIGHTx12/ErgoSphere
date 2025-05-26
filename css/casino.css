@@ -1212,11 +1212,15 @@ select:disabled {
   .payout-receipt .payout-summary {
     padding: 6px;
   }
-  
-  .payout-receipt .payout-summary-details {
+    .payout-receipt .payout-summary-details {
     font-size: 0.75em;
     flex-direction: column;
     gap: 3px;
+  }
+  
+  .payout-receipt .payout-summary-details span {
+    display: block;
+    padding: 2px 0;
   }
   
   .payout-receipt .bet-details li {
