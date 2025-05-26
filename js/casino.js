@@ -818,12 +818,11 @@ function createPayoutReceipt(bet) {
             if (playerName && playerName.length > 15) {
               playerName = playerName.substring(0, 13) + '...';
             }
-            
-            return `
+              return `
               <li class="${statusClass}">
                 ${b.betText.trim()} ${playerName ? ': ' + playerName : ''} 
-                <br><b>${status.toUpperCase()}</b> 
-                ${status === 'won' ? `<span>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</span>` : ''}
+                <span style="float:right"><b>${status.toUpperCase()}</b> 
+                ${status === 'won' ? `(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}` : ''}</span>
               </li>
             `;
           }).join('')}
