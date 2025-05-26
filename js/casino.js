@@ -820,7 +820,7 @@ function createPayoutReceipt(bet) {
               <li class="${statusClass}">
                 <span class="bet-text">${b.betText.trim()} ${playerName ? ': ' + playerName : ''}</span> 
                 <span class="bet-status">
-                  <b>${status.toUpperCase()}</b>
+                  ${status === 'won' ? `<b>WON</b>` : `<b>${status.toUpperCase()}</b>`}
                   ${status === 'won' ? `<div>(+${winAmount} 💷, Bet: ${b.betAmount} 💷)${boostText}</div>` : ''}
                 </span>
               </li>
@@ -828,8 +828,7 @@ function createPayoutReceipt(bet) {
           }).join('')}
         </ul>
       </div>
-        <div class="payout-summary">
-        <div class="payout-summary-details">
+        <div class="payout-summary">        <div class="payout-summary-details">
           <span>Total Wager: ${totalWager} 💷</span>
           <span>Bets Won: ${winsCount} of ${betData.bets.length}</span>
         </div>

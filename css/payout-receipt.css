@@ -196,13 +196,13 @@
 
 .bet-details li {
   background: linear-gradient(to right, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.8));
-  padding: 7px 10px;
-  margin-bottom: 6px;
+  padding: 4px 10px;
+  margin-bottom: 3px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  line-height: 1.3em;
+  line-height: 1.2em;
   font-size: 0.85em;
   overflow: hidden;
 }
