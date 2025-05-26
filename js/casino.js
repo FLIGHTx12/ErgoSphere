@@ -1325,13 +1325,10 @@ async function renderBetLog() {
                         <span class="bet-status-indicator" title="Click to change status">${betLineStatus.toUpperCase()}</span>
                       `}
                     </span>
-                  </div>
-                </li>`;
+                  </div>                </li>`;
               }).join('')}            </ul>
             ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
-              <div class="bet-actions">
-                <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
-              </div>
+              <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
             ` : ''}
           </div>`;
         }).join('')}
@@ -1688,11 +1685,8 @@ async function renderBetLog() {
                 </div>
               </li>`;
             }).join('')}
-          </ul>
-          ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
-            <div class="bet-actions">
-              <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
-            </div>
+          </ul>          ${Object.keys(betStatus).length > 0 && Object.values(betStatus).every(s => s !== 'pending') ? `
+            <button class="create-payout-receipt-btn" data-betid="${betId}" data-local="${isLocal}" title="Create payout receipt">Create Payout Receipt</button>
           ` : ''}
         </div>`;
       }).join('');
