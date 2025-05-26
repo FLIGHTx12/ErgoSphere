@@ -264,13 +264,14 @@ function updateBets() {
 
   const awayTeamSelect = document.getElementById("awayTeam");
   const homeTeamSelect = document.getElementById("homeTeam");
-
   awayTeamSelect.innerHTML = '<option value="">Away Team</option>';
   homeTeamSelect.innerHTML = '<option value="">Home Team</option>';
 
   leagueTeams.forEach(team => {
-      awayTeamSelect.innerHTML += `<option value="${team}">${team}</option>`;
-      homeTeamSelect.innerHTML += `<option value="${team}">${team}</option>`;
+      // Handle both old string format and new object format
+      const teamName = typeof team === 'string' ? team : team.name;
+      awayTeamSelect.innerHTML += `<option value="${teamName}">${teamName}</option>`;
+      homeTeamSelect.innerHTML += `<option value="${teamName}">${teamName}</option>`;
   });
 
   if (categories) {
@@ -529,15 +530,14 @@ async function submitBets() {
         bet.rolePlayerBoost ? ' <span style="color:#FFD700;font-weight:bold;">(Role Player +9%)</span>' : ''
       }<br><small><em>${bet.betDesc ? bet.betDesc : ''}</em></small><br>(${bet.betAmount}/${totalWinAmount} 💷)</div>`;
     }).join("");
-    
-    const receiptContent = `
+      const receiptContent = `
       <div class="matchup">
-        ${awayTeam}<br>@<br>${homeTeam}
+        <span style="${styleTeamName(league, awayTeam)}">${awayTeam}</span><br>@<br><span style="${styleTeamName(league, homeTeam)}">${homeTeam}</span>
       </div>
       ${betLines}
       <div class="wager-total">Wager: ${totalBetAmount} 💷</div>
       <div class="potential-winnings">Potential Win: ${totalPotentialWinnings} 💷</div>
-      <div class="actual-winnings">PAYOUT: ____________ 💷</div>    `;    
+      <div class="actual-winnings">PAYOUT: ____________ 💷</div>    `;
     const receiptContentEl = safeGetElement("receipt-content");
     if (receiptContentEl) {
       receiptContentEl.innerHTML = receiptContent;
@@ -790,14 +790,15 @@ function createPayoutReceipt(bet) {
       winAmount = Math.ceil(winAmount); // Always round up to whole number
       totalWinnings += winAmount;
       totalReturn += winAmount + b.betAmount;
-    }
-  });
+    }  });
     // Create receipt HTML with improved structure for mobile visibility
   receiptDiv.innerHTML = `
     <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
     <div class="receipt-content-wrapper">
       <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
-      <div class="matchup">${betData.awayTeam} @ ${betData.homeTeam}</div>
+      <div class="matchup">
+        <span style="${styleTeamName(betData.league, betData.awayTeam)}">${betData.awayTeam}</span> @ <span style="${styleTeamName(betData.league, betData.homeTeam)}">${betData.homeTeam}</span>
+      </div>
       
       <div class="bet-details">
         <h3>Bet Results:</h3>
@@ -1305,14 +1306,14 @@ async function renderBetLog() {
             userClass = 'user-jaybers';
           }            // Check if the bet has status information
             const betStatus = bet.bet_status || {};
-            const payoutData = bet.payout_data || {};
-
-            return `<div class="bet-log-entry ${userClass}">
+            const payoutData = bet.payout_data || {};            return `<div class="bet-log-entry ${userClass}">
             <button class="delete-bet-entry-btn" data-betid="${betId}" data-local="${isLocal}" title="Delete this bet">&times;</button>
             <span class="bet-date">${displayDate}</span> | <span>${betData.league}</span> | <b class="user-name">${userName}</b>
             <br>
-            <span>${betData.awayTeam} @ ${betData.homeTeam}</span>
-            <ul>              ${betData.bets.map((b, idx) => {
+            <span>
+              <span style="${styleTeamName(betData.league, betData.awayTeam)}">${betData.awayTeam}</span> @ <span style="${styleTeamName(betData.league, betData.homeTeam)}">${betData.homeTeam}</span>
+            </span>
+            <ul>${betData.bets.map((b, idx) => {
                 const betLineStatus = betStatus[idx] || 'pending';
                 const statusClass = betLineStatus === 'won' ? 'bet-won' : betLineStatus === 'lost' ? 'bet-lost' : '';
                   return `<li class="${statusClass}">
@@ -1576,7 +1577,7 @@ async function renderBetLog() {
         }
       };
     });
-      // Add event listener for the new "Sync with Server" button
+    // Add event listener for the new "Sync with Server" button
     const syncBetsBtn = document.getElementById('sync-bets-btn');
     if (syncBetsBtn) {
       syncBetsBtn.onclick = async function() {
@@ -1635,9 +1636,7 @@ async function renderBetLog() {
           const betData = bet.bet_data || bet;
           return betData.league === selectedLeague;
         }) : 
-        allBets;
-
-      // Re-render the bet entries
+        allBets;      // Re-render the bet entries
       betLogList.innerHTML = filteredBets.map(bet => {
         const betData = bet.bet_data || bet;
         const betId = bet.id || `local-${bet.localIdx}`;
@@ -1669,7 +1668,9 @@ async function renderBetLog() {
           <button class="delete-bet-entry-btn" data-betid="${betId}" data-local="${isLocal}" title="Delete this bet">&times;</button>
           <span class="bet-date">${displayDate}</span> | <span>${betData.league}</span> | <b class="user-name">${userName}</b>
           <br>
-          <span>${betData.awayTeam} @ ${betData.homeTeam}</span>
+          <span>
+            <span style="${styleTeamName(betData.league, betData.awayTeam)}">${betData.awayTeam}</span> @ <span style="${styleTeamName(betData.league, betData.homeTeam)}">${betData.homeTeam}</span>
+          </span>
           <ul>
             ${betData.bets.map((b, idx) => {
               const betLineStatus = betStatus[idx] || 'pending';
@@ -1986,6 +1987,42 @@ function createBetSignature(bet) {
   
   return betSignature;
 }
+
+// Helper function to get team colors by league and team name
+function getTeamColors(league, teamName) {
+  if (!league || !teamName || !teams) {
+    return { primaryColor: '#FFFFFF', secondaryColor: '#000000' };
+  }
+  
+  const leagueKey = league.toLowerCase();
+  const leagueTeams = teams[leagueKey];
+  
+  if (!leagueTeams) {
+    return { primaryColor: '#FFFFFF', secondaryColor: '#000000' };
+  }
+  
+  const team = leagueTeams.find(t => t.name === teamName);
+  return team ? { 
+    primaryColor: team.primaryColor, 
+    secondaryColor: team.secondaryColor 
+  } : { primaryColor: '#FFFFFF', secondaryColor: '#000000' };
+}
+
+// Helper function to style team names with their colors
+function styleTeamName(league, teamName, isBackground = false) {
+  const colors = getTeamColors(league, teamName);
+  
+  if (isBackground) {
+    // For background styling (like in receipts)
+    return `background: linear-gradient(135deg, ${colors.primaryColor}, ${colors.secondaryColor}); 
+            color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); 
+            padding: 4px 8px; border-radius: 4px; font-weight: bold;`;
+  } else {
+    // For text styling
+    return `color: ${colors.primaryColor}; text-shadow: 1px 1px 1px ${colors.secondaryColor}; font-weight: bold;`;
+  }
+}
+
 // Visual feedback for clicked buttons
 document.addEventListener('DOMContentLoaded', function() {
   // Function to add visual feedback to bet status buttons
