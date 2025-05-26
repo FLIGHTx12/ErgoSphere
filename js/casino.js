@@ -795,9 +795,8 @@ function createPayoutReceipt(bet) {
   receiptDiv.innerHTML = `
     <h2>Payout Receipt<button class="payout-receipt-close">&times;</button></h2>
     <div class="receipt-content-wrapper">
-      <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>
-      <div class="matchup">
-        <span style="${styleTeamName(betData.league, betData.awayTeam)}">${betData.awayTeam}</span> @ <span style="${styleTeamName(betData.league, betData.homeTeam)}">${betData.homeTeam}</span>
+      <div class="receipt-user-date"><b>${bet.user_name}</b> | ${betDate}</div>      <div class="matchup">
+        <span style="${styleTeamName(betData.league, betData.awayTeam)}">${betData.awayTeam}</span><br>@<br><span style="${styleTeamName(betData.league, betData.homeTeam)}">${betData.homeTeam}</span>
       </div>
       
       <div class="bet-details">
@@ -832,8 +831,7 @@ function createPayoutReceipt(bet) {
       </div>
       
       <div class="payout-summary">
-        <div>Total Wager: ${totalWager} 💷</div>
-        <div>Bets Won: ${winsCount} of ${betData.bets.length}</div>
+        <div class="payout-summary-details">Total Wager: ${totalWager} 💷 | Bets Won: ${winsCount} of ${betData.bets.length}</div>
         <div class="payout-value">TOTAL PAYOUT: ${Math.ceil(totalReturn)} 💷</div>
         ${samePlayerBoostApplied ? '<div class="boost boost-same-player">Same Player Boost (+15% to win amounts for all bets)</div>' : ''}
       </div>

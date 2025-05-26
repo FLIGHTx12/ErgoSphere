@@ -160,6 +160,7 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  line-height: 1.5em;
 }
 
 /* Bet details section - improved and more symmetrical */
@@ -237,6 +238,14 @@
   padding: 3px 0;
 }
 
+.payout-summary-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95em;
+  padding: 4px 0;
+}
+
 .payout-summary > div:last-child {
   margin-bottom: 0;
 }
@@ -247,12 +256,14 @@
   font-weight: bold;
   color: #ffd700;
   text-shadow: 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(255, 215, 0, 0.5);
-  margin-top: 12px !important;
+  margin: 12px auto 0 auto !important;
   padding: 10px;
   background: linear-gradient(to bottom, rgba(30, 30, 0, 0.7), rgba(0, 0, 0, 0.7));
   border-radius: 8px;
   border: 2px solid gold;
   letter-spacing: 1px;
+  max-width: 80%;
+  text-align: center;
 }
 
 /* Enhanced copy button with gold accents to match the receipt theme */
@@ -406,9 +417,14 @@
     padding: 12px 10px;
   }
   
+  .payout-summary-details {
+    font-size: 0.85em;
+  }
+  
   .payout-value {
     font-size: 1.3em;
     padding: 8px 5px;
+    max-width: 95%;
   }
   
   .copy-receipt-btn {
@@ -431,6 +447,7 @@
   .matchup {
     font-size: 1.1em;
     padding: 10px 8px;
+    line-height: 1.3em;
   }
   
   .bet-details h3 {
@@ -441,7 +458,14 @@
     padding: 8px 10px;
     font-size: 0.9em;
   }
-    .payout-value {
+
+  .payout-summary-details {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.8em;
+  }
+  
+  .payout-value {
     font-size: 1.2em;
   }
 }
