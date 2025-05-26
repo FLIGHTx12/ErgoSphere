@@ -3,6 +3,9 @@
   display: inline-block;
   max-width: 65%;
   vertical-align: top;
+  line-height: 1.3;
+  padding-right: 5px;
+  word-wrap: break-word;
 }
 
 .bet-status {
@@ -11,27 +14,88 @@
   float: right;
   max-width: 35%;
   font-size: 0.9em;
+  line-height: 1.3;
+}
+
+/* Improve spacing in list items */
+.bet-details li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 7px 10px !important;
+}
+
+/* Add better spacing for the status in winning bets */
+.bet-status b {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+/* Add some spacing between status and win details */
+.bet-status div {
+  margin-top: 2px;
+}
+
+/* Ensure boost indicator fits properly */
+.bet-status .boost {
+  display: inline-block;
+  margin-top: 2px;
+  line-height: 1.1;
+  clear: both;
+  float: right;
+}
+
+/* Improve spacing for payout value by adding more breathing room */
+.payout-value {
+  margin-top: 10px !important;
+  padding: 12px 5px !important;
+}
+
+/* Add subtle hover effect to bet entries */
+.bet-details li:hover {
+  background: linear-gradient(to right, rgba(30, 30, 30, 0.9), rgba(40, 40, 40, 0.8));
+}
+
+/* Make win/loss colors slightly more visible */
+.bet-details li.bet-won {
+  background: linear-gradient(to right, rgba(0, 55, 0, 0.65), rgba(25, 35, 25, 0.85)) !important;
+}
+
+.bet-details li.bet-lost {
+  background: linear-gradient(to right, rgba(55, 0, 0, 0.65), rgba(35, 25, 25, 0.85)) !important;
 }
 
 @media (max-width: 600px) {
   .bet-text {
     max-width: 60%;
+    font-size: 0.9em;
+    padding-right: 3px;
   }
   
   .bet-status {
     max-width: 40%;
     font-size: 0.85em;
   }
+  
+  .bet-details li {
+    padding: 6px 8px !important;
+  }
 }
 
 @media (max-width: 400px) {
   .bet-text {
     max-width: 55%;
-    font-size: 0.9em;
+    font-size: 0.85em;
+    line-height: 1.25;
   }
   
   .bet-status {
     max-width: 45%;
     font-size: 0.8em;
+    line-height: 1.25;
+  }
+  
+  .bet-details li {
+    padding: 5px 7px !important;
   }
 }

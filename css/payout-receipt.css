@@ -196,14 +196,15 @@
 
 .bet-details li {
   background: linear-gradient(to right, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.8));
-  padding: 6px 8px;
+  padding: 7px 10px;
   margin-bottom: 6px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  line-height: 1.1em;
+  line-height: 1.3em;
   font-size: 0.85em;
+  overflow: hidden;
 }
 
 .bet-details li:last-child {
@@ -247,12 +248,19 @@
 
 .payout-summary-details {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
   font-size: 0.85em;
-  padding: 4px 0;
+  padding: 6px 0;
   margin: 0 auto;
   width: 100%;
+}
+
+.payout-summary-details span {
+  display: inline-block;
+  padding: 0 8px;
+  margin: 3px 0;
 }
 
 .payout-summary > div:last-child {
@@ -416,11 +424,10 @@
   .receipt-user-date {
     flex-direction: column;
     gap: 5px;
-  }
-  .bet-details li {
-    padding: 5px 7px;
+  }  .bet-details li {
+    padding: 6px 8px;
     font-size: 0.82em;
-    line-height: 1.1em;
+    line-height: 1.3em;
   }
   
   .payout-summary {
@@ -460,17 +467,20 @@
   
   .bet-details h3 {
     font-size: 1.05em;
-  }
-  .bet-details li {
-    padding: 4px 6px;
+  }  .bet-details li {
+    padding: 5px 7px;
     font-size: 0.78em;
-    line-height: 1.1em;
+    line-height: 1.25em;
   }
-
   .payout-summary-details {
     flex-direction: column;
     gap: 4px;
     font-size: 0.8em;
+    padding: 3px 0;
+  }
+  
+  .payout-summary-details span {
+    padding: 2px 0;
   }
   
   .payout-value {
