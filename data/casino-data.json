@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "version": "2.0.0",
+    "lastUpdated": "2025-05-26",
+    "description": "Casino betting data for ErgoSphere gaming platform",
+    "maintainer": "ErgoSphere Development Team"
+  },
+  "config": {
+    "riskLevels": {
+      "Low": {
+        "multiplier": 1.5,
+        "color": "#4CAF50",
+        "description": "Safe bets with lower payouts"
+      },
+      "Medium": {
+        "multiplier": 2.0,
+        "color": "#FF9800",
+        "description": "Moderate risk with balanced payouts"
+      },
+      "High": {
+        "multiplier": 3.0,
+        "color": "#F44336",
+        "description": "Higher risk with increased payouts"
+      },
+      "Extreme": {
+        "multiplier": 5.0,
+        "color": "#9C27B0",
+        "description": "Maximum risk with highest payouts"
+      }
+    },
+    "defaultBetAmount": 100,
+    "maxBetAmount": 10000,
+    "minBetAmount": 10  },
+  "teams": {
+    "nfl": [
+      "Minnesota Vikings", "Green Bay Packers", "Chicago Bears", "Detroit Lions",
+      "Philadelphia Eagles", "Dallas Cowboys", "New York Giants", "Washington Commanders",
+      "Tampa Bay Buccaneers", "Atlanta Falcons", "Carolina Panthers", "New Orleans Saints",
+      "San Francisco 49ers", "Seattle Seahawks", "Los Angeles Rams", "Arizona Cardinals",
+      "Buffalo Bills", "Miami Dolphins", "New England Patriots", "New York Jets",
+      "Pittsburgh Steelers", "Baltimore Ravens", "Cleveland Browns", "Cincinnati Bengals",
+      "Indianapolis Colts", "Houston Texans", "Tennessee Titans", "Jacksonville Jaguars",
+      "Kansas City Chiefs", "Las Vegas Raiders", "Los Angeles Chargers", "Denver Broncos"
+    ],
+    "nba": [
+      "Minnesota Timberwolves", "Denver Nuggets", "Oklahoma City Thunder", "Phoenix Suns",
+      "Los Angeles Clippers", "Dallas Mavericks", "New Orleans Pelicans", "Los Angeles Lakers",
+      "Sacramento Kings", "Golden State Warriors", "Utah Jazz", "Portland Trail Blazers",
+      "San Antonio Spurs", "Memphis Grizzlies", "Houston Rockets", "Boston Celtics",
+      "New York Knicks", "Milwaukee Bucks", "Cleveland Cavaliers", "Orlando Magic",
+      "Indiana Pacers", "Philadelphia 76ers", "Miami Heat", "Chicago Bulls",
+      "Atlanta Hawks", "Brooklyn Nets", "Toronto Raptors", "Charlotte Hornets",
+      "Washington Wizards", "Detroit Pistons"
+    ],
+    "wnba": [
+      "Minnesota Lynx", "Las Vegas Aces", "New York Liberty", "Connecticut Sun",
+      "Seattle Storm", "Phoenix Mercury", "Los Angeles Sparks", "Indiana Fever",
+      "Chicago Sky", "Atlanta Dream", "Dallas Wings", "Washington Mystics"
+    ],
+    "ergoball": [
+      "Team FLIGHTx12!", "Team Jaybers8"
+    ],
+    "ergogolf": [
+      "Team FLIGHTx12!", "Team Jaybers8"
+    ]
+  },
+  "leagueData": {
+    "NFL": {
+      "categories": {
+        "INDIVIDUAL": [
+          {"text": "Most catches", "value": "High"},
+          {"text": "Most TDs Scored (non QB)", "value": "High"},
+          {"text": "Most INTs", "value": "High"},
+          {"text": "Most Sacks", "value": "High"},
+          {"text": "Most yards Overall", "value": "High"},
+          {"text": "Most Tackles", "value": "High"}
+        ],
+        "STAT_HUNTING": [
+          {"text": "Reach 220 Passing", "value": "Medium"},
+          {"text": "Reach 50 Rushing", "value": "Medium"},
+          {"text": "Reach 2 FG made (non extra point)", "value": "Medium"},
+          {"text": "Reach 1 Sack", "value": "Medium"},
+          {"text": "Reach 1 INT", "value": "Medium"},
+          {"text": "Reach 320 Passing", "value": "High"},
+          {"text": "Reach 100 Rushing", "value": "High"},
+          {"text": "Reach 4 FG made", "value": "High"},
+          {"text": "Reach 2 Sacks", "value": "High"},
+          {"text": "Reach 2 INT", "value": "High"}
+        ],
+        "TEAM": [
+          {"text": "Team Running Yards", "value": "Medium"},
+          {"text": "Team Passing Yards", "value": "Medium"},
+          {"text": "Team Yards Overall", "value": "Medium"},
+          {"text": "Team Interceptions (def)", "value": "Medium"},
+          {"text": "Team Sacks (def)", "value": "Medium"},
+          {"text": "Team Most Possession Time", "value": "Medium"}
+        ],
+        "WILD_CARD": [
+          {"text": "Other team misses a Field goal in the 4th", "value": "High"},
+          {"text": "1st TD is a run play", "value": "High"},
+          {"text": "Other team does the Griddy at some point during game (on tv)", "value": "High"},
+          {"text": "Team with ball first gets TD first", "value": "High"},
+          {"text": "Team that receives 2nd half kick off wins game", "value": "High"},
+          {"text": "MN wins by 7+ points", "value": "Medium"},
+          {"text": "Game goes into overtime", "value": "High"},
+          {"text": "MN wins by 14+ points", "value": "Extreme"},
+          {"text": "Defensive touchdown", "value": "Extreme"}
+        ]
+      },      "players": [
+        {
+          "category": "QB",
+          "players": [
+            {"name": "Sam Darnold Q", "starred": true},
+            {"name": "Nick Mullens", "starred": false},
+            {"name": "Brett Rypien", "starred": false}
+          ]
+        },
+        {
+          "category": "RB",
+          "players": [
+            {"name": "Aaron Jones (G)", "starred": false},
+            {"name": "Ty Chandler", "starred": false},
+            {"name": "Myles Gaskin", "starred": false},
+            {"name": "Cam Akers", "starred": true}
+          ]
+        },
+        {
+          "category": "FB",
+          "players": [
+            {"name": "C.J. Ham (FB)", "starred": true}
+          ]
+        },
+        {
+          "category": "WR",
+          "players": [
+            {"name": "Jalen Nailor", "starred": true},
+            {"name": "Jordan Addison A", "starred": true},
+            {"name": "Justin Jefferson", "starred": true},
+            {"name": "Brandon Powell", "starred": false},
+            {"name": "Trent Sherfield Sr.", "starred": true},
+            {"name": "Lucky Jackson", "starred": true}
+          ]
+        },
+        {
+          "category": "TE",
+          "players": [
+            {"name": "T.J. Hockenson", "starred": true},
+            {"name": "Josh Oliver", "starred": true},
+            {"name": "Johnny Mundt", "starred": false}
+          ]
+        },
+        {
+          "category": "K",
+          "players": [
+            {"name": "Will Reichard", "starred": true}
+          ]
+        },
+        {
+          "category": "P",
+          "players": [
+            {"name": "Ryan Wright", "starred": false}
+          ]
+        },
+        {
+          "category": "LS",
+          "players": [
+            {"name": "Andrew DePaola", "starred": false}
+          ]
+        },
+        {
+          "category": "LT",
+          "players": [
+            {"name": "Cam Robinson", "starred": false},
+            {"name": "Walter Rouse", "starred": false},
+            {"name": "Marcellus Johnson", "starred": false},
+            {"name": "Leroy Watson IV", "starred": false}
+          ]
+        },
+        {
+          "category": "LG",
+          "players": [
+            {"name": "Blake Brandel", "starred": false},
+            {"name": "Dalton Risner", "starred": false},
+            {"name": "Michael Jurgens", "starred": false}
+          ]
+        },
+        {
+          "category": "C",
+          "players": [
+            {"name": "Dan Feeney", "starred": false},
+            {"name": "Garrett Bradbury", "starred": false},
+            {"name": "Henry Byrd", "starred": false}
+          ]
+        },
+        {
+          "category": "RG",
+          "players": [
+            {"name": "Dalton Risner", "starred": false},
+            {"name": "Ed Ingram", "starred": false}
+          ]
+        },
+        {
+          "category": "RT",
+          "players": [
+            {"name": "Brian O'Neill Q", "starred": false},
+            {"name": "David Quessenberry", "starred": false},
+            {"name": "Trevor Reid", "starred": false}
+          ]
+        },
+        {
+          "category": "OT",
+          "players": [
+            {"name": "Christian Darrisaw 71", "starred": false}
+          ]
+        }
+      ]
+    },    "WNBA": {
+      "categories": ["INDIVIDUAL", "STAT_HUNTING", "TEAM", "WILD_CARD"],
+      "players": [
+        {
+          "category": "G",
+          "players": [
+            {"name": "Courtney Williams #10", "starred": true},
+            {"name": "Kayla McBride", "starred": true},
+            {"name": "Natisha Hiedeman", "starred": false},
+            {"name": "Olivia Epoupa", "starred": false}
+          ]
+        },
+        {
+          "category": "F",
+          "players": [
+            {"name": "Alissa Pili", "starred": false},
+            {"name": "Bridget Carleton", "starred": false},
+            {"name": "Diamond Miller", "starred": false},
+            {"name": "Napheesa Collier", "starred": true}
+          ]
+        },
+        {
+          "category": "C",
+          "players": [
+            {"name": "Alanna Smith", "starred": true},
+            {"name": "Dorka Juhasz", "starred": false},
+            {"name": "Jessica Shepard", "starred": false},
+            {"name": "Marieme Badiane", "starred": false}
+          ]
+        }
+      ]
+    },    "NBA": {
+      "categories": ["INDIVIDUAL", "STAT_HUNTING", "TEAM", "WILD_CARD"],
+      "players": [
+        {
+          "category": "G",
+          "players": [
+            {"name": "Anthony Edwards", "starred": true},
+            {"name": "Donte DiVincenzo", "starred": false},
+            {"name": "Jaylen Clark", "starred": false},
+            {"name": "Joe Ingles", "starred": false},
+            {"name": "Mike Conley", "starred": false},
+            {"name": "Nickeil Alexander-Walker", "starred": false},
+            {"name": "Rob Dillingham", "starred": false},
+            {"name": "Terrence Shannon Jr.", "starred": false},
+            {"name": "Tristen Newton", "starred": false}
+          ]
+        },
+        {
+          "category": "F",
+          "players": [
+            {"name": "Jaden McDaniels", "starred": false},
+            {"name": "Josh Minott", "starred": false},
+            {"name": "Julius Randle", "starred": true},
+            {"name": "Leonard Miller", "starred": false}
+          ]
+        },
+        {
+          "category": "C",
+          "players": [
+            {"name": "Jesse Edwards", "starred": false},
+            {"name": "Luka Garza", "starred": false},
+            {"name": "Naz Reid", "starred": false},
+            {"name": "Rudy Gobert", "starred": true}
+          ]
+        }
+      ]
+    },
+    "ErgoBall": {
+      "categories": {
+        "LINES": [
+          {"text": "NO SWEAT", "value": "Low", "desc": "Win by 3 or more"},
+          {"text": "VOLLEYBALL", "value": "Medium", "desc": "Get 2 or more blocks"},
+          {"text": "LONG DISTANCE CALL", "value": "High", "desc": "3 or more 2 pointers made"},
+          {"text": "FORGOT SOMETHIN?", "value": "Medium", "desc": "Get at least 2 steals"},
+          {"text": "SNIPER WATCH", "value": "Medium", "desc": "Go full game using only jumpers and fades."},
+          {"text": "FLOOR GENERAL", "value": "High", "desc": "No turnovers or airballs. Every shot must either be a make or hit rim."},
+          {"text": "SUPREME VICTORY", "value": "Extreme", "desc": "Opponent scores no points"},
+          {"text": "ORBITAL CANNON", "value": "Extreme", "desc": "Make a half court shot before the end of the game."}
+        ]
+      },
+      "players": ["Jaybers8", "FLIGHTx12!"]
+    },
+    "ErgoGolf": {
+      "categories": {
+        "LINES": [
+          {"text": "NO SWEAT", "value": "Low", "desc": "Must win by 3 or more"},
+          {"text": "NO BATHS", "value": "Medium", "desc": "Must go full game without hitting water. Water traps are instant loss."},
+          {"text": "ACE", "value": "High", "desc": "Must hit hole in one at any point during the game."},
+          {"text": "EAGLES NEST", "value": "High", "desc": "Must hit eagle at any point during the game."},
+          {"text": "BIRDIE WATCHING", "value": "Medium", "desc": "Must hit 4 or more birdies."},
+          {"text": "18-HOLE SPECIAL", "value": "Extreme", "desc": "Go full game WITHOUT bogeys and finish game with negative par."},
+          {"text": "SUPREME VICTORY", "value": "Extreme", "desc": "Opponent scores no points"}
+        ]
+      },
+      "players": ["Jaybers8", "FLIGHTx12!"]
+    }
+  },
+  "basketballCategories": {
+    "INDIVIDUAL": [
+      {"text": "Most FG attempted", "value": "High"},
+      {"text": "Most FG made", "value": "High"},
+      {"text": "Most blocks", "value": "High"},
+      {"text": "Most Points", "value": "High"}, 
+      {"text": "Most Rebounds", "value": "High"},
+      {"text": "Most Threes Made", "value": "High"},
+      {"text": "Most Assist", "value": "High"},
+      {"text": "Most Steals", "value": "Extreme"}
+    ],
+    "STAT_HUNTING": [
+      {"text": "Reach 1 Steal", "value": "Low"},
+      {"text": "Reach 1 Block", "value": "Low"},
+      {"text": "Reach +/- over 0", "value": "Low"},
+      {"text": "Reach 20 points", "value": "Medium"},
+      {"text": "Reach 6 rebounds", "value": "Medium"},
+      {"text": "Reach 3 Three Pointers Made", "value": "Medium"},
+      {"text": "Reach 6 assists", "value": "Medium"},
+      {"text": "Reach 2 Blocks", "value": "Medium"},
+      {"text": "Reach +/- over 10", "value": "Medium"},
+      {"text": "Reach 2 Steals", "value": "Medium"},
+      {"text": "Reach a Doubling double", "value": "High"},
+      {"text": "Reach 30 points", "value": "High"},
+      {"text": "Reach 11 rebounds", "value": "High"},
+      {"text": "Reach 4 Three Pointers Made", "value": "High"},
+      {"text": "Reach +/- over 20", "value": "High"},
+      {"text": "Reach 10 assists", "value": "High"},
+      {"text": "Reach 3 Blocks", "value": "High"},
+      {"text": "Reach 3 Steals", "value": "High"},
+      {"text": "Reach a Triple double", "value": "Extreme"}
+    ],
+    "TEAM": [
+      {"text": "Team Field goal attempts", "value": "Medium"},
+      {"text": "Team Total Rebounds", "value": "Medium"},
+      {"text": "Team Field Goal %", "value": "Medium"},
+      {"text": "Team Def. Rebounds", "value": "Medium"},
+      {"text": "Team Off. Rebounds", "value": "Medium"},
+      {"text": "Team Free-throws taken", "value": "Medium"},
+      {"text": "Team steals", "value": "Medium"},
+      {"text": "Team blocks", "value": "Medium"},
+      {"text": "Team assists", "value": "Medium"},
+      {"text": "Team Points in the Paint", "value": "Medium"},
+      {"text": "Team Points off Turnovers", "value": "Medium"},
+      {"text": "Team Fast Break Points", "value": "Medium"},
+      {"text": "Team Turnovers (less wins)", "value": "Medium"},
+      {"text": "Team fouls (less wins)", "value": "Medium"}
+    ],
+    "WILD_CARD": [
+      {"text": "MN win tip off", "value": "High"},
+      {"text": "MN wins by 5+ points", "value": "Medium"},
+      {"text": "Other team misses 2 free-throws in a row", "value": "High"},
+      {"text": "MN has the biggest lead of the game", "value": "High"},
+      {"text": "First MN FG is a 2 pointer.", "value": "Medium"},
+      {"text": "First MN FG is a 3 pointer", "value": "High"},
+      {"text": "MN wins by 10+ points", "value": "Medium"},
+      {"text": "Technical foul is called this game (either team)", "value": "High"},
+      {"text": "Flagrant foul is called this game (either team)", "value": "High"},
+      {"text": "Game goes into overtime", "value": "High"},
+      {"text": "MN wins by 20+ points", "value": "Extreme"},
+      {"text": "Half+ court shot made", "value": "Extreme"}
+    ]
+  }
+}

@@ -8,7 +8,10 @@ function safeGetElementValue(id, defaultValue = "") {
   return element ? element.value : defaultValue;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load casino data from JSON file first
+  await loadCasinoData();
+
   // Initialize the week tracker if available
   if (typeof WeekTracker !== 'undefined') {
     WeekTracker.init();
@@ -135,424 +138,76 @@ function restoreCasinoState() {
   });
 }
 
-const teams = {
-  nfl: [
-    " 📯Minnesota Vikings", "Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills", 
-    "Carolina Panthers", "Chicago Bears", "Cincinnati Bengals", "Cleveland Browns",
-    "Dallas Cowboys", "Denver Broncos", "Detroit Lions", "Green Bay Packers",
-    "Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars", "Kansas City Chiefs",
-    "Las Vegas Raiders", "Los Angeles Chargers", "Los Angeles Rams", "Miami Dolphins",
-    "New England Patriots", "New Orleans Saints", "New York Giants",
-    "New York Jets", "Philadelphia Eagles", "Pittsburgh Steelers", "San Francisco 49ers",
-    "Seattle Seahawks", "Tampa Bay Buccaneers", "Tennessee Titans", "Washington Commanders"
-  ],
-  nba: [
-    " 🐺Minnesota Timberwolves", "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
-    "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
-    "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
-    "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat",
-    "Milwaukee Bucks",  "New Orleans Pelicans", "New York Knicks",
-    "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
-    "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
-    "Utah Jazz", "Washington Wizards"
-  ],
-  wnba: [
-    " 😼Minnesota Lynx", "Atlanta Dream", "Chicago Sky", "Connecticut Sun", "Dallas Wings",
-    "Golden State Valkyries", "Indiana Fever", "Las Vegas Aces", "Los Angeles Sparks", 
-    "New York Liberty", "Phoenix Mercury", "Seattle Storm", "Washington Mystics" 
-  ],
-  ergoball: ["Belkans", "Dilardians"],
-  ergogolf: ["Belkans", "Dilardians"]
-};
+// Global variables to hold casino data
+let teams = {};
+let teamsData = {};
 
-const teamsData = {
-  NFL: {
-    teams: teams.nfl,
-    categories: {
-      INDIVIDUAL: [
-        {text: "Most catches", value: "High"},
-        {text: "Most TDs Scored (non QB)", value: "High"},
-        {text: "Most INTs", value: "High"},
-        {text: "Most Sacks", value: "High"},
-        {text: "Most yards Overall", value: "High"},
-        {text: "Most Tackles", value: "High"}
-      ],
-      STAT_HUNTING: [
-        {text: "Reach 220 Passing", value: "Medium"},
-        {text: "Reach 50 Rushing", value: "Medium"},
-        {text: "Reach 2 FG made (non extra point)", value: "Medium"},
-        {text: "Reach 1 Sack", value: "Medium"},
-        {text: "Reach 1 INT", value: "Medium"},
-        {text: "Reach 320 Passing", value: "High"},
-        {text: "Reach 100 Rushing", value: "High"},
-        {text: "Reach 4 FG made", value: "High"},
-        {text: "Reach 2 Sacks", value: "High"},
-        {text: "Reach 2 INT", value: "High"}
-      ],
-      TEAM: [
-        {text: "Team Running Yards", value: "Medium"},
-        {text: "Team Passing Yards", value: "Medium"},
-        {text: "Team Yards Overall", value: "Medium"},
-        {text: "Team Interceptions (def)", value: "Medium"},
-        {text: "Team Sacks (def)", value: "Medium"},
-        {text: "Team Most Possession Time", value: "Medium"}
-      ],
-      WILD_CARD: [
-        {text: "Other team misses a Field goal in the 4th", value: "High"},
-        {text: "1st TD is a run play", value: "High"},
-        {text: "Other team does the Griddy at some point during game (on tv)", value: "High"},
-        {text: "First Vikings possession is a TD or FG", value: "High"},
-        {text: "QB touchdown for Vikings", value: "High"},
-        {text: "Vikings lead going into halftime", value: "High"},
-        {text: "Defensive TD Vikings", value: "High"},
-        {text: "Kick return for a TD", value: "High"}
-      ]
-    },
-    players:   [
-  ":::::QB:::::", 
-      "⭐J.J. McCarthy", 
-      "⭐Sam Darnold",
-      "Nick Mullens",
-      "Daniel Jones",
-      "Brett Rypien",
-      
-  ":::::RB:::::",
-      "⭐Aaron Jones",
-      "⭐Cam Akers",
-      "Ty Chandler",
-      "Zavier Scott",
-
-   ":::::WR:::::",
-      "⭐Jordan Addison",
-      "Jalen Nailor",
-      "⭐Justin Jefferson",
-      "Trent Sherfield Sr.", 
-      "Brandon Powell",
-      "Thayer Thomas",
-      "Lucky Jackson",
-      "Jeshaun Jones",
-
-  ":::::TE:::::",
-      "Josh Oliver",
-      "Johnny Mundt",
-      "⭐T.J. Hockenson",
-
-  ":::::FB:::::",
-      "⭐C.J. Ham",
-
-  ":::::LDE:::::",
-      "Jalen Redmond",
-      "Jerry Tillery",
-      "Jonathan Harris",
-
-  ":::::NT:::::",
-      "⭐Harrison Phillips",
-      "Taki Taimani IR",
-      "Travis Bell",
-
-  ":::::RDE:::::",
-      "⭐Jihad Ward",
-      "Jonathan Bullard",
-      "Levi Drake Rodriguez",
-
-  ":::::WLB:::::",
-      "Bo Richter",
-      "Gabriel Murphy",
-      "⭐Jonathan Greenard",
-      "Pat Jones II Q",
-
-  ":::::LILB:::::",
-      "Brian Asamoah II",
-      "⭐Ivan Pace Jr.",
-      "Kamu Grugier-Hill",
-      "Max Tooley",
-
-  ":::::RILB:::::",
-      "⭐Blake Cashman",
-
-  ":::::SLB:::::",
-      "⭐Andrew Van Ginkel",
-      "Dallas Turner",
-      "Fabian Moreau",
-
-  ":::::LCB:::::",
-      "Ambry Thomas",
-      "Fabian Moreau",
-      "Mekhi Blackmon 5", 
-      "NaJee Thompson IR",
-      "⭐Stephon Gilmore",
-
-  ":::::SS:::::",
-      "⭐Harrison Smith",
-      "Jay Ward",
-
-  ":::::FS:::::",
-      "⭐Camryn Bynum",
-      "Theo Jackson",
-
-  ":::::RCB:::::",
-      "Dwight McGlothern",
-      "Kahlef Hailassie",
-      "Nahshon Wright",
-      "Shaquill Griffin",
-
-  ":::::NB:::::",
-      "Byron Murphy Jr.",
-      "⭐Josh Metellus",
-      "Reddy Steward",
-
-  ":::::K:::::",
-      "⭐Will Reichard",
-
-  ":::::P:::::",
-      "⭐Ryan Wright",
-
-  ":::::KR:::::",
-      "Brandon Powell",
-      "Jalen Nailor",
-
-  ":::::PR:::::", 
-      "Ty Chandler",
-
-  ":::::LS:::::", 
-      "Andrew DePaola",
-  
-  ":::::LT:::::",
-      "Cam Robinson",
-      "Walter Rouse",
-      "Marcellus Johnson",
-      "Leroy Watson IV",
-
-  ":::::LG:::::",
-      "Blake Brandel",
-      "Dalton Risner",
-      "Michael Jurgens",
-
-  ":::::C:::::",
-      "Dan Feeney",
-      "Garrett Bradbury",
-      "Henry Byrd",
-
-  ":::::RG:::::",
-      "Dalton Risner",
-      "Ed Ingram",
-
-  ":::::RT:::::",
-      "Brian O'Neill Q",
-      "David Quessenberry",
-      "Trevor Reid",    
+// Load casino data from JSON file
+async function loadCasinoData() {
+  try {
+    const response = await fetch('../data/casino-data.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
     
-  ":::::OT:::::",
-      "Christian Darrisaw 71" 
-    ]
-  },
-  WNBA: {
-    teams: teams.wnba,
-    categories: {
-      INDIVIDUAL: [
-        {text: "Most FG attempted", value: "High"},
-        {text: "Most FG made", value: "High"},
-        {text: "Most blocks", value: "High"},
-        {text: "Most Points", value: "High"}, 
-        {text: "Most Rebounds", value: "High"},
-        {text: "Most Threes Made", value: "High"},
-        {text: "Most Assist", value: "High"},
-        {text: "Most Steals", value: "Extreme"}
-      ],
-      STAT_HUNTING: [
-        {text: "Reach 1 Steal", value: "Low"},
-        {text: "Reach 1 Block", value: "Low"},
-        {text: "Reach +/- over 0", value: "Low"},
-        {text: "Reach 20 points", value: "Medium"},
-        {text: "Reach 6 rebounds", value: "Medium"},
-        {text: "Reach 3 Three Pointers Made", value: "Medium"},
-        {text: "Reach 6 assists", value: "Medium"},
-        {text: "Reach 2 Blocks", value: "Medium"},
-        {text: "Reach +/- over 10", value: "Medium"},
-        {text: "Reach 2 Steals", value: "Medium"},
-        {text: "Reach a Doubling double", value: "High"},
-        {text: "Reach 30 points", value: "High"},
-        {text: "Reach 11 rebounds", value: "High"},
-        {text: "Reach 4 Three Pointers Made", value: "High"},
-        {text: "Reach +/- over 20", value: "High"},
-        {text: "Reach 10 assists", value: "High"},
-        {text: "Reach 3 Blocks", value: "High"},
-        {text: "Reach 3 Steals", value: "High"},
-        {text: "Reach a Triple double", value: "Extreme"}
-      ],
-      TEAM: [
-        {text: "Team Field goal attempts", value: "Medium"},
-        {text: "Team Total Rebounds", value: "Medium"},
-        {text: "Team Field Goal %", value: "Medium"},
-        {text: "Team Def. Rebounds", value: "Medium"},
-        {text: "Team Off. Rebounds", value: "Medium"},
-        {text: "Team Free-throws taken", value: "Medium"},
-        {text: "Team steals", value: "Medium"},
-        {text: "Team blocks", value: "Medium"},
-        {text: "Team assists", value: "Medium"},
-        {text: "Team Points in the Paint", value: "Medium"},
-        {text: "Team Points off Turnovers", value: "Medium"},
-        {text: "Team Fast Break Points", value: "Medium"},
-        {text: "Team Turnovers (less wins)", value: "Medium"},
-        {text: "Team fouls (less wins)", value: "Medium"}
-      ],
-      WILD_CARD: [
-        {text: "MN win tip off", value: "High"},
-        {text: "MN wins by 5+ points", value: "Medium"},
-        {text: "Other team misses 2 free-throws in a row", value: "High"},
-        {text: "MN has the biggest lead of the game", value: "High"},
-        {text: "First MN FG is a 2 pointer.", value: "Medium"},
-        {text: "First MN FG is a 3 pointer", value: "High"},
-        {text: "MN wins by 10+ points", value: "Medium"},
-        {text: "Technical foul is called this game (either team)", value: "High"},
-        {text: "Flagrant foul is called this game (either team)", value: "High"},
-        {text: "Game goes into overtime", value: "High"},
-        {text: "MN wins by 20+ points", value: "Extreme"},
-        {text: "Half+ court shot made", value: "Extreme"}
-      ]
-    },
-    players: [
-      ":::::G:::::",
-      "⭐Courtney Williams #10",
-      "⭐Kayla McBride",
-      "Natisha Hiedeman",
-      "Olivia Epoupa",
-
-      ":::::F:::::",     
-      "Alissa Pili",
-      "Bridget Carleton",
-      "Diamond Miller",
-      "⭐Napheesa Collier",
-
-      ":::::C:::::",
-      "⭐Alanna Smith",
-      "Dorka Juhasz",
-      "Marieme Badiane",        
-    ]
-  },
-  NBA: {
-    teams: teams.nba,
-    categories: {
-      INDIVIDUAL: [
-        {text: "Most FG attempted", value: "High"},
-        {text: "Most FG made", value: "High"},
-        {text: "Most blocks", value: "High"},
-        {text: "Most Points", value: "High"}, 
-        {text: "Most Rebounds", value: "High"},
-        {text: "Most Threes Made", value: "High"},
-        {text: "Most Assist", value: "High"},
-        {text: "Most Steals", value: "Extreme"}
-      ],
-      STAT_HUNTING: [
-        {text: "Reach 1 Steal", value: "Low"},
-        {text: "Reach 1 Block", value: "Low"},
-        {text: "Reach +/- over 0", value: "Low"},
-        {text: "Reach 20 points", value: "Medium"},
-        {text: "Reach 6 rebounds", value: "Medium"},
-        {text: "Reach 3 Three Pointers Made", value: "Medium"},
-        {text: "Reach 6 assists", value: "Medium"},
-        {text: "Reach 2 Blocks", value: "Medium"},
-        {text: "Reach +/- over 10", value: "Medium"},
-        {text: "Reach 2 Steals", value: "Medium"},
-        {text: "Reach a Doubling double", value: "High"},
-        {text: "Reach 30 points", value: "High"},
-        {text: "Reach 11 rebounds", value: "High"},
-        {text: "Reach 4 Three Pointers Made", value: "High"},
-        {text: "Reach +/- over 20", value: "High"},
-        {text: "Reach 10 assists", value: "High"},
-        {text: "Reach 3 Blocks", value: "High"},
-        {text: "Reach 3 Steals", value: "High"},
-        {text: "Reach a Triple double", value: "Extreme"}
-      ],
-      TEAM: [
-        {text: "Team Field goal attempts", value: "Medium"},
-        {text: "Team Total Rebounds", value: "Medium"},
-        {text: "Team Field Goal %", value: "Medium"},
-        {text: "Team Def. Rebounds", value: "Medium"},
-        {text: "Team Off. Rebounds", value: "Medium"},
-        {text: "Team Free-throws taken", value: "Medium"},
-        {text: "Team steals", value: "Medium"},
-        {text: "Team blocks", value: "Medium"},
-        {text: "Team assists", value: "Medium"},
-        {text: "Team Points in the Paint", value: "Medium"},
-        {text: "Team Points off Turnovers", value: "Medium"},
-        {text: "Team Fast Break Points", value: "Medium"},
-        {text: "Team Turnovers (less wins)", value: "Medium"},
-        {text: "Team fouls (less wins)", value: "Medium"}
-      ],
-      WILD_CARD: [
-        {text: "MN win tip off", value: "High"},
-        {text: "MN wins by 5+ points", value: "Medium"},
-        {text: "Other team misses 2 free-throws in a row", value: "High"},
-        {text: "MN has the biggest lead of the game", value: "High"},
-        {text: "First MN FG is a 2 pointer.", value: "Medium"},
-        {text: "First MN FG is a 3 pointer", value: "High"},
-        {text: "MN wins by 10+ points", value: "Medium"},
-        {text: "Technical foul is called this game (either team)", value: "High"},
-        {text: "Flagrant foul is called this game (either team)", value: "High"},
-        {text: "Game goes into overtime", value: "High"},
-        {text: "MN wins by 20+ points", value: "Extreme"},
-        {text: "Half+ court shot made", value: "Extreme"}
-      ]
-    },
-    players: [
-      ":::::G:::::",
-      "⭐Anthony Edwards",
-      "Donte DiVincenzo",
-      "Jaylen Clark",
-      "Joe Ingles",
-      "Mike Conley",
-      "Nickeil Alexander-Walker",
-      "Rob Dillingham",
-      "Terrence Shannon Jr.",
-      "Tristen Newton",
-
-      ":::::F:::::",
-      "Jaden McDaniels",
-      "Josh Minott",
-      "⭐Julius Randle",
-      "Leonard Miller",
-             
-      ":::::C:::::",
-      "Jesse Edwards",
-      "Luka Garza",
-      "Naz Reid",      
-      "⭐Rudy Gobert",      
-    ]
-  },
-  ErgoBall: {
-    teams: teams.ergoball,
-    categories: {
-      LINES: [
-        { text: "NO SWEAT", value: "Low", desc: "Win by 3 or more" },
-        { text: "VOLLEYBALL", value: "Medium", desc: "Get 2 or more blocks" },
-        { text: "LONG DISTANCE CALL", value: "High", desc: "3 or more 2 pointers made" },
-        { text: "FORGOT SOMETHIN?", value: "Medium", desc: "Get at least 2 steals" },
-        { text: "SNIPER WATCH", value: "Medium", desc: "Go full game using only jumpers and fades." },
-        { text: "FLOOR GENERAL", value: "High", desc: "No turnovers or airballs. Every shot must either be a make or hit rim." },
-        { text: "SUPREME VICTORY", value: "Extreme", desc: "Opponent scores no points" },
-        { text: "ORBITAL CANNON", value: "Extreme", desc: "Make a half court shot before the end of the game." }
-      ]
-    },
-    players: ["Jaybers8", "FLIGHTx12!"]
-  },
-  ErgoGolf: {
-    teams: teams.ergogolf,
-    categories: {
-      LINES: [
-        { text: "NO SWEAT", value: "Low", desc: "Must win by 3 or more" },
-        { text: "NO BATHS", value: "Medium", desc: "Must go full game without hitting water. Water traps are instant loss." },
-        { text: "SANDSTORM", value: "Low", desc: "Must go full game without hitting sand traps. Sand traps are instant loss." },
-        { text: "COOL HAND", value: "Medium", desc: "Make your first 3 putts without a miss." },
-        { text: "LAWN CARE", value: "Medium", desc: "Go full game without hitting the rough." },
-        { text: "SURGICAL", value: "High", desc: "Go full game without getting an OB at all." },
-        { text: "SUPREME VICTORY", value: "Extreme", desc: "Opponent scores no points." },
-        { text: "EAGLE!", value: "Extreme", desc: "Get a 10+ before the game ends." }
-      ]
-    },
-    players: ["Jaybers8", "FLIGHTx12!"]
+    // Set teams data
+    teams = data.teams;
+    
+    // Helper function to convert structured players to string format for compatibility
+    function convertPlayersToStringFormat(structuredPlayers) {
+      const players = [];
+      structuredPlayers.forEach(categoryGroup => {
+        // Add category separator
+        players.push(`::::${categoryGroup.category}:::::`);
+        // Add players with star prefix if starred
+        categoryGroup.players.forEach(player => {
+          const playerName = player.starred ? `⭐${player.name}` : player.name;
+          players.push(playerName);
+        });
+      });
+      return players;
+    }
+    
+    // Set up league data with shared basketball categories for NBA and WNBA
+    teamsData = {
+      NFL: {
+        teams: teams.nfl,
+        categories: data.leagueData.NFL.categories,
+        players: convertPlayersToStringFormat(data.leagueData.NFL.players)
+      },
+      WNBA: {
+        teams: teams.wnba,
+        categories: data.basketballCategories, // Shared basketball categories
+        players: convertPlayersToStringFormat(data.leagueData.WNBA.players)
+      },
+      NBA: {
+        teams: teams.nba,
+        categories: data.basketballCategories, // Shared basketball categories
+        players: convertPlayersToStringFormat(data.leagueData.NBA.players)
+      },
+      ErgoBall: {
+        teams: teams.ergoball,
+        categories: data.leagueData.ErgoBall.categories,
+        players: data.leagueData.ErgoBall.players
+      },
+      ErgoGolf: {
+        teams: teams.ergogolf,
+        categories: data.leagueData.ErgoGolf.categories,
+        players: data.leagueData.ErgoGolf.players
+      }
+    };
+    
+    console.log('Casino data loaded successfully');
+    return true;
+  } catch (error) {
+    console.error('Failed to load casino data:', error);
+    // Fallback to prevent breaking the site
+    teams = { nfl: [], nba: [], wnba: [], ergoball: [], ergogolf: [] };
+    teamsData = {};
+    return false;
   }
-};
+}
 
 // Define risk percentages
 const riskPayouts = {
