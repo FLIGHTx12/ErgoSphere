@@ -279,10 +279,8 @@ function showDescription(text, selectElement) {
   }
   
   descDiv.style.top = rect.top + 'px';
-  
-  // Ensure visibility
+    // Ensure visibility
   descDiv.style.display = 'block';
-  console.log('Showing description:', text); // Debug log
 }
 
 function hideDescription() {

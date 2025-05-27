@@ -447,8 +447,6 @@ app.post('/api/options/update', async (req, res) => {
 
 // Update PUT route for JSON data files to use database
 app.put('/data/:filename', async (req, res) => {
-  console.log('!!!!!! PUT /data/:filename ROUTE HIT !!!!!!'); // Added for prominent logging
-  console.log(`Updating file: ${req.params.filename}`);
   const filename = req.params.filename;
   const data = req.body;
 
@@ -468,22 +466,15 @@ app.put('/data/:filename', async (req, res) => {
   // Validate JSON body is not empty and is an object or array
   if (!data || (typeof data !== 'object')) {
     console.error(`Invalid JSON body for ${filename}`);
-    return res.status(400).json({ error: 'Request body must be valid JSON.' });
-  }
+    return res.status(400).json({ error: 'Request body must be valid JSON.' });  }
   
-  console.log(`Data validation passed for ${filename}`)
-
   const category = filename.replace('.json', '');
   try {    // Save to database
     const existingResult = await pool.query(
       'SELECT id FROM json_data WHERE category = $1',
-      [category]
-    );
+      [category]    );
 
-    console.log(`Saving ${category} to database`);
-    
     if (existingResult.rows.length > 0) {
-      console.log(`Updating existing record for ${category}`);
       await pool.query(
         'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
         [data, category]
@@ -495,10 +486,9 @@ app.put('/data/:filename', async (req, res) => {
       );
     }    // Also update file as fallback
     const filePath = path.join(__dirname, 'data', filename);
-    console.log(`Writing updated data to ${filePath}`);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
-    console.log(`File ${filename} successfully updated`);    console.log(`JSON file ${filename} updated successfully in database and file!`);
-    res.json({ 
+    
+    res.json({
       success: true, 
       message: `Data saved successfully to ${filename}`,
       timestamp: new Date().toISOString()
@@ -523,64 +513,7 @@ app.use('/api/items', itemsRouter);
 const betsRouter = require('./routes/bets');
 app.use('/api/bets', betsRouter);
 
-// Add test endpoint to verify database connection
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ success: true, time: result.rows[0].now, message: 'Database connected successfully!' });
-  } catch (err) {
-    console.error('Database test error:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
-app.get('/api/debug/file-access', async (req, res) => {
-  try {
-    const dataDir = path.join(__dirname, 'data');
-    const testFile = path.join(dataDir, 'debug-test.json');
-    
-    // Check directory exists and is writable
-    const dirStats = await fs.stat(dataDir);
-    const dirWritable = await fs.access(dataDir, fs.constants.W_OK)
-      .then(() => true)
-      .catch(() => false);
-    
-    // Try to write a test file
-    const testData = { test: "File write test", time: new Date().toISOString() };
-    await fs.writeFile(testFile, JSON.stringify(testData));
-    
-    // Try to read the file back
-    const readData = await fs.readFile(testFile, 'utf8');
-    
-    // Check database access
-    const dbResult = await pool.query('SELECT NOW()');
-    
-    res.json({
-      success: true,
-      dataDir: {
-        exists: true,
-        isDirectory: dirStats.isDirectory(),
-        writable: dirWritable,
-        path: dataDir
-      },
-      fileTest: {
-        writeSuccess: true,
-        readSuccess: true,
-        dataMatches: JSON.stringify(testData) === readData.trim()
-      },
-      database: {
-        connectionSuccess: true,
-        timestamp: dbResult.rows[0].now
-      }
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-      stack: err.stack
-    });
-  }
-});
 
 // Error handling
 app.use((err, req, res, next) => {

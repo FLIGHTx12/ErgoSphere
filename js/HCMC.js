@@ -75,7 +75,6 @@ function stopAllAudio() {
 
 // Improve loadChoices with better error handling
 function loadChoices(pool) {
-    console.log(`Loading choices for pool: ${pool}`);
     resetCycle();
     currentPool = pool.toUpperCase();
     currentCycleId = Math.random();
@@ -86,9 +85,7 @@ function loadChoices(pool) {
                 throw new Error(`Failed to load ${pool}.json: ${response.status} ${response.statusText}`);
             }
             return response.json();
-        })
-        .then(async data => {
-            console.log(`Successfully loaded ${data.length} choices for pool ${pool}`);
+        })        .then(async data => {
             choices = data;
             await preloadAllImages(choices);
             populateStaticRewards();
@@ -775,12 +772,8 @@ function updateButtonStates() {
 }
 
 // Simplify how we handle the spin completion
-function spin(cycleId) {
-    if (cycleId !== currentCycleId) return;
+function spin(cycleId) {    if (cycleId !== currentCycleId) return;
 
-    // Add debug logging to help diagnose issues
-    console.log("Spinning with cycle ID:", cycleId);
-    
     const filterValue = document.getElementById("filter-dropdown").value;
     let filteredChoices = choices;
 
@@ -1179,7 +1172,6 @@ function updateGodParticlesDisplay() {
 }
 
 lootButton.addEventListener("click", async () => {
-    console.log("LOOT button clicked");
     stopAllAudio();
     playClickSounds();
     highlightActiveButton(lootButton);
@@ -1188,7 +1180,6 @@ lootButton.addEventListener("click", async () => {
 });
 
 pvpButton.addEventListener("click", async () => {
-    console.log("PVP button clicked");
     stopAllAudio();
     playClickSounds();
     highlightActiveButton(pvpButton);
@@ -1197,7 +1188,6 @@ pvpButton.addEventListener("click", async () => {
 });
 
 coopButton.addEventListener("click", async () => {
-    console.log("COOP button clicked");
     stopAllAudio();
     playClickSounds();
     highlightActiveButton(coopButton);
