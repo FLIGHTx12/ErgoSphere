@@ -1,0 +1,245 @@
+/* Cyberpunk Fitness Inspired Styles for workout.html */
+
+:root {
+    --primary-color: #0b021a; /* Deeper space purple/black */
+    --primary-color-rgb: 11, 2, 26; /* RGB for use in rgba */
+    --secondary-color: rgba(26, 26, 26, 0.85); /* Dark grey for panels, slightly more transparent */
+    --accent-color: #ff4500; /* Bright orange */
+    --accent-color-rgb: 255, 69, 0; /* RGB for use in rgba */
+    --text-color: #e0e0e0;
+    --highlight-color: #00ffff; /* Cyan */
+    --highlight-color-rgb: 0, 255, 255; /* RGB for use in rgba */
+    --glow-color-accent: rgba(var(--accent-color-rgb), 0.7);
+    --glow-color-highlight: rgba(var(--highlight-color-rgb), 0.6);
+    --border-color: #4f0a78; /* Purple border for definition */
+    --font-primary: 'Orbitron', sans-serif;
+    --font-secondary: 'Roboto Mono', monospace;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    margin: 0;
+    padding: 10px; /* Reduced from 20px */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    background-color: transparent; 
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: 0 0 25px var(--glow-color-highlight), 0 0 15px var(--border-color) inset;
+    padding: 15px; /* Reduced from 25px */
+    margin: 10px auto; /* Reduced top/bottom margin */
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/img/backgrounds/purpspace.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4; /* 40% transparent */
+    z-index: -1;
+    border-radius: 15px; /* Match container's border-radius */
+}
+
+.cyberpunk-header {
+    text-align: center;
+    margin-bottom: 18px; /* Reduced from 35px */
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 12px; /* Reduced from 25px */
+    text-shadow: 0 0 5px var(--glow-color-accent);
+}
+
+.cyberpunk-header h1 {
+    font-family: var(--font-primary);
+    font-size: 2.2em; /* Slightly reduced H1 to save space */
+    color: var(--text-color);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cyberpunk-header .accent-text {
+    color: var(--accent-color);
+}
+
+.cyberpunk-header .tagline {
+    font-size: 1em; /* Reduced tagline font size */
+    color: var(--highlight-color);
+    font-family: var(--font-secondary);
+    text-shadow: 0 0 5px var(--glow-color-highlight);
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px; /* Reduced from 30px */
+}
+
+@media (min-width: 768px) {
+    .tracker-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.zone-inputs,
+.payout-summary {
+    background-color: rgba(var(--primary-color-rgb), 0.7); 
+    padding: 15px; /* Reduced from 20px */
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(79, 10, 120, 0.5), 0 0 5px var(--glow-color-highlight) inset;
+}
+
+.zone-inputs h2,
+.payout-summary h2 {
+    font-family: var(--font-primary);
+    color: var(--highlight-color);
+    border-bottom: 1px solid var(--highlight-color);
+    padding-bottom: 6px; /* Reduced from 12px */
+    margin-bottom: 15px; /* Reduced from 25px */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 3px var(--glow-color-highlight);
+    font-size: 1.4em; /* Reduced from a larger default/implicit H2 size */
+}
+
+.zone-inputs .accent-text,
+.payout-summary .accent-text {
+    color: var(--accent-color);
+}
+
+.input-group {
+    margin-bottom: 8px; /* Reduced further from 15px */
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 4px; /* Reduced further from 8px */
+    font-size: 0.9em; /* Slightly smaller font for label to save space */
+    color: var(--text-color);
+    /* Removed pill shape styling from label */
+    background-color: transparent; 
+    border: none;
+    width: auto; 
+    padding: 0; 
+    border-radius: 0; 
+    text-align: left; /* Restored original text-align */
+    box-shadow: none;
+}
+
+.input-group input[type="number"] {
+    width: 50%; 
+    padding: 8px 15px; /* Reduced vertical padding from 10px */
+    background-color: rgba(0,0,0,0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 25px; /* Pill shape */
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 12px var(--glow-color-highlight), 0 0 5px var(--highlight-color) inset;
+}
+
+.cyberpunk-button {
+    background: linear-gradient(45deg, var(--accent-color), #ff7f50);
+    color: #ffffff;
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px; /* Reduced padding */
+    font-family: var(--font-primary);
+    font-size: 1em; /* Reduced font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 0 12px var(--glow-color-accent), 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.cyberpunk-button:hover,
+.cyberpunk-button:focus {
+    background: linear-gradient(45deg, var(--highlight-color), #00dede);
+    color: var(--primary-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 20px var(--glow-color-highlight), 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.payout-summary #summary-results p {
+    margin-bottom: 18px;
+    padding: 12px;
+    background-color: rgba(var(--primary-color-rgb), 0.7);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.total-payout {
+    margin-top: 20px; /* Reduced from 30px */
+    padding: 15px; /* Reduced from 20px */
+    background: linear-gradient(135deg, rgba(79, 10, 120, 0.5), rgba(var(--accent-color-rgb), 0.3));
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 15px var(--glow-color-accent);
+}
+
+.total-payout h3 {
+    font-family: var(--font-primary);
+    font-size: 1.3em; /* Reduced font size */
+    margin: 0;
+    color: var(--text-color);
+}
+
+.total-payout #total-ducats {
+    font-size: 1.6em; /* Reduced font size */
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px; /* Reduced from 40px */
+    padding-top: 10px; /* Reduced from 20px */
+    border-top: 1px solid var(--border-color);
+}
+
+.cyberpunk-link {
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.cyberpunk-link:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.7);
+}
+
+/* Ensure fonts are imported if not already in style.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');

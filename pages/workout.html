@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Rate Zone Tracker</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/workout.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='black'/%3E%3Ccircle cx='80' cy='20' r='12' fill='lime' opacity='0.4'/%3E%3Ccircle cx='75' cy='25' r='8' fill='lime'/%3E%3Ccircle cx='20' cy='80' r='12' fill='purple' opacity='0.4'/%3E%3Ccircle cx='25' cy='75' r='8' fill='purple'/%3E%3C/svg%3E" />
+</head>
+</head>
+<body>
+    <div class="container">
+        <header class="cyberpunk-header">
+            <h1>Heart Rate Zone <span class="accent-text">Ducat Tracker</span></h1>
+            <p class="tagline">Maximize your gains. Quantify your effort.</p>
+        </header>
+
+        <main class="tracker-grid">
+            <section class="zone-inputs">
+                <h2>Enter Time in Zones (Minutes)</h2>
+                <div class="input-group">
+                    <label for="zone1-time">Zone 1: Low Intensity (89-106 bpm)</label>
+                    <input type="number" id="zone1-time" name="zone1-time" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="zone2-time">Zone 2: Weight Control (107-124 bpm)</label>
+                    <input type="number" id="zone2-time" name="zone2-time" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="zone3-time">Zone 3: Aerobic (125-142 bpm)</label>
+                    <input type="number" id="zone3-time" name="zone3-time" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="zone4-time">Zone 4: Anaerobic (143-160 bpm)</label>
+                    <input type="number" id="zone4-time" name="zone4-time" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="zone5-time">Zone 5: Maximum (161-178 bpm)</label>
+                    <input type="number" id="zone5-time" name="zone5-time" min="0" placeholder="0">
+                </div>
+                <button id="calculate-ducats" class="cyberpunk-button">Calculate Ducats</button>
+            </section>
+
+            <section class="payout-summary">
+                <h2>Payout <span class="accent-text">Summary</span></h2>
+                <div id="summary-results">
+                    <p>Enter time in zones and click "Calculate Ducats".</p>
+                </div>
+                <div class="total-payout">
+                    <h3>Total Ducats: <span id="total-ducats" class="accent-text">0</span></h3>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><a href="../index.html" class="cyberpunk-link">Back to Main Page</a></p>
+        </footer>
+    </div>
+    <script src="../js/workout.js"></script>
+</body>
+</html>
