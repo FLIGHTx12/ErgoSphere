@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const summaryResultsDiv = document.getElementById('summary-results');
     const totalDucatsSpan = document.getElementById('total-ducats');
 
+    // Order reversed to match HTML and desired display order in summary
     const zoneInputs = [
-        { id: 'zone1-time', multiplier: 1, name: 'Zone 1 (Low Intensity)' },
-        { id: 'zone2-time', multiplier: 2, name: 'Zone 2 (Weight Control)' },
-        { id: 'zone3-time', multiplier: 3, name: 'Zone 3 (Aerobic)' },
+        { id: 'zone5-time', multiplier: 5, name: 'Zone 5 (Maximum)' },
         { id: 'zone4-time', multiplier: 4, name: 'Zone 4 (Anaerobic)' },
-        { id: 'zone5-time', multiplier: 5, name: 'Zone 5 (Maximum)' }
+        { id: 'zone3-time', multiplier: 3, name: 'Zone 3 (Aerobic)' },
+        { id: 'zone2-time', multiplier: 2, name: 'Zone 2 (Weight Control)' },
+        { id: 'zone1-time', multiplier: 1, name: 'Zone 1 (Low Intensity)' }
     ];
 
     if (calculateButton) {
@@ -18,16 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             zoneInputs.forEach(zone => {
                 const timeInput = document.getElementById(zone.id);
-                const time = parseInt(timeInput.value, 10) || 0;
+                // Use parseFloat to handle decimals, then Math.ceil to round up.
+                const time = Math.ceil(parseFloat(timeInput.value) || 0);
 
-                if (time < 0) {
+                if (parseFloat(timeInput.value) < 0) { // Check original value for negativity
                     summaryHTML += `<p class="error-message">Time for ${zone.name} cannot be negative. Please enter a valid time.</p>`;
-                    timeInput.value = 0; // Reset negative value
-                    // No payout for this zone if time is negative
+                    timeInput.value = '0'; // Reset negative value
                 } else if (time > 0) {
                     const ducatsEarned = time * zone.multiplier;
                     totalPayout += ducatsEarned;
-                    summaryHTML += `<p>${zone.name}: ${time} minutes x ${zone.multiplier} = <span class="accent-text">${ducatsEarned} Ducats</span></p>`;
+                    summaryHTML += `<p>${zone.name}: ${timeInput.value} (rounds to ${time}) minutes x ${zone.multiplier} = <span class="accent-text">${ducatsEarned} Ducats</span></p>`;
                 }
             });
 
