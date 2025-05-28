@@ -40,11 +40,50 @@
         display: block;
         width: 90%;
       }
+
+      /* Styles for sidebar toggle button */
+      #sidebar-toggle {
+        position: fixed;
+        top: 70px; /* Adjusted from 20px to 70px */
+        right: 20px; /* Changed from left to right */
+        z-index: 1005; /* Ensure it's above other elements like navbar if necessary */
+        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 5px 10px; /* Reduced padding for a smaller button */
+        cursor: pointer;
+        font-size: 16px; /* Reduced font size for a smaller button */
+        border-radius: 5px;
+        display: none; /* Hidden by default, shown via JS/media query */
+        transition: background-color 0.3s ease;
+      }
+
+      #sidebar-toggle:hover {
+        background-color: rgba(85, 85, 85, 0.9);
+      }
+
+      /* Responsive adjustments for tablet-sized screens */
+      @media (min-width: 601px) and (max-width: 1023px) {
+        #sidebar-toggle {
+          display: block; /* Show the toggle button */
+        }
+
+        /* Adjust main content when sidebar is visible on tablets */
+        #main-content.sidebar-visible {
+          margin-right: 150px; /* Changed from margin-left to margin-right */
+          margin-left: auto; /* Ensure left margin is auto if not explicitly set elsewhere for this state */
+        }
+        #main-content {
+          /* Ensure smooth transition for margin change */
+          transition: margin-right 0.3s ease-in-out, width 0.3s ease-in-out; /* Changed to transition margin-right */
+        }
+      }
     </style>
 
 </head>
 
 <body>
+<button id="sidebar-toggle" aria-label="Toggle sidebar" aria-expanded="false">&#9776;</button>
 
 <nav id="navbar">
   <button><a href="index.html">HOME</a></button>
@@ -466,51 +505,61 @@
       
       // Initialize week management UI
       initWeekManagementUI();
+
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('main-content');
+      const sidebarToggle = document.getElementById('sidebar-toggle');
       let touchstartX = 0;
       let touchendX = 0;
       const swipeThreshold = 100; // Define a swipe threshold
       const veryLargeScreenQuery = window.matchMedia('(min-width: 1800px)');
       const largeScreenQuery = window.matchMedia('(min-width: 1024px)');
+      const tabletScreenQuery = window.matchMedia('(min-width: 601px) and (max-width: 1023px)');
+
+      function toggleSidebar(visible) {
+        if (visible) {
+          sidebar.classList.remove('hidden');
+          mainContent.classList.add('sidebar-visible');
+          if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          sidebar.classList.add('hidden');
+          mainContent.classList.remove('sidebar-visible');
+          if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
 
       function handleGesture() {
-          // Only allow swipe gestures if not on a very large screen
-          if (!veryLargeScreenQuery.matches) {
-              const swipeDistance = touchendX - touchstartX;
-              // Swipe right to left (hide sidebar on smaller screens)
-              if (swipeDistance > swipeThreshold) {
-                  sidebar.classList.add('hidden');
-                  sidebar.style.transform = 'translateX(100%)'; // Or appropriate hide animation
-                  mainContent.classList.remove('sidebar-visible');
-              }
-              // Swipe left to right (show sidebar on smaller/medium screens)
-              if (swipeDistance < -swipeThreshold && !largeScreenQuery.matches) {
-                  sidebar.classList.remove('hidden');
-                  sidebar.style.transform = 'translateX(0)'; // Or appropriate show animation
-                  mainContent.classList.add('sidebar-visible');
-              }
-          }
+        if (touchendX < touchstartX - swipeThreshold) {
+          toggleSidebar(false); // Swipe left to hide
+        }
+        if (touchendX > touchstartX + swipeThreshold) {
+          toggleSidebar(true); // Swipe right to show
+        }
       }
 
       // Handle sidebar visibility based on screen size
       function handleScreenSizeChange() {
-          if (veryLargeScreenQuery.matches) {
-              // Always show sidebar on very large screens
-              sidebar.classList.remove('hidden');
-              sidebar.style.transform = 'translateY(-50%)'; // Keep vertical centering if needed
-              mainContent.classList.add('sidebar-visible');
-          } else if (largeScreenQuery.matches) {
-              // Show sidebar on large screens (but allow potential hiding via other means if needed later)
-              sidebar.classList.remove('hidden');
-              sidebar.style.transform = 'translateY(-50%)'; // Keep vertical centering
-              mainContent.classList.add('sidebar-visible');
-          } else {
-              // On smaller screens, initially hide the sidebar
-              sidebar.classList.add('hidden');
-              sidebar.style.transform = 'translateX(100%)'; // Start hidden off-screen
-              mainContent.classList.remove('sidebar-visible');
-          }
+        if (veryLargeScreenQuery.matches || largeScreenQuery.matches) {
+          // On large and very large screens, sidebar is always visible
+          toggleSidebar(true);
+          if (sidebarToggle) sidebarToggle.style.display = 'none'; // Hide toggle
+        } else if (tabletScreenQuery.matches) {
+          // On tablet-sized screens, sidebar is toggleable, initially hidden
+          toggleSidebar(false); // Or true if you want it initially visible
+          if (sidebarToggle) sidebarToggle.style.display = 'block'; // Show toggle
+        } else {
+          // On smaller screens (phones), sidebar is swipeable, initially hidden
+          toggleSidebar(false);
+          if (sidebarToggle) sidebarToggle.style.display = 'none'; // Hide toggle
+        }
+      }
+
+      // Sidebar toggle button event listener
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          const isSidebarVisible = !sidebar.classList.contains('hidden');
+          toggleSidebar(!isSidebarVisible);
+        });
       }
 
       // Run on page load
@@ -519,35 +568,24 @@
       // Add resize listener
       window.addEventListener('resize', handleScreenSizeChange);
 
-      // Add touch listeners only if not on a very large screen initially
-      // Note: This might need adjustment if the screen resizes across the threshold
-      if (!veryLargeScreenQuery.matches) {
-          document.addEventListener('touchstart', function(e) {
-              // Only track swipes if the sidebar could potentially be hidden/shown
-              if (!veryLargeScreenQuery.matches) {
-                touchstartX = e.changedTouches[0].screenX;
-              }
-          }, { passive: true }); // Use passive listener for performance
+      // Add touch listeners only if not on a very large or large screen initially
+      if (!veryLargeScreenQuery.matches && !largeScreenQuery.matches) {
+        document.addEventListener('touchstart', e => {
+          touchstartX = e.changedTouches[0].screenX;
+        }, { passive: true });
 
-          document.addEventListener('touchend', function(e) {
-              // Only handle gestures if the sidebar could potentially be hidden/shown
-              if (!veryLargeScreenQuery.matches) {
-                touchendX = e.changedTouches[0].screenX;
-                handleGesture();
-              }
-          }, { passive: true }); // Use passive listener for performance
+        document.addEventListener('touchend', e => {
+          touchendX = e.changedTouches[0].screenX;
+          // Only handle gesture if not on tablet where toggle is present
+          if (!tabletScreenQuery.matches) {
+            handleGesture();
+          }
+        }, { passive: true });
       }
 
       // Optional: Re-evaluate touch listener binding on resize if needed
-      window.addEventListener('resize', () => {
-          // Basic example: If resizing makes it non-TV size, ensure listeners are attached
-          // This part might need more robust logic depending on exact requirements
-          if (!veryLargeScreenQuery.matches) {
-              // Consider adding listeners here if they weren't added initially
-              // and removing them if resizing makes it a very large screen.
-              // For simplicity, the initial check might suffice for most cases.
-          }
-      });
+      // This part might need more sophisticated logic if you frequently resize
+      // across the tablet/phone breakpoint and expect touch behavior to change instantly.
     });
     
     // Additional script to ensure alignment is correct on load
