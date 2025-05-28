@@ -1,76 +1,517 @@
 {
   "saltySnackContainer": [
-    { "text": "🌿Roasted Seaweed - 10💷", "value": 10 },
-    { "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷", "value": 10 },
-    { "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷", "value": 20 },
-    { "text": "🥔Cape Cod (Original/BBQ) - 20💷", "value": 20 },
-    { "text": "🥔Cape Cod (Sea Salt & Vinegar) - 30💷", "value": 30 },
-    { "text": "🧀Cheez-it - 30💷", "value": 30 },
-    { "text": "🥜Gourmet Nut Power Up® Mega Omega Premium Trail Mix - 30💷", "value": 30 },
-    { "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷", "value": 30 },
-    { "text": "🐄Old Fashioned Beef Jerk - 40💷", "value": 40 },
-    { "text": "🍘Wheat Thins Original - 40💷", "value": 40 }
+    {
+      "text": "🌿Roasted Seaweed - 10💷",
+      "value": 10,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🔺Tortilla Chips (Donkey/El Milagro) - 10💷",
+      "value": 10,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍿Popcorn (Boom chicka/Skinny pop) - 20💷",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🥔Cape Cod (Original/BBQ) - 20💷",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🥔Cape Cod (Sea Salt & Vinegar) - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🧀Cheez-it - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🥜Gourmet Nut Power Up® Mega Omega Premium Trail Mix - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🧀Simply Cheetos Puffs White Cheddar - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🐄Old Fashioned Beef Jerk - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍘Wheat Thins Original - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "sweetSnackContainer": [
-    { "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷", "value": 10 },
-    { "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷", "value": 20 },
-    { "text": "🍫Kroger® Peanut Butter & Dark Chocolate Chewy Granola Bars - 30💷", "value": 30 },
-    { "text": "🐻Chocolate Teddy Graham Snacks - 30💷", "value": 30 },
-    { "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷", "value": 30 },
-    { "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷", "value": 40 },
-    { "text": "🐇Annie's Organic Bunny Fruit Snacks - 40💷", "value": 40 },
-    { "text": "🍪Chips Ahoy 2 pack - 40💷", "value": 40 },
-    { "text": "🍒TWIZZLERS NIBS Cherry - 40💷", "value": 40 },
-    { "text": "🎂Little Bites (Fudge/Banana) - 40💷", "value": 40 }
+    {
+      "text": "🐮Chobani Whole Milk Plain Greek Yogurt - 10💷",
+      "value": 10,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍪Simple Truth Blueberry Breakfast Cookies - 20💷",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍫Kroger® Peanut Butter & Dark Chocolate Chewy Granola Bars - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🐻Chocolate Teddy Graham Snacks - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍫Dark Chocolate Covered Almonds/Raisins - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍪Belvita Blueberry Breakfast biscuits - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🐇Annie's Organic Bunny Fruit Snacks - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍪Chips Ahoy 2 pack - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍒TWIZZLERS NIBS Cherry - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🎂Little Bites (Fudge/Banana) - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "frozenSnackContainer": [
-    { "text": "🍕Jacks Pizza Bois - 20💷", "value": 20 },
-    { "text": "🍨Breyers Mango Ice cream - 20💷", "value": 20 },
-    { "text": "🍕Totinos Pizza rolls - 30💷", "value": 30 },
-    { "text": "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷", "value": 30 },
-    { "text": "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷", "value": 40 },
-    { "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷", "value": 40 }
+    {
+      "text": "🍕Jacks Pizza Bois - 20💷",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍨Breyers Mango Ice cream - 20💷",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍕Totinos Pizza rolls - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🥟Bibigo Chicken & Veggie Mini Wontos - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍨Kroger Deluxe artisan Vanilla bean ice cream - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍦So Delicious Vanilla Bean Coconut milk IceCream Sandwiches - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "concoctionsContainer": [
-    { "text": "🩸THC Gummies - 40💷", "value": 40 },
-    { "text": "☕VJ Hot Cocoa 500ml - 30💷", "value": 30 },
-    { "text": "🍺Beer - 50💷", "value": 50 },
-    { "text": "🥃Mixed Drink (2shots) - 50💷", "value": 50 },
-    { "text": "🍷Wine Glass 500ml - 100💷", "value": 100 },
-    { "text": "🍾Wine Bottle 750ml - 150💷", "value": 150 }
+    {
+      "text": "🩸THC Gummies - 40💷",
+      "value": 40,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "☕VJ Hot Cocoa 500ml - 30💷",
+      "value": 30,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍺Beer - 50💷",
+      "value": 50,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🥃Mixed Drink (2shots) - 50💷",
+      "value": 50,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍷Wine Glass 500ml - 100💷",
+      "value": 100,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍾Wine Bottle 750ml - 150💷",
+      "value": 150,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
-  "mealModsContainer": [  
-    { "text": "🍴Lunch Snack - 2💷", "value": 2 },
-    { "text": "🌞Weekend AM Snack - 2💷", "value": 2 },
-    { "text": "🍞Toast Nightcap (butter/peanut)- 2💷", "value": 2 }
+
+  "mealModsContainer": [
+    {
+      "text": "🍴Lunch Snack - 2💷",
+      "value": 2,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🌞Weekend AM Snack - 2💷",
+      "value": 2,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍞Toast Nightcap (butter/peanut)- 2💷",
+      "value": 2,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "prizesContainer": [
-    { "text": "✨⭐⭐🌟LUXURY🌟⭐⭐✨- 0💷", "value": 0 },
-    { "text": "🎉SNACK-A-THON🎉 - 0💷", "value": 0, "description": "1 free snack on Sunday, Friday and Saturday of this week"},
-    { "text": "🧞 Djinn Wish (1/3) - 0💷", "value": 0 },
-    { "text": "🧞🧞 Djinn Wish (2/3) - 0💷", "value": 0 },
-    { "text": "🧞🧞🧞 Djinn Wish (3/3) - 0💷", "value": 0 }
+    {
+      "text": "✨⭐⭐🌟LUXURY🌟⭐⭐✨- 0💷",
+      "value": 0,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🎉SNACK-A-THON🎉 - 0💷",
+      "value": 0,
+      "rating": null,
+      "calories": null,
+      "description": "1 free snack on Sunday, Friday and Saturday of this week",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🧞 Djinn Wish (1/3) - 0💷",
+      "value": 0,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🧞🧞 Djinn Wish (2/3) - 0💷",
+      "value": 0,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🧞🧞🧞 Djinn Wish (3/3) - 0💷",
+      "value": 0,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "replacementsContainer": [
-    { "text": "🍔Fast Food Cheat Meal - 60💷", "value": 60 },
-    { "text": "🌃🍽 DINE OUT - 300💷", "value": 300, "description": "Replace weekday meal, dine out instead " },
-    { "text": "🍕🥡TAKEOUT NIGHT! - 400💷", "value": 500, "description": "Replace weekday meal with a takeout party!"}
+    {
+      "text": "🍔Fast Food Cheat Meal - 60💷",
+      "value": 60,
+      "rating": null,
+      "calories": null,
+      "description": "",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🌃🍽 DINE OUT - 300💷",
+      "value": 300,
+      "rating": null,
+      "calories": null,
+      "description": "Replace weekday meal, dine out instead ",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🍕🥡TAKEOUT NIGHT! - 400💷",
+      "value": 500,
+      "rating": null,
+      "calories": null,
+      "description": "Replace weekday meal with a takeout party!",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
-  "entertainmentContainer": [   
-    { "text": "🎮 GAME SESSH (30min) - 25💶", "value": 25, "description": "Play 30 mins of any game." },
-    { "text": "🎬 CINEMA SESSH (Binge) - 60💶", "value": 60, "description": "Binge a show for the remainder of the day (Must stop before schedueled bed time.)" },
-    { "text": "🎟 Golden Ticket (1screening) - 300💶", "value": 300, "description": "Attend a theatre showing. Wipe scheduled events" }
+
+  "entertainmentContainer": [
+    {
+      "text": "🎮 GAME SESSH (30min) - 25💶",
+      "value": 25,
+      "rating": null,
+      "calories": null,
+      "description": "Play 30 mins of any game.",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🎬 CINEMA SESSH (Binge) - 60💶",
+      "value": 60,
+      "rating": null,
+      "calories": null,
+      "description": "Binge a show for the remainder of the day (Must stop before schedueled bed time.)",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🎟 Golden Ticket (1screening) - 300💶",
+      "value": 300,
+      "rating": null,
+      "calories": null,
+      "description": "Attend a theatre showing. Wipe scheduled events",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+
   "schedulemodsContainer": [
-    { "text": "🔀 CHANGE-o-PLANS (30min)- 15💶", "value": 15, "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'." },
-    { "text": "🏚 ENTER TAVERN (1week) - 30💶", "value": 20, "description": "Pause all damage during vacation." },
-    { "text": "😴 SLEEP IN (2hrs)- 100💶", "value": 100, "description": "Skip Scheduled morning events." },
-    { "text": "⛲👩🏻‍🤝‍🧑🏾Weekly Errand Mod (CLOSE)- 100💶", "value": 100, "description": "Mod weekly errand to visit a location UNDER 30mins away" },
-    { "text": "⛲➡👩🏻‍🤝‍🧑🏾Weekly Errand Mod (FAR)- 200💶", "value": 200, "description": "Mod weekly errand to visit a location OVER 30mins away" },
-    { "text": "🛌🏾 BINGE DAY (1day) - 500💶", "value": 500, "description": "All day show or game binge (Removes all other scheduled events)." }
+    {
+      "text": "🔀 CHANGE-o-PLANS (30min)- 15💶",
+      "value": 15,
+      "rating": null,
+      "calories": null,
+      "description": "Bingwa can change 30mins of any 'Fun' event into 'Free time'.",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🏚 ENTER TAVERN (1week) - 30💶",
+      "value": 20,
+      "rating": null,
+      "calories": null,
+      "description": "Pause all damage during vacation.",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "😴 SLEEP IN (2hrs)- 100💶",
+      "value": 100,
+      "rating": null,
+      "calories": null,
+      "description": "Skip Scheduled morning events.",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "⛲👩🏻‍🤝‍🧑🏾Weekly Errand Mod (CLOSE)- 100💶",
+      "value": 100,
+      "rating": null,
+      "calories": null,
+      "description": "Mod weekly errand to visit a location UNDER 30mins away",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "⛲➡👩🏻‍🤝‍🧑🏾Weekly Errand Mod (FAR)- 200💶",
+      "value": 200,
+      "rating": null,
+      "calories": null,
+      "description": "Mod weekly errand to visit a location OVER 30mins away",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "🛌🏾 BINGE DAY (1day) - 500💶",
+      "value": 500,
+      "rating": null,
+      "calories": null,
+      "description": "All day show or game binge (Removes all other scheduled events).",
+      "status": "🟢",
+      "stock": 0
+    }
   ],
+  
   "wantsvsneedsContainer": [
-    { "text": "💱👑BINGWA CURRENCY EXCHANGE (2💷 per full dollar)", "value": 2, "description": "Use 20 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)" },
-    { "text": "💱😖KUSHINDWA CURRENCY EXCHANGE (4💷 per full dollar)", "value": 4, "description": "Use 40 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)" }
+    {
+      "text": "💱👑BINGWA CURRENCY EXCHANGE (2💷 per full dollar)",
+      "value": 2,
+      "rating": null,
+      "calories": null,
+      "description": "Use 20 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)",
+      "status": "🟢",
+      "stock": 0
+    },
+    {
+      "text": "💱😖KUSHINDWA CURRENCY EXCHANGE (4💷 per full dollar)",
+      "value": 4,
+      "rating": null,
+      "calories": null,
+      "description": "Use 40 Ducats per $10 to buy a “want” instead of spinning it (does not concern needs)",
+      "status": "🟢",
+      "stock": 0
+    }
   ]
 }
