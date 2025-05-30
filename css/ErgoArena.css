@@ -30,13 +30,47 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Try the correct path - CSS is in css/ folder, so go up one level */
     background-image: url('../assets/img/backgrounds/nightSky.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.8; /* Increased from 0.3 to make it more visible */
-    z-index: -1;
+    z-index: -2; /* Behind the moving stars */
+}
+
+/* Moving Stars - Duplicated background with animation */
+.moving-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/backgrounds/nightSky.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6; /* 60% opacity as requested */
+    z-index: -1; /* Above the static background */
+    /* Animation removed from here - will be added via JavaScript */
+}
+
+/* Class that will be added to enable animation */
+.stars-animated {
+    animation: moveStars linear infinite;
+    /* Remove fixed duration - will be set dynamically via JavaScript */
+}
+
+/* Animation for moving stars */
+@keyframes moveStars {
+    0% {
+        transform: translate(0, 0) scale(1.05);
+    }
+    50% {
+        transform: translate(2%, 2%) scale(1.1);
+    }
+    100% {
+        transform: translate(0, 0) scale(1.05);
+    }
 }
 
 /* Header */

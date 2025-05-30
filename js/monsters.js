@@ -42,7 +42,7 @@ window.monsters = [
     }
   },
   {name: "EtchWraith Swarm",
-    attackType: "Swarm",
+    attackType: "Swarm (Player level)",
     health: adjustHealthByQuarter(400),
     hitNumbers: [ 5, 19, 4, 1, 8, 12, 5, 3, 6, 17],
     Rewards: "Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
@@ -165,8 +165,8 @@ hitDialogues: {
         ]
       }
   },
-  {name: "CyberBadger Cete",
-    attackType: "OverWhelm",
+  {name: "CyberBadger Cete ",
+    attackType: "OverWhelm (Player level)",
     health: adjustHealthByQuarter(500),
     hitNumbers: [15, 6, 6, 6, 4, 8, 9, 12, 2, 20 ],
     Rewards: "Party leader gets to pick any available PVP game this week.",

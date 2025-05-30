@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function playFightMusic() {
     const playPromise = fightMusic.play();
 
+    // Start the stars animation when music plays
+    const movingStars = document.querySelector('.moving-stars');
+    movingStars.classList.add('stars-animated');
+    movingStars.style.animationDuration = '40s'; // Initial animation duration
+
     if (playPromise !== undefined) {
       playPromise.then(() => {
         // Autoplay started!
@@ -48,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         playButton.textContent = 'Play Music';
         playButton.addEventListener('click', () => {
           fightMusic.play();
+          // Also ensure animation starts when button is clicked
+          document.querySelector('.moving-stars').classList.add('stars-animated');
           playButton.remove(); // Remove the button after it's clicked
         });
         document.body.appendChild(playButton); // Append the button to the body or another appropriate container
@@ -184,6 +191,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        // Update star animation speed based on remaining time
+        const movingStars = document.querySelector('.moving-stars');
+        if (movingStars && movingStars.classList.contains('stars-animated')) {
+            // Calculate animation duration: starts at 40s, decreases to 10s as timer approaches 0
+            const totalDuration = audioDuration; // Total initial time
+            const minAnimationDuration = 10; // Fastest animation in seconds
+            const maxAnimationDuration = 40; // Slowest animation in seconds
+            
+            // Calculate percentage of time remaining and scale animation accordingly
+            const timePercentage = timeLeft / totalDuration;
+            const animationDuration = minAnimationDuration + (timePercentage * (maxAnimationDuration - minAnimationDuration));
+            
+            // Apply the new animation duration
+            movingStars.style.animationDuration = `${animationDuration}s`;
+        }
 
         if (timeLeft <= 0 && timerStarted) {
             clearInterval(timer);
