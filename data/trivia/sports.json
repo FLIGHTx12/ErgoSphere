@@ -1,0 +1,52 @@
+[
+  {
+    "question": "How many players are on a basketball team on the court at one time?",
+    "options": ["4", "5", "6"],
+    "correct": 1
+  },
+  {
+    "question": "Which sport is known as 'America's Pastime'?",
+    "options": ["Football", "Baseball", "Basketball"],
+    "correct": 1
+  },
+  {
+    "question": "How many holes are played in a standard round of golf?",
+    "options": ["16", "18", "20"],
+    "correct": 1
+  },
+  {
+    "question": "What is the maximum score possible in ten-pin bowling?",
+    "options": ["200", "250", "300"],
+    "correct": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "options": ["Germany", "France", "Brazil"],
+    "correct": 1
+  },
+  {
+    "question": "How long is a marathon race?",
+    "options": ["26.2 miles", "25 miles", "27 miles"],
+    "correct": 0
+  },
+  {
+    "question": "In tennis, what is a score of zero called?",
+    "options": ["Nil", "Love", "Zero"],
+    "correct": 1
+  },
+  {
+    "question": "Which sport uses the term 'slam dunk'?",
+    "options": ["Volleyball", "Basketball", "Tennis"],
+    "correct": 1
+  },
+  {
+    "question": "How many periods are in a hockey game?",
+    "options": ["2", "3", "4"],
+    "correct": 1
+  },
+  {
+    "question": "What is the highest possible hand in poker?",
+    "options": ["Full House", "Royal Flush", "Four of a Kind"],
+    "correct": 1
+  }
+]

@@ -236,11 +236,16 @@ document.addEventListener("DOMContentLoaded", () => {
     bindGameKeys(); // Bind keys when timer starts (game starts)
     return timer;
   }
-
   function gameOver() {
     fightMusic.pause(); // Pause fight music
     fightMusic.currentTime = 0; // Reset to the beginning
     gameOverAudio.play();
+    
+    // Stop trivia system
+    if (window.triviaManager) {
+      window.triviaManager.stopTrivia();
+    }
+    
     const gameOverDiv = document.createElement("div");
     gameOverDiv.id = "gameOver";
     gameOverDiv.style.position = "fixed";
@@ -509,9 +514,14 @@ document.addEventListener("DOMContentLoaded", () => {
       infoContainer.style.padding = "10px";
       infoContainer.style.overflowY = "auto";
       infoContainer.style.maxHeight = "500px";
-      
-      // Append new info container to game container, not monster container
+        // Append new info container to game container, not monster container
       gameContainer.appendChild(infoContainer);
+
+      // Create and append trivia container
+      if (window.triviaManager) {
+        const triviaContainer = window.triviaManager.createTriviaContainer(index);
+        gameContainer.appendChild(triviaContainer);
+      }
 
       const container1 = document.createElement("div");
       container1.id = "attackInputs1";
@@ -649,7 +659,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalDamage += damage;
               }
             }
-          }
+          }        }
+
+        // Apply trivia multiplier to total damage
+        let triviaMultiplier = 1;
+        if (window.triviaManager && totalDamage > 0) {
+          triviaMultiplier = window.triviaManager.applyMultiplierAndReset();
+          totalDamage = Math.floor(totalDamage * triviaMultiplier);
         }
 
         monsterLife -= totalDamage;
@@ -669,12 +685,15 @@ document.addEventListener("DOMContentLoaded", () => {
           }, duration * 1000);
         }
 
-        const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
-
-        if (monsterLife === 0) {
+        const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";        if (monsterLife === 0) {
           clearInterval(timer);  // Stop timer when boss is defeated
           fightMusic.pause(); // Pause fight music
           fightMusic.currentTime = 0; // Reset to the beginning
+          
+          // Stop trivia system when boss is defeated
+          if (window.triviaManager) {
+            window.triviaManager.stopTrivia();
+          }
           
           // Play healer sound immediately
           healerSound.currentTime = 0; // Ensure it plays from the beginning
@@ -707,10 +726,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (damageDialogue) {
-          historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;
+          historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;        }
+        
+        // Create damage message with trivia multiplier info
+        let damageMessage = `${playerName} attacks for a cumulative total of ${totalDamage} damage.`;
+        if (triviaMultiplier > 1) {
+          const baseDamage = Math.floor(totalDamage / triviaMultiplier);
+          damageMessage = `${playerName} attacks for ${baseDamage} damage (×${triviaMultiplier.toFixed(1)} trivia bonus = ${totalDamage} total damage).`;
         }
         
-        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
+        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageMessage}</p>`;
         
         if (hitCount > 0) {
           // Play monster counter-attack sounds
@@ -817,13 +842,19 @@ document.addEventListener("DOMContentLoaded", () => {
       monsterContainers.forEach(
         (container) => (container.style.display = "none"),
       );
-      
-      // Hide all history and info containers
+        // Hide all history and info containers
       for (let i = 0; i < monsters.length; i++) {
         const historyContainer = document.getElementById("historyContainer" + i);
         const infoContainer = document.getElementById("infoContainer" + i);
+        const triviaContainer = document.getElementById("triviaContainer" + i);
         if (historyContainer) historyContainer.style.display = "none";
         if (infoContainer) infoContainer.style.display = "none";
+        if (triviaContainer) triviaContainer.style.display = "none";
+      }
+      
+      // Stop trivia when changing monsters
+      if (window.triviaManager) {
+        window.triviaManager.stopTrivia();
       }
 
       if (selectedMonsterIndex !== "") {
@@ -836,12 +867,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show the selected monster container
         const activeMonsterContainer = monsterContainers[selectedMonsterIndex];
         activeMonsterContainer.style.display = "block";
-        
-        // Show the corresponding history and info containers
+          // Show the corresponding history and info containers
         const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
         const infoContainer = document.getElementById("infoContainer" + selectedMonsterIndex);
         if (historyContainer) historyContainer.style.display = "block";
         if (infoContainer) infoContainer.style.display = "block";
+        
+        // Start trivia system for this monster
+        if (window.triviaManager) {
+          const triviaContainer = document.getElementById("triviaContainer" + selectedMonsterIndex);
+          if (triviaContainer) {
+            triviaContainer.style.display = "block";
+            window.triviaManager.triviaContainer = triviaContainer;
+            window.triviaManager.startTrivia();
+          }
+        }
         
         // Update the selected monster container for current fighter selection
         updateContainerForFighters(activeMonsterContainer);

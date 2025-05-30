@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Which game features the character Mario?",
+    "options": ["Sonic the Hedgehog", "Super Mario Bros", "Pac-Man"],
+    "correct": 1
+  },
+  {
+    "question": "What is the best-selling video game of all time?",
+    "options": ["Tetris", "Minecraft", "Grand Theft Auto V"],
+    "correct": 1
+  },
+  {
+    "question": "Which company created the PlayStation?",
+    "options": ["Nintendo", "Sony", "Microsoft"],
+    "correct": 1
+  },
+  {
+    "question": "What does 'RPG' stand for in gaming?",
+    "options": ["Real Player Game", "Role Playing Game", "Rapid Pace Gaming"],
+    "correct": 1
+  },
+  {
+    "question": "Which game popularized the battle royale genre?",
+    "options": ["PUBG", "Fortnite", "Apex Legends"],
+    "correct": 0
+  },
+  {
+    "question": "What is the maximum level in classic Pac-Man?",
+    "options": ["255", "256", "999"],
+    "correct": 1
+  },
+  {
+    "question": "Which game series features Master Chief?",
+    "options": ["Call of Duty", "Halo", "Destiny"],
+    "correct": 1
+  },
+  {
+    "question": "What year was the original Nintendo Entertainment System released in North America?",
+    "options": ["1983", "1985", "1987"],
+    "correct": 1
+  },
+  {
+    "question": "Which game features the city of Vice City?",
+    "options": ["Grand Theft Auto", "Saints Row", "Watch Dogs"],
+    "correct": 0
+  },
+  {
+    "question": "What is the currency in World of Warcraft?",
+    "options": ["Credits", "Gold", "Coins"],
+    "correct": 1
+  }
+]

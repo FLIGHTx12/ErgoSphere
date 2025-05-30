@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is the tallest building in Minneapolis?",
+    "options": ["Wells Fargo Centre", "IDS Center", "Capella Tower"],
+    "correct": 1
+  },
+  {
+    "question": "Which river runs through Minneapolis?",
+    "options": ["Minnesota River", "Mississippi River", "St. Croix River"],
+    "correct": 1
+  },
+  {
+    "question": "What is Chicago's nickname?",
+    "options": ["The Big Apple", "The Windy City", "Motor City"],
+    "correct": 1
+  },
+  {
+    "question": "Which professional basketball team plays in Chicago?",
+    "options": ["Bulls", "Bears", "Blackhawks"],
+    "correct": 0
+  },
+  {
+    "question": "What is the name of Minneapolis's main airport?",
+    "options": ["Minneapolis Airport", "MSP International", "Twin Cities Airport"],
+    "correct": 1
+  },
+  {
+    "question": "Which famous architect designed many buildings in Chicago?",
+    "options": ["Frank Gehry", "Frank Lloyd Wright", "I.M. Pei"],
+    "correct": 1
+  },
+  {
+    "question": "What is the name of the famous theater district in Minneapolis?",
+    "options": ["Broadway District", "Theater District", "Hennepin Theatre District"],
+    "correct": 2
+  },
+  {
+    "question": "Which lake is Chicago located on?",
+    "options": ["Lake Superior", "Lake Michigan", "Lake Huron"],
+    "correct": 1
+  },
+  {
+    "question": "What is Minneapolis's sister city?",
+    "options": ["St. Paul", "Duluth", "Rochester"],
+    "correct": 0
+  },
+  {
+    "question": "Which major street runs through downtown Chicago?",
+    "options": ["State Street", "Main Street", "Broadway"],
+    "correct": 0
+  }
+]

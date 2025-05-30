@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Which movie features the quote 'May the Force be with you'?",
+    "options": ["Star Trek", "Star Wars", "Guardians of the Galaxy"],
+    "correct": 1
+  },
+  {
+    "question": "Who played the character of Jack Sparrow?",
+    "options": ["Orlando Bloom", "Johnny Depp", "Geoffrey Rush"],
+    "correct": 1
+  },
+  {
+    "question": "Which TV show features the character Walter White?",
+    "options": ["Better Call Saul", "Breaking Bad", "The Walking Dead"],
+    "correct": 1
+  },
+  {
+    "question": "What is the highest-grossing film of all time?",
+    "options": ["Titanic", "Avatar", "Avengers: Endgame"],
+    "correct": 2
+  },
+  {
+    "question": "Which series features dragons and the Iron Throne?",
+    "options": ["The Witcher", "Game of Thrones", "House of the Dragon"],
+    "correct": 1
+  },
+  {
+    "question": "Who directed the movie 'Jaws'?",
+    "options": ["George Lucas", "Steven Spielberg", "Francis Ford Coppola"],
+    "correct": 1
+  },
+  {
+    "question": "Which animated movie features the song 'Let It Go'?",
+    "options": ["Moana", "Frozen", "Tangled"],
+    "correct": 1
+  },
+  {
+    "question": "What is the name of Ross's pet monkey in Friends?",
+    "options": ["Marcel", "Monkey", "George"],
+    "correct": 0
+  },
+  {
+    "question": "Which superhero is known as the 'Dark Knight'?",
+    "options": ["Superman", "Batman", "Spider-Man"],
+    "correct": 1
+  },
+  {
+    "question": "In The Office, what is Jim's last name?",
+    "options": ["Halpert", "Howard", "Harper"],
+    "correct": 0
+  }
+]

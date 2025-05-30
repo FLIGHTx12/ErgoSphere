@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What does 'RFI' stand for in construction?",
+    "options": ["Request for Information", "Rapid Field Inspection", "Required Field Input"],
+    "correct": 0
+  },
+  {
+    "question": "Which document typically contains the project specifications?",
+    "options": ["Contract Drawings", "Project Manual", "Change Order"],
+    "correct": 1
+  },
+  {
+    "question": "What is a 'submittal' in construction?",
+    "options": ["Final payment request", "Material/equipment documentation for approval", "Project completion report"],
+    "correct": 1
+  },
+  {
+    "question": "What does 'PCO' stand for?",
+    "options": ["Project Control Officer", "Potential Change Order", "Primary Contract Obligation"],
+    "correct": 1
+  },
+  {
+    "question": "Which phase comes after 'Design Development'?",
+    "options": ["Schematic Design", "Construction Documents", "Bidding"],
+    "correct": 1
+  },
+  {
+    "question": "What is the purpose of a 'Pay Application'?",
+    "options": ["Request payment for completed work", "Apply for project permits", "Submit project schedule"],
+    "correct": 0
+  },
+  {
+    "question": "What does 'AIA' commonly refer to in construction?",
+    "options": ["American Institute of Architects", "Approved Installation Agreement", "Architectural Inspection Authority"],
+    "correct": 0
+  },
+  {
+    "question": "What is 'retainage' in construction contracts?",
+    "options": ["Extra materials kept on site", "Percentage of payment held until completion", "Warranty period"],
+    "correct": 1
+  },
+  {
+    "question": "What does 'CCO' stand for?",
+    "options": ["Chief Construction Officer", "Contract Change Order", "Certified Construction Operator"],
+    "correct": 1
+  },
+  {
+    "question": "What is the purpose of a 'punch list'?",
+    "options": ["List of workers on site", "Items to be completed or corrected", "Daily task schedule"],
+    "correct": 1
+  }
+]

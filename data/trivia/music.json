@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Which band released the album 'Abbey Road'?",
+    "options": ["The Rolling Stones", "The Beatles", "Led Zeppelin"],
+    "correct": 1
+  },
+  {
+    "question": "What instrument does Yo-Yo Ma famously play?",
+    "options": ["Violin", "Cello", "Piano"],
+    "correct": 1
+  },
+  {
+    "question": "Which composer wrote 'The Four Seasons'?",
+    "options": ["Bach", "Vivaldi", "Mozart"],
+    "correct": 1
+  },
+  {
+    "question": "What genre of music originated in New Orleans?",
+    "options": ["Blues", "Jazz", "Rock"],
+    "correct": 1
+  },
+  {
+    "question": "Which artist painted 'Starry Night'?",
+    "options": ["Pablo Picasso", "Vincent van Gogh", "Claude Monet"],
+    "correct": 1
+  },
+  {
+    "question": "What does 'forte' mean in music?",
+    "options": ["Soft", "Loud", "Fast"],
+    "correct": 1
+  },
+  {
+    "question": "Which musical has the song 'Memory'?",
+    "options": ["Phantom of the Opera", "Cats", "Les Misérables"],
+    "correct": 1
+  },
+  {
+    "question": "How many strings does a standard guitar have?",
+    "options": ["5", "6", "7"],
+    "correct": 1
+  },
+  {
+    "question": "Which rapper's real name is Marshall Mathers?",
+    "options": ["Jay-Z", "Eminem", "Kanye West"],
+    "correct": 1
+  },
+  {
+    "question": "What is the highest male singing voice?",
+    "options": ["Tenor", "Countertenor", "Baritone"],
+    "correct": 1
+  }
+]

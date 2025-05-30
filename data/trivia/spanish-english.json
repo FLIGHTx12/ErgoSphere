@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What does 'Hola' mean in English?",
+    "options": ["Goodbye", "Hello", "Thank you"],
+    "correct": 1
+  },
+  {
+    "question": "How do you say 'Good morning' in Spanish?",
+    "options": ["Buenas tardes", "Buenos días", "Buenas noches"],
+    "correct": 1
+  },
+  {
+    "question": "What is the past tense of 'go' in English?",
+    "options": ["Gone", "Went", "Going"],
+    "correct": 1
+  },
+  {
+    "question": "Which word means 'water' in Spanish?",
+    "options": ["Agua", "Leche", "Jugo"],
+    "correct": 0
+  },
+  {
+    "question": "What does 'Please' mean in Spanish?",
+    "options": ["Perdón", "Por favor", "Gracias"],
+    "correct": 1
+  },
+  {
+    "question": "Which is the correct plural of 'child' in English?",
+    "options": ["Childs", "Children", "Childrens"],
+    "correct": 1
+  },
+  {
+    "question": "How do you say 'red' in Spanish?",
+    "options": ["Azul", "Rojo", "Verde"],
+    "correct": 1
+  },
+  {
+    "question": "What type of word is 'quickly'?",
+    "options": ["Noun", "Adverb", "Adjective"],
+    "correct": 1
+  },
+  {
+    "question": "What does 'Gracias' mean in English?",
+    "options": ["Please", "Thank you", "Excuse me"],
+    "correct": 1
+  },
+  {
+    "question": "Which sentence is grammatically correct?",
+    "options": ["I have went to the store", "I have gone to the store", "I have go to the store"],
+    "correct": 1
+  }
+]
