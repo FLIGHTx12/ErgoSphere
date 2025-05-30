@@ -10,9 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const monsterButtonsContainer = document.getElementById("monsterButtons");
   const navbar = document.getElementById("navbar");
   let currentPlayer = 1;
+  
+  // Add fighter selection state
+  let activeFighters = {
+    jaybers8: true,
+    flight: true
+  };
 
   let timerStarted = false;
   let timer;
+  let audioDuration = 365; // Default duration, will be updated
   const gameOverAudio = new Audio('../assets/audio/hazzard.mp3');
   const fightMusic = new Audio('../assets/audio/ErgoArenaTheme.mp3');
   const healerSound = new Audio('../assets/audio/healer.mp3'); // Add healer sound
@@ -134,19 +141,75 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startTimer() {
-    let timeLeft = 365; // 5 minutes in seconds
-    const timerElement = document.getElementById("timer");
-    timer = setInterval(() => { // Assign the interval to the timer variable
-      if (timeLeft <= 0) {
+    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
+                                     .find(c => c.style.display === "block");
+    if (!activeMonsterContainer) {
+        console.error("No active monster container found for timer.");
+        return null;
+    }
+    const timerElement = activeMonsterContainer.querySelector("#timer"); 
+    if (!timerElement) {
+      console.error("Timer element not found in the active monster container!");
+      return null;
+    }
+
+    // Clear any existing timer before starting a new one
+    if (timer) {
         clearInterval(timer);
-        gameOver();
-      } else {
-        timeLeft--;
+    }
+
+    // Set initial time based on audio duration or default
+    let timeLeft = audioDuration; // Start with default
+    if (fightMusic.duration && fightMusic.duration !== Infinity) {
+        timeLeft = Math.floor(fightMusic.duration);
+        audioDuration = timeLeft; // Update global
+    }
+
+    // Function to update the timer display
+    function updateTimerDisplay() {
+        // Ensure timerElement is still valid
+        if (!document.body.contains(timerElement)) {
+            clearInterval(timer);
+            return;
+        }
+
+        if (fightMusic.duration && fightMusic.duration !== Infinity && !fightMusic.paused) {
+            // Use actual audio time if music is playing
+            timeLeft = Math.max(0, Math.floor(fightMusic.duration - fightMusic.currentTime));
+        } else {
+            // Fallback countdown if audio not available or paused
+            timeLeft = Math.max(0, timeLeft - 1);
+        }
+        
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-      }
-    }, 1000);
+
+        if (timeLeft <= 0 && timerStarted) {
+            clearInterval(timer);
+            gameOver();
+        }
+    }
+
+    // Set initial display
+    const initialMinutes = Math.floor(timeLeft / 60);
+    const initialSeconds = timeLeft % 60;
+    timerElement.textContent = `${initialMinutes}:${initialSeconds < 10 ? '0' : ''}${initialSeconds}`;
+
+    // Start the countdown
+    timer = setInterval(updateTimerDisplay, 1000);
+
+    // Update when audio metadata loads
+    fightMusic.onloadedmetadata = () => {
+        if (fightMusic.duration && fightMusic.duration !== Infinity) {
+            timeLeft = Math.floor(fightMusic.duration);
+            audioDuration = timeLeft;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+    };
+
     bindGameKeys(); // Bind keys when timer starts (game starts)
     return timer;
   }
@@ -207,6 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
     chooseOpponentBtn.textContent = "Choose Opponent";
     monsterButtonsContainer.appendChild(chooseOpponentBtn);
 
+    // Create Choose Fighters button
+    const chooseFightersBtn = document.createElement("button");
+    chooseFightersBtn.id = "chooseFightersBtn";
+    chooseFightersBtn.textContent = "Choose Fighters";
+    monsterButtonsContainer.appendChild(chooseFightersBtn);
+
     const addAttackButton = document.createElement("button");
     addAttackButton.id = "addAttackButton";
     addAttackButton.textContent = "Add Attack";
@@ -222,6 +291,134 @@ document.addEventListener("DOMContentLoaded", () => {
     monsterDropdown.style.display = "none";
     monsterButtonsContainer.appendChild(monsterDropdown);
 
+    // Create Fighter Selection Dropdown
+    const fighterDropdown = document.createElement("div");
+    fighterDropdown.id = "fighterDropdown";
+    
+    // Jaybers8 option
+    const jaybers8Option = document.createElement("div");
+    jaybers8Option.classList.add("fighter-option");
+    const jaybers8Checkbox = document.createElement("input");
+    jaybers8Checkbox.type = "checkbox";
+    jaybers8Checkbox.id = "jaybers8Checkbox";
+    jaybers8Checkbox.checked = true;
+    const jaybers8Label = document.createElement("label");
+    jaybers8Label.textContent = "Jaybers8";
+    jaybers8Label.htmlFor = "jaybers8Checkbox";
+    jaybers8Option.appendChild(jaybers8Checkbox);
+    jaybers8Option.appendChild(jaybers8Label);
+    
+    // FLIGHTx12! option
+    const flightOption = document.createElement("div");
+    flightOption.classList.add("fighter-option");
+    const flightCheckbox = document.createElement("input");
+    flightCheckbox.type = "checkbox";
+    flightCheckbox.id = "flightCheckbox";
+    flightCheckbox.checked = true;
+    const flightLabel = document.createElement("label");
+    flightLabel.textContent = "FLIGHTx12!";
+    flightLabel.htmlFor = "flightCheckbox";
+    flightOption.appendChild(flightCheckbox);
+    flightOption.appendChild(flightLabel);
+    
+    fighterDropdown.appendChild(jaybers8Option);
+    fighterDropdown.appendChild(flightOption);
+    monsterButtonsContainer.appendChild(fighterDropdown);
+
+    // Fighter selection event handlers
+    chooseFightersBtn.addEventListener("click", () => {
+      fighterDropdown.style.display = fighterDropdown.style.display === "block" ? "none" : "block";
+      // Hide monster dropdown if open
+      monsterDropdown.style.display = "none";
+    });
+
+    jaybers8Checkbox.addEventListener("change", () => {
+      activeFighters.jaybers8 = jaybers8Checkbox.checked;
+      updateFighterSelection();
+    });
+
+    flightCheckbox.addEventListener("change", () => {
+      activeFighters.flight = flightCheckbox.checked;
+      updateFighterSelection();
+    });
+
+    // Click outside to close dropdowns
+    document.addEventListener("click", (e) => {
+      if (!chooseFightersBtn.contains(e.target) && !fighterDropdown.contains(e.target)) {
+        fighterDropdown.style.display = "none";
+      }
+      if (!chooseOpponentBtn.contains(e.target) && !monsterDropdown.contains(e.target)) {
+        monsterDropdown.style.display = "none";
+      }
+    });
+
+    // Function to update fighter selection
+    function updateFighterSelection() {
+      // Ensure at least one fighter is selected
+      if (!activeFighters.jaybers8 && !activeFighters.flight) {
+        // Revert the change - at least one must be active
+        if (!jaybers8Checkbox.checked) {
+          jaybers8Checkbox.checked = true;
+          activeFighters.jaybers8 = true;
+        } else {
+          flightCheckbox.checked = true;
+          activeFighters.flight = true;
+        }
+        return;
+      }
+
+      // Update current player if they're no longer active
+      if (currentPlayer === 1 && !activeFighters.jaybers8) {
+        currentPlayer = 2;
+      } else if (currentPlayer === 2 && !activeFighters.flight) {
+        currentPlayer = 1;
+      }
+
+      // Update all existing monster containers
+      const monsterContainers = document.querySelectorAll(".monster-container");
+      monsterContainers.forEach(container => {
+        updateContainerForFighters(container);
+      });
+    }
+
+    function updateContainerForFighters(container) {
+      const playerToggle = container.querySelector("#playerToggle");
+      const attackButton = container.querySelector("#attackButton");
+      const container1 = container.querySelector("#attackInputs1");
+      const container2 = container.querySelector("#attackInputs2");
+
+      if (!playerToggle || !attackButton) return;
+
+      // Hide/show player toggle button based on active fighters
+      if (activeFighters.jaybers8 && activeFighters.flight) {
+        playerToggle.style.display = "block";
+      } else {
+        playerToggle.style.display = "none";
+      }
+
+      // Update button texts and visibility
+      if (activeFighters.jaybers8 && !activeFighters.flight) {
+        currentPlayer = 1;
+        attackButton.textContent = "Jaybers8 Attack!";
+        container1.style.display = "block";
+        container2.style.display = "none";
+      } else if (!activeFighters.jaybers8 && activeFighters.flight) {
+        currentPlayer = 2;
+        attackButton.textContent = "FLIGHTx12! Attack!";
+        container1.style.display = "none";
+        container2.style.display = "block";
+      } else {
+        // Both active - use current player
+        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+        playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+        container1.style.display = currentPlayer === 1 ? "block" : "none";
+        container2.style.display = currentPlayer === 2 ? "block" : "none";
+      }
+
+      toggleButtonColors(currentPlayer);
+    }
+
+    // Create monster containers and populate dropdown
     monsters.forEach((monster, index) => {
       const option = document.createElement("option");
       option.value = index;
@@ -231,18 +428,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const monsterContainer = document.createElement("div");
       monsterContainer.classList.add("monster-container");
       monsterContainer.style.display = "none";
-      gameContainer.appendChild(monsterContainer);      // Create history container as sibling to monster container, not as child
+      gameContainer.appendChild(monsterContainer);
+
+      // Create history container as sibling to monster container, not as child
       const historyContainer = document.createElement("div");
       historyContainer.id = "historyContainer" + index; // Add index to make it unique
       historyContainer.style.display = "none"; // Hide by default, show only when monster is selected
       
-      // Add timer element to history container
-      const timerElement = document.createElement("div");
-      timerElement.id = "timer";
-      timerElement.style.fontSize = "2em";
-      timerElement.style.fontWeight = "bold";
-      timerElement.style.marginBottom = "10px";
-      historyContainer.appendChild(timerElement);
+      // REMOVE timer element from history container
+      // const timerElement = document.createElement("div");
+      // timerElement.id = "timer"; // This ID was problematic here
+      // timerElement.style.fontSize = "2em";
+      // timerElement.style.fontWeight = "bold";
+      // timerElement.style.marginBottom = "10px";
+      // historyContainer.appendChild(timerElement); 
       
       gameContainer.appendChild(historyContainer); // Append to game container, NOT monster container
 
@@ -295,7 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
       container1.id = "attackInputs1";
       const container2 = document.createElement("div");
       container2.id = "attackInputs2";
-      container2.style.display = "none"; // initially hide FLIGHTx12!'s inputs
+      container2.style.display = "none"; // initially hide FLIGHTx12!'s input
 
       // Create top button row container
       const topButtonsContainer = document.createElement("div");
@@ -306,19 +505,27 @@ document.addEventListener("DOMContentLoaded", () => {
       playerToggle.id = "playerToggle";
       playerToggle.textContent = "Switch to FLIGHTx12!";
       playerToggle.addEventListener("click", () => {
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
-        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-        playerToggle.textContent =
-          currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-        toggleContainer(currentPlayer);
-        toggleButtonColors(currentPlayer);
+        // Only switch if both players are active
+        if (activeFighters.jaybers8 && activeFighters.flight) {
+          currentPlayer = currentPlayer === 1 ? 2 : 1;
+          attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+          playerToggle.textContent =
+            currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+          toggleContainer(currentPlayer);
+          toggleButtonColors(currentPlayer);
 
-        // Add toggle dialogue to history container
-        const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
-        const toggleDialogue = selectDialogue(monster.toggleDialogues[`player${currentPlayer}`]);
-        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${toggleDialogue}</p>`;
-        historyContainer.scrollTop = historyContainer.scrollHeight;
+          // Add toggle dialogue to history container
+          const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
+          const toggleDialogue = selectDialogue(monster.toggleDialogues[`player${currentPlayer}`]);
+          historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${toggleDialogue}</p>`;
+          historyContainer.scrollTop = historyContainer.scrollHeight;
+        }
       });
+
+      // Create Timer element for the top bar
+      const timerDisplayElement = document.createElement("div");
+      timerDisplayElement.id = "timer"; // This ID will be targeted by CSS and startTimer
+      timerDisplayElement.textContent = "6:05"; // Initial display
 
       // Create attack button (back in top right)
       const attackButtonContainer = document.createElement("div");
@@ -329,12 +536,13 @@ document.addEventListener("DOMContentLoaded", () => {
       attackButton.textContent = `Jaybers8 Attack!`;
       attackButtonContainer.appendChild(attackButton);
 
-      // Add both buttons to top container
+      // Add elements to top container: toggle, TIMER, attack button
       topButtonsContainer.appendChild(playerToggle);
+      topButtonsContainer.appendChild(timerDisplayElement); // Add timer here
       topButtonsContainer.appendChild(attackButtonContainer);
 
       // Append elements to monster container in new order
-      monsterContainer.appendChild(topButtonsContainer); // Add top buttons first
+      monsterContainer.appendChild(topButtonsContainer);
       monsterContainer.appendChild(monsterDiv);
       monsterDiv.appendChild(lifeBar);
       lifeBar.appendChild(lifeBarGreen);
@@ -343,8 +551,6 @@ document.addEventListener("DOMContentLoaded", () => {
       monsterImage.appendChild(image);
       monsterContainer.appendChild(container1);
       monsterContainer.appendChild(container2);
-      // Remove this line as we're no longer adding historyContainer to monsterContainer
-      // monsterContainer.appendChild(historyContainer);
 
       let monsterLife = monster.health;
       let numAttacks = { 1: 1, 2: 1 }; // Track attack inputs for both players
@@ -492,8 +698,12 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
         // Add time remaining to history
-        const timeElement = document.getElementById("timer");
-        historyContainer.innerHTML += `<p style="color:#888; font-size:1rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);">Time Remaining: ${timeElement.textContent}</p>`;
+        const currentTimerElement = monsterContainer.querySelector("#timer"); // Get timer from current monster
+        if (currentTimerElement) {
+            historyContainer.innerHTML += `<p style="color:#888; font-size:1rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);">Time Remaining: ${currentTimerElement.textContent}</p>`;
+        } else {
+            historyContainer.innerHTML += `<p style="color:#888; font-size:1rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);">Time Remaining: N/A</p>`;
+        }
         historyContainer.innerHTML += `<hr>`;
         historyContainer.scrollTop = historyContainer.scrollHeight;
 
@@ -508,7 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Automatically switch to the next player after attack (only if monster is still alive)
-        if (monsterLife > 0) {
+        if (monsterLife > 0 && activeFighters.jaybers8 && activeFighters.flight) {
           setTimeout(() => {
             switchToNextPlayer();
             
@@ -532,11 +742,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Function to switch to the next player (moved inside monster container scope)
       function switchToNextPlayer() {
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
-        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-        playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-        toggleContainer(currentPlayer);
-        toggleButtonColors(currentPlayer);
+        // Only switch if both players are active
+        if (activeFighters.jaybers8 && activeFighters.flight) {
+          currentPlayer = currentPlayer === 1 ? 2 : 1;
+          attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+          playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+          toggleContainer(currentPlayer);
+          toggleButtonColors(currentPlayer);
+        }
       }
 
       // Add swipe gesture handlers on mobile within each monster container
@@ -569,6 +782,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chooseOpponentBtn.addEventListener("click", () => {
       monsterDropdown.style.display = monsterDropdown.style.display === "block" ? "none" : "block";
+      // Hide fighter dropdown if open
+      fighterDropdown.style.display = "none";
     });
 
     monsterDropdown.addEventListener("change", () => {
@@ -596,7 +811,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         // Show the selected monster container
-        monsterContainers[selectedMonsterIndex].style.display = "block";
+        const activeMonsterContainer = monsterContainers[selectedMonsterIndex];
+        activeMonsterContainer.style.display = "block";
         
         // Show the corresponding history and info containers
         const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
@@ -604,21 +820,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (historyContainer) historyContainer.style.display = "block";
         if (infoContainer) infoContainer.style.display = "block";
         
-        monsterDropdown.style.display = "none";
+        // Update the selected monster container for current fighter selection
+        updateContainerForFighters(activeMonsterContainer);
         
-        // Start timer and play music immediately after monster selection
-        if (!timerStarted) {
-          timerStarted = true;
-          timer = startTimer();
-          playFightMusic();
-        }
+        monsterDropdown.style.display = "none";
+
+        // Always start/restart timer when a monster is selected
+        timerStarted = true;
+        timer = startTimer(); 
+        playFightMusic();
       }
     });
   }
 
   function toggleButtonColors(player) {
-    const attackButton = document.getElementById("attackButton");
-    const playerToggle = document.getElementById("playerToggle");
+    // Ensure we are targeting buttons within the *active* monster container
+    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
+    if (!activeMonsterContainer) return;
+
+    const attackButton = activeMonsterContainer.querySelector("#attackButton");
+    const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
+
+    if (!attackButton || !playerToggle) return;
 
     if (player === 1) {
       attackButton.style.background = "purple";
@@ -662,8 +885,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tempDiv.innerHTML = historyContainer.innerHTML;
       const buttonClone = tempDiv.querySelector('.copy-log-button');
       if (buttonClone) buttonClone.remove();
-      const timerClone = tempDiv.querySelector('#timer');
-      if (timerClone) timerClone.remove();
+      // const timerClone = tempDiv.querySelector('#timer'); // Timer is no longer in history container
+      // if (timerClone) timerClone.remove();
       const paragraphs = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
       let battleLog = "";
       paragraphs.forEach(p => {
@@ -726,15 +949,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to switch to the next player
   function switchToNextPlayer() {
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
-    const attackButton = document.querySelector("#attackButton");
-    const playerToggle = document.querySelector("#playerToggle");
-    
-    if (attackButton && playerToggle) {
-      attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-      playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-      toggleContainer(currentPlayer);
-      toggleButtonColors(currentPlayer);
+    // Only switch if both players are active
+    if (activeFighters.jaybers8 && activeFighters.flight) {
+      currentPlayer = currentPlayer === 1 ? 2 : 1;
+      
+      // Target elements within the currently visible monster container
+      const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
+      if (!activeMonsterContainer) return;
+
+      const attackButton = activeMonsterContainer.querySelector("#attackButton");
+      const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
+      
+      if (attackButton && playerToggle) {
+        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+        playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+        toggleContainer(currentPlayer);
+        toggleButtonColors(currentPlayer);
+      }
     }
   }
 });
