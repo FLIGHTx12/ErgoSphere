@@ -67,11 +67,9 @@ class TriviaManager {
           <span id="timeLeft">30s</span>
         </div>
       </div>
-    `;
-
-    // Position the trivia container below the info container
+    `;    // Position the trivia container higher up for better PC monitor visibility
     triviaContainer.style.position = "absolute";
-    triviaContainer.style.top = "620px"; // Position below info container
+    triviaContainer.style.top = "450px"; // Raised position for better visibility
     triviaContainer.style.left = "10px";
     triviaContainer.style.width = "350px";
     triviaContainer.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
