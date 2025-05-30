@@ -118,5 +118,485 @@
       "She be going to the store",
       "She were going to the store"
     ]
+  },
+  {
+    "question": "What does 'hermano' mean in English?",
+    "correctAnswer": "Brother",
+    "wrongAnswers": [
+      "Sister",
+      "Father",
+      "Mother",
+      "Cousin",
+      "Uncle",
+      "Grandfather"
+    ]
+  },
+  {
+    "question": "How do you say 'kitchen' in Spanish?",
+    "correctAnswer": "Cocina",
+    "wrongAnswers": [
+      "Baño",
+      "Dormitorio",
+      "Sala",
+      "Comedor",
+      "Jardín",
+      "Garage"
+    ]
+  },
+  {
+    "question": "What does 'pollo' mean in English?",
+    "correctAnswer": "Chicken",
+    "wrongAnswers": [
+      "Fish",
+      "Beef",
+      "Pork",
+      "Turkey",
+      "Duck",
+      "Lamb"
+    ]
+  },
+  {
+    "question": "How do you say 'shoes' in Spanish?",
+    "correctAnswer": "Zapatos",
+    "wrongAnswers": [
+      "Calcetines",
+      "Pantalones",
+      "Camisa",
+      "Chaqueta",
+      "Sombrero",
+      "Guantes"
+    ]
+  },
+  {
+    "question": "What does 'feliz' mean in English?",
+    "correctAnswer": "Happy",
+    "wrongAnswers": [
+      "Sad",
+      "Angry",
+      "Tired",
+      "Hungry",
+      "Scared",
+      "Excited"
+    ]
+  },
+  {
+    "question": "How do you say 'weather' in Spanish?",
+    "correctAnswer": "Tiempo",
+    "wrongAnswers": [
+      "Clima",
+      "Lluvia",
+      "Sol",
+      "Viento",
+      "Nieve",
+      "Nube"
+    ]
+  },
+  {
+    "question": "What does 'escuela' mean in English?",
+    "correctAnswer": "School",
+    "wrongAnswers": [
+      "Hospital",
+      "Library",
+      "Store",
+      "Restaurant",
+      "Bank",
+      "Church"
+    ]
+  },
+  {
+    "question": "How do you say 'to eat' in Spanish?",
+    "correctAnswer": "Comer",
+    "wrongAnswers": [
+      "Beber",
+      "Dormir",
+      "Caminar",
+      "Correr",
+      "Hablar",
+      "Escribir"
+    ]
+  },
+  {
+    "question": "What does 'ventana' mean in English?",
+    "correctAnswer": "Window",
+    "wrongAnswers": [
+      "Door",
+      "Wall",
+      "Floor",
+      "Ceiling",
+      "Roof",
+      "Table"
+    ]
+  },
+  {
+    "question": "How do you say 'beautiful' in Spanish?",
+    "correctAnswer": "Hermoso",
+    "wrongAnswers": [
+      "Feo",
+      "Grande",
+      "Pequeño",
+      "Nuevo",
+      "Viejo",
+      "Rápido"
+    ]
+  },
+  {
+    "question": "What does 'médico' mean in English?",
+    "correctAnswer": "Doctor",
+    "wrongAnswers": [
+      "Teacher",
+      "Lawyer",
+      "Engineer",
+      "Chef",
+      "Artist",
+      "Mechanic"
+    ]
+  },
+  {
+    "question": "How do you say 'to read' in Spanish?",
+    "correctAnswer": "Leer",
+    "wrongAnswers": [
+      "Escribir",
+      "Escuchar",
+      "Ver",
+      "Pensar",
+      "Recordar",
+      "Olvidar"
+    ]
+  },
+  {
+    "question": "What does 'dinero' mean in English?",
+    "correctAnswer": "Money",
+    "wrongAnswers": [
+      "Time",
+      "Work",
+      "Food",
+      "House",
+      "Car",
+      "Book"
+    ]
+  },
+  {
+    "question": "How do you say 'cold' in Spanish?",
+    "correctAnswer": "Frío",
+    "wrongAnswers": [
+      "Caliente",
+      "Tibio",
+      "Helado",
+      "Templado",
+      "Ardiente",
+      "Glacial"
+    ]
+  },
+  {
+    "question": "What does 'cabeza' mean in English?",
+    "correctAnswer": "Head",
+    "wrongAnswers": [
+      "Hand",
+      "Foot",
+      "Arm",
+      "Leg",
+      "Eye",
+      "Nose"
+    ]
+  },
+  {
+    "question": "How do you say 'to work' in Spanish?",
+    "correctAnswer": "Trabajar",
+    "wrongAnswers": [
+      "Estudiar",
+      "Jugar",
+      "Descansar",
+      "Viajar",
+      "Cocinar",
+      "Limpiar"
+    ]
+  },
+  {
+    "question": "What does 'música' mean in English?",
+    "correctAnswer": "Music",
+    "wrongAnswers": [
+      "Dance",
+      "Art",
+      "Theater",
+      "Cinema",
+      "Literature",
+      "Poetry"
+    ]
+  },
+  {
+    "question": "How do you say 'friend' in Spanish?",
+    "correctAnswer": "Amigo",
+    "wrongAnswers": [
+      "Enemigo",
+      "Vecino",
+      "Extraño",
+      "Compañero",
+      "Familiar",
+      "Conocido"
+    ]
+  },
+  {
+    "question": "What does 'ciudad' mean in English?",
+    "correctAnswer": "City",
+    "wrongAnswers": [
+      "Country",
+      "Village",
+      "Town",
+      "State",
+      "Province",
+      "Region"
+    ]
+  },
+  {
+    "question": "How do you say 'to sleep' in Spanish?",
+    "correctAnswer": "Dormir",
+    "wrongAnswers": [
+      "Despertar",
+      "Soñar",
+      "Descansar",
+      "Acostarse",
+      "Levantarse",
+      "Relajarse"
+    ]
+  },
+  {
+    "question": "What does 'corazón' mean in English?",
+    "correctAnswer": "Heart",
+    "wrongAnswers": [
+      "Brain",
+      "Lung",
+      "Liver",
+      "Kidney",
+      "Stomach",
+      "Muscle"
+    ]
+  },
+  {
+    "question": "How do you say 'expensive' in Spanish?",
+    "correctAnswer": "Caro",
+    "wrongAnswers": [
+      "Barato",
+      "Gratis",
+      "Costoso",
+      "Económico",
+      "Accesible",
+      "Razonable"
+    ]
+  },
+  {
+    "question": "What does 'perro' mean in English?",
+    "correctAnswer": "Dog",
+    "wrongAnswers": [
+      "Cat",
+      "Bird",
+      "Fish",
+      "Horse",
+      "Cow",
+      "Pig"
+    ]
+  },
+  {
+    "question": "How do you say 'to drive' in Spanish?",
+    "correctAnswer": "Manejar",
+    "wrongAnswers": [
+      "Caminar",
+      "Correr",
+      "Volar",
+      "Nadar",
+      "Saltar",
+      "Bailar"
+    ]
+  },
+  {
+    "question": "What does 'leche' mean in English?",
+    "correctAnswer": "Milk",
+    "wrongAnswers": [
+      "Water",
+      "Juice",
+      "Coffee",
+      "Tea",
+      "Soda",
+      "Wine"
+    ]
+  },
+  {
+    "question": "How do you say 'tired' in Spanish?",
+    "correctAnswer": "Cansado",
+    "wrongAnswers": [
+      "Despierto",
+      "Energético",
+      "Activo",
+      "Fuerte",
+      "Débil",
+      "Enfermo"
+    ]
+  },
+  {
+    "question": "What does 'mesa' mean in English?",
+    "correctAnswer": "Table",
+    "wrongAnswers": [
+      "Chair",
+      "Bed",
+      "Sofa",
+      "Desk",
+      "Cabinet",
+      "Shelf"
+    ]
+  },
+  {
+    "question": "How do you say 'to buy' in Spanish?",
+    "correctAnswer": "Comprar",
+    "wrongAnswers": [
+      "Vender",
+      "Pagar",
+      "Gastar",
+      "Ahorrar",
+      "Prestar",
+      "Regalar"
+    ]
+  },
+  {
+    "question": "What does 'joven' mean in English?",
+    "correctAnswer": "Young",
+    "wrongAnswers": [
+      "Old",
+      "Middle-aged",
+      "Adult",
+      "Senior",
+      "Mature",
+      "Elderly"
+    ]
+  },
+  {
+    "question": "How do you say 'dangerous' in Spanish?",
+    "correctAnswer": "Peligroso",
+    "wrongAnswers": [
+      "Seguro",
+      "Protegido",
+      "Tranquilo",
+      "Pacífico",
+      "Confiable",
+      "Estable"
+    ]
+  },
+  {
+    "question": "What does 'flor' mean in English?",
+    "correctAnswer": "Flower",
+    "wrongAnswers": [
+      "Tree",
+      "Leaf",
+      "Branch",
+      "Root",
+      "Grass",
+      "Plant"
+    ]
+  },
+  {
+    "question": "How do you say 'to understand' in Spanish?",
+    "correctAnswer": "Entender",
+    "wrongAnswers": [
+      "Confundir",
+      "Ignorar",
+      "Preguntar",
+      "Responder",
+      "Explicar",
+      "Enseñar"
+    ]
+  },
+  {
+    "question": "What does 'cocinar' mean in English?",
+    "correctAnswer": "To cook",
+    "wrongAnswers": [
+      "To eat",
+      "To drink",
+      "To serve",
+      "To clean",
+      "To wash",
+      "To prepare"
+    ]
+  },
+  {
+    "question": "How do you say 'heavy' in Spanish?",
+    "correctAnswer": "Pesado",
+    "wrongAnswers": [
+      "Ligero",
+      "Liviano",
+      "Suave",
+      "Delicado",
+      "Frágil",
+      "Pequeño"
+    ]
+  },
+  {
+    "question": "What does 'viaje' mean in English?",
+    "correctAnswer": "Trip",
+    "wrongAnswers": [
+      "Journey",
+      "Adventure",
+      "Experience",
+      "Vacation",
+      "Holiday",
+      "Excursion"
+    ]
+  },
+  {
+    "question": "How do you say 'to forget' in Spanish?",
+    "correctAnswer": "Olvidar",
+    "wrongAnswers": [
+      "Recordar",
+      "Memorizar",
+      "Aprender",
+      "Pensar",
+      "Imaginar",
+      "Soñar"
+    ]
+  },
+  {
+    "question": "What does 'rápido' mean in English?",
+    "correctAnswer": "Fast",
+    "wrongAnswers": [
+      "Slow",
+      "Medium",
+      "Steady",
+      "Careful",
+      "Gentle",
+      "Quiet"
+    ]
+  },
+  {
+    "question": "How do you say 'breakfast' in Spanish?",
+    "correctAnswer": "Desayuno",
+    "wrongAnswers": [
+      "Almuerzo",
+      "Cena",
+      "Merienda",
+      "Comida",
+      "Aperitivo",
+      "Postre"
+    ]
+  },
+  {
+    "question": "What does 'alegre' mean in English?",
+    "correctAnswer": "Cheerful",
+    "wrongAnswers": [
+      "Sad",
+      "Angry",
+      "Worried",
+      "Nervous",
+      "Confused",
+      "Bored"
+    ]
+  },
+  {
+    "question": "How do you say 'to help' in Spanish?",
+    "correctAnswer": "Ayudar",
+    "wrongAnswers": [
+      "Molestar",
+      "Ignorar",
+      "Abandonar",
+      "Criticar",
+      "Juzgar",
+      "Evitar"
+    ]
   }
 ]

@@ -118,5 +118,1409 @@
       "Straight",
       "Three of a Kind"
     ]
+  },
+  {
+    "question": "What year were the Minnesota Vikings founded?",
+    "correctAnswer": "1961",
+    "wrongAnswers": [
+      "1960",
+      "1962",
+      "1958",
+      "1963",
+      "1959",
+      "1964"
+    ]
+  },
+  {
+    "question": "What are the Minnesota Vikings' team colors?",
+    "correctAnswer": "Purple and Gold",
+    "wrongAnswers": [
+      "Blue and Silver",
+      "Purple and Silver",
+      "Blue and Gold",
+      "Purple and White",
+      "Red and Gold",
+      "Green and Gold"
+    ]
+  },
+  {
+    "question": "Where do the Minnesota Vikings play their home games?",
+    "correctAnswer": "U.S. Bank Stadium",
+    "wrongAnswers": [
+      "Target Field",
+      "Xcel Energy Center",
+      "TCF Bank Stadium",
+      "Metrodome",
+      "Metropolitan Stadium",
+      "Mall of America Field"
+    ]
+  },
+  {
+    "question": "How many Super Bowl appearances have the Minnesota Vikings made?",
+    "correctAnswer": "4",
+    "wrongAnswers": [
+      "3",
+      "5",
+      "2",
+      "6",
+      "1",
+      "0"
+    ]
+  },
+  {
+    "question": "Who is the Vikings' all-time leading rusher?",
+    "correctAnswer": "Adrian Peterson",
+    "wrongAnswers": [
+      "Chuck Foreman",
+      "Robert Smith",
+      "Chester Taylor",
+      "Dalvin Cook",
+      "Tommy Mason",
+      "Bill Brown"
+    ]
+  },
+  {
+    "question": "What division do the Minnesota Vikings play in?",
+    "correctAnswer": "NFC North",
+    "wrongAnswers": [
+      "NFC South",
+      "NFC East",
+      "NFC West",
+      "AFC North",
+      "AFC Central",
+      "NFC Central"
+    ]
+  },
+  {
+    "question": "Who was the Vikings' first head coach?",
+    "correctAnswer": "Norm Van Brocklin",
+    "wrongAnswers": [
+      "Bud Grant",
+      "Jerry Burns",
+      "Dennis Green",
+      "Mike Tice",
+      "Brad Childress",
+      "Leslie Frazier"
+    ]
+  },
+  {
+    "question": "What is the name of the Vikings' mascot?",
+    "correctAnswer": "Viktor",
+    "wrongAnswers": [
+      "Ragnar",
+      "Thor",
+      "Odin",
+      "Magnus",
+      "Bjorn",
+      "Sven"
+    ]
+  },
+  {
+    "question": "Which Vikings quarterback threw for the most yards in franchise history?",
+    "correctAnswer": "Fran Tarkenton",
+    "wrongAnswers": [
+      "Daunte Culpepper",
+      "Brett Favre",
+      "Tommy Kramer",
+      "Kirk Cousins",
+      "Warren Moon",
+      "Case Keenum"
+    ]
+  },
+  {
+    "question": "In what year did the Vikings move to U.S. Bank Stadium?",
+    "correctAnswer": "2016",
+    "wrongAnswers": [
+      "2015",
+      "2017",
+      "2014",
+      "2018",
+      "2013",
+      "2019"
+    ]
+  },
+  {
+    "question": "What was the name of the Vikings' previous stadium?",
+    "correctAnswer": "Hubert H. Humphrey Metrodome",
+    "wrongAnswers": [
+      "Metropolitan Stadium",
+      "Target Center",
+      "TCF Bank Stadium",
+      "Mall of America Field",
+      "Minneapolis Stadium",
+      "Minnesota Stadium"
+    ]
+  },
+  {
+    "question": "Which Vikings player is known as 'The Purple People Eater'?",
+    "correctAnswer": "The defensive line nickname",
+    "wrongAnswers": [
+      "Carl Eller",
+      "Alan Page",
+      "Jim Marshall",
+      "Gary Larsen",
+      "John Randle",
+      "Kevin Williams"
+    ]
+  },
+  {
+    "question": "Who holds the Vikings record for most receiving yards in a single season?",
+    "correctAnswer": "Randy Moss",
+    "wrongAnswers": [
+      "Carter Cris",
+      "Adam Thielen",
+      "Stefon Diggs",
+      "Jake Reed",
+      "Anthony Carter",
+      "Percy Harvin"
+    ]
+  },
+  {
+    "question": "What year did Adrian Peterson rush for over 2,000 yards?",
+    "correctAnswer": "2012",
+    "wrongAnswers": [
+      "2011",
+      "2013",
+      "2010",
+      "2014",
+      "2009",
+      "2015"
+    ]
+  },
+  {
+    "question": "Which Vikings coach has the most wins in franchise history?",
+    "correctAnswer": "Bud Grant",
+    "wrongAnswers": [
+      "Dennis Green",
+      "Jerry Burns",
+      "Mike Zimmer",
+      "Norm Van Brocklin",
+      "Brad Childress",
+      "Leslie Frazier"
+    ]
+  },
+  {
+    "question": "What is the Vikings' fight song called?",
+    "correctAnswer": "Skol, Vikings",
+    "wrongAnswers": [
+      "Purple Pride",
+      "Viking Victory",
+      "Minnesota March",
+      "Warrior Song",
+      "Purple Power",
+      "Nordic Thunder"
+    ]
+  },
+  {
+    "question": "Which Vikings player wore jersey number 84?",
+    "correctAnswer": "Randy Moss",
+    "wrongAnswers": [
+      "Cris Carter",
+      "Ahmad Rashad",
+      "Anthony Carter",
+      "Jake Reed",
+      "Percy Harvin",
+      "Kyle Rudolph"
+    ]
+  },
+  {
+    "question": "How many NFC Championship games have the Vikings won?",
+    "correctAnswer": "1",
+    "wrongAnswers": [
+      "2",
+      "3",
+      "4",
+      "0",
+      "5",
+      "6"
+    ]
+  },
+  {
+    "question": "What year did the Vikings have their 'Minneapolis Miracle' playoff win?",
+    "correctAnswer": "2018",
+    "wrongAnswers": [
+      "2017",
+      "2019",
+      "2016",
+      "2020",
+      "2015",
+      "2021"
+    ]
+  },
+  {
+    "question": "Who caught the 'Minneapolis Miracle' touchdown pass?",
+    "correctAnswer": "Stefon Diggs",
+    "wrongAnswers": [
+      "Adam Thielen",
+      "Kyle Rudolph",
+      "Jarius Wright",
+      "Laquon Treadwell",
+      "Michael Floyd",
+      "Aldrick Robinson"
+    ]
+  },
+  {
+    "question": "Which team did the Vikings defeat in the 'Minneapolis Miracle' game?",
+    "correctAnswer": "New Orleans Saints",
+    "wrongAnswers": [
+      "Green Bay Packers",
+      "Chicago Bears",
+      "Detroit Lions",
+      "Atlanta Falcons",
+      "Carolina Panthers",
+      "Tampa Bay Buccaneers"
+    ]
+  },
+  {
+    "question": "What number did Fran Tarkenton wear?",
+    "correctAnswer": "10",
+    "wrongAnswers": [
+      "12",
+      "8",
+      "9",
+      "11",
+      "7",
+      "14"
+    ]
+  },
+  {
+    "question": "Which Vikings defensive tackle was known as 'The Undertaker'?",
+    "correctAnswer": "John Randle",
+    "wrongAnswers": [
+      "Kevin Williams",
+      "Pat Williams",
+      "Henry Thomas",
+      "Keith Millard",
+      "Chris Doleman",
+      "Carl Eller"
+    ]
+  },
+  {
+    "question": "What was Adrian Peterson's nickname?",
+    "correctAnswer": "All Day",
+    "wrongAnswers": [
+      "Purple Jesus",
+      "The Beast",
+      "AP",
+      "Thunder",
+      "The Freight Train",
+      "Lightning"
+    ]
+  },
+  {
+    "question": "Which Vikings quarterback was nicknamed 'The Scrambler'?",
+    "correctAnswer": "Fran Tarkenton",
+    "wrongAnswers": [
+      "Daunte Culpepper",
+      "Tommy Kramer",
+      "Wade Wilson",
+      "Rich Gannon",
+      "Joe Kapp",
+      "Brad Johnson"
+    ]
+  },
+  {
+    "question": "What year did Brett Favre play for the Vikings?",
+    "correctAnswer": "2009-2010",
+    "wrongAnswers": [
+      "2008-2009",
+      "2010-2011",
+      "2007-2008",
+      "2011-2012",
+      "2006-2007",
+      "2012-2013"
+    ]
+  },
+  {
+    "question": "Which Vikings receiver was known as 'CC'?",
+    "correctAnswer": "Cris Carter",
+    "wrongAnswers": [
+      "Chad Beebe",
+      "Charles Johnson",
+      "Cordarrelle Patterson",
+      "Chester Taylor",
+      "Chris Walsh",
+      "Carl Lee"
+    ]
+  },
+  {
+    "question": "What is the seating capacity of U.S. Bank Stadium?",
+    "correctAnswer": "66,860",
+    "wrongAnswers": [
+      "65,000",
+      "70,000",
+      "68,500",
+      "64,200",
+      "67,800",
+      "69,000"
+    ]
+  },
+  {
+    "question": "Which Vikings player holds the franchise record for most career touchdowns?",
+    "correctAnswer": "Cris Carter",
+    "wrongAnswers": [
+      "Randy Moss",
+      "Chuck Foreman",
+      "Adrian Peterson",
+      "Bill Brown",
+      "Ahmad Rashad",
+      "Robert Smith"
+    ]
+  },
+  {
+    "question": "What was the Vikings' record in their inaugural 1961 season?",
+    "correctAnswer": "3-11",
+    "wrongAnswers": [
+      "2-12",
+      "4-10",
+      "1-13",
+      "5-9",
+      "0-14",
+      "6-8"
+    ]
+  },
+  {
+    "question": "Which Vikings kicker is famous for missing a field goal in the 1998 NFC Championship?",
+    "correctAnswer": "Gary Anderson",
+    "wrongAnswers": [
+      "Ryan Longwell",
+      "Blair Walsh",
+      "Dan Bailey",
+      "Fred Cox",
+      "Rich Karlis",
+      "Fuad Reveiz"
+    ]
+  },
+  {
+    "question": "What round was Adrian Peterson drafted in?",
+    "correctAnswer": "1st",
+    "wrongAnswers": [
+      "2nd",
+      "3rd",
+      "4th",
+      "5th",
+      "6th",
+      "7th"
+    ]
+  },
+  {
+    "question": "Which college did Randy Moss attend?",
+    "correctAnswer": "Marshall",
+    "wrongAnswers": [
+      "Notre Dame",
+      "Florida State",
+      "West Virginia",
+      "Miami",
+      "USC",
+      "Alabama"
+    ]
+  },
+  {
+    "question": "What number did Randy Moss wear with the Vikings?",
+    "correctAnswer": "84",
+    "wrongAnswers": [
+      "80",
+      "81",
+      "88",
+      "85",
+      "83",
+      "82"
+    ]
+  },
+  {
+    "question": "Which Vikings player was nicknamed 'The Freak'?",
+    "correctAnswer": "Randy Moss",
+    "wrongAnswers": [
+      "Daunte Culpepper",
+      "Adrian Peterson",
+      "John Randle",
+      "Chris Carter",
+      "Percy Harvin",
+      "Cordarrelle Patterson"
+    ]
+  },
+  {
+    "question": "What was the name of the Vikings' original stadium?",
+    "correctAnswer": "Metropolitan Stadium",
+    "wrongAnswers": [
+      "Hubert H. Humphrey Metrodome",
+      "Minnesota Stadium",
+      "Bloomington Stadium",
+      "Twin Cities Stadium",
+      "Memorial Stadium",
+      "Municipal Stadium"
+    ]
+  },
+  {
+    "question": "Which Vikings linebacker was known as 'The Judge'?",
+    "correctAnswer": "E.J. Henderson",
+    "wrongAnswers": [
+      "Chad Greenway",
+      "Ben Leber",
+      "Anthony Barr",
+      "Eric Kendricks",
+      "Matt Blair",
+      "Scott Studwell"
+    ]
+  },
+  {
+    "question": "What year did the Vikings draft Daunte Culpepper?",
+    "correctAnswer": "1999",
+    "wrongAnswers": [
+      "1998",
+      "2000",
+      "1997",
+      "2001",
+      "1996",
+      "2002"
+    ]
+  },
+  {
+    "question": "Which Vikings safety was known as 'Hitman'?",
+    "correctAnswer": "Robert Griffith",
+    "wrongAnswers": [
+      "Joey Browner",
+      "Harrison Smith",
+      "Darren Sharper",
+      "Xavier Rhodes",
+      "Antoine Winfield",
+      "Terence Newman"
+    ]
+  },
+  {
+    "question": "What year were the Minnesota Lynx founded?",
+    "correctAnswer": "1999",
+    "wrongAnswers": [
+      "1997",
+      "1998",
+      "2000",
+      "2001",
+      "1996",
+      "2002"
+    ]
+  },
+  {
+    "question": "How many WNBA championships have the Minnesota Lynx won?",
+    "correctAnswer": "4",
+    "wrongAnswers": [
+      "3",
+      "5",
+      "2",
+      "6",
+      "1",
+      "0"
+    ]
+  },
+  {
+    "question": "What are the Minnesota Lynx team colors?",
+    "correctAnswer": "Blue, Green, and Silver",
+    "wrongAnswers": [
+      "Purple and Gold",
+      "Blue and White",
+      "Green and Gold",
+      "Blue and Silver",
+      "Red and Blue",
+      "Black and Silver"
+    ]
+  },
+  {
+    "question": "Where do the Minnesota Lynx play their home games?",
+    "correctAnswer": "Target Center",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Xcel Energy Center",
+      "Williams Arena",
+      "Mariucci Arena",
+      "Roy Wilkins Auditorium",
+      "Minneapolis Armory"
+    ]
+  },
+  {
+    "question": "Who is considered the greatest player in Minnesota Lynx history?",
+    "correctAnswer": "Maya Moore",
+    "wrongAnswers": [
+      "Lindsay Whalen",
+      "Seimone Augustus",
+      "Rebekkah Brunson",
+      "Sylvia Fowles",
+      "Diana Taurasi",
+      "Sue Bird"
+    ]
+  },
+  {
+    "question": "Which years did the Minnesota Lynx win WNBA championships?",
+    "correctAnswer": "2011, 2013, 2015, 2017",
+    "wrongAnswers": [
+      "2010, 2012, 2014, 2016",
+      "2009, 2011, 2013, 2015",
+      "2012, 2014, 2016, 2018",
+      "2008, 2010, 2012, 2014",
+      "2011, 2012, 2015, 2017",
+      "2013, 2015, 2017, 2019"
+    ]
+  },
+  {
+    "question": "Who was the Lynx's longtime head coach during their championship runs?",
+    "correctAnswer": "Cheryl Reeve",
+    "wrongAnswers": [
+      "Brian Agler",
+      "Bill Laimbeer",
+      "Mike Thibault",
+      "Dan Hughes",
+      "Curt Miller",
+      "Sandy Brondello"
+    ]
+  },
+  {
+    "question": "What number did Maya Moore wear?",
+    "correctAnswer": "23",
+    "wrongAnswers": [
+      "24",
+      "22",
+      "25",
+      "21",
+      "32",
+      "33"
+    ]
+  },
+  {
+    "question": "Which university did Maya Moore attend?",
+    "correctAnswer": "UConn",
+    "wrongAnswers": [
+      "Stanford",
+      "Tennessee",
+      "Duke",
+      "Notre Dame",
+      "South Carolina",
+      "Baylor"
+    ]
+  },
+  {
+    "question": "What is the name of the Lynx mascot?",
+    "correctAnswer": "Prowl",
+    "wrongAnswers": [
+      "Luna",
+      "Lynxy",
+      "Shadow",
+      "Whiskers",
+      "Pounce",
+      "Claw"
+    ]
+  },
+  {
+    "question": "Which Lynx player was known as 'Whalen'?",
+    "correctAnswer": "Lindsay Whalen",
+    "wrongAnswers": [
+      "Maya Moore",
+      "Seimone Augustus",
+      "Rebekkah Brunson",
+      "Sylvia Fowles",
+      "Candice Wiggins",
+      "Monica Wright"
+    ]
+  },
+  {
+    "question": "What number did Lindsay Whalen wear?",
+    "correctAnswer": "13",
+    "wrongAnswers": [
+      "12",
+      "14",
+      "11",
+      "15",
+      "10",
+      "16"
+    ]
+  },
+  {
+    "question": "Which college did Lindsay Whalen attend?",
+    "correctAnswer": "University of Minnesota",
+    "wrongAnswers": [
+      "Minnesota State",
+      "St. Thomas",
+      "Wisconsin",
+      "Iowa",
+      "Michigan",
+      "Ohio State"
+    ]
+  },
+  {
+    "question": "What was Seimone Augustus's jersey number?",
+    "correctAnswer": "33",
+    "wrongAnswers": [
+      "32",
+      "34",
+      "31",
+      "35",
+      "23",
+      "30"
+    ]
+  },
+  {
+    "question": "Which university did Seimone Augustus attend?",
+    "correctAnswer": "LSU",
+    "wrongAnswers": [
+      "Tennessee",
+      "UConn",
+      "Stanford",
+      "Duke",
+      "Georgia",
+      "Auburn"
+    ]
+  },
+  {
+    "question": "What position did Rebekkah Brunson primarily play?",
+    "correctAnswer": "Forward",
+    "wrongAnswers": [
+      "Center",
+      "Guard",
+      "Point Guard",
+      "Shooting Guard",
+      "Small Forward",
+      "Power Forward"
+    ]
+  },
+  {
+    "question": "What number did Rebekkah Brunson wear?",
+    "correctAnswer": "32",
+    "wrongAnswers": [
+      "33",
+      "31",
+      "34",
+      "30",
+      "35",
+      "23"
+    ]
+  },
+  {
+    "question": "Which Lynx player won WNBA Finals MVP in 2017?",
+    "correctAnswer": "Sylvia Fowles",
+    "wrongAnswers": [
+      "Maya Moore",
+      "Lindsay Whalen",
+      "Seimone Augustus",
+      "Rebekkah Brunson",
+      "Renee Montgomery",
+      "Jia Perkins"
+    ]
+  },
+  {
+    "question": "What is Sylvia Fowles's jersey number?",
+    "correctAnswer": "34",
+    "wrongAnswers": [
+      "33",
+      "32",
+      "35",
+      "31",
+      "30",
+      "44"
+    ]
+  },
+  {
+    "question": "Which university did Sylvia Fowles attend?",
+    "correctAnswer": "LSU",
+    "wrongAnswers": [
+      "Tennessee",
+      "UConn",
+      "Stanford",
+      "Duke",
+      "South Carolina",
+      "Georgia"
+    ]
+  },
+  {
+    "question": "In what year did Maya Moore step away from basketball for social justice work?",
+    "correctAnswer": "2019",
+    "wrongAnswers": [
+      "2018",
+      "2020",
+      "2017",
+      "2021",
+      "2016",
+      "2022"
+    ]
+  },
+  {
+    "question": "How many WNBA Finals did the Lynx appear in during their dynasty years?",
+    "correctAnswer": "6",
+    "wrongAnswers": [
+      "5",
+      "7",
+      "4",
+      "8",
+      "3",
+      "9"
+    ]
+  },
+  {
+    "question": "Which team did the Lynx defeat in the 2011 WNBA Finals?",
+    "correctAnswer": "Atlanta Dream",
+    "wrongAnswers": [
+      "Indiana Fever",
+      "Phoenix Mercury",
+      "Los Angeles Sparks",
+      "Seattle Storm",
+      "San Antonio Stars",
+      "Chicago Sky"
+    ]
+  },
+  {
+    "question": "Which team did the Lynx defeat in the 2013 WNBA Finals?",
+    "correctAnswer": "Atlanta Dream",
+    "wrongAnswers": [
+      "Indiana Fever",
+      "Phoenix Mercury",
+      "Los Angeles Sparks",
+      "Seattle Storm",
+      "Chicago Sky",
+      "Connecticut Sun"
+    ]
+  },
+  {
+    "question": "Which team did the Lynx defeat in the 2015 WNBA Finals?",
+    "correctAnswer": "Indiana Fever",
+    "wrongAnswers": [
+      "Atlanta Dream",
+      "Phoenix Mercury",
+      "Los Angeles Sparks",
+      "Seattle Storm",
+      "Chicago Sky",
+      "Connecticut Sun"
+    ]
+  },
+  {
+    "question": "Which team did the Lynx defeat in the 2017 WNBA Finals?",
+    "correctAnswer": "Los Angeles Sparks",
+    "wrongAnswers": [
+      "Atlanta Dream",
+      "Indiana Fever",
+      "Phoenix Mercury",
+      "Seattle Storm",
+      "Chicago Sky",
+      "Connecticut Sun"
+    ]
+  },
+  {
+    "question": "What was the Lynx's regular season record in 2016?",
+    "correctAnswer": "28-6",
+    "wrongAnswers": [
+      "27-7",
+      "29-5",
+      "26-8",
+      "30-4",
+      "25-9",
+      "24-10"
+    ]
+  },
+  {
+    "question": "Which Lynx player was drafted #1 overall in 2011?",
+    "correctAnswer": "Maya Moore",
+    "wrongAnswers": [
+      "Seimone Augustus",
+      "Lindsay Whalen",
+      "Rebekkah Brunson",
+      "Sylvia Fowles",
+      "Monica Wright",
+      "Candice Wiggins"
+    ]
+  },
+  {
+    "question": "What year was Seimone Augustus drafted by the Lynx?",
+    "correctAnswer": "2006",
+    "wrongAnswers": [
+      "2005",
+      "2007",
+      "2004",
+      "2008",
+      "2003",
+      "2009"
+    ]
+  },
+  {
+    "question": "Which arena did the Lynx play in before Target Center?",
+    "correctAnswer": "Target Center (always)",
+    "wrongAnswers": [
+      "Williams Arena",
+      "Xcel Energy Center",
+      "Mariucci Arena",
+      "Roy Wilkins Auditorium",
+      "Minneapolis Armory",
+      "St. Paul Civic Center"
+    ]
+  },
+  {
+    "question": "What is the Lynx's playoff record during their championship years (2011-2017)?",
+    "correctAnswer": "28-8",
+    "wrongAnswers": [
+      "30-6",
+      "26-10",
+      "32-4",
+      "24-12",
+      "29-7",
+      "27-9"
+    ]
+  },
+  {
+    "question": "Which Lynx player won WNBA Rookie of the Year in 2011?",
+    "correctAnswer": "Maya Moore",
+    "wrongAnswers": [
+      "Monica Wright",
+      "Candice Wiggins",
+      "Rebekkah Brunson",
+      "Lindsay Whalen",
+      "Seimone Augustus",
+      "Sylvia Fowles"
+    ]
+  },
+  {
+    "question": "How many All-Star selections did Maya Moore have as a Lynx player?",
+    "correctAnswer": "6",
+    "wrongAnswers": [
+      "5",
+      "7",
+      "4",
+      "8",
+      "3",
+      "9"
+    ]
+  },
+  {
+    "question": "Which year did Lindsay Whalen retire?",
+    "correctAnswer": "2018",
+    "wrongAnswers": [
+      "2017",
+      "2019",
+      "2016",
+      "2020",
+      "2015",
+      "2021"
+    ]
+  },
+  {
+    "question": "What role did Lindsay Whalen take after retiring as a player?",
+    "correctAnswer": "University of Minnesota women's basketball coach",
+    "wrongAnswers": [
+      "Lynx assistant coach",
+      "WNBA analyst",
+      "Lynx front office",
+      "High school coach",
+      "Youth basketball director",
+      "Sports broadcaster"
+    ]
+  },
+  {
+    "question": "Which Lynx player was known for her defensive prowess and rebounding?",
+    "correctAnswer": "Rebekkah Brunson",
+    "wrongAnswers": [
+      "Maya Moore",
+      "Lindsay Whalen",
+      "Seimone Augustus",
+      "Sylvia Fowles",
+      "Monica Wright",
+      "Candice Wiggins"
+    ]
+  },
+  {
+    "question": "What was the Lynx's home attendance average during their peak years?",
+    "correctAnswer": "Over 10,000",
+    "wrongAnswers": [
+      "8,000-9,000",
+      "9,000-10,000",
+      "7,000-8,000",
+      "11,000-12,000",
+      "6,000-7,000",
+      "12,000+"
+    ]
+  },
+  {
+    "question": "Which Lynx player was traded to obtain Sylvia Fowles?",
+    "correctAnswer": "Monica Wright",
+    "wrongAnswers": [
+      "Candice Wiggins",
+      "Jia Perkins",
+      "Renee Montgomery",
+      "Devereaux Peters",
+      "Tan White",
+      "Natasha Howard"
+    ]
+  },
+  {
+    "question": "What year did the Lynx reach their first WNBA Finals?",
+    "correctAnswer": "2011",
+    "wrongAnswers": [
+      "2010",
+      "2012",
+      "2009",
+      "2013",
+      "2008",
+      "2014"
+    ]
+  },
+  {
+    "question": "What year were the Minnesota Timberwolves founded?",
+    "correctAnswer": "1989",
+    "wrongAnswers": [
+      "1988",
+      "1990",
+      "1987",
+      "1991",
+      "1986",
+      "1992"
+    ]
+  },
+  {
+    "question": "What are the Minnesota Timberwolves' team colors?",
+    "correctAnswer": "Blue, Green, and Silver",
+    "wrongAnswers": [
+      "Blue and White",
+      "Green and Gold",
+      "Blue and Gold",
+      "Red and Blue",
+      "Black and Silver",
+      "Purple and Gold"
+    ]
+  },
+  {
+    "question": "Where do the Minnesota Timberwolves play their home games?",
+    "correctAnswer": "Target Center",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Xcel Energy Center",
+      "Williams Arena",
+      "Mariucci Arena",
+      "Minneapolis Armory",
+      "Target Field"
+    ]
+  },
+  {
+    "question": "Who is considered the greatest player in Timberwolves history?",
+    "correctAnswer": "Kevin Garnett",
+    "wrongAnswers": [
+      "Karl-Anthony Towns",
+      "Anthony Edwards",
+      "Stephon Marbury",
+      "Wally Szczerbiak",
+      "Sam Cassell",
+      "Latrell Sprewell"
+    ]
+  },
+  {
+    "question": "What division do the Minnesota Timberwolves play in?",
+    "correctAnswer": "Northwest Division",
+    "wrongAnswers": [
+      "Central Division",
+      "Pacific Division",
+      "Southwest Division",
+      "Atlantic Division",
+      "Southeast Division",
+      "Midwest Division"
+    ]
+  },
+  {
+    "question": "What number did Kevin Garnett wear with the Timberwolves?",
+    "correctAnswer": "21",
+    "wrongAnswers": [
+      "23",
+      "24",
+      "22",
+      "25",
+      "20",
+      "32"
+    ]
+  },
+  {
+    "question": "In what year did Kevin Garnett win NBA MVP?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "2007"
+    ]
+  },
+  {
+    "question": "What year did the Timberwolves make their only Western Conference Finals appearance?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "Never"
+    ]
+  },
+  {
+    "question": "Who was the Timberwolves' first-ever draft pick?",
+    "correctAnswer": "Pooh Richardson",
+    "wrongAnswers": [
+      "Christian Laettner",
+      "Isaiah Rider",
+      "Stephon Marbury",
+      "Kevin Garnett",
+      "Tom Gugliotta",
+      "Doug West"
+    ]
+  },
+  {
+    "question": "What pick was Kevin Garnett selected with in the 1995 NBA Draft?",
+    "correctAnswer": "5th overall",
+    "wrongAnswers": [
+      "1st overall",
+      "3rd overall",
+      "7th overall",
+      "4th overall",
+      "2nd overall",
+      "6th overall"
+    ]
+  },
+  {
+    "question": "Which high school did Kevin Garnett attend?",
+    "correctAnswer": "Farragut Career Academy",
+    "wrongAnswers": [
+      "Oak Hill Academy",
+      "Mauldin High School",
+      "Cristo Rey Jesuit",
+      "Montrose Christian",
+      "St. Vincent-St. Mary",
+      "IMG Academy"
+    ]
+  },
+  {
+    "question": "What is the Timberwolves' mascot name?",
+    "correctAnswer": "Crunch",
+    "wrongAnswers": [
+      "Howl",
+      "Timber",
+      "Growl",
+      "Fang",
+      "Claw",
+      "Pack"
+    ]
+  },
+  {
+    "question": "Who holds the Timberwolves franchise record for most points in a single game?",
+    "correctAnswer": "Mo Williams",
+    "wrongAnswers": [
+      "Kevin Garnett",
+      "Karl-Anthony Towns",
+      "Anthony Edwards",
+      "Stephon Marbury",
+      "Isaiah Rider",
+      "Wally Szczerbiak"
+    ]
+  },
+  {
+    "question": "How many points did Mo Williams score in his franchise record performance?",
+    "correctAnswer": "52",
+    "wrongAnswers": [
+      "50",
+      "54",
+      "48",
+      "56",
+      "49",
+      "51"
+    ]
+  },
+  {
+    "question": "What year was Karl-Anthony Towns drafted by the Timberwolves?",
+    "correctAnswer": "2015",
+    "wrongAnswers": [
+      "2014",
+      "2016",
+      "2013",
+      "2017",
+      "2012",
+      "2018"
+    ]
+  },
+  {
+    "question": "What pick was Karl-Anthony Towns selected with?",
+    "correctAnswer": "1st overall",
+    "wrongAnswers": [
+      "2nd overall",
+      "3rd overall",
+      "4th overall",
+      "5th overall",
+      "6th overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "Which university did Karl-Anthony Towns attend?",
+    "correctAnswer": "Kentucky",
+    "wrongAnswers": [
+      "Duke",
+      "North Carolina",
+      "Kansas",
+      "UCLA",
+      "Arizona",
+      "Michigan State"
+    ]
+  },
+  {
+    "question": "What year was Anthony Edwards drafted by the Timberwolves?",
+    "correctAnswer": "2020",
+    "wrongAnswers": [
+      "2019",
+      "2021",
+      "2018",
+      "2022",
+      "2017",
+      "2023"
+    ]
+  },
+  {
+    "question": "What pick was Anthony Edwards selected with?",
+    "correctAnswer": "1st overall",
+    "wrongAnswers": [
+      "2nd overall",
+      "3rd overall",
+      "4th overall",
+      "5th overall",
+      "6th overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "Which university did Anthony Edwards attend?",
+    "correctAnswer": "Georgia",
+    "wrongAnswers": [
+      "Auburn",
+      "Florida",
+      "Tennessee",
+      "Kentucky",
+      "Alabama",
+      "LSU"
+    ]
+  },
+  {
+    "question": "Who was the Timberwolves' head coach during their 2004 playoff run?",
+    "correctAnswer": "Flip Saunders",
+    "wrongAnswers": [
+      "Rick Adelman",
+      "Randy Wittman",
+      "Chris Finch",
+      "Tom Thibodeau",
+      "Ryan Saunders",
+      "Kurt Rambis"
+    ]
+  },
+  {
+    "question": "What was the Timberwolves' record in the 2003-04 regular season?",
+    "correctAnswer": "58-24",
+    "wrongAnswers": [
+      "56-26",
+      "60-22",
+      "54-28",
+      "62-20",
+      "52-30",
+      "50-32"
+    ]
+  },
+  {
+    "question": "Which team eliminated the Timberwolves in the 2004 Western Conference Finals?",
+    "correctAnswer": "Los Angeles Lakers",
+    "wrongAnswers": [
+      "San Antonio Spurs",
+      "Sacramento Kings",
+      "Dallas Mavericks",
+      "Phoenix Suns",
+      "Denver Nuggets",
+      "Portland Trail Blazers"
+    ]
+  },
+  {
+    "question": "What year did Kevin Garnett leave the Timberwolves for the Boston Celtics?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004",
+      "2010"
+    ]
+  },
+  {
+    "question": "How many All-Star selections did Kevin Garnett have as a Timberwolf?",
+    "correctAnswer": "10",
+    "wrongAnswers": [
+      "9",
+      "11",
+      "8",
+      "12",
+      "7",
+      "13"
+    ]
+  },
+  {
+    "question": "What number does Karl-Anthony Towns wear?",
+    "correctAnswer": "32",
+    "wrongAnswers": [
+      "34",
+      "33",
+      "31",
+      "30",
+      "35",
+      "23"
+    ]
+  },
+  {
+    "question": "What number does Anthony Edwards wear?",
+    "correctAnswer": "5",
+    "wrongAnswers": [
+      "1",
+      "3",
+      "7",
+      "9",
+      "11",
+      "23"
+    ]
+  },
+  {
+    "question": "Who was the first Timberwolves player to have his number retired?",
+    "correctAnswer": "Malik Sealy",
+    "wrongAnswers": [
+      "Kevin Garnett",
+      "Flip Saunders",
+      "Sam Mitchell",
+      "Wally Szczerbiak",
+      "Stephon Marbury",
+      "Isaiah Rider"
+    ]
+  },
+  {
+    "question": "What number was retired for Malik Sealy?",
+    "correctAnswer": "2",
+    "wrongAnswers": [
+      "21",
+      "12",
+      "22",
+      "32",
+      "42",
+      "52"
+    ]
+  },
+  {
+    "question": "What number was retired for Flip Saunders?",
+    "correctAnswer": "17",
+    "wrongAnswers": [
+      "7",
+      "27",
+      "37",
+      "47",
+      "57",
+      "77"
+    ]
+  },
+  {
+    "question": "In what year did the Timberwolves retire Kevin Garnett's number?",
+    "correctAnswer": "2022",
+    "wrongAnswers": [
+      "2021",
+      "2020",
+      "2019",
+      "2023",
+      "2018",
+      "2024"
+    ]
+  },
+  {
+    "question": "What was the Timberwolves' first playoff appearance?",
+    "correctAnswer": "1997",
+    "wrongAnswers": [
+      "1996",
+      "1998",
+      "1995",
+      "1999",
+      "1994",
+      "2000"
+    ]
+  },
+  {
+    "question": "How many playoff appearances have the Timberwolves made in franchise history?",
+    "correctAnswer": "2",
+    "wrongAnswers": [
+      "1",
+      "3",
+      "4",
+      "5",
+      "0",
+      "6"
+    ]
+  },
+  {
+    "question": "Which player was known as 'The Big Ticket'?",
+    "correctAnswer": "Kevin Garnett",
+    "wrongAnswers": [
+      "Karl-Anthony Towns",
+      "Sam Cassell",
+      "Latrell Sprewell",
+      "Wally Szczerbiak",
+      "Isaiah Rider",
+      "Stephon Marbury"
+    ]
+  },
+  {
+    "question": "What was the original seating capacity of Target Center when the Timberwolves started playing there?",
+    "correctAnswer": "19,006",
+    "wrongAnswers": [
+      "18,500",
+      "20,000",
+      "17,500",
+      "21,000",
+      "16,500",
+      "22,000"
+    ]
+  },
+  {
+    "question": "Which Timberwolves player was nicknamed 'Starbury'?",
+    "correctAnswer": "Stephon Marbury",
+    "wrongAnswers": [
+      "Kevin Garnett",
+      "Isaiah Rider",
+      "Wally Szczerbiak",
+      "Sam Cassell",
+      "Latrell Sprewell",
+      "Tom Gugliotta"
+    ]
+  },
+  {
+    "question": "What year did Stephon Marbury get traded from the Timberwolves?",
+    "correctAnswer": "1999",
+    "wrongAnswers": [
+      "1998",
+      "2000",
+      "1997",
+      "2001",
+      "1996",
+      "2002"
+    ]
+  },
+  {
+    "question": "Which team did the Timberwolves trade Stephon Marbury to?",
+    "correctAnswer": "New Jersey Nets",
+    "wrongAnswers": [
+      "Phoenix Suns",
+      "New York Knicks",
+      "Boston Celtics",
+      "Milwaukee Bucks",
+      "Atlanta Hawks",
+      "Orlando Magic"
+    ]
+  },
+  {
+    "question": "What was Kevin Garnett's nickname besides 'The Big Ticket'?",
+    "correctAnswer": "KG",
+    "wrongAnswers": [
+      "The Wolf",
+      "The Machine",
+      "The Beast",
+      "The Tower",
+      "The General",
+      "The King"
+    ]
   }
 ]

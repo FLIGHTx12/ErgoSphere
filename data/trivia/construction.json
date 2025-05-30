@@ -118,5 +118,724 @@
       "Permit application",
       "Quality standards"
     ]
+  },
+  {
+    "question": "What is the primary responsibility of a Construction Contract Administrator?",
+    "correctAnswer": "Managing contract compliance and documentation",
+    "wrongAnswers": [
+      "Design coordination",
+      "Cost estimation",
+      "Safety management",
+      "Quality control",
+      "Schedule development",
+      "Material procurement"
+    ]
+  },
+  {
+    "question": "In a Design-Bid-Build project delivery method, who typically holds the construction contract?",
+    "correctAnswer": "Owner and General Contractor",
+    "wrongAnswers": [
+      "Owner and Architect",
+      "Architect and Contractor",
+      "Owner and Design-Builder",
+      "General Contractor and Subcontractors",
+      "Owner and Construction Manager",
+      "Architect and Engineer"
+    ]
+  },
+  {
+    "question": "What does 'liquidated damages' refer to in construction contracts?",
+    "correctAnswer": "Predetermined compensation for delays",
+    "wrongAnswers": [
+      "Actual damage costs",
+      "Insurance coverage",
+      "Change order costs",
+      "Material waste charges",
+      "Equipment rental fees",
+      "Labor overtime costs"
+    ]
+  },
+  {
+    "question": "Which project delivery method combines design and construction under one contract?",
+    "correctAnswer": "Design-Build",
+    "wrongAnswers": [
+      "Design-Bid-Build",
+      "Construction Manager at Risk",
+      "Construction Manager as Agent",
+      "Multiple Prime",
+      "Integrated Project Delivery",
+      "Public-Private Partnership"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Performance Bond?",
+    "correctAnswer": "Guarantee contractor will complete the work",
+    "wrongAnswers": [
+      "Cover material costs",
+      "Pay worker wages",
+      "Insure against accidents",
+      "Guarantee design quality",
+      "Cover permit fees",
+      "Pay for equipment rental"
+    ]
+  },
+  {
+    "question": "In contract administration, what does 'substantial completion' mean?",
+    "correctAnswer": "Work is sufficiently complete for intended use",
+    "wrongAnswers": [
+      "All work is 100% complete",
+      "50% of work is complete",
+      "Foundation work is complete",
+      "All inspections are passed",
+      "Final payment is due",
+      "Warranty period begins"
+    ]
+  },
+  {
+    "question": "What is the typical duration of a Payment Bond claim period?",
+    "correctAnswer": "One year after final payment",
+    "wrongAnswers": [
+      "30 days after completion",
+      "90 days after completion",
+      "Six months after completion",
+      "Two years after completion",
+      "Three years after completion",
+      "Until warranty expires"
+    ]
+  },
+  {
+    "question": "Which document establishes the legal relationship between owner and contractor?",
+    "correctAnswer": "Agreement/Contract",
+    "wrongAnswers": [
+      "General Conditions",
+      "Specifications",
+      "Drawings",
+      "Addenda",
+      "Bid Form",
+      "Certificate of Insurance"
+    ]
+  },
+  {
+    "question": "What is 'time is of the essence' in construction contracts?",
+    "correctAnswer": "Deadlines are critical and enforceable",
+    "wrongAnswers": [
+      "Work must be done quickly",
+      "Overtime is required",
+      "Schedule updates are needed",
+      "Time tracking is mandatory",
+      "Fast-track delivery is used",
+      "Critical path method is required"
+    ]
+  },
+  {
+    "question": "In CM at Risk, who guarantees the Guaranteed Maximum Price (GMP)?",
+    "correctAnswer": "Construction Manager",
+    "wrongAnswers": [
+      "Owner",
+      "Architect",
+      "General Contractor",
+      "Subcontractors",
+      "Surety Company",
+      "Insurance Company"
+    ]
+  },
+  {
+    "question": "What is the primary purpose of General Conditions in a contract?",
+    "correctAnswer": "Define roles, responsibilities, and procedures",
+    "wrongAnswers": [
+      "Specify materials and methods",
+      "Show project layout",
+      "List bid requirements",
+      "Establish payment amounts",
+      "Define project scope",
+      "Set quality standards"
+    ]
+  },
+  {
+    "question": "Which party typically prepares the Certificate of Substantial Completion?",
+    "correctAnswer": "Architect",
+    "wrongAnswers": [
+      "Owner",
+      "Contractor",
+      "Construction Manager",
+      "Inspector",
+      "Surety",
+      "Insurance Agent"
+    ]
+  },
+  {
+    "question": "What does 'force majeure' protect against in construction contracts?",
+    "correctAnswer": "Unforeseeable circumstances beyond control",
+    "wrongAnswers": [
+      "Design errors",
+      "Material price increases",
+      "Labor shortages",
+      "Equipment breakdowns",
+      "Poor weather conditions",
+      "Permit delays"
+    ]
+  },
+  {
+    "question": "In Integrated Project Delivery (IPD), risk and reward are typically:",
+    "correctAnswer": "Shared among all key participants",
+    "wrongAnswers": [
+      "Borne entirely by the owner",
+      "Transferred to the contractor",
+      "Managed by the architect",
+      "Covered by insurance",
+      "Eliminated through contracts",
+      "Assigned to subcontractors"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Lien Waiver?",
+    "correctAnswer": "Release claim rights in exchange for payment",
+    "wrongAnswers": [
+      "Request additional payment",
+      "Report project progress",
+      "Document change orders",
+      "Submit material samples",
+      "Request time extensions",
+      "Report safety incidents"
+    ]
+  },
+  {
+    "question": "Which type of contract places the most risk on the contractor?",
+    "correctAnswer": "Lump Sum (Fixed Price)",
+    "wrongAnswers": [
+      "Cost Plus Fixed Fee",
+      "Cost Plus Percentage",
+      "Time and Materials",
+      "Unit Price",
+      "Guaranteed Maximum Price",
+      "Cost Plus Incentive Fee"
+    ]
+  },
+  {
+    "question": "What is 'concurrent delay' in construction?",
+    "correctAnswer": "Delays caused by both owner and contractor",
+    "wrongAnswers": [
+      "Multiple delays happening simultaneously",
+      "Delays in the critical path",
+      "Delays affecting multiple trades",
+      "Weather-related delays",
+      "Permit-related delays",
+      "Design-related delays"
+    ]
+  },
+  {
+    "question": "In a Cost Plus contract, what are 'reimbursable costs'?",
+    "correctAnswer": "Allowable project costs paid by owner",
+    "wrongAnswers": [
+      "Contractor's profit margin",
+      "Fixed fee payments",
+      "Penalty assessments",
+      "Change order markups",
+      "Overhead allocations",
+      "Contingency amounts"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Notice to Proceed?",
+    "correctAnswer": "Authorize contractor to begin work",
+    "wrongAnswers": [
+      "Approve payment application",
+      "Accept completed work",
+      "Modify contract terms",
+      "Issue change orders",
+      "Schedule inspections",
+      "Release final payment"
+    ]
+  },
+  {
+    "question": "Which document typically contains the dispute resolution procedures?",
+    "correctAnswer": "General Conditions",
+    "wrongAnswers": [
+      "Specifications",
+      "Drawings",
+      "Agreement",
+      "Addenda",
+      "Bid Form",
+      "Instructions to Bidders"
+    ]
+  },
+  {
+    "question": "What is 'float' in construction scheduling?",
+    "correctAnswer": "Time an activity can be delayed without affecting completion",
+    "wrongAnswers": [
+      "Time allocated for weather delays",
+      "Overtime work periods",
+      "Break time for workers",
+      "Equipment downtime",
+      "Material delivery time",
+      "Inspection periods"
+    ]
+  },
+  {
+    "question": "In contract administration, what is a 'deficiency list'?",
+    "correctAnswer": "Items requiring correction or completion",
+    "wrongAnswers": [
+      "Missing permit list",
+      "Material shortage report",
+      "Budget variance report",
+      "Schedule delay analysis",
+      "Safety violation record",
+      "Quality control checklist"
+    ]
+  },
+  {
+    "question": "What does 'novation' mean in construction contracts?",
+    "correctAnswer": "Substitution of a new contract or party",
+    "wrongAnswers": [
+      "Contract modification",
+      "Contract termination",
+      "Contract renewal",
+      "Contract assignment",
+      "Contract breach",
+      "Contract interpretation"
+    ]
+  },
+  {
+    "question": "Which party typically holds the construction permits?",
+    "correctAnswer": "Owner",
+    "wrongAnswers": [
+      "General Contractor",
+      "Architect",
+      "Construction Manager",
+      "Subcontractor",
+      "Local Authority",
+      "Design Professional"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Construction Change Directive (CCD)?",
+    "correctAnswer": "Direct changes when agreement hasn't been reached",
+    "wrongAnswers": [
+      "Approve completed work",
+      "Request information",
+      "Schedule inspections",
+      "Process payments",
+      "Issue permits",
+      "Report progress"
+    ]
+  },
+  {
+    "question": "In construction contracts, what does 'indemnification' mean?",
+    "correctAnswer": "Protection from liability and losses",
+    "wrongAnswers": [
+      "Payment for services",
+      "Performance guarantee",
+      "Quality assurance",
+      "Schedule compliance",
+      "Cost reimbursement",
+      "Completion certification"
+    ]
+  },
+  {
+    "question": "What is the typical order of contract document precedence (highest to lowest)?",
+    "correctAnswer": "Agreement, General Conditions, Specifications, Drawings",
+    "wrongAnswers": [
+      "Drawings, Specifications, General Conditions, Agreement",
+      "Specifications, Drawings, Agreement, General Conditions",
+      "General Conditions, Agreement, Drawings, Specifications",
+      "Drawings, Agreement, Specifications, General Conditions",
+      "Specifications, Agreement, General Conditions, Drawings"
+    ]
+  },
+  {
+    "question": "What is 'acceleration' in construction scheduling?",
+    "correctAnswer": "Speeding up work to meet deadlines",
+    "wrongAnswers": [
+      "Adding more work scope",
+      "Increasing payment rates",
+      "Improving work quality",
+      "Extending work hours",
+      "Adding more workers",
+      "Using better materials"
+    ]
+  },
+  {
+    "question": "Which insurance typically covers design professional errors and omissions?",
+    "correctAnswer": "Professional Liability Insurance",
+    "wrongAnswers": [
+      "General Liability Insurance",
+      "Workers' Compensation",
+      "Builder's Risk Insurance",
+      "Commercial Auto Insurance",
+      "Umbrella Insurance",
+      "Property Insurance"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Pre-Construction Conference?",
+    "correctAnswer": "Review project requirements and procedures",
+    "wrongAnswers": [
+      "Award the contract",
+      "Approve final payment",
+      "Accept completed work",
+      "Resolve disputes",
+      "Modify specifications",
+      "Issue change orders"
+    ]
+  },
+  {
+    "question": "In Value Engineering, the primary goal is to:",
+    "correctAnswer": "Reduce cost while maintaining function and quality",
+    "wrongAnswers": [
+      "Increase project scope",
+      "Extend project schedule",
+      "Improve aesthetics",
+      "Add safety features",
+      "Enhance durability",
+      "Simplify construction"
+    ]
+  },
+  {
+    "question": "What does 'privity of contract' mean?",
+    "correctAnswer": "Direct contractual relationship between parties",
+    "wrongAnswers": [
+      "Confidential contract terms",
+      "Private contract negotiations",
+      "Exclusive contract rights",
+      "Protected contract information",
+      "Restricted contract access",
+      "Secure contract storage"
+    ]
+  },
+  {
+    "question": "Which document typically establishes the project completion date?",
+    "correctAnswer": "Agreement/Contract",
+    "wrongAnswers": [
+      "Notice to Proceed",
+      "General Conditions",
+      "Specifications",
+      "Schedule of Values",
+      "Payment Application",
+      "Progress Report"
+    ]
+  },
+  {
+    "question": "What is 'backcharging' in construction?",
+    "correctAnswer": "Charging costs back to responsible party",
+    "wrongAnswers": [
+      "Prepaying for future work",
+      "Charging interest on late payments",
+      "Adding markup to materials",
+      "Billing for overtime work",
+      "Charging for change orders",
+      "Adding contingency costs"
+    ]
+  },
+  {
+    "question": "In construction law, what is 'quantum meruit'?",
+    "correctAnswer": "Payment for value of work performed",
+    "wrongAnswers": [
+      "Breach of contract penalty",
+      "Time extension request",
+      "Change order authorization",
+      "Final acceptance certificate",
+      "Lien waiver document",
+      "Performance bond claim"
+    ]
+  },
+  {
+    "question": "What is the purpose of a Payment Bond?",
+    "correctAnswer": "Ensure payment to subcontractors and suppliers",
+    "wrongAnswers": [
+      "Guarantee work completion",
+      "Cover design errors",
+      "Insure against accidents",
+      "Pay for permits",
+      "Cover material costs",
+      "Guarantee work quality"
+    ]
+  },
+  {
+    "question": "Which party typically administers the construction contract on behalf of the owner?",
+    "correctAnswer": "Architect/Engineer",
+    "wrongAnswers": [
+      "General Contractor",
+      "Construction Manager",
+      "Project Manager",
+      "Owner's Representative",
+      "Surety Company",
+      "Insurance Agent"
+    ]
+  },
+  {
+    "question": "What is 'mitigation of damages' in construction disputes?",
+    "correctAnswer": "Duty to minimize losses and damages",
+    "wrongAnswers": [
+      "Negotiating settlement terms",
+      "Calculating actual damages",
+      "Preventing future disputes",
+      "Documenting all losses",
+      "Seeking maximum compensation",
+      "Avoiding contract modifications"
+    ]
+  },
+  {
+    "question": "In construction scheduling, what is the 'critical path'?",
+    "correctAnswer": "Longest sequence of dependent activities",
+    "wrongAnswers": [
+      "Most expensive work activities",
+      "Most dangerous work sequence",
+      "First activities to be completed",
+      "Activities requiring permits",
+      "Work done by general contractor",
+      "Activities on the top floor"
+    ]
+  },
+  {
+    "question": "What is typically included in a Sworn Statement/Affidavit of Debts and Claims?",
+    "correctAnswer": "List of unpaid subcontractors and suppliers",
+    "wrongAnswers": [
+      "Project quality issues",
+      "Safety incident reports",
+      "Schedule delay causes",
+      "Material waste quantities",
+      "Equipment rental costs",
+      "Change order requests"
+    ]
+  },
+  {
+    "question": "What is the name of O'Hare's major terminal expansion and modernization program launched in 2019?",
+    "correctAnswer": "O'Hare 21",
+    "wrongAnswers": [
+      "Terminal Vision 2030",
+      "O'Hare Modernization Program",
+      "Gateway Chicago Project",
+      "O'Hare Future Ready",
+      "Terminal Next Generation",
+      "Chicago Aviation Initiative"
+    ]
+  },
+  {
+    "question": "Which terminal at O'Hare is being completely rebuilt as part of the modernization program?",
+    "correctAnswer": "Terminal 2",
+    "wrongAnswers": [
+      "Terminal 1",
+      "Terminal 3",
+      "Terminal 5",
+      "International Terminal",
+      "Domestic Terminal",
+      "Cargo Terminal"
+    ]
+  },
+  {
+    "question": "What is the estimated total cost of the O'Hare 21 modernization program?",
+    "correctAnswer": "$8.5 billion",
+    "wrongAnswers": [
+      "$5.2 billion",
+      "$6.8 billion",
+      "$10.3 billion",
+      "$12.1 billion",
+      "$7.4 billion",
+      "$9.7 billion"
+    ]
+  },
+  {
+    "question": "Which airline is the primary tenant of the new Terminal 2 satellite concourse?",
+    "correctAnswer": "American Airlines",
+    "wrongAnswers": [
+      "United Airlines",
+      "Delta Air Lines",
+      "Southwest Airlines",
+      "Alaska Airlines",
+      "JetBlue Airways",
+      "Spirit Airlines"
+    ]
+  },
+  {
+    "question": "What unique feature was incorporated into Terminal 5's design for international travelers?",
+    "correctAnswer": "Federal Inspection Services facility",
+    "wrongAnswers": [
+      "Underground people mover",
+      "Rooftop garden",
+      "Indoor waterfall",
+      "Shopping mall complex",
+      "Hotel integration",
+      "Conference center"
+    ]
+  },
+  {
+    "question": "Which construction method was primarily used for the new runway 10C/28C at O'Hare?",
+    "correctAnswer": "Concrete pavement construction",
+    "wrongAnswers": [
+      "Asphalt overlay",
+      "Composite pavement",
+      "Steel plate construction",
+      "Precast concrete slabs",
+      "Recycled material base",
+      "Flexible pavement design"
+    ]
+  },
+  {
+    "question": "What is the length of O'Hare's longest runway after the modernization?",
+    "correctAnswer": "13,000 feet",
+    "wrongAnswers": [
+      "10,500 feet",
+      "11,800 feet",
+      "12,200 feet",
+      "14,100 feet",
+      "15,000 feet",
+      "9,800 feet"
+    ]
+  },
+  {
+    "question": "Which sustainable feature was emphasized in O'Hare's new terminal construction?",
+    "correctAnswer": "LEED certification requirements",
+    "wrongAnswers": [
+      "Solar panel integration only",
+      "Wind power generation",
+      "Geothermal heating systems",
+      "Rainwater collection only",
+      "Green roof installation only",
+      "Electric vehicle charging only"
+    ]
+  },
+  {
+    "question": "What major infrastructure challenge was addressed in O'Hare's runway reconfiguration?",
+    "correctAnswer": "Intersecting runway elimination",
+    "wrongAnswers": [
+      "Noise reduction barriers",
+      "Wildlife management",
+      "Storm water drainage",
+      "Aircraft parking expansion",
+      "Cargo facility relocation",
+      "Air traffic control tower"
+    ]
+  },
+  {
+    "question": "Which transportation improvement was included in the O'Hare modernization?",
+    "correctAnswer": "Automated People Mover expansion",
+    "wrongAnswers": [
+      "Light rail connection",
+      "Monorail system",
+      "Underground subway",
+      "Express bus lanes",
+      "Helicopter landing pads",
+      "Water taxi service"
+    ]
+  },
+  {
+    "question": "What is the planned total number of gates after O'Hare 21 completion?",
+    "correctAnswer": "235 gates",
+    "wrongAnswers": [
+      "185 gates",
+      "200 gates",
+      "220 gates",
+      "250 gates",
+      "275 gates",
+      "190 gates"
+    ]
+  },
+  {
+    "question": "Which construction delivery method was used for the Terminal 2 project?",
+    "correctAnswer": "Design-Build",
+    "wrongAnswers": [
+      "Design-Bid-Build",
+      "Construction Manager at Risk",
+      "Multiple Prime Contracts",
+      "Public-Private Partnership",
+      "Integrated Project Delivery",
+      "Traditional Procurement"
+    ]
+  },
+  {
+    "question": "What was the primary reason for relocating Runway 14R/32L at O'Hare?",
+    "correctAnswer": "Eliminate runway intersections",
+    "wrongAnswers": [
+      "Increase runway length",
+      "Improve passenger access",
+      "Reduce construction costs",
+      "Meet noise regulations",
+      "Accommodate larger aircraft",
+      "Improve cargo operations"
+    ]
+  },
+  {
+    "question": "Which environmental consideration was critical in O'Hare's expansion planning?",
+    "correctAnswer": "Wetland mitigation requirements",
+    "wrongAnswers": [
+      "Historic preservation only",
+      "Air quality monitoring only",
+      "Soil contamination only",
+      "Archaeological surveys only",
+      "Wildlife habitat only",
+      "Groundwater protection only"
+    ]
+  },
+  {
+    "question": "What innovative technology was implemented in O'Hare's new baggage handling system?",
+    "correctAnswer": "RFID tracking integration",
+    "wrongAnswers": [
+      "Robotic sorting only",
+      "Pneumatic tube transport",
+      "Magnetic levitation",
+      "Laser scanning only",
+      "Artificial intelligence only",
+      "Blockchain verification"
+    ]
+  },
+  {
+    "question": "Which federal agency oversight was required for O'Hare's runway construction?",
+    "correctAnswer": "Federal Aviation Administration (FAA)",
+    "wrongAnswers": [
+      "Department of Transportation only",
+      "Environmental Protection Agency",
+      "Department of Homeland Security",
+      "Army Corps of Engineers",
+      "Federal Transit Administration",
+      "National Transportation Safety Board"
+    ]
+  },
+  {
+    "question": "What was the estimated duration for the complete O'Hare 21 program?",
+    "correctAnswer": "8 years",
+    "wrongAnswers": [
+      "5 years",
+      "6 years",
+      "10 years",
+      "12 years",
+      "7 years",
+      "15 years"
+    ]
+  },
+  {
+    "question": "Which construction challenge was unique to O'Hare's operational environment?",
+    "correctAnswer": "Maintaining 24/7 airport operations",
+    "wrongAnswers": [
+      "Extreme weather conditions only",
+      "Underground utilities only",
+      "High security requirements only",
+      "Noise restrictions only",
+      "Limited site access only",
+      "Soil conditions only"
+    ]
+  },
+  {
+    "question": "What type of pavement was specified for O'Hare's high-traffic taxiways?",
+    "correctAnswer": "Portland cement concrete",
+    "wrongAnswers": [
+      "Asphalt concrete only",
+      "Composite pavement",
+      "Interlocking concrete blocks",
+      "Rubberized asphalt",
+      "Recycled concrete aggregate",
+      "Steel-reinforced asphalt"
+    ]
+  },
+  {
+    "question": "Which passenger amenity was prioritized in the new O'Hare terminal designs?",
+    "correctAnswer": "Natural lighting and open spaces",
+    "wrongAnswers": [
+      "Shopping areas only",
+      "Restaurant spaces only",
+      "Business centers only",
+      "Entertainment zones only",
+      "Sleeping pods only",
+      "Exercise facilities only"
+    ]
   }
 ]

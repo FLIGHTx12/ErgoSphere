@@ -118,5 +118,965 @@
       "1786",
       "1792"
     ]
+  },
+  {
+    "question": "Which country was reunified in 1990?",
+    "correctAnswer": "Germany",
+    "wrongAnswers": [
+      "Korea",
+      "Vietnam",
+      "Yemen",
+      "Cyprus",
+      "Ireland",
+      "Palestine"
+    ]
+  },
+  {
+    "question": "The Gulf War began in which year?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988",
+      "1994"
+    ]
+  },
+  {
+    "question": "Which South African leader was released from prison in 1990?",
+    "correctAnswer": "Nelson Mandela",
+    "wrongAnswers": [
+      "Desmond Tutu",
+      "Steve Biko",
+      "Oliver Tambo",
+      "Thabo Mbeki",
+      "Walter Sisulu",
+      "Chris Hani"
+    ]
+  },
+  {
+    "question": "The Soviet Union officially dissolved in which year?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988",
+      "1994"
+    ]
+  },
+  {
+    "question": "Which ethnic conflict began in Yugoslavia in 1991?",
+    "correctAnswer": "Yugoslav Wars",
+    "wrongAnswers": [
+      "Rwandan Genocide",
+      "Balkan Crisis",
+      "Bosnian War only",
+      "Croatian War only",
+      "Kosovo War only",
+      "Serbian Conflict"
+    ]
+  },
+  {
+    "question": "Who became the first democratically elected President of South Africa in 1994?",
+    "correctAnswer": "Nelson Mandela",
+    "wrongAnswers": [
+      "F.W. de Klerk",
+      "Thabo Mbeki",
+      "Jacob Zuma",
+      "Desmond Tutu",
+      "Oliver Tambo",
+      "Cyril Ramaphosa"
+    ]
+  },
+  {
+    "question": "The genocide in Rwanda occurred in which year?",
+    "correctAnswer": "1994",
+    "wrongAnswers": [
+      "1993",
+      "1995",
+      "1992",
+      "1996",
+      "1991",
+      "1997"
+    ]
+  },
+  {
+    "question": "Which U.S. President was impeached in 1998?",
+    "correctAnswer": "Bill Clinton",
+    "wrongAnswers": [
+      "George H.W. Bush",
+      "Ronald Reagan",
+      "Jimmy Carter",
+      "Richard Nixon",
+      "Gerald Ford",
+      "George W. Bush"
+    ]
+  },
+  {
+    "question": "The Maastricht Treaty, which created the European Union, was signed in which year?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989",
+      "1995"
+    ]
+  },
+  {
+    "question": "Which country invaded Kuwait in 1990?",
+    "correctAnswer": "Iraq",
+    "wrongAnswers": [
+      "Iran",
+      "Saudi Arabia",
+      "Syria",
+      "Jordan",
+      "Israel",
+      "Turkey"
+    ]
+  },
+  {
+    "question": "The Los Angeles riots occurred in which year?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989",
+      "1995"
+    ]
+  },
+  {
+    "question": "Which Russian leader attempted a coup against Gorbachev in 1991?",
+    "correctAnswer": "Communist hardliners",
+    "wrongAnswers": [
+      "Boris Yeltsin",
+      "Vladimir Putin",
+      "Dmitry Medvedev",
+      "Anatoly Chubais",
+      "Alexander Lebed",
+      "Viktor Chernomyrdin"
+    ]
+  },
+  {
+    "question": "The Good Friday Agreement was signed to bring peace to which region?",
+    "correctAnswer": "Northern Ireland",
+    "wrongAnswers": [
+      "Scotland",
+      "Wales",
+      "Republic of Ireland",
+      "England",
+      "Isle of Man",
+      "Channel Islands"
+    ]
+  },
+  {
+    "question": "Which space station was launched by Russia in the 1990s?",
+    "correctAnswer": "Mir",
+    "wrongAnswers": [
+      "Salyut",
+      "ISS",
+      "Skylab",
+      "Tiangong",
+      "Freedom",
+      "Alpha"
+    ]
+  },
+  {
+    "question": "The World Wide Web was made publicly available in which year?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988",
+      "1994"
+    ]
+  },
+  {
+    "question": "Which volcano erupted in the Philippines in 1991?",
+    "correctAnswer": "Mount Pinatubo",
+    "wrongAnswers": [
+      "Mount Mayon",
+      "Mount Taal",
+      "Mount Apo",
+      "Mount Kanlaon",
+      "Mount Bulusan",
+      "Mount Hibok-Hibok"
+    ]
+  },
+  {
+    "question": "The first Gulf War was also known as Operation what?",
+    "correctAnswer": "Desert Storm",
+    "wrongAnswers": [
+      "Desert Shield",
+      "Iraqi Freedom",
+      "Enduring Freedom",
+      "Restore Hope",
+      "Just Cause",
+      "Urgent Fury"
+    ]
+  },
+  {
+    "question": "Which country experienced the 'Velvet Revolution' in 1989-1990?",
+    "correctAnswer": "Czechoslovakia",
+    "wrongAnswers": [
+      "Poland",
+      "Hungary",
+      "Romania",
+      "Bulgaria",
+      "East Germany",
+      "Yugoslavia"
+    ]
+  },
+  {
+    "question": "The Bosnian War began in which year?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989",
+      "1995"
+    ]
+  },
+  {
+    "question": "Which terrorist attack occurred at the World Trade Center in 1993?",
+    "correctAnswer": "Truck bombing in parking garage",
+    "wrongAnswers": [
+      "Airplane hijacking",
+      "Chemical attack",
+      "Hostage situation",
+      "Sniper attack",
+      "Subway bombing",
+      "Embassy bombing"
+    ]
+  },
+  {
+    "question": "Hong Kong was returned to China from which country in 1997?",
+    "correctAnswer": "United Kingdom",
+    "wrongAnswers": [
+      "Portugal",
+      "France",
+      "Netherlands",
+      "Spain",
+      "Germany",
+      "Japan"
+    ]
+  },
+  {
+    "question": "The siege at Waco, Texas involved which religious group?",
+    "correctAnswer": "Branch Davidians",
+    "wrongAnswers": [
+      "Heaven's Gate",
+      "Peoples Temple",
+      "Aum Shinrikyo",
+      "Order of the Solar Temple",
+      "The Family",
+      "Rajneesh Movement"
+    ]
+  },
+  {
+    "question": "Which leader was killed in a plane crash in 1994, sparking the Rwandan Genocide?",
+    "correctAnswer": "Juvénal Habyarimana",
+    "wrongAnswers": [
+      "Paul Kagame",
+      "Pasteur Bizimungu",
+      "Cyprien Ntaryamira",
+      "Théoneste Bagosora",
+      "Jean Kambanda",
+      "Augustin Bizimana"
+    ]
+  },
+  {
+    "question": "The Oslo Accords were signed between Israel and which organization?",
+    "correctAnswer": "PLO (Palestine Liberation Organization)",
+    "wrongAnswers": [
+      "Hamas",
+      "Hezbollah",
+      "Fatah",
+      "PFLP",
+      "Islamic Jihad",
+      "PA (Palestinian Authority)"
+    ]
+  },
+  {
+    "question": "Which country hosted the 1992 Summer Olympics?",
+    "correctAnswer": "Spain",
+    "wrongAnswers": [
+      "United States",
+      "Australia",
+      "South Korea",
+      "Greece",
+      "Germany",
+      "Canada"
+    ]
+  },
+  {
+    "question": "The Oklahoma City bombing occurred in which year?",
+    "correctAnswer": "1995",
+    "wrongAnswers": [
+      "1994",
+      "1996",
+      "1993",
+      "1997",
+      "1992",
+      "1998"
+    ]
+  },
+  {
+    "question": "Which former Yugoslav republic declared independence first in 1991?",
+    "correctAnswer": "Slovenia",
+    "wrongAnswers": [
+      "Croatia",
+      "Bosnia and Herzegovina",
+      "Macedonia",
+      "Montenegro",
+      "Serbia",
+      "Kosovo"
+    ]
+  },
+  {
+    "question": "The Chernobyl nuclear disaster's effects were still being felt in the 1990s. It originally occurred in which year?",
+    "correctAnswer": "1986",
+    "wrongAnswers": [
+      "1985",
+      "1987",
+      "1984",
+      "1988",
+      "1983",
+      "1989"
+    ]
+  },
+  {
+    "question": "Which cult carried out the Tokyo subway sarin gas attack in 1995?",
+    "correctAnswer": "Aum Shinrikyo",
+    "wrongAnswers": [
+      "Branch Davidians",
+      "Heaven's Gate",
+      "Order of the Solar Temple",
+      "The Family",
+      "Peoples Temple",
+      "Rajneesh Movement"
+    ]
+  },
+  {
+    "question": "The Dayton Accords ended the war in which country?",
+    "correctAnswer": "Bosnia and Herzegovina",
+    "wrongAnswers": [
+      "Croatia",
+      "Serbia",
+      "Kosovo",
+      "Slovenia",
+      "Macedonia",
+      "Montenegro"
+    ]
+  },
+  {
+    "question": "Which princess died in a car crash in Paris in 1997?",
+    "correctAnswer": "Princess Diana",
+    "wrongAnswers": [
+      "Princess Margaret",
+      "Princess Anne",
+      "Princess Alexandra",
+      "Princess Alice",
+      "Princess Beatrice",
+      "Princess Eugenie"
+    ]
+  },
+  {
+    "question": "The Exxon Valdez oil spill occurred in which year?",
+    "correctAnswer": "1989",
+    "wrongAnswers": [
+      "1990",
+      "1988",
+      "1991",
+      "1987",
+      "1992",
+      "1986"
+    ]
+  },
+  {
+    "question": "Which country experienced the 'Orange Revolution' preparations in the late 1990s?",
+    "correctAnswer": "Ukraine",
+    "wrongAnswers": [
+      "Georgia",
+      "Moldova",
+      "Belarus",
+      "Armenia",
+      "Azerbaijan",
+      "Kazakhstan"
+    ]
+  },
+  {
+    "question": "The Srebrenica massacre occurred during which conflict?",
+    "correctAnswer": "Bosnian War",
+    "wrongAnswers": [
+      "Croatian War",
+      "Kosovo War",
+      "Yugoslav Wars generally",
+      "Slovenian Independence",
+      "Macedonian Conflict",
+      "Serbian Civil War"
+    ]
+  },
+  {
+    "question": "Which technology company was founded by Jeff Bezos in 1994?",
+    "correctAnswer": "Amazon",
+    "wrongAnswers": [
+      "eBay",
+      "Yahoo",
+      "Google",
+      "Microsoft",
+      "Apple",
+      "AOL"
+    ]
+  },
+  {
+    "question": "The Hillsborough disaster occurred at which type of event?",
+    "correctAnswer": "Football (soccer) match",
+    "wrongAnswers": [
+      "Concert",
+      "Political rally",
+      "Religious gathering",
+      "Graduation ceremony",
+      "Marathon race",
+      "Air show"
+    ]
+  },
+  {
+    "question": "Which agreement established NAFTA in 1994?",
+    "correctAnswer": "North American Free Trade Agreement",
+    "wrongAnswers": [
+      "Central American Trade Pact",
+      "South American Economic Union",
+      "Pacific Trade Agreement",
+      "Atlantic Commerce Treaty",
+      "Continental Trade Alliance",
+      "American Economic Partnership"
+    ]
+  },
+  {
+    "question": "The Kobe earthquake occurred in which country in 1995?",
+    "correctAnswer": "Japan",
+    "wrongAnswers": [
+      "China",
+      "Philippines",
+      "Indonesia",
+      "Taiwan",
+      "South Korea",
+      "Thailand"
+    ]
+  },
+  {
+    "question": "Which leader came to power in Russia after the dissolution of the Soviet Union?",
+    "correctAnswer": "Boris Yeltsin",
+    "wrongAnswers": [
+      "Vladimir Putin",
+      "Mikhail Gorbachev",
+      "Dmitry Medvedev",
+      "Viktor Chernomyrdin",
+      "Anatoly Chubais",
+      "Alexander Lebed"
+    ]
+  },
+  {
+    "question": "The Hubble Space Telescope was launched in which year?",
+    "correctAnswer": "1990",
+    "wrongAnswers": [
+      "1989",
+      "1991",
+      "1988",
+      "1992",
+      "1987",
+      "1993"
+    ]
+  },
+  {
+    "question": "The September 11 attacks occurred in which year?",
+    "correctAnswer": "2001",
+    "wrongAnswers": [
+      "2000",
+      "2002",
+      "1999",
+      "2003",
+      "1998",
+      "2004"
+    ]
+  },
+  {
+    "question": "Which country was invaded by the U.S. in 2003?",
+    "correctAnswer": "Iraq",
+    "wrongAnswers": [
+      "Afghanistan",
+      "Iran",
+      "Syria",
+      "Libya",
+      "Pakistan",
+      "Yemen"
+    ]
+  },
+  {
+    "question": "Barack Obama was first elected U.S. President in which year?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2004",
+      "2012",
+      "2006",
+      "2010",
+      "2007",
+      "2009"
+    ]
+  },
+  {
+    "question": "The Indian Ocean tsunami occurred in which year?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "2007"
+    ]
+  },
+  {
+    "question": "Which social media platform was founded by Mark Zuckerberg in 2004?",
+    "correctAnswer": "Facebook",
+    "wrongAnswers": [
+      "Twitter",
+      "Instagram",
+      "LinkedIn",
+      "Snapchat",
+      "TikTok",
+      "YouTube"
+    ]
+  },
+  {
+    "question": "The Arab Spring began in which country in 2010?",
+    "correctAnswer": "Tunisia",
+    "wrongAnswers": [
+      "Egypt",
+      "Libya",
+      "Syria",
+      "Yemen",
+      "Morocco",
+      "Algeria"
+    ]
+  },
+  {
+    "question": "The global financial crisis peaked in which year?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2007",
+      "2009",
+      "2006",
+      "2010",
+      "2005",
+      "2011"
+    ]
+  },
+  {
+    "question": "Osama bin Laden was killed in which year?",
+    "correctAnswer": "2011",
+    "wrongAnswers": [
+      "2010",
+      "2012",
+      "2009",
+      "2013",
+      "2008",
+      "2014"
+    ]
+  },
+  {
+    "question": "The Brexit referendum took place in which year?",
+    "correctAnswer": "2016",
+    "wrongAnswers": [
+      "2015",
+      "2017",
+      "2014",
+      "2018",
+      "2013",
+      "2019"
+    ]
+  },
+  {
+    "question": "Hurricane Katrina devastated New Orleans in which year?",
+    "correctAnswer": "2005",
+    "wrongAnswers": [
+      "2004",
+      "2006",
+      "2003",
+      "2007",
+      "2002",
+      "2008"
+    ]
+  },
+  {
+    "question": "The first iPhone was released in which year?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004",
+      "2010"
+    ]
+  },
+  {
+    "question": "The COVID-19 pandemic was declared by WHO in which year?",
+    "correctAnswer": "2020",
+    "wrongAnswers": [
+      "2019",
+      "2021",
+      "2018",
+      "2022",
+      "2017",
+      "2023"
+    ]
+  },
+  {
+    "question": "Which country hosted the 2008 Summer Olympics?",
+    "correctAnswer": "China",
+    "wrongAnswers": [
+      "Greece",
+      "United Kingdom",
+      "Australia",
+      "Brazil",
+      "Russia",
+      "Japan"
+    ]
+  },
+  {
+    "question": "The War in Afghanistan began in which year?",
+    "correctAnswer": "2001",
+    "wrongAnswers": [
+      "2000",
+      "2002",
+      "1999",
+      "2003",
+      "1998",
+      "2004"
+    ]
+  },
+  {
+    "question": "Michael Jackson died in which year?",
+    "correctAnswer": "2009",
+    "wrongAnswers": [
+      "2008",
+      "2010",
+      "2007",
+      "2011",
+      "2006",
+      "2012"
+    ]
+  },
+  {
+    "question": "The European Union expanded to include Eastern European countries primarily in which year?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "2007"
+    ]
+  },
+  {
+    "question": "YouTube was founded in which year?",
+    "correctAnswer": "2005",
+    "wrongAnswers": [
+      "2004",
+      "2006",
+      "2003",
+      "2007",
+      "2002",
+      "2008"
+    ]
+  },
+  {
+    "question": "The London 7/7 bombings occurred in which year?",
+    "correctAnswer": "2005",
+    "wrongAnswers": [
+      "2004",
+      "2006",
+      "2003",
+      "2007",
+      "2002",
+      "2008"
+    ]
+  },
+  {
+    "question": "WikiLeaks was founded by which person?",
+    "correctAnswer": "Julian Assange",
+    "wrongAnswers": [
+      "Edward Snowden",
+      "Chelsea Manning",
+      "Aaron Swartz",
+      "Glenn Greenwald",
+      "Laura Poitras",
+      "Daniel Ellsberg"
+    ]
+  },
+  {
+    "question": "The Arab Spring protests led to the overthrow of which Egyptian president?",
+    "correctAnswer": "Hosni Mubarak",
+    "wrongAnswers": [
+      "Anwar Sadat",
+      "Gamal Abdel Nasser",
+      "Mohamed Morsi",
+      "Abdel Fattah el-Sisi",
+      "Fuad I",
+      "Farouk I"
+    ]
+  },
+  {
+    "question": "The Large Hadron Collider was first activated in which year?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2007",
+      "2009",
+      "2006",
+      "2010",
+      "2005",
+      "2011"
+    ]
+  },
+  {
+    "question": "Twitter was founded in which year?",
+    "correctAnswer": "2006",
+    "wrongAnswers": [
+      "2005",
+      "2007",
+      "2004",
+      "2008",
+      "2003",
+      "2009"
+    ]
+  },
+  {
+    "question": "The Iranian Green Movement protests occurred in which year?",
+    "correctAnswer": "2009",
+    "wrongAnswers": [
+      "2008",
+      "2010",
+      "2007",
+      "2011",
+      "2006",
+      "2012"
+    ]
+  },
+  {
+    "question": "The Madrid train bombings occurred in which year?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "2007"
+    ]
+  },
+  {
+    "question": "The Virginia Tech shooting occurred in which year?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004",
+      "2010"
+    ]
+  },
+  {
+    "question": "The Mumbai terrorist attacks occurred in which year?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2007",
+      "2009",
+      "2006",
+      "2010",
+      "2005",
+      "2011"
+    ]
+  },
+  {
+    "question": "The Chilean mine rescue of 33 miners occurred in which year?",
+    "correctAnswer": "2010",
+    "wrongAnswers": [
+      "2009",
+      "2011",
+      "2008",
+      "2012",
+      "2007",
+      "2013"
+    ]
+  },
+  {
+    "question": "Instagram was founded in which year?",
+    "correctAnswer": "2010",
+    "wrongAnswers": [
+      "2009",
+      "2011",
+      "2008",
+      "2012",
+      "2007",
+      "2013"
+    ]
+  },
+  {
+    "question": "The Fukushima nuclear disaster occurred in which year?",
+    "correctAnswer": "2011",
+    "wrongAnswers": [
+      "2010",
+      "2012",
+      "2009",
+      "2013",
+      "2008",
+      "2014"
+    ]
+  },
+  {
+    "question": "The Charlie Hebdo attacks in Paris occurred in which year?",
+    "correctAnswer": "2015",
+    "wrongAnswers": [
+      "2014",
+      "2016",
+      "2013",
+      "2017",
+      "2012",
+      "2018"
+    ]
+  },
+  {
+    "question": "Donald Trump was elected U.S. President in which year?",
+    "correctAnswer": "2016",
+    "wrongAnswers": [
+      "2015",
+      "2017",
+      "2014",
+      "2018",
+      "2013",
+      "2019"
+    ]
+  },
+  {
+    "question": "The #MeToo movement gained prominence in which year?",
+    "correctAnswer": "2017",
+    "wrongAnswers": [
+      "2016",
+      "2018",
+      "2015",
+      "2019",
+      "2014",
+      "2020"
+    ]
+  },
+  {
+    "question": "The Paris terrorist attacks occurred in which year?",
+    "correctAnswer": "2015",
+    "wrongAnswers": [
+      "2014",
+      "2016",
+      "2013",
+      "2017",
+      "2012",
+      "2018"
+    ]
+  },
+  {
+    "question": "The Boston Marathon bombing occurred in which year?",
+    "correctAnswer": "2013",
+    "wrongAnswers": [
+      "2012",
+      "2014",
+      "2011",
+      "2015",
+      "2010",
+      "2016"
+    ]
+  },
+  {
+    "question": "The Sandy Hook Elementary School shooting occurred in which year?",
+    "correctAnswer": "2012",
+    "wrongAnswers": [
+      "2011",
+      "2013",
+      "2010",
+      "2014",
+      "2009",
+      "2015"
+    ]
+  },
+  {
+    "question": "The Crimean Peninsula was annexed by which country in 2014?",
+    "correctAnswer": "Russia",
+    "wrongAnswers": [
+      "Ukraine",
+      "Belarus",
+      "Poland",
+      "Turkey",
+      "Romania",
+      "Georgia"
+    ]
+  },
+  {
+    "question": "The Me Too movement was sparked by allegations against which Hollywood producer?",
+    "correctAnswer": "Harvey Weinstein",
+    "wrongAnswers": [
+      "Roman Polanski",
+      "Woody Allen",
+      "Bill Cosby",
+      "Kevin Spacey",
+      "Louis C.K.",
+      "Matt Lauer"
+    ]
+  },
+  {
+    "question": "The Ice Bucket Challenge went viral in which year?",
+    "correctAnswer": "2014",
+    "wrongAnswers": [
+      "2013",
+      "2015",
+      "2012",
+      "2016",
+      "2011",
+      "2017"
+    ]
+  },
+  {
+    "question": "The same-sex marriage was legalized nationwide in the U.S. in which year?",
+    "correctAnswer": "2015",
+    "wrongAnswers": [
+      "2014",
+      "2016",
+      "2013",
+      "2017",
+      "2012",
+      "2018"
+    ]
+  },
+  {
+    "question": "The Notre-Dame Cathedral fire occurred in which year?",
+    "correctAnswer": "2019",
+    "wrongAnswers": [
+      "2018",
+      "2020",
+      "2017",
+      "2021",
+      "2016",
+      "2022"
+    ]
   }
 ]

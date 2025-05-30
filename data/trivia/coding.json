@@ -119,5 +119,593 @@
       "502",
       "503"
     ]
+  },
+  {
+    "question": "Which HTML tag is used to create a hyperlink?",
+    "correctAnswer": "<a>",
+    "wrongAnswers": [
+      "<link>",
+      "<href>",
+      "<url>",
+      "<anchor>",
+      "<hyperlink>",
+      "<navigate>"
+    ]
+  },
+  {
+    "question": "What attribute is used to specify the destination of a hyperlink?",
+    "correctAnswer": "href",
+    "wrongAnswers": [
+      "src",
+      "link",
+      "url",
+      "target",
+      "destination",
+      "to"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to display images?",
+    "correctAnswer": "<img>",
+    "wrongAnswers": [
+      "<image>",
+      "<picture>",
+      "<photo>",
+      "<graphic>",
+      "<figure>",
+      "<media>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create an unordered list?",
+    "correctAnswer": "<ul>",
+    "wrongAnswers": [
+      "<ol>",
+      "<list>",
+      "<li>",
+      "<dl>",
+      "<ulist>",
+      "<unordered>"
+    ]
+  },
+  {
+    "question": "What does the 'alt' attribute provide for images?",
+    "correctAnswer": "Alternative text description",
+    "wrongAnswers": [
+      "Image alignment",
+      "Image altitude",
+      "Alternative source",
+      "Image filter",
+      "Image caption",
+      "Image size"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a table?",
+    "correctAnswer": "<table>",
+    "wrongAnswers": [
+      "<tab>",
+      "<grid>",
+      "<data>",
+      "<row>",
+      "<cell>",
+      "<matrix>"
+    ]
+  },
+  {
+    "question": "Which HTML tag represents the main heading of a page?",
+    "correctAnswer": "<h1>",
+    "wrongAnswers": [
+      "<header>",
+      "<title>",
+      "<heading>",
+      "<main>",
+      "<h0>",
+      "<primary>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a line break?",
+    "correctAnswer": "<br>",
+    "wrongAnswers": [
+      "<break>",
+      "<lb>",
+      "<newline>",
+      "<line>",
+      "<nl>",
+      "<return>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a form?",
+    "correctAnswer": "<form>",
+    "wrongAnswers": [
+      "<input>",
+      "<submit>",
+      "<field>",
+      "<data>",
+      "<entry>",
+      "<formdata>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a text input field?",
+    "correctAnswer": "<input type=\"text\">",
+    "wrongAnswers": [
+      "<text>",
+      "<textfield>",
+      "<field>",
+      "<textbox>",
+      "<textinput>",
+      "<entry>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to uniquely identify an element?",
+    "correctAnswer": "id",
+    "wrongAnswers": [
+      "class",
+      "name",
+      "unique",
+      "identifier",
+      "key",
+      "element"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a dropdown list?",
+    "correctAnswer": "<select>",
+    "wrongAnswers": [
+      "<dropdown>",
+      "<list>",
+      "<option>",
+      "<choice>",
+      "<menu>",
+      "<picker>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a button?",
+    "correctAnswer": "<button>",
+    "wrongAnswers": [
+      "<btn>",
+      "<click>",
+      "<submit>",
+      "<action>",
+      "<press>",
+      "<control>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a horizontal rule/line?",
+    "correctAnswer": "<hr>",
+    "wrongAnswers": [
+      "<line>",
+      "<rule>",
+      "<horizontal>",
+      "<separator>",
+      "<divider>",
+      "<border>"
+    ]
+  },
+  {
+    "question": "What is the purpose of the <head> tag in HTML?",
+    "correctAnswer": "Contains metadata about the document",
+    "wrongAnswers": [
+      "Contains the main content",
+      "Creates the page header",
+      "Defines the navigation",
+      "Contains the footer",
+      "Stores user data",
+      "Manages page layout"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to embed CSS styles directly in HTML?",
+    "correctAnswer": "<style>",
+    "wrongAnswers": [
+      "<css>",
+      "<stylesheet>",
+      "<styling>",
+      "<design>",
+      "<format>",
+      "<appearance>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating emphasized text?",
+    "correctAnswer": "<em>",
+    "wrongAnswers": [
+      "<i>",
+      "<emphasis>",
+      "<italic>",
+      "<stressed>",
+      "<important>",
+      "<highlight>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a definition list?",
+    "correctAnswer": "<dl>",
+    "wrongAnswers": [
+      "<def>",
+      "<definition>",
+      "<terms>",
+      "<glossary>",
+      "<describe>",
+      "<definitions>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating strong/bold text?",
+    "correctAnswer": "<strong>",
+    "wrongAnswers": [
+      "<b>",
+      "<bold>",
+      "<weight>",
+      "<heavy>",
+      "<thick>",
+      "<emphasis>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to specify a CSS class?",
+    "correctAnswer": "class",
+    "wrongAnswers": [
+      "id",
+      "style",
+      "css",
+      "classname",
+      "type",
+      "category"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a paragraph?",
+    "correctAnswer": "<p>",
+    "wrongAnswers": [
+      "<paragraph>",
+      "<text>",
+      "<para>",
+      "<pg>",
+      "<content>",
+      "<block>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a table row?",
+    "correctAnswer": "<tr>",
+    "wrongAnswers": [
+      "<row>",
+      "<tablerow>",
+      "<trow>",
+      "<r>",
+      "<line>",
+      "<record>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a table cell?",
+    "correctAnswer": "<td>",
+    "wrongAnswers": [
+      "<cell>",
+      "<tc>",
+      "<data>",
+      "<column>",
+      "<field>",
+      "<tablecell>"
+    ]
+  },
+  {
+    "question": "Which HTML5 tag is used to define the main content area?",
+    "correctAnswer": "<main>",
+    "wrongAnswers": [
+      "<content>",
+      "<primary>",
+      "<body>",
+      "<center>",
+      "<principal>",
+      "<core>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a navigation section?",
+    "correctAnswer": "<nav>",
+    "wrongAnswers": [
+      "<navigation>",
+      "<menu>",
+      "<navbar>",
+      "<links>",
+      "<navigate>",
+      "<navi>"
+    ]
+  },
+  {
+    "question": "Which HTML5 tag is used to define a section of content?",
+    "correctAnswer": "<section>",
+    "wrongAnswers": [
+      "<div>",
+      "<part>",
+      "<segment>",
+      "<area>",
+      "<block>",
+      "<region>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating an article?",
+    "correctAnswer": "<article>",
+    "wrongAnswers": [
+      "<post>",
+      "<content>",
+      "<story>",
+      "<text>",
+      "<document>",
+      "<piece>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to provide additional information about an element?",
+    "correctAnswer": "title",
+    "wrongAnswers": [
+      "info",
+      "tooltip",
+      "description",
+      "hint",
+      "help",
+      "note"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a footer?",
+    "correctAnswer": "<footer>",
+    "wrongAnswers": [
+      "<bottom>",
+      "<end>",
+      "<foot>",
+      "<base>",
+      "<conclusion>",
+      "<closing>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a header section?",
+    "correctAnswer": "<header>",
+    "wrongAnswers": [
+      "<head>",
+      "<top>",
+      "<title>",
+      "<banner>",
+      "<heading>",
+      "<intro>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a sidebar?",
+    "correctAnswer": "<aside>",
+    "wrongAnswers": [
+      "<sidebar>",
+      "<side>",
+      "<secondary>",
+      "<extra>",
+      "<additional>",
+      "<complement>"
+    ]
+  },
+  {
+    "question": "Which HTML input type is used for email addresses?",
+    "correctAnswer": "email",
+    "wrongAnswers": [
+      "mail",
+      "address",
+      "e-mail",
+      "text",
+      "username",
+      "contact"
+    ]
+  },
+  {
+    "question": "What is the correct HTML input type for a password field?",
+    "correctAnswer": "password",
+    "wrongAnswers": [
+      "pass",
+      "secret",
+      "hidden",
+      "secure",
+      "private",
+      "encrypted"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to embed audio content?",
+    "correctAnswer": "<audio>",
+    "wrongAnswers": [
+      "<sound>",
+      "<music>",
+      "<media>",
+      "<play>",
+      "<track>",
+      "<mp3>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for embedding video content?",
+    "correctAnswer": "<video>",
+    "wrongAnswers": [
+      "<movie>",
+      "<media>",
+      "<film>",
+      "<play>",
+      "<stream>",
+      "<visual>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to make an input field required?",
+    "correctAnswer": "required",
+    "wrongAnswers": [
+      "mandatory",
+      "needed",
+      "must",
+      "essential",
+      "necessary",
+      "obligatory"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a text area?",
+    "correctAnswer": "<textarea>",
+    "wrongAnswers": [
+      "<textbox>",
+      "<multitext>",
+      "<bigtext>",
+      "<textfield>",
+      "<longtext>",
+      "<textblock>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to specify placeholder text?",
+    "correctAnswer": "placeholder",
+    "wrongAnswers": [
+      "hint",
+      "default",
+      "example",
+      "sample",
+      "guide",
+      "help"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a figure with caption?",
+    "correctAnswer": "<figure>",
+    "wrongAnswers": [
+      "<image>",
+      "<caption>",
+      "<picture>",
+      "<illustration>",
+      "<diagram>",
+      "<graphic>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to create a caption for a figure?",
+    "correctAnswer": "<figcaption>",
+    "wrongAnswers": [
+      "<caption>",
+      "<title>",
+      "<description>",
+      "<label>",
+      "<text>",
+      "<subtitle>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating inline code?",
+    "correctAnswer": "<code>",
+    "wrongAnswers": [
+      "<pre>",
+      "<script>",
+      "<program>",
+      "<syntax>",
+      "<command>",
+      "<terminal>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used for preformatted text?",
+    "correctAnswer": "<pre>",
+    "wrongAnswers": [
+      "<code>",
+      "<format>",
+      "<fixed>",
+      "<mono>",
+      "<literal>",
+      "<raw>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a progress bar?",
+    "correctAnswer": "<progress>",
+    "wrongAnswers": [
+      "<bar>",
+      "<meter>",
+      "<loading>",
+      "<status>",
+      "<indicator>",
+      "<gauge>"
+    ]
+  },
+  {
+    "question": "Which HTML tag is used to group form elements?",
+    "correctAnswer": "<fieldset>",
+    "wrongAnswers": [
+      "<group>",
+      "<formgroup>",
+      "<section>",
+      "<fields>",
+      "<inputs>",
+      "<collection>"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a label for form elements?",
+    "correctAnswer": "<label>",
+    "wrongAnswers": [
+      "<text>",
+      "<caption>",
+      "<title>",
+      "<name>",
+      "<description>",
+      "<tag>"
+    ]
+  },
+  {
+    "question": "Which HTML attribute is used to disable a form element?",
+    "correctAnswer": "disabled",
+    "wrongAnswers": [
+      "inactive",
+      "blocked",
+      "locked",
+      "readonly",
+      "unavailable",
+      "off"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a data list for input suggestions?",
+    "correctAnswer": "<datalist>",
+    "wrongAnswers": [
+      "<suggestions>",
+      "<options>",
+      "<autocomplete>",
+      "<hints>",
+      "<choices>",
+      "<dropdown>"
+    ]
+  },
+  {
+    "question": "Which HTML5 input type is used for date selection?",
+    "correctAnswer": "date",
+    "wrongAnswers": [
+      "calendar",
+      "datetime",
+      "day",
+      "time",
+      "picker",
+      "dateselect"
+    ]
+  },
+  {
+    "question": "What is the correct HTML tag for creating a details/summary disclosure widget?",
+    "correctAnswer": "<details>",
+    "wrongAnswers": [
+      "<summary>",
+      "<expand>",
+      "<collapse>",
+      "<accordion>",
+      "<disclosure>",
+      "<toggle>"
+    ]
   }
 ]

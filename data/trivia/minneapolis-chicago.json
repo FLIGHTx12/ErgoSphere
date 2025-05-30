@@ -118,5 +118,485 @@
       "Clark Street",
       "Wells Street"
     ]
+  },
+  {
+    "question": "Which Minneapolis neighborhood is known for its Somali community?",
+    "correctAnswer": "Cedar-Riverside",
+    "wrongAnswers": [
+      "Northeast",
+      "Uptown",
+      "Seward",
+      "Phillips",
+      "Whittier",
+      "Powderhorn"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's largest park?",
+    "correctAnswer": "Minnehaha Park",
+    "wrongAnswers": [
+      "Theodore Wirth Park",
+      "Powderhorn Park",
+      "Loring Park",
+      "Boom Island Park",
+      "Mill Ruins Park",
+      "Father Hennepin Bluff Park"
+    ]
+  },
+  {
+    "question": "Which high school is known for its performing arts program?",
+    "correctAnswer": "Minneapolis South High School",
+    "wrongAnswers": [
+      "Minneapolis North High School",
+      "Minneapolis Southwest High School",
+      "Washburn High School",
+      "Roosevelt High School",
+      "Edison High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Minnesota State Fair is held annually in which month?",
+    "correctAnswer": "August/September",
+    "wrongAnswers": [
+      "July",
+      "June",
+      "October",
+      "May",
+      "September only",
+      "August only"
+    ]
+  },
+  {
+    "question": "Which Minneapolis neighborhood is home to the Walker Art Center?",
+    "correctAnswer": "Lowry Hill",
+    "wrongAnswers": [
+      "Uptown",
+      "Northeast",
+      "Dinkytown",
+      "Whittier",
+      "Linden Hills",
+      "Kenwood"
+    ]
+  },
+  {
+    "question": "What is the name of the famous waterfall in Minneapolis?",
+    "correctAnswer": "Minnehaha Falls",
+    "wrongAnswers": [
+      "St. Anthony Falls",
+      "Mill Falls",
+      "Stone Arch Falls",
+      "Mississippi Falls",
+      "Lock and Dam Falls",
+      "Boom Island Falls"
+    ]
+  },
+  {
+    "question": "Which Minneapolis high school has the mascot 'Eagles'?",
+    "correctAnswer": "Edison High School",
+    "wrongAnswers": [
+      "Roosevelt High School",
+      "Washburn High School",
+      "South High School",
+      "Southwest High School",
+      "North High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Uptown Art Fair is held annually on which street?",
+    "correctAnswer": "Hennepin Avenue",
+    "wrongAnswers": [
+      "Lyndale Avenue",
+      "Lake Street",
+      "Franklin Avenue",
+      "University Avenue",
+      "Grand Avenue",
+      "Marshall Avenue"
+    ]
+  },
+  {
+    "question": "Which neighborhood is known for its hipster culture and vintage shops?",
+    "correctAnswer": "Northeast",
+    "wrongAnswers": [
+      "Uptown",
+      "Whittier",
+      "Seward",
+      "Phillips",
+      "Powderhorn",
+      "Stevens Square"
+    ]
+  },
+  {
+    "question": "The Guthrie Theater is located in which Minneapolis neighborhood?",
+    "correctAnswer": "Mill District",
+    "wrongAnswers": [
+      "Downtown",
+      "Uptown",
+      "Northeast",
+      "Whittier",
+      "Lowry Hill",
+      "Dinkytown"
+    ]
+  },
+  {
+    "question": "Which park is famous for its band shell and summer concerts?",
+    "correctAnswer": "Loring Park",
+    "wrongAnswers": [
+      "Powderhorn Park",
+      "Minnehaha Park",
+      "Theodore Wirth Park",
+      "Boom Island Park",
+      "Mill Ruins Park",
+      "Riverside Park"
+    ]
+  },
+  {
+    "question": "The Twin Cities Pride Festival is typically held in which month?",
+    "correctAnswer": "June",
+    "wrongAnswers": [
+      "July",
+      "August",
+      "May",
+      "September",
+      "October",
+      "April"
+    ]
+  },
+  {
+    "question": "Which Minneapolis high school is located in the Powderhorn neighborhood?",
+    "correctAnswer": "South High School",
+    "wrongAnswers": [
+      "Southwest High School",
+      "Roosevelt High School",
+      "Washburn High School",
+      "Edison High School",
+      "North High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Stone Arch Bridge connects downtown Minneapolis to which neighborhood?",
+    "correctAnswer": "Northeast",
+    "wrongAnswers": [
+      "Southeast",
+      "Uptown",
+      "Dinkytown",
+      "Marcy-Holmes",
+      "Mill District",
+      "Warehouse District"
+    ]
+  },
+  {
+    "question": "Which neighborhood is home to the University of Minnesota campus?",
+    "correctAnswer": "Marcy-Holmes/Dinkytown",
+    "wrongAnswers": [
+      "Northeast",
+      "Southeast Como",
+      "Prospect Park",
+      "Cedar-Riverside",
+      "Seward",
+      "Phillips"
+    ]
+  },
+  {
+    "question": "The Basilica of Saint Mary is located in which neighborhood?",
+    "correctAnswer": "Lowry Hill",
+    "wrongAnswers": [
+      "Downtown",
+      "Uptown",
+      "Northeast",
+      "Whittier",
+      "Kenwood",
+      "Linden Hills"
+    ]
+  },
+  {
+    "question": "Which annual event takes place at the Minneapolis Convention Center?",
+    "correctAnswer": "Twin Cities Auto Show",
+    "wrongAnswers": [
+      "Minnesota State Fair",
+      "Aquatennial",
+      "Art-A-Whirl",
+      "Pride Festival",
+      "Holidazzle",
+      "Mill City Farmers Market"
+    ]
+  },
+  {
+    "question": "Theodore Wirth Park is known for which winter activity?",
+    "correctAnswer": "Cross-country skiing",
+    "wrongAnswers": [
+      "Ice fishing",
+      "Snowboarding",
+      "Ice skating",
+      "Sledding",
+      "Snow shoeing",
+      "Hockey"
+    ]
+  },
+  {
+    "question": "Which high school's colors are red and white?",
+    "correctAnswer": "Roosevelt High School",
+    "wrongAnswers": [
+      "Edison High School",
+      "Washburn High School",
+      "South High School",
+      "Southwest High School",
+      "North High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Midtown Greenway is a former what?",
+    "correctAnswer": "Railroad corridor",
+    "wrongAnswers": [
+      "Highway",
+      "River channel",
+      "Streetcar line",
+      "Canal",
+      "Airport runway",
+      "Industrial zone"
+    ]
+  },
+  {
+    "question": "Which neighborhood is known for its large Latino population?",
+    "correctAnswer": "Phillips",
+    "wrongAnswers": [
+      "Northeast",
+      "Cedar-Riverside",
+      "Seward",
+      "Powderhorn",
+      "Whittier",
+      "Stevens Square"
+    ]
+  },
+  {
+    "question": "The Minneapolis Aquatennial festival celebrates which theme?",
+    "correctAnswer": "Water/Lakes",
+    "wrongAnswers": [
+      "Agriculture",
+      "Music",
+      "Arts",
+      "Food",
+      "History",
+      "Sports"
+    ]
+  },
+  {
+    "question": "Boom Island Park is located along which body of water?",
+    "correctAnswer": "Mississippi River",
+    "wrongAnswers": [
+      "Lake Calhoun",
+      "Lake Harriet",
+      "Lake of the Isles",
+      "Cedar Lake",
+      "Minnehaha Creek",
+      "Chain of Lakes"
+    ]
+  },
+  {
+    "question": "Which Minneapolis high school was formerly known as West High School?",
+    "correctAnswer": "Washburn High School",
+    "wrongAnswers": [
+      "Southwest High School",
+      "South High School",
+      "Roosevelt High School",
+      "Edison High School",
+      "North High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Warehouse District is known for its concentration of what type of venues?",
+    "correctAnswer": "Nightclubs and bars",
+    "wrongAnswers": [
+      "Art galleries",
+      "Restaurants",
+      "Shopping",
+      "Theaters",
+      "Museums",
+      "Hotels"
+    ]
+  },
+  {
+    "question": "Which park features the famous Spoonbridge and Cherry sculpture?",
+    "correctAnswer": "Minneapolis Sculpture Garden",
+    "wrongAnswers": [
+      "Loring Park",
+      "Minnehaha Park",
+      "Powderhorn Park",
+      "Theodore Wirth Park",
+      "Mill Ruins Park",
+      "Boom Island Park"
+    ]
+  },
+  {
+    "question": "The Open Streets events typically close which major avenue to cars?",
+    "correctAnswer": "Lyndale Avenue",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "University Avenue",
+      "Lake Street",
+      "Franklin Avenue",
+      "Grand Avenue",
+      "Marshall Avenue"
+    ]
+  },
+  {
+    "question": "Which neighborhood is home to the Minneapolis Institute of Art?",
+    "correctAnswer": "Whittier",
+    "wrongAnswers": [
+      "Uptown",
+      "Lowry Hill",
+      "Northeast",
+      "Kenwood",
+      "Linden Hills",
+      "Stevens Square"
+    ]
+  },
+  {
+    "question": "The Holidazzle parade traditionally takes place on which street?",
+    "correctAnswer": "Nicollet Mall",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "University Avenue",
+      "Lake Street",
+      "Franklin Avenue",
+      "Lyndale Avenue",
+      "Grand Avenue"
+    ]
+  },
+  {
+    "question": "Which high school is located in the Camden neighborhood?",
+    "correctAnswer": "North High School",
+    "wrongAnswers": [
+      "Edison High School",
+      "Roosevelt High School",
+      "Washburn High School",
+      "South High School",
+      "Southwest High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Chain of Lakes includes Lake Harriet, Lake Calhoun, and which other lake?",
+    "correctAnswer": "Lake of the Isles",
+    "wrongAnswers": [
+      "Cedar Lake",
+      "Lake Nokomis",
+      "Minnehaha Creek",
+      "Brownie Lake",
+      "Lake Hiawatha",
+      "Twin Lake"
+    ]
+  },
+  {
+    "question": "Art-A-Whirl is an annual event in which neighborhood?",
+    "correctAnswer": "Northeast",
+    "wrongAnswers": [
+      "Uptown",
+      "Whittier",
+      "Seward",
+      "Phillips",
+      "Powderhorn",
+      "Mill District"
+    ]
+  },
+  {
+    "question": "The Minneapolis Farmers Market is located in which neighborhood?",
+    "correctAnswer": "Lyndale",
+    "wrongAnswers": [
+      "Northeast",
+      "Uptown",
+      "Downtown",
+      "Whittier",
+      "Phillips",
+      "Mill District"
+    ]
+  },
+  {
+    "question": "Which park is home to the Minneapolis Rose Garden?",
+    "correctAnswer": "Theodore Wirth Park",
+    "wrongAnswers": [
+      "Minnehaha Park",
+      "Loring Park",
+      "Powderhorn Park",
+      "Boom Island Park",
+      "Mill Ruins Park",
+      "Riverside Park"
+    ]
+  },
+  {
+    "question": "The May Day Parade is organized by which neighborhood organization?",
+    "correctAnswer": "In the Heart of the Beast",
+    "wrongAnswers": [
+      "Northeast Arts District",
+      "Uptown Association",
+      "Whittier Alliance",
+      "Powderhorn Park",
+      "Mill City Museum",
+      "Walker Art Center"
+    ]
+  },
+  {
+    "question": "Which high school's mascot is the Millers?",
+    "correctAnswer": "Washburn High School",
+    "wrongAnswers": [
+      "South High School",
+      "Southwest High School",
+      "Roosevelt High School",
+      "Edison High School",
+      "North High School",
+      "Henry High School"
+    ]
+  },
+  {
+    "question": "The Seward neighborhood is known for its what type of food scene?",
+    "correctAnswer": "Co-ops and natural foods",
+    "wrongAnswers": [
+      "Food trucks",
+      "Fine dining",
+      "Fast food",
+      "Ethnic restaurants",
+      "Coffee shops",
+      "Breweries"
+    ]
+  },
+  {
+    "question": "Which event takes place annually at Loring Park in the summer?",
+    "correctAnswer": "Twin Cities Pride",
+    "wrongAnswers": [
+      "Aquatennial",
+      "Art-A-Whirl",
+      "May Day Parade",
+      "Holidazzle",
+      "Open Streets",
+      "Basilica Block Party"
+    ]
+  },
+  {
+    "question": "The Mill City Museum is located in which historic building?",
+    "correctAnswer": "Washburn A Mill",
+    "wrongAnswers": [
+      "Pillsbury A Mill",
+      "Crown Roller Mill",
+      "Standard Mill",
+      "Humboldt Mill",
+      "Galaxy Mill",
+      "Peavey-Haglin Mill"
+    ]
+  },
+  {
+    "question": "Which neighborhood is known as the 'Arts District'?",
+    "correctAnswer": "Northeast",
+    "wrongAnswers": [
+      "Uptown",
+      "Whittier",
+      "Mill District",
+      "Warehouse District",
+      "Lowry Hill",
+      "Stevens Square"
+    ]
   }
 ]

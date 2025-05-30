@@ -118,5 +118,965 @@
       "Zeny",
       "Crowns"
     ]
+  },
+  {
+    "question": "Which studio developed the Halo series?",
+    "correctAnswer": "Bungie/343 Industries",
+    "wrongAnswers": [
+      "Epic Games",
+      "id Software",
+      "Machine Games",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios"
+    ]
+  },
+  {
+    "question": "Which studio created Gears of War?",
+    "correctAnswer": "Epic Games",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Machine Games",
+      "id Software",
+      "Rare",
+      "Playground Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Forza Motorsport?",
+    "correctAnswer": "Turn 10 Studios",
+    "wrongAnswers": [
+      "Playground Games",
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Machine Games",
+      "id Software"
+    ]
+  },
+  {
+    "question": "Which studio created Sea of Thieves?",
+    "correctAnswer": "Rare",
+    "wrongAnswers": [
+      "Playground Games",
+      "Turn 10 Studios",
+      "343 Industries",
+      "Coalition",
+      "Machine Games",
+      "id Software"
+    ]
+  },
+  {
+    "question": "Which studio developed Forza Horizon?",
+    "correctAnswer": "Playground Games",
+    "wrongAnswers": [
+      "Turn 10 Studios",
+      "Rare",
+      "343 Industries",
+      "Coalition",
+      "Machine Games",
+      "id Software"
+    ]
+  },
+  {
+    "question": "Which studio created Doom (2016)?",
+    "correctAnswer": "id Software",
+    "wrongAnswers": [
+      "Machine Games",
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Wolfenstein: The New Order?",
+    "correctAnswer": "Machine Games",
+    "wrongAnswers": [
+      "id Software",
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games"
+    ]
+  },
+  {
+    "question": "Which studio created Age of Empires IV?",
+    "correctAnswer": "Relic Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Ori and the Blind Forest?",
+    "correctAnswer": "Moon Studios",
+    "wrongAnswers": [
+      "Rare",
+      "343 Industries",
+      "Coalition",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Cuphead?",
+    "correctAnswer": "StudioMDHR",
+    "wrongAnswers": [
+      "Rare",
+      "343 Industries",
+      "Coalition",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed State of Decay 2?",
+    "correctAnswer": "Undead Labs",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Quantum Break?",
+    "correctAnswer": "Remedy Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Sunset Overdrive?",
+    "correctAnswer": "Insomniac Games",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created ReCore?",
+    "correctAnswer": "Armature Studio",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Crackdown 3?",
+    "correctAnswer": "Sumo Digital",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Killer Instinct (2013)?",
+    "correctAnswer": "Double Helix Games",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Psychonauts 2?",
+    "correctAnswer": "Double Fine Productions",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created The Outer Worlds?",
+    "correctAnswer": "Obsidian Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Grounded?",
+    "correctAnswer": "Obsidian Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Wasteland 3?",
+    "correctAnswer": "inXile Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Flight Simulator (2020)?",
+    "correctAnswer": "Asobo Studio",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Bleeding Edge?",
+    "correctAnswer": "Ninja Theory",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "Ninja Theory",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created As Dusk Falls?",
+    "correctAnswer": "Interior Night",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Everwild?",
+    "correctAnswer": "Rare",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games",
+      "Obsidian Entertainment"
+    ]
+  },
+  {
+    "question": "Which studio created Perfect Dark (upcoming)?",
+    "correctAnswer": "The Initiative",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Avowed?",
+    "correctAnswer": "Obsidian Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Fable (reboot)?",
+    "correctAnswer": "Playground Games",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Machine Games",
+      "Obsidian Entertainment"
+    ]
+  },
+  {
+    "question": "Which studio developed Starfield?",
+    "correctAnswer": "Bethesda Game Studios",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created The Elder Scrolls VI?",
+    "correctAnswer": "Bethesda Game Studios",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Redfall?",
+    "correctAnswer": "Arkane Studios",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Deathloop?",
+    "correctAnswer": "Arkane Studios",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Ghostwire: Tokyo?",
+    "correctAnswer": "Tango Gameworks",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created The Evil Within series?",
+    "correctAnswer": "Tango Gameworks",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Dishonored series?",
+    "correctAnswer": "Arkane Studios",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Hi-Fi Rush?",
+    "correctAnswer": "Tango Gameworks",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio developed Pentiment?",
+    "correctAnswer": "Obsidian Entertainment",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Indiana Jones and the Great Circle?",
+    "correctAnswer": "Machine Games",
+    "wrongAnswers": [
+      "343 Industries",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "id Software"
+    ]
+  },
+  {
+    "question": "Which studio developed Gears 5?",
+    "correctAnswer": "The Coalition",
+    "wrongAnswers": [
+      "343 Industries",
+      "Epic Games",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "Which studio created Halo Infinite?",
+    "correctAnswer": "343 Industries",
+    "wrongAnswers": [
+      "Bungie",
+      "Coalition",
+      "Rare",
+      "Turn 10 Studios",
+      "Playground Games",
+      "Machine Games"
+    ]
+  },
+  {
+    "question": "What is the name of the massive sphere that hovers above Earth in Destiny?",
+    "correctAnswer": "The Traveler",
+    "wrongAnswers": [
+      "The Speaker",
+      "The Witness",
+      "The Pyramid",
+      "The Darkness",
+      "The Light",
+      "The Ghost"
+    ]
+  },
+  {
+    "question": "Which alien race is known for their insectoid appearance and hive-like hierarchy?",
+    "correctAnswer": "The Hive",
+    "wrongAnswers": [
+      "The Fallen",
+      "The Cabal",
+      "The Vex",
+      "The Scorn",
+      "The Taken",
+      "The Splicers"
+    ]
+  },
+  {
+    "question": "What is the name of the last safe city on Earth?",
+    "correctAnswer": "The Last City",
+    "wrongAnswers": [
+      "New Tokyo",
+      "Old Chicago",
+      "The Tower",
+      "The Farm",
+      "The Reef",
+      "The Cosmodrome"
+    ]
+  },
+  {
+    "question": "Who is the leader of the Hunter Vanguard at the start of Destiny 2?",
+    "correctAnswer": "Cayde-6",
+    "wrongAnswers": [
+      "Zavala",
+      "Ikora Rey",
+      "Andal Brask",
+      "Crow",
+      "Shiro-4",
+      "Ana Bray"
+    ]
+  },
+  {
+    "question": "What is the name of Oryx's ship/throne world?",
+    "correctAnswer": "The Dreadnaught",
+    "wrongAnswers": [
+      "The Leviathan",
+      "The Almighty",
+      "The Prison of Elders",
+      "The Black Garden",
+      "The Reef",
+      "The Deep Stone Crypt"
+    ]
+  },
+  {
+    "question": "Which Guardian class can use a Golden Gun as their Super ability?",
+    "correctAnswer": "Hunter",
+    "wrongAnswers": [
+      "Titan",
+      "Warlock",
+      "All classes",
+      "None",
+      "Only Exo",
+      "Only Human"
+    ]
+  },
+  {
+    "question": "What is the name of the Awoken Queen?",
+    "correctAnswer": "Mara Sov",
+    "wrongAnswers": [
+      "Petra Venj",
+      "Uldren Sov",
+      "Sjur Eido",
+      "Variks",
+      "Fikrul",
+      "Riven"
+    ]
+  },
+  {
+    "question": "Which planet serves as the homeworld of the Cabal Empire?",
+    "correctAnswer": "Torobatl",
+    "wrongAnswers": [
+      "Mars",
+      "Nessus",
+      "Europa",
+      "Io",
+      "Mercury",
+      "Titan"
+    ]
+  },
+  {
+    "question": "What is the name of the Hive God of War?",
+    "correctAnswer": "Xivu Arath",
+    "wrongAnswers": [
+      "Oryx",
+      "Savathûn",
+      "Crota",
+      "Nokris",
+      "Omnigul",
+      "Hashladûn"
+    ]
+  },
+  {
+    "question": "Which location is known as the 'Machine World' inhabited by the Vex?",
+    "correctAnswer": "Nessus",
+    "wrongAnswers": [
+      "Mercury",
+      "Venus",
+      "Mars",
+      "Europa",
+      "Io",
+      "The Moon"
+    ]
+  },
+  {
+    "question": "What is the name of the Fallen House that serves the Queen of the Reef?",
+    "correctAnswer": "House of Wolves",
+    "wrongAnswers": [
+      "House of Devils",
+      "House of Kings",
+      "House of Winter",
+      "House of Exile",
+      "House of Dusk",
+      "House of Light"
+    ]
+  },
+  {
+    "question": "Who is known as the 'Young Wolf' in Destiny lore?",
+    "correctAnswer": "The Guardian (Player Character)",
+    "wrongAnswers": [
+      "Lord Saladin",
+      "Lord Shaxx",
+      "Cayde-6",
+      "Zavala",
+      "Saint-14",
+      "Osiris"
+    ]
+  },
+  {
+    "question": "What is the name of the prison located in the Reef?",
+    "correctAnswer": "Prison of Elders",
+    "wrongAnswers": [
+      "The Dreaming City",
+      "The Tangled Shore",
+      "The Vestian Outpost",
+      "The Watchtower",
+      "The Reef Awoken",
+      "The Crows' Nest"
+    ]
+  },
+  {
+    "question": "Which Hive prince was known as the 'Son of Oryx'?",
+    "correctAnswer": "Crota",
+    "wrongAnswers": [
+      "Nokris",
+      "Alak-Hul",
+      "Malok",
+      "Ir Yût",
+      "Ir Anûk",
+      "Ir Halak"
+    ]
+  },
+  {
+    "question": "What is the name of the mysterious paracausal force that opposes the Light?",
+    "correctAnswer": "The Darkness",
+    "wrongAnswers": [
+      "The Deep",
+      "The Void",
+      "The Witness",
+      "The Black Fleet",
+      "The Winnower",
+      "The Final Shape"
+    ]
+  },
+  {
+    "question": "Which Titan Exotic armor piece is associated with Saint-14?",
+    "correctAnswer": "Helm of Saint-14",
+    "wrongAnswers": [
+      "Crest of Alpha Lupi",
+      "Armamentarium",
+      "Actium War Rig",
+      "Synthoceps",
+      "Lion Rampant",
+      "One-Eyed Mask"
+    ]
+  },
+  {
+    "question": "What is the name of the Awoken homeland in the Dreaming City?",
+    "correctAnswer": "Eleusinia",
+    "wrongAnswers": [
+      "Rheasilvia",
+      "The Confluence",
+      "The Strand",
+      "The Blind Well",
+      "The Oracle Engine",
+      "The Shattered Throne"
+    ]
+  },
+  {
+    "question": "Who is the current Hunter Vanguard after Cayde-6's death?",
+    "correctAnswer": "No one (Position vacant)",
+    "wrongAnswers": [
+      "Crow",
+      "Shiro-4",
+      "Ana Bray",
+      "Marcus Ren",
+      "Andal Brask",
+      "Shin Malphur"
+    ]
+  },
+  {
+    "question": "What is the name of the Fallen Captain who becomes the Scorn Baron?",
+    "correctAnswer": "Fikrul",
+    "wrongAnswers": [
+      "Variks",
+      "Taniks",
+      "Aksis",
+      "Skolas",
+      "Sepiks",
+      "Randal"
+    ]
+  },
+  {
+    "question": "Which planet was consumed by the Almighty in Destiny 2?",
+    "correctAnswer": "Mercury",
+    "wrongAnswers": [
+      "Mars",
+      "Venus",
+      "Io",
+      "Titan",
+      "Nessus",
+      "Europa"
+    ]
+  },
+  {
+    "question": "What is the name of the Vex Mind that controls the Black Garden?",
+    "correctAnswer": "The Sol Divisive",
+    "wrongAnswers": [
+      "Atheon",
+      "Panoptes",
+      "Argos",
+      "The Undying Mind",
+      "Quria",
+      "The Sanctified Mind"
+    ]
+  },
+  {
+    "question": "Who is known as the 'Godslayer' for killing Oryx?",
+    "correctAnswer": "The Guardian (Player Character)",
+    "wrongAnswers": [
+      "Eris Morn",
+      "Mara Sov",
+      "Cayde-6",
+      "Zavala",
+      "Ikora Rey",
+      "Toland"
+    ]
+  },
+  {
+    "question": "What is the name of the Cabal Emperor who invites Guardians to his ship?",
+    "correctAnswer": "Calus",
+    "wrongAnswers": [
+      "Ghaul",
+      "Caiatl",
+      "Umun'arath",
+      "The Consul",
+      "Valus Ta'aurc",
+      "Bracus Zahn"
+    ]
+  },
+  {
+    "question": "Which location serves as the social hub in Destiny 1?",
+    "correctAnswer": "The Tower",
+    "wrongAnswers": [
+      "The Farm",
+      "The Reef",
+      "The Iron Temple",
+      "The Lighthouse",
+      "The Cosmodrome",
+      "The Crucible"
+    ]
+  },
+  {
+    "question": "What is the name of the Hive ritual that feeds their Worm Gods?",
+    "correctAnswer": "The Sword Logic",
+    "wrongAnswers": [
+      "The Deep",
+      "The Ascendant Realm",
+      "The Throne World",
+      "The Osmium Court",
+      "The Books of Sorrow",
+      "The Darkness"
+    ]
+  },
+  {
+    "question": "Who is the leader of the Iron Lords?",
+    "correctAnswer": "Lord Saladin",
+    "wrongAnswers": [
+      "Lord Shaxx",
+      "Felwinter",
+      "Jolder",
+      "Radegast",
+      "Skorri",
+      "Silimar"
+    ]
+  },
+  {
+    "question": "What is the name of the mysterious entity that leads the Black Fleet?",
+    "correctAnswer": "The Witness",
+    "wrongAnswers": [
+      "The Winnower",
+      "The Darkness",
+      "The Deep",
+      "The Final Shape",
+      "The Voice in the Darkness",
+      "The Entity"
+    ]
+  },
+  {
+    "question": "Which Guardian was known for their connection to the Hive and loss of their Light?",
+    "correctAnswer": "Eris Morn",
+    "wrongAnswers": [
+      "Osiris",
+      "Ana Bray",
+      "Efrideet",
+      "Wei Ning",
+      "Rezyl Azzir",
+      "Dredgen Yor"
+    ]
+  },
+  {
+    "question": "What is the name of the Fallen Kell who united the Houses?",
+    "correctAnswer": "The Kell of Kells (Skolas)",
+    "wrongAnswers": [
+      "Variks",
+      "Fikrul",
+      "Taniks",
+      "Aksis",
+      "Sepiks Prime",
+      "Craask"
+    ]
+  },
+  {
+    "question": "Which moon of Saturn is covered in methane oceans?",
+    "correctAnswer": "Titan",
+    "wrongAnswers": [
+      "Europa",
+      "Io",
+      "Enceladus",
+      "Phobos",
+      "Deimos",
+      "Ganymede"
+    ]
+  },
+  {
+    "question": "What is the name of the legendary Hand Cannon owned by Cayde-6?",
+    "correctAnswer": "Ace of Spades",
+    "wrongAnswers": [
+      "The Last Word",
+      "Thorn",
+      "Hawkmoon",
+      "Fatebringer",
+      "Sunshot",
+      "Midnight Coup"
+    ]
+  },
+  {
+    "question": "Who is the Warlock Vanguard leader?",
+    "correctAnswer": "Ikora Rey",
+    "wrongAnswers": [
+      "Osiris",
+      "Toland",
+      "Felwinter",
+      "Praedyth",
+      "Asher Mir",
+      "Brother Vance"
+    ]
+  },
+  {
+    "question": "What is the name of the Hive God of Cunning and sister to Oryx?",
+    "correctAnswer": "Savathûn",
+    "wrongAnswers": [
+      "Xivu Arath",
+      "Ir Yût",
+      "Omnigul",
+      "Hashladûn",
+      "Crota",
+      "Nokris"
+    ]
+  },
+  {
+    "question": "Which location is known as the birthplace of the Exo race?",
+    "correctAnswer": "Deep Stone Crypt",
+    "wrongAnswers": [
+      "Europa",
+      "Braytech Futurescape",
+      "The Tower",
+      "Mars",
+      "Venus",
+      "The Cosmodrome"
+    ]
+  },
+  {
+    "question": "What is the name of the Taken King's flagship weapon?",
+    "correctAnswer": "Dreadnaught",
+    "wrongAnswers": [
+      "Touch of Malice",
+      "The Sword Logic",
+      "Willbreaker",
+      "Ravenous Heart",
+      "King's Fall",
+      "Ascendant Portal"
+    ]
+  },
+  {
+    "question": "Who is the mysterious figure known as 'The Nine'?",
+    "correctAnswer": "Entities from the Jovian planets",
+    "wrongAnswers": [
+      "Nine Guardians",
+      "Awoken leaders",
+      "Fallen Houses",
+      "Cabal Legions",
+      "Hive Gods",
+      "Vex Minds"
+    ]
+  },
+  {
+    "question": "What is the name of the Fallen House that controls the Cosmodrome?",
+    "correctAnswer": "House of Devils",
+    "wrongAnswers": [
+      "House of Kings",
+      "House of Winter",
+      "House of Wolves",
+      "House of Exile",
+      "House of Dusk",
+      "House of Light"
+    ]
+  },
+  {
+    "question": "Which Guardian became corrupted and known as Dredgen Yor?",
+    "correctAnswer": "Rezyl Azzir",
+    "wrongAnswers": [
+      "Shin Malphur",
+      "Jaren Ward",
+      "Drifter",
+      "Toland",
+      "Osiris",
+      "Felwinter"
+    ]
+  },
+  {
+    "question": "What is the name of the Vex construct that controls time in the Vault of Glass?",
+    "correctAnswer": "Atheon",
+    "wrongAnswers": [
+      "Templar",
+      "Gorgons",
+      "Oracles",
+      "Confluxes",
+      "Gatekeepers",
+      "Kabr"
+    ]
+  },
+  {
+    "question": "Which planet is home to the Ishtar Collective research facility?",
+    "correctAnswer": "Venus",
+    "wrongAnswers": [
+      "Mars",
+      "Mercury",
+      "Europa",
+      "Io",
+      "Nessus",
+      "Earth"
+    ]
   }
 ]

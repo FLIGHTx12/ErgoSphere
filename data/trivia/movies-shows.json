@@ -118,5 +118,1781 @@
       "Howard",
       "Palmer"
     ]
+  },
+  {
+    "question": "What is the name of the hospital in Grey's Anatomy?",
+    "correctAnswer": "Seattle Grace Hospital/Grey Sloan Memorial Hospital",
+    "wrongAnswers": [
+      "Seattle General Hospital",
+      "Pacific Northwest Medical Center",
+      "University of Washington Medical Center",
+      "Seattle Presbyterian Hospital",
+      "Mercy West Medical Center",
+      "Seattle Metropolitan Hospital"
+    ]
+  },
+  {
+    "question": "Who is the main character and narrator of Grey's Anatomy?",
+    "correctAnswer": "Meredith Grey",
+    "wrongAnswers": [
+      "Cristina Yang",
+      "Izzie Stevens",
+      "Miranda Bailey",
+      "Callie Torres",
+      "Arizona Robbins",
+      "Lexie Grey"
+    ]
+  },
+  {
+    "question": "What is Derek Shepherd's nickname?",
+    "correctAnswer": "McDreamy",
+    "wrongAnswers": [
+      "McSteamy",
+      "McVet",
+      "McDaddy",
+      "McPerfect",
+      "McHandsome",
+      "McCharm"
+    ]
+  },
+  {
+    "question": "Which character is known as 'The Nazi'?",
+    "correctAnswer": "Miranda Bailey",
+    "wrongAnswers": [
+      "Addison Montgomery",
+      "Callie Torres",
+      "Arizona Robbins",
+      "Cristina Yang",
+      "Meredith Grey",
+      "Izzie Stevens"
+    ]
+  },
+  {
+    "question": "What specialty does Derek Shepherd practice?",
+    "correctAnswer": "Neurosurgery",
+    "wrongAnswers": [
+      "Cardiothoracic Surgery",
+      "Plastic Surgery",
+      "Orthopedic Surgery",
+      "General Surgery",
+      "Pediatric Surgery",
+      "Trauma Surgery"
+    ]
+  },
+  {
+    "question": "Who is known as 'McSteamy'?",
+    "correctAnswer": "Mark Sloan",
+    "wrongAnswers": [
+      "Derek Shepherd",
+      "Jackson Avery",
+      "Owen Hunt",
+      "Alex Karev",
+      "Preston Burke",
+      "Caleb Tucker"
+    ]
+  },
+  {
+    "question": "What is Cristina Yang's dream specialty?",
+    "correctAnswer": "Cardiothoracic Surgery",
+    "wrongAnswers": [
+      "Neurosurgery",
+      "Plastic Surgery",
+      "Trauma Surgery",
+      "Pediatric Surgery",
+      "Oncology",
+      "Emergency Medicine"
+    ]
+  },
+  {
+    "question": "Which character dies in the Season 2 finale bomb episode?",
+    "correctAnswer": "Denny Duquette",
+    "wrongAnswers": [
+      "George O'Malley",
+      "Lexie Grey",
+      "Mark Sloan",
+      "Derek Shepherd",
+      "Preston Burke",
+      "Coach"
+    ]
+  },
+  {
+    "question": "What is the name of Meredith's half-sister?",
+    "correctAnswer": "Lexie Grey",
+    "wrongAnswers": [
+      "Maggie Pierce",
+      "Amelia Shepherd",
+      "Callie Torres",
+      "Arizona Robbins",
+      "April Kepner",
+      "Jo Wilson"
+    ]
+  },
+  {
+    "question": "Which natural disaster occurs in Season 6?",
+    "correctAnswer": "Hospital shooting",
+    "wrongAnswers": [
+      "Earthquake",
+      "Plane crash",
+      "Fire",
+      "Flood",
+      "Tornado",
+      "Hurricane"
+    ]
+  },
+  {
+    "question": "What is Alex Karev's specialty?",
+    "correctAnswer": "Pediatric Surgery",
+    "wrongAnswers": [
+      "Trauma Surgery",
+      "Cardiothoracic Surgery",
+      "Neurosurgery",
+      "Plastic Surgery",
+      "Orthopedic Surgery",
+      "Emergency Medicine"
+    ]
+  },
+  {
+    "question": "Which character is Meredith's 'person'?",
+    "correctAnswer": "Cristina Yang",
+    "wrongAnswers": [
+      "Izzie Stevens",
+      "Lexie Grey",
+      "Callie Torres",
+      "Arizona Robbins",
+      "April Kepner",
+      "Maggie Pierce"
+    ]
+  },
+  {
+    "question": "What major event happens at the end of Season 8?",
+    "correctAnswer": "Plane crash",
+    "wrongAnswers": [
+      "Hospital shooting",
+      "Bomb explosion",
+      "Fire",
+      "Earthquake",
+      "Car accident",
+      "Building collapse"
+    ]
+  },
+  {
+    "question": "Who does Callie Torres marry first?",
+    "correctAnswer": "George O'Malley",
+    "wrongAnswers": [
+      "Arizona Robbins",
+      "Mark Sloan",
+      "Owen Hunt",
+      "Jackson Avery",
+      "Alex Karev",
+      "Derek Shepherd"
+    ]
+  },
+  {
+    "question": "What is the name of the bar where the doctors frequently hang out?",
+    "correctAnswer": "Joe's Bar/Emerald City Bar",
+    "wrongAnswers": [
+      "Seattle Tavern",
+      "The Grey Goose",
+      "Medical Center Bar",
+      "The Surgeon's Table",
+      "Pike Place Pub",
+      "The Hospital Hangout"
+    ]
+  },
+  {
+    "question": "Which character joins in Season 9 as Derek's sister?",
+    "correctAnswer": "Amelia Shepherd",
+    "wrongAnswers": [
+      "Maggie Pierce",
+      "April Kepner",
+      "Jo Wilson",
+      "Stephanie Edwards",
+      "Leah Murphy",
+      "Heather Brooks"
+    ]
+  },
+  {
+    "question": "What is Miranda Bailey's husband's profession?",
+    "correctAnswer": "Nurse (Tucker Jones)",
+    "wrongAnswers": [
+      "Doctor",
+      "Firefighter",
+      "Police Officer",
+      "Teacher",
+      "Lawyer",
+      "Engineer"
+    ]
+  },
+  {
+    "question": "Which character has PTSD after the shooting?",
+    "correctAnswer": "Owen Hunt",
+    "wrongAnswers": [
+      "Derek Shepherd",
+      "Meredith Grey",
+      "Cristina Yang",
+      "Mark Sloan",
+      "Callie Torres",
+      "Alex Karev"
+    ]
+  },
+  {
+    "question": "What is the name of Izzie Stevens' metastatic condition?",
+    "correctAnswer": "Melanoma",
+    "wrongAnswers": [
+      "Breast Cancer",
+      "Lung Cancer",
+      "Brain Tumor",
+      "Leukemia",
+      "Lymphoma",
+      "Ovarian Cancer"
+    ]
+  },
+  {
+    "question": "Which resident is known for their photographic memory?",
+    "correctAnswer": "Lexie Grey",
+    "wrongAnswers": [
+      "Jackson Avery",
+      "April Kepner",
+      "Stephanie Edwards",
+      "Jo Wilson",
+      "Leah Murphy",
+      "Heather Brooks"
+    ]
+  },
+  {
+    "question": "What is the name of Tony Stark's AI assistant?",
+    "correctAnswer": "JARVIS",
+    "wrongAnswers": [
+      "FRIDAY",
+      "EDITH",
+      "KAREN",
+      "ULTRON",
+      "VISION",
+      "CORTANA"
+    ]
+  },
+  {
+    "question": "Which actor plays Thor in the Marvel movies?",
+    "correctAnswer": "Chris Hemsworth",
+    "wrongAnswers": [
+      "Chris Evans",
+      "Chris Pratt",
+      "Chris Pine",
+      "Ryan Reynolds",
+      "Mark Ruffalo",
+      "Jeremy Renner"
+    ]
+  },
+  {
+    "question": "What is the real name of the Winter Soldier?",
+    "correctAnswer": "Bucky Barnes",
+    "wrongAnswers": [
+      "Sam Wilson",
+      "James Rhodes",
+      "Steve Rogers",
+      "Clint Barton",
+      "Scott Lang",
+      "Peter Parker"
+    ]
+  },
+  {
+    "question": "Which Infinity Stone is housed in the Tesseract?",
+    "correctAnswer": "Space Stone",
+    "wrongAnswers": [
+      "Mind Stone",
+      "Reality Stone",
+      "Power Stone",
+      "Time Stone",
+      "Soul Stone",
+      "Cosmic Stone"
+    ]
+  },
+  {
+    "question": "What is the name of Thor's hammer?",
+    "correctAnswer": "Mjolnir",
+    "wrongAnswers": [
+      "Stormbreaker",
+      "Gungnir",
+      "Hofund",
+      "Gram",
+      "Gleipnir",
+      "Laevateinn"
+    ]
+  },
+  {
+    "question": "Who is the director of S.H.I.E.L.D. in the early MCU films?",
+    "correctAnswer": "Nick Fury",
+    "wrongAnswers": [
+      "Phil Coulson",
+      "Maria Hill",
+      "Alexander Pierce",
+      "Peggy Carter",
+      "Howard Stark",
+      "Hank Pym"
+    ]
+  },
+  {
+    "question": "What is Black Widow's real name?",
+    "correctAnswer": "Natasha Romanoff",
+    "wrongAnswers": [
+      "Yelena Belova",
+      "Wanda Maximoff",
+      "Carol Danvers",
+      "Hope van Dyne",
+      "Pepper Potts",
+      "Betty Ross"
+    ]
+  },
+  {
+    "question": "Which planet is Thanos from?",
+    "correctAnswer": "Titan",
+    "wrongAnswers": [
+      "Asgard",
+      "Xandar",
+      "Sakaar",
+      "Vormir",
+      "Ego",
+      "Hala"
+    ]
+  },
+  {
+    "question": "What is the name of Star-Lord's ship?",
+    "correctAnswer": "Milano",
+    "wrongAnswers": [
+      "Benatar",
+      "Ravager",
+      "Dark Aster",
+      "Sanctuary",
+      "Helicarrier",
+      "Quinjet"
+    ]
+  },
+  {
+    "question": "Who plays Spider-Man in the MCU?",
+    "correctAnswer": "Tom Holland",
+    "wrongAnswers": [
+      "Tobey Maguire",
+      "Andrew Garfield",
+      "Dylan O'Brien",
+      "Asa Butterfield",
+      "Charlie Plummer",
+      "Jacob Batalon"
+    ]
+  },
+  {
+    "question": "What is the name of the African nation ruled by Black Panther?",
+    "correctAnswer": "Wakanda",
+    "wrongAnswers": [
+      "Genosha",
+      "Latveria",
+      "Symkaria",
+      "Madripoor",
+      "Atlantis",
+      "Lemuria"
+    ]
+  },
+  {
+    "question": "Which actor plays Loki?",
+    "correctAnswer": "Tom Hiddleston",
+    "wrongAnswers": [
+      "Benedict Cumberbatch",
+      "Michael Fassbender",
+      "James McAvoy",
+      "Oscar Isaac",
+      "Mads Mikkelsen",
+      "Lee Pace"
+    ]
+  },
+  {
+    "question": "What is the name of the blue cube that contains an Infinity Stone?",
+    "correctAnswer": "Tesseract",
+    "wrongAnswers": [
+      "Orb",
+      "Aether",
+      "Scepter",
+      "Eye of Agamotto",
+      "Cosmic Cube",
+      "Power Core"
+    ]
+  },
+  {
+    "question": "Who is the God of Thunder's brother?",
+    "correctAnswer": "Loki",
+    "wrongAnswers": [
+      "Balder",
+      "Heimdall",
+      "Odin",
+      "Hogun",
+      "Volstagg",
+      "Fandral"
+    ]
+  },
+  {
+    "question": "What is the name of Tony Stark's company?",
+    "correctAnswer": "Stark Industries",
+    "wrongAnswers": [
+      "Stark Enterprises",
+      "Stark Corporation",
+      "Stark Technologies",
+      "Stark Dynamics",
+      "Stark Solutions",
+      "Stark Systems"
+    ]
+  },
+  {
+    "question": "Which villain appears in the first Avengers movie?",
+    "correctAnswer": "Loki",
+    "wrongAnswers": [
+      "Ultron",
+      "Thanos",
+      "Red Skull",
+      "Ronan",
+      "Malekith",
+      "Hela"
+    ]
+  },
+  {
+    "question": "What is Captain America's shield made of?",
+    "correctAnswer": "Vibranium",
+    "wrongAnswers": [
+      "Adamantium",
+      "Uru",
+      "Steel",
+      "Titanium",
+      "Carbonadium",
+      "Proto-Adamantium"
+    ]
+  },
+  {
+    "question": "Who plays Doctor Strange?",
+    "correctAnswer": "Benedict Cumberbatch",
+    "wrongAnswers": [
+      "Benedict Wong",
+      "Chiwetel Ejiofor",
+      "Mads Mikkelsen",
+      "Tilda Swinton",
+      "Michael Shannon",
+      "Oscar Isaac"
+    ]
+  },
+  {
+    "question": "What is the name of the prison in Guardians of the Galaxy?",
+    "correctAnswer": "The Kyln",
+    "wrongAnswers": [
+      "The Raft",
+      "The Vault",
+      "The Cube",
+      "The Negative Zone",
+      "The Microverse",
+      "The Dark Dimension"
+    ]
+  },
+  {
+    "question": "Which Infinity Stone did Thanos sacrifice Gamora to obtain?",
+    "correctAnswer": "Soul Stone",
+    "wrongAnswers": [
+      "Mind Stone",
+      "Reality Stone",
+      "Power Stone",
+      "Time Stone",
+      "Space Stone",
+      "Life Stone"
+    ]
+  },
+  {
+    "question": "What is Hawkeye's real name?",
+    "correctAnswer": "Clint Barton",
+    "wrongAnswers": [
+      "Jeremy Renner",
+      "Phil Coulson",
+      "Sam Wilson",
+      "James Rhodes",
+      "Scott Lang",
+      "Brock Rumlow"
+    ]
+  },
+  {
+    "question": "Who plays the Hulk in the MCU?",
+    "correctAnswer": "Mark Ruffalo",
+    "wrongAnswers": [
+      "Edward Norton",
+      "Eric Bana",
+      "Lou Ferrigno",
+      "Josh Brolin",
+      "Michael Shannon",
+      "John Krasinski"
+    ]
+  },
+  {
+    "question": "What is the name of the elite female bodyguards in Black Panther?",
+    "correctAnswer": "Dora Milaje",
+    "wrongAnswers": [
+      "War Dogs",
+      "Jabari Warriors",
+      "Golden Tribe",
+      "River Tribe",
+      "Border Tribe",
+      "Merchant Tribe"
+    ]
+  },
+  {
+    "question": "Which movie introduced the character of Ant-Man?",
+    "correctAnswer": "Ant-Man",
+    "wrongAnswers": [
+      "Captain America: Civil War",
+      "Avengers: Endgame",
+      "Ant-Man and the Wasp",
+      "The Avengers",
+      "Iron Man 2",
+      "Thor"
+    ]
+  },
+  {
+    "question": "What is the name of Peter Quill's father?",
+    "correctAnswer": "Ego",
+    "wrongAnswers": [
+      "Yondu",
+      "Ronan",
+      "Thanos",
+      "The Collector",
+      "Nova Prime",
+      "Stakar"
+    ]
+  },
+  {
+    "question": "Who directed the first Iron Man movie?",
+    "correctAnswer": "Jon Favreau",
+    "wrongAnswers": [
+      "Joss Whedon",
+      "Shane Black",
+      "Kevin Feige",
+      "Ryan Coogler",
+      "James Gunn",
+      "Anthony Russo"
+    ]
+  },
+  {
+    "question": "What is the name of the AI that replaces JARVIS?",
+    "correctAnswer": "FRIDAY",
+    "wrongAnswers": [
+      "KAREN",
+      "EDITH",
+      "ULTRON",
+      "VISION",
+      "VERONICA",
+      "CORTANA"
+    ]
+  },
+  {
+    "question": "Which actor plays War Machine?",
+    "correctAnswer": "Don Cheadle",
+    "wrongAnswers": [
+      "Terrence Howard",
+      "Anthony Mackie",
+      "Michael B. Jordan",
+      "Chadwick Boseman",
+      "Forest Whitaker",
+      "Idris Elba"
+    ]
+  },
+  {
+    "question": "What is the name of the group that Rocket and Groot belong to?",
+    "correctAnswer": "Guardians of the Galaxy",
+    "wrongAnswers": [
+      "Ravagers",
+      "Nova Corps",
+      "Kree Empire",
+      "Skrull Empire",
+      "Chitauri",
+      "Sovereign"
+    ]
+  },
+  {
+    "question": "Who plays Thanos in the MCU?",
+    "correctAnswer": "Josh Brolin",
+    "wrongAnswers": [
+      "James Spader",
+      "Benedict Cumberbatch",
+      "Michael Shannon",
+      "Oscar Isaac",
+      "Mads Mikkelsen",
+      "Lee Pace"
+    ]
+  },
+  {
+    "question": "What is the name of the metal that Black Panther's suit is made of?",
+    "correctAnswer": "Vibranium",
+    "wrongAnswers": [
+      "Adamantium",
+      "Uru",
+      "Carbonadium",
+      "Proto-Adamantium",
+      "Steel",
+      "Titanium"
+    ]
+  },
+  {
+    "question": "Which movie features the first appearance of Spider-Man in the MCU?",
+    "correctAnswer": "Captain America: Civil War",
+    "wrongAnswers": [
+      "Spider-Man: Homecoming",
+      "Avengers: Infinity War",
+      "Iron Man 3",
+      "The Avengers",
+      "Spider-Man: Far From Home",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "question": "What is the name of Doctor Strange's mentor?",
+    "correctAnswer": "The Ancient One",
+    "wrongAnswers": [
+      "Wong",
+      "Mordo",
+      "Kaecilius",
+      "Dormammu",
+      "The Vishanti",
+      "Agamotto"
+    ]
+  },
+  {
+    "question": "Who plays Captain Marvel?",
+    "correctAnswer": "Brie Larson",
+    "wrongAnswers": [
+      "Scarlett Johansson",
+      "Elizabeth Olsen",
+      "Evangeline Lilly",
+      "Tessa Thompson",
+      "Lupita Nyong'o",
+      "Danai Gurira"
+    ]
+  },
+  {
+    "question": "What is the name of the serum that created Captain America?",
+    "correctAnswer": "Super Soldier Serum",
+    "wrongAnswers": [
+      "Vita-Ray Treatment",
+      "Project Rebirth",
+      "Weapon X Formula",
+      "Extremis Virus",
+      "Heart-Shaped Herb",
+      "Centipede Serum"
+    ]
+  },
+  {
+    "question": "Which planet do the Guardians visit to meet the Collector?",
+    "correctAnswer": "Knowhere",
+    "wrongAnswers": [
+      "Xandar",
+      "Morag",
+      "Ego",
+      "Sakaar",
+      "Titan",
+      "Vormir"
+    ]
+  },
+  {
+    "question": "What is the name of Wanda Maximoff's brother?",
+    "correctAnswer": "Pietro Maximoff",
+    "wrongAnswers": [
+      "Vision",
+      "Quicksilver",
+      "Tommy Maximoff",
+      "Billy Maximoff",
+      "Aaron Taylor-Johnson",
+      "Evan Peters"
+    ]
+  },
+  {
+    "question": "Who plays the Winter Soldier?",
+    "correctAnswer": "Sebastian Stan",
+    "wrongAnswers": [
+      "Anthony Mackie",
+      "Chris Evans",
+      "Jeremy Renner",
+      "Daniel Brühl",
+      "Frank Grillo",
+      "Wyatt Russell"
+    ]
+  },
+  {
+    "question": "What is the name of the terrorist organization in Iron Man 3?",
+    "correctAnswer": "The Ten Rings",
+    "wrongAnswers": [
+      "HYDRA",
+      "AIM",
+      "The Hand",
+      "Roxxon",
+      "Hammer Industries",
+      "The Mandarin"
+    ]
+  },
+  {
+    "question": "Which Infinity Stone is embedded in Vision's forehead?",
+    "correctAnswer": "Mind Stone",
+    "wrongAnswers": [
+      "Space Stone",
+      "Reality Stone",
+      "Power Stone",
+      "Time Stone",
+      "Soul Stone",
+      "Consciousness Stone"
+    ]
+  },
+  {
+    "question": "What is the name of the X-Men's leader and founder?",
+    "correctAnswer": "Professor Charles Xavier",
+    "wrongAnswers": [
+      "Cyclops",
+      "Storm",
+      "Wolverine",
+      "Jean Grey",
+      "Beast",
+      "Magneto"
+    ]
+  },
+  {
+    "question": "Which X-Men character has retractable adamantium claws?",
+    "correctAnswer": "Wolverine",
+    "wrongAnswers": [
+      "Cyclops",
+      "Beast",
+      "Gambit",
+      "Nightcrawler",
+      "Colossus",
+      "Iceman"
+    ]
+  },
+  {
+    "question": "What is Cyclops' mutant power?",
+    "correctAnswer": "Optic energy beams",
+    "wrongAnswers": [
+      "Super strength",
+      "Telepathy",
+      "Weather control",
+      "Teleportation",
+      "Ice creation",
+      "Metal manipulation"
+    ]
+  },
+  {
+    "question": "Which character can control the weather?",
+    "correctAnswer": "Storm",
+    "wrongAnswers": [
+      "Jean Grey",
+      "Rogue",
+      "Jubilee",
+      "Psylocke",
+      "Emma Frost",
+      "Kitty Pryde"
+    ]
+  },
+  {
+    "question": "What is the name of the X-Men's school?",
+    "correctAnswer": "Xavier's School for Gifted Youngsters",
+    "wrongAnswers": [
+      "Mutant Academy",
+      "Institute for Higher Learning",
+      "Xavier Institute",
+      "School for Special Children",
+      "Westchester Academy",
+      "Mutant Training Center"
+    ]
+  },
+  {
+    "question": "Who is the X-Men's primary nemesis?",
+    "correctAnswer": "Magneto",
+    "wrongAnswers": [
+      "Apocalypse",
+      "Sinister",
+      "Sentinels",
+      "Sabretooth",
+      "Mystique",
+      "Juggernaut"
+    ]
+  },
+  {
+    "question": "What is Rogue's dangerous mutant ability?",
+    "correctAnswer": "Absorbing powers and memories through touch",
+    "wrongAnswers": [
+      "Super strength",
+      "Flying",
+      "Invisibility",
+      "Shape-shifting",
+      "Energy blasts",
+      "Telepathy"
+    ]
+  },
+  {
+    "question": "Which character can teleport in a cloud of sulfurous smoke?",
+    "correctAnswer": "Nightcrawler",
+    "wrongAnswers": [
+      "Gambit",
+      "Beast",
+      "Iceman",
+      "Colossus",
+      "Angel",
+      "Quicksilver"
+    ]
+  },
+  {
+    "question": "What is Beast's real name?",
+    "correctAnswer": "Hank McCoy",
+    "wrongAnswers": [
+      "Scott Summers",
+      "Logan",
+      "Kurt Wagner",
+      "Bobby Drake",
+      "Warren Worthington III",
+      "Remy LeBeau"
+    ]
+  },
+  {
+    "question": "Which villain can shape-shift into any person?",
+    "correctAnswer": "Mystique",
+    "wrongAnswers": [
+      "Magneto",
+      "Sabretooth",
+      "Apocalypse",
+      "Sinister",
+      "Pyro",
+      "Toad"
+    ]
+  },
+  {
+    "question": "What is Gambit's signature weapon?",
+    "correctAnswer": "Kinetically charged playing cards",
+    "wrongAnswers": [
+      "Energy sword",
+      "Bow and arrows",
+      "Metal staff",
+      "Ice shards",
+      "Lightning bolts",
+      "Fire blasts"
+    ]
+  },
+  {
+    "question": "Which character has a healing factor similar to Wolverine?",
+    "correctAnswer": "Sabretooth",
+    "wrongAnswers": [
+      "Magneto",
+      "Cyclops",
+      "Beast",
+      "Nightcrawler",
+      "Colossus",
+      "Iceman"
+    ]
+  },
+  {
+    "question": "What is the name of the giant robots designed to hunt mutants?",
+    "correctAnswer": "Sentinels",
+    "wrongAnswers": [
+      "Destroyers",
+      "Hunters",
+      "Terminators",
+      "Guardians",
+      "Protectors",
+      "Eliminators"
+    ]
+  },
+  {
+    "question": "Which character becomes the Phoenix?",
+    "correctAnswer": "Jean Grey",
+    "wrongAnswers": [
+      "Storm",
+      "Rogue",
+      "Jubilee",
+      "Psylocke",
+      "Emma Frost",
+      "Kitty Pryde"
+    ]
+  },
+  {
+    "question": "What is Iceman's real name?",
+    "correctAnswer": "Bobby Drake",
+    "wrongAnswers": [
+      "Scott Summers",
+      "Kurt Wagner",
+      "Hank McCoy",
+      "Warren Worthington III",
+      "Remy LeBeau",
+      "Logan"
+    ]
+  },
+  {
+    "question": "Which villain is Professor Xavier's stepbrother?",
+    "correctAnswer": "Juggernaut",
+    "wrongAnswers": [
+      "Magneto",
+      "Apocalypse",
+      "Sinister",
+      "Sabretooth",
+      "Mystique",
+      "Pyro"
+    ]
+  },
+  {
+    "question": "What is Colossus's mutant ability?",
+    "correctAnswer": "Transforming skin into organic steel",
+    "wrongAnswers": [
+      "Super speed",
+      "Telepathy",
+      "Energy beams",
+      "Weather control",
+      "Teleportation",
+      "Invisibility"
+    ]
+  },
+  {
+    "question": "Which character creates explosive plasma bursts from her hands?",
+    "correctAnswer": "Jubilee",
+    "wrongAnswers": [
+      "Jean Grey",
+      "Storm",
+      "Rogue",
+      "Psylocke",
+      "Emma Frost",
+      "Kitty Pryde"
+    ]
+  },
+  {
+    "question": "What is the name of Magneto's asteroid base?",
+    "correctAnswer": "Asteroid M",
+    "wrongAnswers": [
+      "Genosha",
+      "Muir Island",
+      "Savage Land",
+      "Asteroid X",
+      "Base Omega",
+      "Station Alpha"
+    ]
+  },
+  {
+    "question": "Which character can phase through solid objects?",
+    "correctAnswer": "Kitty Pryde",
+    "wrongAnswers": [
+      "Rogue",
+      "Storm",
+      "Jean Grey",
+      "Jubilee",
+      "Psylocke",
+      "Emma Frost"
+    ]
+  },
+  {
+    "question": "What is Wolverine's real name?",
+    "correctAnswer": "Logan",
+    "wrongAnswers": [
+      "James Howlett",
+      "Scott Summers",
+      "Kurt Wagner",
+      "Hank McCoy",
+      "Bobby Drake",
+      "Remy LeBeau"
+    ]
+  },
+  {
+    "question": "Which villain can control minds and has psychic powers?",
+    "correctAnswer": "Sinister",
+    "wrongAnswers": [
+      "Magneto",
+      "Apocalypse",
+      "Sabretooth",
+      "Mystique",
+      "Pyro",
+      "Toad"
+    ]
+  },
+  {
+    "question": "What is the name of the mutant-hunting government program?",
+    "correctAnswer": "Sentinel Program",
+    "wrongAnswers": [
+      "Weapon X",
+      "Project Wideawake",
+      "Operation Zero Tolerance",
+      "Mutant Registration Act",
+      "Friends of Humanity",
+      "Purifiers"
+    ]
+  },
+  {
+    "question": "Which character has telescopic wings and can fly?",
+    "correctAnswer": "Angel",
+    "wrongAnswers": [
+      "Storm",
+      "Rogue",
+      "Jean Grey",
+      "Nightcrawler",
+      "Iceman",
+      "Beast"
+    ]
+  },
+  {
+    "question": "What is the name of the secret government facility that experimented on Wolverine?",
+    "correctAnswer": "Weapon X",
+    "wrongAnswers": [
+      "Department H",
+      "Project Sentinel",
+      "Base Alpha",
+      "Facility X",
+      "Operation Rebirth",
+      "Lab Zero"
+    ]
+  },
+  {
+    "question": "Which character can absorb and redirect kinetic energy?",
+    "correctAnswer": "Bishop",
+    "wrongAnswers": [
+      "Gambit",
+      "Cyclops",
+      "Havok",
+      "Cannonball",
+      "Sunfire",
+      "Banshee"
+    ]
+  },
+  {
+    "question": "What is Psylocke's signature weapon?",
+    "correctAnswer": "Psychic knife",
+    "wrongAnswers": [
+      "Katana sword",
+      "Energy whip",
+      "Throwing stars",
+      "Bo staff",
+      "Nunchucks",
+      "Telepathic blade"
+    ]
+  },
+  {
+    "question": "Which villain leads the Brotherhood of Mutants?",
+    "correctAnswer": "Magneto",
+    "wrongAnswers": [
+      "Mystique",
+      "Apocalypse",
+      "Sinister",
+      "Sabretooth",
+      "Pyro",
+      "Toad"
+    ]
+  },
+  {
+    "question": "What is the name of the island nation ruled by Magneto?",
+    "correctAnswer": "Genosha",
+    "wrongAnswers": [
+      "Asteroid M",
+      "Muir Island",
+      "Savage Land",
+      "Krakoa",
+      "Madripoor",
+      "Atlantis"
+    ]
+  },
+  {
+    "question": "Which character can generate sonic screams?",
+    "correctAnswer": "Banshee",
+    "wrongAnswers": [
+      "Cyclops",
+      "Havok",
+      "Cannonball",
+      "Sunfire",
+      "Iceman",
+      "Colossus"
+    ]
+  },
+  {
+    "question": "What is Cable's relationship to Cyclops?",
+    "correctAnswer": "Son from the future",
+    "wrongAnswers": [
+      "Brother",
+      "Clone",
+      "Alternate reality version",
+      "Nephew",
+      "Father",
+      "No relation"
+    ]
+  },
+  {
+    "question": "Which character can create force fields and become invisible?",
+    "correctAnswer": "Invisible Woman (guest appearance)",
+    "wrongAnswers": [
+      "Emma Frost",
+      "Jean Grey",
+      "Storm",
+      "Rogue",
+      "Psylocke",
+      "Kitty Pryde"
+    ]
+  },
+  {
+    "question": "What is the name of the time period ruled by Apocalypse?",
+    "correctAnswer": "Age of Apocalypse",
+    "wrongAnswers": [
+      "Days of Future Past",
+      "Dark Phoenix Saga",
+      "Legacy Virus",
+      "Fatal Attractions",
+      "Onslaught Saga",
+      "Operation Zero Tolerance"
+    ]
+  },
+  {
+    "question": "Which character has multiple personalities and powers?",
+    "correctAnswer": "Legion",
+    "wrongAnswers": [
+      "Multiple Man",
+      "Proteus",
+      "Shadow King",
+      "Mister Sinister",
+      "Apocalypse",
+      "Onslaught"
+    ]
+  },
+  {
+    "question": "What is the name of Wolverine's clone?",
+    "correctAnswer": "X-23",
+    "wrongAnswers": [
+      "Sabretooth",
+      "Daken",
+      "Wild Child",
+      "Feral",
+      "Weapon XI",
+      "Lady Deathstrike"
+    ]
+  },
+  {
+    "question": "Which character can run at superhuman speeds?",
+    "correctAnswer": "Quicksilver",
+    "wrongAnswers": [
+      "Nightcrawler",
+      "Beast",
+      "Angel",
+      "Iceman",
+      "Colossus",
+      "Gambit"
+    ]
+  },
+  {
+    "question": "What is the name of the virus that affects mutants?",
+    "correctAnswer": "Legacy Virus",
+    "wrongAnswers": [
+      "Techno-Organic Virus",
+      "M-Pox",
+      "Mutant Growth Hormone",
+      "Sentinel Virus",
+      "X-Gene Suppressor",
+      "Inhibitor Virus"
+    ]
+  },
+  {
+    "question": "Which character can manipulate magnetic fields?",
+    "correctAnswer": "Magneto",
+    "wrongAnswers": [
+      "Polaris",
+      "Storm",
+      "Cyclops",
+      "Jean Grey",
+      "Professor X",
+      "Beast"
+    ]
+  },
+  {
+    "question": "What is the name of the prehistoric land with dinosaurs?",
+    "correctAnswer": "Savage Land",
+    "wrongAnswers": [
+      "Hidden Land",
+      "Lost World",
+      "Dinosaur Valley",
+      "Prehistoric Preserve",
+      "Ancient Territory",
+      "Primordial Zone"
+    ]
+  },
+  {
+    "question": "Which character can create duplicates of himself?",
+    "correctAnswer": "Multiple Man",
+    "wrongAnswers": [
+      "Forge",
+      "Bishop",
+      "Cable",
+      "Cannonball",
+      "Sunfire",
+      "Havok"
+    ]
+  },
+  {
+    "question": "What is Emma Frost's secondary mutation?",
+    "correctAnswer": "Diamond form transformation",
+    "wrongAnswers": [
+      "Telepathic immunity",
+      "Energy absorption",
+      "Super strength",
+      "Flight capability",
+      "Healing factor",
+      "Teleportation"
+    ]
+  },
+  {
+    "question": "Which X-Men character is known as the 'Ragin' Cajun'?",
+    "correctAnswer": "Gambit",
+    "wrongAnswers": [
+      "Rogue",
+      "Nightcrawler",
+      "Beast",
+      "Colossus",
+      "Banshee",
+      "Sunfire"
+    ]
+  },
+  {
+    "question": "What is the name of Wolverine's son?",
+    "correctAnswer": "Daken",
+    "wrongAnswers": [
+      "X-23",
+      "Sabretooth",
+      "Wild Child",
+      "Weapon XI",
+      "Logan Jr.",
+      "James Howlett Jr."
+    ]
+  },
+  {
+    "question": "Which villain can control people's dreams?",
+    "correctAnswer": "Nightmare",
+    "wrongAnswers": [
+      "Shadow King",
+      "Proteus",
+      "Mister Sinister",
+      "Apocalypse",
+      "Onslaught",
+      "Cassandra Nova"
+    ]
+  },
+  {
+    "question": "What is the name of the X-Men's jet?",
+    "correctAnswer": "Blackbird",
+    "wrongAnswers": [
+      "X-Jet",
+      "Stratojet",
+      "Sky Falcon",
+      "Storm Eagle",
+      "Thunder Wing",
+      "Blue Bird"
+    ]
+  },
+  {
+    "question": "Which character has optic blasts but is Cyclops's brother?",
+    "correctAnswer": "Havok",
+    "wrongAnswers": [
+      "Cable",
+      "X-Man",
+      "Corsair",
+      "Vulcan",
+      "Phoenix",
+      "Marvel Girl"
+    ]
+  },
+  {
+    "question": "What is the name of the X-Men's medical doctor?",
+    "correctAnswer": "Cecilia Reyes",
+    "wrongAnswers": [
+      "Jean Grey",
+      "Moira MacTaggert",
+      "Emma Frost",
+      "Kitty Pryde",
+      "Storm",
+      "Rogue"
+    ]
+  },
+  {
+    "question": "Which X-Men character can phase through time?",
+    "correctAnswer": "Kitty Pryde",
+    "wrongAnswers": [
+      "Bishop",
+      "Cable",
+      "Rachel Summers",
+      "Forge",
+      "Psylocke",
+      "Multiple Man"
+    ]
+  },
+  {
+    "question": "What is the real name of the character 'Paper Boi' in Atlanta?",
+    "correctAnswer": "Alfred Miles",
+    "wrongAnswers": [
+      "Earnest Marks",
+      "Darius Epps",
+      "Tracy Miles",
+      "Marcus Miles",
+      "Andre Benjamin",
+      "Calvin Johnson"
+    ]
+  },
+  {
+    "question": "Who created and stars in the FX series Atlanta?",
+    "correctAnswer": "Donald Glover",
+    "wrongAnswers": [
+      "Brian Tyree Henry",
+      "LaKeith Stanfield",
+      "Zazie Beetz",
+      "Kevin Hart",
+      "Jordan Peele",
+      "Issa Rae"
+    ]
+  },
+  {
+    "question": "What is Earn's relationship to Paper Boi?",
+    "correctAnswer": "Cousin",
+    "wrongAnswers": [
+      "Brother",
+      "Friend",
+      "Manager only",
+      "Neighbor",
+      "Uncle",
+      "Business partner only"
+    ]
+  },
+  {
+    "question": "Which character is known for his philosophical and eccentric personality?",
+    "correctAnswer": "Darius",
+    "wrongAnswers": [
+      "Earn",
+      "Paper Boi",
+      "Tracy",
+      "Van",
+      "Luke",
+      "Clark County"
+    ]
+  },
+  {
+    "question": "What is the name of Earn's on-and-off girlfriend and mother of his daughter?",
+    "correctAnswer": "Van",
+    "wrongAnswers": [
+      "Vanessa",
+      "Victoria",
+      "Valerie",
+      "Violet",
+      "Vera",
+      "Vivian"
+    ]
+  },
+  {
+    "question": "Which actor plays the character Darius?",
+    "correctAnswer": "LaKeith Stanfield",
+    "wrongAnswers": [
+      "Brian Tyree Henry",
+      "Keith Stanfield",
+      "Lakeith Lee",
+      "Donald Glover",
+      "Michael Cera",
+      "Rami Malek"
+    ]
+  },
+  {
+    "question": "What is the name of Earn and Van's daughter?",
+    "correctAnswer": "Lottie",
+    "wrongAnswers": [
+      "Lucy",
+      "Lily",
+      "Layla",
+      "Luna",
+      "Leah",
+      "Lola"
+    ]
+  },
+  {
+    "question": "In which city is Atlanta primarily set?",
+    "correctAnswer": "Atlanta, Georgia",
+    "wrongAnswers": [
+      "New Orleans, Louisiana",
+      "Memphis, Tennessee",
+      "Birmingham, Alabama",
+      "Charlotte, North Carolina",
+      "Nashville, Tennessee",
+      "Jacksonville, Florida"
+    ]
+  },
+  {
+    "question": "What genre of music is central to the show's plot?",
+    "correctAnswer": "Hip-hop/Rap",
+    "wrongAnswers": [
+      "R&B",
+      "Jazz",
+      "Blues",
+      "Country",
+      "Rock",
+      "Gospel"
+    ]
+  },
+  {
+    "question": "Who plays Paper Boi (Alfred)?",
+    "correctAnswer": "Brian Tyree Henry",
+    "wrongAnswers": [
+      "Donald Glover",
+      "LaKeith Stanfield",
+      "Michael Che",
+      "Jerrod Carmichael",
+      "Hannibal Buress",
+      "Keegan-Michael Key"
+    ]
+  },
+  {
+    "question": "What is Earn's educational background?",
+    "correctAnswer": "Princeton dropout",
+    "wrongAnswers": [
+      "Harvard graduate",
+      "High school dropout",
+      "Community college graduate",
+      "Georgia Tech dropout",
+      "Morehouse graduate",
+      "Spelman dropout"
+    ]
+  },
+  {
+    "question": "In what year did Atlanta premiere on FX?",
+    "correctAnswer": "2016",
+    "wrongAnswers": [
+      "2015",
+      "2017",
+      "2014",
+      "2018",
+      "2013",
+      "2019"
+    ]
+  },
+  {
+    "question": "What is the name of Paper Boi's breakout song mentioned in the series?",
+    "correctAnswer": "Paper Boi",
+    "wrongAnswers": [
+      "Money Trees",
+      "Atlanta Flow",
+      "Southern Comfort",
+      "Peach State",
+      "Gold Rush",
+      "Street Dreams"
+    ]
+  },
+  {
+    "question": "Which character works as a teacher?",
+    "correctAnswer": "Van",
+    "wrongAnswers": [
+      "Earn",
+      "Darius",
+      "Paper Boi",
+      "Tracy",
+      "Luke",
+      "Clark County"
+    ]
+  },
+  {
+    "question": "What unusual item does Darius often carry or reference?",
+    "correctAnswer": "Samurai sword",
+    "wrongAnswers": [
+      "Magic 8-ball",
+      "Crystal ball",
+      "Vintage camera",
+      "Rubber duck",
+      "Plant seedlings",
+      "Chess set"
+    ]
+  },
+  {
+    "question": "What is Tracy's relationship to Alfred (Paper Boi)?",
+    "correctAnswer": "Cousin",
+    "wrongAnswers": [
+      "Brother",
+      "Friend",
+      "Uncle",
+      "Neighbor",
+      "Manager",
+      "Producer"
+    ]
+  },
+  {
+    "question": "Which streaming service later acquired the rights to Atlanta?",
+    "correctAnswer": "Hulu",
+    "wrongAnswers": [
+      "Netflix",
+      "Amazon Prime",
+      "HBO Max",
+      "Disney+",
+      "Apple TV+",
+      "Paramount+"
+    ]
+  },
+  {
+    "question": "What type of living situation does Earn often find himself in?",
+    "correctAnswer": "Homeless/couch surfing",
+    "wrongAnswers": [
+      "Luxury apartment",
+      "Recording studio",
+      "Hotel rooms",
+      "Van's house permanently",
+      "Parents' basement",
+      "Trailer park"
+    ]
+  },
+  {
+    "question": "Which award did Donald Glover win for Atlanta?",
+    "correctAnswer": "Emmy for Outstanding Directing",
+    "wrongAnswers": [
+      "Golden Globe for Best Actor",
+      "SAG Award for Best Ensemble",
+      "Critics' Choice Award",
+      "NAACP Image Award only",
+      "Writers Guild Award only",
+      "Directors Guild Award only"
+    ]
+  },
+  {
+    "question": "What is the name of the famous episode featuring a fake TV show about a cereal commercial?",
+    "correctAnswer": "B.A.N.",
+    "wrongAnswers": [
+      "Teddy Perkins",
+      "Barbershop",
+      "The Big Bang",
+      "Crabs in a Barrel",
+      "Money Bag Shawty",
+      "Woods"
+    ]
+  },
+  {
+    "question": "In Morris from America, what country does Morris move to with his father?",
+    "correctAnswer": "Germany",
+    "wrongAnswers": [
+      "France",
+      "Netherlands",
+      "Switzerland",
+      "Austria",
+      "Belgium",
+      "Denmark"
+    ]
+  },
+  {
+    "question": "What is Morris's main passion in Morris from America?",
+    "correctAnswer": "Hip-hop music and rapping",
+    "wrongAnswers": [
+      "Basketball",
+      "Soccer",
+      "Skateboarding",
+      "Photography",
+      "Graffiti art",
+      "Break dancing"
+    ]
+  },
+  {
+    "question": "Who plays the title character Morris in Morris from America?",
+    "correctAnswer": "Markees Christmas",
+    "wrongAnswers": [
+      "Jacob Latimore",
+      "Caleb McLaughlin",
+      "Jason Mitchell",
+      "Algee Smith",
+      "Shameik Moore",
+      "Keith Stanfield"
+    ]
+  },
+  {
+    "question": "Who plays Morris's father Curtis in the film?",
+    "correctAnswer": "Craig Robinson",
+    "wrongAnswers": [
+      "Anthony Anderson",
+      "Keegan-Michael Key",
+      "Jordan Peele",
+      "Hannibal Buress",
+      "Tracy Morgan",
+      "Donald Glover"
+    ]
+  },
+  {
+    "question": "What is the name of the German girl Morris develops feelings for?",
+    "correctAnswer": "Katrin",
+    "wrongAnswers": [
+      "Greta",
+      "Anja",
+      "Ingrid",
+      "Petra",
+      "Sabine",
+      "Ursula"
+    ]
+  },
+  {
+    "question": "Who directed Morris from America?",
+    "correctAnswer": "Chad Hartigan",
+    "wrongAnswers": [
+      "Barry Jenkins",
+      "Ryan Coogler",
+      "Nia DaCosta",
+      "Jordan Peele",
+      "Boots Riley",
+      "Dee Rees"
+    ]
+  },
+  {
+    "question": "What German city serves as the main setting for Morris from America?",
+    "correctAnswer": "Heidelberg",
+    "wrongAnswers": [
+      "Berlin",
+      "Munich",
+      "Hamburg",
+      "Frankfurt",
+      "Cologne",
+      "Stuttgart"
+    ]
+  },
+  {
+    "question": "What is Curtis's job in Germany in Morris from America?",
+    "correctAnswer": "Soccer coach",
+    "wrongAnswers": [
+      "English teacher",
+      "Military personnel",
+      "Embassy worker",
+      "IT consultant",
+      "Basketball coach",
+      "Translator"
+    ]
+  },
+  {
+    "question": "Morris from America premiered at which major film festival?",
+    "correctAnswer": "Sundance Film Festival",
+    "wrongAnswers": [
+      "Cannes Film Festival",
+      "Toronto International Film Festival",
+      "Venice Film Festival",
+      "Berlin International Film Festival",
+      "SXSW",
+      "Tribeca Film Festival"
+    ]
+  },
+  {
+    "question": "What language barrier challenge does Morris face in the film?",
+    "correctAnswer": "Learning German",
+    "wrongAnswers": [
+      "Learning French",
+      "Learning Dutch",
+      "Learning Spanish",
+      "Learning Italian",
+      "Learning Swedish",
+      "Learning Polish"
+    ]
+  },
+  {
+    "question": "Who provides the voice of Marcel in Marcel the Shell with Shoes On?",
+    "correctAnswer": "Jenny Slate",
+    "wrongAnswers": [
+      "Kristen Bell",
+      "Amy Poehler",
+      "Tina Fey",
+      "Aubrey Plaza",
+      "Anna Kendrick",
+      "Mindy Kaling"
+    ]
+  },
+  {
+    "question": "What type of animation style is used in Marcel the Shell with Shoes On?",
+    "correctAnswer": "Stop-motion animation with live-action",
+    "wrongAnswers": [
+      "Traditional 2D animation",
+      "CGI animation",
+      "Claymation",
+      "Rotoscoping",
+      "Flash animation",
+      "Hand-drawn animation"
+    ]
+  },
+  {
+    "question": "Who directed Marcel the Shell with Shoes On (2021)?",
+    "correctAnswer": "Dean Fleischer-Camp",
+    "wrongAnswers": [
+      "Charlie Kaufman",
+      "Ari Aster",
+      "Jordan Peele",
+      "Greta Gerwig",
+      "Noah Baumbach",
+      "Lulu Wang"
+    ]
+  },
+  {
+    "question": "What is Marcel searching for throughout the film?",
+    "correctAnswer": "His family",
+    "wrongAnswers": [
+      "A new home",
+      "Food",
+      "Adventure",
+      "Friends",
+      "His purpose",
+      "A way to grow bigger"
+    ]
+  },
+  {
+    "question": "What does Marcel use to get around?",
+    "correctAnswer": "Shoes and creative methods",
+    "wrongAnswers": [
+      "A tiny car",
+      "Flying",
+      "Rolling",
+      "Jumping",
+      "Climbing only",
+      "Being carried"
+    ]
+  },
+  {
+    "question": "Who plays the documentary filmmaker character in the movie?",
+    "correctAnswer": "Dean Fleischer-Camp",
+    "wrongAnswers": [
+      "Michael Cera",
+      "Jesse Plemons",
+      "John Krasinski",
+      "Paul Rudd",
+      "Andy Samberg",
+      "Nick Offerman"
+    ]
+  },
+  {
+    "question": "What is the name of Marcel's grandmother in the film?",
+    "correctAnswer": "Nana Connie",
+    "wrongAnswers": [
+      "Grandma Shell",
+      "Nana Pearl",
+      "Grandma Marie",
+      "Nana Rose",
+      "Grandma Betty",
+      "Nana Louise"
+    ]
+  },
+  {
+    "question": "Marcel the Shell with Shoes On originated from what medium?",
+    "correctAnswer": "YouTube shorts",
+    "wrongAnswers": [
+      "Comic books",
+      "Children's books",
+      "Instagram videos",
+      "TikTok videos",
+      "TV commercials",
+      "Vine videos"
+    ]
+  },
+  {
+    "question": "What happens to Marcel's community in the film?",
+    "correctAnswer": "They disappear/get separated",
+    "wrongAnswers": [
+      "They move to a new house",
+      "They get eaten",
+      "They shrink smaller",
+      "They turn into regular shells",
+      "They go underground",
+      "They fly away"
+    ]
+  },
+  {
+    "question": "Marcel the Shell with Shoes On was nominated for which major award?",
+    "correctAnswer": "Academy Award for Best Animated Feature",
+    "wrongAnswers": [
+      "Golden Globe for Best Motion Picture",
+      "BAFTA for Best British Film",
+      "Cannes Palme d'Or",
+      "Critics' Choice Award for Best Comedy",
+      "SAG Award for Best Ensemble",
+      "Directors Guild Award"
+    ]
   }
 ]

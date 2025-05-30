@@ -118,5 +118,1760 @@
       "Soprano",
       "Mezzo-soprano"
     ]
+  },
+  {
+    "question": "Which Tupac album was released posthumously in 1996?",
+    "correctAnswer": "The Don Killuminati: The 7 Day Theory",
+    "wrongAnswers": [
+      "All Eyez on Me",
+      "Me Against the World",
+      "2Pacalypse Now",
+      "Strictly 4 My N.I.G.G.A.Z.",
+      "Until the End of Time"
+    ]
+  },
+  {
+    "question": "What was The Notorious B.I.G.'s debut album?",
+    "correctAnswer": "Ready to Die",
+    "wrongAnswers": [
+      "Life After Death",
+      "Born Again",
+      "Duets: The Final Chapter",
+      "Who Shot Ya?",
+      "Big Poppa"
+    ]
+  },
+  {
+    "question": "Which Whitney Houston song spent 14 weeks at #1 in 1992?",
+    "correctAnswer": "I Will Always Love You",
+    "wrongAnswers": [
+      "I Wanna Dance with Somebody",
+      "Greatest Love of All",
+      "How Will I Know",
+      "I Have Nothing",
+      "Run to You"
+    ]
+  },
+  {
+    "question": "What was Dr. Dre's first solo album called?",
+    "correctAnswer": "The Chronic",
+    "wrongAnswers": [
+      "2001",
+      "Straight Outta Compton",
+      "Doggystyle",
+      "The Slim Shady LP",
+      "AmeriKKKa's Most Wanted"
+    ]
+  },
+  {
+    "question": "Which TLC member wore a condom as an eyepatch?",
+    "correctAnswer": "Left Eye",
+    "wrongAnswers": [
+      "T-Boz",
+      "Chilli",
+      "Right Eye",
+      "Center Eye",
+      "Third Eye"
+    ]
+  },
+  {
+    "question": "What year was Snoop Dogg's 'Doggystyle' released?",
+    "correctAnswer": "1993",
+    "wrongAnswers": [
+      "1992",
+      "1994",
+      "1995",
+      "1991",
+      "1996"
+    ]
+  },
+  {
+    "question": "Which Mariah Carey album featured 'Vision of Love'?",
+    "correctAnswer": "Mariah Carey",
+    "wrongAnswers": [
+      "Emotions",
+      "Music Box",
+      "Merry Christmas",
+      "Daydream",
+      "Butterfly"
+    ]
+  },
+  {
+    "question": "What group sang 'End of the Road'?",
+    "correctAnswer": "Boyz II Men",
+    "wrongAnswers": [
+      "Jodeci",
+      "Bell Biv DeVoe",
+      "New Edition",
+      "Color Me Badd",
+      "All-4-One"
+    ]
+  },
+  {
+    "question": "Which Janet Jackson album included 'That's the Way Love Goes'?",
+    "correctAnswer": "janet.",
+    "wrongAnswers": [
+      "Rhythm Nation 1814",
+      "Control",
+      "The Velvet Rope",
+      "Design of a Decade",
+      "All for You"
+    ]
+  },
+  {
+    "question": "What was Ice Cube's first solo album after leaving N.W.A?",
+    "correctAnswer": "AmeriKKKa's Most Wanted",
+    "wrongAnswers": [
+      "Death Certificate",
+      "The Predator",
+      "Lethal Injection",
+      "War & Peace Vol. 1",
+      "Straight Outta Compton"
+    ]
+  },
+  {
+    "question": "Which En Vogue song was featured in the movie 'Batman Returns'?",
+    "correctAnswer": "Why This",
+    "wrongAnswers": [
+      "My Lovin'",
+      "Hold On",
+      "Free Your Mind",
+      "Whatta Man",
+      "Don't Let Go"
+    ]
+  },
+  {
+    "question": "What was Lauryn Hill's group before going solo?",
+    "correctAnswer": "Fugees",
+    "wrongAnswers": [
+      "A Tribe Called Quest",
+      "De La Soul",
+      "Black Eyed Peas",
+      "Digable Planets",
+      "Arrested Development"
+    ]
+  },
+  {
+    "question": "Which Wu-Tang Clan member released 'Liquid Swords'?",
+    "correctAnswer": "GZA",
+    "wrongAnswers": [
+      "Method Man",
+      "Ol' Dirty Bastard",
+      "Raekwon",
+      "Ghostface Killah",
+      "RZA"
+    ]
+  },
+  {
+    "question": "What was Aaliyah's debut album?",
+    "correctAnswer": "Age Ain't Nothing but a Number",
+    "wrongAnswers": [
+      "One in a Million",
+      "Aaliyah",
+      "Back & Forth",
+      "At Your Best",
+      "I Care 4 U"
+    ]
+  },
+  {
+    "question": "Which OutKast album featured 'Player's Ball'?",
+    "correctAnswer": "Southernplayalisticadillacmuzik",
+    "wrongAnswers": [
+      "ATLiens",
+      "Aquemini",
+      "Stankonia",
+      "Speakerboxxx/The Love Below",
+      "Big Boi and Dre Present..."
+    ]
+  },
+  {
+    "question": "What was MC Hammer's biggest hit?",
+    "correctAnswer": "U Can't Touch This",
+    "wrongAnswers": [
+      "Too Legit to Quit",
+      "Have You Seen Her",
+      "Pray",
+      "Here Comes the Hammer",
+      "2 Legit 2 Quit"
+    ]
+  },
+  {
+    "question": "Which R&B group sang 'I'm So Into You'?",
+    "correctAnswer": "SWV",
+    "wrongAnswers": [
+      "Xscape",
+      "Total",
+      "702",
+      "Blaque",
+      "3LW"
+    ]
+  },
+  {
+    "question": "What was Nas's debut album?",
+    "correctAnswer": "Illmatic",
+    "wrongAnswers": [
+      "It Was Written",
+      "I Am...",
+      "Nastradamus",
+      "Stillmatic",
+      "The Lost Tapes"
+    ]
+  },
+  {
+    "question": "Which Mary J. Blige album is considered her breakthrough?",
+    "correctAnswer": "What's the 411?",
+    "wrongAnswers": [
+      "My Life",
+      "Share My World",
+      "Mary",
+      "No More Drama",
+      "The Breakthrough"
+    ]
+  },
+  {
+    "question": "What group did Eazy-E belong to?",
+    "correctAnswer": "N.W.A",
+    "wrongAnswers": [
+      "Public Enemy",
+      "Cypress Hill",
+      "House of Pain",
+      "Digital Underground",
+      "Bone Thugs-N-Harmony"
+    ]
+  },
+  {
+    "question": "Which Jodeci member was known for his gospel background?",
+    "correctAnswer": "K-Ci",
+    "wrongAnswers": [
+      "JoJo",
+      "DeVante Swing",
+      "Mr. Dalvin",
+      "Timbaland",
+      "Missy Elliott"
+    ]
+  },
+  {
+    "question": "What was A Tribe Called Quest's most successful album?",
+    "correctAnswer": "The Low End Theory",
+    "wrongAnswers": [
+      "People's Instinctive Travels",
+      "Midnight Marauders",
+      "Beats, Rhymes and Life",
+      "The Love Movement",
+      "We Got It from Here"
+    ]
+  },
+  {
+    "question": "Which Toni Braxton song won a Grammy in 1994?",
+    "correctAnswer": "Another Sad Love Song",
+    "wrongAnswers": [
+      "Breathe Again",
+      "You Mean the World to Me",
+      "Un-Break My Heart",
+      "He Wasn't Man Enough",
+      "How Many Ways"
+    ]
+  },
+  {
+    "question": "What was LL Cool J's biggest hit of the 90s?",
+    "correctAnswer": "Mama Said Knock You Out",
+    "wrongAnswers": [
+      "I Can't Live Without My Radio",
+      "Going Back to Cali",
+      "I Need Love",
+      "Around the Way Girl",
+      "Hey Lover"
+    ]
+  },
+  {
+    "question": "Which group sang 'Motownphilly'?",
+    "correctAnswer": "Boyz II Men",
+    "wrongAnswers": [
+      "Bell Biv DeVoe",
+      "New Edition",
+      "Jodeci",
+      "Color Me Badd",
+      "Hi-Five"
+    ]
+  },
+  {
+    "question": "What was Cypress Hill's breakthrough single?",
+    "correctAnswer": "How I Could Just Kill a Man",
+    "wrongAnswers": [
+      "Insane in the Brain",
+      "Hand on the Pump",
+      "Jump Around",
+      "The Phuncky Feel One",
+      "Latin Lingo"
+    ]
+  },
+  {
+    "question": "Which producer worked extensively with Mary J. Blige in the early 90s?",
+    "correctAnswer": "Sean Combs",
+    "wrongAnswers": [
+      "Timbaland",
+      "The Neptunes",
+      "Jermaine Dupri",
+      "Teddy Riley",
+      "Dallas Austin"
+    ]
+  },
+  {
+    "question": "What was Digital Underground's biggest hit?",
+    "correctAnswer": "The Humpty Dance",
+    "wrongAnswers": [
+      "Doowutchyalike",
+      "Same Song",
+      "Kiss You Back",
+      "Freaks of the Industry",
+      "Sons of the P"
+    ]
+  },
+  {
+    "question": "Which R&B singer had a hit with 'I Like the Way (The Kissing Game)'?",
+    "correctAnswer": "Hi-Five",
+    "wrongAnswers": [
+      "Keith Sweat",
+      "Guy",
+      "Today",
+      "Troop",
+      "After 7"
+    ]
+  },
+  {
+    "question": "What was Public Enemy's most acclaimed album?",
+    "correctAnswer": "It Takes a Nation of Millions to Hold Us Back",
+    "wrongAnswers": [
+      "Fear of a Black Planet",
+      "Yo! Bum Rush the Show",
+      "Apocalypse 91",
+      "Muse Sick-n-Hour Mess Age",
+      "There's a Poison Goin' On"
+    ]
+  },
+  {
+    "question": "Which group had a hit with 'Whoomp! There It Is'?",
+    "correctAnswer": "Tag Team",
+    "wrongAnswers": [
+      "95 South",
+      "Quad City DJ's",
+      "69 Boyz",
+      "Freak Nasty",
+      "Duice"
+    ]
+  },
+  {
+    "question": "What was Redman's debut album?",
+    "correctAnswer": "Whut? Thee Album",
+    "wrongAnswers": [
+      "Dare Iz a Darkside",
+      "Muddy Waters",
+      "Doc's da Name 2000",
+      "Malpractice",
+      "Red Gone Wild"
+    ]
+  },
+  {
+    "question": "Which female rapper had a hit with 'None of Your Business'?",
+    "correctAnswer": "Salt-N-Pepa",
+    "wrongAnswers": [
+      "Queen Latifah",
+      "MC Lyte",
+      "Yo-Yo",
+      "Boss",
+      "Da Brat"
+    ]
+  },
+  {
+    "question": "What was the name of Kriss Kross's debut album?",
+    "correctAnswer": "Totally Krossed Out",
+    "wrongAnswers": [
+      "Da Bomb",
+      "Young, Rich & Dangerous",
+      "Jump",
+      "Warm It Up",
+      "I Missed the Bus"
+    ]
+  },
+  {
+    "question": "Which R&B group sang 'Weak'?",
+    "correctAnswer": "SWV",
+    "wrongAnswers": [
+      "En Vogue",
+      "Xscape",
+      "Total",
+      "Jade",
+      "Kut Klose"
+    ]
+  },
+  {
+    "question": "What was Heavy D's group called?",
+    "correctAnswer": "Heavy D & the Boyz",
+    "wrongAnswers": [
+      "Heavy D & the Funky Bunch",
+      "Heavy D & the Crew",
+      "Heavy D & the Posse",
+      "Heavy D & the Squad",
+      "Heavy D & the Gang"
+    ]
+  },
+  {
+    "question": "Which De La Soul album featured 'Me Myself and I'?",
+    "correctAnswer": "3 Feet High and Rising",
+    "wrongAnswers": [
+      "De La Soul Is Dead",
+      "Buhloone Mindstate",
+      "Stakes Is High",
+      "Art Official Intelligence",
+      "The Magic Number"
+    ]
+  },
+  {
+    "question": "What was Naughty by Nature's biggest hit?",
+    "correctAnswer": "Hip Hop Hooray",
+    "wrongAnswers": [
+      "O.P.P.",
+      "Feel Me Flow",
+      "Uptown Anthem",
+      "Everything's Gonna Be Alright",
+      "Guard Your Grill"
+    ]
+  },
+  {
+    "question": "Which group sang 'I Wanna Sex You Up'?",
+    "correctAnswer": "Color Me Badd",
+    "wrongAnswers": [
+      "Bell Biv DeVoe",
+      "Guy",
+      "Today",
+      "After 7",
+      "Hi-Five"
+    ]
+  },
+  {
+    "question": "Which Nirvana album featured 'Smells Like Teen Spirit'?",
+    "correctAnswer": "Nevermind",
+    "wrongAnswers": [
+      "Bleach",
+      "In Utero",
+      "MTV Unplugged",
+      "Incesticide",
+      "From the Muddy Banks"
+    ]
+  },
+  {
+    "question": "What was the Red Hot Chili Peppers' biggest hit from 'Blood Sugar Sex Magik'?",
+    "correctAnswer": "Under the Bridge",
+    "wrongAnswers": [
+      "Give It Away",
+      "Breaking the Girl",
+      "Suck My Kiss",
+      "If You Have to Ask",
+      "The Righteous & the Wicked"
+    ]
+  },
+  {
+    "question": "Which R.E.M. song contains the line about 'losing my religion'?",
+    "correctAnswer": "Losing My Religion",
+    "wrongAnswers": [
+      "Everybody Hurts",
+      "Man on the Box",
+      "Shiny Happy People",
+      "It's the End of the World",
+      "Stand"
+    ]
+  },
+  {
+    "question": "What was The Wallflowers' breakthrough single?",
+    "correctAnswer": "One Headlight",
+    "wrongAnswers": [
+      "6th Avenue Heartache",
+      "The Difference",
+      "Three Marlenas",
+      "Heroes",
+      "Hand Me Down"
+    ]
+  },
+  {
+    "question": "Which Smashing Pumpkins album featured 'Tonight, Tonight'?",
+    "correctAnswer": "Mellon Collie and the Infinite Sadness",
+    "wrongAnswers": [
+      "Siamese Dream",
+      "Gish",
+      "Adore",
+      "Pisces Iscariot",
+      "Machina"
+    ]
+  },
+  {
+    "question": "What was The Cranberries' biggest international hit?",
+    "correctAnswer": "Zombie",
+    "wrongAnswers": [
+      "Linger",
+      "Dreams",
+      "Ode to My Family",
+      "Salvation",
+      "When You're Gone"
+    ]
+  },
+  {
+    "question": "Which Pearl Jam song was about the 1979 Who concert tragedy?",
+    "correctAnswer": "Alive",
+    "wrongAnswers": [
+      "Jeremy",
+      "Black",
+      "Even Flow",
+      "Better Man",
+      "Daughter"
+    ]
+  },
+  {
+    "question": "What was Soundgarden's biggest mainstream hit?",
+    "correctAnswer": "Black Hole Sun",
+    "wrongAnswers": [
+      "Spoonman",
+      "Rusty Cage",
+      "Man in the Box",
+      "Fell on Black Days",
+      "Pretty Noose"
+    ]
+  },
+  {
+    "question": "Which Alice in Chains album featured 'Man in the Box'?",
+    "correctAnswer": "Facelift",
+    "wrongAnswers": [
+      "Dirt",
+      "Jar of Flies",
+      "Alice in Chains",
+      "Sap",
+      "Music Bank"
+    ]
+  },
+  {
+    "question": "What instrument did Flea play in Red Hot Chili Peppers?",
+    "correctAnswer": "Bass",
+    "wrongAnswers": [
+      "Guitar",
+      "Drums",
+      "Vocals",
+      "Trumpet",
+      "Keyboards"
+    ]
+  },
+  {
+    "question": "Which Stone Temple Pilots song mentions 'interstate love song'?",
+    "correctAnswer": "Interstate Love Song",
+    "wrongAnswers": [
+      "Plush",
+      "Creep",
+      "Vasoline",
+      "Big Empty",
+      "Sour Girl"
+    ]
+  },
+  {
+    "question": "What was Bush's debut album?",
+    "correctAnswer": "Sixteen Stone",
+    "wrongAnswers": [
+      "Razorblade Suitcase",
+      "The Science of Things",
+      "Golden State",
+      "Deconstructed",
+      "Man on the Run"
+    ]
+  },
+  {
+    "question": "Which Radiohead song was their first major hit?",
+    "correctAnswer": "Creep",
+    "wrongAnswers": [
+      "High and Dry",
+      "Just",
+      "Fake Plastic Trees",
+      "Paranoid Android",
+      "Karma Police"
+    ]
+  },
+  {
+    "question": "What was Live's biggest hit single?",
+    "correctAnswer": "Lightning Crashes",
+    "wrongAnswers": [
+      "Selling the Drama",
+      "I Alone",
+      "Lakini's Juice",
+      "All Over You",
+      "The Dolphin's Cry"
+    ]
+  },
+  {
+    "question": "Which Blind Melon song featured a video with a bee girl?",
+    "correctAnswer": "No Rain",
+    "wrongAnswers": [
+      "Tones of Home",
+      "Change",
+      "I Wonder",
+      "Soul One",
+      "Galaxie"
+    ]
+  },
+  {
+    "question": "What was Jane's Addiction's most popular song?",
+    "correctAnswer": "Jane Says",
+    "wrongAnswers": [
+      "Mountain Song",
+      "Been Caught Stealing",
+      "Stop!",
+      "Ocean Size",
+      "Summertime Rolls"
+    ]
+  },
+  {
+    "question": "Which Weezer album featured 'Buddy Holly'?",
+    "correctAnswer": "The Blue Album",
+    "wrongAnswers": [
+      "Pinkerton",
+      "The Green Album",
+      "Maladroit",
+      "Make Believe",
+      "The Red Album"
+    ]
+  },
+  {
+    "question": "What was Collective Soul's breakthrough single?",
+    "correctAnswer": "Shine",
+    "wrongAnswers": [
+      "Heavy",
+      "December",
+      "The World I Know",
+      "Gel",
+      "Listen"
+    ]
+  },
+  {
+    "question": "Which Temple of the Dog song featured Chris Cornell and Eddie Vedder?",
+    "correctAnswer": "Hunger Strike",
+    "wrongAnswers": [
+      "Say Hello 2 Heaven",
+      "Reach Down",
+      "Pushin Forward Back",
+      "Call Me a Dog",
+      "Times of Trouble"
+    ]
+  },
+  {
+    "question": "What was Filter's biggest hit?",
+    "correctAnswer": "Hey Man Nice Shot",
+    "wrongAnswers": [
+      "Trip Like I Do",
+      "Welcome to the Fold",
+      "Nice Shot",
+      "Spent",
+      "Under"
+    ]
+  },
+  {
+    "question": "Which Foo Fighters song was Dave Grohl's tribute to Kurt Cobain?",
+    "correctAnswer": "My Hero",
+    "wrongAnswers": [
+      "Everlong",
+      "Big Me",
+      "Learn to Fly",
+      "Times Like These",
+      "Best of You"
+    ]
+  },
+  {
+    "question": "What was Silverchair's debut single?",
+    "correctAnswer": "Tomorrow",
+    "wrongAnswers": [
+      "Pure Massacre",
+      "Israel's Son",
+      "Freak",
+      "Cemetery",
+      "Abuse Me"
+    ]
+  },
+  {
+    "question": "Which Toadies song mentions 'Possum Kingdom'?",
+    "correctAnswer": "Possum Kingdom",
+    "wrongAnswers": [
+      "Away",
+      "Mister Love",
+      "I Burn",
+      "Tyler",
+      "Backslider"
+    ]
+  },
+  {
+    "question": "What was Local H's one-hit wonder?",
+    "correctAnswer": "Bound for the Floor",
+    "wrongAnswers": [
+      "Eddie Vedder",
+      "High-Fiving MF",
+      "Fritz's Corner",
+      "Copasetic",
+      "All-Right"
+    ]
+  },
+  {
+    "question": "Which Spacehog song was their biggest hit?",
+    "correctAnswer": "In the Meantime",
+    "wrongAnswers": [
+      "Cruel to Be Kind",
+      "Ship Wrecked",
+      "Space is the Place",
+      "Starside",
+      "Only a Few"
+    ]
+  },
+  {
+    "question": "What was Seven Mary Three's most popular song?",
+    "correctAnswer": "Cumbersome",
+    "wrongAnswers": [
+      "Water's Edge",
+      "My My",
+      "Lame",
+      "Devil Boy",
+      "Roderigo"
+    ]
+  },
+  {
+    "question": "Which Candlebox song was their breakthrough hit?",
+    "correctAnswer": "Far Behind",
+    "wrongAnswers": [
+      "You",
+      "Cover Me",
+      "Simple Lessons",
+      "Arrow",
+      "Blossom"
+    ]
+  },
+  {
+    "question": "What was Stabbing Westward's biggest single?",
+    "correctAnswer": "Save Yourself",
+    "wrongAnswers": [
+      "Sometimes It Hurts",
+      "Shame",
+      "Haunting Me",
+      "How Can I Hold On",
+      "Violent Mood Swings"
+    ]
+  },
+  {
+    "question": "Which Marcy Playground song mentions 'sex and candy'?",
+    "correctAnswer": "Sex and Candy",
+    "wrongAnswers": [
+      "Sherry Fraser",
+      "Saint Joe on the School Bus",
+      "Poppies",
+      "A Cloak of Elvenkind",
+      "Gone Crazy"
+    ]
+  },
+  {
+    "question": "What was Everclear's most successful single?",
+    "correctAnswer": "Santa Monica",
+    "wrongAnswers": [
+      "Father of Mine",
+      "I Will Buy You a New Life",
+      "Everything to Everyone",
+      "Heroin Girl",
+      "So Much for the Afterglow"
+    ]
+  },
+  {
+    "question": "Which Gin Blossoms song was their biggest hit?",
+    "correctAnswer": "Hey Jealousy",
+    "wrongAnswers": [
+      "Follow You Down",
+      "Until I Fall Away",
+      "Allison Road",
+      "Mrs. Rita",
+      "Day Job"
+    ]
+  },
+  {
+    "question": "What was Garbage's debut single?",
+    "correctAnswer": "Vow",
+    "wrongAnswers": [
+      "Only Happy When It Rains",
+      "Queer",
+      "Stupid Girl",
+      "Milk",
+      "#1 Crush"
+    ]
+  },
+  {
+    "question": "Which No Doubt song featured ska influences?",
+    "correctAnswer": "Just a Girl",
+    "wrongAnswers": [
+      "Don't Speak",
+      "Spiderwebs",
+      "Sunday Morning",
+      "Excuse Me Mr.",
+      "Happy Now?"
+    ]
+  },
+  {
+    "question": "What was Hole's most controversial song?",
+    "correctAnswer": "Celebrity Skin",
+    "wrongAnswers": [
+      "Violet",
+      "Miss World",
+      "Doll Parts",
+      "Malibu",
+      "Beautiful Son"
+    ]
+  },
+  {
+    "question": "Which Alanis Morissette song mentions 'ironic' situations?",
+    "correctAnswer": "Ironic",
+    "wrongAnswers": [
+      "You Oughta Know",
+      "Hand in My Pocket",
+      "All I Really Want",
+      "Perfect",
+      "Head Over Feet"
+    ]
+  },
+  {
+    "question": "What was Matchbox Twenty's breakthrough single?",
+    "correctAnswer": "Push",
+    "wrongAnswers": [
+      "Real World",
+      "3AM",
+      "Back 2 Good",
+      "Long Day",
+      "Girl Like That"
+    ]
+  },
+  {
+    "question": "Which Counting Crows song mentions 'Mr. Jones'?",
+    "correctAnswer": "Mr. Jones",
+    "wrongAnswers": [
+      "Round Here",
+      "Rain King",
+      "A Long December",
+      "Angels of the Silences",
+      "Recovering the Satellites"
+    ]
+  },
+  {
+    "question": "What was Oasis's first major international hit?",
+    "correctAnswer": "Live Forever",
+    "wrongAnswers": [
+      "Rock 'n' Roll Star",
+      "Supersonic",
+      "Shakermaker",
+      "Cigarettes & Alcohol",
+      "Whatever"
+    ]
+  },
+  {
+    "question": "Which Blur song was part of the Britpop movement?",
+    "correctAnswer": "Song 2",
+    "wrongAnswers": [
+      "Girls & Boys",
+      "Parklife",
+      "Country House",
+      "Beetlebum",
+      "Coffee & TV"
+    ]
+  },
+  {
+    "question": "What year was 'Bohemian Rhapsody' by Queen released?",
+    "correctAnswer": "1975",
+    "wrongAnswers": [
+      "1973",
+      "1974",
+      "1976",
+      "1977",
+      "1978"
+    ]
+  },
+  {
+    "question": "In what year did 'Billie Jean' by Michael Jackson come out?",
+    "correctAnswer": "1983",
+    "wrongAnswers": [
+      "1982",
+      "1984",
+      "1985",
+      "1981",
+      "1986"
+    ]
+  },
+  {
+    "question": "What year was 'Sweet Child O' Mine' by Guns N' Roses released?",
+    "correctAnswer": "1988",
+    "wrongAnswers": [
+      "1987",
+      "1989",
+      "1986",
+      "1990",
+      "1985"
+    ]
+  },
+  {
+    "question": "When was 'Like a Prayer' by Madonna released?",
+    "correctAnswer": "1989",
+    "wrongAnswers": [
+      "1988",
+      "1990",
+      "1987",
+      "1991",
+      "1986"
+    ]
+  },
+  {
+    "question": "What year did 'Hotel California' by Eagles come out?",
+    "correctAnswer": "1976",
+    "wrongAnswers": [
+      "1975",
+      "1977",
+      "1974",
+      "1978",
+      "1973"
+    ]
+  },
+  {
+    "question": "In what year was 'Stairway to Heaven' by Led Zeppelin released?",
+    "correctAnswer": "1971",
+    "wrongAnswers": [
+      "1970",
+      "1972",
+      "1973",
+      "1969",
+      "1974"
+    ]
+  },
+  {
+    "question": "What year was 'Purple Rain' by Prince released?",
+    "correctAnswer": "1984",
+    "wrongAnswers": [
+      "1983",
+      "1985",
+      "1982",
+      "1986",
+      "1981"
+    ]
+  },
+  {
+    "question": "When did 'Imagine' by John Lennon come out?",
+    "correctAnswer": "1971",
+    "wrongAnswers": [
+      "1970",
+      "1972",
+      "1973",
+      "1969",
+      "1974"
+    ]
+  },
+  {
+    "question": "What year was 'Smells Like Teen Spirit' by Nirvana released?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988"
+    ]
+  },
+  {
+    "question": "In what year did 'I Will Always Love You' by Whitney Houston come out?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989"
+    ]
+  },
+  {
+    "question": "What year was 'Wonderwall' by Oasis released?",
+    "correctAnswer": "1995",
+    "wrongAnswers": [
+      "1994",
+      "1996",
+      "1993",
+      "1997",
+      "1992"
+    ]
+  },
+  {
+    "question": "When was 'Losing My Religion' by R.E.M. released?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988"
+    ]
+  },
+  {
+    "question": "What year did 'Black' by Pearl Jam come out?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1993",
+      "1989",
+      "1994"
+    ]
+  },
+  {
+    "question": "In what year was 'Don't Stop Believin'' by Journey released?",
+    "correctAnswer": "1981",
+    "wrongAnswers": [
+      "1980",
+      "1982",
+      "1979",
+      "1983",
+      "1978"
+    ]
+  },
+  {
+    "question": "What year was 'Ice Ice Baby' by Vanilla Ice released?",
+    "correctAnswer": "1990",
+    "wrongAnswers": [
+      "1989",
+      "1991",
+      "1988",
+      "1992",
+      "1987"
+    ]
+  },
+  {
+    "question": "When did 'Good Vibrations' by The Beach Boys come out?",
+    "correctAnswer": "1966",
+    "wrongAnswers": [
+      "1965",
+      "1967",
+      "1964",
+      "1968",
+      "1963"
+    ]
+  },
+  {
+    "question": "What year was 'Respect' by Aretha Franklin released?",
+    "correctAnswer": "1967",
+    "wrongAnswers": [
+      "1966",
+      "1968",
+      "1965",
+      "1969",
+      "1964"
+    ]
+  },
+  {
+    "question": "In what year did 'Walk This Way' by Aerosmith come out?",
+    "correctAnswer": "1975",
+    "wrongAnswers": [
+      "1974",
+      "1976",
+      "1973",
+      "1977",
+      "1972"
+    ]
+  },
+  {
+    "question": "What year was 'Another Brick in the Wall' by Pink Floyd released?",
+    "correctAnswer": "1979",
+    "wrongAnswers": [
+      "1978",
+      "1980",
+      "1977",
+      "1981",
+      "1976"
+    ]
+  },
+  {
+    "question": "When was 'Livin' on a Prayer' by Bon Jovi released?",
+    "correctAnswer": "1986",
+    "wrongAnswers": [
+      "1985",
+      "1987",
+      "1984",
+      "1988",
+      "1983"
+    ]
+  },
+  {
+    "question": "What year did 'Every Breath You Take' by The Police come out?",
+    "correctAnswer": "1983",
+    "wrongAnswers": [
+      "1982",
+      "1984",
+      "1981",
+      "1985",
+      "1980"
+    ]
+  },
+  {
+    "question": "In what year was 'Hey Jude' by The Beatles released?",
+    "correctAnswer": "1968",
+    "wrongAnswers": [
+      "1967",
+      "1969",
+      "1966",
+      "1970",
+      "1965"
+    ]
+  },
+  {
+    "question": "What year was 'California Love' by 2Pac released?",
+    "correctAnswer": "1995",
+    "wrongAnswers": [
+      "1994",
+      "1996",
+      "1993",
+      "1997",
+      "1992"
+    ]
+  },
+  {
+    "question": "When did 'U Can't Touch This' by MC Hammer come out?",
+    "correctAnswer": "1990",
+    "wrongAnswers": [
+      "1989",
+      "1991",
+      "1988",
+      "1992",
+      "1987"
+    ]
+  },
+  {
+    "question": "What year was 'Creep' by Radiohead released?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989"
+    ]
+  },
+  {
+    "question": "In what year did 'What's Going On' by Marvin Gaye come out?",
+    "correctAnswer": "1971",
+    "wrongAnswers": [
+      "1970",
+      "1972",
+      "1969",
+      "1973",
+      "1968"
+    ]
+  },
+  {
+    "question": "What year was 'Tears in Heaven' by Eric Clapton released?",
+    "correctAnswer": "1992",
+    "wrongAnswers": [
+      "1991",
+      "1993",
+      "1990",
+      "1994",
+      "1989"
+    ]
+  },
+  {
+    "question": "When was 'Born to Run' by Bruce Springsteen released?",
+    "correctAnswer": "1975",
+    "wrongAnswers": [
+      "1974",
+      "1976",
+      "1973",
+      "1977",
+      "1972"
+    ]
+  },
+  {
+    "question": "What year did 'Superstition' by Stevie Wonder come out?",
+    "correctAnswer": "1972",
+    "wrongAnswers": [
+      "1971",
+      "1973",
+      "1970",
+      "1974",
+      "1969"
+    ]
+  },
+  {
+    "question": "In what year was 'Mr. Brightside' by The Killers released?",
+    "correctAnswer": "2003",
+    "wrongAnswers": [
+      "2002",
+      "2004",
+      "2001",
+      "2005",
+      "2000"
+    ]
+  },
+  {
+    "question": "What year was 'Enter Sandman' by Metallica released?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988"
+    ]
+  },
+  {
+    "question": "When did 'Dancing Queen' by ABBA come out?",
+    "correctAnswer": "1976",
+    "wrongAnswers": [
+      "1975",
+      "1977",
+      "1974",
+      "1978",
+      "1973"
+    ]
+  },
+  {
+    "question": "What year was 'Sweet Dreams' by Eurythmics released?",
+    "correctAnswer": "1983",
+    "wrongAnswers": [
+      "1982",
+      "1984",
+      "1981",
+      "1985",
+      "1980"
+    ]
+  },
+  {
+    "question": "In what year did 'Come As You Are' by Nirvana come out?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988"
+    ]
+  },
+  {
+    "question": "What year was 'Waterfalls' by TLC released?",
+    "correctAnswer": "1994",
+    "wrongAnswers": [
+      "1993",
+      "1995",
+      "1992",
+      "1996",
+      "1991"
+    ]
+  },
+  {
+    "question": "When was 'With or Without You' by U2 released?",
+    "correctAnswer": "1987",
+    "wrongAnswers": [
+      "1986",
+      "1988",
+      "1985",
+      "1989",
+      "1984"
+    ]
+  },
+  {
+    "question": "What year did 'Crazy' by Gnarls Barkley come out?",
+    "correctAnswer": "2006",
+    "wrongAnswers": [
+      "2005",
+      "2007",
+      "2004",
+      "2008",
+      "2003"
+    ]
+  },
+  {
+    "question": "In what year was 'Blowin' in the Wind' by Bob Dylan released?",
+    "correctAnswer": "1963",
+    "wrongAnswers": [
+      "1962",
+      "1964",
+      "1961",
+      "1965",
+      "1960"
+    ]
+  },
+  {
+    "question": "What year was 'Crazy Train' by Ozzy Osbourne released?",
+    "correctAnswer": "1980",
+    "wrongAnswers": [
+      "1979",
+      "1981",
+      "1978",
+      "1982",
+      "1977"
+    ]
+  },
+  {
+    "question": "Which band performed 'Sweet Child O' Mine'?",
+    "correctAnswer": "Guns N' Roses",
+    "wrongAnswers": [
+      "Aerosmith",
+      "Def Leppard",
+      "Motley Crue",
+      "Poison",
+      "Skid Row",
+      "Whitesnake"
+    ]
+  },
+  {
+    "question": "Who sang 'Don't Stop Believin''?",
+    "correctAnswer": "Journey",
+    "wrongAnswers": [
+      "Foreigner",
+      "Boston",
+      "REO Speedwagon",
+      "Styx",
+      "Kansas",
+      "Asia"
+    ]
+  },
+  {
+    "question": "Which artist recorded 'Thriller'?",
+    "correctAnswer": "Michael Jackson",
+    "wrongAnswers": [
+      "Prince",
+      "Stevie Wonder",
+      "Lionel Richie",
+      "George Michael",
+      "Whitney Houston",
+      "Janet Jackson"
+    ]
+  },
+  {
+    "question": "Who performed 'Like a Rolling Stone'?",
+    "correctAnswer": "Bob Dylan",
+    "wrongAnswers": [
+      "Neil Young",
+      "Leonard Cohen",
+      "Paul Simon",
+      "Joni Mitchell",
+      "Van Morrison",
+      "Lou Reed"
+    ]
+  },
+  {
+    "question": "Which band sang 'Livin' on a Prayer'?",
+    "correctAnswer": "Bon Jovi",
+    "wrongAnswers": [
+      "Def Leppard",
+      "Journey",
+      "Foreigner",
+      "Europe",
+      "Whitesnake",
+      "Scorpions"
+    ]
+  },
+  {
+    "question": "Who recorded 'Material Girl'?",
+    "correctAnswer": "Madonna",
+    "wrongAnswers": [
+      "Cyndi Lauper",
+      "Pat Benatar",
+      "Blondie",
+      "Heart",
+      "The Go-Go's",
+      "Bananarama"
+    ]
+  },
+  {
+    "question": "Which group performed 'Dancing Queen'?",
+    "correctAnswer": "ABBA",
+    "wrongAnswers": [
+      "Bee Gees",
+      "Fleetwood Mac",
+      "The Carpenters",
+      "Diana Ross",
+      "Donna Summer",
+      "Gloria Gaynor"
+    ]
+  },
+  {
+    "question": "Who sang 'Every Breath You Take'?",
+    "correctAnswer": "The Police",
+    "wrongAnswers": [
+      "U2",
+      "The Cure",
+      "Duran Duran",
+      "Depeche Mode",
+      "New Order",
+      "Simple Minds"
+    ]
+  },
+  {
+    "question": "Which artist recorded 'Purple Rain'?",
+    "correctAnswer": "Prince",
+    "wrongAnswers": [
+      "Michael Jackson",
+      "Stevie Wonder",
+      "Rick James",
+      "George Clinton",
+      "Sly Stone",
+      "Morris Day"
+    ]
+  },
+  {
+    "question": "Who performed 'Sweet Caroline'?",
+    "correctAnswer": "Neil Diamond",
+    "wrongAnswers": [
+      "Elton John",
+      "Billy Joel",
+      "Paul McCartney",
+      "James Taylor",
+      "Carole King",
+      "Barry Manilow"
+    ]
+  },
+  {
+    "question": "Which band sang 'We Will Rock You'?",
+    "correctAnswer": "Queen",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "The Who",
+      "AC/DC",
+      "Deep Purple",
+      "Black Sabbath",
+      "Kiss"
+    ]
+  },
+  {
+    "question": "Who recorded 'I Will Always Love You'?",
+    "correctAnswer": "Whitney Houston",
+    "wrongAnswers": [
+      "Mariah Carey",
+      "Celine Dion",
+      "Aretha Franklin",
+      "Tina Turner",
+      "Diana Ross",
+      "Patti LaBelle"
+    ]
+  },
+  {
+    "question": "Which group performed 'Hotel California'?",
+    "correctAnswer": "Eagles",
+    "wrongAnswers": [
+      "Fleetwood Mac",
+      "America",
+      "Crosby, Stills & Nash",
+      "The Doobie Brothers",
+      "Steely Dan",
+      "Jackson Browne"
+    ]
+  },
+  {
+    "question": "Who sang 'Imagine'?",
+    "correctAnswer": "John Lennon",
+    "wrongAnswers": [
+      "Paul McCartney",
+      "George Harrison",
+      "Bob Dylan",
+      "Neil Young",
+      "Cat Stevens",
+      "James Taylor"
+    ]
+  },
+  {
+    "question": "Which band recorded 'Black Hole Sun'?",
+    "correctAnswer": "Soundgarden",
+    "wrongAnswers": [
+      "Pearl Jam",
+      "Alice in Chains",
+      "Stone Temple Pilots",
+      "Nirvana",
+      "Bush",
+      "Silverchair"
+    ]
+  },
+  {
+    "question": "Who performed 'Wonderwall'?",
+    "correctAnswer": "Oasis",
+    "wrongAnswers": [
+      "Blur",
+      "Radiohead",
+      "Coldplay",
+      "The Verve",
+      "Stone Roses",
+      "Pulp"
+    ]
+  },
+  {
+    "question": "Which artist sang 'Respect'?",
+    "correctAnswer": "Aretha Franklin",
+    "wrongAnswers": [
+      "Diana Ross",
+      "Gladys Knight",
+      "Tina Turner",
+      "Etta James",
+      "Nina Simone",
+      "Dionne Warwick"
+    ]
+  },
+  {
+    "question": "Who recorded 'Brown Eyed Girl'?",
+    "correctAnswer": "Van Morrison",
+    "wrongAnswers": [
+      "Rod Stewart",
+      "Elton John",
+      "Cat Stevens",
+      "James Taylor",
+      "Paul Simon",
+      "Neil Young"
+    ]
+  },
+  {
+    "question": "Which band performed 'Enter Sandman'?",
+    "correctAnswer": "Metallica",
+    "wrongAnswers": [
+      "Megadeth",
+      "Iron Maiden",
+      "Judas Priest",
+      "Black Sabbath",
+      "Pantera",
+      "Slayer"
+    ]
+  },
+  {
+    "question": "Who sang 'Superstition'?",
+    "correctAnswer": "Stevie Wonder",
+    "wrongAnswers": [
+      "Michael Jackson",
+      "Prince",
+      "Marvin Gaye",
+      "James Brown",
+      "Sly Stone",
+      "Parliament-Funkadelic"
+    ]
+  },
+  {
+    "question": "Which group recorded 'Mr. Blue Sky'?",
+    "correctAnswer": "Electric Light Orchestra",
+    "wrongAnswers": [
+      "10cc",
+      "Supertramp",
+      "Yes",
+      "Genesis",
+      "The Moody Blues",
+      "Pink Floyd"
+    ]
+  },
+  {
+    "question": "Who performed 'Billie Jean'?",
+    "correctAnswer": "Michael Jackson",
+    "wrongAnswers": [
+      "Prince",
+      "Lionel Richie",
+      "George Michael",
+      "Rick James",
+      "Stevie Wonder",
+      "Luther Vandross"
+    ]
+  },
+  {
+    "question": "Which band sang 'Don't Stop Me Now'?",
+    "correctAnswer": "Queen",
+    "wrongAnswers": [
+      "The Beatles",
+      "David Bowie",
+      "Elton John",
+      "The Rolling Stones",
+      "The Who",
+      "Led Zeppelin"
+    ]
+  },
+  {
+    "question": "Who recorded 'Losing My Religion'?",
+    "correctAnswer": "R.E.M.",
+    "wrongAnswers": [
+      "U2",
+      "The Cure",
+      "Radiohead",
+      "The Smiths",
+      "Stone Temple Pilots",
+      "Live"
+    ]
+  },
+  {
+    "question": "Which artist performed 'Like a Virgin'?",
+    "correctAnswer": "Madonna",
+    "wrongAnswers": [
+      "Cyndi Lauper",
+      "Pat Benatar",
+      "Heart",
+      "Blondie",
+      "The Go-Go's",
+      "Joan Jett"
+    ]
+  },
+  {
+    "question": "Who sang 'Born to Run'?",
+    "correctAnswer": "Bruce Springsteen",
+    "wrongAnswers": [
+      "Bob Dylan",
+      "Tom Petty",
+      "John Mellencamp",
+      "Neil Young",
+      "Bryan Adams",
+      "Bob Seger"
+    ]
+  },
+  {
+    "question": "Which band recorded 'Creep'?",
+    "correctAnswer": "Radiohead",
+    "wrongAnswers": [
+      "Bush",
+      "Stone Temple Pilots",
+      "Silverchair",
+      "Live",
+      "Collective Soul",
+      "Filter"
+    ]
+  },
+  {
+    "question": "Who performed 'What's Going On'?",
+    "correctAnswer": "Marvin Gaye",
+    "wrongAnswers": [
+      "Stevie Wonder",
+      "Curtis Mayfield",
+      "Sam Cooke",
+      "Al Green",
+      "Isaac Hayes",
+      "Barry White"
+    ]
+  },
+  {
+    "question": "Which group sang 'Bohemian Rhapsody'?",
+    "correctAnswer": "Queen",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "The Beatles",
+      "The Who",
+      "Pink Floyd",
+      "Genesis",
+      "Yes"
+    ]
+  },
+  {
+    "question": "Who recorded 'My Heart Will Go On'?",
+    "correctAnswer": "Celine Dion",
+    "wrongAnswers": [
+      "Whitney Houston",
+      "Mariah Carey",
+      "Barbra Streisand",
+      "Tina Turner",
+      "Alanis Morissette",
+      "Sarah McLachlan"
+    ]
+  },
+  {
+    "question": "Which artist performed 'Beat It'?",
+    "correctAnswer": "Michael Jackson",
+    "wrongAnswers": [
+      "Prince",
+      "Rick James",
+      "Lionel Richie",
+      "George Michael",
+      "Phil Collins",
+      "Stevie Wonder"
+    ]
+  },
+  {
+    "question": "Who sang 'Sweet Dreams (Are Made of This)'?",
+    "correctAnswer": "Eurythmics",
+    "wrongAnswers": [
+      "Blondie",
+      "Pat Benatar",
+      "Heart",
+      "The Go-Go's",
+      "Bananarama",
+      "Cyndi Lauper"
+    ]
+  },
+  {
+    "question": "Which band recorded 'Smells Like Teen Spirit'?",
+    "correctAnswer": "Nirvana",
+    "wrongAnswers": [
+      "Pearl Jam",
+      "Soundgarden",
+      "Alice in Chains",
+      "Stone Temple Pilots",
+      "Bush",
+      "Silverchair"
+    ]
+  },
+  {
+    "question": "Who performed 'Walk This Way'?",
+    "correctAnswer": "Aerosmith",
+    "wrongAnswers": [
+      "AC/DC",
+      "Kiss",
+      "Van Halen",
+      "Def Leppard",
+      "Motley Crue",
+      "Guns N' Roses"
+    ]
+  },
+  {
+    "question": "Which group sang 'Under Pressure'?",
+    "correctAnswer": "Queen & David Bowie",
+    "wrongAnswers": [
+      "The Beatles",
+      "The Rolling Stones",
+      "Led Zeppelin",
+      "The Who",
+      "Pink Floyd",
+      "Genesis"
+    ]
+  },
+  {
+    "question": "Who recorded 'Tears in Heaven'?",
+    "correctAnswer": "Eric Clapton",
+    "wrongAnswers": [
+      "George Harrison",
+      "Jeff Beck",
+      "Jimmy Page",
+      "Mark Knopfler",
+      "Sting",
+      "Phil Collins"
+    ]
+  },
+  {
+    "question": "Which artist performed 'California Gurls'?",
+    "correctAnswer": "Katy Perry",
+    "wrongAnswers": [
+      "Taylor Swift",
+      "Lady Gaga",
+      "Britney Spears",
+      "Rihanna",
+      "Pink",
+      "Christina Aguilera"
+    ]
+  },
+  {
+    "question": "Who sang 'Mr. Brightside'?",
+    "correctAnswer": "The Killers",
+    "wrongAnswers": [
+      "Franz Ferdinand",
+      "Arctic Monkeys",
+      "The Strokes",
+      "Interpol",
+      "Kaiser Chiefs",
+      "Bloc Party"
+    ]
+  },
+  {
+    "question": "Which band recorded 'Seven Nation Army'?",
+    "correctAnswer": "The White Stripes",
+    "wrongAnswers": [
+      "The Black Keys",
+      "Arctic Monkeys",
+      "The Strokes",
+      "Franz Ferdinand",
+      "Interpol",
+      "Yeah Yeah Yeahs"
+    ]
   }
 ]

@@ -255,7 +255,7 @@ hitDialogues: {
       if (hitCount >= 10) return selectDialogue(this.hitDialogues["10+"]);
       return "";
     },
-    About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The CyberBadger Cete is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
+    About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes." ,
     toggleDialogues: {
       player1: [
         "<span class='toggle-dialogue'>The CyberBadger Cete lets out a series of guttural snarls, their cybernetic eyes glowing menacingly at Jaybers8.</span>",
