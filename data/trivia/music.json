@@ -1,52 +1,122 @@
 [
   {
     "question": "Which band released the album 'Abbey Road'?",
-    "options": ["The Rolling Stones", "The Beatles", "Led Zeppelin"],
-    "correct": 1
+    "correctAnswer": "The Beatles",
+    "wrongAnswers": [
+      "The Rolling Stones",
+      "Led Zeppelin",
+      "Pink Floyd",
+      "Queen",
+      "The Who",
+      "The Kinks"
+    ]
   },
   {
     "question": "What instrument does Yo-Yo Ma famously play?",
-    "options": ["Violin", "Cello", "Piano"],
-    "correct": 1
+    "correctAnswer": "Cello",
+    "wrongAnswers": [
+      "Violin",
+      "Piano",
+      "Viola",
+      "Double Bass",
+      "Harp",
+      "Flute"
+    ]
   },
   {
     "question": "Which composer wrote 'The Four Seasons'?",
-    "options": ["Bach", "Vivaldi", "Mozart"],
-    "correct": 1
+    "correctAnswer": "Vivaldi",
+    "wrongAnswers": [
+      "Bach",
+      "Mozart",
+      "Beethoven",
+      "Handel",
+      "Tchaikovsky",
+      "Chopin"
+    ]
   },
   {
     "question": "What genre of music originated in New Orleans?",
-    "options": ["Blues", "Jazz", "Rock"],
-    "correct": 1
+    "correctAnswer": "Jazz",
+    "wrongAnswers": [
+      "Blues",
+      "Rock",
+      "Country",
+      "Reggae",
+      "Hip Hop",
+      "Gospel"
+    ]
   },
   {
     "question": "Which artist painted 'Starry Night'?",
-    "options": ["Pablo Picasso", "Vincent van Gogh", "Claude Monet"],
-    "correct": 1
+    "correctAnswer": "Vincent van Gogh",
+    "wrongAnswers": [
+      "Pablo Picasso",
+      "Claude Monet",
+      "Leonardo da Vinci",
+      "Salvador Dalí",
+      "Henri Matisse",
+      "Paul Cézanne"
+    ]
   },
   {
     "question": "What does 'forte' mean in music?",
-    "options": ["Soft", "Loud", "Fast"],
-    "correct": 1
+    "correctAnswer": "Loud",
+    "wrongAnswers": [
+      "Soft",
+      "Fast",
+      "Slow",
+      "High",
+      "Low",
+      "Smooth"
+    ]
   },
   {
     "question": "Which musical has the song 'Memory'?",
-    "options": ["Phantom of the Opera", "Cats", "Les Misérables"],
-    "correct": 1
+    "correctAnswer": "Cats",
+    "wrongAnswers": [
+      "Phantom of the Opera",
+      "Les Misérables",
+      "Chicago",
+      "Wicked",
+      "Hamilton",
+      "The Lion King"
+    ]
   },
   {
     "question": "How many strings does a standard guitar have?",
-    "options": ["5", "6", "7"],
-    "correct": 1
+    "correctAnswer": "6",
+    "wrongAnswers": [
+      "5",
+      "7",
+      "4",
+      "8",
+      "12",
+      "10"
+    ]
   },
   {
     "question": "Which rapper's real name is Marshall Mathers?",
-    "options": ["Jay-Z", "Eminem", "Kanye West"],
-    "correct": 1
+    "correctAnswer": "Eminem",
+    "wrongAnswers": [
+      "Jay-Z",
+      "Kanye West",
+      "50 Cent",
+      "Dr. Dre",
+      "Snoop Dogg",
+      "Tupac"
+    ]
   },
   {
     "question": "What is the highest male singing voice?",
-    "options": ["Tenor", "Countertenor", "Baritone"],
-    "correct": 1
+    "correctAnswer": "Countertenor",
+    "wrongAnswers": [
+      "Tenor",
+      "Baritone",
+      "Bass",
+      "Alto",
+      "Soprano",
+      "Mezzo-soprano"
+    ]
   }
 ]

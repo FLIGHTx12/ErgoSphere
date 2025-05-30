@@ -1,52 +1,122 @@
 [
   {
     "question": "How many players are on a basketball team on the court at one time?",
-    "options": ["4", "5", "6"],
-    "correct": 1
+    "correctAnswer": "5",
+    "wrongAnswers": [
+      "6",
+      "4",
+      "7",
+      "8",
+      "3",
+      "9"
+    ]
   },
   {
     "question": "Which sport is known as 'America's Pastime'?",
-    "options": ["Football", "Baseball", "Basketball"],
-    "correct": 1
+    "correctAnswer": "Baseball",
+    "wrongAnswers": [
+      "Football",
+      "Basketball",
+      "Hockey",
+      "Golf",
+      "Tennis",
+      "Soccer"
+    ]
   },
   {
     "question": "How many holes are played in a standard round of golf?",
-    "options": ["16", "18", "20"],
-    "correct": 1
+    "correctAnswer": "18",
+    "wrongAnswers": [
+      "9",
+      "12",
+      "16",
+      "20",
+      "24",
+      "15"
+    ]
   },
   {
     "question": "What is the maximum score possible in ten-pin bowling?",
-    "options": ["200", "250", "300"],
-    "correct": 2
+    "correctAnswer": "300",
+    "wrongAnswers": [
+      "250",
+      "200",
+      "350",
+      "400",
+      "280",
+      "320"
+    ]
   },
   {
     "question": "Which country won the FIFA World Cup in 2018?",
-    "options": ["Germany", "France", "Brazil"],
-    "correct": 1
+    "correctAnswer": "France",
+    "wrongAnswers": [
+      "Brazil",
+      "Germany",
+      "Argentina",
+      "Spain",
+      "Italy",
+      "Croatia"
+    ]
   },
   {
     "question": "How long is a marathon race?",
-    "options": ["26.2 miles", "25 miles", "27 miles"],
-    "correct": 0
+    "correctAnswer": "26.2 miles",
+    "wrongAnswers": [
+      "25 miles",
+      "30 miles",
+      "24 miles",
+      "26 miles",
+      "27 miles",
+      "28 miles"
+    ]
   },
   {
     "question": "In tennis, what is a score of zero called?",
-    "options": ["Nil", "Love", "Zero"],
-    "correct": 1
+    "correctAnswer": "Love",
+    "wrongAnswers": [
+      "Nil",
+      "Zero",
+      "Nothing",
+      "Blank",
+      "Empty",
+      "Void"
+    ]
   },
   {
     "question": "Which sport uses the term 'slam dunk'?",
-    "options": ["Volleyball", "Basketball", "Tennis"],
-    "correct": 1
+    "correctAnswer": "Basketball",
+    "wrongAnswers": [
+      "Volleyball",
+      "Tennis",
+      "Baseball",
+      "Football",
+      "Hockey",
+      "Soccer"
+    ]
   },
   {
     "question": "How many periods are in a hockey game?",
-    "options": ["2", "3", "4"],
-    "correct": 1
+    "correctAnswer": "3",
+    "wrongAnswers": [
+      "2",
+      "4",
+      "5",
+      "6",
+      "1",
+      "8"
+    ]
   },
   {
     "question": "What is the highest possible hand in poker?",
-    "options": ["Full House", "Royal Flush", "Four of a Kind"],
-    "correct": 1
+    "correctAnswer": "Royal Flush",
+    "wrongAnswers": [
+      "Straight Flush",
+      "Four of a Kind",
+      "Full House",
+      "Flush",
+      "Straight",
+      "Three of a Kind"
+    ]
   }
 ]

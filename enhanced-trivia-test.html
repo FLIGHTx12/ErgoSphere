@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Trivia Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e74c3c;
+        }
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 30px;
+        }
+        .test-results {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .question-test {
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        .option {
+            padding: 5px 0;
+            margin-left: 20px;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #e74c3c;
+        }
+        button {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎯 Enhanced Trivia System Test</h1>
+        
+        <div class="test-results">
+            <h3>System Status:</h3>
+            <div id="systemStatus">Loading trivia system...</div>
+        </div>
+
+        <div class="test-results">
+            <h3>Random Question Generation Test:</h3>
+            <button onclick="generateTestQuestions()">Generate 5 Random Questions</button>
+            <div id="questionTests"></div>
+        </div>
+
+        <div class="stats" id="statsContainer" style="display: none;">
+            <div class="stat-box">
+                <h4>Total Categories</h4>
+                <div id="totalCategories">-</div>
+            </div>
+            <div class="stat-box">
+                <h4>Total Questions</h4>
+                <div id="totalQuestions">-</div>
+            </div>
+            <div class="stat-box">
+                <h4>Enhanced Format</h4>
+                <div id="enhancedFormat">-</div>
+            </div>
+            <div class="stat-box">
+                <h4>Answer Variety</h4>
+                <div id="answerVariety">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test trivia manager
+        class EnhancedTriviaTest {
+            constructor() {
+                this.categories = [
+                    'history', 'music', 'games', 'sports',
+                    'spanish-english', 'movies-shows', 
+                    'minneapolis-chicago', 'construction', 'coding'
+                ];
+                this.triviaData = {};
+                this.stats = {
+                    totalQuestions: 0,
+                    enhancedQuestions: 0,
+                    totalWrongAnswers: 0
+                };
+                this.init();
+            }
+
+            async init() {
+                await this.loadTriviaData();
+                this.updateSystemStatus();
+                this.calculateStats();
+            }
+
+            async loadTriviaData() {
+                try {
+                    for (const category of this.categories) {
+                        const response = await fetch(`../data/trivia/${category}.json`);
+                        if (response.ok) {
+                            this.triviaData[category] = await response.json();
+                        } else {
+                            console.warn(`Failed to load trivia data for category: ${category}`);
+                            this.triviaData[category] = [];
+                        }
+                    }
+                    console.log('Enhanced trivia data loaded successfully');
+                } catch (error) {
+                    console.error('Error loading trivia data:', error);
+                }
+            }
+
+            updateSystemStatus() {
+                const statusDiv = document.getElementById('systemStatus');
+                const loadedCategories = Object.keys(this.triviaData).filter(cat => 
+                    this.triviaData[cat].length > 0
+                ).length;
+                
+                statusDiv.innerHTML = `
+                    <div style="color: #27ae60;">✅ Enhanced Trivia System Loaded</div>
+                    <div>📁 Categories loaded: ${loadedCategories}/${this.categories.length}</div>
+                    <div>🔄 Random selection system: Active</div>
+                    <div>🎲 Answer randomization: Enabled</div>
+                `;
+            }
+
+            calculateStats() {
+                this.stats.totalQuestions = 0;
+                this.stats.enhancedQuestions = 0;
+                this.stats.totalWrongAnswers = 0;
+
+                Object.values(this.triviaData).forEach(categoryData => {
+                    categoryData.forEach(question => {
+                        this.stats.totalQuestions++;
+                        if (question.correctAnswer && question.wrongAnswers) {
+                            this.stats.enhancedQuestions++;
+                            this.stats.totalWrongAnswers += question.wrongAnswers.length;
+                        }
+                    });
+                });
+
+                document.getElementById('statsContainer').style.display = 'grid';
+                document.getElementById('totalCategories').textContent = this.categories.length;
+                document.getElementById('totalQuestions').textContent = this.stats.totalQuestions;
+                document.getElementById('enhancedFormat').textContent = 
+                    `${this.stats.enhancedQuestions}/${this.stats.totalQuestions}`;
+                document.getElementById('answerVariety').textContent = 
+                    `Avg ${(this.stats.totalWrongAnswers / this.stats.enhancedQuestions).toFixed(1)} wrong options`;
+            }
+
+            processQuestionData(rawQuestion) {
+                if (rawQuestion.options) {
+                    return rawQuestion;
+                } else if (rawQuestion.correctAnswer && rawQuestion.wrongAnswers) {
+                    const correctAnswer = rawQuestion.correctAnswer;
+                    const wrongAnswers = [...rawQuestion.wrongAnswers];
+                    
+                    const selectedWrongAnswers = [];
+                    for (let i = 0; i < 2 && wrongAnswers.length > 0; i++) {
+                        const randomIndex = Math.floor(Math.random() * wrongAnswers.length);
+                        selectedWrongAnswers.push(wrongAnswers.splice(randomIndex, 1)[0]);
+                    }
+                    
+                    const allOptions = [correctAnswer, ...selectedWrongAnswers];
+                    
+                    for (let i = allOptions.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [allOptions[i], allOptions[j]] = [allOptions[j], allOptions[i]];
+                    }
+                    
+                    const correctIndex = allOptions.indexOf(correctAnswer);
+                    
+                    return {
+                        question: rawQuestion.question,
+                        options: allOptions,
+                        correct: correctIndex
+                    };
+                }
+                return null;
+            }
+
+            generateRandomQuestion() {
+                const availableCategories = this.categories.filter(cat => 
+                    this.triviaData[cat] && this.triviaData[cat].length > 0
+                );
+                
+                if (availableCategories.length === 0) return null;
+
+                const category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+                const categoryData = this.triviaData[category];
+                const rawQuestion = categoryData[Math.floor(Math.random() * categoryData.length)];
+                
+                const processedQuestion = this.processQuestionData(rawQuestion);
+                return { ...processedQuestion, category };
+            }
+        }
+
+        // Initialize test
+        let triviaTest;
+        window.addEventListener('DOMContentLoaded', () => {
+            triviaTest = new EnhancedTriviaTest();
+        });
+
+        function generateTestQuestions() {
+            const container = document.getElementById('questionTests');
+            container.innerHTML = '<div style="color: #f39c12;">Generating random questions...</div>';
+            
+            setTimeout(() => {
+                let html = '';
+                for (let i = 0; i < 5; i++) {
+                    const question = triviaTest.generateRandomQuestion();
+                    if (question) {
+                        html += `
+                            <div class="question-test">
+                                <strong>[${question.category.toUpperCase()}]</strong> ${question.question}
+                                ${question.options.map((option, index) => 
+                                    `<div class="option ${index === question.correct ? 'correct-answer' : 'wrong-answer'}">
+                                        ${String.fromCharCode(65 + index)}: ${option} ${index === question.correct ? '✓' : ''}
+                                    </div>`
+                                ).join('')}
+                            </div>
+                        `;
+                    }
+                }
+                container.innerHTML = html || '<div style="color: #e74c3c;">No questions generated</div>';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

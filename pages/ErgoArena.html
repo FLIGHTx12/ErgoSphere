@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ErgoSphere ARENA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>ErgoSphere ARENA</title>
     <link rel="stylesheet" href="../css/ErgoArena.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
 </head>
 <body>
@@ -14,9 +14,11 @@
         <div class="header-top-row">
             <div id="monsterButtons" class="monster-buttons">
                 <!-- Buttons for selecting monsters will be added here by JavaScript -->
-            </div>
-            <h1>ErgoSphere ARENA</h1>
+            </div>            <h1>ErgoSphere ARENA</h1>
             <div class="navbar" id="navbar">
+                <button id="dualCursorToggle" class="menu-button" title="Toggle 2-Player Mode">
+                    <i class="fas fa-mouse"></i> Dual Cursor: ON
+                </button>
                 <button id="howToPlayBtn" class="menu-button">
                     <i class="fas fa-question-circle"></i> How To Play
                 </button>
@@ -32,9 +34,11 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>ErgoSphere ARENA - Battle Manual</h2>
-                    
-                    <h3>Overview</h3>
+                      <h3>Overview</h3>
                     <p>Welcome to the ErgoSphere ARENA, a turn-based tactical battle system where two players (Jaybers8 and FLIGHTx12!) team up to defeat powerful monsters from the ErgoSphere universe.</p>
+                    
+                    <h3>Dual Cursor Mode</h3>
+                    <p><strong>NEW!</strong> Enable dual cursor mode for true 2-player multitasking! When active, both players can interact simultaneously with their own colored cursors (Purple for Jaybers8, Green for FLIGHTx12). Both players can set up attacks at the same time and execute combined attacks for maximum damage!</p>
                     
                     <h3>Battle Mechanics</h3>
                     <div class="controls-section">
@@ -42,10 +46,11 @@
                             <h4>Basic Controls</h4>
                             <ul>
                                 <li><strong>Enter</strong>: Attack with current inputs</li>
-                                <li><strong>Space Bar</strong>: Switch between players</li>
+                                <li><strong>Space Bar</strong>: Switch between players (single cursor mode)</li>
                                 <li><strong>Tab</strong>: Cycle between attack inputs</li>
                                 <li><strong>+ Key</strong>: Add an attack input</li>
                                 <li><strong>- Key</strong>: Remove an attack input</li>
+                                <li><strong>Dual Cursor Toggle</strong>: Enable/disable 2-player mode</li>
                                 <li><strong>Mobile Swipe Left/Right</strong>: View battle log or monster info</li>
                             </ul>
                         </div>
@@ -82,10 +87,45 @@
     </footer>    <!-- Load JavaScript files -->
     <script src="../js/monsters.js"></script>
     <script src="../js/trivia.js"></script>
-    <script src="../js/BossFight.js"></script>
-    <script>
+    <script src="../js/dual-cursor.js"></script>
+    <script src="../js/BossFight.js"></script>    <script>
+        // Initialize dual cursor system
+        let dualCursorManager;
+
         // Modal functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {            // Initialize dual cursor system
+            dualCursorManager = new DualCursorManager();
+            dualCursorManager.init();
+            
+            // Dual cursor toggle functionality
+            const dualCursorToggle = document.getElementById('dualCursorToggle');
+            if (dualCursorToggle) {
+                dualCursorToggle.addEventListener('click', function() {
+                    if (dualCursorManager) {
+                        dualCursorManager.toggleDualCursors();
+                        updateToggleButton();
+                    }
+                });
+                
+                // Update button text based on dual cursor status
+                function updateToggleButton() {
+                    const status = dualCursorManager.getStatus();
+                    if (status.active) {
+                        dualCursorToggle.innerHTML = '<i class="fas fa-mouse"></i> Dual Cursor: ON';
+                        dualCursorToggle.style.background = 'linear-gradient(45deg, #8e44ad, #27ae60)';
+                    } else {
+                        dualCursorToggle.innerHTML = '<i class="fas fa-mouse"></i> Dual Cursor: OFF';
+                        dualCursorToggle.style.background = '';
+                    }
+                }
+                
+                // Listen for dual cursor events to update button
+                document.addEventListener('dualCursorEvent', updateToggleButton);
+                
+                // Initial button update
+                setTimeout(updateToggleButton, 100);
+            }
+            
             const modal = document.getElementById('howToPlayModal');
             const btn = document.getElementById('howToPlayBtn');
             const span = document.getElementsByClassName('close')[0];

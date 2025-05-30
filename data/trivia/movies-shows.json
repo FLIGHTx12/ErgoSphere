@@ -1,52 +1,122 @@
 [
   {
     "question": "Which movie features the quote 'May the Force be with you'?",
-    "options": ["Star Trek", "Star Wars", "Guardians of the Galaxy"],
-    "correct": 1
+    "correctAnswer": "Star Wars",
+    "wrongAnswers": [
+      "Star Trek",
+      "Indiana Jones",
+      "Back to the Future",
+      "E.T.",
+      "Close Encounters",
+      "The Matrix"
+    ]
   },
   {
     "question": "Who played the character of Jack Sparrow?",
-    "options": ["Orlando Bloom", "Johnny Depp", "Geoffrey Rush"],
-    "correct": 1
+    "correctAnswer": "Johnny Depp",
+    "wrongAnswers": [
+      "Orlando Bloom",
+      "Will Smith",
+      "Brad Pitt",
+      "Leonardo DiCaprio",
+      "Tom Cruise",
+      "Russell Crowe"
+    ]
   },
   {
     "question": "Which TV show features the character Walter White?",
-    "options": ["Better Call Saul", "Breaking Bad", "The Walking Dead"],
-    "correct": 1
+    "correctAnswer": "Breaking Bad",
+    "wrongAnswers": [
+      "Better Call Saul",
+      "The Sopranos",
+      "Mad Men",
+      "Dexter",
+      "House of Cards",
+      "Homeland"
+    ]
   },
   {
     "question": "What is the highest-grossing film of all time?",
-    "options": ["Titanic", "Avatar", "Avengers: Endgame"],
-    "correct": 2
+    "correctAnswer": "Avatar",
+    "wrongAnswers": [
+      "Avengers: Endgame",
+      "Titanic",
+      "Star Wars",
+      "Jurassic Park",
+      "The Lion King",
+      "Frozen"
+    ]
   },
   {
     "question": "Which series features dragons and the Iron Throne?",
-    "options": ["The Witcher", "Game of Thrones", "House of the Dragon"],
-    "correct": 1
+    "correctAnswer": "Game of Thrones",
+    "wrongAnswers": [
+      "The Witcher",
+      "House of the Dragon",
+      "Lord of the Rings",
+      "Vikings",
+      "The Last Kingdom",
+      "Merlin"
+    ]
   },
   {
     "question": "Who directed the movie 'Jaws'?",
-    "options": ["George Lucas", "Steven Spielberg", "Francis Ford Coppola"],
-    "correct": 1
+    "correctAnswer": "Steven Spielberg",
+    "wrongAnswers": [
+      "George Lucas",
+      "Martin Scorsese",
+      "Francis Ford Coppola",
+      "Ridley Scott",
+      "James Cameron",
+      "Tim Burton"
+    ]
   },
   {
     "question": "Which animated movie features the song 'Let It Go'?",
-    "options": ["Moana", "Frozen", "Tangled"],
-    "correct": 1
+    "correctAnswer": "Frozen",
+    "wrongAnswers": [
+      "Moana",
+      "Tangled",
+      "The Little Mermaid",
+      "Beauty and the Beast",
+      "Aladdin",
+      "The Lion King"
+    ]
   },
   {
     "question": "What is the name of Ross's pet monkey in Friends?",
-    "options": ["Marcel", "Monkey", "George"],
-    "correct": 0
+    "correctAnswer": "Marcel",
+    "wrongAnswers": [
+      "Charlie",
+      "George",
+      "Buddy",
+      "Max",
+      "Sam",
+      "Oscar"
+    ]
   },
   {
     "question": "Which superhero is known as the 'Dark Knight'?",
-    "options": ["Superman", "Batman", "Spider-Man"],
-    "correct": 1
+    "correctAnswer": "Batman",
+    "wrongAnswers": [
+      "Superman",
+      "Spider-Man",
+      "Iron Man",
+      "Captain America",
+      "Thor",
+      "Green Lantern"
+    ]
   },
   {
     "question": "In The Office, what is Jim's last name?",
-    "options": ["Halpert", "Howard", "Harper"],
-    "correct": 0
+    "correctAnswer": "Halpert",
+    "wrongAnswers": [
+      "Beesly",
+      "Schrute",
+      "Scott",
+      "Martin",
+      "Howard",
+      "Palmer"
+    ]
   }
 ]

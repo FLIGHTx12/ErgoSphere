@@ -1,52 +1,122 @@
 [
   {
     "question": "What does 'Hola' mean in English?",
-    "options": ["Goodbye", "Hello", "Thank you"],
-    "correct": 1
+    "correctAnswer": "Hello",
+    "wrongAnswers": [
+      "Goodbye",
+      "Please",
+      "Thank you",
+      "Yes",
+      "No",
+      "Excuse me"
+    ]
   },
   {
     "question": "How do you say 'Good morning' in Spanish?",
-    "options": ["Buenas tardes", "Buenos días", "Buenas noches"],
-    "correct": 1
+    "correctAnswer": "Buenos días",
+    "wrongAnswers": [
+      "Buenas noches",
+      "Buenas tardes",
+      "Hola",
+      "Adiós",
+      "Gracias",
+      "Por favor"
+    ]
   },
   {
     "question": "What is the past tense of 'go' in English?",
-    "options": ["Gone", "Went", "Going"],
-    "correct": 1
+    "correctAnswer": "Went",
+    "wrongAnswers": [
+      "Goed",
+      "Gone",
+      "Going",
+      "Goes",
+      "Wented",
+      "Goed"
+    ]
   },
   {
     "question": "Which word means 'water' in Spanish?",
-    "options": ["Agua", "Leche", "Jugo"],
-    "correct": 0
+    "correctAnswer": "Agua",
+    "wrongAnswers": [
+      "Fuego",
+      "Tierra",
+      "Aire",
+      "Comida",
+      "Casa",
+      "Libro"
+    ]
   },
   {
     "question": "What does 'Please' mean in Spanish?",
-    "options": ["Perdón", "Por favor", "Gracias"],
-    "correct": 1
+    "correctAnswer": "Por favor",
+    "wrongAnswers": [
+      "Gracias",
+      "De nada",
+      "Lo siento",
+      "Perdón",
+      "Con permiso",
+      "Disculpe"
+    ]
   },
   {
     "question": "Which is the correct plural of 'child' in English?",
-    "options": ["Childs", "Children", "Childrens"],
-    "correct": 1
+    "correctAnswer": "Children",
+    "wrongAnswers": [
+      "Childs",
+      "Childes",
+      "Childrens",
+      "Child",
+      "Childern",
+      "Childer"
+    ]
   },
   {
     "question": "How do you say 'red' in Spanish?",
-    "options": ["Azul", "Rojo", "Verde"],
-    "correct": 1
+    "correctAnswer": "Rojo",
+    "wrongAnswers": [
+      "Azul",
+      "Verde",
+      "Amarillo",
+      "Negro",
+      "Blanco",
+      "Rosa"
+    ]
   },
   {
     "question": "What type of word is 'quickly'?",
-    "options": ["Noun", "Adverb", "Adjective"],
-    "correct": 1
+    "correctAnswer": "Adverb",
+    "wrongAnswers": [
+      "Noun",
+      "Verb",
+      "Adjective",
+      "Pronoun",
+      "Preposition",
+      "Conjunction"
+    ]
   },
   {
     "question": "What does 'Gracias' mean in English?",
-    "options": ["Please", "Thank you", "Excuse me"],
-    "correct": 1
+    "correctAnswer": "Thank you",
+    "wrongAnswers": [
+      "Please",
+      "Hello",
+      "Goodbye",
+      "Excuse me",
+      "I'm sorry",
+      "You're welcome"
+    ]
   },
   {
     "question": "Which sentence is grammatically correct?",
-    "options": ["I have went to the store", "I have gone to the store", "I have go to the store"],
-    "correct": 1
+    "correctAnswer": "She is going to the store",
+    "wrongAnswers": [
+      "She are going to the store",
+      "She going to the store",
+      "She is go to the store",
+      "She is goes to the store",
+      "She be going to the store",
+      "She were going to the store"
+    ]
   }
 ]

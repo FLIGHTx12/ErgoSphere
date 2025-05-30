@@ -1,52 +1,122 @@
 [
   {
     "question": "Which game features the character Mario?",
-    "options": ["Sonic the Hedgehog", "Super Mario Bros", "Pac-Man"],
-    "correct": 1
+    "correctAnswer": "Super Mario Bros",
+    "wrongAnswers": [
+      "Sonic the Hedgehog",
+      "Pac-Man",
+      "Donkey Kong",
+      "Zelda",
+      "Metroid",
+      "Street Fighter"
+    ]
   },
   {
     "question": "What is the best-selling video game of all time?",
-    "options": ["Tetris", "Minecraft", "Grand Theft Auto V"],
-    "correct": 1
+    "correctAnswer": "Minecraft",
+    "wrongAnswers": [
+      "Tetris",
+      "Grand Theft Auto V",
+      "Fortnite",
+      "PUBG",
+      "Wii Sports",
+      "Super Mario Bros"
+    ]
   },
   {
     "question": "Which company created the PlayStation?",
-    "options": ["Nintendo", "Sony", "Microsoft"],
-    "correct": 1
+    "correctAnswer": "Sony",
+    "wrongAnswers": [
+      "Nintendo",
+      "Microsoft",
+      "Sega",
+      "Atari",
+      "Activision",
+      "Electronic Arts"
+    ]
   },
   {
     "question": "What does 'RPG' stand for in gaming?",
-    "options": ["Real Player Game", "Role Playing Game", "Rapid Pace Gaming"],
-    "correct": 1
+    "correctAnswer": "Role Playing Game",
+    "wrongAnswers": [
+      "Real Player Game",
+      "Rapid Pace Gaming",
+      "Random Player Generator",
+      "Role Performance Game",
+      "Real Play Gaming",
+      "Racing Performance Game"
+    ]
   },
   {
     "question": "Which game popularized the battle royale genre?",
-    "options": ["PUBG", "Fortnite", "Apex Legends"],
-    "correct": 0
+    "correctAnswer": "PUBG",
+    "wrongAnswers": [
+      "Fortnite",
+      "Apex Legends",
+      "Call of Duty",
+      "H1Z1",
+      "DayZ",
+      "Minecraft Hunger Games"
+    ]
   },
   {
     "question": "What is the maximum level in classic Pac-Man?",
-    "options": ["255", "256", "999"],
-    "correct": 1
+    "correctAnswer": "256",
+    "wrongAnswers": [
+      "255",
+      "999",
+      "100",
+      "200",
+      "300",
+      "500"
+    ]
   },
   {
     "question": "Which game series features Master Chief?",
-    "options": ["Call of Duty", "Halo", "Destiny"],
-    "correct": 1
+    "correctAnswer": "Halo",
+    "wrongAnswers": [
+      "Call of Duty",
+      "Destiny",
+      "Gears of War",
+      "Mass Effect",
+      "Dead Space",
+      "Titanfall"
+    ]
   },
   {
     "question": "What year was the original Nintendo Entertainment System released in North America?",
-    "options": ["1983", "1985", "1987"],
-    "correct": 1
+    "correctAnswer": "1985",
+    "wrongAnswers": [
+      "1983",
+      "1987",
+      "1984",
+      "1986",
+      "1982",
+      "1988"
+    ]
   },
   {
     "question": "Which game features the city of Vice City?",
-    "options": ["Grand Theft Auto", "Saints Row", "Watch Dogs"],
-    "correct": 0
+    "correctAnswer": "Grand Theft Auto",
+    "wrongAnswers": [
+      "Saints Row",
+      "Watch Dogs",
+      "Mafia",
+      "Sleeping Dogs",
+      "The Getaway",
+      "Driver"
+    ]
   },
   {
     "question": "What is the currency in World of Warcraft?",
-    "options": ["Credits", "Gold", "Coins"],
-    "correct": 1
+    "correctAnswer": "Gold",
+    "wrongAnswers": [
+      "Credits",
+      "Coins",
+      "Gems",
+      "Gil",
+      "Zeny",
+      "Crowns"
+    ]
   }
 ]

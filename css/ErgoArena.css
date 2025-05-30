@@ -574,206 +574,270 @@ header h1 {
     }
 }
 
-/* Add and Remove Attack Buttons */
-#addAttackButton, #removeAttackButton {
-    padding: 8px 15px;
-    margin: 0 5px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Click feedback animation */
+.click-feedback {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid;
+    animation: clickRipple 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: 10001;
 }
 
-#addAttackButton:hover, #removeAttackButton:hover {
-    background-color: #34495e;
+@keyframes clickRipple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
 }
 
-#addAttackButton {
-    border-left: 3px solid #2ecc71;
+/* Dual Cursor Styles */
+.dual-cursors-active {
+    cursor: none; /* Hide default cursor when dual cursors are active */
 }
 
-#removeAttackButton {
-    border-left: 3px solid #e74c3c;
-}
-
-/* Copy Log Button */
-.copy-log-button {
-    background-color: #2c3e50;
-    color: white;
-    border: 2px solid #0ff;
-    border-radius: 5px;
-    padding: 8px 15px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 10px #0ff;
-    display: block;
-    margin: 10px auto;
-    transition: all 0.3s ease;
-}
-
-.copy-log-button:hover {
-    background-color: #34495e;
-    transform: translateY(-2px);
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
+.dual-cursor-container {
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
 }
 
-.modal-content {
-    background-color: #2c3e50;
-    background-image: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
-    margin: 5% auto;
-    padding: 30px;
-    border: 3px solid #0ff;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 
-        0 0 30px rgba(0, 255, 255, 0.3),
-        inset 0 0 20px rgba(0, 0, 0, 0.3);
-    color: var(--text-color);
+.custom-cursor {
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.custom-cursor .cursor-pointer {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid;
+    background: rgba(255, 255, 255, 0.9);
     position: relative;
 }
 
-.modal-content h2 {
-    color: #0ff;
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    font-size: 2rem;
-}
-
-.modal-content h3 {
-    color: #e74c3c;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
-}
-
-.modal-content h4 {
-    color: #f39c12;
-    margin-bottom: 10px;
-}
-
-.controls-section {
-    display: flex;
-    gap: 30px;
-    margin: 20px 0;
-}
-
-.controls-column {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.controls-column ul {
-    margin-left: 20px;
-}
-
-.controls-column li {
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.modal-content ol {
-    margin-left: 20px;
-}
-
-.modal-content ol li {
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.custom-cursor .cursor-label {
     position: absolute;
-    top: 15px;
-    right: 25px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-.close:hover,
-.close:focus {
-    color: #0ff;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+#player1-cursor .cursor-pointer {
+    border-color: var(--player1-color);
+    box-shadow: 0 0 10px var(--player1-color);
 }
 
-/* Trivia Container Styles */
+#player1-cursor .cursor-label {
+    background: var(--player1-color);
+    color: white;
+}
+
+#player2-cursor .cursor-pointer {
+    border-color: var(--player2-color);
+    box-shadow: 0 0 10px var(--player2-color);
+}
+
+#player2-cursor .cursor-label {
+    background: var(--player2-color);
+    color: white;
+}
+
+.custom-cursor.active {
+    opacity: 1;
+}
+
+.custom-cursor:not(.active) {
+    opacity: 0.6;
+}
+
+/* Dual cursor status display */
+.dual-cursor-status, .single-cursor-status {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player1-indicator {
+    color: var(--player1-color);
+}
+
+.player2-indicator {
+    color: var(--player2-color);
+}
+
+.status-text {
+    color: #ecf0f1;
+}
+
+/* Dual cursor mode container styling */
+.dual-cursors-active #attackInputs1,
+.dual-cursors-active #attackInputs2 {
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 5px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.dual-cursors-active #attackInputs1 {
+    border-color: var(--player1-color);
+}
+
+.dual-cursors-active #attackInputs2 {
+    border-color: var(--player2-color);
+}
+
+.dual-cursors-active #attackInputs1::before {
+    content: "Jaybers8 Attacks";
+    display: block;
+    color: var(--player1-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.dual-cursors-active #attackInputs2::before {
+    content: "FLIGHTx12 Attacks";
+    display: block;
+    color: var(--player2-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Enhanced attack button for dual cursor mode */
+.dual-cursors-active .attack-button {
+    background: linear-gradient(45deg, var(--player1-color), var(--player2-color)) !important;
+    font-size: 1.3rem;
+    padding: 18px 35px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: dualModeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes dualModeGlow {
+    0% {
+        box-shadow: 0 0 5px var(--player1-color), 0 0 10px var(--player1-color);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--player2-color), 0 0 10px var(--player2-color);
+    }
+}
+
+/* Responsive adjustments for dual cursor mode */
+@media (max-width: 768px) {
+    .dual-cursors-active #attackInputs1,
+    .dual-cursors-active #attackInputs2 {
+        float: none !important;
+        width: 100% !important;
+        margin: 10px 0 !important;
+    }
+    
+    .dual-cursor-status {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px;
+        justify-content: center;
+    }
+}
+
+/* Dual cursor toggle button styling */
+#dualCursorToggle {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+#dualCursorToggle:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+#dualCursorToggle.active {
+    background: linear-gradient(45deg, var(--player1-color), var(--player2-color));
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Trivia Container Styling */
 .trivia-container {
+    position: absolute;
+    top: 350px; /* Raised position for better PC monitor visibility */
+    left: 10px;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 15;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
 }
 
 .trivia-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     margin-bottom: 15px;
+    border-bottom: 2px solid #e74c3c;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--accent-color);
 }
 
 .trivia-header h3 {
-    margin: 0;
-    color: var(--accent-color);
+    color: #e74c3c;
+    margin: 0 0 8px 0;
     font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.6);
 }
 
 .multiplier-display {
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-weight: bold;
+    color: #ecf0f1;
     font-size: 0.9rem;
-    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
 }
 
-.multiplier-display #multiplierValue {
-    color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+#multiplierValue {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .question-container {
-    margin-bottom: 10px;
+    color: #ecf0f1;
 }
 
 .question-text {
-    background: rgba(52, 73, 94, 0.8);
-    padding: 15px;
+    background-color: rgba(52, 73, 94, 0.8);
     border-radius: 8px;
+    padding: 12px;
     margin-bottom: 15px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.4;
     min-height: 60px;
-    border-left: 4px solid var(--accent-color);
-}
-
-.question-text strong {
-    color: var(--accent-color);
-    font-size: 0.85rem;
+    border-left: 4px solid #e74c3c;
 }
 
 .answers-container {
@@ -784,306 +848,142 @@ header h1 {
 }
 
 .answer-btn {
-    background: linear-gradient(45deg, #34495e, #2c3e50);
-    color: white;
+    background-color: rgba(52, 73, 94, 0.8);
     border: 2px solid #3498db;
-    padding: 12px 15px;
-    border-radius: 8px;
+    color: #ecf0f1;
+    padding: 10px 12px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: left;
     font-size: 0.9rem;
-    font-weight: 500;
+    text-align: left;
 }
 
-.answer-btn:hover:not(:disabled) {
-    background: linear-gradient(45deg, #3498db, #2980b9);
+.answer-btn:hover {
+    background-color: rgba(52, 152, 219, 0.3);
+    border-color: #2980b9;
     transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
 .answer-btn:disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .answer-btn.correct-answer {
-    background: linear-gradient(45deg, #27ae60, #2ecc71) !important;
-    border-color: #27ae60;
-    animation: correctPulse 0.6s ease-in-out;
+    background-color: rgba(39, 174, 96, 0.6) !important;
+    border-color: #27ae60 !important;
+    color: white !important;
 }
 
 .answer-btn.wrong-answer {
-    background: linear-gradient(45deg, #e74c3c, #c0392b) !important;
-    border-color: #e74c3c;
-    animation: wrongShake 0.6s ease-in-out;
+    background-color: rgba(231, 76, 60, 0.6) !important;
+    border-color: #e74c3c !important;
+    color: white !important;
 }
 
 .question-timer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.5);
+    gap: 10px;
+    background-color: rgba(44, 62, 80, 0.8);
+    border-radius: 6px;
     padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid #34495e;
 }
 
 .progress-bar {
-    height: 6px;
-    background-color: #27ae60;
-    border-radius: 3px;
-    transition: width 1s linear, background-color 0.3s ease;
     flex: 1;
-    margin-right: 10px;
+    height: 8px;
+    background-color: rgba(149, 165, 166, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #27ae60;
+    width: 100%;
+    transition: all 0.1s linear;
 }
 
 #timeLeft {
-    font-size: 0.9rem;
+    color: #ecf0f1;
     font-weight: bold;
-    color: var(--text-color);
+    font-size: 0.9rem;
     min-width: 35px;
-    text-align: right;
+    text-align: center;
 }
 
 .feedback {
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 4px;
     font-weight: bold;
     text-align: center;
-    animation: feedbackPop 0.5s ease-in-out;
 }
 
 .feedback.success {
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    background-color: rgba(39, 174, 96, 0.8);
     color: white;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
 }
 
 .feedback.error {
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    background-color: rgba(231, 76, 60, 0.8);
     color: white;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
 }
 
 .feedback.timeout {
-    background: linear-gradient(45deg, #f39c12, #e67e22);
+    background-color: rgba(243, 156, 18, 0.8);
     color: white;
-    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
-}
-
-/* Trivia Animations */
-@keyframes correctPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(46, 204, 113, 0.6); }
-    100% { transform: scale(1); }
-}
-
-@keyframes wrongShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-@keyframes feedbackPop {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes multiplierPulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.1); box-shadow: 0 4px 20px rgba(46, 204, 113, 0.6); }
+    50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
 
-/* Responsive design */
-@media screen and (max-width: 1400px) {
-    .monster-container {
-        width: 60%;
-    }
-
-    [id^="infoContainer"], [id^="historyContainer"] {
-        width: 280px; /* Adjusted for new wider history container */
-    }
+/* Add/Remove Attack Button Styling */
+#addAttackButton, #removeAttackButton {
+    background-color: #27ae60;
+    background-image: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2px 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 1200px) {
-    .monster-container {
-        width: 100%;
-    }
-
-    [id^="infoContainer"], [id^="historyContainer"] {
-        position: static;
-        width: 90%;
-        margin: 15px auto;
-        max-height: 300px;
-    }
+#removeAttackButton {
+    background-color: #e74c3c;
+    background-image: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-/* Trivia Mobile Responsive Styles */
-@media screen and (max-width: 768px) {
-    .trivia-container {
-        margin: 10px auto;
-        width: 95%;
-        padding: 15px;
-    }
-    
-    .trivia-header {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    .trivia-header h3 {
-        font-size: 1.1rem;
-    }
-    
-    .multiplier-display {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
-    
-    .question-text {
-        padding: 12px;
-        font-size: 0.9rem;
-        min-height: 50px;
-    }
-    
-    .answers-container {
-        gap: 6px;
-    }
-    
-    .answer-btn {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .answer-btn:hover:not(:disabled) {
-        transform: translateX(3px);
-    }
-    
-    .question-timer {
-        padding: 6px 10px;
-    }
-    
-    .progress-bar {
-        height: 5px;
-        margin-right: 8px;
-    }
-    
-    #timeLeft {
-        font-size: 0.8rem;
-        min-width: 30px;
-    }
-    
-    .feedback {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
+#addAttackButton:hover {
+    background-image: linear-gradient(135deg, #2ecc71, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 480px) {
-    .trivia-container {
-        padding: 10px;
-        margin: 8px auto;
-    }
-    
-    .trivia-header h3 {
-        font-size: 1rem;
-    }
-    
-    .multiplier-display {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .question-text {
-        padding: 10px;
-        font-size: 0.85rem;
-        min-height: 45px;
-    }
-    
-    .answer-btn {
-        padding: 8px 10px;
-        font-size: 0.8rem;
-    }
-    
-    .feedback {
-        padding: 6px 10px;
-        font-size: 0.85rem;
-    }
+#removeAttackButton:hover {
+    background-image: linear-gradient(135deg, #c0392b, #e74c3c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-    .header-top-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    header h1 {
-        margin-bottom: 10px;
-        order: 1; /* Show title first on mobile */
-    }
-    
-    .monster-buttons {
-        order: 2; /* Show monster buttons second */
-    }
-    
-    .navbar {
-        order: 3; /* Show navbar last */
-    }
-    
-    .attack-button {
-        padding: 12px 24px;
-        font-size: 1rem;
-    }
-    
-    #attackInputs1 input, #attackInputs2 input {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-    }
-    
-    .controls-section {
-        flex-direction: column;
-    }
-    
-    #timer {
-        font-size: 1rem !important; /* Adjusted for mobile */
-        padding: 3px 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .attack-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    #attackInputs1 input, #attackInputs2 input {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-    
-    #playerToggle {
-        font-size: 0.9rem;
-    }
-    
-    #timer {
-        font-size: 0.9rem !important; /* Further reduced for small screens */
-        padding: 2px 8px;
-    }
+#addAttackButton:active, #removeAttackButton:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }

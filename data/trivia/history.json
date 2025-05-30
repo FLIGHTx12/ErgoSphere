@@ -1,52 +1,122 @@
 [
   {
     "question": "Which ancient civilization built Machu Picchu?",
-    "options": ["Aztec", "Inca", "Maya"],
-    "correct": 1
+    "correctAnswer": "Inca",
+    "wrongAnswers": [
+      "Aztec",
+      "Maya",
+      "Egyptian",
+      "Roman",
+      "Greek",
+      "Chinese"
+    ]
   },
   {
     "question": "In what year did World War II end?",
-    "options": ["1944", "1945", "1946"],
-    "correct": 1
+    "correctAnswer": "1945",
+    "wrongAnswers": [
+      "1944",
+      "1946",
+      "1943",
+      "1947",
+      "1942",
+      "1948"
+    ]
   },
   {
     "question": "Who was the first President of the United States?",
-    "options": ["Thomas Jefferson", "George Washington", "John Adams"],
-    "correct": 1
+    "correctAnswer": "George Washington",
+    "wrongAnswers": [
+      "Thomas Jefferson",
+      "John Adams",
+      "Benjamin Franklin",
+      "Alexander Hamilton",
+      "James Madison",
+      "Patrick Henry"
+    ]
   },
   {
     "question": "The Berlin Wall fell in which year?",
-    "options": ["1987", "1989", "1991"],
-    "correct": 1
+    "correctAnswer": "1989",
+    "wrongAnswers": [
+      "1987",
+      "1991",
+      "1988",
+      "1990",
+      "1985",
+      "1992"
+    ]
   },
   {
     "question": "Which empire was ruled by Julius Caesar?",
-    "options": ["Greek Empire", "Roman Empire", "Ottoman Empire"],
-    "correct": 1
+    "correctAnswer": "Roman Empire",
+    "wrongAnswers": [
+      "Greek Empire",
+      "Ottoman Empire",
+      "Byzantine Empire",
+      "Persian Empire",
+      "Mongol Empire",
+      "Egyptian Empire"
+    ]
   },
   {
     "question": "The Great Wall of China was primarily built to defend against which group?",
-    "options": ["Mongols", "Japanese", "Russians"],
-    "correct": 0
+    "correctAnswer": "Mongols",
+    "wrongAnswers": [
+      "Japanese",
+      "Russians",
+      "Koreans",
+      "Vietnamese",
+      "Tibetans",
+      "Indians"
+    ]
   },
   {
     "question": "Who was known as the 'Iron Lady'?",
-    "options": ["Queen Elizabeth II", "Margaret Thatcher", "Golda Meir"],
-    "correct": 1
+    "correctAnswer": "Margaret Thatcher",
+    "wrongAnswers": [
+      "Queen Elizabeth II",
+      "Golda Meir",
+      "Indira Gandhi",
+      "Angela Merkel",
+      "Catherine the Great",
+      "Joan of Arc"
+    ]
   },
   {
     "question": "The American Civil War began in which year?",
-    "options": ["1859", "1861", "1863"],
-    "correct": 1
+    "correctAnswer": "1861",
+    "wrongAnswers": [
+      "1859",
+      "1863",
+      "1860",
+      "1862",
+      "1858",
+      "1864"
+    ]
   },
   {
     "question": "Which ancient wonder of the world was located in Alexandria?",
-    "options": ["Hanging Gardens", "Lighthouse of Alexandria", "Colossus of Rhodes"],
-    "correct": 1
+    "correctAnswer": "Lighthouse of Alexandria",
+    "wrongAnswers": [
+      "Hanging Gardens",
+      "Colossus of Rhodes",
+      "Statue of Zeus",
+      "Temple of Artemis",
+      "Mausoleum at Halicarnassus",
+      "Great Pyramid"
+    ]
   },
   {
     "question": "The French Revolution began in which year?",
-    "options": ["1787", "1789", "1791"],
-    "correct": 1
+    "correctAnswer": "1789",
+    "wrongAnswers": [
+      "1787",
+      "1791",
+      "1788",
+      "1790",
+      "1786",
+      "1792"
+    ]
   }
 ]

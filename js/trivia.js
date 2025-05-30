@@ -69,10 +69,10 @@ class TriviaManager {
       </div>
     `;    // Position the trivia container higher up for better PC monitor visibility
     triviaContainer.style.position = "absolute";
-    triviaContainer.style.top = "450px"; // Raised position for better visibility
+    triviaContainer.style.top = "470px"; // Raised position for better visibility - matches CSS
     triviaContainer.style.left = "10px";
     triviaContainer.style.width = "350px";
-    triviaContainer.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    triviaContainer.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
     triviaContainer.style.border = "2px solid #e74c3c";
     triviaContainer.style.borderRadius = "10px";
     triviaContainer.style.padding = "15px";
@@ -109,7 +109,6 @@ class TriviaManager {
       this.questionTimer = null;
     }
   }
-
   loadNewQuestion() {
     if (!this.isActive) return;
 
@@ -127,11 +126,54 @@ class TriviaManager {
     const categoryData = this.triviaData[this.currentCategory];
     
     // Select random question
-    this.currentQuestion = categoryData[Math.floor(Math.random() * categoryData.length)];
+    const rawQuestion = categoryData[Math.floor(Math.random() * categoryData.length)];
+    
+    // Process question to create randomized options
+    this.currentQuestion = this.processQuestionData(rawQuestion);
     
     // Update UI
     this.updateQuestionDisplay();
     this.startQuestionTimer();
+  }
+
+  processQuestionData(rawQuestion) {
+    // Handle both old format (options array) and new format (correctAnswer + wrongAnswers)
+    if (rawQuestion.options) {
+      // Old format - already has 3 options, just return as-is
+      return rawQuestion;
+    } else if (rawQuestion.correctAnswer && rawQuestion.wrongAnswers) {
+      // New enhanced format - randomly select 2 wrong answers + correct answer
+      const correctAnswer = rawQuestion.correctAnswer;
+      const wrongAnswers = [...rawQuestion.wrongAnswers]; // Copy array
+      
+      // Randomly select 2 wrong answers
+      const selectedWrongAnswers = [];
+      for (let i = 0; i < 2 && wrongAnswers.length > 0; i++) {
+        const randomIndex = Math.floor(Math.random() * wrongAnswers.length);
+        selectedWrongAnswers.push(wrongAnswers.splice(randomIndex, 1)[0]);
+      }
+      
+      // Combine correct and wrong answers
+      const allOptions = [correctAnswer, ...selectedWrongAnswers];
+      
+      // Shuffle the options to randomize correct answer position
+      for (let i = allOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allOptions[i], allOptions[j]] = [allOptions[j], allOptions[i]];
+      }
+      
+      // Find the new position of the correct answer
+      const correctIndex = allOptions.indexOf(correctAnswer);
+      
+      return {
+        question: rawQuestion.question,
+        options: allOptions,
+        correct: correctIndex
+      };
+    } else {
+      console.warn('Invalid question format:', rawQuestion);
+      return null;
+    }
   }
 
   updateQuestionDisplay() {

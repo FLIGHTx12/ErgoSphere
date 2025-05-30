@@ -1,52 +1,123 @@
 [
   {
     "question": "What does 'HTML' stand for?",
-    "options": ["High Tech Modern Language", "HyperText Markup Language", "Home Tool Markup Language"],
-    "correct": 1
+    "correctAnswer": "HyperText Markup Language",
+    "wrongAnswers": [
+      "High Tech Modern Language",
+      "Home Tool Markup Language",
+      "Hyperlink and Text Markup Language",
+      "Heavy Text Management Language",
+      "HyperText Management Language",
+      "High Transfer Markup Language"
+    ]
   },
   {
     "question": "Which programming language is known for 'Write Once, Run Anywhere'?",
-    "options": ["Python", "Java", "C++"],
-    "correct": 1
+    "correctAnswer": "Java",
+    "wrongAnswers": [
+      "Python",
+      "C++",
+      "JavaScript",
+      "C#",
+      "Ruby",
+      "Go",
+      "Kotlin"
+    ]
   },
   {
     "question": "What does 'CSS' stand for?",
-    "options": ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System"],
-    "correct": 1
+    "correctAnswer": "Cascading Style Sheets",
+    "wrongAnswers": [
+      "Computer Style Sheets",
+      "Creative Style Sheets",
+      "Colorful Style Sheets",
+      "Common Style Sheets",
+      "Code Style Sheets",
+      "Central Style Sheets"
+    ]
   },
   {
     "question": "Which symbol is used for comments in JavaScript?",
-    "options": ["//", "#", "<!--"],
-    "correct": 0
+    "correctAnswer": "//",
+    "wrongAnswers": [
+      "#",
+      "/*",
+      "<!--",
+      "%",
+      ";;",
+      "**"
+    ]
   },
   {
     "question": "What does 'API' stand for?",
-    "options": ["Advanced Programming Interface", "Application Programming Interface", "Automated Program Integration"],
-    "correct": 1
+    "correctAnswer": "Application Programming Interface",
+    "wrongAnswers": [
+      "Advanced Programming Interface",
+      "Automated Programming Interface",
+      "Application Protocol Interface",
+      "Advanced Protocol Interface",
+      "Application Process Interface",
+      "Automated Process Interface"
+    ]
   },
   {
     "question": "Which data structure uses LIFO (Last In, First Out)?",
-    "options": ["Queue", "Stack", "Array"],
-    "correct": 1
+    "correctAnswer": "Stack",
+    "wrongAnswers": [
+      "Queue",
+      "Array",
+      "List",
+      "Tree",
+      "Graph",
+      "Hash Table"
+    ]
   },
   {
     "question": "What does 'SQL' stand for?",
-    "options": ["Structured Query Language", "System Query Language", "Standard Query Language"],
-    "correct": 0
+    "correctAnswer": "Structured Query Language",
+    "wrongAnswers": [
+      "Simple Query Language",
+      "Standard Query Language",
+      "Sequential Query Language",
+      "Structured Question Language",
+      "System Query Language",
+      "Stored Query Language"
+    ]
   },
   {
     "question": "Which method is used to add an element to the end of an array in JavaScript?",
-    "options": ["append()", "push()", "add()"],
-    "correct": 1
+    "correctAnswer": "push()",
+    "wrongAnswers": [
+      "append()",
+      "add()",
+      "insert()",
+      "concat()",
+      "extend()",
+      "attach()"
+    ]
   },
   {
     "question": "What does 'OOP' stand for in programming?",
-    "options": ["Object Oriented Programming", "Optimized Operation Process", "Open Operation Protocol"],
-    "correct": 0
+    "correctAnswer": "Object-Oriented Programming",
+    "wrongAnswers": [
+      "Object-Optimized Programming",
+      "Organized Object Programming",
+      "Object-Oriented Process",
+      "Optimized Object Programming",
+      "Object-Oriented Protocol",
+      "Organized Operational Programming"
+    ]
   },
   {
     "question": "Which HTTP status code indicates 'Not Found'?",
-    "options": ["200", "404", "500"],
-    "correct": 1
+    "correctAnswer": "404",
+    "wrongAnswers": [
+      "500",
+      "403",
+      "401",
+      "400",
+      "502",
+      "503"
+    ]
   }
 ]
