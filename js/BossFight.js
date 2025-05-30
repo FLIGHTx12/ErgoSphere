@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
   <p><span style="color:deepskyblue; font-weight:bold;">Hit Numbers:</span> <span style="color:white;">${monster.hitNumbers.join(', ')}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Rewards:</span> <span style="color:white;">${monster.Rewards}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Punishment:</span> <span style="color:white;">${monster.Punishment}</span></p>
-</div>`;      infoContainer.style.position = "absolute";
+</div>`;
+      infoContainer.style.position = "absolute";
       infoContainer.style.top = "100px";
       infoContainer.style.left = "10px";  // Position on left side of the screen
       infoContainer.style.display = "none"; // Hide by default
@@ -296,14 +297,11 @@ document.addEventListener("DOMContentLoaded", () => {
       container2.id = "attackInputs2";
       container2.style.display = "none"; // initially hide FLIGHTx12!'s inputs
 
-      const attackButtonContainer = document.createElement("div");
-      attackButtonContainer.classList.add("attack-button-container"); // Container for the button
-      const attackButton = document.createElement("button");
-      attackButton.id = "attackButton";
-      attackButton.classList.add("attack-button"); // Add this class
-      attackButton.textContent = `Jaybers8 Attack!`;      attackButtonContainer.appendChild(attackButton); // Add the button to the container
-      monsterImage.appendChild(attackButtonContainer); // Add the container to the monsterImage
+      // Create top button row container
+      const topButtonsContainer = document.createElement("div");
+      topButtonsContainer.classList.add("monster-top-buttons");
 
+      // Create player toggle button (left side)
       const playerToggle = document.createElement("button");
       playerToggle.id = "playerToggle";
       playerToggle.textContent = "Switch to FLIGHTx12!";
@@ -318,11 +316,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add toggle dialogue to history container
         const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
         const toggleDialogue = selectDialogue(monster.toggleDialogues[`player${currentPlayer}`]);
-        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"};">${toggleDialogue}</p>`;
+        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${toggleDialogue}</p>`;
         historyContainer.scrollTop = historyContainer.scrollHeight;
       });
 
-      monsterContainer.appendChild(playerToggle);
+      // Create attack button (back in top right)
+      const attackButtonContainer = document.createElement("div");
+      attackButtonContainer.classList.add("attack-button-container");
+      const attackButton = document.createElement("button");
+      attackButton.id = "attackButton";
+      attackButton.classList.add("attack-button");
+      attackButton.textContent = `Jaybers8 Attack!`;
+      attackButtonContainer.appendChild(attackButton);
+
+      // Add both buttons to top container
+      topButtonsContainer.appendChild(playerToggle);
+      topButtonsContainer.appendChild(attackButtonContainer);
+
+      // Append elements to monster container in new order
+      monsterContainer.appendChild(topButtonsContainer); // Add top buttons first
       monsterContainer.appendChild(monsterDiv);
       monsterDiv.appendChild(lifeBar);
       lifeBar.appendChild(lifeBarGreen);
@@ -440,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
           healerSound.play().catch(err => console.error("Error playing healer sound:", err));
           
           // Announce defeat in historyContainer with large, bold, bright red font
-          historyContainer.innerHTML += `<p style="font-size:32px; font-weight:bold; color:#FF0000;">${playerName} defeated the ${monster.name}!</p>`;
+          historyContainer.innerHTML += `<p style="font-size:2rem; font-weight:bold; color:#FF0000; text-align: center; margin: 15px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);">${playerName} defeated the ${monster.name}!</p>`;
           image.src = monster.defeatedImageSrc;
           
           // Always add the copy log button after updating innerHTML
@@ -466,22 +478,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (damageDialogue) {
-          historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${damageDialogue}</p>`;
+          historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;
         }
         
-        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"};">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
+        historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
         
         if (hitCount > 0) {
           // Play monster counter-attack sounds
           playPunchSounds(hitCount, '../assets/audio/Punch - 2.mp3');
-          historyContainer.innerHTML += `<p style="color:red;">${monster.name} hits ${playerName} ${hitCount} times.</p>`;
+          historyContainer.innerHTML += `<p style="color:red; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${monster.name} hits ${playerName} ${hitCount} times.</p>`;
           if (hitDialogue) {
-            historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${hitDialogue}</p>`;
+            historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitDialogue}</p>`;
           }
         }
         // Add time remaining to history
         const timeElement = document.getElementById("timer");
-        historyContainer.innerHTML += `<p style="color:#888; font-size:0.9em;">Time Remaining: ${timeElement.textContent}</p>`;
+        historyContainer.innerHTML += `<p style="color:#888; font-size:1rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);">Time Remaining: ${timeElement.textContent}</p>`;
         historyContainer.innerHTML += `<hr>`;
         historyContainer.scrollTop = historyContainer.scrollHeight;
 
@@ -490,8 +502,22 @@ document.addEventListener("DOMContentLoaded", () => {
           ensureCopyLogButton(monster, historyContainer);
         }
 
+        // Clear input values
         for (let i = 1; i < currentContainer.children.length; i++) {
           currentContainer.children[i].value = "";
+        }
+
+        // Automatically switch to the next player after attack (only if monster is still alive)
+        if (monsterLife > 0) {
+          setTimeout(() => {
+            switchToNextPlayer();
+            
+            // Add toggle dialogue to history container for automatic switch
+            const newPlayerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
+            const toggleDialogue = selectDialogue(monster.toggleDialogues[`player${currentPlayer}`]);
+            historyContainer.innerHTML += `<p style="color:${newPlayerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${toggleDialogue}</p>`;
+            historyContainer.scrollTop = historyContainer.scrollHeight;
+          }, 500); // Small delay to let the attack animations complete
         }
 
         setTimeout(() => {
@@ -502,6 +528,15 @@ document.addEventListener("DOMContentLoaded", () => {
       function toggleContainer(player) {
         container1.style.display = player === 1 ? "block" : "none";
         container2.style.display = player === 2 ? "block" : "none";
+      }
+
+      // Function to switch to the next player (moved inside monster container scope)
+      function switchToNextPlayer() {
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+        playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+        toggleContainer(currentPlayer);
+        toggleButtonColors(currentPlayer);
       }
 
       // Add swipe gesture handlers on mobile within each monster container
@@ -687,5 +722,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     historyContainer.appendChild(copyLogButton);
+  }
+
+  // Function to switch to the next player
+  function switchToNextPlayer() {
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    const attackButton = document.querySelector("#attackButton");
+    const playerToggle = document.querySelector("#playerToggle");
+    
+    if (attackButton && playerToggle) {
+      attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+      playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+      toggleContainer(currentPlayer);
+      toggleButtonColors(currentPlayer);
+    }
   }
 });

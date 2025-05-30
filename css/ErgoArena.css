@@ -174,6 +174,72 @@ header h1 {
     max-width: 800px;
 }
 
+/* Top button row for monster container */
+.monster-top-buttons {
+    display: flex;
+    justify-content: space-between; /* Changed back to space-between for both buttons */
+    align-items: center;
+    margin-bottom: 15px;
+    height: 30px; /* Fixed height for consistency */
+    position: relative;
+}
+
+/* Player Toggle Button - Top Left */
+#playerToggle {
+    padding: 5px 12px; /* Reduced from 10px 20px */
+    border: none;
+    border-radius: 3px; /* Reduced from 5px */
+    font-size: 0.8rem; /* Reduced from 1rem */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 28px; /* Thin height */
+    min-width: 120px; /* Ensure text fits */
+    position: absolute;
+    left: -20px; /* Move it further left, outside the container */
+}
+
+/* Attack Button - Top Right */
+.attack-button-container {
+    margin: 0; /* Remove margin for top positioning */
+    text-align: right; /* Align to right */
+    position: absolute;
+    right: -20px; /* Move it further right, outside the container */
+}
+
+.attack-button {
+    padding: 1px 1px; /* Reduced from 15px 30px */
+    font-size: 0.4rem; /* Reduced from 1.2rem */
+    font-weight: bold;
+    border: none;
+    border-radius: 1px; /* Reduced from 5px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--player1-color);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    height: 25px; /* Thin height */
+    min-width: 120px; /* Increased from 100px to accommodate text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.attack-button:hover {
+    transform: translateY(-1px); /* Reduced from -3px */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4); /* Reduced shadow */
+}
+
+.attack-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 /* Info Container - Left side panel */
 [id^="infoContainer"] {
     position: absolute;
@@ -198,18 +264,32 @@ header h1 {
     position: absolute;
     top: 100px;
     right: 20px;
-    width: 300px;
+    width: 350px; /* Increased from 300px */
     height: auto;
     max-height: 500px;
     overflow-y: auto;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px; /* Increased from 15px */
+    background-color: rgba(0, 0, 0, 0.7); /* Increased opacity from 0.5 */
     border: 1px solid white;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Increased shadow */
     color: #ecf0f1;
     z-index: 10;
     display: none; /* Hidden by default */
+    font-size: 1.1rem; /* Increased base font size */
+    line-height: 1.5; /* Better line spacing */
+}
+
+/* History container text styling */
+[id^="historyContainer"] p {
+    margin-bottom: 8px;
+    font-size: 1rem; /* Ensure consistent readable size */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Add text shadow for better readability */
+}
+
+[id^="historyContainer"] hr {
+    margin: 10px 0;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Monster Image */
@@ -221,9 +301,13 @@ header h1 {
 
 .monster-image img {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 600px; /* Increased from 400px */
+    width: auto;
+    height: auto;
+    min-height: 450px; /* Add minimum height for consistency */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    object-fit: contain; /* Ensure image scales properly while maintaining aspect ratio */
 }
 
 /* Life Bar */
@@ -303,11 +387,6 @@ header h1 {
 }
 
 /* Attack Button */
-.attack-button-container {
-    margin: 20px 0;
-    text-align: center;
-}
-
 .attack-button {
     padding: 15px 30px;
     font-size: 1.2rem;
@@ -517,7 +596,7 @@ header h1 {
     }
 
     [id^="infoContainer"], [id^="historyContainer"] {
-        width: 250px;
+        width: 280px; /* Adjusted for new wider history container */
     }
 }
 
