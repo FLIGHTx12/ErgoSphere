@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErgoSphere ARENA</title>
+    <link rel="stylesheet" href="../css/ErgoArena.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
+</head>
+<body>
+    <div class="arena-background"></div>
+    
+    <header>
+        <div class="header-top-row">
+            <div id="monsterButtons" class="monster-buttons">
+                <!-- Buttons for selecting monsters will be added here by JavaScript -->
+            </div>
+            <h1>ErgoSphere ARENA</h1>
+            <div class="navbar" id="navbar">
+                <button id="howToPlayBtn" class="menu-button">
+                    <i class="fas fa-question-circle"></i> How To Play
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            
+            <!-- How To Play Modal -->
+            <div id="howToPlayModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>ErgoSphere ARENA - Battle Manual</h2>
+                    
+                    <h3>Overview</h3>
+                    <p>Welcome to the ErgoSphere ARENA, a turn-based tactical battle system where two players (Jaybers8 and FLIGHTx12!) team up to defeat powerful monsters from the ErgoSphere universe.</p>
+                    
+                    <h3>Battle Mechanics</h3>
+                    <div class="controls-section">
+                        <div class="controls-column">
+                            <h4>Basic Controls</h4>
+                            <ul>
+                                <li><strong>Enter</strong>: Attack with current inputs</li>
+                                <li><strong>Space Bar</strong>: Switch between players</li>
+                                <li><strong>Tab</strong>: Cycle between attack inputs</li>
+                                <li><strong>+ Key</strong>: Add an attack input</li>
+                                <li><strong>- Key</strong>: Remove an attack input</li>
+                                <li><strong>Mobile Swipe Left/Right</strong>: View battle log or monster info</li>
+                            </ul>
+                        </div>
+                        <div class="controls-column">
+                            <h4>Damage System</h4>
+                            <ul>
+                                <li><strong>Regular Damage</strong>: Any number not in monster's "hit numbers" deals that damage</li>
+                                <li><strong>Special Moves</strong>: 
+                                    <ul>
+                                        <li>Jaybers8: Input "8" for 100 damage</li>
+                                        <li>FLIGHTx12!: Input "12" for 100 damage</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Counter-Attacks</strong>: Monster attacks when you input their hit numbers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Strategy Tips</h3>
+                    <ol>
+                        <li>Check the monster's hit numbers to avoid triggering counter-attacks</li>
+                        <li>Switch players strategically for different special moves</li>
+                        <li>Sometimes fewer, higher-value attacks are better than many small ones</li>
+                        <li>Remember your character's special number (8 or 12) for big damage</li>
+                        <li>Keep an eye on the timer and plan accordingly</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>ErgoSphere ARENA &copy; 2023 | <a href="#" id="creditsLink">Credits</a></p>
+    </footer>    <!-- Load JavaScript files -->
+    <script src="../js/monsters.js"></script>
+    <script src="../js/BossFight.js"></script>
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('howToPlayModal');
+            const btn = document.getElementById('howToPlayBtn');
+            const span = document.getElementsByClassName('close')[0];
+
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+            // Credits click handler
+            document.getElementById('creditsLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('ErgoSphere ARENA\nDesigned by: FLIGHT\nDeveloped by: FLIGHT and Jaybers8\nSpecial thanks to the ErgoSphere community');
+            });
+        });
+    </script>
+</body>
+</html>

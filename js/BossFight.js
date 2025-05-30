@@ -111,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (e.code === "Space") {
       e.preventDefault();
-      attackButton.click();
+      playerToggle.click(); // Changed: Space now switches players
     } else if (e.code === "Enter") {
       e.preventDefault();
-      playerToggle.click();
+      attackButton.click(); // Changed: Enter now attacks
     }
   }
 
@@ -231,7 +231,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const monsterContainer = document.createElement("div");
       monsterContainer.classList.add("monster-container");
       monsterContainer.style.display = "none";
-      gameContainer.appendChild(monsterContainer);
+      gameContainer.appendChild(monsterContainer);      // Create history container as sibling to monster container, not as child
+      const historyContainer = document.createElement("div");
+      historyContainer.id = "historyContainer" + index; // Add index to make it unique
+      historyContainer.style.display = "none"; // Hide by default, show only when monster is selected
+      
+      // Add timer element to history container
+      const timerElement = document.createElement("div");
+      timerElement.id = "timer";
+      timerElement.style.fontSize = "2em";
+      timerElement.style.fontWeight = "bold";
+      timerElement.style.marginBottom = "10px";
+      historyContainer.appendChild(timerElement);
+      
+      gameContainer.appendChild(historyContainer); // Append to game container, NOT monster container
 
       const monsterName = document.createElement("h2");
       monsterName.textContent = monster.name;
@@ -249,22 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const image = document.createElement("img");
       image.src = monster.imageSrc;
 
-      const historyContainer = document.createElement("div");
-      historyContainer.id = "historyContainer";
-      historyContainer.style.display = "block"; /* Revert to original */
-      historyContainer.style.flexDirection = "row"; /* Revert to original */
-
-      // Add timer element to history container
-      const timerElement = document.createElement("div");
-      timerElement.id = "timer";
-      timerElement.style.fontSize = "2em";
-      timerElement.style.fontWeight = "bold";
-      timerElement.style.marginBottom = "10px";
-      historyContainer.appendChild(timerElement);
-      
       // New info container for monster details
       const infoContainer = document.createElement("div");
-      infoContainer.id = "infoContainer";
+      infoContainer.id = "infoContainer" + index; // Add index to make it unique
       infoContainer.innerHTML = `
 <div style="text-align:center;">
   <h2 style="color:white; margin-bottom:5px;">${monster.name}</h2>
@@ -276,21 +276,19 @@ document.addEventListener("DOMContentLoaded", () => {
   <p><span style="color:deepskyblue; font-weight:bold;">Hit Numbers:</span> <span style="color:white;">${monster.hitNumbers.join(', ')}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Rewards:</span> <span style="color:white;">${monster.Rewards}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Punishment:</span> <span style="color:white;">${monster.Punishment}</span></p>
-</div>`;
-// Change position to absolute so the monster container remains centered at the top
-      infoContainer.style.position = "absolute";
-      infoContainer.style.top = "50px";
-      infoContainer.style.left = "-330px";  // Changed from -320px to -420px
-      // Remove flex styling to prevent interfering with parent centering
-      infoContainer.style.width = "300px";
+</div>`;      infoContainer.style.position = "absolute";
+      infoContainer.style.top = "100px";
+      infoContainer.style.left = "10px";  // Position on left side of the screen
+      infoContainer.style.display = "none"; // Hide by default
+      infoContainer.style.width = "350px";
       infoContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
       infoContainer.style.border = "1px solid white";
       infoContainer.style.padding = "10px";
       infoContainer.style.overflowY = "auto";
-      infoContainer.style.maxHeight = "400px";
+      infoContainer.style.maxHeight = "500px";
       
-      // Append new info container to monsterContainer
-      monsterContainer.appendChild(infoContainer);
+      // Append new info container to game container, not monster container
+      gameContainer.appendChild(infoContainer);
 
       const container1 = document.createElement("div");
       container1.id = "attackInputs1";
@@ -303,11 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const attackButton = document.createElement("button");
       attackButton.id = "attackButton";
       attackButton.classList.add("attack-button"); // Add this class
-      attackButton.textContent = `Jaybers8 Attack!`;
-
-      attackButtonContainer.appendChild(attackButton); // Add the button to the container
+      attackButton.textContent = `Jaybers8 Attack!`;      attackButtonContainer.appendChild(attackButton); // Add the button to the container
       monsterImage.appendChild(attackButtonContainer); // Add the container to the monsterImage
-      monsterContainer.appendChild(historyContainer);
 
       const playerToggle = document.createElement("button");
       playerToggle.id = "playerToggle";
@@ -336,7 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
       monsterImage.appendChild(image);
       monsterContainer.appendChild(container1);
       monsterContainer.appendChild(container2);
-      monsterContainer.appendChild(historyContainer);
+      // Remove this line as we're no longer adding historyContainer to monsterContainer
+      // monsterContainer.appendChild(historyContainer);
 
       let monsterLife = monster.health;
       let numAttacks = { 1: 1, 2: 1 }; // Track attack inputs for both players
@@ -449,38 +445,34 @@ document.addEventListener("DOMContentLoaded", () => {
           
           // Always add the copy log button after updating innerHTML
           ensureCopyLogButton(monster, historyContainer);
-        }
-
-        // Use the monster-specific dialogue methods:
+        }        // Use the monster-specific dialogue methods:
         const damageDialogue = monster.getDamageDialogue(totalDamage, playerName);
         const hitDialogue = hitCount > 0 ? monster.getHitDialogue(hitCount, playerName) : "";
 
-        if (damageDialogue) {
-          historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${damageDialogue}</p>`;
-        }
-        // Play punch sound for player's hit
+        // Function to play punch sounds
         const playPunchSounds = (count, soundFile) => {
           for (let i = 0; i < count; i++) {
             setTimeout(() => {
               const punchSound = new Audio(soundFile);
               punchSound.volume = 0.5; // Adjust volume as needed
-              punchSound.play();
-            }, i * 300); // Adjust delay as needed (300ms between each sound)
+              punchSound.play().catch(err => console.error("Error playing punch sound:", err));
+            }, i * 300); // Delay between each sound
           }
-        };
-        playPunchSounds(hitCount, '../assets/audio/punch - 1.mp3');
+        };        // Play player attack sound if damage was dealt
+        if (totalDamage > 0) {
+          const attackSound = new Audio('../assets/audio/punch - 1.mp3');
+          attackSound.volume = 0.6;
+          attackSound.play().catch(err => console.error("Error playing attack sound:", err));
+        }
+
+        if (damageDialogue) {
+          historyContainer.innerHTML += `<p style="color:white; font-style: italic;">${damageDialogue}</p>`;
+        }
+        
         historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"};">${playerName} attacks for a cumulative total of ${totalDamage} damage.</p>`;
+        
         if (hitCount > 0) {
-          // Play punch sound for monster's hit
-          const playPunchSounds = (count, soundFile) => {
-            for (let i = 0; i < count; i++) {
-              setTimeout(() => {
-                const punchSound = new Audio(soundFile);
-                punchSound.volume = 0.5; // Adjust volume as needed
-                punchSound.play();
-              }, i * 300); // Adjust delay as needed (300ms between each sound)
-            }
-          };
+          // Play monster counter-attack sounds
           playPunchSounds(hitCount, '../assets/audio/Punch - 2.mp3');
           historyContainer.innerHTML += `<p style="color:red;">${monster.name} hits ${playerName} ${hitCount} times.</p>`;
           if (hitDialogue) {
@@ -547,20 +539,43 @@ document.addEventListener("DOMContentLoaded", () => {
     monsterDropdown.addEventListener("change", () => {
       const selectedMonsterIndex = monsterDropdown.value;
 
+      // Hide all containers
       const monsterContainers = document.querySelectorAll(".monster-container");
       monsterContainers.forEach(
         (container) => (container.style.display = "none"),
       );
+      
+      // Hide all history and info containers
+      for (let i = 0; i < monsters.length; i++) {
+        const historyContainer = document.getElementById("historyContainer" + i);
+        const infoContainer = document.getElementById("infoContainer" + i);
+        if (historyContainer) historyContainer.style.display = "none";
+        if (infoContainer) infoContainer.style.display = "none";
+      }
 
       if (selectedMonsterIndex !== "") {
+        // Hide the How To Play modal when game starts
+        const modal = document.getElementById('howToPlayModal');
+        if (modal) {
+          modal.style.display = 'none';
+        }
+        
+        // Show the selected monster container
         monsterContainers[selectedMonsterIndex].style.display = "block";
+        
+        // Show the corresponding history and info containers
+        const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
+        const infoContainer = document.getElementById("infoContainer" + selectedMonsterIndex);
+        if (historyContainer) historyContainer.style.display = "block";
+        if (infoContainer) infoContainer.style.display = "block";
+        
         monsterDropdown.style.display = "none";
+        
         // Start timer and play music immediately after monster selection
         if (!timerStarted) {
           timerStarted = true;
           timer = startTimer();
           playFightMusic();
-          // bindGameKeys(); // Already called in startTimer
         }
       }
     });
