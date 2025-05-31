@@ -576,16 +576,15 @@
 
         document.addEventListener('touchend', e => {
           touchendX = e.changedTouches[0].screenX;
-          // Only handle gesture if not on tablet where toggle is present
-          if (!tabletScreenQuery.matches) {
-            handleGesture();
-          }
+          // Handle gesture for both phone and tablet screens
+          handleGesture();
         }, { passive: true });
       }
 
-      // Optional: Re-evaluate touch listener binding on resize if needed
-      // This part might need more sophisticated logic if you frequently resize
-      // across the tablet/phone breakpoint and expect touch behavior to change instantly.
+      // Add media query listeners to handle dynamic screen size changes
+      veryLargeScreenQuery.addListener(handleScreenSizeChange);
+      largeScreenQuery.addListener(handleScreenSizeChange);
+      tabletScreenQuery.addListener(handleScreenSizeChange);
     });
     
     // Additional script to ensure alignment is correct on load
