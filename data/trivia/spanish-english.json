@@ -598,5 +598,245 @@
       "Juzgar",
       "Evitar"
     ]
+  },
+  {
+    "question": "What does '¿Cómo estás?' mean in English?",
+    "correctAnswer": "How are you?",
+    "wrongAnswers": [
+      "What is your name?",
+      "Where are you from?",
+      "How old are you?",
+      "Good morning",
+      "Thank you",
+      "Goodbye"
+    ]
+  },
+  {
+    "question": "What does 'Me llamo Juan' mean in English?",
+    "correctAnswer": "My name is Juan",
+    "wrongAnswers": [
+      "His name is Juan",
+      "Her name is Juan",
+      "I am Juan",
+      "You are Juan",
+      "Pleased to meet you",
+      "I am from Spain"
+    ]
+  },
+  {
+    "question": "What does '¿De dónde eres?' mean in English?",
+    "correctAnswer": "Where are you from?",
+    "wrongAnswers": [
+      "What is your name?",
+      "How are you?",
+      "How old are you?",
+      "I am from Mexico",
+      "What do you do?",
+      "Where do you live?"
+    ]
+  },
+  {
+    "question": "What does 'Tengo hambre' mean in English?",
+    "correctAnswer": "I am hungry",
+    "wrongAnswers": [
+      "I am thirsty",
+      "I am tired",
+      "I am happy",
+      "I have a dog",
+      "I want water",
+      "I need food"
+    ]
+  },
+  {
+    "question": "What does '¿Qué hora es?' mean in English?",
+    "correctAnswer": "What time is it?",
+    "wrongAnswers": [
+      "What day is it?",
+      "How is the weather?",
+      "Where is the bathroom?",
+      "How much does it cost?",
+      "Can you help me?",
+      "I don't understand"
+    ]
+  },
+  {
+    "question": "What does 'No entiendo' mean in English?",
+    "correctAnswer": "I don't understand",
+    "wrongAnswers": [
+      "I understand",
+      "I don't know",
+      "I don't want to",
+      "I can't",
+      "Please repeat",
+      "Speak slower"
+    ]
+  },
+  {
+    "question": "What does '¿Cuánto cuesta?' mean in English?",
+    "correctAnswer": "How much does it cost?",
+    "wrongAnswers": [
+      "How many are there?",
+      "What is this?",
+      "Where can I buy it?",
+      "Is it expensive?",
+      "Can I pay with card?",
+      "I want to buy this"
+    ]
+  },
+  {
+    "question": "What does 'Necesito ayuda' mean in English?",
+    "correctAnswer": "I need help",
+    "wrongAnswers": [
+      "I want help",
+      "I can help",
+      "Do you need help?",
+      "Help me, please",
+      "I am lost",
+      "I am looking for..."
+    ]
+  },
+  {
+    "question": "What does 'Buen provecho' mean in English?",
+    "correctAnswer": "Enjoy your meal",
+    "wrongAnswers": [
+      "Good morning",
+      "Good afternoon",
+      "You're welcome",
+      "Cheers!",
+      "Bon appétit",
+      "Have a good trip"
+    ]
+  },
+  {
+    "question": "What does 'Te quiero' mean in English?",
+    "correctAnswer": "I love you (friendly/family)",
+    "wrongAnswers": [
+      "I like you",
+      "I miss you",
+      "I hate you",
+      "I want you (romantically)",
+      "I need you",
+      "Thank you"
+    ]
+  },
+  {
+    "question": "What does 'Echar una mano' mean in English?",
+    "correctAnswer": "To lend a hand",
+    "wrongAnswers": [
+      "To throw a hand",
+      "To shake a hand",
+      "To have a hand",
+      "To be handy",
+      "To ask for a hand",
+      "To wave a hand"
+    ]
+  },
+  {
+    "question": "What does 'No tener pelos en la lengua' mean in English?",
+    "correctAnswer": "To be straightforward / To not mince words",
+    "wrongAnswers": [
+      "To have a hairy tongue",
+      "To be speechless",
+      "To speak softly",
+      "To lie easily",
+      "To have a lisp",
+      "To bite your tongue"
+    ]
+  },
+  {
+    "question": "What does 'Estar en las nubes' mean in English?",
+    "correctAnswer": "To be daydreaming / To have one's head in the clouds",
+    "wrongAnswers": [
+      "To be in the clouds",
+      "To be high up",
+      "To be confused",
+      "To be an angel",
+      "To be flying",
+      "To be on cloud nine (very happy)"
+    ]
+  },
+  {
+    "question": "What does 'Tomar el pelo' mean in English?",
+    "correctAnswer": "To pull someone's leg / To tease someone",
+    "wrongAnswers": [
+      "To take the hair",
+      "To cut hair",
+      "To be hairy",
+      "To get a haircut",
+      "To grab by the hair",
+      "To lose hair"
+    ]
+  },
+  {
+    "question": "What does 'Ser pan comido' mean in English?",
+    "correctAnswer": "To be a piece of cake / To be very easy",
+    "wrongAnswers": [
+      "To be eaten bread",
+      "To be daily bread",
+      "To be stale bread",
+      "To eat bread",
+      "To be hungry for bread",
+      "To bake bread"
+    ]
+  },
+  {
+    "question": "What does 'Dar en el clavo' mean in English?",
+    "correctAnswer": "To be exactly right",
+    "wrongAnswers": [
+      "To give the nail",
+      "To hammer a nail",
+      "To be a carpenter",
+      "To miss the point",
+      "To find a nail",
+      "To step on a nail"
+    ]
+  },
+  {
+    "question": "What does 'Ponerse las pilas' mean in English?",
+    "correctAnswer": "To get one's act together / To get energized",
+    "wrongAnswers": [
+      "To put in batteries",
+      "To be electric",
+      "To wear batteries",
+      "To charge up",
+      "To be tired",
+      "To buy batteries"
+    ]
+  },
+  {
+    "question": "What does 'Hablar por los codos' mean in English?",
+    "correctAnswer": "To talk a lot / To be a chatterbox",
+    "wrongAnswers": [
+      "To speak with elbows",
+      "To have sore elbows",
+      "To point with elbows",
+      "To whisper",
+      "To speak clearly",
+      "To be silent"
+    ]
+  },
+  {
+    "question": "What does 'Estar como una cabra' mean in English?",
+    "correctAnswer": "To be crazy / To be nuts",
+    "wrongAnswers": [
+      "To be like a goat",
+      "To own a goat",
+      "To be stubborn as a goat",
+      "To be agile as a goat",
+      "To be calm",
+      "To be a farmer"
+    ]
+  },
+  {
+    "question": "What does 'Tirar la casa por la ventana' mean in English?",
+    "correctAnswer": "To spare no expense / To go all out",
+    "wrongAnswers": [
+      "To throw the house out the window",
+      "To clean the house",
+      "To sell the house",
+      "To move out",
+      "To have a house party",
+      "To break a window"
+    ]
   }
 ]

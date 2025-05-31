@@ -144,7 +144,7 @@
     ]
   },
   {
-    "question": "What is Derek Shepherd's nickname?",
+    "question": "What is Derek Shepherd's nickname in Grey's Anatomy?",
     "correctAnswer": "McDreamy",
     "wrongAnswers": [
       "McSteamy",
@@ -156,7 +156,7 @@
     ]
   },
   {
-    "question": "Which character is known as 'The Nazi'?",
+    "question": "Which character is known as 'The Nazi' in Grey's Anatomy?",
     "correctAnswer": "Miranda Bailey",
     "wrongAnswers": [
       "Addison Montgomery",
@@ -168,7 +168,7 @@
     ]
   },
   {
-    "question": "What specialty does Derek Shepherd practice?",
+    "question": "What specialty does Derek Shepherd practice in Grey's Anatomy?",
     "correctAnswer": "Neurosurgery",
     "wrongAnswers": [
       "Cardiothoracic Surgery",
@@ -180,7 +180,7 @@
     ]
   },
   {
-    "question": "Who is known as 'McSteamy'?",
+    "question": "Who is known as 'McSteamy' in Grey's Anatomy?",
     "correctAnswer": "Mark Sloan",
     "wrongAnswers": [
       "Derek Shepherd",
@@ -192,7 +192,7 @@
     ]
   },
   {
-    "question": "What is Cristina Yang's dream specialty?",
+    "question": "What is Cristina Yang's dream specialty in Grey's Anatomy?",
     "correctAnswer": "Cardiothoracic Surgery",
     "wrongAnswers": [
       "Neurosurgery",
@@ -204,7 +204,7 @@
     ]
   },
   {
-    "question": "Which character dies in the Season 2 finale bomb episode?",
+    "question": "Which character dies in the Season 2 finale bomb episode of Grey's Anatomy?",
     "correctAnswer": "Denny Duquette",
     "wrongAnswers": [
       "George O'Malley",
@@ -216,7 +216,7 @@
     ]
   },
   {
-    "question": "What is the name of Meredith's half-sister?",
+    "question": "What is the name of Meredith's half-sister in Grey's Anatomy?",
     "correctAnswer": "Lexie Grey",
     "wrongAnswers": [
       "Maggie Pierce",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "question": "Which natural disaster occurs in Season 6?",
+    "question": "Which natural disaster occurs in Season 6 of Grey's Anatomy?",
     "correctAnswer": "Hospital shooting",
     "wrongAnswers": [
       "Earthquake",
@@ -240,7 +240,7 @@
     ]
   },
   {
-    "question": "What is Alex Karev's specialty?",
+    "question": "What is Alex Karev's specialty in Grey's Anatomy?",
     "correctAnswer": "Pediatric Surgery",
     "wrongAnswers": [
       "Trauma Surgery",
@@ -252,7 +252,7 @@
     ]
   },
   {
-    "question": "Which character is Meredith's 'person'?",
+    "question": "Which character is Meredith's 'person' in Grey's Anatomy?",
     "correctAnswer": "Cristina Yang",
     "wrongAnswers": [
       "Izzie Stevens",
@@ -264,7 +264,7 @@
     ]
   },
   {
-    "question": "What major event happens at the end of Season 8?",
+    "question": "What major event happens at the end of Season 8 of Grey's Anatomy?",
     "correctAnswer": "Plane crash",
     "wrongAnswers": [
       "Hospital shooting",
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "question": "Who does Callie Torres marry first?",
+    "question": "Who does Callie Torres marry first in Grey's Anatomy?",
     "correctAnswer": "George O'Malley",
     "wrongAnswers": [
       "Arizona Robbins",
@@ -288,7 +288,7 @@
     ]
   },
   {
-    "question": "What is the name of the bar where the doctors frequently hang out?",
+    "question": "What is the name of the bar where the Grey's Anatomy doctors frequently hang out?",
     "correctAnswer": "Joe's Bar/Emerald City Bar",
     "wrongAnswers": [
       "Seattle Tavern",
@@ -300,7 +300,7 @@
     ]
   },
   {
-    "question": "Which character joins in Season 9 as Derek's sister?",
+    "question": "Which character joins Grey's Anatomy in Season 9 as Derek's sister?",
     "correctAnswer": "Amelia Shepherd",
     "wrongAnswers": [
       "Maggie Pierce",
@@ -312,7 +312,7 @@
     ]
   },
   {
-    "question": "What is Miranda Bailey's husband's profession?",
+    "question": "What is Miranda Bailey's husband's profession in Grey's Anatomy?",
     "correctAnswer": "Nurse (Tucker Jones)",
     "wrongAnswers": [
       "Doctor",
@@ -324,7 +324,7 @@
     ]
   },
   {
-    "question": "Which character has PTSD after the shooting?",
+    "question": "Which Grey's Anatomy character has PTSD after the shooting?",
     "correctAnswer": "Owen Hunt",
     "wrongAnswers": [
       "Derek Shepherd",
@@ -336,7 +336,7 @@
     ]
   },
   {
-    "question": "What is the name of Izzie Stevens' metastatic condition?",
+    "question": "What is the name of Izzie Stevens' metastatic condition in Grey's Anatomy?",
     "correctAnswer": "Melanoma",
     "wrongAnswers": [
       "Breast Cancer",
@@ -348,7 +348,7 @@
     ]
   },
   {
-    "question": "Which resident is known for their photographic memory?",
+    "question": "Which Grey's Anatomy resident is known for their photographic memory?",
     "correctAnswer": "Lexie Grey",
     "wrongAnswers": [
       "Jackson Avery",
@@ -492,7 +492,7 @@
     ]
   },
   {
-    "question": "Which actor plays Loki?",
+    "question": "Which actor plays Loki in the MCU?",
     "correctAnswer": "Tom Hiddleston",
     "wrongAnswers": [
       "Benedict Cumberbatch",
@@ -504,7 +504,7 @@
     ]
   },
   {
-    "question": "What is the name of the blue cube that contains an Infinity Stone?",
+    "question": "In the MCU, what is the name of the blue cube that contains an Infinity Stone?",
     "correctAnswer": "Tesseract",
     "wrongAnswers": [
       "Orb",
@@ -665,1150 +665,886 @@
     "wrongAnswers": [
       "Joss Whedon",
       "Shane Black",
-      "Kevin Feige",
-      "Ryan Coogler",
-      "James Gunn",
-      "Anthony Russo"
+      "Kenneth Branagh",
+      "Joe Johnston",
+      "Louis Leterrier",
+      "Matthew Vaughn"
     ]
   },
   {
-    "question": "What is the name of the AI that replaces JARVIS?",
-    "correctAnswer": "FRIDAY",
+    "question": "Who plays Tony Stark in Iron Man (2008)?",
+    "correctAnswer": "Robert Downey Jr.",
     "wrongAnswers": [
-      "KAREN",
-      "EDITH",
-      "ULTRON",
-      "VISION",
-      "VERONICA",
-      "CORTANA"
+      "Tom Cruise",
+      "Nicolas Cage",
+      "Hugh Jackman",
+      "Christian Bale",
+      "Matt Damon",
+      "Will Smith"
     ]
   },
   {
-    "question": "Which actor plays War Machine?",
+    "question": "What is the name of Tony Stark's assistant in Iron Man (2008)?",
+    "correctAnswer": "Pepper Potts",
+    "wrongAnswers": [
+      "Natasha Romanoff",
+      "Maria Hill",
+      "Betty Ross",
+      "Jane Foster",
+      "Peggy Carter",
+      "Sharon Carter"
+    ]
+  },
+  {
+    "question": "Who is the main villain in Iron Man (2008)?",
+    "correctAnswer": "Iron Monger/Obadiah Stane",
+    "wrongAnswers": [
+      "War Machine",
+      "Whiplash",
+      "Mandarin",
+      "Justin Hammer",
+      "Aldrich Killian",
+      "Ivan Vanko"
+    ]
+  },
+  {
+    "question": "What terrorist organization captures Tony Stark in Iron Man (2008)?",
+    "correctAnswer": "Ten Rings",
+    "wrongAnswers": [
+      "HYDRA",
+      "AIM",
+      "Hammer Industries",
+      "Roxxon",
+      "Oscorp",
+      "Stark Industries"
+    ]
+  },
+  {
+    "question": "Who directed Iron Man 2 (2010)?",
+    "correctAnswer": "Jon Favreau",
+    "wrongAnswers": [
+      "Shane Black",
+      "Joss Whedon",
+      "Kenneth Branagh",
+      "Joe Johnston",
+      "Louis Leterrier",
+      "Matthew Vaughn"
+    ]
+  },
+  {
+    "question": "Who plays Ivan Vanko/Whiplash in Iron Man 2 (2010)?",
+    "correctAnswer": "Mickey Rourke",
+    "wrongAnswers": [
+      "Sam Rockwell",
+      "Gary Oldman",
+      "John Malkovich",
+      "Christopher Walken",
+      "Willem Dafoe",
+      "Steve Buscemi"
+    ]
+  },
+  {
+    "question": "Who plays Justin Hammer in Iron Man 2 (2010)?",
+    "correctAnswer": "Sam Rockwell",
+    "wrongAnswers": [
+      "Mickey Rourke",
+      "Gary Oldman",
+      "John Malkovich",
+      "Christopher Walken",
+      "Kevin Spacey",
+      "Steve Buscemi"
+    ]
+  },
+  {
+    "question": "What is Tony Stark dying from in Iron Man 2 (2010)?",
+    "correctAnswer": "Palladium poisoning from his arc reactor",
+    "wrongAnswers": [
+      "Heart disease",
+      "Brain tumor",
+      "Radiation sickness",
+      "Genetic disorder",
+      "Viral infection",
+      "Chemical poisoning"
+    ]
+  },
+  {
+    "question": "Who replaces Terrence Howard as James Rhodes in Iron Man 2 (2010)?",
     "correctAnswer": "Don Cheadle",
     "wrongAnswers": [
-      "Terrence Howard",
       "Anthony Mackie",
       "Michael B. Jordan",
       "Chadwick Boseman",
       "Forest Whitaker",
-      "Idris Elba"
+      "Laurence Fishburne",
+      "Samuel L. Jackson"
     ]
   },
   {
-    "question": "What is the name of the group that Rocket and Groot belong to?",
-    "correctAnswer": "Guardians of the Galaxy",
+    "question": "Who directed Iron Man 3 (2013)?",
+    "correctAnswer": "Shane Black",
     "wrongAnswers": [
-      "Ravagers",
-      "Nova Corps",
-      "Kree Empire",
-      "Skrull Empire",
-      "Chitauri",
-      "Sovereign"
+      "Jon Favreau",
+      "Joss Whedon",
+      "Kenneth Branagh",
+      "Joe Johnston",
+      "Louis Leterrier",
+      "Matthew Vaughn"
     ]
   },
   {
-    "question": "Who plays Thanos in the MCU?",
-    "correctAnswer": "Josh Brolin",
+    "question": "Who plays Aldrich Killian in Iron Man 3 (2013)?",
+    "correctAnswer": "Guy Pearce",
     "wrongAnswers": [
-      "James Spader",
-      "Benedict Cumberbatch",
-      "Michael Shannon",
-      "Oscar Isaac",
-      "Mads Mikkelsen",
-      "Lee Pace"
+      "Ben Kingsley",
+      "James Badge Dale",
+      "William Sadler",
+      "Miguel Ferrer",
+      "Jon Favreau",
+      "Paul Bettany"
     ]
   },
   {
-    "question": "What is the name of the metal that Black Panther's suit is made of?",
-    "correctAnswer": "Vibranium",
+    "question": "What is the Mandarin's real identity revealed to be in Iron Man 3 (2013)?",
+    "correctAnswer": "Trevor Slattery, an actor",
     "wrongAnswers": [
-      "Adamantium",
-      "Uru",
-      "Carbonadium",
-      "Proto-Adamantium",
-      "Steel",
-      "Titanium"
+      "Aldrich Killian",
+      "Happy Hogan",
+      "Maya Hansen",
+      "James Rhodes",
+      "Pepper Potts",
+      "Tony Stark"
     ]
   },
   {
-    "question": "Which movie features the first appearance of Spider-Man in the MCU?",
-    "correctAnswer": "Captain America: Civil War",
+    "question": "What experimental treatment is featured in Iron Man 3 (2013)?",
+    "correctAnswer": "Extremis",
     "wrongAnswers": [
-      "Spider-Man: Homecoming",
-      "Avengers: Infinity War",
-      "Iron Man 3",
-      "The Avengers",
-      "Spider-Man: Far From Home",
-      "Avengers: Endgame"
-    ]
-  },
-  {
-    "question": "What is the name of Doctor Strange's mentor?",
-    "correctAnswer": "The Ancient One",
-    "wrongAnswers": [
-      "Wong",
-      "Mordo",
-      "Kaecilius",
-      "Dormammu",
-      "The Vishanti",
-      "Agamotto"
-    ]
-  },
-  {
-    "question": "Who plays Captain Marvel?",
-    "correctAnswer": "Brie Larson",
-    "wrongAnswers": [
-      "Scarlett Johansson",
-      "Elizabeth Olsen",
-      "Evangeline Lilly",
-      "Tessa Thompson",
-      "Lupita Nyong'o",
-      "Danai Gurira"
-    ]
-  },
-  {
-    "question": "What is the name of the serum that created Captain America?",
-    "correctAnswer": "Super Soldier Serum",
-    "wrongAnswers": [
-      "Vita-Ray Treatment",
-      "Project Rebirth",
-      "Weapon X Formula",
-      "Extremis Virus",
+      "Super Soldier Serum",
+      "Pym Particles",
+      "Terrigen Mist",
       "Heart-Shaped Herb",
-      "Centipede Serum"
+      "Centipede Serum",
+      "Gamma Radiation"
     ]
   },
   {
-    "question": "Which planet do the Guardians visit to meet the Collector?",
-    "correctAnswer": "Knowhere",
+    "question": "Who plays Maya Hansen in Iron Man 3 (2013)?",
+    "correctAnswer": "Rebecca Hall",
     "wrongAnswers": [
-      "Xandar",
-      "Morag",
-      "Ego",
-      "Sakaar",
-      "Titan",
-      "Vormir"
+      "Gwyneth Paltrow",
+      "Stephanie Szostak",
+      "Dale Dickey",
+      "Wang Xueqi",
+      "Ashley Hamilton",
+      "Ty Simpkins"
     ]
   },
   {
-    "question": "What is the name of Wanda Maximoff's brother?",
-    "correctAnswer": "Pietro Maximoff",
+    "question": "Who directed John Wick: Chapter 2 (2017)?",
+    "correctAnswer": "Chad Stahelski",
     "wrongAnswers": [
-      "Vision",
-      "Quicksilver",
-      "Tommy Maximoff",
-      "Billy Maximoff",
-      "Aaron Taylor-Johnson",
-      "Evan Peters"
+      "David Leitch",
+      "The Wachowskis",
+      "Gareth Evans",
+      "James Wan",
+      "Denis Villeneuve",
+      "Christopher Nolan"
     ]
   },
   {
-    "question": "Who plays the Winter Soldier?",
-    "correctAnswer": "Sebastian Stan",
+    "question": "Who plays Santino D'Antonio in John Wick: Chapter 2 (2017)?",
+    "correctAnswer": "Riccardo Scamarcio",
     "wrongAnswers": [
-      "Anthony Mackie",
+      "Common",
+      "Laurence Fishburne",
+      "Ian McShane",
+      "John Leguizamo",
+      "Franco Nero",
+      "Claudia Gerini"
+    ]
+  },
+  {
+    "question": "What does Santino use to force John back into assassination work?",
+    "correctAnswer": "A blood oath marker",
+    "wrongAnswers": [
+      "Kidnapping his dog",
+      "Threatening his house",
+      "Blackmail photos",
+      "Family hostage",
+      "Financial leverage",
+      "Legal pressure"
+    ]
+  },
+  {
+    "question": "Where does the Rome Continental Hotel scene take place?",
+    "correctAnswer": "Baths of Caracalla",
+    "wrongAnswers": [
+      "Colosseum",
+      "Vatican City",
+      "Trevi Fountain",
+      "Pantheon",
+      "Roman Forum",
+      "Castel Sant'Angelo"
+    ]
+  },
+  {
+    "question": "Who plays Gianna D'Antonio in John Wick: Chapter 2 (2017)?",
+    "correctAnswer": "Claudia Gerini",
+    "wrongAnswers": [
+      "Ruby Rose",
+      "Common",
+      "Riccardo Scamarcio",
+      "Franco Nero",
+      "John Leguizamo",
+      "Laurence Fishburne"
+    ]
+  },
+  {
+    "question": "Who directed John Wick: Chapter 3 - Parabellum (2019)?",
+    "correctAnswer": "Chad Stahelski",
+    "wrongAnswers": [
+      "David Leitch",
+      "The Wachowskis",
+      "Gareth Evans",
+      "James Wan",
+      "Denis Villeneuve",
+      "Christopher Nolan"
+    ]
+  },
+  {
+    "question": "Who plays Sofia in John Wick: Chapter 3 - Parabellum (2019)?",
+    "correctAnswer": "Halle Berry",
+    "wrongAnswers": [
+      "Anjelica Huston",
+      "Asia Kate Dillon",
+      "Robin Lord Taylor",
+      "Jessica Henwick",
+      "Hiroyuki Sanada",
+      "Mark Dacascos"
+    ]
+  },
+  {
+    "question": "What is John's bounty amount in Chapter 3 - Parabellum (2019)?",
+    "correctAnswer": "$14 million",
+    "wrongAnswers": [
+      "$10 million",
+      "$7 million",
+      "$20 million",
+      "$15 million",
+      "$5 million",
+      "$25 million"
+    ]
+  },
+  {
+    "question": "Who plays Zero in John Wick: Chapter 3 - Parabellum (2019)?",
+    "correctAnswer": "Mark Dacascos",
+    "wrongAnswers": [
+      "Hiroyuki Sanada",
+      "Tiger Hu Chen",
+      "Yayan Ruhian",
+      "Cecep Arif Rahman",
+      "Donnie Yen",
+      "Tony Jaa"
+    ]
+  },
+  {
+    "question": "What organization does the Adjudicator represent in Chapter 3?",
+    "correctAnswer": "The High Table",
+    "wrongAnswers": [
+      "The Continental",
+      "The Bowery King",
+      "The Director",
+      "The Elder",
+      "The Ruska Roma",
+      "The Commission"
+    ]
+  },
+  {
+    "question": "Who directed Jurassic World (2015)?",
+    "correctAnswer": "Colin Trevorrow",
+    "wrongAnswers": [
+      "Steven Spielberg",
+      "J.A. Bayona",
+      "Joe Johnston",
+      "Gareth Edwards",
+      "Matt Reeves",
+      "Denis Villeneuve"
+    ]
+  },
+  {
+    "question": "Who plays Owen Grady in Jurassic World (2015)?",
+    "correctAnswer": "Chris Pratt",
+    "wrongAnswers": [
       "Chris Evans",
-      "Jeremy Renner",
-      "Daniel Brühl",
-      "Frank Grillo",
-      "Wyatt Russell"
+      "Chris Hemsworth",
+      "Chris Pine",
+      "Ryan Reynolds",
+      "Paul Rudd",
+      "Jeremy Renner"
     ]
   },
   {
-    "question": "What is the name of the terrorist organization in Iron Man 3?",
-    "correctAnswer": "The Ten Rings",
+    "question": "What is the genetically modified hybrid dinosaur called in Jurassic World (2015)?",
+    "correctAnswer": "Indominus Rex",
     "wrongAnswers": [
-      "HYDRA",
-      "AIM",
-      "The Hand",
-      "Roxxon",
-      "Hammer Industries",
-      "The Mandarin"
+      "Indoraptor",
+      "Giganotosaurus",
+      "Carnotaurus",
+      "Allosaurus",
+      "Spinosaurus",
+      "Albertosaurus"
     ]
   },
   {
-    "question": "Which Infinity Stone is embedded in Vision's forehead?",
-    "correctAnswer": "Mind Stone",
+    "question": "Who plays Claire Dearing in Jurassic World (2015)?",
+    "correctAnswer": "Bryce Dallas Howard",
     "wrongAnswers": [
-      "Space Stone",
-      "Reality Stone",
-      "Power Stone",
-      "Time Stone",
-      "Soul Stone",
-      "Consciousness Stone"
+      "Jessica Chastain",
+      "Amy Adams",
+      "Emma Stone",
+      "Scarlett Johansson",
+      "Anne Hathaway",
+      "Rachel McAdams"
     ]
   },
   {
-    "question": "What is the name of the X-Men's leader and founder?",
-    "correctAnswer": "Professor Charles Xavier",
+    "question": "What are Owen's trained dinosaurs called in Jurassic World (2015)?",
+    "correctAnswer": "Velociraptors",
     "wrongAnswers": [
-      "Cyclops",
-      "Storm",
-      "Wolverine",
-      "Jean Grey",
-      "Beast",
-      "Magneto"
+      "Dilophosaurus",
+      "Compsognathus",
+      "Gallimimus",
+      "Parasaurolophus",
+      "Triceratops",
+      "Ankylosaurus"
     ]
   },
   {
-    "question": "Which X-Men character has retractable adamantium claws?",
-    "correctAnswer": "Wolverine",
+    "question": "Who directed Jurassic World: Fallen Kingdom (2018)?",
+    "correctAnswer": "J.A. Bayona",
     "wrongAnswers": [
-      "Cyclops",
-      "Beast",
-      "Gambit",
-      "Nightcrawler",
-      "Colossus",
-      "Iceman"
+      "Colin Trevorrow",
+      "Steven Spielberg",
+      "Joe Johnston",
+      "Gareth Edwards",
+      "Matt Reeves",
+      "Denis Villeneuve"
     ]
   },
   {
-    "question": "What is Cyclops' mutant power?",
-    "correctAnswer": "Optic energy beams",
+    "question": "What volcano threatens Isla Nublar in Fallen Kingdom (2018)?",
+    "correctAnswer": "Mount Sibo",
     "wrongAnswers": [
-      "Super strength",
-      "Telepathy",
-      "Weather control",
-      "Teleportation",
-      "Ice creation",
-      "Metal manipulation"
+      "Mount Vesuvius",
+      "Mount Krakatoa",
+      "Mount Fuji",
+      "Mount Etna",
+      "Mount St. Helens",
+      "Mount Kilimanjaro"
     ]
   },
   {
-    "question": "Which character can control the weather?",
-    "correctAnswer": "Storm",
+    "question": "Who plays Eli Mills in Jurassic World: Fallen Kingdom (2018)?",
+    "correctAnswer": "Rafe Spall",
     "wrongAnswers": [
-      "Jean Grey",
-      "Rogue",
-      "Jubilee",
-      "Psylocke",
-      "Emma Frost",
-      "Kitty Pryde"
+      "Toby Jones",
+      "Ted Levine",
+      "James Cromwell",
+      "BD Wong",
+      "Jeff Goldblum",
+      "Chris Pratt"
     ]
   },
   {
-    "question": "What is the name of the X-Men's school?",
-    "correctAnswer": "Xavier's School for Gifted Youngsters",
+    "question": "What hybrid dinosaur is created in Fallen Kingdom (2018)?",
+    "correctAnswer": "Indoraptor",
     "wrongAnswers": [
-      "Mutant Academy",
-      "Institute for Higher Learning",
-      "Xavier Institute",
-      "School for Special Children",
-      "Westchester Academy",
-      "Mutant Training Center"
+      "Indominus Rex",
+      "Giganotosaurus",
+      "Carnotaurus",
+      "Allosaurus",
+      "Spinosaurus",
+      "Albertosaurus"
     ]
   },
   {
-    "question": "Who is the X-Men's primary nemesis?",
-    "correctAnswer": "Magneto",
+    "question": "Who plays Maisie Lockwood in Fallen Kingdom (2018)?",
+    "correctAnswer": "Isabella Sermon",
     "wrongAnswers": [
-      "Apocalypse",
-      "Sinister",
-      "Sentinels",
-      "Sabretooth",
-      "Mystique",
-      "Juggernaut"
+      "Justice Smith",
+      "Daniella Pineda",
+      "Geraldine Chaplin",
+      "Rafe Spall",
+      "Toby Jones",
+      "Ted Levine"
     ]
   },
   {
-    "question": "What is Rogue's dangerous mutant ability?",
-    "correctAnswer": "Absorbing powers and memories through touch",
+    "question": "Who directed Kill Boksoon (2023)?",
+    "correctAnswer": "Byun Sung-hyun",
     "wrongAnswers": [
-      "Super strength",
-      "Flying",
-      "Invisibility",
-      "Shape-shifting",
-      "Energy blasts",
-      "Telepathy"
+      "Park Chan-wook",
+      "Bong Joon-ho",
+      "Kim Jee-woon",
+      "Na Hong-jin",
+      "Choi Dong-hoon",
+      "Lee Chang-dong"
     ]
   },
   {
-    "question": "Which character can teleport in a cloud of sulfurous smoke?",
-    "correctAnswer": "Nightcrawler",
+    "question": "Who plays Gil Bok-soon in Kill Boksoon (2023)?",
+    "correctAnswer": "Jeon Do-yeon",
     "wrongAnswers": [
-      "Gambit",
-      "Beast",
-      "Iceman",
-      "Colossus",
-      "Angel",
-      "Quicksilver"
+      "Song Kang-ho",
+      "Lee Byung-hun",
+      "Choi Min-sik",
+      "Kim Hye-soo",
+      "Jun Ji-hyun",
+      "Son Ye-jin"
     ]
   },
   {
-    "question": "What is Beast's real name?",
-    "correctAnswer": "Hank McCoy",
+    "question": "What is Bok-soon's profession in Kill Boksoon (2023)?",
+    "correctAnswer": "Assassin",
     "wrongAnswers": [
-      "Scott Summers",
-      "Logan",
-      "Kurt Wagner",
-      "Bobby Drake",
-      "Warren Worthington III",
-      "Remy LeBeau"
+      "Police officer",
+      "Bodyguard",
+      "Spy",
+      "Detective",
+      "Soldier",
+      "Martial arts instructor"
     ]
   },
   {
-    "question": "Which villain can shape-shift into any person?",
-    "correctAnswer": "Mystique",
+    "question": "What streaming service released Kill Boksoon (2023)?",
+    "correctAnswer": "Netflix",
     "wrongAnswers": [
-      "Magneto",
-      "Sabretooth",
-      "Apocalypse",
-      "Sinister",
-      "Pyro",
-      "Toad"
-    ]
-  },
-  {
-    "question": "What is Gambit's signature weapon?",
-    "correctAnswer": "Kinetically charged playing cards",
-    "wrongAnswers": [
-      "Energy sword",
-      "Bow and arrows",
-      "Metal staff",
-      "Ice shards",
-      "Lightning bolts",
-      "Fire blasts"
-    ]
-  },
-  {
-    "question": "Which character has a healing factor similar to Wolverine?",
-    "correctAnswer": "Sabretooth",
-    "wrongAnswers": [
-      "Magneto",
-      "Cyclops",
-      "Beast",
-      "Nightcrawler",
-      "Colossus",
-      "Iceman"
-    ]
-  },
-  {
-    "question": "What is the name of the giant robots designed to hunt mutants?",
-    "correctAnswer": "Sentinels",
-    "wrongAnswers": [
-      "Destroyers",
-      "Hunters",
-      "Terminators",
-      "Guardians",
-      "Protectors",
-      "Eliminators"
-    ]
-  },
-  {
-    "question": "Which character becomes the Phoenix?",
-    "correctAnswer": "Jean Grey",
-    "wrongAnswers": [
-      "Storm",
-      "Rogue",
-      "Jubilee",
-      "Psylocke",
-      "Emma Frost",
-      "Kitty Pryde"
-    ]
-  },
-  {
-    "question": "What is Iceman's real name?",
-    "correctAnswer": "Bobby Drake",
-    "wrongAnswers": [
-      "Scott Summers",
-      "Kurt Wagner",
-      "Hank McCoy",
-      "Warren Worthington III",
-      "Remy LeBeau",
-      "Logan"
-    ]
-  },
-  {
-    "question": "Which villain is Professor Xavier's stepbrother?",
-    "correctAnswer": "Juggernaut",
-    "wrongAnswers": [
-      "Magneto",
-      "Apocalypse",
-      "Sinister",
-      "Sabretooth",
-      "Mystique",
-      "Pyro"
-    ]
-  },
-  {
-    "question": "What is Colossus's mutant ability?",
-    "correctAnswer": "Transforming skin into organic steel",
-    "wrongAnswers": [
-      "Super speed",
-      "Telepathy",
-      "Energy beams",
-      "Weather control",
-      "Teleportation",
-      "Invisibility"
-    ]
-  },
-  {
-    "question": "Which character creates explosive plasma bursts from her hands?",
-    "correctAnswer": "Jubilee",
-    "wrongAnswers": [
-      "Jean Grey",
-      "Storm",
-      "Rogue",
-      "Psylocke",
-      "Emma Frost",
-      "Kitty Pryde"
-    ]
-  },
-  {
-    "question": "What is the name of Magneto's asteroid base?",
-    "correctAnswer": "Asteroid M",
-    "wrongAnswers": [
-      "Genosha",
-      "Muir Island",
-      "Savage Land",
-      "Asteroid X",
-      "Base Omega",
-      "Station Alpha"
-    ]
-  },
-  {
-    "question": "Which character can phase through solid objects?",
-    "correctAnswer": "Kitty Pryde",
-    "wrongAnswers": [
-      "Rogue",
-      "Storm",
-      "Jean Grey",
-      "Jubilee",
-      "Psylocke",
-      "Emma Frost"
-    ]
-  },
-  {
-    "question": "What is Wolverine's real name?",
-    "correctAnswer": "Logan",
-    "wrongAnswers": [
-      "James Howlett",
-      "Scott Summers",
-      "Kurt Wagner",
-      "Hank McCoy",
-      "Bobby Drake",
-      "Remy LeBeau"
-    ]
-  },
-  {
-    "question": "Which villain can control minds and has psychic powers?",
-    "correctAnswer": "Sinister",
-    "wrongAnswers": [
-      "Magneto",
-      "Apocalypse",
-      "Sabretooth",
-      "Mystique",
-      "Pyro",
-      "Toad"
-    ]
-  },
-  {
-    "question": "What is the name of the mutant-hunting government program?",
-    "correctAnswer": "Sentinel Program",
-    "wrongAnswers": [
-      "Weapon X",
-      "Project Wideawake",
-      "Operation Zero Tolerance",
-      "Mutant Registration Act",
-      "Friends of Humanity",
-      "Purifiers"
-    ]
-  },
-  {
-    "question": "Which character has telescopic wings and can fly?",
-    "correctAnswer": "Angel",
-    "wrongAnswers": [
-      "Storm",
-      "Rogue",
-      "Jean Grey",
-      "Nightcrawler",
-      "Iceman",
-      "Beast"
-    ]
-  },
-  {
-    "question": "What is the name of the secret government facility that experimented on Wolverine?",
-    "correctAnswer": "Weapon X",
-    "wrongAnswers": [
-      "Department H",
-      "Project Sentinel",
-      "Base Alpha",
-      "Facility X",
-      "Operation Rebirth",
-      "Lab Zero"
-    ]
-  },
-  {
-    "question": "Which character can absorb and redirect kinetic energy?",
-    "correctAnswer": "Bishop",
-    "wrongAnswers": [
-      "Gambit",
-      "Cyclops",
-      "Havok",
-      "Cannonball",
-      "Sunfire",
-      "Banshee"
-    ]
-  },
-  {
-    "question": "What is Psylocke's signature weapon?",
-    "correctAnswer": "Psychic knife",
-    "wrongAnswers": [
-      "Katana sword",
-      "Energy whip",
-      "Throwing stars",
-      "Bo staff",
-      "Nunchucks",
-      "Telepathic blade"
-    ]
-  },
-  {
-    "question": "Which villain leads the Brotherhood of Mutants?",
-    "correctAnswer": "Magneto",
-    "wrongAnswers": [
-      "Mystique",
-      "Apocalypse",
-      "Sinister",
-      "Sabretooth",
-      "Pyro",
-      "Toad"
-    ]
-  },
-  {
-    "question": "What is the name of the island nation ruled by Magneto?",
-    "correctAnswer": "Genosha",
-    "wrongAnswers": [
-      "Asteroid M",
-      "Muir Island",
-      "Savage Land",
-      "Krakoa",
-      "Madripoor",
-      "Atlantis"
-    ]
-  },
-  {
-    "question": "Which character can generate sonic screams?",
-    "correctAnswer": "Banshee",
-    "wrongAnswers": [
-      "Cyclops",
-      "Havok",
-      "Cannonball",
-      "Sunfire",
-      "Iceman",
-      "Colossus"
-    ]
-  },
-  {
-    "question": "What is Cable's relationship to Cyclops?",
-    "correctAnswer": "Son from the future",
-    "wrongAnswers": [
-      "Brother",
-      "Clone",
-      "Alternate reality version",
-      "Nephew",
-      "Father",
-      "No relation"
-    ]
-  },
-  {
-    "question": "Which character can create force fields and become invisible?",
-    "correctAnswer": "Invisible Woman (guest appearance)",
-    "wrongAnswers": [
-      "Emma Frost",
-      "Jean Grey",
-      "Storm",
-      "Rogue",
-      "Psylocke",
-      "Kitty Pryde"
-    ]
-  },
-  {
-    "question": "What is the name of the time period ruled by Apocalypse?",
-    "correctAnswer": "Age of Apocalypse",
-    "wrongAnswers": [
-      "Days of Future Past",
-      "Dark Phoenix Saga",
-      "Legacy Virus",
-      "Fatal Attractions",
-      "Onslaught Saga",
-      "Operation Zero Tolerance"
-    ]
-  },
-  {
-    "question": "Which character has multiple personalities and powers?",
-    "correctAnswer": "Legion",
-    "wrongAnswers": [
-      "Multiple Man",
-      "Proteus",
-      "Shadow King",
-      "Mister Sinister",
-      "Apocalypse",
-      "Onslaught"
-    ]
-  },
-  {
-    "question": "What is the name of Wolverine's clone?",
-    "correctAnswer": "X-23",
-    "wrongAnswers": [
-      "Sabretooth",
-      "Daken",
-      "Wild Child",
-      "Feral",
-      "Weapon XI",
-      "Lady Deathstrike"
-    ]
-  },
-  {
-    "question": "Which character can run at superhuman speeds?",
-    "correctAnswer": "Quicksilver",
-    "wrongAnswers": [
-      "Nightcrawler",
-      "Beast",
-      "Angel",
-      "Iceman",
-      "Colossus",
-      "Gambit"
-    ]
-  },
-  {
-    "question": "What is the name of the virus that affects mutants?",
-    "correctAnswer": "Legacy Virus",
-    "wrongAnswers": [
-      "Techno-Organic Virus",
-      "M-Pox",
-      "Mutant Growth Hormone",
-      "Sentinel Virus",
-      "X-Gene Suppressor",
-      "Inhibitor Virus"
-    ]
-  },
-  {
-    "question": "Which character can manipulate magnetic fields?",
-    "correctAnswer": "Magneto",
-    "wrongAnswers": [
-      "Polaris",
-      "Storm",
-      "Cyclops",
-      "Jean Grey",
-      "Professor X",
-      "Beast"
-    ]
-  },
-  {
-    "question": "What is the name of the prehistoric land with dinosaurs?",
-    "correctAnswer": "Savage Land",
-    "wrongAnswers": [
-      "Hidden Land",
-      "Lost World",
-      "Dinosaur Valley",
-      "Prehistoric Preserve",
-      "Ancient Territory",
-      "Primordial Zone"
-    ]
-  },
-  {
-    "question": "Which character can create duplicates of himself?",
-    "correctAnswer": "Multiple Man",
-    "wrongAnswers": [
-      "Forge",
-      "Bishop",
-      "Cable",
-      "Cannonball",
-      "Sunfire",
-      "Havok"
-    ]
-  },
-  {
-    "question": "What is Emma Frost's secondary mutation?",
-    "correctAnswer": "Diamond form transformation",
-    "wrongAnswers": [
-      "Telepathic immunity",
-      "Energy absorption",
-      "Super strength",
-      "Flight capability",
-      "Healing factor",
-      "Teleportation"
-    ]
-  },
-  {
-    "question": "Which X-Men character is known as the 'Ragin' Cajun'?",
-    "correctAnswer": "Gambit",
-    "wrongAnswers": [
-      "Rogue",
-      "Nightcrawler",
-      "Beast",
-      "Colossus",
-      "Banshee",
-      "Sunfire"
-    ]
-  },
-  {
-    "question": "What is the name of Wolverine's son?",
-    "correctAnswer": "Daken",
-    "wrongAnswers": [
-      "X-23",
-      "Sabretooth",
-      "Wild Child",
-      "Weapon XI",
-      "Logan Jr.",
-      "James Howlett Jr."
-    ]
-  },
-  {
-    "question": "Which villain can control people's dreams?",
-    "correctAnswer": "Nightmare",
-    "wrongAnswers": [
-      "Shadow King",
-      "Proteus",
-      "Mister Sinister",
-      "Apocalypse",
-      "Onslaught",
-      "Cassandra Nova"
-    ]
-  },
-  {
-    "question": "What is the name of the X-Men's jet?",
-    "correctAnswer": "Blackbird",
-    "wrongAnswers": [
-      "X-Jet",
-      "Stratojet",
-      "Sky Falcon",
-      "Storm Eagle",
-      "Thunder Wing",
-      "Blue Bird"
-    ]
-  },
-  {
-    "question": "Which character has optic blasts but is Cyclops's brother?",
-    "correctAnswer": "Havok",
-    "wrongAnswers": [
-      "Cable",
-      "X-Man",
-      "Corsair",
-      "Vulcan",
-      "Phoenix",
-      "Marvel Girl"
-    ]
-  },
-  {
-    "question": "What is the name of the X-Men's medical doctor?",
-    "correctAnswer": "Cecilia Reyes",
-    "wrongAnswers": [
-      "Jean Grey",
-      "Moira MacTaggert",
-      "Emma Frost",
-      "Kitty Pryde",
-      "Storm",
-      "Rogue"
-    ]
-  },
-  {
-    "question": "Which X-Men character can phase through time?",
-    "correctAnswer": "Kitty Pryde",
-    "wrongAnswers": [
-      "Bishop",
-      "Cable",
-      "Rachel Summers",
-      "Forge",
-      "Psylocke",
-      "Multiple Man"
-    ]
-  },
-  {
-    "question": "What is the real name of the character 'Paper Boi' in Atlanta?",
-    "correctAnswer": "Alfred Miles",
-    "wrongAnswers": [
-      "Earnest Marks",
-      "Darius Epps",
-      "Tracy Miles",
-      "Marcus Miles",
-      "Andre Benjamin",
-      "Calvin Johnson"
-    ]
-  },
-  {
-    "question": "Who created and stars in the FX series Atlanta?",
-    "correctAnswer": "Donald Glover",
-    "wrongAnswers": [
-      "Brian Tyree Henry",
-      "LaKeith Stanfield",
-      "Zazie Beetz",
-      "Kevin Hart",
-      "Jordan Peele",
-      "Issa Rae"
-    ]
-  },
-  {
-    "question": "What is Earn's relationship to Paper Boi?",
-    "correctAnswer": "Cousin",
-    "wrongAnswers": [
-      "Brother",
-      "Friend",
-      "Manager only",
-      "Neighbor",
-      "Uncle",
-      "Business partner only"
-    ]
-  },
-  {
-    "question": "Which character is known for his philosophical and eccentric personality?",
-    "correctAnswer": "Darius",
-    "wrongAnswers": [
-      "Earn",
-      "Paper Boi",
-      "Tracy",
-      "Van",
-      "Luke",
-      "Clark County"
-    ]
-  },
-  {
-    "question": "What is the name of Earn's on-and-off girlfriend and mother of his daughter?",
-    "correctAnswer": "Van",
-    "wrongAnswers": [
-      "Vanessa",
-      "Victoria",
-      "Valerie",
-      "Violet",
-      "Vera",
-      "Vivian"
-    ]
-  },
-  {
-    "question": "Which actor plays the character Darius?",
-    "correctAnswer": "LaKeith Stanfield",
-    "wrongAnswers": [
-      "Brian Tyree Henry",
-      "Keith Stanfield",
-      "Lakeith Lee",
-      "Donald Glover",
-      "Michael Cera",
-      "Rami Malek"
-    ]
-  },
-  {
-    "question": "What is the name of Earn and Van's daughter?",
-    "correctAnswer": "Lottie",
-    "wrongAnswers": [
-      "Lucy",
-      "Lily",
-      "Layla",
-      "Luna",
-      "Leah",
-      "Lola"
-    ]
-  },
-  {
-    "question": "In which city is Atlanta primarily set?",
-    "correctAnswer": "Atlanta, Georgia",
-    "wrongAnswers": [
-      "New Orleans, Louisiana",
-      "Memphis, Tennessee",
-      "Birmingham, Alabama",
-      "Charlotte, North Carolina",
-      "Nashville, Tennessee",
-      "Jacksonville, Florida"
-    ]
-  },
-  {
-    "question": "What genre of music is central to the show's plot?",
-    "correctAnswer": "Hip-hop/Rap",
-    "wrongAnswers": [
-      "R&B",
-      "Jazz",
-      "Blues",
-      "Country",
-      "Rock",
-      "Gospel"
-    ]
-  },
-  {
-    "question": "Who plays Paper Boi (Alfred)?",
-    "correctAnswer": "Brian Tyree Henry",
-    "wrongAnswers": [
-      "Donald Glover",
-      "LaKeith Stanfield",
-      "Michael Che",
-      "Jerrod Carmichael",
-      "Hannibal Buress",
-      "Keegan-Michael Key"
-    ]
-  },
-  {
-    "question": "What is Earn's educational background?",
-    "correctAnswer": "Princeton dropout",
-    "wrongAnswers": [
-      "Harvard graduate",
-      "High school dropout",
-      "Community college graduate",
-      "Georgia Tech dropout",
-      "Morehouse graduate",
-      "Spelman dropout"
-    ]
-  },
-  {
-    "question": "In what year did Atlanta premiere on FX?",
-    "correctAnswer": "2016",
-    "wrongAnswers": [
-      "2015",
-      "2017",
-      "2014",
-      "2018",
-      "2013",
-      "2019"
-    ]
-  },
-  {
-    "question": "What is the name of Paper Boi's breakout song mentioned in the series?",
-    "correctAnswer": "Paper Boi",
-    "wrongAnswers": [
-      "Money Trees",
-      "Atlanta Flow",
-      "Southern Comfort",
-      "Peach State",
-      "Gold Rush",
-      "Street Dreams"
-    ]
-  },
-  {
-    "question": "Which character works as a teacher?",
-    "correctAnswer": "Van",
-    "wrongAnswers": [
-      "Earn",
-      "Darius",
-      "Paper Boi",
-      "Tracy",
-      "Luke",
-      "Clark County"
-    ]
-  },
-  {
-    "question": "What unusual item does Darius often carry or reference?",
-    "correctAnswer": "Samurai sword",
-    "wrongAnswers": [
-      "Magic 8-ball",
-      "Crystal ball",
-      "Vintage camera",
-      "Rubber duck",
-      "Plant seedlings",
-      "Chess set"
-    ]
-  },
-  {
-    "question": "What is Tracy's relationship to Alfred (Paper Boi)?",
-    "correctAnswer": "Cousin",
-    "wrongAnswers": [
-      "Brother",
-      "Friend",
-      "Uncle",
-      "Neighbor",
-      "Manager",
-      "Producer"
-    ]
-  },
-  {
-    "question": "Which streaming service later acquired the rights to Atlanta?",
-    "correctAnswer": "Hulu",
-    "wrongAnswers": [
-      "Netflix",
       "Amazon Prime",
+      "Hulu",
       "HBO Max",
-      "Disney+",
       "Apple TV+",
+      "Disney+",
       "Paramount+"
     ]
   },
   {
-    "question": "What type of living situation does Earn often find himself in?",
-    "correctAnswer": "Homeless/couch surfing",
+    "question": "What is the central conflict in Kill Boksoon (2023)?",
+    "correctAnswer": "Balancing motherhood with being an assassin",
     "wrongAnswers": [
-      "Luxury apartment",
-      "Recording studio",
-      "Hotel rooms",
-      "Van's house permanently",
-      "Parents' basement",
-      "Trailer park"
+      "Corporate espionage",
+      "Political conspiracy",
+      "Gang warfare",
+      "International terrorism",
+      "Family revenge",
+      "Police corruption"
     ]
   },
   {
-    "question": "Which award did Donald Glover win for Atlanta?",
-    "correctAnswer": "Emmy for Outstanding Directing",
+    "question": "Who directed Leave the World Behind (2023)?",
+    "correctAnswer": "Sam Esmail",
     "wrongAnswers": [
-      "Golden Globe for Best Actor",
-      "SAG Award for Best Ensemble",
-      "Critics' Choice Award",
-      "NAACP Image Award only",
-      "Writers Guild Award only",
-      "Directors Guild Award only"
-    ]
-  },
-  {
-    "question": "What is the name of the famous episode featuring a fake TV show about a cereal commercial?",
-    "correctAnswer": "B.A.N.",
-    "wrongAnswers": [
-      "Teddy Perkins",
-      "Barbershop",
-      "The Big Bang",
-      "Crabs in a Barrel",
-      "Money Bag Shawty",
-      "Woods"
-    ]
-  },
-  {
-    "question": "In Morris from America, what country does Morris move to with his father?",
-    "correctAnswer": "Germany",
-    "wrongAnswers": [
-      "France",
-      "Netherlands",
-      "Switzerland",
-      "Austria",
-      "Belgium",
-      "Denmark"
-    ]
-  },
-  {
-    "question": "What is Morris's main passion in Morris from America?",
-    "correctAnswer": "Hip-hop music and rapping",
-    "wrongAnswers": [
-      "Basketball",
-      "Soccer",
-      "Skateboarding",
-      "Photography",
-      "Graffiti art",
-      "Break dancing"
-    ]
-  },
-  {
-    "question": "Who plays the title character Morris in Morris from America?",
-    "correctAnswer": "Markees Christmas",
-    "wrongAnswers": [
-      "Jacob Latimore",
-      "Caleb McLaughlin",
-      "Jason Mitchell",
-      "Algee Smith",
-      "Shameik Moore",
-      "Keith Stanfield"
-    ]
-  },
-  {
-    "question": "Who plays Morris's father Curtis in the film?",
-    "correctAnswer": "Craig Robinson",
-    "wrongAnswers": [
-      "Anthony Anderson",
-      "Keegan-Michael Key",
+      "Denis Villeneuve",
+      "Christopher Nolan",
       "Jordan Peele",
-      "Hannibal Buress",
-      "Tracy Morgan",
-      "Donald Glover"
+      "Ari Aster",
+      "Robert Eggers",
+      "Alex Garland"
     ]
   },
   {
-    "question": "What is the name of the German girl Morris develops feelings for?",
-    "correctAnswer": "Katrin",
+    "question": "Who plays Amanda Sandford in Leave the World Behind (2023)?",
+    "correctAnswer": "Julia Roberts",
     "wrongAnswers": [
-      "Greta",
-      "Anja",
-      "Ingrid",
-      "Petra",
-      "Sabine",
-      "Ursula"
+      "Mahershala Ali",
+      "Ethan Hawke",
+      "Myha'la Herrold",
+      "Kevin Bacon",
+      "Charlie Evans",
+      "Farrah Mackenzie"
     ]
   },
   {
-    "question": "Who directed Morris from America?",
+    "question": "What novel is Leave the World Behind (2023) based on?",
+    "correctAnswer": "Leave the World Behind by Rumaan Alam",
+    "wrongAnswers": [
+      "The Road by Cormac McCarthy",
+      "Station Eleven by Emily St. John Mandel",
+      "The Stand by Stephen King",
+      "World War Z by Max Brooks",
+      "Blindness by José Saramago",
+      "The Handmaid's Tale by Margaret Atwood"
+    ]
+  },
+  {
+    "question": "What mysterious event occurs in Leave the World Behind (2023)?",
+    "correctAnswer": "Technology and communication systems fail",
+    "wrongAnswers": [
+      "Alien invasion",
+      "Zombie outbreak",
+      "Nuclear war",
+      "Natural disaster",
+      "Time travel",
+      "Pandemic"
+    ]
+  },
+  {
+    "question": "Who plays G.H. Washington in Leave the World Behind (2023)?",
+    "correctAnswer": "Mahershala Ali",
+    "wrongAnswers": [
+      "Julia Roberts",
+      "Ethan Hawke",
+      "Kevin Bacon",
+      "Myha'la Herrold",
+      "Charlie Evans",
+      "Farrah Mackenzie"
+    ]
+  },
+  {
+    "question": "Who directed Little Fish (2020)?",
     "correctAnswer": "Chad Hartigan",
     "wrongAnswers": [
-      "Barry Jenkins",
-      "Ryan Coogler",
-      "Nia DaCosta",
-      "Jordan Peele",
-      "Boots Riley",
-      "Dee Rees"
+      "Denis Villeneuve",
+      "Alex Garland",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Ridley Scott",
+      "Christopher Nolan"
     ]
   },
   {
-    "question": "What German city serves as the main setting for Morris from America?",
-    "correctAnswer": "Heidelberg",
+    "question": "Who plays Emma in Little Fish (2020)?",
+    "correctAnswer": "Olivia Cooke",
     "wrongAnswers": [
-      "Berlin",
-      "Munich",
-      "Hamburg",
-      "Frankfurt",
-      "Cologne",
-      "Stuttgart"
+      "Jack O'Connell",
+      "Soko",
+      "Raúl Castillo",
+      "David Lennon",
+      "Ron Canada",
+      "Rudi Dharmalingam"
     ]
   },
   {
-    "question": "What is Curtis's job in Germany in Morris from America?",
-    "correctAnswer": "Soccer coach",
+    "question": "What disease affects people in Little Fish (2020)?",
+    "correctAnswer": "Neuroinflammatory Affliction (memory loss)",
     "wrongAnswers": [
-      "English teacher",
-      "Military personnel",
-      "Embassy worker",
-      "IT consultant",
-      "Basketball coach",
-      "Translator"
+      "Alzheimer's disease",
+      "Brain tumor",
+      "Dementia",
+      "Amnesia",
+      "Stroke",
+      "Parkinson's disease"
     ]
   },
   {
-    "question": "Morris from America premiered at which major film festival?",
-    "correctAnswer": "Sundance Film Festival",
+    "question": "Who plays Jude in Little Fish (2020)?",
+    "correctAnswer": "Jack O'Connell",
     "wrongAnswers": [
-      "Cannes Film Festival",
-      "Toronto International Film Festival",
-      "Venice Film Festival",
-      "Berlin International Film Festival",
-      "SXSW",
-      "Tribeca Film Festival"
+      "Olivia Cooke",
+      "Soko",
+      "Raúl Castillo",
+      "David Lennon",
+      "Ron Canada",
+      "Rudi Dharmalingam"
     ]
   },
   {
-    "question": "What language barrier challenge does Morris face in the film?",
-    "correctAnswer": "Learning German",
+    "question": "What is the main theme of Little Fish (2020)?",
+    "correctAnswer": "Love persisting despite memory loss",
     "wrongAnswers": [
-      "Learning French",
-      "Learning Dutch",
-      "Learning Spanish",
-      "Learning Italian",
-      "Learning Swedish",
-      "Learning Polish"
+      "Time travel romance",
+      "Alien invasion",
+      "Post-apocalyptic survival",
+      "Political thriller",
+      "Crime drama",
+      "Fantasy adventure"
     ]
   },
   {
-    "question": "Who provides the voice of Marcel in Marcel the Shell with Shoes On?",
-    "correctAnswer": "Jenny Slate",
+    "question": "Who directed Logan (2017)?",
+    "correctAnswer": "James Mangold",
     "wrongAnswers": [
-      "Kristen Bell",
-      "Amy Poehler",
-      "Tina Fey",
-      "Aubrey Plaza",
-      "Anna Kendrick",
-      "Mindy Kaling"
+      "Bryan Singer",
+      "Matthew Vaughn",
+      "Brett Ratner",
+      "Tim Miller",
+      "Gavin Hood",
+      "Simon Kinberg"
     ]
   },
   {
-    "question": "What type of animation style is used in Marcel the Shell with Shoes On?",
-    "correctAnswer": "Stop-motion animation with live-action",
+    "question": "Who plays Laura/X-23 in Logan (2017)?",
+    "correctAnswer": "Dafne Keen",
     "wrongAnswers": [
-      "Traditional 2D animation",
-      "CGI animation",
-      "Claymation",
-      "Rotoscoping",
-      "Flash animation",
-      "Hand-drawn animation"
+      "Hugh Jackman",
+      "Patrick Stewart",
+      "Boyd Holbrook",
+      "Stephen Merchant",
+      "Richard E. Grant",
+      "Eriq La Salle"
+    ]
+  },
+  {
+    "question": "What year is Logan (2017) set in?",
+    "correctAnswer": "2029",
+    "wrongAnswers": [
+      "2025",
+      "2030",
+      "2035",
+      "2020",
+      "2040",
+      "2027"
+    ]
+  },
+  {
+    "question": "Who plays Professor X in Logan (2017)?",
+    "correctAnswer": "Patrick Stewart",
+    "wrongAnswers": [
+      "Hugh Jackman",
+      "Dafne Keen",
+      "Boyd Holbrook",
+      "Stephen Merchant",
+      "Richard E. Grant",
+      "James McAvoy"
+    ]
+  },
+  {
+    "question": "What is Logan's condition in Logan (2017)?",
+    "correctAnswer": "His healing factor is failing and he's aging",
+    "wrongAnswers": [
+      "He has amnesia",
+      "He's lost his claws",
+      "He's paralyzed",
+      "He's blind",
+      "He has cancer",
+      "He's lost his powers completely"
+    ]
+  },
+  {
+    "question": "Who directed Looper (2012)?",
+    "correctAnswer": "Rian Johnson",
+    "wrongAnswers": [
+      "Christopher Nolan",
+      "Denis Villeneuve",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Alex Garland",
+      "Ridley Scott"
+    ]
+  },
+  {
+    "question": "Who plays Joe in Looper (2012)?",
+    "correctAnswer": "Joseph Gordon-Levitt",
+    "wrongAnswers": [
+      "Bruce Willis",
+      "Emily Blunt",
+      "Paul Dano",
+      "Noah Segan",
+      "Piper Perabo",
+      "Jeff Daniels"
+    ]
+  },
+  {
+    "question": "Who plays Old Joe in Looper (2012)?",
+    "correctAnswer": "Bruce Willis",
+    "wrongAnswers": [
+      "Joseph Gordon-Levitt",
+      "Emily Blunt",
+      "Paul Dano",
+      "Noah Segan",
+      "Jeff Daniels",
+      "Pierce Gagnon"
+    ]
+  },
+  {
+    "question": "What is a 'looper' in the 2012 film?",
+    "correctAnswer": "An assassin who kills time travelers",
+    "wrongAnswers": [
+      "A time traveler",
+      "A drug dealer",
+      "A bounty hunter",
+      "A police officer",
+      "A scientist",
+      "A criminal boss"
+    ]
+  },
+  {
+    "question": "What happens when a looper kills their future self?",
+    "correctAnswer": "They 'close their loop' and retire",
+    "wrongAnswers": [
+      "They die immediately",
+      "They gain time powers",
+      "They become immortal",
+      "They lose their memory",
+      "They travel to the future",
+      "They create a paradox"
+    ]
+  },
+  {
+    "question": "Who directed Lucy (2014)?",
+    "correctAnswer": "Luc Besson",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Alex Garland",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Ridley Scott"
+    ]
+  },
+  {
+    "question": "Who plays Lucy in Lucy (2014)?",
+    "correctAnswer": "Scarlett Johansson",
+    "wrongAnswers": [
+      "Morgan Freeman",
+      "Choi Min-sik",
+      "Amr Waked",
+      "Julian Rhind-Tutt",
+      "Pilou Asbæk",
+      "Analeigh Tipton"
+    ]
+  },
+  {
+    "question": "What drug gives Lucy her powers in Lucy (2014)?",
+    "correctAnswer": "CPH4",
+    "wrongAnswers": [
+      "NZT-48",
+      "Limitless",
+      "Substance D",
+      "Blue Meth",
+      "Red Pills",
+      "Spice"
+    ]
+  },
+  {
+    "question": "Who plays Professor Norman in Lucy (2014)?",
+    "correctAnswer": "Morgan Freeman",
+    "wrongAnswers": [
+      "Scarlett Johansson",
+      "Choi Min-sik",
+      "Amr Waked",
+      "Julian Rhind-Tutt",
+      "Pilou Asbæk",
+      "Analeigh Tipton"
+    ]
+  },
+  {
+    "question": "What percentage of brain capacity does Lucy eventually reach?",
+    "correctAnswer": "100%",
+    "wrongAnswers": [
+      "50%",
+      "75%",
+      "90%",
+      "80%",
+      "95%",
+      "85%"
+    ]
+  },
+  {
+    "question": "Who directed LX 2048 (2020)?",
+    "correctAnswer": "Guy Moshe",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Alex Garland",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Ridley Scott",
+      "Christopher Nolan"
+    ]
+  },
+  {
+    "question": "Who plays Adam Bird in LX 2048 (2020)?",
+    "correctAnswer": "James D'Arcy",
+    "wrongAnswers": [
+      "Delroy Lindo",
+      "Lindon Alexander",
+      "Gaia Weiss",
+      "Peter Cullen",
+      "Gabrielle Cassi",
+      "Anna Brewster"
+    ]
+  },
+  {
+    "question": "What environmental disaster has occurred in LX 2048 (2020)?",
+    "correctAnswer": "Ozone layer depletion requiring people to stay inside during the day",
+    "wrongAnswers": [
+      "Nuclear fallout",
+      "Climate change flooding",
+      "Asteroid impact",
+      "Volcanic ash clouds",
+      "Pandemic quarantine",
+      "Alien invasion"
+    ]
+  },
+  {
+    "question": "What genre is LX 2048 (2020)?",
+    "correctAnswer": "Science Fiction Drama",
+    "wrongAnswers": [
+      "Horror",
+      "Thriller",
+      "Action",
+      "Comedy",
+      "Romance",
+      "Fantasy"
+    ]
+  },
+  {
+    "question": "What is Adam's profession in LX 2048 (2020)?",
+    "correctAnswer": "Insurance salesman",
+    "wrongAnswers": [
+      "Police officer",
+      "Doctor",
+      "Teacher",
+      "Engineer",
+      "Scientist",
+      "Government worker"
     ]
   },
   {
     "question": "Who directed Marcel the Shell with Shoes On (2021)?",
-    "correctAnswer": "Dean Fleischer-Camp",
+    "correctAnswer": "Dean Fleischer Camp",
     "wrongAnswers": [
-      "Charlie Kaufman",
-      "Ari Aster",
-      "Jordan Peele",
-      "Greta Gerwig",
-      "Noah Baumbach",
-      "Lulu Wang"
+      "Jenny Slate",
+      "Pete Docter",
+      "Brad Bird",
+      "Andrew Stanton",
+      "Lee Unkrich",
+      "Josh Cooley"
+    ]
+  },
+  {
+    "question": "Who voices Marcel in Marcel the Shell with Shoes On (2021)?",
+    "correctAnswer": "Jenny Slate",
+    "wrongAnswers": [
+      "Dean Fleischer Camp",
+      "Isabella Rossellini",
+      "Joe Gabler",
+      "Samuel Painter",
+      "Lesley Stahl",
+      "Thomas Mann"
+    ]
+  },
+  {
+    "question": "What type of film is Marcel the Shell with Shoes On (2021)?",
+    "correctAnswer": "Stop-motion animated mockumentary",
+    "wrongAnswers": [
+      "Live-action comedy",
+      "Traditional animation",
+      "CGI animated film",
+      "Documentary",
+      "Drama",
+      "Musical"
+    ]
+  },
+  {
+    "question": "Who voices Connie, Marcel's grandmother?",
+    "correctAnswer": "Isabella Rossellini",
+    "wrongAnswers": [
+      "Jenny Slate",
+      "Dean Fleischer Camp",
+      "Joe Gabler",
+      "Samuel Painter",
+      "Lesley Stahl",
+      "Thomas Mann"
     ]
   },
   {
@@ -1817,82 +1553,3945 @@
     "wrongAnswers": [
       "A new home",
       "Food",
-      "Adventure",
+      "Water",
       "Friends",
-      "His purpose",
-      "A way to grow bigger"
+      "Adventure",
+      "Purpose"
     ]
   },
   {
-    "question": "What does Marcel use to get around?",
-    "correctAnswer": "Shoes and creative methods",
+    "question": "Who directed Matchstick Men (2003)?",
+    "correctAnswer": "Ridley Scott",
     "wrongAnswers": [
-      "A tiny car",
+      "David Fincher",
+      "Christopher Nolan",
+      "Steven Soderbergh",
+      "Martin Scorsese",
+      "Paul Thomas Anderson",
+      "Darren Aronofsky"
+    ]
+  },
+  {
+    "question": "Who plays Roy Waller in Matchstick Men (2003)?",
+    "correctAnswer": "Nicolas Cage",
+    "wrongAnswers": [
+      "Sam Rockwell",
+      "Alison Lohman",
+      "Bruce McGill",
+      "Bruce Altman",
+      "Jerry Hauck",
+      "Sheila Kelley"
+    ]
+  },
+  {
+    "question": "What mental condition does Roy suffer from in Matchstick Men (2003)?",
+    "correctAnswer": "Obsessive-compulsive disorder and agoraphobia",
+    "wrongAnswers": [
+      "Schizophrenia",
+      "Bipolar disorder",
+      "Depression",
+      "Anxiety disorder",
+      "PTSD",
+      "Multiple personality disorder"
+    ]
+  },
+  {
+    "question": "Who plays Frank Mercer in Matchstick Men (2003)?",
+    "correctAnswer": "Sam Rockwell",
+    "wrongAnswers": [
+      "Nicolas Cage",
+      "Alison Lohman",
+      "Bruce McGill",
+      "Bruce Altman",
+      "Jerry Hauck",
+      "Sheila Kelley"
+    ]
+  },
+  {
+    "question": "What is Roy's profession in Matchstick Men (2003)?",
+    "correctAnswer": "Con artist",
+    "wrongAnswers": [
+      "Insurance investigator",
+      "Police detective",
+      "Therapist",
+      "Accountant",
+      "Salesman",
+      "Security guard"
+    ]
+  },
+  {
+    "question": "Who directed Monkey Man (2024)?",
+    "correctAnswer": "Dev Patel",
+    "wrongAnswers": [
+      "Jordan Peele",
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Rian Johnson",
+      "Taika Waititi",
+      "Ryan Coogler"
+    ]
+  },
+  {
+    "question": "Who plays the main character in Monkey Man (2024)?",
+    "correctAnswer": "Dev Patel",
+    "wrongAnswers": [
+      "Riz Ahmed",
+      "Kumail Nanjiani",
+      "Aziz Ansari",
+      "Hasan Minhaj",
+      "Ravi Patel",
+      "Sendhil Ramamurthy"
+    ]
+  },
+  {
+    "question": "What genre is Monkey Man (2024)?",
+    "correctAnswer": "Action thriller",
+    "wrongAnswers": [
+      "Comedy",
+      "Horror",
+      "Romance",
+      "Science Fiction",
+      "Fantasy",
+      "Drama"
+    ]
+  },
+  {
+    "question": "What Indian mythology does Monkey Man (2024) draw inspiration from?",
+    "correctAnswer": "Hanuman legend",
+    "wrongAnswers": [
+      "Krishna stories",
+      "Rama epic",
+      "Shiva tales",
+      "Ganesha myths",
+      "Durga legends",
+      "Vishnu avatars"
+    ]
+  },
+  {
+    "question": "What is the main character's motivation in Monkey Man (2024)?",
+    "correctAnswer": "Revenge",
+    "wrongAnswers": [
+      "Love",
+      "Money",
+      "Fame",
+      "Justice",
+      "Family",
+      "Honor"
+    ]
+  },
+  {
+    "question": "Who directed Morbius (2022)?",
+    "correctAnswer": "Daniel Espinosa",
+    "wrongAnswers": [
+      "Ruben Fleischer",
+      "Andy Serkis",
+      "Matt Reeves",
+      "James Wan",
+      "David Ayer",
+      "Zack Snyder"
+    ]
+  },
+  {
+    "question": "Who plays Dr. Michael Morbius in Morbius (2022)?",
+    "correctAnswer": "Jared Leto",
+    "wrongAnswers": [
+      "Matt Smith",
+      "Adria Arjona",
+      "Jared Harris",
+      "Al Madrigal",
+      "Tyrese Gibson",
+      "Michael Keaton"
+    ]
+  },
+  {
+    "question": "What disease is Morbius trying to cure in Morbius (2022)?",
+    "correctAnswer": "A rare blood disorder",
+    "wrongAnswers": [
+      "Cancer",
+      "Diabetes",
+      "Heart disease",
+      "Alzheimer's",
+      "Parkinson's",
+      "Multiple sclerosis"
+    ]
+  },
+  {
+    "question": "Who plays Milo in Morbius (2022)?",
+    "correctAnswer": "Matt Smith",
+    "wrongAnswers": [
+      "Jared Leto",
+      "Adria Arjona",
+      "Jared Harris",
+      "Al Madrigal",
+      "Tyrese Gibson",
+      "Michael Keaton"
+    ]
+  },
+  {
+    "question": "What happens to Morbius after his experiment in the 2022 film?",
+    "correctAnswer": "He becomes a living vampire",
+    "wrongAnswers": [
+      "He becomes a werewolf",
+      "He gains super strength",
+      "He becomes invisible",
+      "He gains telepathy",
+      "He becomes immortal",
+      "He shapeshifts"
+    ]
+  },
+  {
+    "question": "Who directed Morris from America (2016)?",
+    "correctAnswer": "Chad Hartigan",
+    "wrongAnswers": [
+      "Barry Jenkins",
+      "Ryan Coogler",
+      "Jordan Peele",
+      "Ava DuVernay",
+      "Dee Rees",
+      "Lulu Wang"
+    ]
+  },
+  {
+    "question": "Who plays Morris in Morris from America (2016)?",
+    "correctAnswer": "Markees Christmas",
+    "wrongAnswers": [
+      "Craig Robinson",
+      "Carla Juri",
+      "Lina Keller",
+      "Levin Henning",
+      "Jakub Gierszal",
+      "Patrick Güldenberg"
+    ]
+  },
+  {
+    "question": "Where does Morris move to in Morris from America (2016)?",
+    "correctAnswer": "Germany",
+    "wrongAnswers": [
+      "France",
+      "Italy",
+      "Spain",
+      "Netherlands",
+      "Belgium",
+      "Switzerland"
+    ]
+  },
+  {
+    "question": "Who plays Morris's father Curtis in Morris from America (2016)?",
+    "correctAnswer": "Craig Robinson",
+    "wrongAnswers": [
+      "Markees Christmas",
+      "Carla Juri",
+      "Lina Keller",
+      "Levin Henning",
+      "Jakub Gierszal",
+      "Patrick Güldenberg"
+    ]
+  },
+  {
+    "question": "What is Morris's passion in Morris from America (2016)?",
+    "correctAnswer": "Hip-hop music",
+    "wrongAnswers": [
+      "Basketball",
+      "Soccer",
+      "Painting",
+      "Writing",
+      "Dancing",
+      "Photography"
+    ]
+  },
+  {
+    "question": "Who directed Needle in a Timestack (2021)?",
+    "correctAnswer": "John Ridley",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Alex Garland",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Ridley Scott",
+      "Christopher Nolan"
+    ]
+  },
+  {
+    "question": "Who plays Nick in Needle in a Timestack (2021)?",
+    "correctAnswer": "Leslie Odom Jr.",
+    "wrongAnswers": [
+      "Freida Pinto",
+      "Cynthia Erivo",
+      "Orlando Bloom",
+      "Jadyn Wong",
+      "Jay Pharoah",
+      "Alex Kingston"
+    ]
+  },
+  {
+    "question": "What science fiction concept is central to Needle in a Timestack (2021)?",
+    "correctAnswer": "Time manipulation",
+    "wrongAnswers": [
+      "Parallel universes",
+      "Alien contact",
+      "Mind reading",
+      "Teleportation",
+      "Immortality",
+      "Virtual reality"
+    ]
+  },
+  {
+    "question": "Who plays Janine in Needle in a Timestack (2021)?",
+    "correctAnswer": "Freida Pinto",
+    "wrongAnswers": [
+      "Leslie Odom Jr.",
+      "Cynthia Erivo",
+      "Orlando Bloom",
+      "Jadyn Wong",
+      "Jay Pharoah",
+      "Alex Kingston"
+    ]
+  },
+  {
+    "question": "What story is Needle in a Timestack (2021) based on?",
+    "correctAnswer": "The Needle in a Timestack by Robert Silverberg",
+    "wrongAnswers": [
+      "The Time Machine by H.G. Wells",
+      "A Sound of Thunder by Ray Bradbury",
+      "Timeline by Michael Crichton",
+      "The Time Traveler's Wife by Audrey Niffenegger",
+      "11/22/63 by Stephen King",
+      "Kindred by Octavia Butler"
+    ]
+  },
+  {
+    "question": "Who directed Nope (2022)?",
+    "correctAnswer": "Jordan Peele",
+    "wrongAnswers": [
+      "Ari Aster",
+      "Robert Eggers",
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Alex Garland",
+      "Mike Flanagan"
+    ]
+  },
+  {
+    "question": "Who plays OJ Haywood in Nope (2022)?",
+    "correctAnswer": "Daniel Kaluuya",
+    "wrongAnswers": [
+      "Keke Palmer",
+      "Steven Yeun",
+      "Michael Wincott",
+      "Brandon Perea",
+      "Wrenn Schmidt",
+      "Keith David"
+    ]
+  },
+  {
+    "question": "Who plays Em Haywood in Nope (2022)?",
+    "correctAnswer": "Keke Palmer",
+    "wrongAnswers": [
+      "Daniel Kaluuya",
+      "Steven Yeun",
+      "Michael Wincott",
+      "Brandon Perea",
+      "Wrenn Schmidt",
+      "Keith David"
+    ]
+  },
+  {
+    "question": "What type of ranch do the Haywoods own in Nope (2022)?",
+    "correctAnswer": "Horse ranch for Hollywood productions",
+    "wrongAnswers": [
+      "Cattle ranch",
+      "Sheep ranch",
+      "Pig farm",
+      "Chicken farm",
+      "Goat ranch",
+      "Llama farm"
+    ]
+  },
+  {
+    "question": "What mysterious phenomenon occurs in Nope (2022)?",
+    "correctAnswer": "UFO sightings",
+    "wrongAnswers": [
+      "Time loops",
+      "Demon possession",
+      "Parallel dimensions",
+      "Zombie outbreak",
+      "Mind control",
+      "Weather anomalies"
+    ]
+  },
+  {
+    "question": "Who directed Oldboy (2003)?",
+    "correctAnswer": "Park Chan-wook",
+    "wrongAnswers": [
+      "Bong Joon-ho",
+      "Kim Jee-woon",
+      "Na Hong-jin",
+      "Choi Dong-hoon",
+      "Lee Chang-dong",
+      "Hong Sang-soo"
+    ]
+  },
+  {
+    "question": "Who plays Oh Dae-su in Oldboy (2003)?",
+    "correctAnswer": "Choi Min-sik",
+    "wrongAnswers": [
+      "Yu Ji-tae",
+      "Kang Hye-jung",
+      "Ji Dae-han",
+      "Oh Dal-su",
+      "Lee Seung-shin",
+      "Yoon Jin-seo"
+    ]
+  },
+  {
+    "question": "How long is Oh Dae-su imprisoned in Oldboy (2003)?",
+    "correctAnswer": "15 years",
+    "wrongAnswers": [
+      "10 years",
+      "20 years",
+      "12 years",
+      "18 years",
+      "8 years",
+      "25 years"
+    ]
+  },
+  {
+    "question": "What weapon does Oh Dae-su famously use in the hallway fight scene?",
+    "correctAnswer": "A hammer",
+    "wrongAnswers": [
+      "A knife",
+      "A baseball bat",
+      "A crowbar",
+      "A sword",
+      "A pipe",
+      "A chain"
+    ]
+  },
+  {
+    "question": "Who plays Lee Woo-jin in Oldboy (2003)?",
+    "correctAnswer": "Yu Ji-tae",
+    "wrongAnswers": [
+      "Choi Min-sik",
+      "Kang Hye-jung",
+      "Ji Dae-han",
+      "Oh Dal-su",
+      "Lee Seung-shin",
+      "Yoon Jin-seo"
+    ]
+  },
+  {
+    "question": "Who directed Pacific Rim (2013)?",
+    "correctAnswer": "Guillermo del Toro",
+    "wrongAnswers": [
+      "Steven DeKnight",
+      "Gareth Edwards",
+      "Denis Villeneuve",
+      "Neill Blomkamp",
+      "Alex Garland",
+      "Duncan Jones"
+    ]
+  },
+  {
+    "question": "What are the giant robots called in Pacific Rim (2013)?",
+    "correctAnswer": "Jaegers",
+    "wrongAnswers": [
+      "Titans",
+      "Mechas",
+      "Guardians",
+      "Sentinels",
+      "Colossal",
+      "Defenders"
+    ]
+  },
+  {
+    "question": "Who plays Raleigh Becket in Pacific Rim (2013)?",
+    "correctAnswer": "Charlie Hunnam",
+    "wrongAnswers": [
+      "Idris Elba",
+      "Rinko Kikuchi",
+      "Charlie Day",
+      "Ron Perlman",
+      "Robert Kazinsky",
+      "Max Martini"
+    ]
+  },
+  {
+    "question": "What are the alien creatures called in Pacific Rim (2013)?",
+    "correctAnswer": "Kaiju",
+    "wrongAnswers": [
+      "Titans",
+      "Leviathans",
+      "Behemoths",
+      "Colossal",
+      "Giants",
+      "Monsters"
+    ]
+  },
+  {
+    "question": "Who plays Stacker Pentecost in Pacific Rim (2013)?",
+    "correctAnswer": "Idris Elba",
+    "wrongAnswers": [
+      "Charlie Hunnam",
+      "Ron Perlman",
+      "Charlie Day",
+      "Max Martini",
+      "Robert Kazinsky",
+      "Burn Gorman"
+    ]
+  },
+  {
+    "question": "Who directed Plus One (2019)?",
+    "correctAnswer": "Jeff Chan and Andrew Rhymer",
+    "wrongAnswers": [
+      "Maya Erskine",
+      "Jack Quaid",
+      "Beck Bennett",
+      "Rosalind Chao",
+      "Ed Begley Jr.",
+      "Perrey Reeves"
+    ]
+  },
+  {
+    "question": "Who plays Alice in Plus One (2019)?",
+    "correctAnswer": "Maya Erskine",
+    "wrongAnswers": [
+      "Jack Quaid",
+      "Beck Bennett",
+      "Rosalind Chao",
+      "Ed Begley Jr.",
+      "Perrey Reeves",
+      "Finn Wittrock"
+    ]
+  },
+  {
+    "question": "Who plays Ben in Plus One (2019)?",
+    "correctAnswer": "Jack Quaid",
+    "wrongAnswers": [
+      "Maya Erskine",
+      "Beck Bennett",
+      "Rosalind Chao",
+      "Ed Begley Jr.",
+      "Perrey Reeves",
+      "Finn Wittrock"
+    ]
+  },
+  {
+    "question": "What is the central premise of Plus One (2019)?",
+    "correctAnswer": "Two friends attend weddings together as each other's plus one",
+    "wrongAnswers": [
+      "A dating app connects soulmates",
+      "A couple plans their wedding",
+      "Friends reunite at a wedding",
+      "A wedding planner finds love",
+      "Ex-lovers meet at a wedding",
+      "A bachelor party goes wrong"
+    ]
+  },
+  {
+    "question": "What genre is Plus One (2019)?",
+    "correctAnswer": "Romantic Comedy",
+    "wrongAnswers": [
+      "Drama",
+      "Thriller",
+      "Action",
+      "Horror",
+      "Science Fiction",
+      "Fantasy"
+    ]
+  },
+  {
+    "question": "Who directed Push (2009)?",
+    "correctAnswer": "Paul McGuigan",
+    "wrongAnswers": [
+      "Doug Liman",
+      "Brett Ratner",
+      "Louis Leterrier",
+      "Gavin Hood",
+      "Tim Story",
+      "Mark Steven Johnson"
+    ]
+  },
+  {
+    "question": "Who plays Nick Gant in Push (2009)?",
+    "correctAnswer": "Chris Evans",
+    "wrongAnswers": [
+      "Dakota Fanning",
+      "Camilla Belle",
+      "Djimon Hounsou",
+      "Ming-Na Wen",
+      "Joel Gretsch",
+      "Cliff Curtis"
+    ]
+  },
+  {
+    "question": "What psychic ability does Nick have in Push (2009)?",
+    "correctAnswer": "Telekinesis (Mover)",
+    "wrongAnswers": [
+      "Precognition (Watcher)",
+      "Mind control (Pusher)",
+      "Telepathy (Reader)",
+      "Healing (Stitcher)",
+      "Illusion (Shadow)",
+      "Tracking (Sniffer)"
+    ]
+  },
+  {
+    "question": "Who plays Cassie Holmes in Push (2009)?",
+    "correctAnswer": "Dakota Fanning",
+    "wrongAnswers": [
+      "Chris Evans",
+      "Camilla Belle",
+      "Djimon Hounsou",
+      "Ming-Na Wen",
+      "Joel Gretsch",
+      "Cliff Curtis"
+    ]
+  },
+  {
+    "question": "What organization hunts psychics in Push (2009)?",
+    "correctAnswer": "Division",
+    "wrongAnswers": [
+      "The Agency",
+      "Sentinel Services",
+      "Department H",
+      "Weapon X",
+      "The Bureau",
+      "Section 31"
+    ]
+  },
+  {
+    "question": "Who directed Reality Bites (1994)?",
+    "correctAnswer": "Ben Stiller",
+    "wrongAnswers": [
+      "Winona Ryder",
+      "Ethan Hawke",
+      "Janeane Garofalo",
+      "Steve Zahn",
+      "John Mahoney",
+      "Swoosie Kurtz"
+    ]
+  },
+  {
+    "question": "Who plays Lelaina Pierce in Reality Bites (1994)?",
+    "correctAnswer": "Winona Ryder",
+    "wrongAnswers": [
+      "Ethan Hawke",
+      "Ben Stiller",
+      "Janeane Garofalo",
+      "Steve Zahn",
+      "John Mahoney",
+      "Swoosie Kurtz"
+    ]
+  },
+  {
+    "question": "Who plays Troy Dyer in Reality Bites (1994)?",
+    "correctAnswer": "Ethan Hawke",
+    "wrongAnswers": [
+      "Winona Ryder",
+      "Ben Stiller",
+      "Janeane Garofalo",
+      "Steve Zahn",
+      "John Mahoney",
+      "Swoosie Kurtz"
+    ]
+  },
+  {
+    "question": "What is Lelaina's profession in Reality Bites (1994)?",
+    "correctAnswer": "Aspiring filmmaker/documentary maker",
+    "wrongAnswers": [
+      "Journalist",
+      "Teacher",
+      "Photographer",
+      "Writer",
+      "TV producer",
+      "Actress"
+    ]
+  },
+  {
+    "question": "What generation does Reality Bites (1994) focus on?",
+    "correctAnswer": "Generation X",
+    "wrongAnswers": [
+      "Baby Boomers",
+      "Millennials",
+      "Generation Z",
+      "Silent Generation",
+      "Generation Alpha",
+      "Lost Generation"
+    ]
+  },
+  {
+    "question": "Who directed Rebel Moon - Part Two: The Scargiver (2024)?",
+    "correctAnswer": "Zack Snyder",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "James Cameron",
+      "Ridley Scott",
+      "George Miller",
+      "Peter Jackson"
+    ]
+  },
+  {
+    "question": "Who plays Kora in Rebel Moon - Part Two: The Scargiver (2024)?",
+    "correctAnswer": "Sofia Boutella",
+    "wrongAnswers": [
+      "Djimon Hounsou",
+      "Ed Skrein",
+      "Michiel Huisman",
+      "Doona Bae",
+      "Ray Fisher",
+      "Charlie Hunnam"
+    ]
+  },
+  {
+    "question": "What streaming service released Rebel Moon - Part Two: The Scargiver (2024)?",
+    "correctAnswer": "Netflix",
+    "wrongAnswers": [
+      "Amazon Prime",
+      "Disney+",
+      "HBO Max",
+      "Apple TV+",
+      "Hulu",
+      "Paramount+"
+    ]
+  },
+  {
+    "question": "What is the subtitle of Rebel Moon Part Two?",
+    "correctAnswer": "The Scargiver",
+    "wrongAnswers": [
+      "The Warrior",
+      "The Rebellion",
+      "The Final Battle",
+      "The Resistance",
+      "The Last Stand",
+      "The Reckoning"
+    ]
+  },
+  {
+    "question": "What genre is Rebel Moon - Part Two: The Scargiver (2024)?",
+    "correctAnswer": "Science Fiction/Space Opera",
+    "wrongAnswers": [
+      "Fantasy",
+      "Horror",
+      "Thriller",
+      "Action Drama",
+      "War Film",
+      "Western"
+    ]
+  },
+  {
+    "question": "Who directed Reign of Fire (2002)?",
+    "correctAnswer": "Rob Bowman",
+    "wrongAnswers": [
+      "Peter Jackson",
+      "Roland Emmerich",
+      "Michael Bay",
+      "Wolfgang Petersen",
+      "John McTiernan",
+      "Ridley Scott"
+    ]
+  },
+  {
+    "question": "Who plays Quinn Abercromby in Reign of Fire (2002)?",
+    "correctAnswer": "Christian Bale",
+    "wrongAnswers": [
+      "Matthew McConaughey",
+      "Izabella Scorupco",
+      "Gerard Butler",
+      "Alexander Siddig",
+      "Scott Moutter",
+      "David Kennedy"
+    ]
+  },
+  {
+    "question": "Who plays Denton Van Zan in Reign of Fire (2002)?",
+    "correctAnswer": "Matthew McConaughey",
+    "wrongAnswers": [
+      "Christian Bale",
+      "Gerard Butler",
+      "Izabella Scorupco",
+      "Alexander Siddig",
+      "Scott Moutter",
+      "David Kennedy"
+    ]
+  },
+  {
+    "question": "What creatures have taken over the world in Reign of Fire (2002)?",
+    "correctAnswer": "Dragons",
+    "wrongAnswers": [
+      "Aliens",
+      "Zombies",
+      "Demons",
+      "Monsters",
+      "Robots",
+      "Mutants"
+    ]
+  },
+  {
+    "question": "What year is Reign of Fire (2002) set in?",
+    "correctAnswer": "2020 (post-apocalyptic future)",
+    "wrongAnswers": [
+      "2010",
+      "2025",
+      "2030",
+      "2015",
+      "2035",
+      "2040"
+    ]
+  },
+  {
+    "question": "Who directed Romeo + Juliet (1996)?",
+    "correctAnswer": "Baz Luhrmann",
+    "wrongAnswers": [
+      "Franco Zeffirelli",
+      "George Cukor",
+      "Kenneth Branagh",
+      "Orson Welles",
+      "Peter Brook",
+      "Lloyd Kaufman"
+    ]
+  },
+  {
+    "question": "Who plays Romeo in Romeo + Juliet (1996)?",
+    "correctAnswer": "Leonardo DiCaprio",
+    "wrongAnswers": [
+      "Claire Danes",
+      "John Leguizamo",
+      "Harold Perrineau",
+      "Pete Postlethwaite",
+      "Paul Sorvino",
+      "Brian Dennehy"
+    ]
+  },
+  {
+    "question": "Who plays Juliet in Romeo + Juliet (1996)?",
+    "correctAnswer": "Claire Danes",
+    "wrongAnswers": [
+      "Leonardo DiCaprio",
+      "John Leguizamo",
+      "Harold Perrineau",
+      "Pete Postlethwaite",
+      "Paul Sorvino",
+      "Brian Dennehy"
+    ]
+  },
+  {
+    "question": "What modern setting is Romeo + Juliet (1996) set in?",
+    "correctAnswer": "Verona Beach (contemporary Miami-like city)",
+    "wrongAnswers": [
+      "New York City",
+      "Los Angeles",
+      "Chicago",
+      "Las Vegas",
+      "San Francisco",
+      "Boston"
+    ]
+  },
+  {
+    "question": "Who plays Mercutio in Romeo + Juliet (1996)?",
+    "correctAnswer": "Harold Perrineau",
+    "wrongAnswers": [
+      "Leonardo DiCaprio",
+      "Claire Danes",
+      "John Leguizamo",
+      "Pete Postlethwaite",
+      "Paul Sorvino",
+      "Brian Dennehy"
+    ]
+  },
+  {
+    "question": "Who directed Run Lola Run (1998)?",
+    "correctAnswer": "Tom Tykwer",
+    "wrongAnswers": [
+      "Wolfgang Petersen",
+      "Roland Emmerich",
+      "Werner Herzog",
+      "Wim Wenders",
+      "Rainer Werner Fassbinder",
+      "Alexander Kluge"
+    ]
+  },
+  {
+    "question": "Who plays Lola in Run Lola Run (1998)?",
+    "correctAnswer": "Franka Potente",
+    "wrongAnswers": [
+      "Moritz Bleibtreu",
+      "Herbert Knaup",
+      "Nina Petri",
+      "Armin Rohde",
+      "Joachim Król",
+      "Ludger Pistor"
+    ]
+  },
+  {
+    "question": "How much money does Lola need to get in Run Lola Run (1998)?",
+    "correctAnswer": "100,000 Deutsche Marks",
+    "wrongAnswers": [
+      "50,000 Deutsche Marks",
+      "200,000 Deutsche Marks",
+      "75,000 Deutsche Marks",
+      "150,000 Deutsche Marks",
+      "300,000 Deutsche Marks",
+      "500,000 Deutsche Marks"
+    ]
+  },
+  {
+    "question": "How many different scenarios are shown in Run Lola Run (1998)?",
+    "correctAnswer": "Three",
+    "wrongAnswers": [
+      "Two",
+      "Four",
+      "Five",
+      "Six",
+      "Seven",
+      "Eight"
+    ]
+  },
+  {
+    "question": "What is the original German title of Run Lola Run (1998)?",
+    "correctAnswer": "Lola rennt",
+    "wrongAnswers": [
+      "Lola läuft",
+      "Lola springt",
+      "Lola kämpft",
+      "Lola rettet",
+      "Lola eilt",
+      "Lola sucht"
+    ]
+  },
+  {
+    "question": "Who directed Save Yourselves! (2020)?",
+    "correctAnswer": "Alex Huston Fischer and Eleanor Wilson",
+    "wrongAnswers": [
+      "Sunita Mani",
+      "John Reynolds",
+      "Ben Sinclair",
+      "John Early",
+      "Jo Firestone",
+      "Gary Richardson"
+    ]
+  },
+  {
+    "question": "Who plays Su in Save Yourselves! (2020)?",
+    "correctAnswer": "Sunita Mani",
+    "wrongAnswers": [
+      "John Reynolds",
+      "Ben Sinclair",
+      "John Early",
+      "Jo Firestone",
+      "Gary Richardson",
+      "Zenobia Shroff"
+    ]
+  },
+  {
+    "question": "Who plays Jack in Save Yourselves! (2020)?",
+    "correctAnswer": "John Reynolds",
+    "wrongAnswers": [
+      "Sunita Mani",
+      "Ben Sinclair",
+      "John Early",
+      "Jo Firestone",
+      "Gary Richardson",
+      "Zenobia Shroff"
+    ]
+  },
+  {
+    "question": "What do the alien invaders look like in Save Yourselves! (2020)?",
+    "correctAnswer": "Fuzzy ottoman-like creatures called Poofs",
+    "wrongAnswers": [
+      "Giant insects",
+      "Robotic beings",
+      "Humanoid aliens",
+      "Energy beings",
+      "Blob-like creatures",
+      "Plant monsters"
+    ]
+  },
+  {
+    "question": "What are Su and Jack doing when the invasion begins in Save Yourselves! (2020)?",
+    "correctAnswer": "Digital detox at a cabin",
+    "wrongAnswers": [
+      "Vacation in the city",
+      "Working from home",
+      "Camping in the woods",
+      "Visiting family",
+      "Staying at a hotel",
+      "Living in their apartment"
+    ]
+  },
+  {
+    "question": "Who directed Se7en (1995)?",
+    "correctAnswer": "David Fincher",
+    "wrongAnswers": [
+      "Christopher Nolan",
+      "Martin Scorsese",
+      "Ridley Scott",
+      "Michael Mann",
+      "Paul Thomas Anderson",
+      "Denis Villeneuve"
+    ]
+  },
+  {
+    "question": "Who plays Detective David Mills in Se7en (1995)?",
+    "correctAnswer": "Brad Pitt",
+    "wrongAnswers": [
+      "Morgan Freeman",
+      "Kevin Spacey",
+      "Gwyneth Paltrow",
+      "R. Lee Ermey",
+      "John C. McGinley",
+      "Daniel Zacapa"
+    ]
+  },
+  {
+    "question": "Who plays Detective William Somerset in Se7en (1995)?",
+    "correctAnswer": "Morgan Freeman",
+    "wrongAnswers": [
+      "Brad Pitt",
+      "Kevin Spacey",
+      "Gwyneth Paltrow",
+      "R. Lee Ermey",
+      "John C. McGinley",
+      "Daniel Zacapa"
+    ]
+  },
+   {
+    "question": "What are the killer's murders based on in Se7en (1995)?",
+    "correctAnswer": "The seven deadly sins",
+    "wrongAnswers": [
+      "The ten commandments",
+      "Zodiac signs",
+      "Biblical plagues",
+      "Tarot cards",
+      "Greek mythology",
+      "Dante's circles of hell"
+    ]
+  },
+  {
+    "question": "What is in the box at the end of Se7en (1995)?",
+    "correctAnswer": "Tracy Mills' head",
+    "wrongAnswers": [
+      "The killer's confession",
+      "Evidence photos",
+      "A bomb",
+      "Money",
+      "The murder weapon",
+      "Somerset's retirement papers"
+    ]
+  },
+  {
+    "question": "Who directed Shang-Chi and the Legend of the Ten Rings (2021)?",
+    "correctAnswer": "Destin Daniel Cretton",
+    "wrongAnswers": [
+      "Ryan Coogler",
+      "Taika Waititi",
+      "Scott Derrickson",
+      "James Gunn",
+      "Peyton Reed",
+      "Jon Watts"
+    ]
+  },
+  {
+    "question": "Who plays Shang-Chi in Shang-Chi and the Legend of the Ten Rings (2021)?",
+    "correctAnswer": "Simu Liu",
+    "wrongAnswers": [
+      "Tony Leung",
+      "Awkwafina",
+      "Meng'er Zhang",
+      "Fala Chen",
+      "Michelle Yeoh",
+      "Ben Kingsley"
+    ]
+  },
+  {
+    "question": "Who plays Wenwu (The Mandarin) in Shang-Chi and the Legend of the Ten Rings (2021)?",
+    "correctAnswer": "Tony Leung",
+    "wrongAnswers": [
+      "Simu Liu",
+      "Awkwafina",
+      "Meng'er Zhang",
+      "Fala Chen",
+      "Michelle Yeoh",
+      "Ben Kingsley"
+    ]
+  },
+  {
+    "question": "What is Shang-Chi's alias in San Francisco?",
+    "correctAnswer": "Shaun",
+    "wrongAnswers": [
+      "Sean",
+      "Shane",
+      "Shawn",
+      "Sam",
+      "Scott",
+      "Steve"
+    ]
+  },
+  {
+    "question": "Who plays Katy in Shang-Chi and the Legend of the Ten Rings (2021)?",
+    "correctAnswer": "Awkwafina",
+    "wrongAnswers": [
+      "Simu Liu",
+      "Tony Leung",
+      "Meng'er Zhang",
+      "Fala Chen",
+      "Michelle Yeoh",
+      "Ben Kingsley"
+    ]
+  },
+  {
+    "question": "Who directed Shutter Island (2010)?",
+    "correctAnswer": "Martin Scorsese",
+    "wrongAnswers": [
+      "Christopher Nolan",
+      "David Fincher",
+      "Denis Villeneuve",
+      "Ridley Scott",
+      "Paul Thomas Anderson",
+      "Michael Mann"
+    ]
+  },
+  {
+    "question": "Who plays Teddy Daniels in Shutter Island (2010)?",
+    "correctAnswer": "Leonardo DiCaprio",
+    "wrongAnswers": [
+      "Mark Ruffalo",
+      "Ben Kingsley",
+      "Max von Sydow",
+      "Michelle Williams",
+      "Emily Mortimer",
+      "Patricia Clarkson"
+    ]
+  },
+  {
+    "question": "Who plays Chuck Aule in Shutter Island (2010)?",
+    "correctAnswer": "Mark Ruffalo",
+    "wrongAnswers": [
+      "Leonardo DiCaprio",
+      "Ben Kingsley",
+      "Max von Sydow",
+      "Michelle Williams",
+      "Emily Mortimer",
+      "Patricia Clarkson"
+    ]
+  },
+  {
+    "question": "What is Teddy Daniels' real name in Shutter Island (2010)?",
+    "correctAnswer": "Andrew Laeddis",
+    "wrongAnswers": [
+      "Edward Daniels",
+      "Chuck Aule",
+      "Peter Breene",
+      "George Noyce",
+      "Martin Scorsese",
+      "Dennis Lehane"
+    ]
+  },
+  {
+    "question": "What novel is Shutter Island (2010) based on?",
+    "correctAnswer": "Shutter Island by Dennis Lehane",
+    "wrongAnswers": [
+      "The Departed by William Monahan",
+      "Mystic River by Dennis Lehane",
+      "Gone Baby Gone by Dennis Lehane",
+      "The Given Day by Dennis Lehane",
+      "World Gone By by Dennis Lehane",
+      "Since We Fell by Dennis Lehane"
+    ]
+  },
+  {
+    "question": "Who directed Sixteen Candles (1984)?",
+    "correctAnswer": "John Hughes",
+    "wrongAnswers": [
+      "Howard Deutch",
+      "Chris Columbus",
+      "Paul Brickman",
+      "Amy Heckerling",
+      "Cameron Crowe",
+      "Martha Coolidge"
+    ]
+  },
+  {
+    "question": "Who plays Samantha Baker in Sixteen Candles (1984)?",
+    "correctAnswer": "Molly Ringwald",
+    "wrongAnswers": [
+      "Anthony Michael Hall",
+      "Michael Schoeffling",
+      "Gedde Watanabe",
+      "Justin Henry",
+      "Haviland Morris",
+      "Blanche Baker"
+    ]
+  },
+  {
+    "question": "What does Samantha's family forget in Sixteen Candles (1984)?",
+    "correctAnswer": "Her 16th birthday",
+    "wrongAnswers": [
+      "Her school play",
+      "Her graduation",
+      "Her piano recital",
+      "Her prom date",
+      "Her job interview",
+      "Her driver's test"
+    ]
+  },
+  {
+    "question": "Who plays Jake Ryan in Sixteen Candles (1984)?",
+    "correctAnswer": "Michael Schoeffling",
+    "wrongAnswers": [
+      "Molly Ringwald",
+      "Anthony Michael Hall",
+      "Gedde Watanabe",
+      "Justin Henry",
+      "Haviland Morris",
+      "Blanche Baker"
+    ]
+  },
+  {
+    "question": "Who plays Long Duk Dong in Sixteen Candles (1984)?",
+    "correctAnswer": "Gedde Watanabe",
+    "wrongAnswers": [
+      "Molly Ringwald",
+      "Anthony Michael Hall",
+      "Michael Schoeffling",
+      "Justin Henry",
+      "Haviland Morris",
+      "Blanche Baker"
+    ]
+  },
+  {
+    "question": "Who directed Smokin' Aces (2006)?",
+    "correctAnswer": "Joe Carnahan",
+    "wrongAnswers": [
+      "Guy Ritchie",
+      "Tony Scott",
+      "Quentin Tarantino",
+      "Robert Rodriguez",
+      "Shane Black",
+      "John Woo"
+    ]
+  },
+  {
+    "question": "Who plays Buddy 'Aces' Israel in Smokin' Aces (2006)?",
+    "correctAnswer": "Jeremy Piven",
+    "wrongAnswers": [
+      "Ryan Reynolds",
+      "Ray Liotta",
+      "Andy Garcia",
+      "Ben Affleck",
+      "Jason Bateman",
+      "Martin Henderson"
+    ]
+  },
+  {
+    "question": "Who plays FBI agent Richard Messner in Smokin' Aces (2006)?",
+    "correctAnswer": "Ryan Reynolds",
+    "wrongAnswers": [
+      "Jeremy Piven",
+      "Ray Liotta",
+      "Andy Garcia",
+      "Ben Affleck",
+      "Jason Bateman",
+      "Martin Henderson"
+    ]
+  },
+  {
+    "question": "What is the bounty on Buddy Israel's head in Smokin' Aces (2006)?",
+    "correctAnswer": "$1 million",
+    "wrongAnswers": [
+      "$500,000",
+      "$2 million",
+      "$750,000",
+      "$1.5 million",
+      "$3 million",
+      "$5 million"
+    ]
+  },
+  {
+    "question": "Where does most of Smokin' Aces (2006) take place?",
+    "correctAnswer": "Lake Tahoe penthouse hotel",
+    "wrongAnswers": [
+      "Las Vegas casino",
+      "Miami beach resort",
+      "New York skyscraper",
+      "Los Angeles mansion",
+      "Chicago warehouse",
+      "Atlantic City boardwalk"
+    ]
+  },
+  {
+    "question": "Who directed Source Code (2011)?",
+    "correctAnswer": "Duncan Jones",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Alex Garland",
+      "Neill Blomkamp",
+      "Ridley Scott",
+      "Rian Johnson"
+    ]
+  },
+  {
+    "question": "Who plays Captain Colter Stevens in Source Code (2011)?",
+    "correctAnswer": "Jake Gyllenhaal",
+    "wrongAnswers": [
+      "Michelle Monaghan",
+      "Vera Farmiga",
+      "Jeffrey Wright",
+      "Michael Arden",
+      "Cas Anvar",
+      "Russell Peters"
+    ]
+  },
+  {
+    "question": "How long is each loop in Source Code (2011)?",
+    "correctAnswer": "8 minutes",
+    "wrongAnswers": [
+      "10 minutes",
+      "5 minutes",
+      "15 minutes",
+      "12 minutes",
+      "20 minutes",
+      "6 minutes"
+    ]
+  },
+  {
+    "question": "Who plays Christina Warren in Source Code (2011)?",
+    "correctAnswer": "Michelle Monaghan",
+    "wrongAnswers": [
+      "Jake Gyllenhaal",
+      "Vera Farmiga",
+      "Jeffrey Wright",
+      "Michael Arden",
+      "Cas Anvar",
+      "Russell Peters"
+    ]
+  },
+  {
+    "question": "What is Colter trying to prevent in Source Code (2011)?",
+    "correctAnswer": "A terrorist attack on Chicago",
+    "wrongAnswers": [
+      "A train derailment",
+      "A nuclear explosion",
+      "An assassination",
+      "A bank robbery",
+      "A kidnapping",
+      "A cyber attack"
+    ]
+  },
+  {
+    "question": "Who directed Spaceman (2024)?",
+    "correctAnswer": "Johan Renck",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Christopher Nolan",
+      "Alex Garland",
+      "Duncan Jones",
+      "Neill Blomkamp",
+      "Ridley Scott"
+    ]
+  },
+  {
+    "question": "Who plays Jakub in Spaceman (2024)?",
+    "correctAnswer": "Adam Sandler",
+    "wrongAnswers": [
+      "Carey Mulligan",
+      "Paul Dano",
+      "Kunal Nayyar",
+      "Lena Olin",
+      "Isabella Rossellini",
+      "Sinead Phelps"
+    ]
+  },
+  {
+    "question": "What streaming service released Spaceman (2024)?",
+    "correctAnswer": "Netflix",
+    "wrongAnswers": [
+      "Amazon Prime",
+      "Apple TV+",
+      "HBO Max",
+      "Disney+",
+      "Hulu",
+      "Paramount+"
+    ]
+  },
+  {
+    "question": "What novel is Spaceman (2024) based on?",
+    "correctAnswer": "Spaceman of Bohemia by Jaroslav Kalfař",
+    "wrongAnswers": [
+      "The Martian by Andy Weir",
+      "Solaris by Stanisław Lem",
+      "Contact by Carl Sagan",
+      "2001: A Space Odyssey by Arthur C. Clarke",
+      "Rendezvous with Rama by Arthur C. Clarke",
+      "Foundation by Isaac Asimov"
+    ]
+  },
+  {
+    "question": "Who plays Lenka in Spaceman (2024)?",
+    "correctAnswer": "Carey Mulligan",
+    "wrongAnswers": [
+      "Adam Sandler",
+      "Paul Dano",
+      "Kunal Nayyar",
+      "Lena Olin",
+      "Isabella Rossellini",
+      "Sinead Phelps"
+    ]
+  },
+  {
+    "question": "Who directed Spider-Man: Across the Spider-Verse (2023)?",
+    "correctAnswer": "Joaquim Dos Santos, Kemp Powers, and Justin K. Thompson",
+    "wrongAnswers": [
+      "Phil Lord and Christopher Miller",
+      "Peter Ramsey",
+      "Bob Persichetti",
+      "Rodney Rothman",
+      "Chris McKay",
+      "Mike Mitchell"
+    ]
+  },
+  {
+    "question": "Who voices Miles Morales in Spider-Man: Across the Spider-Verse (2023)?",
+    "correctAnswer": "Shameik Moore",
+    "wrongAnswers": [
+      "Hailee Steinfeld",
+      "Brian Tyree Henry",
+      "Luna Lauren Vélez",
+      "Jake Johnson",
+      "Oscar Isaac",
+      "Issa Rae"
+    ]
+  },
+  {
+    "question": "Who voices Gwen Stacy in Spider-Man: Across the Spider-Verse (2023)?",
+    "correctAnswer": "Hailee Steinfeld",
+    "wrongAnswers": [
+      "Shameik Moore",
+      "Brian Tyree Henry",
+      "Luna Lauren Vélez",
+      "Jake Johnson",
+      "Oscar Isaac",
+      "Issa Rae"
+    ]
+  },
+  {
+    "question": "Who voices Miguel O'Hara/Spider-Man 2099?",
+    "correctAnswer": "Oscar Isaac",
+    "wrongAnswers": [
+      "Shameik Moore",
+      "Hailee Steinfeld",
+      "Brian Tyree Henry",
+      "Luna Lauren Vélez",
+      "Jake Johnson",
+      "Issa Rae"
+    ]
+  },
+  {
+    "question": "What is the Spider Society trying to protect in Across the Spider-Verse (2023)?",
+    "correctAnswer": "The multiverse from anomalies",
+    "wrongAnswers": [
+      "Individual universes",
+      "Spider-people",
+      "Civilians",
+      "Their own timelines",
+      "The web of life",
+      "Canon events"
+    ]
+  },
+  {
+    "question": "Who directed Spider-Man: Far From Home (2019)?",
+    "correctAnswer": "Jon Watts",
+    "wrongAnswers": [
+      "Jon Favreau",
+      "Joe Russo",
+      "Anthony Russo",
+      "Joss Whedon",
+      "Shane Black",
+      "Taika Waititi"
+    ]
+  },
+  {
+    "question": "Who plays Mysterio in Spider-Man: Far From Home (2019)?",
+    "correctAnswer": "Jake Gyllenhaal",
+    "wrongAnswers": [
+      "Tom Holland",
+      "Zendaya",
+      "Samuel L. Jackson",
+      "Jon Favreau",
+      "Marisa Tomei",
+      "Jacob Batalon"
+    ]
+  },
+  {
+    "question": "What is Mysterio's real name in Far From Home (2019)?",
+    "correctAnswer": "Quentin Beck",
+    "wrongAnswers": [
+      "Adrian Toomes",
+      "Mac Gargan",
+      "Herman Schultz",
+      "Jackson Brice",
+      "Aaron Davis",
+      "Donald Roxxon"
+    ]
+  },
+  {
+    "question": "Where does Spider-Man go on his school trip in Far From Home (2019)?",
+    "correctAnswer": "Europe",
+    "wrongAnswers": [
+      "Asia",
+      "South America",
+      "Africa",
+      "Australia",
+      "Canada",
+      "Mexico"
+    ]
+  },
+  {
+    "question": "What glasses does Tony Stark leave to Peter in Far From Home (2019)?",
+    "correctAnswer": "E.D.I.T.H.",
+    "wrongAnswers": [
+      "J.A.R.V.I.S.",
+      "F.R.I.D.A.Y.",
+      "K.A.R.E.N.",
+      "V.E.R.O.N.I.C.A.",
+      "U.L.T.R.O.N.",
+      "C.O.R.T.A.N.A."
+    ]
+  },
+  {
+    "question": "Who directed Spider-Man: Homecoming (2017)?",
+    "correctAnswer": "Jon Watts",
+    "wrongAnswers": [
+      "Sam Raimi",
+      "Marc Webb",
+      "Kevin Feige",
+      "Joe Russo",
+      "Anthony Russo",
+      "Jon Favreau"
+    ]
+  },
+  {
+    "question": "Who plays Adrian Toomes/Vulture in Spider-Man: Homecoming (2017)?",
+    "correctAnswer": "Michael Keaton",
+    "wrongAnswers": [
+      "Tom Holland",
+      "Robert Downey Jr.",
+      "Marisa Tomei",
+      "Jon Favreau",
+      "Zendaya",
+      "Jacob Batalon"
+    ]
+  },
+  {
+    "question": "What is Peter Parker's AI assistant called in Homecoming (2017)?",
+    "correctAnswer": "Karen",
+    "wrongAnswers": [
+      "FRIDAY",
+      "JARVIS",
+      "EDITH",
+      "VERONICA",
+      "CORTANA",
+      "ALEXA"
+    ]
+  },
+  {
+    "question": "Who plays Liz Allan in Spider-Man: Homecoming (2017)?",
+    "correctAnswer": "Laura Harrier",
+    "wrongAnswers": [
+      "Zendaya",
+      "Marisa Tomei",
+      "Gwyneth Paltrow",
+      "Angourie Rice",
+      "Tyne Daly",
+      "Bokeem Woodbine"
+    ]
+  },
+  {
+    "question": "What event is referenced as causing Toomes to become a villain?",
+    "correctAnswer": "The Avengers' Battle of New York cleanup",
+    "wrongAnswers": [
+      "The Sokovia Accords",
+      "The Blip",
+      "Ultron's attack",
+      "The Winter Soldier incident",
+      "Civil War",
+      "Thanos' invasion"
+    ]
+  },
+  {
+    "question": "Who directed Spider-Man: No Way Home (2021)?",
+    "correctAnswer": "Jon Watts",
+    "wrongAnswers": [
+      "Sam Raimi",
+      "Marc Webb",
+      "Kevin Feige",
+      "Joe Russo",
+      "Anthony Russo",
+      "Jon Favreau"
+    ]
+  },
+  {
+    "question": "Which previous Spider-Man actors appear in No Way Home (2021)?",
+    "correctAnswer": "Tobey Maguire and Andrew Garfield",
+    "wrongAnswers": [
+      "Only Tobey Maguire",
+      "Only Andrew Garfield",
+      "Neither appear",
+      "Tom Hardy and Tom Cruise",
+      "Ryan Reynolds and Ryan Gosling",
+      "Chris Evans and Chris Hemsworth"
+    ]
+  },
+  {
+    "question": "Who plays Doctor Strange in Spider-Man: No Way Home (2021)?",
+    "correctAnswer": "Benedict Cumberbatch",
+    "wrongAnswers": [
+      "Tom Holland",
+      "Willem Dafoe",
+      "Alfred Molina",
+      "Jamie Foxx",
+      "Thomas Haden Church",
+      "Rhys Ifans"
+    ]
+  },
+  {
+    "question": "What spell does Doctor Strange cast that causes the multiverse problems?",
+    "correctAnswer": "A spell to make people forget Peter Parker is Spider-Man",
+    "wrongAnswers": [
+      "A time reversal spell",
+      "A dimensional portal spell",
+      "A memory restoration spell",
+      "A reality alteration spell",
+      "A teleportation spell",
+      "A duplication spell"
+    ]
+  },
+  {
+    "question": "Which villain does NOT appear in No Way Home (2021)?",
+    "correctAnswer": "Venom",
+    "wrongAnswers": [
+      "Green Goblin",
+      "Doctor Octopus",
+      "Electro",
+      "Sandman",
+      "Lizard",
+      "All villains appear"
+    ]
+  },
+  {
+    "question": "Who directed Starship Troopers (1997)?",
+    "correctAnswer": "Paul Verhoeven",
+    "wrongAnswers": [
+      "Ridley Scott",
+      "James Cameron",
+      "Roland Emmerich",
+      "John McTiernan",
+      "Wolfgang Petersen",
+      "Michael Bay"
+    ]
+  },
+  {
+    "question": "Who plays Johnny Rico in Starship Troopers (1997)?",
+    "correctAnswer": "Casper Van Dien",
+    "wrongAnswers": [
+      "Dina Meyer",
+      "Denise Richards",
+      "Jake Busey",
+      "Neil Patrick Harris",
+      "Patrick Muldoon",
+      "Michael Ironside"
+    ]
+  },
+  {
+    "question": "Who plays Carmen Ibanez in Starship Troopers (1997)?",
+    "correctAnswer": "Denise Richards",
+    "wrongAnswers": [
+      "Casper Van Dien",
+      "Dina Meyer",
+      "Jake Busey",
+      "Neil Patrick Harris",
+      "Patrick Muldoon",
+      "Michael Ironside"
+    ]
+  },
+  {
+    "question": "What are the alien enemies called in Starship Troopers (1997)?",
+    "correctAnswer": "Arachnids/Bugs",
+    "wrongAnswers": [
+      "Xenomorphs",
+      "Zerg",
+      "Klendathu",
+      "Roughnecks",
+      "Mobile Infantry",
+      "Federation"
+    ]
+  },
+  {
+    "question": "What novel is Starship Troopers (1997) based on?",
+    "correctAnswer": "Starship Troopers by Robert A. Heinlein",
+    "wrongAnswers": [
+      "The Forever War by Joe Haldeman",
+      "Ender's Game by Orson Scott Card",
+      "Old Man's War by John Scalzi",
+      "Armor by John Steakley",
+      "The Moon is a Harsh Mistress by Robert A. Heinlein",
+      "Stranger in a Strange Land by Robert A. Heinlein"
+    ]
+  },
+  {
+    "question": "Who directed Strays (2023)?",
+    "correctAnswer": "Josh Greenbaum",
+    "wrongAnswers": [
+      "Will Ferrell",
+      "Jamie Foxx",
+      "Isla Fisher",
+      "Randall Park",
+      "Brett Gelman",
+      "Rob Riggle"
+    ]
+  },
+  {
+    "question": "Who voices Reggie in Strays (2023)?",
+    "correctAnswer": "Will Ferrell",
+    "wrongAnswers": [
+      "Jamie Foxx",
+      "Isla Fisher",
+      "Randall Park",
+      "Brett Gelman",
+      "Rob Riggle",
+      "Josh Gad"
+    ]
+  },
+  {
+    "question": "Who voices Bug in Strays (2023)?",
+    "correctAnswer": "Jamie Foxx",
+    "wrongAnswers": [
+      "Will Ferrell",
+      "Isla Fisher",
+      "Randall Park",
+      "Brett Gelman",
+      "Rob Riggle",
+      "Josh Gad"
+    ]
+  },
+  {
+    "question": "What type of movie is Strays (2023)?",
+    "correctAnswer": "R-rated comedy about talking dogs",
+    "wrongAnswers": [
+      "Family-friendly dog movie",
+      "Drama about pet rescue",
+      "Horror about wild animals",
+      "Documentary about strays",
+      "Animated dog adventure",
+      "Thriller about lost pets"
+    ]
+  },
+  {
+    "question": "What is Reggie's main goal in Strays (2023)?",
+    "correctAnswer": "To bite off his owner's private parts",
+    "wrongAnswers": [
+      "To find a new home",
+      "To reunite with his family",
+      "To become a show dog",
+      "To find food",
+      "To make friends",
+      "To get adopted"
+    ]
+  },
+  {
+    "question": "Who directed Sunshine (2007)?",
+    "correctAnswer": "Danny Boyle",
+    "wrongAnswers": [
+      "Christopher Nolan",
+      "Denis Villeneuve",
+      "Ridley Scott",
+      "Alfonso Cuarón",
+      "Duncan Jones",
+      "Neill Blomkamp"
+    ]
+  },
+  {
+    "question": "Who plays Robert Capa in Sunshine (2007)?",
+    "correctAnswer": "Cillian Murphy",
+    "wrongAnswers": [
+      "Chris Evans",
+      "Rose Byrne",
+      "Michelle Yeoh",
+      "Cliff Curtis",
+      "Troy Garity",
+      "Hiroyuki Sanada"
+    ]
+  },
+  {
+    "question": "What is the mission in Sunshine (2007)?",
+    "correctAnswer": "Reignite the dying Sun with a nuclear bomb",
+    "wrongAnswers": [
+      "Escape from a dying Earth",
+      "Travel to Mars",
+      "Find a new planet",
+      "Contact alien life",
+      "Destroy an asteroid",
+      "Repair a space station"
+    ]
+  },
+  {
+    "question": "Who plays Mace in Sunshine (2007)?",
+    "correctAnswer": "Chris Evans",
+    "wrongAnswers": [
+      "Cillian Murphy",
+      "Rose Byrne",
+      "Michelle Yeoh",
+      "Cliff Curtis",
+      "Troy Garity",
+      "Hiroyuki Sanada"
+    ]
+  },
+  {
+    "question": "What happens to the first Icarus mission in Sunshine (2007)?",
+    "correctAnswer": "It failed and the crew went missing",
+    "wrongAnswers": [
+      "It successfully reignited the Sun",
+      "It was destroyed by solar flares",
+      "It returned to Earth",
+      "It was never launched",
+      "It exploded during launch",
+      "It was sabotaged"
+    ]
+  },
+  {
+    "question": "Who directed Tenet (2020)?",
+    "correctAnswer": "Christopher Nolan",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Rian Johnson",
+      "Sam Mendes",
+      "Ridley Scott",
+      "James Cameron",
+      "Steven Spielberg"
+    ]
+  },
+  {
+    "question": "What is the central concept in Tenet (2020)?",
+    "correctAnswer": "Time inversion",
+    "wrongAnswers": [
+      "Time travel to the past",
+      "Parallel universes",
+      "Dream manipulation",
+      "Teleportation",
+      "Mind control",
+      "Artificial intelligence"
+    ]
+  },
+  {
+    "question": "Who plays the Protagonist in Tenet (2020)?",
+    "correctAnswer": "John David Washington",
+    "wrongAnswers": [
+      "Robert Pattinson",
+      "Kenneth Branagh",
+      "Aaron Taylor-Johnson",
+      "Michael Caine",
+      "Dimple Kapadia",
+      "Elizabeth Debicki"
+    ]
+  },
+  {
+    "question": "What is the name of the antagonist in Tenet (2020)?",
+    "correctAnswer": "Andrei Sator",
+    "wrongAnswers": [
+      "Neil",
+      "Ives",
+      "Priya",
+      "Mahir",
+      "Volkov",
+      "Wheeler"
+    ]
+  },
+  {
+    "question": "What organization does the Protagonist join in Tenet (2020)?",
+    "correctAnswer": "Tenet",
+    "wrongAnswers": [
+      "MI6",
+      "CIA",
+      "KGB",
+      "SPECTRE",
+      "The Division",
+      "The Syndicate"
+    ]
+  },
+  {
+    "question": "Who directed The Avengers (2012)?",
+    "correctAnswer": "Joss Whedon",
+    "wrongAnswers": [
+      "Jon Favreau",
+      "Anthony Russo",
+      "Joe Russo",
+      "Kenneth Branagh",
+      "Shane Black",
+      "James Gunn"
+    ]
+  },
+  {
+    "question": "Which villain leads the Chitauri invasion in The Avengers (2012)?",
+    "correctAnswer": "Loki",
+    "wrongAnswers": [
+      "Thanos",
+      "Ultron",
+      "Red Skull",
+      "Ronan the Accuser",
+      "Malekith",
+      "Hela"
+    ]
+  },
+  {
+    "question": "What artifact is Loki trying to steal in The Avengers (2012)?",
+    "correctAnswer": "The Tesseract",
+    "wrongAnswers": [
+      "The Aether",
+      "The Orb",
+      "The Eye of Agamotto",
+      "The Soul Stone",
+      "The Mind Stone (initially in his scepter)",
+      "The Reality Stone"
+    ]
+  },
+  {
+    "question": "Which two Avengers have a notable fight aboard the Helicarrier?",
+    "correctAnswer": "Thor and Hulk",
+    "wrongAnswers": [
+      "Iron Man and Captain America",
+      "Black Widow and Hawkeye",
+      "Iron Man and Thor",
+      "Captain America and Hulk",
+      "Hawkeye and Loki",
+      "Black Widow and Hulk"
+    ]
+  },
+  {
+    "question": "What is the name of the initiative that brings the Avengers together?",
+    "correctAnswer": "The Avengers Initiative",
+    "wrongAnswers": [
+      "Project Insight",
+      "The Sokovia Accords",
+      "The Ultron Program",
+      "The S.H.I.E.L.D. Protocol",
+      "The Defenders Initiative",
+      "The Thunderbolts Program"
+    ]
+  },
+  {
+    "question": "Who directed The Big Lebowski (1998)?",
+    "correctAnswer": "Joel Coen (and Ethan Coen)",
+    "wrongAnswers": [
+      "Quentin Tarantino",
+      "Wes Anderson",
+      "Paul Thomas Anderson",
+      "Spike Jonze",
+      "David Lynch",
+      "Martin Scorsese"
+    ]
+  },
+  {
+    "question": "What is The Dude's favorite drink in The Big Lebowski (1998)?",
+    "correctAnswer": "White Russian",
+    "wrongAnswers": [
+      "Vodka Soda",
+      "Gin and Tonic",
+      "Beer",
+      "Whiskey Sour",
+      "Margarita",
+      "Oat Soda"
+    ]
+  },
+  {
+    "question": "Who plays The Dude in The Big Lebowski (1998)?",
+    "correctAnswer": "Jeff Bridges",
+    "wrongAnswers": [
+      "John Goodman",
+      "Steve Buscemi",
+      "John Turturro",
+      "Philip Seymour Hoffman",
+      "Sam Elliott",
+      "Julianne Moore"
+    ]
+  },
+  {
+    "question": "What item of The Dude's gets urinated on, sparking the plot?",
+    "correctAnswer": "His rug",
+    "wrongAnswers": [
+      "His bowling ball",
+      "His car",
+      "His favorite sweater",
+      "His couch",
+      "His collection of Creedence tapes",
+      "His house plant"
+    ]
+  },
+  {
+    "question": "What sport are The Dude and his friends avid players of?",
+    "correctAnswer": "Bowling",
+    "wrongAnswers": [
+      "Golf",
+      "Darts",
+      "Pool",
+      "Softball",
+      "Basketball",
+      "Curling"
+    ]
+  },
+  {
+    "question": "Who directed The Book of Clarence (2024)?",
+    "correctAnswer": "Jeymes Samuel",
+    "wrongAnswers": [
+      "Jordan Peele",
+      "Ryan Coogler",
+      "Spike Lee",
+      "Barry Jenkins",
+      "Ava DuVernay",
+      "Boots Riley"
+    ]
+  },
+  {
+    "question": "Who plays Clarence in The Book of Clarence (2024)?",
+    "correctAnswer": "LaKeith Stanfield",
+    "wrongAnswers": [
+      "Omar Sy",
+      "RJ Cyler",
+      "Benedict Cumberbatch",
+      "James McAvoy",
+      "David Oyelowo",
+      "Caleb Landry Jones"
+    ]
+  },
+  {
+    "question": "What is Clarence's main goal in The Book of Clarence (2024)?",
+    "correctAnswer": "To become a new Messiah for fame and fortune",
+    "wrongAnswers": [
+      "To find the Holy Grail",
+      "To overthrow the Roman Empire",
+      "To become a disciple of Jesus",
+      "To write a new gospel",
+      "To find true love",
+      "To escape his debts"
+    ]
+  },
+  {
+    "question": "Which biblical figure does Clarence try to emulate?",
+    "correctAnswer": "Jesus Christ",
+    "wrongAnswers": [
+      "Moses",
+      "John the Baptist",
+      "Judas Iscariot",
+      "King David",
+      "Elijah",
+      "Peter"
+    ]
+  },
+  {
+    "question": "What genre best describes The Book of Clarence (2024)?",
+    "correctAnswer": "Biblical Comedy-Drama",
+    "wrongAnswers": [
+      "Historical Epic",
+      "Action Adventure",
+      "Musical",
+      "Horror",
+      "Science Fiction",
+      "Documentary"
+    ]
+  },
+  {
+    "question": "Who directed The Creator (2023)?",
+    "correctAnswer": "Gareth Edwards",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Neill Blomkamp",
+      "Alex Garland",
+      "Rian Johnson",
+      "Christopher Nolan",
+      "Duncan Jones"
+    ]
+  },
+  {
+    "question": "Who plays Joshua, the main character in The Creator (2023)?",
+    "correctAnswer": "John David Washington",
+    "wrongAnswers": [
+      "Gemma Chan",
+      "Ken Watanabe",
+      "Sturgill Simpson",
+      "Allison Janney",
+      "Madeleine Yuna Voyles",
+      "Ralph Ineson"
+    ]
+  },
+  {
+    "question": "What is the central conflict in The Creator (2023)?",
+    "correctAnswer": "War between humans and AI",
+    "wrongAnswers": [
+      "Alien invasion",
+      "Environmental disaster",
+      "Pandemic outbreak",
+      "Political revolution",
+      "Time travel paradox",
+      "Intergalactic resource war"
+    ]
+  },
+  {
+    "question": "What is the name of the AI child superweapon in The Creator (2023)?",
+    "correctAnswer": "Alphie",
+    "wrongAnswers": [
+      "Omega",
+      "Beta",
+      "Sigma",
+      "Delta",
+      "Epsilon",
+      "Zeta"
+    ]
+  },
+  {
+    "question": "What is the name of the advanced US military space station in The Creator (2023)?",
+    "correctAnswer": "NOMAD (North American Orbital Mobile Aerospace Defense)",
+    "wrongAnswers": [
+      "SKYNET",
+      "ODIN",
+      "VALHALLA",
+      "DEATH STAR",
+      "ICARUS",
+      "SOLARIS"
+    ]
+  },
+  {
+    "question": "Who directed The Dark Tower (2017)?",
+    "correctAnswer": "Nikolaj Arcel",
+    "wrongAnswers": [
+      "Ron Howard",
+      "J.J. Abrams",
+      "Stephen King",
+      "Matthew McConaughey",
+      "Idris Elba",
+      "Guillermo del Toro"
+    ]
+  },
+  {
+    "question": "Who plays Roland Deschain (The Gunslinger) in The Dark Tower (2017)?",
+    "correctAnswer": "Idris Elba",
+    "wrongAnswers": [
+      "Matthew McConaughey",
+      "Tom Taylor",
+      "Dennis Haysbert",
+      "Jackie Earle Haley",
+      "Katheryn Winnick",
+      "Nikolaj Arcel"
+    ]
+  },
+  {
+    "question": "Who plays Walter Padick (The Man in Black) in The Dark Tower (2017)?",
+    "correctAnswer": "Matthew McConaughey",
+    "wrongAnswers": [
+      "Idris Elba",
+      "Tom Taylor",
+      "Dennis Haysbert",
+      "Jackie Earle Haley",
+      "Katheryn Winnick",
+      "Nikolaj Arcel"
+    ]
+  },
+  {
+    "question": "What is The Man in Black trying to destroy in The Dark Tower (2017)?",
+    "correctAnswer": "The Dark Tower",
+    "wrongAnswers": [
+      "The Gunslinger",
+      "Earth",
+      "Mid-World",
+      "The Crimson King",
+      "The Breakers",
+      "The Beam"
+    ]
+  },
+  {
+    "question": "What is the name of the boy with psychic abilities in The Dark Tower (2017)?",
+    "correctAnswer": "Jake Chambers",
+    "wrongAnswers": [
+      "Eddie Dean",
+      "Susannah Dean",
+      "Oy",
+      "Alain Johns",
+      "Cuthbert Allgood",
+      "Sheemie Ruiz"
+    ]
+  },
+  {
+    "question": "Who directed The Flash (2023)?",
+    "correctAnswer": "Andy Muschietti",
+    "wrongAnswers": [
+      "Zack Snyder",
+      "James Wan",
+      "Patty Jenkins",
+      "David F. Sandberg",
+      "James Gunn",
+      "Matt Reeves"
+    ]
+  },
+  {
+    "question": "Who plays Barry Allen / The Flash in The Flash (2023)?",
+    "correctAnswer": "Ezra Miller",
+    "wrongAnswers": [
+      "Michael Keaton",
+      "Sasha Calle",
+      "Ben Affleck",
+      "Grant Gustin",
+      "Jeremy Irons",
+      "Michael Shannon"
+    ]
+  },
+  {
+    "question": "Which former Batman actor returns in The Flash (2023)?",
+    "correctAnswer": "Michael Keaton",
+    "wrongAnswers": [
+      "Christian Bale",
+      "George Clooney",
+      "Val Kilmer",
+      "Adam West",
+      "Robert Pattinson",
+      "Ben Affleck (also appears, but Keaton is the notable return)"
+    ]
+  },
+  {
+    "question": "What event does Barry Allen try to prevent by going back in time?",
+    "correctAnswer": "His mother's murder",
+    "wrongAnswers": [
+      "The death of Superman",
+      "The invasion of General Zod",
+      "The creation of Doomsday",
+      "The formation of the Justice League",
+      "His father's imprisonment",
+      "The destruction of Krypton"
+    ]
+  },
+  {
+    "question": "Which Kryptonian villain returns in The Flash (2023)?",
+    "correctAnswer": "General Zod",
+    "wrongAnswers": [
+      "Lex Luthor",
+      "Brainiac",
+      "Doomsday",
+      "Faora",
+      "Darkseid",
+      "Steppenwolf"
+    ]
+  },
+  {
+    "question": "Who directed The Last Duel (2021)?",
+    "correctAnswer": "Ridley Scott",
+    "wrongAnswers": [
+      "Martin Scorsese",
+      "Christopher Nolan",
+      "Denis Villeneuve",
+      "David Fincher",
+      "Ben Affleck",
+      "Matt Damon"
+    ]
+  },
+  {
+    "question": "Who plays Jean de Carrouges in The Last Duel (2021)?",
+    "correctAnswer": "Matt Damon",
+    "wrongAnswers": [
+      "Adam Driver",
+      "Ben Affleck",
+      "Jodie Comer",
+      "Harriet Walter",
+      "Alex Lawther",
+      "Marton Csokas"
+    ]
+  },
+  {
+    "question": "Who plays Jacques Le Gris in The Last Duel (2021)?",
+    "correctAnswer": "Adam Driver",
+    "wrongAnswers": [
+      "Matt Damon",
+      "Ben Affleck",
+      "Jodie Comer",
+      "Harriet Walter",
+      "Alex Lawther",
+      "Marton Csokas"
+    ]
+  },
+  {
+    "question": "What is the central conflict that leads to the duel in The Last Duel (2021)?",
+    "correctAnswer": "An accusation of rape",
+    "wrongAnswers": [
+      "A land dispute",
+      "A political disagreement",
+      "A debt owed",
+      "A betrayal in battle",
+      "An insult to honor"
+    ]
+  },
+  {
+    "question": "In what century does The Last Duel (2021) take place?",
+    "correctAnswer": "14th century",
+    "wrongAnswers": [
+      "12th century",
+      "13th century",
+      "15th century",
+      "16th century",
+      "11th century",
+      "10th century"
+    ]
+  },
+  {
+    "question": "Who directed The Lovebirds (2020)?",
+    "correctAnswer": "Michael Showalter",
+    "wrongAnswers": [
+      "Judd Apatow",
+      "Seth Rogen",
+      "Nicholas Stoller",
+      "Paul Feig",
+      "David Wain",
+      "Taika Waititi"
+    ]
+  },
+  {
+    "question": "Who plays Leilani in The Lovebirds (2020)?",
+    "correctAnswer": "Issa Rae",
+    "wrongAnswers": [
+      "Kumail Nanjiani",
+      "Paul Sparks",
+      "Anna Camp",
+      "Kyle Bornheimer",
+      "Catherine Cohen",
+      "Tiffany Haddish"
+    ]
+  },
+  {
+    "question": "Who plays Jibran in The Lovebirds (2020)?",
+    "correctAnswer": "Kumail Nanjiani",
+    "wrongAnswers": [
+      "Issa Rae",
+      "Paul Sparks",
+      "Anna Camp",
+      "Kyle Bornheimer",
+      "Catherine Cohen",
+      "Aziz Ansari"
+    ]
+  },
+  {
+    "question": "What crime do Leilani and Jibran become unintentionally involved in?",
+    "correctAnswer": "Murder",
+    "wrongAnswers": [
+      "Bank robbery",
+      "Art theft",
+      "Kidnapping",
+      "Drug trafficking",
+      "Espionage",
+      "Arson"
+    ]
+  },
+  {
+    "question": "What is the relationship status of Leilani and Jibran at the beginning of the movie?",
+    "correctAnswer": "About to break up",
+    "wrongAnswers": [
+      "Newly married",
+      "Engaged",
+      "First date",
+      "Long-term happy couple",
+      "Divorced",
+      "Just friends"
+    ]
+  },
+  {
+    "question": "Who directed The Men Who Stare at Goats (2009)?",
+    "correctAnswer": "Grant Heslov",
+    "wrongAnswers": [
+      "George Clooney",
+      "Joel Coen",
+      "Ethan Coen",
+      "Steven Soderbergh",
+      "Wes Anderson",
+      "Alexander Payne"
+    ]
+  },
+  {
+    "question": "Who plays Lyn Cassady in The Men Who Stare at Goats (2009)?",
+    "correctAnswer": "George Clooney",
+    "wrongAnswers": [
+      "Ewan McGregor",
+      "Jeff Bridges",
+      "Kevin Spacey",
+      "Stephen Lang",
+      "Robert Patrick",
+      "Walton Goggins"
+    ]
+  },
+  {
+    "question": "What is the name of the secret U.S. Army unit in the film?",
+    "correctAnswer": "New Earth Army (First Earth Battalion)",
+    "wrongAnswers": [
+      "Psychic Espionage Unit",
+      "The Jedi Project",
+      "Project Stargate",
+      "The Goat Brigade",
+      "Mind Warriors",
+      "Psi Corps"
+    ]
+  },
+  {
+    "question": "What paranormal ability are the soldiers trying to master?",
+    "correctAnswer": "Various psychic abilities (e.g., remote viewing, stopping hearts)",
+    "wrongAnswers": [
+      "Teleportation",
+      "Time travel",
+      "Invisibility",
+      "Super strength",
       "Flying",
-      "Rolling",
-      "Jumping",
-      "Climbing only",
-      "Being carried"
+      "Shape-shifting"
     ]
   },
   {
-    "question": "Who plays the documentary filmmaker character in the movie?",
-    "correctAnswer": "Dean Fleischer-Camp",
+    "question": "Who plays Bob Wilton, the journalist who uncovers the story?",
+    "correctAnswer": "Ewan McGregor",
     "wrongAnswers": [
-      "Michael Cera",
-      "Jesse Plemons",
-      "John Krasinski",
-      "Paul Rudd",
-      "Andy Samberg",
-      "Nick Offerman"
+      "George Clooney",
+      "Jeff Bridges",
+      "Kevin Spacey",
+      "Stephen Lang",
+      "Robert Patrick",
+      "Paul Rudd"
     ]
   },
   {
-    "question": "What is the name of Marcel's grandmother in the film?",
-    "correctAnswer": "Nana Connie",
+    "question": "Who directed The New Mutants (2020)?",
+    "correctAnswer": "Josh Boone",
     "wrongAnswers": [
-      "Grandma Shell",
-      "Nana Pearl",
-      "Grandma Marie",
-      "Nana Rose",
-      "Grandma Betty",
-      "Nana Louise"
+      "Bryan Singer",
+      "Simon Kinberg",
+      "Tim Miller",
+      "Matthew Vaughn",
+      "James Mangold",
+      "David Leitch"
     ]
   },
   {
-    "question": "Marcel the Shell with Shoes On originated from what medium?",
-    "correctAnswer": "YouTube shorts",
+    "question": "Which X-Men character is NOT a primary member of the group in The New Mutants (2020)?",
+    "correctAnswer": "Professor X",
     "wrongAnswers": [
-      "Comic books",
-      "Children's books",
-      "Instagram videos",
-      "TikTok videos",
-      "TV commercials",
-      "Vine videos"
+      "Magik (Illyana Rasputin)",
+      "Wolfsbane (Rahne Sinclair)",
+      "Cannonball (Sam Guthrie)",
+      "Sunspot (Roberto da Costa)",
+      "Mirage (Danielle Moonstar)",
+      "All are primary members"
     ]
   },
   {
-    "question": "What happens to Marcel's community in the film?",
-    "correctAnswer": "They disappear/get separated",
+    "question": "What type of facility are the young mutants held in?",
+    "correctAnswer": "A secret medical facility/asylum",
     "wrongAnswers": [
-      "They move to a new house",
-      "They get eaten",
-      "They shrink smaller",
-      "They turn into regular shells",
-      "They go underground",
-      "They fly away"
+      "Xavier's School for Gifted Youngsters",
+      "A military base",
+      "A summer camp",
+      "A prison",
+      "A research laboratory",
+      "An orphanage"
     ]
   },
   {
-    "question": "Marcel the Shell with Shoes On was nominated for which major award?",
-    "correctAnswer": "Academy Award for Best Animated Feature",
+    "question": "Who plays Illyana Rasputin / Magik?",
+    "correctAnswer": "Anya Taylor-Joy",
     "wrongAnswers": [
-      "Golden Globe for Best Motion Picture",
-      "BAFTA for Best British Film",
-      "Cannes Palme d'Or",
-      "Critics' Choice Award for Best Comedy",
-      "SAG Award for Best Ensemble",
-      "Directors Guild Award"
+      "Maisie Williams",
+      "Charlie Heaton",
+      "Henry Zaga",
+      "Blu Hunt",
+      "Alice Braga",
+      "Rosario Dawson"
+    ]
+  },
+  {
+    "question": "What is the primary genre of The New Mutants (2020)?",
+    "correctAnswer": "Superhero Horror",
+    "wrongAnswers": [
+      "Superhero Comedy",
+      "Superhero Romance",
+      "Superhero Sci-Fi",
+      "Superhero Action-Adventure",
+      "Superhero Drama",
+      "Superhero Musical"
+    ]
+  },
+  {
+    "question": "Who directed The Shape of Water (2017)?",
+    "correctAnswer": "Guillermo del Toro",
+    "wrongAnswers": [
+      "Alejandro G. Iñárritu",
+      "Alfonso Cuarón",
+      "Denis Villeneuve",
+      "Luca Guadagnino",
+      "Jordan Peele",
+      "Greta Gerwig"
+    ]
+  },
+  {
+    "question": "Who plays Elisa Esposito in The Shape of Water (2017)?",
+    "correctAnswer": "Sally Hawkins",
+    "wrongAnswers": [
+      "Octavia Spencer",
+      "Michael Shannon",
+      "Richard Jenkins",
+      "Doug Jones",
+      "Michael Stuhlbarg",
+      "Lauren Lee Smith"
+    ]
+  },
+  {
+    "question": "What is Elisa's job in The Shape of Water (2017)?",
+    "correctAnswer": "Cleaner at a secret government laboratory",
+    "wrongAnswers": [
+      "Librarian",
+      "Waitress",
+      "Teacher",
+      "Factory worker",
+      "Nurse",
+      "Artist"
+    ]
+  },
+  {
+    "question": "What kind of creature is the 'Asset' in The Shape of Water (2017)?",
+    "correctAnswer": "An amphibious humanoid",
+    "wrongAnswers": [
+      "An alien",
+      "A vampire",
+      "A werewolf",
+      "A ghost",
+      "A robot",
+      "A mythical beast"
+    ]
+  },
+  {
+    "question": "In what decade is The Shape of Water (2017) primarily set?",
+    "correctAnswer": "1960s (Cold War era)",
+    "wrongAnswers": [
+      "1950s",
+      "1970s",
+      "1940s",
+      "1980s",
+      "1930s",
+      "Present day"
+    ]
+  },
+  {
+    "question": "Who directed The Suicide Squad (2021)?",
+    "correctAnswer": "James Gunn",
+    "wrongAnswers": [
+      "David Ayer",
+      "Zack Snyder",
+      "Patty Jenkins",
+      "James Wan",
+      "Joss Whedon",
+      "Cathy Yan"
+    ]
+  },
+  {
+    "question": "Who plays Harley Quinn in The Suicide Squad (2021)?",
+    "correctAnswer": "Margot Robbie",
+    "wrongAnswers": [
+      "Idris Elba",
+      "John Cena",
+      "Viola Davis",
+      "Joel Kinnaman",
+      "Sylvester Stallone (voice)",
+      "Daniela Melchior"
+    ]
+  },
+  {
+    "question": "What is the name of the giant alien starfish antagonist?",
+    "correctAnswer": "Starro the Conqueror",
+    "wrongAnswers": [
+      "Mongul",
+      "Brainiac",
+      "Darkseid",
+      "Parallax",
+      "Doomsday",
+      "Kryptonite Man"
+    ]
+  },
+  {
+    "question": "Which character is known for their obsession with polka dots?",
+    "correctAnswer": "Polka-Dot Man (Abner Krill)",
+    "wrongAnswers": [
+      "Bloodsport",
+      "Peacemaker",
+      "Ratcatcher 2",
+      "King Shark",
+      "Rick Flag",
+      "Captain Boomerang"
+    ]
+  },
+  {
+    "question": "What is the name of the fictional South American island nation where the mission takes place?",
+    "correctAnswer": "Corto Maltese",
+    "wrongAnswers": [
+      "Santa Prisca",
+      "Bialya",
+      "Qurac",
+      "Markovia",
+      "Vlatava",
+      "Kasnia"
+    ]
+  },
+  {
+    "question": "Who directed The Super Mario Bros. Movie (2023)?",
+    "correctAnswer": "Aaron Horvath and Michael Jelenic",
+    "wrongAnswers": [
+      "Chris McKay",
+      "Phil Lord and Christopher Miller",
+      "Pierre Coffin",
+      "Chris Renaud",
+      "Brad Bird",
+      "Pete Docter"
+    ]
+  },
+  {
+    "question": "Who voices Mario in The Super Mario Bros. Movie (2023)?",
+    "correctAnswer": "Chris Pratt",
+    "wrongAnswers": [
+      "Charlie Day",
+      "Jack Black",
+      "Anya Taylor-Joy",
+      "Seth Rogen",
+      "Keegan-Michael Key",
+      "Charles Martinet"
+    ]
+  },
+  {
+    "question": "Who voices Bowser in The Super Mario Bros. Movie (2023)?",
+    "correctAnswer": "Jack Black",
+    "wrongAnswers": [
+      "Chris Pratt",
+      "Charlie Day",
+      "Anya Taylor-Joy",
+      "Seth Rogen",
+      "Keegan-Michael Key",
+      "Kevin Michael Richardson"
+    ]
+  },
+  {
+    "question": "What kingdom does Princess Peach rule?",
+    "correctAnswer": "Mushroom Kingdom",
+    "wrongAnswers": [
+      "Koopa Kingdom",
+      "Donkey Kong Island",
+      "Sarasaland",
+      "Beanbean Kingdom",
+      "Hyrule",
+      "Dream Land"
+    ]
+  },
+  {
+    "question": "What is Mario's brother's name?",
+    "correctAnswer": "Luigi",
+    "wrongAnswers": [
+      "Wario",
+      "Waluigi",
+      "Toad",
+      "Yoshi",
+      "Donkey Kong",
+      "Bowser Jr."
+    ]
+  },
+  {
+    "question": "Who directed The Warriors (1979)?",
+    "correctAnswer": "Walter Hill",
+    "wrongAnswers": [
+      "John Carpenter",
+      "Martin Scorsese",
+      "Sidney Lumet",
+      "William Friedkin",
+      "Michael Cimino",
+      "Ridley Scott"
+    ]
+  },
+  {
+    "question": "What is the name of the gang the protagonists belong to in The Warriors (1979)?",
+    "correctAnswer": "The Warriors",
+    "wrongAnswers": [
+      "The Gramercy Riffs",
+      "The Baseball Furies",
+      "The Lizzies",
+      "The Turnbull AC's",
+      "The Orphans",
+      "The Rogues"
+    ]
+  },
+  {
+    "question": "What are The Warriors framed for, leading to them being hunted?",
+    "correctAnswer": "The murder of Cyrus, leader of the Gramercy Riffs",
+    "wrongAnswers": [
+      "Stealing a rival gang's colors",
+      "A bank robbery",
+      "Starting a riot",
+      "Drug dealing",
+      "Assaulting a police officer",
+      "Vandalism"
+    ]
+  },
+  {
+    "question": "What is the iconic line shouted by Luther, leader of The Rogues?",
+    "correctAnswer": "\"Warriors, come out to play-ay!\"",
+    "wrongAnswers": [
+      "\"Can you dig it?\"",
+      "\"We're gonna get you, Warriors!\"",
+      "\"This is our turf!\"",
+      "\"You're dead meat!\"",
+      "\"Nowhere to run, nowhere to hide!\"",
+      "\"The Riffs are gonna get you!\""
+    ]
+  },
+  {
+    "question": "What is The Warriors' home turf they are trying to get back to?",
+    "correctAnswer": "Coney Island",
+    "wrongAnswers": [
+      "The Bronx",
+      "Brooklyn",
+      "Manhattan",
+      "Queens",
+      "Staten Island",
+      "Harlem"
+    ]
+  },
+  {
+    "question": "Who directed The Way of the Gun (2000)?",
+    "correctAnswer": "Christopher McQuarrie",
+    "wrongAnswers": [
+      "Bryan Singer",
+      "Guy Ritchie",
+      "Quentin Tarantino",
+      "Tony Scott",
+      "John Woo",
+      "Michael Mann"
+    ]
+  },
+  {
+    "question": "Who plays Parker in The Way of the Gun (2000)?",
+    "correctAnswer": "Ryan Phillippe",
+    "wrongAnswers": [
+      "Benicio del Toro",
+      "James Caan",
+      "Juliette Lewis",
+      "Taye Diggs",
+      "Nicky Katt",
+      "Geoffrey Lewis"
+    ]
+  },
+  {
+    "question": "Who plays Longbaugh in The Way of the Gun (2000)?",
+    "correctAnswer": "Benicio del Toro",
+    "wrongAnswers": [
+      "Ryan Phillippe",
+      "James Caan",
+      "Juliette Lewis",
+      "Taye Diggs",
+      "Nicky Katt",
+      "Scott Wilson"
+    ]
+  },
+  {
+    "question": "What is the profession of Parker and Longbaugh?",
+    "correctAnswer": "Petty criminals/Kidnappers",
+    "wrongAnswers": [
+      "Police officers",
+      "Private detectives",
+      "Bounty hunters",
+      "Hitmen",
+      "Bodyguards",
+      "Bank robbers"
+    ]
+  },
+  {
+    "question": "Who do Parker and Longbaugh kidnap in The Way of the Gun (2000)?",
+    "correctAnswer": "A surrogate mother (Robin) for a wealthy couple",
+    "wrongAnswers": [
+      "A politician's daughter",
+      "A mob boss's wife",
+      "A celebrity",
+      "A bank manager",
+      "A rival criminal",
+      "A witness in a trial"
+    ]
+  },
+  {
+    "question": "Who directed The Woman King (2022)?",
+    "correctAnswer": "Gina Prince-Bythewood",
+    "wrongAnswers": [
+      "Ava DuVernay",
+      "Kasi Lemmons",
+      "Dee Rees",
+      "Patty Jenkins",
+      "Nia DaCosta",
+      "Chinonye Chukwu"
+    ]
+  },
+  {
+    "question": "Who plays General Nanisca in The Woman King (2022)?",
+    "correctAnswer": "Viola Davis",
+    "wrongAnswers": [
+      "Thuso Mbedu",
+      "Lashana Lynch",
+      "Sheila Atim",
+      "John Boyega",
+      "Hero Fiennes Tiffin",
+      "Adrienne Warren"
+    ]
+  },
+  {
+    "question": "What is the name of the all-female warrior unit led by Nanisca?",
+    "correctAnswer": "Agojie",
+    "wrongAnswers": [
+      "Dahomey Amazons",
+      "The King's Guard",
+      "The Lionesses",
+      "The Shield Maidens",
+      "The Dora Milaje (from Black Panther)",
+      "The Valkyries"
+    ]
+  },
+  {
+    "question": "In which African kingdom does The Woman King (2022) primarily take place?",
+    "correctAnswer": "Kingdom of Dahomey",
+    "wrongAnswers": [
+      "Kingdom of Wakanda (fictional)",
+      "Zulu Kingdom",
+      "Ashanti Empire",
+      "Oyo Empire",
+      "Benin Empire",
+      "Songhai Empire"
+    ]
+  },
+  {
+    "question": "What historical period is The Woman King (2022) set in?",
+    "correctAnswer": "1820s",
+    "wrongAnswers": [
+      "1700s",
+      "1600s",
+      "1900s",
+      "1500s",
+      "Ancient times",
+      "Medieval period"
+    ]
+  },
+  {
+    "question": "Who directed They Cloned Tyrone (2023)?",
+    "correctAnswer": "Juel Taylor",
+    "wrongAnswers": [
+      "Jordan Peele",
+      "Boots Riley",
+      "Ryan Coogler",
+      "Spike Lee",
+      "Barry Jenkins",
+      "Donald Glover"
+    ]
+  },
+  {
+    "question": "Who plays Fontaine in They Cloned Tyrone (2023)?",
+    "correctAnswer": "John Boyega",
+    "wrongAnswers": [
+      "Jamie Foxx",
+      "Teyonah Parris",
+      "Kiefer Sutherland",
+      "David Alan Grier",
+      "J. Alphonse Nicholson",
+      "Tamberla Perry"
+    ]
+  },
+  {
+    "question": "Who plays Slick Charles in They Cloned Tyrone (2023)?",
+    "correctAnswer": "Jamie Foxx",
+    "wrongAnswers": [
+      "John Boyega",
+      "Teyonah Parris",
+      "Kiefer Sutherland",
+      "David Alan Grier",
+      "J. Alphonse Nicholson",
+      "Tamberla Perry"
+    ]
+  },
+  {
+    "question": "What conspiracy do the main characters uncover?",
+    "correctAnswer": "A government cloning experiment targeting Black people",
+    "wrongAnswers": [
+      "An alien invasion",
+      "A secret society controlling the world",
+      "A plot to assassinate a political leader",
+      "A new designer drug with strange side effects",
+      "A time travel experiment gone wrong",
+      "A vampire coven"
+    ]
+  },
+  {
+    "question": "What genre best describes They Cloned Tyrone (2023)?",
+    "correctAnswer": "Sci-Fi Comedy Mystery/Blaxploitation homage",
+    "wrongAnswers": [
+      "Horror",
+      "Action Thriller",
+      "Romantic Comedy",
+      "Historical Drama",
+      "Musical",
+      "Documentary"
+    ]
+  },
+  {
+    "question": "Who directed Thor (2011)?",
+    "correctAnswer": "Kenneth Branagh",
+    "wrongAnswers": [
+      "Jon Favreau",
+      "Joss Whedon",
+      "Alan Taylor",
+      "Taika Waititi",
+      "James Gunn",
+      "Shane Black"
+    ]
+  },
+  {
+    "question": "Who plays Thor in Thor (2011)?",
+    "correctAnswer": "Chris Hemsworth",
+    "wrongAnswers": [
+      "Tom Hiddleston",
+      "Anthony Hopkins",
+      "Natalie Portman",
+      "Stellan Skarsgård",
+      "Idris Elba",
+      "Clark Gregg"
+    ]
+  },
+  {
+    "question": "Why is Thor banished to Earth by Odin?",
+    "correctAnswer": "For his arrogance and reigniting a war with the Frost Giants",
+    "wrongAnswers": [
+      "For trying to steal the Tesseract",
+      "For disobeying Loki",
+      "For losing Mjolnir",
+      "For refusing to become king",
+      "For an affair with a mortal",
+      "For destroying part of Asgard"
+    ]
+  },
+  {
+    "question": "What is the name of Thor's hammer?",
+    "correctAnswer": "Mjolnir",
+    "wrongAnswers": [
+      "Stormbreaker",
+      "Gungnir",
+      "Hofund",
+      "Gram",
+      "Excalibur",
+      "Jarnbjorn"
+    ]
+  },
+  {
+    "question": "Who plays Jane Foster in Thor (2011)?",
+    "correctAnswer": "Natalie Portman",
+    "wrongAnswers": [
+      "Kat Dennings",
+      "Jaimie Alexander",
+      "Rene Russo",
+      "Scarlett Johansson",
+      "Gwyneth Paltrow",
+      "Cobie Smulders"
+    ]
+  },
+  {
+    "question": "Who directed Thor: Love and Thunder (2022)?",
+    "correctAnswer": "Taika Waititi",
+    "wrongAnswers": [
+      "Kenneth Branagh",
+      "Alan Taylor",
+      "James Gunn",
+      "Jon Favreau",
+      "Ryan Coogler",
+      "Peyton Reed"
+    ]
+  },
+  {
+    "question": "Who plays Gorr the God Butcher in Thor: Love and Thunder (2022)?",
+    "correctAnswer": "Christian Bale",
+    "wrongAnswers": [
+      "Chris Hemsworth",
+      "Natalie Portman",
+      "Tessa Thompson",
+      "Russell Crowe",
+      "Taika Waititi",
+      "Chris Pratt"
+    ]
+  },
+  {
+    "question": "What weapon does Jane Foster wield as The Mighty Thor?",
+    "correctAnswer": "A reforged Mjolnir",
+    "wrongAnswers": [
+      "Stormbreaker",
+      "Gungnir",
+      "Her own enchanted hammer",
+      "A sword",
+      "A spear",
+      "An axe"
+    ]
+  },
+  {
+    "question": "What is Gorr's primary motivation?",
+    "correctAnswer": "To kill all gods because they abandoned him and his daughter",
+    "wrongAnswers": [
+      "To conquer Asgard",
+      "To steal the power of Thor",
+      "To find the Necrosword",
+      "To resurrect his family",
+      "To gain immortality",
+      "To rule the universe"
+    ]
+  },
+  {
+    "question": "Which group of heroes does Thor briefly team up with at the beginning of the film?",
+    "correctAnswer": "The Guardians of the Galaxy",
+    "wrongAnswers": [
+      "The Avengers",
+      "The Revengers",
+      "The Defenders",
+      "The X-Men",
+      "The Eternals",
+      "The Illuminati"
+    ]
+  },
+  {
+    "question": "In Thor: Ragnarok, which fellow Avenger does Thor fight in the Grandmaster's Contest of Champions?",
+    "correctAnswer": "Hulk",
+    "wrongAnswers": [
+      "Iron Man",
+      "Captain America",
+      "Thor",
+      "Black Widow",
+      "Hawkeye",
+      "Doctor Strange"
+    ]
+  },
+  {
+    "question": "Who directed Thor: The Dark World (2013)?",
+    "correctAnswer": "Alan Taylor",
+    "wrongAnswers": [
+      "Kenneth Branagh",
+      "Taika Waititi",
+      "Joss Whedon",
+      "Jon Favreau",
+      "James Gunn",
+      "Shane Black"
+    ]
+  },
+  {
+    "question": "What is the name of the primary antagonist in Thor: The Dark World (2013)?",
+    "correctAnswer": "Malekith",
+    "wrongAnswers": [
+      "Loki",
+      "Surtur",
+      "Kurse",
+      "The Collector",
+      "Ronan",
+      "Hela"
+    ]
+  },
+  {
+    "question": "What is the name of the powerful substance Malekith seeks in Thor: The Dark World (2013)?",
+    "correctAnswer": "The Aether (Reality Stone)",
+    "wrongAnswers": [
+      "The Tesseract (Space Stone)",
+      "The Orb (Power Stone)",
+      "The Eye of Agamotto (Time Stone)",
+      "The Scepter (Mind Stone)",
+      "The Soul Stone",
+      "The Casket of Ancient Winters"
+    ]
+  },
+  {
+    "question": "In Thor: The Dark World (2013), which character sacrifices themselves to save Thor and Jane Foster from Kurse?",
+    "correctAnswer": "Loki (though he fakes his death)",
+    "wrongAnswers": [
+      "Frigga",
+      "Odin",
+      "Heimdall",
+      "Sif",
+      "Volstagg",
+      "Fandral"
+    ]
+  },
+  {
+    "question": "What realm do the Dark Elves come from in Thor: The Dark World (2013)?",
+    "correctAnswer": "Svartalfheim",
+    "wrongAnswers": [
+      "Asgard",
+      "Jotunheim",
+      "Muspelheim",
+      "Nidavellir",
+      "Vanaheim",
+      "Alfheim"
+    ]
+  },
+  {
+    "question": "Who directed Tolkien (2019)?",
+    "correctAnswer": "Dome Karukoski",
+    "wrongAnswers": [
+      "Peter Jackson",
+      "David Yates",
+      "Kenneth Branagh",
+      "Joe Wright",
+      "James Kent",
+      "Simon Curtis"
+    ]
+  },
+  {
+    "question": "Who plays J.R.R. Tolkien in the 2019 film?",
+    "correctAnswer": "Nicholas Hoult",
+    "wrongAnswers": [
+      "Lily Collins",
+      "Tom Glynn-Carney",
+      "Anthony Boyle",
+      "Patrick Gibson",
+      "Colm Meaney",
+      "Derek Jacobi"
+    ]
+  },
+  {
+    "question": "What major historical event significantly impacts Tolkien's life in the film?",
+    "correctAnswer": "World War I (Battle of the Somme)",
+    "wrongAnswers": [
+      "World War II",
+      "The Boer War",
+      "The Russian Revolution",
+      "The Irish War of Independence",
+      "The Great Depression",
+      "The Spanish Flu Pandemic"
+    ]
+  },
+  {
+    "question": "What is the name of the secret society Tolkien forms with his friends at school?",
+    "correctAnswer": "T.C.B.S. (Tea Club and Barrovian Society)",
+    "wrongAnswers": [
+      "The Inklings",
+      "The Dead Poets Society",
+      "The Pre-Raphaelite Brotherhood",
+      "The Bloomsbury Group",
+      "The Order of the Phoenix",
+      "The Fellowship"
+    ]
+  },
+  {
+    "question": "Who plays Edith Bratt, Tolkien's wife, in the film?",
+    "correctAnswer": "Lily Collins",
+    "wrongAnswers": [
+      "Nicholas Hoult",
+      "Felicity Jones",
+      "Keira Knightley",
+      "Carey Mulligan",
+      "Gemma Chan",
+      "Laura Haddock"
+    ]
+  },
+  {
+    "question": "Who directed Tombstone (1993)?",
+    "correctAnswer": "George P. Cosmatos (with uncredited work by Kevin Jarre)",
+    "wrongAnswers": [
+      "Kevin Costner",
+      "Clint Eastwood",
+      "Lawrence Kasdan",
+      "Walter Hill",
+      "Sam Raimi",
+      "John Ford"
+    ]
+  },
+  {
+    "question": "Who plays Wyatt Earp in Tombstone (1993)?",
+    "correctAnswer": "Kurt Russell",
+    "wrongAnswers": [
+      "Val Kilmer",
+      "Sam Elliott",
+      "Bill Paxton",
+      "Powers Boothe",
+      "Michael Biehn",
+      "Kevin Costner"
+    ]
+  },
+  {
+    "question": "Who plays Doc Holliday in Tombstone (1993)?",
+    "correctAnswer": "Val Kilmer",
+    "wrongAnswers": [
+      "Kurt Russell",
+      "Sam Elliott",
+      "Bill Paxton",
+      "Dennis Quaid",
+      "Stacy Keach",
+      "Willie Nelson"
+    ]
+  },
+  {
+    "question": "What is the name of the infamous gunfight depicted in Tombstone (1993)?",
+    "correctAnswer": "Gunfight at the O.K. Corral",
+    "wrongAnswers": [
+      "The Shootout at Northfield",
+      "The Battle of Coffeyville",
+      "The Wild Bunch Massacre",
+      "The Dalton Gang Raid",
+      "The Lincoln County War",
+      "The Earp Vendetta Ride"
+    ]
+  },
+  {
+    "question": "In Tombstone (1993), what is Doc Holliday's famous line when asked why he's helping Wyatt Earp?",
+    "correctAnswer": "\"Wyatt Earp is my friend.\"",
+    "wrongAnswers": [
+      "\"I'm your huckleberry.\"",
+      "\"There's no normal life, Wyatt, it's just life. Get on with it.\"",
+      "\"I have two guns, one for each of ya.\"",
+      "\"It's not revenge he's after. It's a reckoning.\"",
+      "\"You're a daisy if you do.\"",
+      "\"I'm in my prime.\""
+    ]
+  },
+  {
+    "question": "Who directed Trainspotting (1996)?",
+    "correctAnswer": "Danny Boyle",
+    "wrongAnswers": [
+      "Guy Ritchie",
+      "Mike Leigh",
+      "Ken Loach",
+      "Shane Meadows",
+      "Quentin Tarantino",
+      "Irvine Welsh"
+    ]
+  },
+  {
+    "question": "Who plays Mark Renton in Trainspotting (1996)?",
+    "correctAnswer": "Ewan McGregor",
+    "wrongAnswers": [
+      "Ewen Bremner",
+      "Jonny Lee Miller",
+      "Robert Carlyle",
+      "Kevin McKidd",
+      "Peter Mullan",
+      "Kelly Macdonald"
+    ]
+  },
+  {
+    "question": "What drug are the main characters primarily addicted to in Trainspotting (1996)?",
+    "correctAnswer": "Heroin",
+    "wrongAnswers": [
+      "Cocaine",
+      "MDMA (Ecstasy)",
+      "Methamphetamine",
+      "LSD",
+      "Marijuana",
+      "Alcohol"
+    ]
+  },
+  {
+    "question": "In which Scottish city is Trainspotting (1996) primarily set?",
+    "correctAnswer": "Edinburgh",
+    "wrongAnswers": [
+      "Glasgow",
+      "Aberdeen",
+      "Dundee",
+      "Inverness",
+      "Stirling",
+      "Perth"
+    ]
+  },
+  {
+    "question": "What is the famous opening line of Renton's monologue in Trainspotting (1996)?",
+    "correctAnswer": "\"Choose Life. Choose a job. Choose a career. Choose a family.\"",
+    "wrongAnswers": [
+      "\"Some people are addicted to heroin. Others are addicted to soap operas.\"",
+      "\"It's shite being Scottish!\"",
+      "\"The truth is that I'm a bad person.\"",
+      "\"Well, this is just a first draft.\"",
+      "\"I haven't felt that good since Archie Gemmill scored against Holland in 1978!\"",
+      "\"Take the best orgasm you've ever had, multiply it by a thousand, and you're still nowhere near it.\""
+    ]
+  },
+  {
+    "question": "Who directed Tron (1982)?",
+    "correctAnswer": "Steven Lisberger",
+    "wrongAnswers": [
+      "Ridley Scott",
+      "James Cameron",
+      "George Lucas",
+      "John Carpenter",
+      "Joe Dante",
+      "Robert Zemeckis"
+    ]
+  },
+  {
+    "question": "Who plays Kevin Flynn/Clu in Tron (1982)?",
+    "correctAnswer": "Jeff Bridges",
+    "wrongAnswers": [
+      "Bruce Boxleitner",
+      "David Warner",
+      "Cindy Morgan",
+      "Barnard Hughes",
+      "Dan Shor",
+      "Peter Jurasik"
+    ]
+  },
+  {
+    "question": "What is the name of the villainous AI in Tron (1982)?",
+    "correctAnswer": "Master Control Program (MCP)",
+    "wrongAnswers": [
+      "Sark",
+      "Dillinger",
+      "Recognizer",
+      "Bit",
+      "ENCOM OS-12",
+      "Grid"
+    ]
+  },
+  {
+    "question": "In Tron (1982), what real-world company does Kevin Flynn try to hack into?",
+    "correctAnswer": "ENCOM",
+    "wrongAnswers": [
+      "Microsoft",
+      "Apple",
+      "IBM",
+      "Atari",
+      "Xerox",
+      "Intel"
+    ]
+  },
+  {
+    "question": "In Tron (1982), what iconic vehicle do programs race on in the Grid?",
+    "correctAnswer": "Light Cycles",
+    "wrongAnswers": [
+      "Recognizers",
+      "Tanks",
+      "Solar Sailers",
+      "Grid Bugs",
+      "Carriers",
+      "Flynn's Arcade Racers"
+    ]
+  },
+  {
+    "question": "Who directed TRON: Legacy (2010)?",
+    "correctAnswer": "Joseph Kosinski",
+    "wrongAnswers": [
+      "Steven Lisberger",
+      "James Cameron",
+      "Christopher Nolan",
+      "J.J. Abrams",
+      "Gareth Edwards",
+      "Duncan Jones"
+    ]
+  },
+  {
+    "question": "Who plays Sam Flynn in TRON: Legacy (2010)?",
+    "correctAnswer": "Garrett Hedlund",
+    "wrongAnswers": [
+      "Jeff Bridges",
+      "Olivia Wilde",
+      "Bruce Boxleitner",
+      "Michael Sheen",
+      "James Frain",
+      "Cillian Murphy"
+    ]
+  },
+  {
+    "question": "In TRON: Legacy (2010), what is the name of the program created in Kevin Flynn's image who becomes the antagonist?",
+    "correctAnswer": "Clu",
+    "wrongAnswers": [
+      "Sark",
+      "Rinzler",
+      "MCP 2.0",
+      "Abraxas",
+      "Castor",
+      "Jarvis (not that Jarvis)"
+    ]
+  },
+  {
+    "question": "Who plays Quorra in TRON: Legacy (2010)?",
+    "correctAnswer": "Olivia Wilde",
+    "wrongAnswers": [
+      "Garrett Hedlund",
+      "Jeff Bridges",
+      "Beau Garrett",
+      "Yaya DaCosta",
+      "Serinda Swan",
+      "Elizabeth Mathis"
+    ]
+  },
+  {
+    "question": "Which electronic music duo composed the score for TRON: Legacy (2010)?",
+    "correctAnswer": "Daft Punk",
+    "wrongAnswers": [
+      "The Chemical Brothers",
+      "Justice",
+      "LCD Soundsystem",
+      "Deadmau5",
+      "Skrillex",
+      "Aphex Twin"
+    ]
+  },
+  {
+    "question": "Who directed Underwater (2020)?",
+    "correctAnswer": "William Eubank",
+    "wrongAnswers": [
+      "James Wan",
+      "Ridley Scott",
+      "Neill Blomkamp",
+      "Alex Garland",
+      "Johannes Roberts",
+      "André Øvredal"
+    ]
+  },
+  {
+    "question": "Who plays Norah Price in Underwater (2020)?",
+    "correctAnswer": "Kristen Stewart",
+    "wrongAnswers": [
+      "Vincent Cassel",
+      "Jessica Henwick",
+      "John Gallagher Jr.",
+      "Mamoudou Athie",
+      "T.J. Miller",
+      "Gunner Wright"
+    ]
+  },
+  {
+    "question": "What is the setting of Underwater (2020)?",
+    "correctAnswer": "A deep-sea drilling facility at the bottom of the Mariana Trench",
+    "wrongAnswers": [
+      "An orbiting space station",
+      "A research outpost in Antarctica",
+      "A subterranean cave system",
+      "A sunken submarine",
+      "A futuristic underwater city",
+      "An oil rig in the North Sea"
+    ]
+  },
+  {
+    "question": "What causes the disaster at the Kepler  822 station?",
+    "correctAnswer": "An earthquake that awakens deep-sea creatures",
+    "wrongAnswers": [
+      "A catastrophic equipment malfunction",
+      "A terrorist attack",
+      "A meteor strike",
+      "A nuclear meltdown",
+      "A viral outbreak",
+      "Sabotage by a crew member"
+    ]
+  },
+  {
+    "question": "In Underwater (2020), what Lovecraftian entity is heavily implied to be the giant creature at the end?",
+    "correctAnswer": "Cthulhu",
+    "wrongAnswers": [
+      "Dagon",
+      "Kraken",
+      "Leviathan",
+      "Yog-Sothoth",
+      "Shub-Niggurath",
+      "Nyarlathotep"
+    ]
+  },
+  {
+    "question": "Who directed Upgrade (2018)?",
+    "correctAnswer": "Leigh Whannell",
+    "wrongAnswers": [
+      "James Wan",
+      "George Miller",
+      "Neill Blomkamp",
+      "Alex Garland",
+      "David Cronenberg",
+      "Adam Wingard"
+    ]
+  },
+  {
+    "question": "Who plays Grey Trace in Upgrade (2018)?",
+    "correctAnswer": "Logan Marshall-Green",
+    "wrongAnswers": [
+      "Betty Gabriel",
+      "Harrison Gilbertson",
+      "Melanie Vallejo",
+      "Benedict Hardie",
+      "Simon Maiden (voice of STEM)",
+      "Tom Hardy"
+    ]
+  },
+  {
+    "question": "What is STEM in Upgrade (2018)?",
+    "correctAnswer": "An AI chip implant that gives Grey enhanced abilities",
+    "wrongAnswers": [
+      "A new type of biofuel",
+      "A virtual reality program",
+      "A robotic exoskeleton",
+      "A genetic modification",
+      "A government surveillance system",
+      "A space exploration vehicle"
+    ]
+  },
+  {
+    "question": "What happens to Grey that leads him to get the STEM implant?",
+    "correctAnswer": "He is paralyzed and his wife is murdered in an attack",
+    "wrongAnswers": [
+      "He volunteers for a military experiment",
+      "He suffers a debilitating disease",
+      "He is injured in a car accident",
+      "He wants to become a super-soldier",
+      "He is trying to cure a terminal illness",
+      "He is forced into the program against his will"
+    ]
+  },
+  {
+    "question": "What is the primary genre of Upgrade (2018)?",
+    "correctAnswer": "Sci-Fi Action/Cyberpunk Thriller",
+    "wrongAnswers": [
+      "Horror Comedy",
+      "Romantic Drama",
+      "Historical Epic",
+      "Fantasy Adventure",
+      "Musical",
+      "Family Film"
+    ]
+  },
+  {
+    "question": "Who directed Vanilla Sky (2001)?",
+    "correctAnswer": "Cameron Crowe",
+    "wrongAnswers": [
+      "Alejandro Amenábar",
+      "Steven Spielberg",
+      "David Fincher",
+      "Christopher Nolan",
+      "Sofia Coppola",
+      "Spike Jonze"
+    ]
+  },
+  {
+    "question": "Who plays David Aames in Vanilla Sky (2001)?",
+    "correctAnswer": "Tom Cruise",
+    "wrongAnswers": [
+      "Penélope Cruz",
+      "Cameron Diaz",
+      "Kurt Russell",
+      "Jason Lee",
+      "Noah Taylor",
+      "Tilda Swinton"
+    ]
+  },
+  {
+    "question": "Vanilla Sky is an American remake of which Spanish film?",
+    "correctAnswer": "Abre los ojos (Open Your Eyes)",
+    "wrongAnswers": [
+      "Tesis (Thesis)",
+      "The Sea Inside",
+      "Talk to Her",
+      "All About My Mother",
+      "The Others",
+      "Pan's Labyrinth"
+    ]
+  },
+  {
+    "question": "In Vanilla Sky (2001), what is the name of the company that offers 'Lucid Dream' cryonic suspension?",
+    "correctAnswer": "Life Extension",
+    "wrongAnswers": [
+      "CryoCorp",
+      "Eternal Slumber Inc.",
+      "Future Solutions",
+      "DreamWeavers",
+      "Perpetual Life",
+      "SomaCorp"
+    ]
+  },
+  {
+    "question": "What causes David Aames's facial disfigurement in Vanilla Sky (2001)?",
+    "correctAnswer": "A car crash deliberately caused by Julie Gianni",
+    "wrongAnswers": [
+      "A fire",
+      "An industrial accident",
+      "A fight",
+      "A skiing accident",
+      "A rare disease",
+      "A botched plastic surgery"
+    ]
+  },
+  {
+    "question": "Who directed Venom (2018)?",
+    "correctAnswer": "Ruben Fleischer",
+    "wrongAnswers": [
+      "Andy Serkis",
+      "Jon Watts",
+      "Sam Raimi",
+      "Marc Webb",
+      "James Gunn",
+      "Scott Derrickson"
+    ]
+  },
+  {
+    "question": "Who plays Eddie Brock/Venom in the 2018 film?",
+    "correctAnswer": "Tom Hardy",
+    "wrongAnswers": [
+      "Michelle Williams",
+      "Riz Ahmed",
+      "Scott Haze",
+      "Reid Scott",
+      "Jenny Slate",
+      "Woody Harrelson"
+    ]
+  },
+  {
+    "question": "What is the name of the alien species Venom belongs to?",
+    "correctAnswer": "Symbiotes (Klyntar)",
+    "wrongAnswers": [
+      "Kree",
+      "Skrulls",
+      "Chitauri",
+      "Brood",
+      "Phalanx",
+      "Shi'ar"
+    ]
+  },
+  {
+    "question": "In Venom (2018), who is the primary antagonist that bonds with the symbiote Riot?",
+    "correctAnswer": "Carlton Drake",
+    "wrongAnswers": [
+      "Cletus Kasady",
+      "Roland Treece",
+      "Dr. Dan Lewis",
+      "Mrs. Chen",
+      "Life Foundation Security Chief",
+      "The Hobo Symbiote"
+    ]
+  },
+  {
+    "question": "In Venom (2018), what is Eddie Brock's profession before he bonds with Venom?",
+    "correctAnswer": "Investigative journalist",
+    "wrongAnswers": [
+      "Scientist",
+      "Police officer",
+      "Private detective",
+      "Photographer",
+      "Doctor",
+      "Lawyer"
+    ]
+  },
+  {
+    "question": "Who directed Venom: Let There Be Carnage (2021)?",
+    "correctAnswer": "Andy Serkis",
+    "wrongAnswers": [
+      "Ruben Fleischer",
+      "Jon Watts",
+      "Sam Raimi",
+      "Marc Webb",
+      "James Gunn",
+      "Kelly Marcel"
+    ]
+  },
+  {
+    "question": "Who plays Cletus Kasady/Carnage in Venom: Let There Be Carnage (2021)?",
+    "correctAnswer": "Woody Harrelson",
+    "wrongAnswers": [
+      "Tom Hardy",
+      "Michelle Williams",
+      "Naomie Harris",
+      "Reid Scott",
+      "Stephen Graham",
+      "Peggy Lu"
+    ]
+  },
+  {
+    "question": "In Venom: Let There Be Carnage (2021), what is the name of Cletus Kasady's love interest who also bonds with a symbiote?",
+    "correctAnswer": "Frances Barrison / Shriek",
+    "wrongAnswers": [
+      "Anne Weying",
+      "Donna Diego / Scream",
+      "Patricia Robertson / She-Venom",
+      "Dr. Ashley Kafka",
+      "Dora Skirth",
+      "Camila Pacheco"
+    ]
+  },
+  {
+    "question": "In Venom: Let There Be Carnage (2021), how does Cletus Kasady obtain the Carnage symbiote?",
+    "correctAnswer": "He bites Eddie Brock and ingests some of the Venom symbiote/Eddie's blood.",
+    "wrongAnswers": [
+      "He finds it in a crashed spaceship.",
+      "It is given to him by the Life Foundation.",
+      "He steals it from a government facility.",
+      "It escapes from Ravencroft Institute and bonds with him.",
+      "He is exposed to it during a prison riot.",
+      "Venom intentionally creates it."
+    ]
+  },
+  {
+    "question": "In Venom: Let There Be Carnage (2021), what is Shriek's primary superpower?",
+    "correctAnswer": "Sonic scream/manipulation",
+    "wrongAnswers": [
+      "Super strength",
+      "Invisibility",
+      "Telepathy",
+      "Flight",
+      "Shape-shifting",
+      "Healing factor"
+    ]
+  },
+  {
+    "question": "In Warcraft (2016), what is the name of the Orc warchief who leads the Horde into Azeroth?",
+    "correctAnswer": "Gul'dan (though Durotan is a prominent Orc protagonist)",
+    "wrongAnswers": [
+      "Durotan",
+      "Orgrim Doomhammer",
+      "Blackhand",
+      "Garrosh Hellscream",
+      "Thrall",
+      "Grommash Hellscream"
+    ]
+  },
+  {
+    "question": "In Warcraft (2016), what is the name of the magical energy used by Gul'dan that corrupts the Orcs and their world?",
+    "correctAnswer": "Fel magic",
+    "wrongAnswers": [
+      "Arcane magic",
+      "Light magic",
+      "Shadow magic",
+      "Nature magic",
+      "Elemental magic",
+      "Chi"
+    ]
+  },
+  {
+    "question": "In Warcraft (2016), what is the name of the human kingdom primarily defended in Warcraft (2016)?",
+    "correctAnswer": "Stormwind",
+    "wrongAnswers": [
+      "Lordaeron",
+      "Dalaran",
+      "Ironforge",
+      "Quel'Thalas",
+      "Gilneas",
+      "Kul Tiras"
+    ]
+  },
+  {
+    "question": "Who directed Where to Invade Next (2015)?",
+    "correctAnswer": "Michael Moore",
+    "wrongAnswers": [
+      "Morgan Spurlock",
+      "Alex Gibney",
+      "Errol Morris",
+      "Laura Poitras",
+      "Werner Herzog",
+      "Davis Guggenheim"
+    ]
+  },
+  {
+    "question": "What is the central premise of Where to Invade Next (2015)?",
+    "correctAnswer": "Michael Moore 'invades' other countries to steal their good ideas for America.",
+    "wrongAnswers": [
+      "A history of American military interventions.",
+      "An analysis of the US defense budget.",
+      "A critique of American foreign policy.",
+      "A travelogue of war-torn countries.",
+      "A proposal for new military strategies.",
+      "A fictional story about an alien invasion."
+    ]
+  },
+  {
+    "question": "In which country does Moore visit to learn about their approach to worker vacation time?",
+    "correctAnswer": "Italy",
+    "wrongAnswers": [
+      "France",
+      "Germany",
+      "Finland",
+      "Norway",
+      "Portugal",
+      "Slovenia"
+    ]
+  },
+  {
+    "question": "In Where to Invade Next (2015), in which country does Moore explore their free university education system?",
+    "correctAnswer": "Slovenia (and Germany is also mentioned for this)",
+    "wrongAnswers": [
+      "Finland",
+      "Norway",
+      "France",
+      "Italy",
+      "Portugal",
+      "Iceland"
+    ]
+  },
+  {
+    "question": "What is the overall tone of Where to Invade Next (2015)?",
+    "correctAnswer": "Optimistic and humorous, despite critiquing US systems",
+    "wrongAnswers": [
+      "Pessimistic and bleak",
+      "Angry and confrontational",
+      "Solemn and academic",
+      "Purely satirical and mocking",
+      "Fear-mongering and alarmist",
+      "Dry and purely factual"
+    ]
+  },
+  {
+    "question": "Who directed Whiplash (2014)?",
+    "correctAnswer": "Damien Chazelle",
+    "wrongAnswers": [
+      "Jason Reitman",
+      "Bennett Miller",
+      "Richard Linklater",
+      "Alejandro G. Iñárritu",
+      "Wes Anderson",
+      "Greta Gerwig"
+    ]
+  },
+  {
+    "question": "Who plays Andrew Neiman, the aspiring jazz drummer in Whiplash (2014)?",
+    "correctAnswer": "Miles Teller",
+    "wrongAnswers": [
+      "J.K. Simmons",
+      "Paul Reiser",
+      "Melissa Benoist",
+      "Austin Stowell",
+      "Nate Lang",
+      "Chris Mulkey"
+    ]
+  },
+  {
+    "question": "Who plays Terence Fletcher, the abusive jazz instructor in Whiplash (2014)?",
+    "correctAnswer": "J.K. Simmons",
+    "wrongAnswers": [
+      "Miles Teller",
+      "Paul Reiser",
+      "Sam Elliott",
+      "Clancy Brown",
+      "R. Lee Ermey",
+      "Michael Keaton"
+    ]
+  },
+  {
+    "question": "What is the name of the prestigious music conservatory Andrew attends?",
+    "correctAnswer": "Shaffer Conservatory (fictional)",
+    "wrongAnswers": [
+      "Juilliard School",
+      "Berklee College of Music",
+      "Curtis Institute of Music",
+      "Eastman School of Music",
+      "New England Conservatory",
+      "Manhattan School of Music"
+    ]
+  },
+  {
+    "question": "What jazz standard is central to the film's climax and Andrew's final performance?",
+    "correctAnswer": "\"Caravan\" (though \"Whiplash\" is also significant)",
+    "wrongAnswers": [
+      "\"Take Five\"",
+      "\"So What\"",
+      "\"Giant Steps\"",
+      "\"Sing, Sing, Sing\"",
+      "\"Moanin'\"",
+      "\"Birdland\""
+    ]
+  },
+  {
+    "question": "In White Men Can't Jump (1992), what is Gloria Clemente's (Rosie Perez) dream?",
+    "correctAnswer": "To appear on the game show Jeopardy!",
+    "wrongAnswers": [
+      "To become a professional basketball player",
+      "To open her own restaurant",
+      "To become a famous singer",
+      "To travel the world",
+      "To write a novel",
+      "To become a fashion designer"
+    ]
+  },
+  {
+    "question": "In X-Men: Days of Future Past (2014), which X-Men character travels back in time to prevent a dystopian future?",
+    "correctAnswer": "Wolverine (Logan)",
+    "wrongAnswers": [
+      "Professor X (Charles Xavier)",
+      "Magneto (Erik Lehnsherr)",
+      "Kitty Pryde (Shadowcat)",
+      "Storm (Ororo Munroe)",
+      "Bishop",
+      "Cable"
+    ]
+  },
+  {
+    "question": "In X-Men: Days of Future Past (2014), what are the giant mutant-hunting robots called in the future timeline?",
+    "correctAnswer": "Sentinels",
+    "wrongAnswers": [
+      "Nimrods",
+      "Master Molds",
+      "Jaegers",
+      "Terminators",
+      "Cyberdyne Units",
+      "Stark Sentinels"
+    ]
+  },
+  {
+    "question": "In X-Men: Days of Future Past (2014), who is the primary antagonist in the past timeline (1973) that the X-Men try to stop?",
+    "correctAnswer": "Bolivar Trask (creator of the Sentinels)",
+    "wrongAnswers": [
+      "Mystique (Raven Darkhölme)",
+      "Magneto (Erik Lehnsherr)",
+      "William Stryker",
+      "Apocalypse (En Sabah Nur)",
+      "Sebastian Shaw",
+      "The Shadow King"
+    ]
+  },
+  {
+    "question": "Which actor plays the younger version of Magneto in X-Men: Days of Future Past (2014)?",
+    "correctAnswer": "Michael Fassbender",
+    "wrongAnswers": [
+      "Ian McKellen",
+      "James McAvoy",
+      "Patrick Stewart",
+      "Hugh Jackman",
+      "Nicholas Hoult",
+      "Peter Dinklage"
+    ]
+  },
+  {
+    "question": "In You People (2023), who plays Akbar Mohammed, Amira's father?",
+    "correctAnswer": "Eddie Murphy",
+    "wrongAnswers": [
+      "David Duchovny",
+      "Mike Epps",
+      "Anthony Anderson",
+      "Deon Cole",
+      "LaKeith Stanfield",
+      "Martin Lawrence"
+    ]
+  },
+  {
+    "question": "In ZEF - The Story of Die Antwoord (2024), who are the two main members of Die Antwoord?",
+    "correctAnswer": "Ninja and Yo-Landi Visser",
+    "wrongAnswers": [
+      "DJ Hi-Tek and Waddy Jones",
+      "Anri du Toit and Watkin Tudor Jones",
+      "Max Normal and Yolandi Visser",
+      "The Constructus Corporation",
+      "The Original Evergreens",
+      "Jack Parow and Gazelle"
+    ]
+  },
+  {
+    "question": "In ZEF - The Story of Die Antwoord (2024), what is the name of Die Antwoord's distinctive counter-culture movement/style?",
+    "correctAnswer": "Zef",
+    "wrongAnswers": [
+      "Rave",
+      "Hip-Hop",
+      "Punk",
+      "Gqom",
+      "Kwaito",
+      "Afrofuturism"
+    ]
+  },
+  {
+    "question": "Which film directed by Neill Blomkamp featured Die Antwoord members in acting roles?",
+    "correctAnswer": "Chappie (2015)",
+    "wrongAnswers": [
+      "District 9",
+      "Elysium",
+      "Gran Turismo",
+      "Demonic",
+      "Rakka (short film)",
+      "Firebase (short film)"
     ]
   }
 ]

@@ -1873,5 +1873,170 @@
       "Interpol",
       "Yeah Yeah Yeahs"
     ]
+  },
+  {
+    "question": "What is the name of Tegan and Sara's memoir released in 2019?",
+    "correctAnswer": "High School",
+    "wrongAnswers": [
+      "The Con",
+      "Love You to Death",
+      "Sainthood",
+      "So Jealous",
+      "Heartthrob"
+    ]
+  },
+  {
+    "question": "Which Tegan and Sara album features the hit song 'Closer'?",
+    "correctAnswer": "Heartthrob",
+    "wrongAnswers": [
+      "The Con",
+      "So Jealous",
+      "Sainthood",
+      "Love You to Death",
+      "If It Was You"
+    ]
+  },
+  {
+    "question": "Tegan and Sara are originally from which Canadian province?",
+    "correctAnswer": "Alberta",
+    "wrongAnswers": [
+      "British Columbia",
+      "Ontario",
+      "Quebec",
+      "Manitoba",
+      "Saskatchewan"
+    ]
+  },
+  {
+    "question": "What is the name of the foundation started by Tegan and Sara to support LGBTQ+ girls and women?",
+    "correctAnswer": "Tegan and Sara Foundation",
+    "wrongAnswers": [
+      "Closer Foundation",
+      "High School Foundation",
+      "The Con Foundation",
+      "LGBTQ+ Futures Fund",
+      "Queer Impact Initiative"
+    ]
+  },
+  {
+    "question": "Which Tegan and Sara song was featured in the movie 'G.B.F.' and the TV show 'Glee'?",
+    "correctAnswer": "Closer",
+    "wrongAnswers": [
+      "Walking with a Ghost",
+      "Back in Your Head",
+      "The Con",
+      "Boyfriend",
+      "Stop Desire"
+    ]
+  },
+  {
+    "question": "What is MF DOOM's real name?",
+    "correctAnswer": "Daniel Dumile",
+    "wrongAnswers": [
+      "Reginald Kenneth Dwight",
+      "Marshall Mathers",
+      "Kamaal Ibn John Fareed",
+      "Lesane Parish Crooks",
+      "O'Shea Jackson"
+    ]
+  },
+  {
+    "question": "Which MF DOOM album is a collaboration with producer Madlib?",
+    "correctAnswer": "Madvillainy",
+    "wrongAnswers": [
+      "Operation: Doomsday",
+      "Mm..Food",
+      "Vaudeville Villain",
+      "Take Me to Your Leader",
+      "Born Like This"
+    ]
+  },
+  {
+    "question": "MF DOOM's signature look involves wearing a mask similar to which Marvel Comics supervillain?",
+    "correctAnswer": "Doctor Doom",
+    "wrongAnswers": [
+      "Magneto",
+      "Green Goblin",
+      "Red Skull",
+      "Thanos",
+      "Loki"
+    ]
+  },
+  {
+    "question": "What was the name of MF DOOM's first group, which also included his late brother DJ Subroc?",
+    "correctAnswer": "KMD (Kausing Much Damage)",
+    "wrongAnswers": [
+      "De La Soul",
+      "A Tribe Called Quest",
+      "Leaders of the New School",
+      "Gravediggaz",
+      "Brand Nubian"
+    ]
+  },
+  {
+    "question": "Which MF DOOM album is heavily themed around food, with tracks like 'Beef Rap' and 'Kon Queso'?",
+    "correctAnswer": "Mm..Food",
+    "wrongAnswers": [
+      "Operation: Doomsday",
+      "Madvillainy",
+      "Vaudeville Villain",
+      "The Mouse and the Mask",
+      "Born Like This"
+    ]
+  },
+  {
+    "question": "What is Prince's birth name?",
+    "correctAnswer": "Prince Rogers Nelson",
+    "wrongAnswers": [
+      "Prince Albert Victor",
+      "Prince Michael Jackson",
+      "Prince David Jones",
+      "Prince Rogers Stevens",
+      "Prince Williams"
+    ]
+  },
+  {
+    "question": "Which 1984 film, starring Prince, also featured an iconic soundtrack album of the same name?",
+    "correctAnswer": "Purple Rain",
+    "wrongAnswers": [
+      "Sign o' the Times",
+      "Graffiti Bridge",
+      "Under the Cherry Moon",
+      "1999",
+      "Diamonds and Pearls"
+    ]
+  },
+  {
+    "question": "What was the name of Prince's famous recording studio and estate in Chanhassen, Minnesota?",
+    "correctAnswer": "Paisley Park",
+    "wrongAnswers": [
+      "Neverland Ranch",
+      "Graceland",
+      "Abbey Road Studios",
+      "Electric Lady Studios",
+      "The Hit Factory"
+    ]
+  },
+  {
+    "question": "Which Prince song features the lyric 'Dearly beloved, we are gathered here today to get through this thing called life'?",
+    "correctAnswer": "Let's Go Crazy",
+    "wrongAnswers": [
+      "When Doves Cry",
+      "Kiss",
+      "Raspberry Beret",
+      "1999",
+      "Little Red Corvette"
+    ]
+  },
+  {
+    "question": "In the 1990s, Prince famously changed his name to an unpronounceable symbol, often referred to as what?",
+    "correctAnswer": "The Love Symbol",
+    "wrongAnswers": [
+      "The Artist Formerly Known As Prince",
+      "The Purple One",
+      "His Royal Badness",
+      "The Minneapolis Sound",
+      "Symbolina"
+    ]
   }
 ]

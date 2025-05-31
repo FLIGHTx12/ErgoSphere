@@ -598,5 +598,245 @@
       "Lowry Hill",
       "Stevens Square"
     ]
+  },
+  {
+    "question": "First Avenue, the iconic music venue, is located on which street in Downtown Minneapolis?",
+    "correctAnswer": "7th Street North",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "Nicollet Mall",
+      "1st Avenue North",
+      "Marquette Avenue",
+      "Washington Avenue",
+      "4th Street North"
+    ]
+  },
+  {
+    "question": "The Electric Fetus, a famous record store, is located in which Minneapolis neighborhood?",
+    "correctAnswer": "Whittier",
+    "wrongAnswers": [
+      "Uptown",
+      "Northeast",
+      "Dinkytown",
+      "Seward",
+      "Lyndale",
+      "Kingfield"
+    ]
+  },
+  {
+    "question": "Matt's Bar, home of the Jucy Lucy, is located in which South Minneapolis neighborhood?",
+    "correctAnswer": "Powderhorn",
+    "wrongAnswers": [
+      "Nokomis",
+      "Longfellow",
+      "Standish",
+      "Corcoran",
+      "Bancroft",
+      "Field"
+    ]
+  },
+  {
+    "question": "The Fine Line Music Cafe is situated in which Minneapolis district known for its nightlife?",
+    "correctAnswer": "Warehouse District",
+    "wrongAnswers": [
+      "North Loop",
+      "Uptown",
+      "Dinkytown",
+      "Hennepin Theatre District",
+      "Eat Street",
+      "Seven Corners"
+    ]
+  },
+  {
+    "question": "Psycho Suzi's Motor Lounge, a tiki bar, is located in which neighborhood along the Mississippi River?",
+    "correctAnswer": "Northeast",
+    "wrongAnswers": [
+      "Sheridan",
+      "Marcy-Holmes",
+      "St. Anthony West",
+      "Bottineau",
+      "Columbia Park",
+      "Waite Park"
+    ]
+  },
+  {
+    "question": "The CC Club, a long-standing dive bar, can be found in which Minneapolis neighborhood?",
+    "correctAnswer": "Uptown ",
+    "wrongAnswers": [
+      "LynLake",
+      "Whittier",
+      "Lowry Hill East",
+      "CARAG",
+      "East Isles",
+      "Kenwood"
+    ]
+  },
+  {
+    "question": "Which street in Uptown is known for its concentration of shops, restaurants, and the Uptown Theatre?",
+    "correctAnswer": "Hennepin Avenue",
+    "wrongAnswers": [
+      "Lyndale Avenue",
+      "Lake Street",
+      "Lagoon Avenue",
+      "Bryant Avenue",
+      "Girard Avenue",
+      "Fremont Avenue"
+    ]
+  },
+  {
+    "question": "The Armory, a large concert and event venue, is located in which part of Minneapolis?",
+    "correctAnswer": "Downtown East",
+    "wrongAnswers": [
+      "North Loop",
+      "Warehouse District",
+      "Elliot Park",
+      "Mill District",
+      "Loring Park",
+      "Stevens Square"
+    ]
+  },
+  {
+    "question": "Palmer's Bar, known for its gritty charm and live music, is in which neighborhood near the University of Minnesota?",
+    "correctAnswer": "Cedar-Riverside",
+    "wrongAnswers": [
+      "Seward",
+      "Prospect Park",
+      "Dinkytown",
+      "Marcy-Holmes",
+      "Phillips West",
+      "Ventura Village"
+    ]
+  },
+  {
+    "question": "The 5-8 Club, another claimant to the Jucy Lucy throne, is located on which major South Minneapolis street?",
+    "correctAnswer": "Cedar Avenue",
+    "wrongAnswers": [
+      "Nicollet Avenue",
+      "Lyndale Avenue",
+      "Chicago Avenue",
+      "Bloomington Avenue",
+      "Minnehaha Avenue",
+      "Hiawatha Avenue"
+    ]
+  },
+  {
+    "question": "Which iconic Minneapolis department store, now closed, had its flagship on Nicollet Mall?",
+    "correctAnswer": "Dayton's",
+    "wrongAnswers": [
+      "Powers Dry Goods",
+      "Donaldson's",
+      "Young-Quinlan",
+      "Maurice L Rothschild",
+      "Boutells",
+      "Sears"
+    ]
+  },
+  {
+    "question": "The Aster Cafe, known for its patio and river views, is located in which historic Minneapolis neighborhood?",
+    "correctAnswer": "St. Anthony Main",
+    "wrongAnswers": [
+      "Mill District",
+      "Nicollet Island",
+      "Northeast Park",
+      "Sheridan",
+      "Como",
+      "Dinkytown"
+    ]
+  },
+  {
+    "question": "Which neighborhood is home to the Bryant-Lake Bowl & Theater?",
+    "correctAnswer": "Lyndale",
+    "wrongAnswers": [
+      "Uptown",
+      "Whittier",
+      "Kingfield",
+      "CARAG",
+      "South Uptown",
+      "East Harriet"
+    ]
+  },
+  {
+    "question": "The Dakota, a renowned jazz club and restaurant, is located on which downtown Minneapolis street?",
+    "correctAnswer": "Nicollet Mall",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "Marquette Avenue",
+      "Washington Avenue",
+      "10th Street South",
+      "8th Street South",
+      "6th Street South"
+    ]
+  },
+  {
+    "question": "Which North Loop establishment is known for its rooftop bar and boutique hotel?",
+    "correctAnswer": "Hewing Hotel",
+    "wrongAnswers": [
+      "The Monte Carlo",
+      "Billy Sushi",
+      "Spoon and Stable",
+      "The Freehouse",
+      "Bar La Grassa",
+      "Black Sheep Pizza"
+    ]
+  },
+  {
+    "question": "Eat Street, a stretch of diverse restaurants, is primarily located on which Minneapolis avenue?",
+    "correctAnswer": "Nicollet Avenue",
+    "wrongAnswers": [
+      "Lyndale Avenue",
+      "Hennepin Avenue",
+      "Central Avenue",
+      "University Avenue",
+      "Lake Street",
+      "Franklin Avenue"
+    ]
+  },
+  {
+    "question": "The Parkway Theater, a restored neighborhood cinema, is in which South Minneapolis area?",
+    "correctAnswer": "Field/Regina/Northrop (near Chicago Ave)",
+    "wrongAnswers": [
+      "Nokomis",
+      "Longfellow",
+      "Standish",
+      "Powderhorn",
+      "Bancroft",
+      "Corcoran"
+    ]
+  },
+  {
+    "question": "Which independent bookstore is a fixture in the Linden Hills neighborhood?",
+    "correctAnswer": "Wild Rumpus",
+    "wrongAnswers": [
+      "Magers & Quinn Booksellers",
+      "Moon Palace Books",
+      "Birchbark Books",
+      "Uncle Hugo's Science Fiction Bookstore",
+      "DreamHaven Books",
+      "Once Upon A Crime"
+    ]
+  },
+  {
+    "question": "The Gay 90's, a large LGBTQ+ nightclub, is located on which street in Downtown Minneapolis?",
+    "correctAnswer": "Hennepin Avenue",
+    "wrongAnswers": [
+      "Nicollet Mall",
+      "1st Avenue North",
+      "4th Street North",
+      "LaSalle Avenue",
+      "Marquette Avenue",
+      "7th Street North"
+    ]
+  },
+  {
+    "question": "Which Uptown record store is known for its vast collection of new and used vinyl?",
+    "correctAnswer": "Cheapo Discs (formerly Know Name Records)",
+    "wrongAnswers": [
+      "Electric Fetus",
+      "Roadrunner Records",
+      "Treehouse Records",
+      "Extreme Noise Records",
+      "Hymie's Vintage Records",
+      "Mill City Sound"
+    ]
   }
 ]

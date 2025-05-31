@@ -1078,5 +1078,473 @@
       "2016",
       "2022"
     ]
+  },
+  {
+    "question": "Which 1990s animated Disney film featured the song 'Circle of Life'?",
+    "correctAnswer": "The Lion King",
+    "wrongAnswers": [
+      "Aladdin",
+      "Beauty and the Beast",
+      "Pocahontas",
+      "Mulan",
+      "Tarzan",
+      "The Little Mermaid"
+    ]
+  },
+  {
+    "question": "What was the name of the iconic 1990s TV show about six friends living in New York City?",
+    "correctAnswer": "Friends",
+    "wrongAnswers": [
+      "Seinfeld",
+      "Frasier",
+      "ER",
+      "The X-Files",
+      "Beverly Hills, 90210",
+      "Dawson's Creek"
+    ]
+  },
+  {
+    "question": "Which 1990s boy band famously sang 'I Want It That Way'?",
+    "correctAnswer": "Backstreet Boys",
+    "wrongAnswers": [
+      "NSYNC",
+      "New Kids on the Block",
+      "Boyz II Men",
+      "98 Degrees",
+      "Take That",
+      "Westlife"
+    ]
+  },
+  {
+    "question": "What popular 1990s toy consisted of small, colorful, collectible bean-filled animals?",
+    "correctAnswer": "Beanie Babies",
+    "wrongAnswers": [
+      "Tamagotchi",
+      "Furby",
+      "Pogs",
+      "Tickle Me Elmo",
+      "Pokémon Cards",
+      "Bop It"
+    ]
+  },
+  {
+    "question": "Which 1997 blockbuster film, directed by James Cameron, starred Leonardo DiCaprio and Kate Winslet?",
+    "correctAnswer": "Titanic",
+    "wrongAnswers": [
+      "Jurassic Park",
+      "Forrest Gump",
+      "Pulp Fiction",
+      "The Matrix",
+      "Independence Day",
+      "Men in Black"
+    ]
+  },
+  {
+    "question": "What was the name of the virtual pet craze from Japan that swept the world in the late 1990s?",
+    "correctAnswer": "Tamagotchi",
+    "wrongAnswers": [
+      "Furby",
+      "Digimon",
+      "Neopets",
+      "Giga Pet",
+      "Pokémon",
+      "Nano Pets"
+    ]
+  },
+  {
+    "question": "Which 1990s grunge band was fronted by Kurt Cobain?",
+    "correctAnswer": "Nirvana",
+    "wrongAnswers": [
+      "Pearl Jam",
+      "Soundgarden",
+      "Alice in Chains",
+      "Stone Temple Pilots",
+      "Foo Fighters",
+      "Smashing Pumpkins"
+    ]
+  },
+  {
+    "question": "The 'Macarena' was a popular dance craze in which mid-1990s year?",
+    "correctAnswer": "1996",
+    "wrongAnswers": [
+      "1994",
+      "1995",
+      "1997",
+      "1993",
+      "1998",
+      "1992"
+    ]
+  },
+  {
+    "question": "Which 1990s sitcom featured a character named Kramer known for his eccentric entrances?",
+    "correctAnswer": "Seinfeld",
+    "wrongAnswers": [
+      "Friends",
+      "Frasier",
+      "Home Improvement",
+      "The Fresh Prince of Bel-Air",
+      "Mad About You",
+      "Wings"
+    ]
+  },
+  {
+    "question": "What was the name of the first film in the 'Toy Story' franchise, released in 1995?",
+    "correctAnswer": "Toy Story",
+    "wrongAnswers": [
+      "Toy Story 2",
+      "A Bug's Life",
+      "Monsters, Inc.",
+      "Finding Nemo",
+      "The Incredibles",
+      "Cars"
+    ]
+  },
+  {
+    "question": "Which British girl group promoted 'Girl Power' in the 1990s?",
+    "correctAnswer": "Spice Girls",
+    "wrongAnswers": [
+      "All Saints",
+      "B*Witched",
+      "Atomic Kitten",
+      "TLC",
+      "Destiny's Child",
+      "Sugababes"
+    ]
+  },
+  {
+    "question": "The 1999 film 'The Matrix' popularized which visual effect?",
+    "correctAnswer": "Bullet Time",
+    "wrongAnswers": [
+      "Motion Capture",
+      "CGI Dinosaurs",
+      "Morphing",
+      "Wire Fu",
+      "Shaky Cam",
+      "Digital Compositing"
+    ]
+  },
+  {
+    "question": "Which 1990s video game console introduced characters like Mario 64 and Zelda: Ocarina of Time?",
+    "correctAnswer": "Nintendo 64",
+    "wrongAnswers": [
+      "Sony PlayStation",
+      "Sega Saturn",
+      "Super Nintendo",
+      "Sega Genesis",
+      "Atari Jaguar",
+      "Neo Geo"
+    ]
+  },
+  {
+    "question": "What was the name of the fictional California high school in the 1990s TV show 'Saved by the Bell'?",
+    "correctAnswer": "Bayside High",
+    "wrongAnswers": [
+      "West Beverly High",
+      "Capeside High",
+      "Sunnydale High",
+      "McKinley High",
+      "Rydell High",
+      "Hillman College"
+    ]
+  },
+  {
+    "question": "Which 1990s fashion trend involved wearing flannel shirts, often tied around the waist?",
+    "correctAnswer": "Grunge",
+    "wrongAnswers": [
+      "Preppy",
+      "Hip Hop",
+      "Rave",
+      "Goth",
+      "Skater",
+      "Yuppie"
+    ]
+  },
+  {
+    "question": "The first Harry Potter book, 'Harry Potter and the Philosopher's Stone', was published in which year of the 1990s?",
+    "correctAnswer": "1997",
+    "wrongAnswers": [
+      "1995",
+      "1996",
+      "1998",
+      "1999",
+      "1994",
+      "1993"
+    ]
+  },
+  {
+    "question": "Which 1990s TV show featured alien conspiracy theories and FBI agents Mulder and Scully?",
+    "correctAnswer": "The X-Files",
+    "wrongAnswers": [
+      "Twin Peaks",
+      "Buffy the Vampire Slayer",
+      "Star Trek: Deep Space Nine",
+      "Babylon 5",
+      "Roswell",
+      "Dark Skies"
+    ]
+  },
+  {
+    "question": "What was the name of the sheep cloned in 1996, a major scientific event of the decade?",
+    "correctAnswer": "Dolly",
+    "wrongAnswers": [
+      "Molly",
+      "Polly",
+      "Holly",
+      "Sally",
+      "Daisy",
+      "Bessie"
+    ]
+  },
+  {
+    "question": "Which 1990s rapper famously feuded with Tupac Shakur?",
+    "correctAnswer": "The Notorious B.I.G.",
+    "wrongAnswers": [
+      "Snoop Dogg",
+      "Dr. Dre",
+      "Ice Cube",
+      "Eazy-E",
+      "Nas",
+      "Jay-Z"
+    ]
+  },
+  {
+    "question": "Which reality TV show, premiering in 2000, featured contestants stranded on an island?",
+    "correctAnswer": "Survivor",
+    "wrongAnswers": [
+      "Big Brother",
+      "The Amazing Race",
+      "American Idol",
+      "The Mole",
+      "Fear Factor",
+      "Temptation Island"
+    ]
+  },
+  {
+    "question": "What was the name of the first Apple iPod, released in 2001?",
+    "correctAnswer": "iPod (Classic - 1st Gen)",
+    "wrongAnswers": [
+      "iPod Mini",
+      "iPod Shuffle",
+      "iPod Nano",
+      "iPod Touch",
+      "iPod Photo",
+      "iPod Video"
+    ]
+  },
+  {
+    "question": "Which 2000s film trilogy, directed by Peter Jackson, was based on books by J.R.R. Tolkien?",
+    "correctAnswer": "The Lord of the Rings",
+    "wrongAnswers": [
+      "Harry Potter",
+      "Pirates of the Caribbean",
+      "The Matrix",
+      "Spider-Man (Raimi)",
+      "Star Wars Prequels",
+      "The Chronicles of Narnia"
+    ]
+  },
+  {
+    "question": "Which social networking site, launched in 2004, became a dominant force in the 2000s?",
+    "correctAnswer": "Facebook",
+    "wrongAnswers": [
+      "MySpace",
+      "Friendster",
+      "Twitter",
+      "LinkedIn",
+      "Bebo",
+      "Orkut"
+    ]
+  },
+  {
+    "question": "What was the name of the popular 2000s TV show about a chemistry teacher who starts making meth?",
+    "correctAnswer": "Breaking Bad",
+    "wrongAnswers": [
+      "The Sopranos",
+      "The Wire",
+      "Lost",
+      "Dexter",
+      "Mad Men",
+      "Weeds"
+    ]
+  },
+  {
+    "question": "Which 2000s animated film featured a green ogre voiced by Mike Myers?",
+    "correctAnswer": "Shrek",
+    "wrongAnswers": [
+      "Monsters, Inc.",
+      "Finding Nemo",
+      "Ice Age",
+      "Madagascar",
+      "Cars",
+      "Kung Fu Panda"
+    ]
+  },
+  {
+    "question": "What was the name of the first video-sharing website, launched in 2005, that became immensely popular?",
+    "correctAnswer": "YouTube",
+    "wrongAnswers": [
+      "Vimeo",
+      "Dailymotion",
+      "Google Video",
+      "Metacafe",
+      "Veoh",
+      "Break.com"
+    ]
+  },
+  {
+    "question": "Which 2000s TV talent show, created by Simon Cowell, searched for new recording artists?",
+    "correctAnswer": "American Idol",
+    "wrongAnswers": [
+      "The X Factor",
+      "America's Got Talent",
+      "The Voice",
+      "Star Search",
+      "Popstars",
+      "Making the Band"
+    ]
+  },
+  {
+    "question": "The 'War on Terror' was a dominant geopolitical theme of the 2000s following which event?",
+    "correctAnswer": "September 11 attacks",
+    "wrongAnswers": [
+      "The invasion of Iraq (2003)",
+      "The invasion of Afghanistan (2001)",
+      "The London bombings (2005)",
+      "The Madrid train bombings (2004)",
+      "The rise of Al-Qaeda",
+      "The Bali bombings (2002)"
+    ]
+  },
+  {
+    "question": "Which 2000s fashion trend involved wearing low-rise jeans, often with visible thongs?",
+    "correctAnswer": "Low-rise jeans / Whale tail",
+    "wrongAnswers": [
+      "Crocs",
+      "Von Dutch hats",
+      "Velour tracksuits",
+      "Ugg boots",
+      "Skinny jeans (late 2000s)",
+      "Trucker hats"
+    ]
+  },
+  {
+    "question": "What was the name of the popular 2000s book series and film franchise about a young wizard attending Hogwarts?",
+    "correctAnswer": "Harry Potter",
+    "wrongAnswers": [
+      "Percy Jackson",
+      "Twilight",
+      "The Hunger Games",
+      "A Series of Unfortunate Events",
+      "Eragon",
+      "The Spiderwick Chronicles"
+    ]
+  },
+  {
+    "question": "Which 2000s gaming console introduced motion controls with its Wii Remote?",
+    "correctAnswer": "Nintendo Wii",
+    "wrongAnswers": [
+      "PlayStation 3",
+      "Xbox 360",
+      "PlayStation 2",
+      "Nintendo GameCube",
+      "Xbox",
+      "Nintendo DS"
+    ]
+  },
+  {
+    "question": "The TV show 'Lost', known for its mysteries and island setting, premiered in which year of the 2000s?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001",
+      "2007"
+    ]
+  },
+  {
+    "question": "Which 2000s rapper released the influential album 'The Marshall Mathers LP'?",
+    "correctAnswer": "Eminem",
+    "wrongAnswers": [
+      "Jay-Z",
+      "Kanye West",
+      "50 Cent",
+      "Lil Wayne",
+      "Snoop Dogg",
+      "Dr. Dre"
+    ]
+  },
+  {
+    "question": "What was the name of the first smartphone released by Apple in 2007?",
+    "correctAnswer": "iPhone",
+    "wrongAnswers": [
+      "iPod Touch",
+      "iPad",
+      "Apple Phone",
+      "MacMobile",
+      "Newton",
+      "eMate"
+    ]
+  },
+  {
+    "question": "Which 2008 superhero film, directed by Christopher Nolan, featured Heath Ledger's acclaimed performance as the Joker?",
+    "correctAnswer": "The Dark Knight",
+    "wrongAnswers": [
+      "Iron Man",
+      "Spider-Man 3",
+      "Batman Begins",
+      "Superman Returns",
+      "X-Men: The Last Stand",
+      "Hancock"
+    ]
+  },
+  {
+    "question": "The 'Twilight' book series, popular in the late 2000s, focused on the romance between a human girl and a what?",
+    "correctAnswer": "Vampire",
+    "wrongAnswers": [
+      "Werewolf",
+      "Wizard",
+      "Angel",
+      "Ghost",
+      "Zombie",
+      "Alien"
+    ]
+  },
+  {
+    "question": "Which 2000s TV show followed the lives of employees at the Dunder Mifflin paper company?",
+    "correctAnswer": "The Office (US)",
+    "wrongAnswers": [
+      "Parks and Recreation",
+      "30 Rock",
+      "Arrested Development",
+      "Curb Your Enthusiasm",
+      "It's Always Sunny in Philadelphia",
+      "Scrubs"
+    ]
+  },
+  {
+    "question": "The rise of 'blogging' as a popular online activity occurred primarily in which decade?",
+    "correctAnswer": "2000s",
+    "wrongAnswers": [
+      "1990s",
+      "2010s",
+      "1980s",
+      "1970s",
+      "Not until the 2020s",
+      "It was always popular"
+    ]
+  },
+  {
+    "question": "Which 2000s dance craze involved specific hand movements and was popularized by Soulja Boy's song 'Crank That'?",
+    "correctAnswer": "Crank That (Soulja Boy)",
+    "wrongAnswers": [
+      "The Dougie",
+      "Stanky Legg",
+      "Chicken Noodle Soup",
+      "Cha Cha Slide",
+      "Cupid Shuffle",
+      "Walk It Out"
+    ]
   }
 ]

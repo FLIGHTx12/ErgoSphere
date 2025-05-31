@@ -1078,5 +1078,724 @@
       "Nessus",
       "Earth"
     ]
+  },
+  {
+    "question": "What does the X button primarily do in Destiny 2 (default layout)?",
+    "correctAnswer": "Reload / Interact",
+    "wrongAnswers": [
+      "Jump",
+      "Melee",
+      "Use Super Ability",
+      "Aim Down Sights",
+      "Sprint",
+      "Throw Grenade"
+    ]
+  },
+  {
+    "question": "In Minecraft (Xbox Edition, default controls), what does the A button do?",
+    "correctAnswer": "Jump / Fly Up (Creative Mode)",
+    "wrongAnswers": [
+      "Attack / Mine",
+      "Place Block / Use Item",
+      "Open Inventory",
+      "Sprint",
+      "Sneak",
+      "Drop Item"
+    ]
+  },
+  {
+    "question": "What is the primary function of the RB button in Halo Infinite (default controls)?",
+    "correctAnswer": "Melee Attack",
+    "wrongAnswers": [
+      "Throw Grenade",
+      "Zoom / Aim",
+      "Reload",
+      "Switch Weapon",
+      "Sprint",
+      "Use Equipment"
+    ]
+  },
+  {
+    "question": "In Forza Horizon 5 (default controls), what does the RT button typically do?",
+    "correctAnswer": "Accelerate",
+    "wrongAnswers": [
+      "Brake / Reverse",
+      "Handbrake",
+      "Change Camera View",
+      "Horn",
+      "Rewind",
+      "Activate ANNA"
+    ]
+  },
+  {
+    "question": "What does the Y button usually do in Gears 5 (default controls)?",
+    "correctAnswer": "Switch Weapon (Primary/Secondary)",
+    "wrongAnswers": [
+      "Reload",
+      "Melee / Chainsaw",
+      "Take Cover / Roadie Run",
+      "Aim",
+      "Throw Grenade",
+      "Interact"
+    ]
+  },
+  {
+    "question": "In Sea of Thieves (default controls), what action is typically performed with the X button while holding a weapon?",
+    "correctAnswer": "Use Weapon / Block with Sword / Aim with Gun)",
+    "wrongAnswers": [
+      "Jump",
+      "Interact / Pick Up",
+      "Sprint",
+      "Open Quest Radial",
+      "Open Item Radial",
+      "Reload"
+    ]
+  },
+  {
+    "question": "What does the B button primarily do in The Elder Scrolls V: Skyrim (Xbox, default controls)?",
+    "correctAnswer": "Open Character Menu (Skills, Inventory, Magic, Map)",
+    "wrongAnswers": [
+      "Jump",
+      "Attack",
+      "Ready/Sheathe Weapon",
+      "Shout / Power",
+      "Sneak",
+      "Activate / Talk"
+    ]
+  },
+  {
+    "question": "In Call of Duty: Modern Warfare III (default tactical layout), what does pressing the Right Stick (RS) typically do?",
+    "correctAnswer": "Melee",
+    "wrongAnswers": [
+      "Crouch / Slide",
+      "Sprint / Tactical Sprint",
+      "Reload",
+      "Aim Down Sights",
+      "Jump / Mantle",
+      "Change Stance"
+    ]
+  },
+  {
+    "question": "What is the function of the LB button in Elden Ring (default controls) when two-handing a weapon?",
+    "correctAnswer": "Guard / Skill (if shield has no skill)",
+    "wrongAnswers": [
+      "Light Attack (Right Hand)",
+      "Strong Attack (Right Hand)",
+      "Use Item",
+      "Jump",
+      "Roll / Backstep",
+      "Switch Sorcery/Incantation"
+    ]
+  },
+  {
+    "question": "In Red Dead Redemption 2 (default controls), what does holding the LT button typically do?",
+    "correctAnswer": "Aim Weapon / Focus on Target (Interaction)",
+    "wrongAnswers": [
+      "Shoot / Attack",
+      "Jump / Vault",
+      "Reload",
+      "Enter Dead Eye",
+      "Whistle for Horse",
+      "Open Weapon Wheel"
+    ]
+  },
+  {
+    "question": "In Destiny 2 (default controls), what does the A button primarily do?",
+    "correctAnswer": "Jump",
+    "wrongAnswers": [
+      "Reload",
+      "Melee",
+      "Sprint",
+      "Crouch",
+      "Fire Weapon",
+      "Switch Weapon"
+    ]
+  },
+  {
+    "question": "What is the primary function of the Y button in Destiny 2 (default controls)?",
+    "correctAnswer": "Switch Weapon",
+    "wrongAnswers": [
+      "Use Super Ability",
+      "Throw Grenade",
+      "Interact",
+      "Open Character Screen",
+      "Aim Down Sights",
+      "Melee"
+    ]
+  },
+  {
+    "question": "In Destiny 2 (default controls), what does pressing the Left Bumper (LB) do?",
+    "correctAnswer": "Throw Grenade",
+    "wrongAnswers": [
+      "Melee Attack",
+      "Use Class Ability",
+      "Sprint",
+      "Reload",
+      "Aim Down Sights",
+      "Use Super Ability"
+    ]
+  },
+  {
+    "question": "What action is performed by pressing the Right Bumper (RB) in Destiny 2 (default controls)?",
+    "correctAnswer": "Melee Attack",
+    "wrongAnswers": [
+      "Throw Grenade",
+      "Jump",
+      "Fire Weapon",
+      "Switch Weapon",
+      "Use Class Ability",
+      "Interact"
+    ]
+  },
+  {
+    "question": "In Destiny 2 (default controls), what does the Left Trigger (LT) primarily do?",
+    "correctAnswer": "Aim Down Sights",
+    "wrongAnswers": [
+      "Fire Weapon",
+      "Sprint",
+      "Throw Grenade",
+      "Melee Attack",
+      "Jump",
+      "Reload"
+    ]
+  },
+  {
+    "question": "What is the main function of the Right Trigger (RT) in Destiny 2 (default controls)?",
+    "correctAnswer": "Fire Weapon",
+    "wrongAnswers": [
+      "Aim Down Sights",
+      "Melee Attack",
+      "Throw Grenade",
+      "Reload",
+      "Switch Weapon",
+      "Use Super Ability"
+    ]
+  },
+  {
+    "question": "In Destiny 2 (default controls), what does clicking the Left Stick (LS) do?",
+    "correctAnswer": "Sprint",
+    "wrongAnswers": [
+      "Crouch",
+      "Jump",
+      "Melee",
+      "Reload",
+      "Open Director",
+      "Use Finisher"
+    ]
+  },
+  {
+    "question": "What does pressing the B button typically do in Destiny 2 (default controls)?",
+    "correctAnswer": "Crouch / Slide / Class Ability (double tap for some)",
+    "wrongAnswers": [
+      "Jump",
+      "Reload / Interact",
+      "Switch Weapon",
+      "Melee",
+      "Sprint",
+      "Open Inventory"
+    ]
+  },
+  {
+    "question": "In Destiny 2 (default controls), what does the View button (two squares icon) open?",
+    "correctAnswer": "Director ",
+    "wrongAnswers": [
+      "Character Screen (Inventory)",
+      "Settings Menu",
+      "Emote Wheel",
+      "Roster",
+      "Clan Menu",
+      "Return to Orbit"
+    ]
+  },
+  {
+    "question": "What is the primary function of the Menu button (three lines icon) in Destiny 2 (default controls)?",
+    "correctAnswer": "Character Screen ",
+    "wrongAnswers": [
+      "Director (Map)",
+      "Settings Menu",
+      "Log Out",
+      "Toggle Full Auto",
+      "Open Fireteam Chat",
+      "Use Super Ability"
+    ]
+  },
+  {
+    "question": "In Hellblade: Senua's Sacrifice, what is Senua's primary motivation for journeying to Helheim?",
+    "correctAnswer": "To retrieve the soul of her dead lover, Dillion",
+    "wrongAnswers": [
+      "To seek revenge on the Northmen",
+      "To find a cure for her psychosis",
+      "To become a renowned warrior",
+      "To discover the secrets of the gods",
+      "To escape her village",
+      "To find her lost father"
+    ]
+  },
+  {
+    "question": "What is the name of Senua's deceased lover in Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "Dillion",
+    "wrongAnswers": [
+      "Druth",
+      "Valravn",
+      "Surt",
+      "Garmr",
+      "Hela",
+      "Zynbel"
+    ]
+  },
+  {
+    "question": "Which mythological realm does Senua primarily traverse in Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "Helheim (Norse underworld)",
+    "wrongAnswers": [
+      "Asgard",
+      "Midgard",
+      "Jotunheim",
+      "Valhalla",
+      "Niflheim",
+      "Muspelheim"
+    ]
+  },
+  {
+    "question": "What is the 'Darkness' that Senua battles in Hellblade: Senua's Sacrifice often interpreted as representing?",
+    "correctAnswer": "Her psychosis and trauma",
+    "wrongAnswers": [
+      "A literal demonic entity",
+      "The curse of a god",
+      "The collective evil of mankind",
+      "A physical plague",
+      "The Northmen's magic",
+      "A side effect of a potion"
+    ]
+  },
+  {
+    "question": "Who is Druth in Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "A former slave and storyteller who guides Senua",
+    "wrongAnswers": [
+      "Senua's father",
+      "The main antagonist",
+      "A Northman warrior",
+      "A manifestation of Dillion",
+      "The god of illusions",
+      "A blacksmith who forged Senua's sword"
+    ]
+  },
+  {
+    "question": "Which god of illusion does Senua confront in Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "Valravn",
+    "wrongAnswers": [
+      "Surt",
+      "Fenrir",
+      "Loki",
+      "Odin",
+      "Hades",
+      "Anubis"
+    ]
+  },
+  {
+    "question": "Which fire giant does Senua face in Hellblade: Senua's Sacrifice?",
+    "correctAnswer": "Surt",
+    "wrongAnswers": [
+      "Valravn",
+      "Ymir",
+      "Logi",
+      "Hela",
+      "Garmr",
+      "Fenrir"
+    ]
+  },
+  {
+    "question": "What is a central theme explored in Hellblade: Senua's Sacrifice regarding mental health?",
+    "correctAnswer": "The experience of psychosis and the importance of acceptance",
+    "wrongAnswers": [
+      "The glorification of madness",
+      "Finding a magical cure for mental illness",
+      "Mental illness as a divine punishment",
+      "The idea that mental illness is not real",
+      "The complete eradication of inner voices",
+      "Psychosis as a superpower"
+    ]
+  },
+  {
+    "question": "What does Senua carry with her that belonged to Dillion?",
+    "correctAnswer": "His head",
+    "wrongAnswers": [
+      "His sword",
+      "His shield",
+      "A lock of his hair",
+      "His favorite book",
+      "A musical instrument",
+      "His ring"
+    ]
+  },
+  {
+    "question": "In Hellblade II: Senua's Saga, which real-world country is the primary setting?",
+    "correctAnswer": "Iceland",
+    "wrongAnswers": [
+      "Norway",
+      "Scotland",
+      "Ireland",
+      "Greenland",
+      "Denmark",
+      "England"
+    ]
+  },
+  {
+    "question": "What is Senua's initial goal at the beginning of Hellblade II: Senua's Saga?",
+    "correctAnswer": "To hunt down the Northmen slavers",
+    "wrongAnswers": [
+      "To find a new home for her people",
+      "To resurrect Dillion again",
+      "To become a Viking queen",
+      "To seek a cure for the 'Darkness'",
+      "To find the World Tree Yggdrasil",
+      "To avenge her father"
+    ]
+  },
+  {
+    "question": "Who is Thórgestr in Hellblade II: Senua's Saga?",
+    "correctAnswer": "A slave master Senua initially pursues",
+    "wrongAnswers": [
+      "Senua's new love interest",
+      "A benevolent Viking chieftain",
+      "A manifestation of her father",
+      "A mythical giant",
+      "A helpful spirit guide",
+      "The main god Senua worships"
+    ]
+  },
+  {
+    "question": "What natural phenomenon plays a significant visual and thematic role in Hellblade II: Senua's Saga's Icelandic setting?",
+    "correctAnswer": "Volcanic activity and landscapes",
+    "wrongAnswers": [
+      "Dense jungles",
+      "Expansive deserts",
+      "Arctic glaciers (primarily)",
+      "Tropical islands",
+      "Lush, rolling hills",
+      "Underwater caverns"
+    ]
+  },
+  {
+    "question": "Which character acts as a reluctant guide and ally to Senua in parts of Hellblade II: Senua's Saga?",
+    "correctAnswer": "Fargrímr",
+    "wrongAnswers": [
+      "Thórgestr",
+      "Goði",
+      "Astridr",
+      "Dillion (as a vision)",
+      "Druth (as a memory)",
+      "A hidden Northman spy"
+    ]
+  },
+  {
+    "question": "What is the 'Hiddenfolk' or 'Huldufólk' in Hellblade II: Senua's Saga?",
+    "correctAnswer": "Mysterious, elusive beings connected to the Icelandic landscape and folklore",
+    "wrongAnswers": [
+      "A rival Viking clan",
+      "A group of escaped slaves",
+      "Manifestations of Senua's doubts",
+      "The spirits of dead gods",
+      "A type of giant",
+      "Friendly forest animals"
+    ]
+  },
+  {
+    "question": "What is a key theme in Hellblade II: Senua's Saga regarding Senua's perception of reality?",
+    "correctAnswer": "Learning to see her unique perception as a strength to understand and connect with others",
+    "wrongAnswers": [
+      "Completely suppressing her visions and voices",
+      "Her psychosis worsening beyond control",
+      "Discovering her visions were always real in a literal sense",
+      "Rejecting all human connection to focus on her inner world",
+      "Finding a magical artifact that cures her",
+      "Embracing violence as the only solution"
+    ]
+  },
+  {
+    "question": "What role does the character Goði play in Hellblade II: Senua's Saga?",
+    "correctAnswer": "A tyrannical leader ",
+    "wrongAnswers": [
+      "Senua's wise mentor",
+      "A benevolent village elder",
+      "The king of the Hiddenfolk",
+      "A powerful sorcerer aiding Senua",
+      "A captured Northman general",
+      "A trader who provides Senua with supplies"
+    ]
+  },
+  {
+    "question": "The giants in Hellblade II: Senua's Saga are often portrayed not just as monsters, but also as...",
+    "correctAnswer": "Beings suffering and misunderstood, connected to the land's trauma",
+    "wrongAnswers": [
+      "Purely evil demonic entities",
+      "Mindless beasts of destruction",
+      "Illusions created by Senua's mind",
+      "Servants of a dark god",
+      "Ancient war machines",
+      "Guardians of a hidden treasure"
+    ]
+  },
+  {
+    "question": "What is a significant aspect of the sound design in both Hellblade games?",
+    "correctAnswer": "Binaural audio used to represent Senua's auditory hallucinations (the Furies)",
+    "wrongAnswers": [
+      "A complete lack of music",
+      "Only orchestral scores",
+      "Heavy metal soundtracks",
+      "Dialogue spoken only in Old Norse",
+      "Sound effects created entirely by animal noises",
+      "Predominantly cheerful and upbeat tones"
+    ]
+  },
+  {
+    "question": "What is the ultimate realization Senua comes to at the end of Hellblade: Senua's Sacrifice regarding Dillion and her grief?",
+    "correctAnswer": "That she must accept his death and her own darkness to move forward",
+    "wrongAnswers": [
+      "That Dillion is still alive somewhere",
+      "That she can fully resurrect Dillion with enough power",
+      "That Hela was Dillion in disguise",
+      "That her journey was all a dream",
+      "That she must destroy Helheim to be free",
+      "That Druth was responsible for Dillion's death"
+    ]
+  },
+  {
+    "question": "What is the name of the protagonist in the game Control?",
+    "correctAnswer": "Jesse Faden",
+    "wrongAnswers": [
+      "Alan Wake",
+      "Max Payne",
+      "Sarah Breaker",
+      "Casper Darling",
+      "Helen Marshall",
+      "Emily Pope"
+    ]
+  },
+  {
+    "question": "In the game Control, what is the name of the secretive government agency Jesse Faden infiltrates?",
+    "correctAnswer": "Federal Bureau of Control (FBC)",
+    "wrongAnswers": [
+      "Federal Bureau of Investigation (FBI)",
+      "Central Intelligence Agency (CIA)",
+      "Altered World Events Commission (AWEC)",
+      "Paranormal Research Division (PRD)",
+      "Office of Paranormal Affairs (OPA)",
+      "The Oldest Agency"
+    ]
+  },
+  {
+    "question": "What is the primary supernatural enemy force in the game Control?",
+    "correctAnswer": "The Hiss",
+    "wrongAnswers": [
+      "The Taken",
+      "The Mold",
+      "The Dark Presence",
+      "The Astral Plane entities",
+      "The Former",
+      "The Board"
+    ]
+  },
+  {
+    "question": "In the game Control, what is the name of the building where most of the story unfolds?",
+    "correctAnswer": "The Oldest House",
+    "wrongAnswers": [
+      "The Bright Falls Lodge",
+      "The Panopticon",
+      "The Foundation",
+      "The Black Quarry",
+      "The Ashtray Maze",
+      "The Bureau Headquarters"
+    ]
+  },
+  {
+    "question": "In the game Control, who is Jesse Faden searching for when she arrives at the Oldest House?",
+    "correctAnswer": "Her brother, Dylan Faden",
+    "wrongAnswers": [
+      "Her former partner, Alan Wake",
+      "The previous Director, Zachariah Trench",
+      "Her childhood friend, Emily Pope",
+      "The head of research, Casper Darling",
+      "A rogue agent",
+      "Her parents"
+    ]
+  },
+  {
+    "question": "What is the Service Weapon in the game Control?",
+    "correctAnswer": "An Object of Power that can change forms and chooses the FBC Director",
+    "wrongAnswers": [
+      "A standard issue FBC firearm",
+      "A weapon created by the Hiss",
+      "A tool for repairing the Oldest House",
+      "A device to communicate with the Board",
+      "A key to escape the Oldest House",
+      "A prototype energy weapon"
+    ]
+  },
+  {
+    "question": "In the game Control, who or what is Polaris?",
+    "correctAnswer": "A benevolent paranatural entity that resides within Jesse",
+    "wrongAnswers": [
+      "The leader of the Hiss",
+      "An AI created by Dr. Darling",
+      "The codename for Dylan Faden",
+      "A member of the Board",
+      "A former Director of the FBC",
+      "A powerful Object of Power"
+    ]
+  },
+  {
+    "question": "What is the role of the entity known as the Board in the game Control?",
+    "correctAnswer": "A mysterious, extradimensional entity/group that communicates cryptically and influences the FBC",
+    "wrongAnswers": [
+      "The FBC's internal affairs department",
+      "A council of former Directors",
+      "The human governing body overseeing the FBC",
+      "A Hiss-corrupted AI",
+      "A group of rogue FBC agents",
+      "The architects of the Oldest House"
+    ]
+  },
+  {
+    "question": "In the game Control, what is an Object of Power (OoP)?",
+    "correctAnswer": "Mundane items that have become paranaturally charged and grant abilities",
+    "wrongAnswers": [
+      "Weapons designed by the FBC",
+      "Hiss artifacts",
+      "Keys to different dimensions",
+      "Sources of energy for the Oldest House",
+      "Ancient alien relics",
+      "Figments of Jesse's imagination"
+    ]
+  },
+  {
+    "question": "Who is the character Ahti in the game Control?",
+    "correctAnswer": "The enigmatic Finnish janitor of the Oldest House with seemingly paranatural awareness",
+    "wrongAnswers": [
+      "The head of security",
+      "A Hiss-corrupted agent",
+      "Dr. Darling's assistant",
+      "A figment of Jesse's imagination",
+      "The former Director Trench's confidant",
+      "A captured paranatural entity"
+    ]
+  },
+  {
+    "question": "In the game Control, what is the significance of the Ashtray Maze?",
+    "correctAnswer": "A constantly shifting section of the Oldest House that requires specific music to navigate",
+    "wrongAnswers": [
+      "The main Hiss stronghold",
+      "The location of the FBC's archives",
+      "A training facility for FBC agents",
+      "A prison for dangerous Altered Items",
+      "The entrance to the Astral Plane",
+      "A dimensional gateway"
+    ]
+  },
+  {
+    "question": "In the game Control, which FBC department head is known for his enthusiastic video presentations?",
+    "correctAnswer": "Dr. Casper Darling",
+    "wrongAnswers": [
+      "Director Zachariah Trench",
+      "Head of Security Helen Marshall",
+      "Lead Researcher Emily Pope",
+      "Janitor Ahti",
+      "Dylan Faden",
+      "Salvador the security chief"
+    ]
+  },
+  {
+    "question": "In the 'Foundation' DLC for the game Control, what is the Foundation?",
+    "correctAnswer": "The literal bedrock and oldest part of the Oldest House, where its rules are less stable",
+    "wrongAnswers": [
+      "A rival organization to the FBC",
+      "The Hiss's home dimension",
+      "A new type of Object of Power",
+      "An FBC department focused on construction",
+      "A charity organization run by the FBC",
+      "The source of Polaris's power"
+    ]
+  },
+  {
+    "question": "What is a primary theme in the game Control related to bureaucracy and information?",
+    "correctAnswer": "The often absurd and obfuscating nature of large organizations and the power of redacted or hidden knowledge",
+    "wrongAnswers": [
+      "The efficiency of government agencies",
+      "The complete transparency of the FBC",
+      "The idea that all information should be free",
+      "The destruction of all bureaucratic systems",
+      "The simplicity of understanding the paranatural",
+      "The infallibility of authority figures"
+    ]
+  },
+  {
+    "question": "In the game Control, what ability does the Floppy Disk Object of Power grant Jesse?",
+    "correctAnswer": "Launch (telekinesis)",
+    "wrongAnswers": [
+      "Shield",
+      "Seize",
+      "Levitate",
+      "Evade",
+      "Ground Slam"
+    ]
+  },
+  {
+    "question": "In the lore of the game Control, what is the 'Ordinary AWE'?",
+    "correctAnswer": "The Altered World Event that occurred in Jesse and Dylan's hometown, involving a slide projector",
+    "wrongAnswers": [
+      "The event that created the Hiss",
+      "The FBC's term for a minor paranatural incident",
+      "A codename for the Oldest House itself",
+      "A training simulation for FBC agents",
+      "The first Object of Power ever discovered",
+      "A town completely erased from existence"
+    ]
+  },
+  {
+    "question": "In the game Control, who was the Director of the FBC immediately before Jesse Faden?",
+    "correctAnswer": "Zachariah Trench",
+    "wrongAnswers": [
+      "Casper Darling",
+      "Northmoor",
+      "Helen Marshall",
+      "Dylan Faden",
+      "Ahti",
+      "The Board"
+    ]
+  },
+  {
+    "question": "What is the Astral Plane in the game Control?",
+    "correctAnswer": "A white, featureless dimension that is the source of Objects of Power and where the Board resides",
+    "wrongAnswers": [
+      "The Hiss dimension",
+      "A dream world Jesse visits",
+      "The FBC's main computer network",
+      "A physical location within the Oldest House",
+      "The afterlife for FBC agents",
+      "A parallel Earth"
+    ]
+  },
+  {
+    "question": "In the game Control, what is the Mold?",
+    "correctAnswer": "A hostile, spreading fungal consciousness found in the lower levels of the Oldest House",
+    "wrongAnswers": [
+      "A byproduct of Hiss corruption",
+      "A failed FBC experiment",
+      "A type of Object of Power",
+      "A cleaning agent used by Ahti",
+      "A beneficial organism that strengthens the Oldest House",
+      "The source of Jesse's powers"
+    ]
+  },
+  {
+    "question": "In the game Control, what is the primary visual motif associated with the Hiss?",
+    "correctAnswer": "Red, shifting, crystalline structures and distorted humanoids chanting",
+    "wrongAnswers": [
+      "Dark, shadowy figures",
+      "Green, glowing ooze",
+      "Metallic, robotic entities",
+      "Invisible forces",
+      "Pure white light",
+      "Plant-like tendrils"
+    ]
   }
 ]

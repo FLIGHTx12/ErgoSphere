@@ -1522,5 +1522,365 @@
       "The General",
       "The King"
     ]
+  },
+  {
+    "question": "How long is an NBA regulation game?",
+    "correctAnswer": "48 minutes",
+    "wrongAnswers": [
+      "40 minutes",
+      "50 minutes",
+      "60 minutes",
+      "45 minutes",
+      "55 minutes",
+      "36 minutes"
+    ]
+  },
+  {
+    "question": "How many quarters are in an NBA game?",
+    "correctAnswer": "4",
+    "wrongAnswers": [
+      "2",
+      "3",
+      "5",
+      "6",
+      "1",
+      "8"
+    ]
+  },
+  {
+    "question": "How long is each quarter in an NBA game?",
+    "correctAnswer": "12 minutes",
+    "wrongAnswers": [
+      "10 minutes",
+      "15 minutes",
+      "8 minutes",
+      "11 minutes",
+      "14 minutes",
+      "9 minutes"
+    ]
+  },
+  {
+    "question": "How long is halftime in an NBA game?",
+    "correctAnswer": "15 minutes",
+    "wrongAnswers": [
+      "10 minutes",
+      "20 minutes",
+      "12 minutes",
+      "18 minutes",
+      "5 minutes",
+      "25 minutes"
+    ]
+  },
+  {
+    "question": "How many seconds does a team have to advance the ball past half-court?",
+    "correctAnswer": "8 seconds",
+    "wrongAnswers": [
+      "10 seconds",
+      "5 seconds",
+      "12 seconds",
+      "6 seconds",
+      "7 seconds",
+      "9 seconds"
+    ]
+  },
+  {
+    "question": "What is the maximum number of personal fouls a player can commit before fouling out in an NBA game?",
+    "correctAnswer": "6",
+    "wrongAnswers": [
+      "5",
+      "7",
+      "4",
+      "8",
+      "3",
+      "9"
+    ]
+  },
+  {
+    "question": "How long is the NBA shot clock?",
+    "correctAnswer": "24 seconds",
+    "wrongAnswers": [
+      "30 seconds",
+      "20 seconds",
+      "35 seconds",
+      "18 seconds",
+      "22 seconds",
+      "26 seconds"
+    ]
+  },
+  {
+    "question": "What is the penalty for a defensive three-second violation?",
+    "correctAnswer": "Technical foul and one free throw",
+    "wrongAnswers": [
+      "Loss of possession",
+      "Two free throws",
+      "Personal foul",
+      "Warning",
+      "One free throw and possession",
+      "Team foul"
+    ]
+  },
+  {
+    "question": "How many timeouts does each team get per regulation NBA game?",
+    "correctAnswer": "7",
+    "wrongAnswers": [
+      "6",
+      "8",
+      "5",
+      "9",
+      "4",
+      "10"
+    ]
+  },
+  {
+    "question": "How long is an NBA overtime period?",
+    "correctAnswer": "5 minutes",
+    "wrongAnswers": [
+      "3 minutes",
+      "4 minutes",
+      "6 minutes",
+      "10 minutes",
+      "2 minutes",
+      "8 minutes"
+    ]
+  },
+  {
+    "question": "What is the term for illegally moving with the basketball without dribbling?",
+    "correctAnswer": "Traveling",
+    "wrongAnswers": [
+      "Carrying",
+      "Double dribble",
+      "Palming",
+      "Goaltending",
+      "Foul",
+      "Stepping"
+    ]
+  },
+  {
+    "question": "How far is the NBA three-point line from the basket at its closest point (corners)?",
+    "correctAnswer": "22 feet",
+    "wrongAnswers": [
+      "23 feet, 9 inches",
+      "20 feet",
+      "21 feet, 6 inches",
+      "24 feet",
+      "22 feet, 6 inches",
+      "21 feet"
+    ]
+  },
+  {
+    "question": "How far is the NBA three-point line from the basket at the top of the arc?",
+    "correctAnswer": "23 feet, 9 inches",
+    "wrongAnswers": [
+      "22 feet",
+      "24 feet",
+      "23 feet",
+      "22 feet, 6 inches",
+      "24 feet, 3 inches",
+      "25 feet"
+    ]
+  },
+  {
+    "question": "What is it called when a defensive player interferes with a shot on its downward trajectory towards the basket?",
+    "correctAnswer": "Goaltending",
+    "wrongAnswers": [
+      "Basket interference",
+      "Blocking foul",
+      "Shooting foul",
+      "Illegal block",
+      "Defensive foul",
+      "Reaching in"
+    ]
+  },
+  {
+    "question": "How many technical fouls result in an automatic ejection for a player in an NBA game?",
+    "correctAnswer": "2",
+    "wrongAnswers": [
+      "1",
+      "3",
+      "4",
+      "5",
+      "No limit",
+      "Depends on severity"
+    ]
+  },
+  {
+    "question": "What is the term for when an offensive player makes illegal contact with a defender who has established position?",
+    "correctAnswer": "Charging foul",
+    "wrongAnswers": [
+      "Blocking foul",
+      "Pushing foul",
+      "Illegal screen",
+      "Holding foul",
+      "Tripping",
+      "Flagrant foul"
+    ]
+  },
+  {
+    "question": "How many seconds can an offensive player stay in the painted area (key) without actively possessing the ball or moving out?",
+    "correctAnswer": "3 seconds",
+    "wrongAnswers": [
+      "5 seconds",
+      "4 seconds",
+      "2 seconds",
+      "6 seconds",
+      "No limit if moving",
+      "1 second"
+    ]
+  },
+  {
+    "question": "What is the minimum number of players a team must have on the court to start an NBA game?",
+    "correctAnswer": "5",
+    "wrongAnswers": [
+      "4",
+      "3",
+      "6",
+      "2",
+      "1",
+      "8"
+    ]
+  },
+  {
+    "question": "What is the result of a 'double dribble' violation?",
+    "correctAnswer": "Turnover (loss of possession)",
+    "wrongAnswers": [
+      "Personal foul",
+      "Technical foul",
+      "One free throw for the opponent",
+      "Warning",
+      "Jump ball",
+      "Two free throws for the opponent"
+    ]
+  },
+  {
+    "question": "What is the lane violation where a player enters the lane too early on a free throw attempt?",
+    "correctAnswer": "Free throw lane violation",
+    "wrongAnswers": [
+      "Goaltending",
+      "Three-second violation",
+      "Shooting foul",
+      "Traveling",
+      "Illegal screen",
+      "Offensive foul"
+    ]
+  },
+  {
+    "question": "Under what specific circumstance can a player legally commit basket interference on a free throw attempt?",
+    "correctAnswer": "Never, it's always a violation",
+    "wrongAnswers": [
+      "If the ball hits the rim first",
+      "On the second of two free throws if it won't go in",
+      "If the shooter's foot is on the line",
+      "During the last two minutes of a game",
+      "If the defender touches the net first",
+      "If the ball is clearly missing the basket"
+    ]
+  },
+  {
+    "question": "What is the 'Respect for the Game' rule primarily concerned with?",
+    "correctAnswer": "Player and coach conduct towards officials and the game",
+    "wrongAnswers": [
+      "Uniform violations",
+      "Shot clock operation",
+      "Substitutions",
+      "Media availability",
+      "Court dimensions",
+      "Pre-game warm-up procedures"
+    ]
+  },
+  {
+    "question": "How many players must a team have dressed and eligible to play to avoid a forfeit?",
+    "correctAnswer": "8",
+    "wrongAnswers": [
+      "5",
+      "6",
+      "7",
+      "9",
+      "10",
+      "12"
+    ]
+  },
+  {
+    "question": "What is a 'clear path foul'?",
+    "correctAnswer": "A foul on an offensive player with no defender between them and the basket during a fast break",
+    "wrongAnswers": [
+      "A foul committed away from the ball",
+      "An excessively hard foul",
+      "A foul on a player attempting a dunk",
+      "A foul by the last defender back",
+      "A foul that stops a fast break with multiple defenders present",
+      "A technical foul for arguing a call"
+    ]
+  },
+  {
+    "question": "What is the 'punching foul' penalty in the NBA, even if no contact is made?",
+    "correctAnswer": "Automatic ejection and possible suspension",
+    "wrongAnswers": [
+      "Flagrant 1 foul",
+      "Flagrant 2 foul",
+      "Technical foul",
+      "Personal foul",
+      "Warning",
+      "Two free throws and possession"
+    ]
+  },
+  {
+    "question": "In the NBA, if a player is bleeding, what is the immediate procedure?",
+    "correctAnswer": "The player must be removed from the game until the bleeding is stopped and covered",
+    "wrongAnswers": [
+      "The player can continue if the bleeding is minor",
+      "The game is stopped for a 'blood timeout'",
+      "The opposing team gets a free throw",
+      "The player receives a technical foul",
+      "The player can stay if they wipe the blood quickly",
+      "A team timeout must be called"
+    ]
+  },
+  {
+    "question": "What is the 'delay of game' penalty if a team is not ready to start a period on time?",
+    "correctAnswer": "Technical foul",
+    "wrongAnswers": [
+      "Loss of a timeout",
+      "Warning",
+      "Personal foul on the coach",
+      "One free throw",
+      "Loss of possession",
+      "Fine"
+    ]
+  },
+  {
+    "question": "What is the maximum number of players a team can have on its active list for a game?",
+    "correctAnswer": "13 (plus 2 two-way players)",
+    "wrongAnswers": [
+      "12 (plus 2 two-way players)",
+      "15 (all active)",
+      "10",
+      "14 (plus 2 two-way players)",
+      "16",
+      "11 (plus 2 two-way players)"
+    ]
+  },
+  {
+    "question": "What happens if a player attempts a free throw with the wrong foot placement (e.g., foot over the line before release)?",
+    "correctAnswer": "Violation, the free throw is nullified.",
+    "wrongAnswers": [
+      "Technical foul",
+      "Personal foul",
+      "Reshoot the free throw",
+      "Warning, then technical foul",
+      "Opponent gets possession",
+      "No penalty if the shot is missed"
+    ]
+  },
+  {
+    "question": "What is the 'Rule of Verticality' in NBA defense?",
+    "correctAnswer": "A defender has the right to the space from the floor to the ceiling within their vertical plane.",
+    "wrongAnswers": [
+      "A player must jump straight up to contest a shot.",
+      "A defender cannot reach across the offensive player.",
+      "A defender must maintain a certain distance from the shooter.",
+      "A defender cannot undercut a shooter.",
+      "A defender's arms must be straight up.",
+      "A defender cannot make contact above the offensive player's shoulders."
+    ]
   }
 ]
