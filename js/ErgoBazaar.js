@@ -20,6 +20,9 @@ const fileCache = {};
 // Add a flag to track if any dropdown is currently in use
 let isDropdownActive = false;
 
+// Add a counter to track additional dropdowns per category
+const categoryDropdownCounts = {}
+
 // Function to fetch options from JSON file with cache validation
 const fetchOptions = async (filePath) => {
   try {
@@ -231,41 +234,99 @@ function restoreErgoBazaarState() {
   });
 }
 
+// Function to create a new dropdown for a category
+function addDropdownToCategory(categoryDiv) {
+  const catName = categoryDiv.getAttribute('data-category');
+  
+  // Initialize counter if not exists
+  if (!categoryDropdownCounts[catName]) {
+    categoryDropdownCounts[catName] = 0;
+  }
+  
+  categoryDropdownCounts[catName]++;
+  
+  // Create new select element
+  const newSelect = document.createElement('select');
+  newSelect.className = 'ent-select dynamic-dropdown';
+  newSelect.id = `${catName.replace(/\s+/g, '-').toLowerCase()}-select-${categoryDropdownCounts[catName] + 2}`;
+  
+  // Add default option
+  newSelect.innerHTML = '<option value="0">Select</option>';
+  
+  // Find the add button and move it after the new dropdown
+  const addButton = categoryDiv.querySelector('.category-add-btn');
+  const totalSpan = categoryDiv.querySelector('.category-total');
+  
+  // Insert new dropdown before the add button
+  categoryDiv.insertBefore(newSelect, addButton);
+  categoryDiv.insertBefore(document.createElement('br'), addButton);
+  
+  // Populate with options
+  refreshCategoryOptions(categoryDiv);
+  
+  // Add event listeners
+  newSelect.addEventListener('change', function() {
+    saveErgoBazaarState();
+    updateCategoryTotal(categoryDiv);
+    updateAllCategoryTotalsAndOverall();
+  });
+  
+  // Track dropdown activity
+  newSelect.addEventListener('mousedown', function() {
+    isDropdownActive = true;
+  });
+  
+  newSelect.addEventListener('blur', function() {
+    setTimeout(() => { isDropdownActive = false; }, 100);
+  });
+}
+
 // Helper function to update a category's total cost.
 function updateCategoryTotal(categoryDiv) {
   // Get category name to check if it's YouTube Theater
   const catName = categoryDiv.getAttribute('data-category');
   
   // Determine cost multiplier based on user type and category
-  let multiplier = (userType === "KUSHINDWA") ? 30 : 20;
+  let baseCost = (userType === "KUSHINDWA") ? 30 : 20;
   
   // Special pricing for YouTube Theater
   if (catName === "YouTube Theater") {
-    multiplier = (userType === "KUSHINDWA") ? 20 : 10;
+    baseCost = (userType === "KUSHINDWA") ? 20 : 10;
   }
   
   let count = 0;
   let discountEyeCount = 0;
   let greenDotCost = 0;
+  let totalCost = 0;
 
-  categoryDiv.querySelectorAll('.ent-select').forEach(select => {
+  categoryDiv.querySelectorAll('.ent-select').forEach((select, index) => {
     if (select.selectedIndex > 0) {
       count++;
       const selectedText = select.options[select.selectedIndex].text;
+      
+      // Calculate cost with scaling for additional dropdowns
+      let itemCost = baseCost;
+      if (index >= 2) { // Third dropdown and beyond
+        const scalingFactor = 1 + (0.3 * (index - 1)); // 30% increase per additional dropdown
+        itemCost = Math.round(baseCost * scalingFactor);
+      }
+      
+      totalCost += itemCost;
+      
       // Count eye emojis in the selected option for discount calculation
       const eyeCount = (selectedText.match(/👀/g) || []).length;
       discountEyeCount += eyeCount;
+      
       // Count 🟢 and add 2 per each
       const greenCount = (selectedText.match(/🟢/g) || []).length;
       greenDotCost += greenCount * 2;
     }
   });
 
-  // Calculate base cost and discount
-  const baseCost = count * multiplier + greenDotCost;
+  // Calculate discount (applies to total base cost, not green dots)
   const discountPercentage = discountEyeCount * 0.2; // 20% per eye emoji
-  const discountAmount = Math.round((count * multiplier) * discountPercentage); // discount only applies to base, not greenDotCost
-  const finalCost = baseCost - discountAmount;
+  const discountAmount = Math.round(totalCost * discountPercentage);
+  const finalCost = totalCost + greenDotCost - discountAmount;
 
   // Update the visible total inside the category div.
   const totalElem = categoryDiv.querySelector('.category-total');
@@ -275,6 +336,7 @@ function updateCategoryTotal(categoryDiv) {
     if (discountAmount > 0) display += ` (${discountAmount} off)`;
     totalElem.textContent = display;
   }
+  
   // Return the final cost for use in overall total
   return finalCost;
 }
@@ -384,40 +446,57 @@ document.addEventListener('DOMContentLoaded', () => {
         let catCount = 0;
         let categoryEyeCount = 0;
         let categoryGreenDotCost = 0;
+        let categoryTotalCost = 0;
         
-        selects.forEach(select => {
+        // Determine base cost multiplier
+        let baseCost = (userType === "KUSHINDWA") ? 30 : 20;
+        if (catName === "YouTube Theater") {
+          baseCost = (userType === "KUSHINDWA") ? 20 : 10;
+        }
+        
+        selects.forEach((select, index) => {
           if (select.selectedIndex > 0) {
             const selectedText = select.options[select.selectedIndex].text;
-            selections.push(selectedText);
+            
+            // Calculate cost with scaling for additional dropdowns
+            let itemCost = baseCost;
+            if (index >= 2) {
+              const scalingFactor = 1 + (0.3 * (index - 1));
+              itemCost = Math.round(baseCost * scalingFactor);
+            }
+            
+            categoryTotalCost += itemCost;
+            
+            // Add scaling indicator to selection text if applicable
+            let displayText = selectedText;
+            if (index >= 2) {
+              const scalingPercentage = (index - 1) * 30;
+              displayText += ` <span style="color:orange">[+${scalingPercentage}% cost]</span>`;
+            }
+            
+            selections.push(displayText);
             catCount++;
+            
             // Count eye emojis for discount
             const eyeCount = (selectedText.match(/👀/g) || []).length;
             categoryEyeCount += eyeCount;
+            
             // Count 🟢 for extra cost
             const greenCount = (selectedText.match(/🟢/g) || []).length;
             categoryGreenDotCost += greenCount * 2;
           }
         });
         
-        // Determine cost multiplier based on user type and category
-        let multiplier = (userType === "KUSHINDWA") ? 30 : 20;
-        
-        // Special pricing for YouTube Theater
-        if (catName === "YouTube Theater") {
-          multiplier = (userType === "KUSHINDWA") ? 20 : 10;
-        }
-        
-        const baseCatTotal = catCount * multiplier;
-        const discountPercentage = categoryEyeCount * 0.2; // 20% per eye emoji
-        const discountAmount = Math.round(baseCatTotal * discountPercentage);
-        const finalCatTotal = baseCatTotal + categoryGreenDotCost - discountAmount;
+        const discountPercentage = categoryEyeCount * 0.2;
+        const discountAmount = Math.round(categoryTotalCost * discountPercentage);
+        const finalCatTotal = categoryTotalCost + categoryGreenDotCost - discountAmount;
         
         overallTotal += finalCatTotal;
         overallDiscount += discountAmount;
         
         if (selections.length > 0) {
           let catSummary = `<li><strong><u>${catName}:</u></strong><br>${selections.join('<br>')}`;
-          catSummary += ` - <em>${baseCatTotal} 💷`;
+          catSummary += ` - <em>${categoryTotalCost} 💷`;
           if (categoryGreenDotCost > 0) catSummary += ` +${categoryGreenDotCost}🟢`;
           catSummary += `</em>`;
           if (discountAmount > 0) {
@@ -468,4 +547,11 @@ document.addEventListener('DOMContentLoaded', () => {
     captureScreenshot(summaryDiv);
   });
 
+  // Add click handlers for category add buttons
+  document.querySelectorAll('.category-add-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const categoryDiv = this.closest('.category');
+      addDropdownToCategory(categoryDiv);
+    });
+  });
 });
