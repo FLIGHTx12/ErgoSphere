@@ -1456,5 +1456,121 @@ function showTrivia() {
     startTriviaTimer(); // Start the timer when trivia is shown
 }
 
-// ...existing code...
+// Add trivia timeout event listener
+document.addEventListener('triviaTimeout', handleTriviaTimeout);
+  
+// Add trivia wrong answer event listener
+document.addEventListener('triviaWrongAnswer', handleTriviaWrongAnswer);
+  
+// Function to handle trivia timeout and heal boss
+function handleTriviaTimeout() {
+    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
+                                     .find(c => c.style.display === "block");
+    if (!activeMonsterContainer) return;
+
+    const selectedMonsterIndex = document.getElementById("monsterDropdown").value;
+    if (selectedMonsterIndex === "") return;
+
+    const monster = monsters[selectedMonsterIndex];
+    const lifeBarGreen = activeMonsterContainer.querySelector("#lifeBarGreen");
+    const lifeBarText = activeMonsterContainer.querySelector("#lifeBarText");
+    const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
+    
+    if (!monster || !lifeBarGreen || !lifeBarText || !historyContainer) return;
+
+    // Get current health from the display
+    const currentHealthText = lifeBarText.textContent;
+    let currentHealth = parseInt(currentHealthText);
+    const maxHealth = monster.health; // Original max health from monster data
+    
+    // Heal boss by 10 points, but don't exceed max health
+    const oldHealth = currentHealth;
+    currentHealth = Math.min(currentHealth + 10, maxHealth);
+    const actualHealing = currentHealth - oldHealth;
+    
+    if (actualHealing > 0) {
+      // Update life bar display
+      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
+      lifeBarText.textContent = currentHealth;
+      
+      // Add healing message to battle log
+      const healMessage = `⏰ Trivia timeout! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
+      historyContainer.innerHTML += `<p style="color:#f39c12; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
+      historyContainer.innerHTML += `<hr>`;
+      historyContainer.scrollTop = historyContainer.scrollHeight;
+      
+      // Visual feedback - green flash on monster
+      const monsterImage = activeMonsterContainer.querySelector(".monster-image img");
+      if (monsterImage) {
+        monsterImage.style.filter = "hue-rotate(120deg) brightness(1.3)";
+        setTimeout(() => {
+          monsterImage.style.filter = "";
+        }, 500);
+      }
+      
+      // Play a healing sound effect
+      const healSound = new Audio('../assets/audio/healer.mp3');
+      healSound.volume = 0.3;
+      healSound.play().catch(err => console.error("Error playing heal sound:", err));
+      
+      console.log(`Boss healed: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+    }
+  }
+
+  // Function to handle wrong trivia answers and heal boss
+  function handleTriviaWrongAnswer() {
+    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
+                                     .find(c => c.style.display === "block");
+    if (!activeMonsterContainer) return;
+
+    const selectedMonsterIndex = document.getElementById("monsterDropdown").value;
+    if (selectedMonsterIndex === "") return;
+
+    const monster = monsters[selectedMonsterIndex];
+    const lifeBarGreen = activeMonsterContainer.querySelector("#lifeBarGreen");
+    const lifeBarText = activeMonsterContainer.querySelector("#lifeBarText");
+    const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
+    
+    if (!monster || !lifeBarGreen || !lifeBarText || !historyContainer) return;
+
+    // Get current health from the display
+    const currentHealthText = lifeBarText.textContent;
+    let currentHealth = parseInt(currentHealthText);
+    const maxHealth = monster.health; // Original max health from monster data
+    
+    // Heal boss by 50 points for wrong answer, but don't exceed max health
+    const oldHealth = currentHealth;
+    currentHealth = Math.min(currentHealth + 50, maxHealth);
+    const actualHealing = currentHealth - oldHealth;
+    
+    if (actualHealing > 0) {
+      // Update life bar display
+      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
+      lifeBarText.textContent = currentHealth;
+      
+      // Add healing message to battle log
+      const healMessage = `❌ Wrong answer! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
+      historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
+      historyContainer.innerHTML += `<hr>`;
+      historyContainer.scrollTop = historyContainer.scrollHeight;
+      
+      // Visual feedback - red flash on monster (different from timeout)
+      const monsterImage = activeMonsterContainer.querySelector(".monster-image img");
+      if (monsterImage) {
+        monsterImage.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
+        setTimeout(() => {
+          monsterImage.style.filter = "";
+        }, 700);
+      }
+      
+      // Play a different healing sound effect for wrong answers
+      const wrongHealSound = new Audio('../assets/audio/healer.mp3');
+      wrongHealSound.volume = 0.4;
+      wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
+      wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
+      
+      console.log(`Boss healed from wrong answer: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+    }
+  }
+
 });

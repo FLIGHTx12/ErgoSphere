@@ -21,6 +21,7 @@ class TriviaManager {
     this.damageMultiplier = 0;
     this.triviaContainer = null;
     this.isActive = false;
+    this.questionTime = 30; // Default question time limit
     
     // Load all trivia data
     this.loadTriviaData();
@@ -67,6 +68,7 @@ class TriviaManager {
           <span id="timeLeft">30s</span>
         </div>
       </div>
+      <div id="triviaFeedback" class="feedback" style="display:none;"></div>
     `;    // Position the trivia container higher up for better PC monitor visibility
     triviaContainer.style.position = "absolute";
     triviaContainer.style.top = "470px"; // Raised position for better visibility - matches CSS
@@ -200,42 +202,56 @@ class TriviaManager {
   }
 
   startQuestionTimer() {
-    if (this.questionTimer) {
-      clearInterval(this.questionTimer);
-    }
+    this.timeLeft = this.questionTime;
+    this.updateTimerDisplay();
+    
+    this.timer = setInterval(() => {
+      this.timeLeft--;
+      this.updateTimerDisplay();
+      
+      if (this.timeLeft <= 0) {
+        clearInterval(this.timer);
+        
+        // Dispatch trivia timeout event for boss healing
+        const triviaTimeoutEvent = new CustomEvent('triviaTimeout', {
+          detail: {
+            message: 'Trivia question timed out',
+            healingAmount: 10
+          }
+        });
+        document.dispatchEvent(triviaTimeoutEvent);
+        
+        this.showFeedback('Time\'s up! Boss healed 10 HP!', 'timeout');
+        this.disableAnswers();
+        
+        // Start the next question after a short delay
+        setTimeout(() => {
+          this.resetMultiplier();
+          this.loadNextQuestion();
+        }, 3000);
+      }
+    }, 1000);
+  }
 
-    let timeLeft = 30; // 30 seconds per question
+  updateTimerDisplay() {
     const progressBar = this.triviaContainer.querySelector('#questionProgress');
     const timeDisplay = this.triviaContainer.querySelector('#timeLeft');
 
-    const updateTimer = () => {
-      timeLeft--;
-      timeDisplay.textContent = `${timeLeft}s`;
-      
-      // Update progress bar
-      const progress = (timeLeft / 30) * 100;
-      progressBar.style.width = `${progress}%`;
-      
-      // Change color as time runs out
-      if (timeLeft <= 10) {
-        progressBar.style.backgroundColor = '#e74c3c';
-      } else if (timeLeft <= 20) {
-        progressBar.style.backgroundColor = '#f39c12';
-      } else {
-        progressBar.style.backgroundColor = '#27ae60';
-      }
-
-      if (timeLeft <= 0) {
-        this.handleTimeout();
-      }
-    };
-
-    // Initial update
-    timeDisplay.textContent = `${timeLeft}s`;
-    progressBar.style.width = '100%';
-    progressBar.style.backgroundColor = '#27ae60';
-
-    this.questionTimer = setInterval(updateTimer, 1000);
+    // Update time display
+    timeDisplay.textContent = `${this.timeLeft}s`;
+    
+    // Update progress bar
+    const progress = (this.timeLeft / this.questionTime) * 100;
+    progressBar.style.width = `${progress}%`;
+    
+    // Change color as time runs out
+    if (this.timeLeft <= 10) {
+      progressBar.style.backgroundColor = '#e74c3c';
+    } else if (this.timeLeft <= 20) {
+      progressBar.style.backgroundColor = '#f39c12';
+    } else {
+      progressBar.style.backgroundColor = '#27ae60';
+    }
   }
 
   handleAnswer(selectedAnswer) {
@@ -265,7 +281,21 @@ class TriviaManager {
       this.updateMultiplierDisplay();
       this.showFeedback('Correct! +0.5 damage multiplier!', 'success');
     } else {
-      this.showFeedback('Wrong answer!', 'error');
+      // Wrong answer - dispatch event for boss healing
+      const correctIndex = this.currentQuestion.correct;
+      answerButtons[correctIndex].classList.add('correct-answer');
+      
+      // Dispatch wrong answer event for boss healing
+      const triviaWrongAnswerEvent = new CustomEvent('triviaWrongAnswer', {
+        detail: {
+          message: 'Wrong trivia answer',
+          healingAmount: 50
+        }
+      });
+      document.dispatchEvent(triviaWrongAnswerEvent);
+      
+      this.showFeedback('Wrong answer! Boss healed 50 HP!', 'error');
+      this.resetMultiplier();
     }
 
     // Load new question after 3 seconds
@@ -301,15 +331,42 @@ class TriviaManager {
   }
 
   showFeedback(message, type) {
-    const questionText = this.triviaContainer.querySelector('#questionText');
-    const originalContent = questionText.innerHTML;
-    
-    questionText.innerHTML = `<div class="feedback ${type}">${message}</div>`;
-    
-    // Restore original content after 2 seconds
-    setTimeout(() => {
-      questionText.innerHTML = originalContent;
-    }, 2000);
+    const feedback = this.triviaContainer.querySelector('#triviaFeedback');
+    if (feedback) {
+      feedback.textContent = message;
+      feedback.className = `feedback ${type}`;
+      feedback.style.display = 'block';
+      
+      // Auto-hide feedback after a few seconds (but keep trivia visible)
+      setTimeout(() => {
+        feedback.style.display = 'none';
+      }, 2500);
+    }
+  }
+
+  disableAnswers() {
+    const answerButtons = this.triviaContainer.querySelectorAll('.answer-btn');
+    answerButtons.forEach(btn => {
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+    });
+  }
+
+  // Remove the hideTrivia call from timeout handling
+  // Keep the hideTrivia method for manual hiding only
+  hideTrivia() {
+    if (this.triviaContainer) {
+      this.triviaContainer.style.display = 'none';
+    }
+    this.resetMultiplier();
+  }
+
+  // Add method to load next question after timeout
+  loadNextQuestion() {
+    if (this.triviaContainer && this.triviaContainer.style.display !== 'none') {
+      // Re-enable the trivia system and load a new question
+      this.showRandomQuestion();
+    }
   }
 
   updateMultiplierDisplay() {
@@ -330,8 +387,9 @@ class TriviaManager {
   }
 
   resetMultiplier() {
-    this.damageMultiplier = 0;
+    this.currentMultiplier = 1.0;
     this.updateMultiplierDisplay();
+    // Don't hide trivia here - only reset the multiplier
   }
 
   // Method to be called when damage is dealt
