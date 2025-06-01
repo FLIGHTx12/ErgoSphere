@@ -360,8 +360,8 @@ class TriviaManager {
       this.updateMultiplierDisplay();
       this.showFeedback('Correct! +0.5 memory sync multiplier!', 'success');
     } else {
-      // Wrong answer - reduce multiplier by 1.0 (but don't go below 0)
-      this.damageMultiplier = Math.max(0, this.damageMultiplier - 1.0);
+      // Wrong answer - reduce multiplier by 5.0 (but don't go below 0)
+      this.damageMultiplier = Math.max(0, this.damageMultiplier - 5.0);
       this.updateMultiplierDisplay();
       
       // Dispatch event for boss healing ONLY ONCE
@@ -373,7 +373,7 @@ class TriviaManager {
       });
       document.dispatchEvent(triviaWrongAnswerEvent);
       
-      this.showFeedback('Wrong answer! Boss healed 50 HP! -1.0 memory sync multiplier!', 'error');
+      this.showFeedback('Wrong answer! Boss healed 50 HP! -5.0 memory sync multiplier!', 'error');
     }
 
     // Load new question after 3 seconds
@@ -417,14 +417,14 @@ class TriviaManager {
     const triviaTimeoutEvent = new CustomEvent('triviaTimeout', {
       detail: {
         message: 'Trivia question timed out',
-        healingAmount: 10,
+        healingAmount: 20, // Changed from 10 to 20
         timestamp: Date.now() // Add timestamp for deduplication
       }
     });
     document.dispatchEvent(triviaTimeoutEvent);
     
     // Display feedback
-    this.showFeedback('Time\'s up! Boss healed 10 HP!', 'timeout');
+    this.showFeedback('Time\'s up! Boss healed 20 HP!', 'timeout');
 
     // Load new question after 3 seconds - use standard prepare method instead of recreating
     console.log('Scheduling next question in 3 seconds after timeout');

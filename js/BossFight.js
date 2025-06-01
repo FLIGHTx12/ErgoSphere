@@ -1077,9 +1077,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentHealth = parseInt(currentHealthText);
     const maxHealth = monster.health; // Original max health from monster data
     
-    // Heal boss by 10 points, but don't exceed max health
+    // Heal boss by 20 points, but don't exceed max health
     const oldHealth = currentHealth;
-    currentHealth = Math.min(currentHealth + 10, maxHealth);
+    currentHealth = Math.min(currentHealth + 20, maxHealth);
     const actualHealing = currentHealth - oldHealth;
     
     if (actualHealing > 0) {
