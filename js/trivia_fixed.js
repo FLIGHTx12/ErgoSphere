@@ -52,10 +52,11 @@ class TriviaManager {
     triviaContainer.id = "triviaContainer" + monsterContainerIndex;
     triviaContainer.className = "trivia-container";
     
-    triviaContainer.innerHTML = `      <div class="trivia-header">
-        <h3>🌐 DIMENSION SYNC</h3>
+    triviaContainer.innerHTML = `
+      <div class="trivia-header">
+        <h3>🧠 ULTIMATE TRIVIA</h3>
         <div class="multiplier-display">
-          <span>Memory Sync: </span>
+          <span>Damage Multiplier: </span>
           <span id="multiplierValue">×${(1 + this.damageMultiplier).toFixed(1)}</span>
         </div>
       </div>
@@ -350,7 +351,7 @@ class TriviaManager {
     if (isCorrect) {
       this.damageMultiplier += 0.5;
       this.updateMultiplierDisplay();
-      this.showFeedback('Correct! +0.5 memory sync multiplier!', 'success');
+      this.showFeedback('Correct! +0.5 damage multiplier!', 'success');
     } else {
       // Wrong answer - dispatch event for boss healing ONLY ONCE
       const triviaWrongAnswerEvent = new CustomEvent('triviaWrongAnswer', {

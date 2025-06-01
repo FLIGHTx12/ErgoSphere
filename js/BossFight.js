@@ -1289,181 +1289,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Global variables for trivia and boss fight system
-let triviaTimer;
-let triviaTimeLeft = 15;
-let currentMonster = null;
-
-// Function to handle trivia timeout - heals boss for 10 health
-function handleTriviaTimeout() {
-    clearInterval(triviaTimer);
-    
-    // Heal the boss for 10 health when time runs out
-    if (currentMonster && currentMonster.health > 0) {
-        const maxHealth = getMaxHealth();
-        const oldHealth = currentMonster.health;
-        currentMonster.health = Math.min(currentMonster.health + 10, maxHealth);
-        const actualHealing = currentMonster.health - oldHealth;
-        
-        // Update the life bar to show new health
-        updateLifeBar();
-        
-        // Log the healing event to history
-        const healMessage = `⏰ Time's up! ${currentMonster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentMonster.health})`;
-        addToHistory(healMessage, getCurrentPlayerName());
-        
-        console.log(`Boss healed: ${oldHealth} → ${currentMonster.health} (+${actualHealing})`); // Debug log
-    }
-    
-    // Show timeout feedback
-    const feedback = document.getElementById('triviaFeedback');
-    if (feedback) {
-        feedback.textContent = "Time's up!";
-        feedback.className = 'feedback timeout';
-        feedback.style.display = 'block';
-    }
-    
-    // Disable all answer buttons
-    const answerButtons = document.querySelectorAll('.answer-btn');
-    answerButtons.forEach(btn => btn.disabled = true);
-    
-    // Hide trivia after a delay
-    setTimeout(() => {
-        hideTriviaContainer();
-        if (feedback) {
-            feedback.style.display = 'none';
-        }
-    }, 2000);
-}
-
-// Start trivia timer function
-function startTriviaTimer() {
-    triviaTimeLeft = 15;
-    updateTimerDisplay();
-    
-    triviaTimer = setInterval(() => {
-        triviaTimeLeft--;
-        updateTimerDisplay();
-        
-        if (triviaTimeLeft <= 0) {
-            // Call our timeout handler
-            handleTriviaTimeout();
-        }
-    }, 1000);
-}
-
-// Update timer display
-function updateTimerDisplay() {
-    const timeLeftElement = document.getElementById('timeLeft');
-    const progressBar = document.querySelector('.progress-bar');
-    
-    if (timeLeftElement) {
-        timeLeftElement.textContent = triviaTimeLeft;
-    }
-    
-    if (progressBar) {
-        const percentage = (triviaTimeLeft / 15) * 100;
-        progressBar.style.setProperty('--progress', `${percentage}%`);
-    }
-}
-
-// Helper function to get the monster's maximum health
-function getMaxHealth() {
-    if (!currentMonster) return 0;
-    
-    // Find the monster in the monsters array to get its original max health
-    const monsterData = window.monsters?.find(m => m.name === currentMonster.name);
-    return monsterData ? monsterData.health : currentMonster.health;
-}
-
-// Helper function to get current player name
-function getCurrentPlayerName() {
-    const playerToggle = document.getElementById('playerToggle');
-    if (playerToggle) {
-        return playerToggle.classList.contains('player1Active') ? 'Jaybers8' : 'FLIGHTx12!';
-    }
-    return 'Player';
-}
-
-// Function to update life bar display
-function updateLifeBar() {
-    if (!currentMonster) return;
-    
-    const lifeBar = document.getElementById('lifeBar');
-    const lifeBarGreen = document.getElementById('lifeBarGreen');
-    const lifeBarText = document.getElementById('lifeBarText');
-    
-    if (lifeBar && lifeBarGreen && lifeBarText) {
-        const maxHealth = getMaxHealth();
-        const currentHealth = currentMonster.health;
-        const healthPercentage = Math.max(0, (currentHealth / maxHealth) * 100);
-        
-        // Update the green bar width
-        lifeBarGreen.style.width = healthPercentage + '%';
-        
-        // Update the text display
-        lifeBarText.textContent = `${currentHealth} / ${maxHealth}`;
-        
-        // Change color based on health percentage
-        if (healthPercentage > 60) {
-            lifeBarGreen.style.backgroundColor = '#27ae60'; // Green
-        } else if (healthPercentage > 30) {
-            lifeBarGreen.style.backgroundColor = '#f39c12'; // Orange
-        } else {
-            lifeBarGreen.style.backgroundColor = '#e74c3c'; // Red
-        }
-        
-        console.log(`Life bar updated: ${currentHealth}/${maxHealth} (${healthPercentage.toFixed(1)}%)`); // Debug log
-    } else {
-        console.log('Life bar elements not found'); // Debug log
-    }
-}
-
-// Function to add messages to history
-function addToHistory(message, playerName) {
-    const historyContainer = document.getElementById('historyContainer1') || document.getElementById('historyContainer2');
-    if (historyContainer) {
-        const messageElement = document.createElement('p');
-        messageElement.innerHTML = message;
-        messageElement.style.marginBottom = '5px';
-        messageElement.style.fontSize = '0.9rem';
-        
-        // Add timestamp
-        const timestamp = new Date().toLocaleTimeString();
-        messageElement.innerHTML += ` <span style="opacity: 0.6; font-size: 0.8rem;">[${timestamp}]</span>`;
-        
-        historyContainer.appendChild(messageElement);
-        historyContainer.scrollTop = historyContainer.scrollHeight;
-        
-        console.log(`Added to history: ${message}`); // Debug log
-    } else {
-        console.log('History container not found'); // Debug log
-    }
-}
-
-// Function to hide trivia container
-function hideTriviaContainer() {
-    const triviaContainer = document.querySelector('.trivia-container');
-    if (triviaContainer) {
-        triviaContainer.style.display = 'none';
-    }
-}
-
-// Make sure to call startTriviaTimer when trivia is shown
-// This should be called from your existing trivia system
-function showTrivia() {
-    // ...existing trivia display code...
-    startTriviaTimer(); // Start the timer when trivia is shown
-}
-
-// Add trivia timeout event listener
-document.addEventListener('triviaTimeout', handleTriviaTimeout);
+  // Keep only the event listeners for trivia events - remove all the duplicate functions
+  document.addEventListener('triviaTimeout', handleTriviaTimeout);
+  document.addEventListener('triviaWrongAnswer', handleTriviaWrongAnswer);
   
-// Add trivia wrong answer event listener
-document.addEventListener('triviaWrongAnswer', handleTriviaWrongAnswer);
+  // Maintain a registry of processed events by timestamp to avoid duplicates
+  const processedTriviaEvents = new Set();
   
-// Function to handle trivia timeout and heal boss
-function handleTriviaTimeout() {
+  // Function to handle trivia timeout and heal boss
+  function handleTriviaTimeout(event) {
+    // Extract timestamp from event if available
+    const timestamp = event.detail?.timestamp || Date.now();
+    const eventId = `timeout_${timestamp}`;
+    
+    // Check if we've already processed this event
+    if (processedTriviaEvents.has(eventId)) {
+      console.log('Ignoring duplicate trivia timeout event', eventId);
+      return;
+    }
+    
+    // Add to registry of processed events
+    processedTriviaEvents.add(eventId);
+    console.log('Processing trivia timeout event', eventId);
+    
+    // Clear old events (keep registry from growing too large)
+    if (processedTriviaEvents.size > 100) {
+      const oldEvents = Array.from(processedTriviaEvents).slice(0, 50);
+      oldEvents.forEach(e => processedTriviaEvents.delete(e));
+    }
+    
+    // Rest of healing logic
     const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
                                      .find(c => c.style.display === "block");
     if (!activeMonsterContainer) return;
@@ -1513,12 +1368,27 @@ function handleTriviaTimeout() {
       healSound.volume = 0.3;
       healSound.play().catch(err => console.error("Error playing heal sound:", err));
       
-      console.log(`Boss healed: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+      console.log(`Boss healed from timeout: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
     }
   }
 
-  // Function to handle wrong trivia answers and heal boss
-  function handleTriviaWrongAnswer() {
+  // Similar update for wrong answers
+  function handleTriviaWrongAnswer(event) {
+    // Extract timestamp from event if available
+    const timestamp = event.detail?.timestamp || Date.now();
+    const eventId = `wrong_${timestamp}`;
+    
+    // Check if we've already processed this event
+    if (processedTriviaEvents.has(eventId)) {
+      console.log('Ignoring duplicate trivia wrong answer event', eventId);
+      return;
+    }
+    
+    // Add to registry of processed events
+    processedTriviaEvents.add(eventId);
+    console.log('Processing trivia wrong answer event', eventId);
+    
+    // Heal boss by 50 points for wrong answer, but don't exceed max health
     const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
                                      .find(c => c.style.display === "block");
     if (!activeMonsterContainer) return;
