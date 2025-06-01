@@ -137,7 +137,7 @@ hitDialogues: {
       if (hitCount >= 10) return selectDialogue(this.hitDialogues["10+"]);
       return "";
     },
-    About:"The EtchWraith Swarm is a group of ErgoBugs that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes. The EtchWraith Swarm is a force to be reckoned with, and only the bravest and strongest adventurers dare to face them in battle." ,
+    About:"The EtchWraith Swarm is a group of ErgoBugs that have banded together to form a formidable force. " ,
     toggleDialogues: {
       player1: [
           "<span class='toggle-dialogue'>A high-pitched, collective shriek pierces the air as the EtchWraith Swarm descends on Jaybers8.</span>",
@@ -255,7 +255,7 @@ hitDialogues: {
       if (hitCount >= 10) return selectDialogue(this.hitDialogues["10+"]);
       return "";
     },
-    About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. They are known for their relentless attacks and their ability to overwhelm their foes." ,
+    About:"The CyberBadger Cete is a group of ErgoBadgers that have banded together to form a formidable force. " ,
     toggleDialogues: {
       player1: [
         "<span class='toggle-dialogue'>The CyberBadger Cete lets out a series of guttural snarls, their cybernetic eyes glowing menacingly at Jaybers8.</span>",
@@ -1164,7 +1164,7 @@ hitDialogues: {
     health: adjustHealthByQuarter(550),
     hitNumbers: [6, 8, 3, 12, 1, 1, 1, 1, 1, 1, ],
     Rewards:"Party leader gets to pick any available CO-OP game. Player also gains 50 ducats.",
-    Punishment: "{Hypnopompia} If the Party leader is the current Bingwa and or Atletico champ, remove your title and swap with the Kushindwa and or Atletico loser. All choices stay the same but all other rewards go to other player. Party leader deletes 4 HCMC probabilities. No CO-OP game will be picked this week.",
+    Punishment: "{Hypnopompia} If the Party leader is the current Bingwa and or Atletico champ, remove your title and swap with the Kushindwa and or Atletico loser. Party leader deletes 4 HCMC probabilities. No CO-OP game this week.",
     imageSrc: "https://i.ibb.co/W42ZGbd2/Forbearer-Tren-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {

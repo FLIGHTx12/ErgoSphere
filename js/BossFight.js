@@ -292,16 +292,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (!document.getElementById("chooseOpponentBtn")) {
-    const chooseOpponentBtn = document.createElement("button");
-    chooseOpponentBtn.id = "chooseOpponentBtn";
-    chooseOpponentBtn.textContent = "Choose Opponent";
-    monsterButtonsContainer.appendChild(chooseOpponentBtn);
-
-    // Create Choose Fighters button
+    // Create Choose Fighters button first (will appear on the left)
     const chooseFightersBtn = document.createElement("button");
     chooseFightersBtn.id = "chooseFightersBtn";
     chooseFightersBtn.textContent = "Choose Fighters";
     monsterButtonsContainer.appendChild(chooseFightersBtn);
+
+    // Create Choose Opponent button second (will appear on the right)
+    const chooseOpponentBtn = document.createElement("button");
+    chooseOpponentBtn.id = "chooseOpponentBtn";
+    chooseOpponentBtn.textContent = "Choose Opponent";
+    monsterButtonsContainer.appendChild(chooseOpponentBtn);
 
     const addAttackButton = document.createElement("button");
     addAttackButton.id = "addAttackButton";

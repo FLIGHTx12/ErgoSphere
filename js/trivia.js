@@ -27,6 +27,9 @@ class TriviaManager {
     
     // Load all trivia data
     this.loadTriviaData();
+    
+    // Add keyboard handler binding
+    this.boundKeyHandler = this.handleTriviaKeys.bind(this);
   }
 
   async loadTriviaData() {
@@ -102,6 +105,10 @@ class TriviaManager {
     
     this.isActive = true;
     this.triviaContainer.style.display = "block";
+    
+    // Bind keyboard events when trivia starts
+    document.addEventListener('keydown', this.boundKeyHandler);
+    
     this.loadNewQuestion();
   }
 
@@ -110,6 +117,9 @@ class TriviaManager {
     
     // First mark as inactive to prevent new questions
     this.isActive = false;
+    
+    // Remove keyboard event listener
+    document.removeEventListener('keydown', this.boundKeyHandler);
     
     // Clear all timers
     if (this.timer) {
@@ -511,6 +521,10 @@ class TriviaManager {
 
   hideTrivia() {
     this.isActive = false;
+    
+    // Remove keyboard event listener
+    document.removeEventListener('keydown', this.boundKeyHandler);
+    
     if (this.triviaContainer) {
       this.triviaContainer.style.display = 'none';
     }
@@ -548,6 +562,50 @@ class TriviaManager {
     const multiplier = 1 + this.damageMultiplier;
     this.resetMultiplier();
     return multiplier;
+  }
+
+  // Add new method to handle trivia keyboard input
+  handleTriviaKeys(event) {
+    // Only handle keys if trivia is active and we have a current question
+    if (!this.isActive || !this.currentQuestion) return;
+    
+    // Only handle if answer buttons are enabled (not disabled after answering)
+    const answerButtons = this.triviaContainer.querySelectorAll('.answer-btn');
+    if (!answerButtons[0] || answerButtons[0].disabled) return;
+    
+    let answerIndex = -1;
+    
+    // Map keys to answer indices
+    switch(event.key.toLowerCase()) {
+      case 'a':
+        answerIndex = 0;
+        break;
+      case 's':
+        answerIndex = 1;
+        break;
+      case 'd':
+        answerIndex = 2;
+        break;
+      default:
+        return; // Don't handle other keys
+    }
+    
+    // Prevent default behavior and handle the answer
+    if (answerIndex >= 0 && answerIndex < this.currentQuestion.options.length) {
+      event.preventDefault();
+      
+      // Visual feedback - briefly highlight the selected button
+      const selectedButton = answerButtons[answerIndex];
+      selectedButton.style.backgroundColor = 'rgba(52, 152, 219, 0.6)';
+      selectedButton.style.transform = 'scale(1.05)';
+      
+      // Reset visual feedback after a short delay, then handle the answer
+      setTimeout(() => {
+        selectedButton.style.backgroundColor = '';
+        selectedButton.style.transform = '';
+        this.handleAnswer(answerIndex);
+      }, 150);
+    }
   }
 }
 
