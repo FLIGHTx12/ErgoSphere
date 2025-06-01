@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Width Test - ErgoSphere</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-container {
+            background-color: rgba(255, 0, 255, 0.3);
+            border: 2px solid purple;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            color: white;
+        }
+        
+        .breakpoint-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: lime;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            z-index: 9999;
+        }
+
+        .width-display {
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid cyan;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="breakpoint-info" id="breakpoint-info">
+        Screen Width: <span id="screen-width"></span>px<br>
+        Active Breakpoint: <span id="active-breakpoint"></span>
+    </div>
+    
+    <h1>Responsive Width Test</h1>
+    
+    <div class="test-container">
+        <h2>Test Container</h2>
+        <p>This container should follow our new width rules:</p>
+        <div class="width-display">
+            <strong>Expected Widths:</strong><br>
+            • Default: 90%<br>
+            • 1024px+: max-width 1200px<br>
+            • 768px: 99% ← NEW<br>
+            • 600px: 95%<br>
+            • 480px: 99% ← NEW<br>
+        </div>
+        
+        <div class="width-display" id="actual-width">
+            Actual Container Width: <span id="container-width"></span>
+        </div>
+    </div>
+
+    <script>
+        function updateInfo() {
+            const screenWidth = window.innerWidth;
+            const container = document.querySelector('.test-container');
+            const containerWidth = container.offsetWidth;
+            const containerPercentage = ((containerWidth / screenWidth) * 100).toFixed(1);
+            
+            document.getElementById('screen-width').textContent = screenWidth;
+            document.getElementById('container-width').textContent = `${containerWidth}px (${containerPercentage}%)`;
+            
+            let breakpoint = 'Default (90%)';
+            if (screenWidth >= 1024) {
+                breakpoint = 'Large (max-width: 1200px)';
+            } else if (screenWidth <= 768) {
+                breakpoint = 'Tablet (99%)';
+            } else if (screenWidth <= 600) {
+                breakpoint = 'Small (95%)';
+            } else if (screenWidth <= 480) {
+                breakpoint = 'Mobile (99%)';
+            }
+            
+            document.getElementById('active-breakpoint').textContent = breakpoint;
+        }
+        
+        updateInfo();
+        window.addEventListener('resize', updateInfo);
+    </script>
+</body>
+</html>

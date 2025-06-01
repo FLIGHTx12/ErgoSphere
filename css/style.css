@@ -197,9 +197,21 @@ hr {
   }
 }
 
+@media (max-width: 768px) {
+  div {
+    width: 99%;
+  }
+}
+
 @media (max-width: 600px) {
   div {
     width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  div {
+    width: 99%;
   }
 }
 
