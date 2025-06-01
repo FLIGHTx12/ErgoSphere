@@ -345,14 +345,16 @@ class TriviaManager {
       } else if (index === selectedAnswer && !isCorrect) {
         button.classList.add('wrong-answer');
       }
-    });
-
-    if (isCorrect) {
+    });    if (isCorrect) {
       this.damageMultiplier += 0.5;
       this.updateMultiplierDisplay();
       this.showFeedback('Correct! +0.5 memory sync multiplier!', 'success');
     } else {
-      // Wrong answer - dispatch event for boss healing ONLY ONCE
+      // Wrong answer - reduce multiplier by 1.0 (but don't go below 0)
+      this.damageMultiplier = Math.max(0, this.damageMultiplier - 1.0);
+      this.updateMultiplierDisplay();
+      
+      // Dispatch event for boss healing ONLY ONCE
       const triviaWrongAnswerEvent = new CustomEvent('triviaWrongAnswer', {
         detail: {
           message: 'Wrong trivia answer',
@@ -361,8 +363,7 @@ class TriviaManager {
       });
       document.dispatchEvent(triviaWrongAnswerEvent);
       
-      this.showFeedback('Wrong answer! Boss healed 50 HP!', 'error');
-      // Don't reset multiplier immediately on wrong answer
+      this.showFeedback('Wrong answer! Boss healed 50 HP! -1.0 memory sync multiplier!', 'error');
     }
 
     // Load new question after 3 seconds
