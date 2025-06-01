@@ -16,9 +16,6 @@
                 <!-- Buttons for selecting monsters will be added here by JavaScript -->
             </div>            <h1>ErgoSphere ARENA</h1>
             <div class="navbar" id="navbar">
-                <button id="dualCursorToggle" class="menu-button" title="Toggle 2-Player Mode">
-                    <i class="fas fa-mouse"></i> Dual Cursor: ON
-                </button>
                 <button id="howToPlayBtn" class="menu-button">
                     <i class="fas fa-question-circle"></i> How To Play
                 </button>
@@ -28,55 +25,76 @@
 
     <main>
         <div class="game-container">
-            
-            <!-- How To Play Modal -->
+              <!-- How To Play Modal -->
             <div id="howToPlayModal" class="modal">
-                <div class="modal-content">
+                <div class="modal-overlay"></div>
+                <div class="battle-manual-content">
                     <span class="close">&times;</span>
-                    <h2>ErgoSphere ARENA - Battle Manual</h2>
-                      <h3>Overview</h3>
-                    <p>Welcome to the ErgoSphere ARENA, a turn-based tactical battle system where two players (Jaybers8 and FLIGHTx12!) team up to defeat powerful monsters from the ErgoSphere universe.</p>
+                    <div class="manual-header">
+                        <h2>🌌 ErgoSphere ARENA - Battle Manual 🌌</h2>
+                        <div class="manual-subtitle">Ultimate Combat & Dimension Sync Guide</div>
+                    </div>
                     
-                    <h3>Dual Cursor Mode</h3>
-                    <p><strong>NEW!</strong> Enable dual cursor mode for true 2-player multitasking! When active, both players can interact simultaneously with their own colored cursors (Purple for Jaybers8, Green for FLIGHTx12). Both players can set up attacks at the same time and execute combined attacks for maximum damage!</p>
-                    
-                    <h3>Battle Mechanics</h3>
-                    <div class="controls-section">
-                        <div class="controls-column">
-                            <h4>Basic Controls</h4>
-                            <ul>
-                                <li><strong>Enter</strong>: Attack with current inputs</li>
-                                <li><strong>Space Bar</strong>: Switch between players (single cursor mode)</li>
-                                <li><strong>Tab</strong>: Cycle between attack inputs</li>
-                                <li><strong>+ Key</strong>: Add an attack input</li>
-                                <li><strong>- Key</strong>: Remove an attack input</li>
-                                <li><strong>Dual Cursor Toggle</strong>: Enable/disable 2-player mode</li>
-                                <li><strong>Mobile Swipe Left/Right</strong>: View battle log or monster info</li>
-                            </ul>
+                    <div class="manual-columns">
+                        <div class="manual-column">                            <div class="section-card">
+                                <h3>🎯 Combat Overview</h3>
+                                <p>Welcome to the ErgoSphere ARENA! Two elite fighters (Jaybers8 and FLIGHTx12!) unite to battle powerful dimensional monsters. Master both combat tactics and dimensional knowledge to achieve victory!</p>
+                            </div>
+                            
+                            <div class="section-card">
+                                <h3>🎮 Controls</h3>
+                                <div class="controls-grid">
+                                    <div class="control-item"><kbd>Enter</kbd> Attack with inputs</div>
+                                    <div class="control-item"><kbd>Space</kbd> Switch players</div>
+                                    <div class="control-item"><kbd>Tab</kbd> Cycle inputs</div>
+                                    <div class="control-item"><kbd>+</kbd> Add input</div>
+                                    <div class="control-item"><kbd>-</kbd> Remove input</div>
+                                    <div class="control-item"><kbd>📱 Swipe</kbd> View panels</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="controls-column">
-                            <h4>Damage System</h4>
-                            <ul>
-                                <li><strong>Regular Damage</strong>: Any number not in monster's "hit numbers" deals that damage</li>
-                                <li><strong>Special Moves</strong>: 
-                                    <ul>
-                                        <li>Jaybers8: Input "8" for 100 damage</li>
-                                        <li>FLIGHTx12!: Input "12" for 100 damage</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Counter-Attacks</strong>: Monster attacks when you input their hit numbers</li>
-                            </ul>
+                        
+                        <div class="manual-column">
+                            <div class="section-card">
+                                <h3>⚔️ Damage System</h3>
+                                <ul>
+                                    <li><strong>Regular Damage:</strong> Any safe number = that damage</li>
+                                    <li><strong>Special Moves:</strong>
+                                        <ul>
+                                            <li><span class="player-jaybers">Jaybers8: "8" = 100 DMG</span></li>
+                                            <li><span class="player-flight">FLIGHTx12!: "12" = 100 DMG</span></li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>⚠️ Counter-Attacks:</strong> Monster's hit numbers trigger retaliation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="section-card dimension-sync">
+                                <h3>🌐 Dimension Sync (NEW!)</h3>
+                                <p>Answer interdimensional trivia to boost your Memory Sync multiplier!</p>
+                                <div class="sync-mechanics">
+                                    <div class="sync-item correct">✅ Correct Answer: <strong>+0.5× Memory Sync</strong></div>
+                                    <div class="sync-item wrong">❌ Wrong Answer: <strong>-1.0× Memory Sync + Boss heals 50 HP</strong></div>
+                                    <div class="sync-item timeout">⏰ Timeout: <strong>Boss heals 10 HP</strong></div>
+                                </div>
+                                <p><strong>Categories:</strong> History, Music, Games, Sports, Movies, Construction, Coding, Spanish-English, Minneapolis-Chicago</p>
+                            </div>
+                              <div class="section-card">
+                                <h3>🧠 Strategy Tips</h3>
+                                <ol>
+                                    <li><strong>Study monster hit numbers</strong> - avoid triggering counters</li>
+                                    <li><strong>Build Memory Sync</strong> - trivia knowledge = massive damage</li>
+                                    <li><strong>Use special moves wisely</strong> - 8 and 12 for guaranteed big damage</li>
+                                    <li><strong>Time management</strong> - balance speed with accuracy</li>
+                                    <li><strong>Risk vs Reward</strong> - wrong trivia answers cost you multiplier progress</li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
-
-                    <h3>Strategy Tips</h3>
-                    <ol>
-                        <li>Check the monster's hit numbers to avoid triggering counter-attacks</li>
-                        <li>Switch players strategically for different special moves</li>
-                        <li>Sometimes fewer, higher-value attacks are better than many small ones</li>
-                        <li>Remember your character's special number (8 or 12) for big damage</li>
-                        <li>Keep an eye on the timer and plan accordingly</li>
-                    </ol>
+                    
+                    <div class="manual-footer">
+                        <div class="version-info">Battle Manual v2.1 | Dimension Sync Compatible</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,62 +105,85 @@
     </footer>    <!-- Load JavaScript files -->
     <script src="../js/monsters.js"></script>
     <script src="../js/trivia.js"></script>
-    <script src="../js/dual-cursor.js"></script>
-    <script src="../js/BossFight.js"></script>    <script>
-        // Initialize dual cursor system
-        let dualCursorManager;
+    <script src="../js/BossFight.js"></script>
 
-        // Modal functionality
-        document.addEventListener('DOMContentLoaded', function() {            // Initialize dual cursor system
-            dualCursorManager = new DualCursorManager();
-            dualCursorManager.init();
-            
-            // Dual cursor toggle functionality
-            const dualCursorToggle = document.getElementById('dualCursorToggle');
-            if (dualCursorToggle) {
-                dualCursorToggle.addEventListener('click', function() {
-                    if (dualCursorManager) {
-                        dualCursorManager.toggleDualCursors();
-                        updateToggleButton();
-                    }
-                });
-                
-                // Update button text based on dual cursor status
-                function updateToggleButton() {
-                    const status = dualCursorManager.getStatus();
-                    if (status.active) {
-                        dualCursorToggle.innerHTML = '<i class="fas fa-mouse"></i> Dual Cursor: ON';
-                        dualCursorToggle.style.background = 'linear-gradient(45deg, #8e44ad, #27ae60)';
-                    } else {
-                        dualCursorToggle.innerHTML = '<i class="fas fa-mouse"></i> Dual Cursor: OFF';
-                        dualCursorToggle.style.background = '';
-                    }
-                }
-                
-                // Listen for dual cursor events to update button
-                document.addEventListener('dualCursorEvent', updateToggleButton);
-                
-                // Initial button update
-                setTimeout(updateToggleButton, 100);
-            }
+    <script>
+        // Modal functionality - run immediately
+        window.addEventListener('load', function() {
+            console.log('Window loaded, setting up modal...');
             
             const modal = document.getElementById('howToPlayModal');
             const btn = document.getElementById('howToPlayBtn');
             const span = document.getElementsByClassName('close')[0];
+            const overlay = document.querySelector('.modal-overlay');
 
-            btn.onclick = function() {
+            console.log('Modal elements found:', {modal: !!modal, btn: !!btn, span: !!span, overlay: !!overlay});
+
+            // Show modal on page load with fallback styling
+            if (modal) {
+                console.log('Showing modal on page load...');
                 modal.style.display = 'block';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
             }
 
-            span.onclick = function() {
-                modal.style.display = 'none';
+            // Button click handler
+            if (btn) {
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    console.log('How to Play button clicked');
+                    modal.style.display = 'block';
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.zIndex = '9999';
+                    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            // Close button handler
+            if (span) {
+                span.onclick = function(e) {
+                    e.preventDefault();
+                    console.log('Close button clicked');
                     modal.style.display = 'none';
                 }
             }
+
+            // Overlay click handler
+            if (overlay) {
+                overlay.onclick = function(e) {
+                    console.log('Overlay clicked, closing modal...');
+                    modal.style.display = 'none';
+                }
+            }
+
+            // Click outside modal to close (handle both modal and overlay)
+            window.onclick = function(event) {
+                if (event.target == modal || event.target.classList.contains('modal-overlay')) {
+                    console.log('Clicked outside modal content, closing...');
+                    modal.style.display = 'none';
+                }
+            }
+
+            // Escape key handler
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    console.log('Escape key pressed, closing modal...');
+                    modal.style.display = 'none';
+                }
+            });        });
+
+        // Initialize remaining functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up remaining functionality...');
 
             // Credits click handler
             document.getElementById('creditsLink').addEventListener('click', function(e) {

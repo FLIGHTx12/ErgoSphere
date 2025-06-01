@@ -14,12 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add fighter selection state
   let activeFighters = {
     jaybers8: true,
-    flight: true
-  };
-
-  // Dual cursor integration
-  let dualCursorActive = false;
-  let simultaneousMode = false;
+    flight: true  };
 
   let timerStarted = false;
   let timer;
@@ -437,24 +432,14 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (!activeFighters.jaybers8 && activeFighters.flight) {
         currentPlayer = 2;
         attackButton.textContent = "FLIGHTx12! Attack!";        container1.style.display = "none";
-        container2.style.display = "block";
-      } else {
-        // Both active - check for dual cursor mode
-        if (simultaneousMode && dualCursorActive) {
-          // In dual cursor mode, show both containers side by side
-          updateGameForDualCursors();
-        } else {
-          // Normal toggle mode - use current player
-          attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-          playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-          container1.style.display = currentPlayer === 1 ? "block" : "none";
-          container2.style.display = currentPlayer === 2 ? "block" : "none";
-        }
-      }
+        container2.style.display = "block";      } else {
+        // Both active - normal toggle mode - use current player
+        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
+        playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
+        container1.style.display = currentPlayer === 1 ? "block" : "none";
+        container2.style.display = currentPlayer === 2 ? "block" : "none";      }
 
-      if (!simultaneousMode) {
-        toggleButtonColors(currentPlayer);
-      }
+      toggleButtonColors(currentPlayer);
     }
 
     // Create monster containers and populate dropdown
@@ -627,33 +612,24 @@ document.addEventListener("DOMContentLoaded", () => {
           currentContainer.appendChild(input);
           numAttacks[currentPlayer]++;
         }
-      });
-
-      removeAttackButton.addEventListener("click", () => {
+      });      removeAttackButton.addEventListener("click", () => {
         const currentContainer = currentPlayer === 1 ? container1 : container2;
         if (currentContainer.children.length > 1) {
           currentContainer.removeChild(currentContainer.lastChild);
           numAttacks[currentPlayer]--;
         }
-      });      let attackButtonCooldown = false; // Cooldown flag
+      });
+
+      let attackButtonCooldown = false; // Cooldown flag
       attackButton.addEventListener("click", () => {
         if (attackButtonCooldown) return; // If cooldown is active, ignore click
 
         attackButtonCooldown = true; // Activate cooldown
-
+        
         if (!timerStarted) {
           timerStarted = true;
           timer = startTimer();
           playFightMusic(); // Attempt to play fight music
-        }
-
-        // Handle dual cursor simultaneous mode
-        if (simultaneousMode && dualCursorActive) {
-          executeCombinedAttack();
-          setTimeout(() => {
-            attackButtonCooldown = false;
-          }, 1000);
-          return;
         }
 
         // Original single player attack logic
@@ -676,9 +652,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 hitCount += occurrences; // Stack duplicate hits
               } else {
                 totalDamage += damage;
-              }
-            }
-          }        }
+              }            }
+          }
+        }
 
         // Apply trivia multiplier to total damage
         let triviaMultiplier = 1;
@@ -1048,244 +1024,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleContainer(currentPlayer);
         toggleButtonColors(currentPlayer);
       }
-    }
-  }
-
-  // Listen for dual cursor events
-  document.addEventListener('dualCursorEvent', (e) => {
-    const { type, data, cursorsActive, activePlayers } = e.detail;
-    
-    switch(type) {
-      case 'dual-cursors-enabled':
-        dualCursorActive = true;
-        simultaneousMode = true;
-        updateGameForDualCursors();
-        break;
-      case 'single-cursor-mode':
-        dualCursorActive = false;
-        simultaneousMode = false;
-        updateGameForSingleCursor();
-        break;
-      case 'player-click':
-        if (simultaneousMode) {
-          handleDualCursorClick(data);
-        }
-        break;
-    }
-  });
-
-  // Function to update game UI for dual cursor mode
-  function updateGameForDualCursors() {
-    console.log('Enabling simultaneous dual-player mode');
-    
-    // Show both input containers simultaneously
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
-    if (activeMonsterContainer) {
-      const container1 = activeMonsterContainer.querySelector("#attackInputs1");
-      const container2 = activeMonsterContainer.querySelector("#attackInputs2");
-      const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
-      
-      if (container1 && container2) {
-        container1.style.display = "block";
-        container2.style.display = "block";
-        
-        // Position containers side by side for dual cursor mode
-        container1.style.float = "left";
-        container1.style.width = "48%";
-        container1.style.marginRight = "2%";
-        container2.style.float = "left";
-        container2.style.width = "48%";
-        container2.style.marginLeft = "2%";
-      }
-      
-      // Hide player toggle button in simultaneous mode
-      if (playerToggle) {
-        playerToggle.style.display = "none";
-      }
-      
-      // Update attack button for dual mode
-      const attackButton = activeMonsterContainer.querySelector("#attackButton");
-      if (attackButton) {
-        attackButton.textContent = "Both Players Attack!";
-        attackButton.style.background = "linear-gradient(45deg, purple, green)";
-      }
-    }
-  }
-
-  // Function to update game UI for single cursor mode
-  function updateGameForSingleCursor() {
-    console.log('Reverting to single-player toggle mode');
-    
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
-    if (activeMonsterContainer) {
-      const container1 = activeMonsterContainer.querySelector("#attackInputs1");
-      const container2 = activeMonsterContainer.querySelector("#attackInputs2");
-      const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
-      
-      if (container1 && container2) {
-        // Reset container styling
-        container1.style.float = "";
-        container1.style.width = "";
-        container1.style.marginRight = "";
-        container2.style.float = "";
-        container2.style.width = "";
-        container2.style.marginLeft = "";
-        
-        // Show only current player's container
-        container1.style.display = currentPlayer === 1 ? "block" : "none";
-        container2.style.display = currentPlayer === 2 ? "block" : "none";
-      }
-      
-      // Show player toggle button
-      if (playerToggle && activeFighters.jaybers8 && activeFighters.flight) {
-        playerToggle.style.display = "block";
-      }
-      
-      // Reset attack button
-      const attackButton = activeMonsterContainer.querySelector("#attackButton");
-      if (attackButton) {
-        attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-        toggleButtonColors(currentPlayer);
-      }
-    }
-  }
-
-  // Handle clicks from dual cursor system
-  function handleDualCursorClick(data) {
-    const { player, target } = data;
-    
-    // Check if click is on attack button
-    if (target && target.id === 'attackButton') {
-      // In simultaneous mode, both players attack together
-      if (simultaneousMode) {
-        executeCombinedAttack();
-      }
-    }
-    
-    // Handle other game interactions based on player
-    if (target && target.type === 'number') {
-      // Focus input for the clicking player
-      const playerNum = player === 'player1' ? 1 : 2;
-      const activeContainer = document.querySelector(`#attackInputs${playerNum}`);
-      if (activeContainer && activeContainer.contains(target)) {
-        target.focus();
-      }
-    }
-  }
-
-  // Execute combined attack from both players
-  function executeCombinedAttack() {
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
-    if (!activeMonsterContainer) return;
-    
-    const container1 = activeMonsterContainer.querySelector("#attackInputs1");
-    const container2 = activeMonsterContainer.querySelector("#attackInputs2");
-    const historyContainer = document.getElementById("historyContainer" + monsterDropdown.value);
-    
-    if (!container1 || !container2 || !historyContainer) return;
-    
-    const monster = monsters[monsterDropdown.value];
-    if (!monster) return;
-    
-    let totalCombinedDamage = 0;
-    let attackResults = [];
-    
-    // Process Player 1 (Jaybers8) attacks
-    const player1Damage = calculatePlayerDamage(container1, 1, monster);
-    if (player1Damage.total > 0) {
-      totalCombinedDamage += player1Damage.total;
-      attackResults.push(`Jaybers8: ${player1Damage.total} damage`);
-    }
-    
-    // Process Player 2 (FLIGHTx12) attacks  
-    const player2Damage = calculatePlayerDamage(container2, 2, monster);
-    if (player2Damage.total > 0) {
-      totalCombinedDamage += player2Damage.total;
-      attackResults.push(`FLIGHTx12: ${player2Damage.total} damage`);
-    }
-    
-    // Apply combined damage
-    if (totalCombinedDamage > 0) {
-      const monsterImage = activeMonsterContainer.querySelector("img");
-      let monsterLife = parseInt(activeMonsterContainer.querySelector(".life-bar-text").textContent.split('/')[0]);
-      
-      monsterLife -= totalCombinedDamage;
-      monsterLife = Math.max(0, monsterLife);
-      
-      // Update monster health display
-      updateMonsterHealth(activeMonsterContainer, monsterLife, monster.health);
-      
-      // Add combined attack to history
-      const combinedResultText = `<strong>COMBINED ATTACK!</strong><br/>${attackResults.join('<br/>')} <br/><strong>Total: ${totalCombinedDamage} damage</strong>`;
-      historyContainer.innerHTML += `<p style="color: gold; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); border: 2px solid gold; padding: 10px; margin: 5px 0; background: rgba(0,0,0,0.3);">${combinedResultText}</p>`;
-      
-      // Trigger visual effects
-      if (monsterImage) {
-        const shakeIntensity = Math.min(totalCombinedDamage / 20, 10);
-        monsterImage.style.animation = `shake ${shakeIntensity * 0.1}s infinite, redFlash ${shakeIntensity * 0.5}s infinite`;
-        setTimeout(() => {
-          monsterImage.style.animation = "";
-        }, 1000);
-      }
-      
-      // Check if monster is defeated
-      if (monsterLife <= 0) {
-        clearInterval(timer);
-        fightMusic.pause();
-        fightMusic.currentTime = 0;
-        
-        if (window.triviaManager) {
-          window.triviaManager.stopTrivia();
-        }
-        
-        healerSound.currentTime = 0;
-        healerSound.play().catch(err => console.error("Error playing healer sound:", err));
-        
-        const victoryText = "Victory! Both players worked together to defeat the monster!";
-        historyContainer.innerHTML += `<p style="color: lime; font-size: 1.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); text-align: center; font-weight: bold; background: rgba(0,255,0,0.2); padding: 15px; margin: 10px 0; border: 3px solid lime;">${victoryText}</p>`;
-      }
-      
-      historyContainer.scrollTop = historyContainer.scrollHeight;
-    }
-  }
-
-  // Helper function to calculate damage for a specific player
-  function calculatePlayerDamage(container, playerNum, monster) {
-    let totalDamage = 0;
-    let hitCount = 0;
-    
-    for (let i = 0; i < container.children.length; i++) {
-      const input = container.children[i];
-      const damage = parseInt(input.value);
-      if (!isNaN(damage)) {
-        if (playerNum === 1 && damage === 8) {
-          totalDamage += 100; // Jaybers8's special damage
-        } else if (playerNum === 2 && damage === 12) {
-          totalDamage += 100; // FLIGHTx12's special damage
-        } else {
-          // Count how many times the damage value appears in hitNumbers
-          const occurrences = monster.hitNumbers.filter(num => num === damage).length;
-          if (occurrences > 0) {
-            hitCount += occurrences; // Stack duplicate hits
-          } else {
-            totalDamage += damage;
-          }
-        }
-      }
-    }
-    
-    return { total: totalDamage, hits: hitCount };
-  }
-
-  // Helper function to update monster health display
-  function updateMonsterHealth(container, currentHealth, maxHealth) {
-    const lifeBarGreen = container.querySelector(".life-bar-green");
-    const lifeBarText = container.querySelector(".life-bar-text");
-    
-    if (lifeBarGreen && lifeBarText) {
-      const healthPercentage = (currentHealth / maxHealth) * 100;
-      lifeBarGreen.style.width = `${healthPercentage}%`;
-      lifeBarText.textContent = `${currentHealth}/${maxHealth}`;
     }
   }
 

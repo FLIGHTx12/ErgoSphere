@@ -541,254 +541,46 @@ header h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Timer */
-#timer {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.5); /* Sleek semi-transparent background */
-    border: 1px solid var(--accent-color);
-    border-radius: 15px; /* Rounded corners */
-    padding: 4px 12px; /* Adjusted padding */
-    font-family: 'Courier New', Courier, monospace; /* Monospaced font for a techy feel */
-    font-size: 1.1rem !important; /* Adjusted font size */
-    font-weight: bold;
-    color: var(--accent-color);
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-    z-index: 10; /* Above buttons' potential default z-index, below modals */
-    min-width: 70px; /* Minimum width to accommodate MM:SS */
-    text-align: center;
-    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4); /* Subtle glow */
-    animation: sleekPulse 2s infinite alternate; /* New subtle animation */
-}
+/* ===== MISSING STYLES RESTORATION ===== */
 
-@keyframes sleekPulse {
-    from {
-        box-shadow: 0 0 6px rgba(231, 76, 60, 0.3);
-        opacity: 0.9;
-    }
-    to {
-        box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
-        opacity: 1;
-    }
-}
-
-/* Click feedback animation */
-.click-feedback {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid;
-    animation: clickRipple 0.6s ease-out forwards;
-    pointer-events: none;
-    z-index: 10001;
-}
-
-@keyframes clickRipple {
-    0% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(3);
-        opacity: 0;
-    }
-}
-
-/* Dual Cursor Styles */
-.dual-cursors-active {
-    cursor: none; /* Hide default cursor when dual cursors are active */
-}
-
-.dual-cursor-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-.custom-cursor {
-    position: absolute;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.custom-cursor .cursor-pointer {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid;
-    background: rgba(255, 255, 255, 0.9);
-    position: relative;
-}
-
-.custom-cursor .cursor-label {
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 10px;
-    white-space: nowrap;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-#player1-cursor .cursor-pointer {
-    border-color: var(--player1-color);
-    box-shadow: 0 0 10px var(--player1-color);
-}
-
-#player1-cursor .cursor-label {
-    background: var(--player1-color);
+/* Menu Button Styles */
+.menu-button {
+    background-color: #2c2c2c;
     color: white;
-}
-
-#player2-cursor .cursor-pointer {
-    border-color: var(--player2-color);
-    box-shadow: 0 0 10px var(--player2-color);
-}
-
-#player2-cursor .cursor-label {
-    background: var(--player2-color);
-    color: white;
-}
-
-.custom-cursor.active {
-    opacity: 1;
-}
-
-.custom-cursor:not(.active) {
-    opacity: 0.6;
-}
-
-/* Dual cursor status display */
-.dual-cursor-status, .single-cursor-status {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 9998;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.player1-indicator {
-    color: var(--player1-color);
-}
-
-.player2-indicator {
-    color: var(--player2-color);
-}
-
-.status-text {
-    color: #ecf0f1;
-}
-
-/* Dual cursor mode container styling */
-.dual-cursors-active #attackInputs1,
-.dual-cursors-active #attackInputs2 {
-    border: 2px solid;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 5px;
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.dual-cursors-active #attackInputs1 {
-    border-color: var(--player1-color);
-}
-
-.dual-cursors-active #attackInputs2 {
-    border-color: var(--player2-color);
-}
-
-.dual-cursors-active #attackInputs1::before {
-    content: "Jaybers8 Attacks";
-    display: block;
-    color: var(--player1-color);
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.dual-cursors-active #attackInputs2::before {
-    content: "FLIGHTx12 Attacks";
-    display: block;
-    color: var(--player2-color);
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* Enhanced attack button for dual cursor mode */
-.dual-cursors-active .attack-button {
-    background: linear-gradient(45deg, var(--player1-color), var(--player2-color)) !important;
-    font-size: 1.3rem;
-    padding: 18px 35px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    animation: dualModeGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes dualModeGlow {
-    0% {
-        box-shadow: 0 0 5px var(--player1-color), 0 0 10px var(--player1-color);
-    }
-    100% {
-        box-shadow: 0 0 5px var(--player2-color), 0 0 10px var(--player2-color);
-    }
-}
-
-/* Responsive adjustments for dual cursor mode */
-@media (max-width: 768px) {
-    .dual-cursors-active #attackInputs1,
-    .dual-cursors-active #attackInputs2 {
-        float: none !important;
-        width: 100% !important;
-        margin: 10px 0 !important;
-    }
-    
-    .dual-cursor-status {
-        position: relative;
-        top: auto;
-        right: auto;
-        margin: 10px;
-        justify-content: center;
-    }
-}
-
-/* Dual cursor toggle button styling */
-#dualCursorToggle {
-    transition: all 0.3s ease;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 500;
     border: 2px solid transparent;
 }
 
-#dualCursorToggle:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+.menu-button:hover {
+    background-color: #1a1a1a;
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-#dualCursorToggle.active {
-    background: linear-gradient(45deg, var(--player1-color), var(--player2-color));
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+.menu-button:active {
+    transform: translateY(0);
 }
 
-/* Trivia Container Styling */
+.menu-button i {
+    font-size: 1rem;
+}
+
+/* Trivia Container Styling (Restored) */
 .trivia-container {
     position: absolute;
-    top: 350px; /* Raised position for better PC monitor visibility */
+    top: 350px;
     left: 10px;
     width: 350px;
     background-color: rgba(0, 0, 0, 0.9);
@@ -900,15 +692,12 @@ header h1 {
     position: relative;
 }
 
-.progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+#questionProgress {
     height: 100%;
     background-color: #27ae60;
     width: 100%;
     transition: all 0.1s linear;
+    border-radius: 4px;
 }
 
 #timeLeft {
@@ -947,7 +736,7 @@ header h1 {
     100% { transform: scale(1); }
 }
 
-/* Add/Remove Attack Button Styling */
+/* Add/Remove Attack Button Styling (Restored) */
 #addAttackButton, #removeAttackButton {
     background-color: #27ae60;
     background-image: linear-gradient(135deg, #27ae60, #2ecc71);
@@ -986,4 +775,387 @@ header h1 {
 #addAttackButton:active, #removeAttackButton:active {
     transform: translateY(0);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== BATTLE MANUAL MODAL STYLES ===== */
+
+/* Modal Base */
+#howToPlayModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    overflow: hidden;
+}
+
+/* Modal Overlay with animated background */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(142, 68, 173, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(39, 174, 96, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(231, 76, 60, 0.2) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 46, 0.98) 100%);
+    backdrop-filter: blur(5px);
+    animation: modalOverlayFade 0.4s ease-out;
+}
+
+/* Battle Manual Content Container */
+.battle-manual-content {
+    position: relative;
+    width: 95%;
+    max-width: 1400px;
+    height: 95vh;
+    max-height: 900px;
+    margin: 2.5vh auto;
+    background: 
+        linear-gradient(135deg, rgba(20, 20, 40, 0.97) 0%, rgba(40, 40, 70, 0.95) 100%);
+    border: 3px solid transparent;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 50px rgba(142, 68, 173, 0.4),
+        inset 0 0 50px rgba(39, 174, 96, 0.1),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    overflow-y: auto;
+    animation: modalContentSlide 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Animated border gradient */
+    background-image: 
+        linear-gradient(135deg, rgba(20, 20, 40, 0.97) 0%, rgba(40, 40, 70, 0.95) 100%),
+        linear-gradient(45deg, #8e44ad, #27ae60, #e74c3c, #8e44ad);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #e74c3c;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(231, 76, 60, 0.1);
+    border: 2px solid rgba(231, 76, 60, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.close:hover {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: #e74c3c;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+}
+
+/* Manual Header */
+.manual-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(142, 68, 173, 0.3);
+}
+
+.manual-header h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #8e44ad, #27ae60, #e74c3c);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(142, 68, 173, 0.3);
+}
+
+.manual-subtitle {
+    font-size: 1.2rem;
+    color: #bdc3c7;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Column Layout */
+.manual-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.manual-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Section Cards */
+.section-card {
+    background: 
+        linear-gradient(135deg, rgba(52, 73, 94, 0.2) 0%, rgba(44, 62, 80, 0.3) 100%);
+    border: 1px solid rgba(142, 68, 173, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(142, 68, 173, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.section-card:hover::before {
+    left: 100%;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(142, 68, 173, 0.4);
+    box-shadow: 0 10px 30px rgba(142, 68, 173, 0.2);
+}
+
+.section-card h3 {
+    color: #ecf0f1;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-card p {
+    color: #bdc3c7;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.section-card ul, .section-card ol {
+    color: #bdc3c7;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.section-card li {
+    margin-bottom: 8px;
+}
+
+/* Special Dimension Sync Card */
+.dimension-sync {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.15) 0%, rgba(142, 68, 173, 0.15) 100%);
+    border: 2px solid rgba(39, 174, 96, 0.3);
+    position: relative;
+}
+
+.dimension-sync::after {
+    content: '🌐';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    opacity: 0.2;
+}
+
+/* Sync Mechanics */
+.sync-mechanics {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.sync-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    border-left: 4px solid;
+}
+
+.sync-item.correct {
+    background: rgba(39, 174, 96, 0.1);
+    border-left-color: #27ae60;
+    color: #2ecc71;
+}
+
+.sync-item.wrong {
+    background: rgba(231, 76, 60, 0.1);
+    border-left-color: #e74c3c;
+    color: #e67e22;
+}
+
+.sync-item.timeout {
+    background: rgba(241, 196, 15, 0.1);
+    border-left-color: #f1c40f;
+    color: #f39c12;
+}
+
+/* Controls Grid */
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.control-item {
+    background: rgba(44, 62, 80, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(52, 73, 94, 0.5);
+    font-size: 0.9rem;
+}
+
+.control-item kbd {
+    background: rgba(142, 68, 173, 0.2);
+    color: #8e44ad;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* Player Colors */
+.player-jaybers {
+    color: #8e44ad;
+    font-weight: bold;
+}
+
+.player-flight {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Highlight */
+.highlight {
+    background: linear-gradient(45deg, #e74c3c, #f39c12);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Manual Footer */
+.manual-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(142, 68, 173, 0.2);
+}
+
+.version-info {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes modalOverlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalContentSlide {
+    from { 
+        opacity: 0; 
+        transform: translateY(-50px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .battle-manual-content {
+        width: 98%;
+        height: 98vh;
+        padding: 20px;
+    }
+    
+    .manual-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .manual-header h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .battle-manual-content {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 15px;
+    }
+    
+    .controls-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sync-mechanics {
+        gap: 8px;
+    }
+    
+    .manual-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 25px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Custom Scrollbar for Battle Manual */
+.battle-manual-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.battle-manual-content::-webkit-scrollbar-track {
+    background: rgba(52, 73, 94, 0.2);
+    border-radius: 4px;
+}
+
+.battle-manual-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #8e44ad, #27ae60);
+    border-radius: 4px;
+}
+
+.battle-manual-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #9b59b6, #2ecc71);
 }
