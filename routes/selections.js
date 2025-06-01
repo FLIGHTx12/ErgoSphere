@@ -4,8 +4,7 @@ const pool = require('../db');
 
 // GET endpoint to retrieve the current selections
 router.get('/', async (req, res) => {
-  try {
-    const result = await pool.query(
+  try {    const result = await pool.query(
       `SELECT 
         bingwa_champion AS "bingwaChampion",
         atletico_champ AS "atleticoChamp",
@@ -18,6 +17,9 @@ router.get('/', async (req, res) => {
         q3_game AS "q3", 
         q4_game AS "q4",
         ergoart_subject AS "ergoArtSubject",
+        next_bingwa_challenge AS "nextBingwaChallenge",
+        atletico_workout AS "atleticoWorkout",
+        weekly_errand AS "weeklyErrand",
         updated_at AS "lastUpdated"
       FROM weekly_selections ORDER BY id DESC LIMIT 1`
     );
@@ -48,8 +50,7 @@ router.get('/', async (req, res) => {
       row.quarterlyGames = quarterlyGames;
       
       res.json(row);
-    } else {
-      // Return default values if no data found
+    } else {      // Return default values if no data found
       const defaultData = {
         bingwaChampion: 'JAYBERS8',
         atleticoChamp: 'FLIGHTx12!',
@@ -64,6 +65,9 @@ router.get('/', async (req, res) => {
           q4: ""
         },
         ergoArtSubject: 'Mars',
+        nextBingwaChallenge: '',
+        atleticoWorkout: '',
+        weeklyErrand: '',
         lastUpdated: new Date().toISOString()
       };
       res.json(defaultData);
@@ -75,9 +79,8 @@ router.get('/', async (req, res) => {
 });
 
 // POST endpoint to update the selections
-router.post('/', async (req, res) => {
-  try {
-    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater, quarterlyGames, ergoArtSubject } = req.body;
+router.post('/', async (req, res) => {  try {
+    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater, quarterlyGames, ergoArtSubject, nextBingwaChallenge, atleticoWorkout, weeklyErrand } = req.body;
     // Validate required fields
     if (!bingwaChampion || !atleticoChamp || !movieNight) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -86,8 +89,8 @@ router.post('/', async (req, res) => {
     const result = await pool.query(
       `INSERT INTO weekly_selections 
         (bingwa_champion, atletico_champ, movie_night, banquet_meal, brunch_meal, youtube_theater, 
-         q1_game, q2_game, q3_game, q4_game, ergoart_subject)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+         q1_game, q2_game, q3_game, q4_game, ergoart_subject, next_bingwa_challenge, atletico_workout, weekly_errand)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
       [
         bingwaChampion,
         atleticoChamp,
@@ -99,7 +102,10 @@ router.post('/', async (req, res) => {
         quarterlyGames?.q2 || null,
         quarterlyGames?.q3 || null,
         quarterlyGames?.q4 || null,
-        ergoArtSubject || null
+        ergoArtSubject || null,
+        nextBingwaChallenge || null,
+        atleticoWorkout || null,
+        weeklyErrand || null
       ]
     );
     
@@ -110,8 +116,7 @@ router.post('/', async (req, res) => {
       q3: result.rows[0].q3_game || "",
       q4: result.rows[0].q4_game || ""
     };
-    
-    res.json({ 
+      res.json({ 
       success: true, 
       message: 'Selections updated successfully',
       data: {
@@ -123,6 +128,9 @@ router.post('/', async (req, res) => {
         youtubeTheater: result.rows[0].youtube_theater ? JSON.parse(result.rows[0].youtube_theater) : [],
         quarterlyGames: formattedQuarterlyGames,
         ergoArtSubject: result.rows[0].ergoart_subject || "",
+        nextBingwaChallenge: result.rows[0].next_bingwa_challenge || "",
+        atleticoWorkout: result.rows[0].atletico_workout || "",
+        weeklyErrand: result.rows[0].weekly_errand || "",
         lastUpdated: result.rows[0].updated_at
       }
     });

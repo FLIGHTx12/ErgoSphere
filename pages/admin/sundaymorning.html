@@ -37,19 +37,17 @@
       const dataContainer = document.getElementById('data-container');
       let touchstartX = 0;
       let touchendX = 0;
-      const swipeThreshold = 100;
-
-      function handleGesture() {
+      const swipeThreshold = 100;      function handleGesture() {
         const swipeDistance = touchendX - touchstartX;
-        if (swipeDistance > swipeThreshold) {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          dataContainer.classList.remove('sidebar-visible');
-        }
         if (swipeDistance < -swipeThreshold) {
           sidebar.classList.remove('hidden');
           sidebar.style.transform = 'translateX(0)';
           dataContainer.classList.add('sidebar-visible');
+        }
+        if (swipeDistance > swipeThreshold) {
+          sidebar.classList.add('hidden');
+          sidebar.style.transform = 'translateX(100%)';
+          dataContainer.classList.remove('sidebar-visible');
         }
       }
 

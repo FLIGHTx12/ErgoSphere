@@ -652,6 +652,11 @@ body.page-transition {
   transition: transform 0.3s ease-in-out;
 }
 
+/* Content pushing when sidebar is visible on smaller screens */
+#data-container.sidebar-visible {
+  margin-right: 150px; /* Push content to the left when sidebar is swiped in */
+}
+
 @media (min-width: 1024px) {
   #sidebar {
     top: 50%; /* Vertically center the sidebar */

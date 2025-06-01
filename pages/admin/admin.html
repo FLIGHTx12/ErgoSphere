@@ -142,22 +142,21 @@
       }
 
       const sidebar = document.getElementById('sidebar');
-      const mainContent = document.querySelector('.container');
-      let touchstartX = 0;
+      const mainContent = document.querySelector('.container');      let touchstartX = 0;
       let touchendX = 0;
       const swipeThreshold = 100; // Define a swipe threshold
 
       function handleGesture() {
         const swipeDistance = touchendX - touchstartX;
-        if (swipeDistance > swipeThreshold) {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          mainContent.classList.remove('sidebar-visible');
-        }
         if (swipeDistance < -swipeThreshold) {
           sidebar.classList.remove('hidden');
           sidebar.style.transform = 'translateX(0)';
           mainContent.classList.add('sidebar-visible');
+        }
+        if (swipeDistance > swipeThreshold) {
+          sidebar.classList.add('hidden');
+          sidebar.style.transform = 'translateX(100%)';
+          mainContent.classList.remove('sidebar-visible');
         }
       }
 

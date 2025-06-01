@@ -157,7 +157,7 @@ div {
   padding: 10px;
   position: relative;
   margin: 20px auto;
-  width: 80%;
+  width: 90%;
   max-width: 100%;
   box-sizing: border-box;
   text-shadow: 0px 3px 5px rgb(19, 80, 28);
@@ -193,7 +193,7 @@ hr {
 /* Container Responsiveness */
 @media (min-width: 1024px) {
   div {
-    max-width: 900px;
+    max-width: 1200px;
   }
 }
 
@@ -284,7 +284,7 @@ hr {
   position: fixed;
   top: 50%;
   right: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(100%);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -299,7 +299,11 @@ hr {
 
 /* Sidebar state variations */
 #sidebar.hidden {
-  transform: translateX(100%);
+  transform: translateY(-50%) translateX(100%);
+}
+
+#sidebar:not(.hidden) {
+  transform: translateY(-50%) translateX(0);
 }
 
 /* Sidebar buttons - overriding general button styles */
@@ -780,7 +784,7 @@ hr {
   border: 1px solid #0ff;
   border-radius: 5px;
   flex: 1;
-  min-width: 300px; /* Reduced from 400px for better fit on smaller screens */
+  min-width: 350px; /* Increased from 300px for better content accommodation */
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   transition: all 0.3s ease;
@@ -816,9 +820,8 @@ hr {
     margin-left: -5px;
     margin-right: -5px;
   }
-  
-  .champion-name, .movie-title {
-    font-size: 1.3em; /* Smaller text on very small screens */
+    .champion-name, .movie-title {
+    font-size: 1.1em; /* Smaller text on very small screens */
   }
   
   .movie-title {
@@ -851,7 +854,7 @@ hr {
 }
 
 .champion-name, .movie-title, .meal-title {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #0ff;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   position: relative;

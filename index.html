@@ -60,22 +60,18 @@
 
       #sidebar-toggle:hover {
         background-color: rgba(85, 85, 85, 0.9);
-      }
-
-      /* Responsive adjustments for tablet-sized screens */
+      }      /* Responsive adjustments for tablet-sized screens */
       @media (min-width: 601px) and (max-width: 1023px) {
         #sidebar-toggle {
           display: block; /* Show the toggle button */
-        }
-
-        /* Adjust main content when sidebar is visible on tablets */
+        }        /* Adjust main content when sidebar is visible on tablets */
         #main-content.sidebar-visible {
-          margin-right: 150px; /* Changed from margin-left to margin-right */
-          margin-left: auto; /* Ensure left margin is auto if not explicitly set elsewhere for this state */
+          margin-right: 150px; /* Push content to the left to make room for sidebar */
+          margin-left: auto;
         }
         #main-content {
           /* Ensure smooth transition for margin change */
-          transition: margin-right 0.3s ease-in-out, width 0.3s ease-in-out; /* Changed to transition margin-right */
+          transition: margin-right 0.3s ease-in-out, width 0.3s ease-in-out; /* Transition margin-right */
         }
       }
     </style>
@@ -109,8 +105,7 @@
   
 </div>
 <main id="main-content">
-  <!-- New cyberpunk landing page sections -->
-  <div id="statusPanel" class="cyber-panel glass-effect">
+  <!-- New cyberpunk landing page sections -->  <div id="statusPanel" class="cyber-panel glass-effect">
     <h2 class="cyber-title">Current Champions</h2>
     <div class="cyber-grid">      
       <div class="cyber-card" id="bingwa-card">
@@ -128,6 +123,39 @@
         </div>
         <div class="card-content">
           <span id="current-atletico" class="champion-name"></span>
+          <div class="status-decor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="weeklyChoicesPanel" class="cyber-panel glass-effect">
+    <h2 class="cyber-title">Weekly Choices</h2>
+    <div class="cyber-grid">
+      <div class="cyber-card" id="next-bingwa-card">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+          <span class="neon-text">Next Bingwa<br>Challenge</span>
+        </div>
+        <div class="card-content">
+          <span id="next-bingwa-challenge" class="champion-name"></span>
+          <div class="status-decor"></div>
+        </div>
+      </div>
+      <div class="cyber-card" id="atletico-workout-card">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+          <span class="neon-text">Atletico<br>Workout</span>
+        </div>
+        <div class="card-content">
+          <span id="atletico-workout" class="champion-name"></span>
+          <div class="status-decor"></div>
+        </div>
+      </div>
+      <div class="cyber-card" id="weekly-errand-card">
+        <div class="card-header edit-link" onclick="window.location.href='pages/admin/manage-selections.html';" title="Click to edit weekly selections">
+          <span class="neon-text">Weekly<br>Errand</span>
+        </div>
+        <div class="card-content">
+          <span id="weekly-errand" class="champion-name"></span>
           <div class="status-decor"></div>
         </div>
       </div>
@@ -526,14 +554,12 @@
           mainContent.classList.remove('sidebar-visible');
           if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
         }
-      }
-
-      function handleGesture() {
+      }      function handleGesture() {
         if (touchendX < touchstartX - swipeThreshold) {
-          toggleSidebar(false); // Swipe left to hide
+          toggleSidebar(true); // Swipe left (right to left) to show
         }
         if (touchendX > touchstartX + swipeThreshold) {
-          toggleSidebar(true); // Swipe right to show
+          toggleSidebar(false); // Swipe right (left to right) to hide
         }
       }
 

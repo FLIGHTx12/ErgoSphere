@@ -88,18 +88,20 @@ function initializeCountdowns() {
   try {
     // Log to verify function is running
     console.log("Initializing countdowns and champions data (index-specific)");
-    
-    // Default data in case API fails
+      // Default data in case API fails
     const defaultData = {
       bingwaChampion: 'JAYBERS8',
       atleticoChamp: 'FLIGHTx12!',
       movieNight: 'Underwater (2020)',
       banquetMeal: 'Spaghetti and side salad',
       brunchMeal: 'Pancakes & Syrup', // Added default brunch
-      youtubeTheater: 'No featured video' // Added default YouTube
+      youtubeTheater: 'No featured video', // Added default YouTube
+      nextBingwaChallenge: '🏐Volleyball - best of 3🏐', // Default next Bingwa challenge
+      atleticoWorkout: 'Juice & Toya 20 Minute Full Body Cardio Workout', // Default workout
+      weeklyErrand: 'Target Stock up' // Default errand
     };
     
-    // Fetch data from the server API
+  // Fetch data from the server API
     fetch('/api/selections')
       .then(response => {
         if (!response.ok) {
@@ -116,12 +118,22 @@ function initializeCountdowns() {
         const banquetElement = document.getElementById('current-banquet');
         const brunchElement = document.getElementById('current-brunch'); // Get brunch element
         const youtubeElement = document.getElementById('current-youtube'); // Get YouTube element
+        
+        // Weekly Choices - New elements
+        const nextBingwaChallengeElement = document.getElementById('next-bingwa-challenge');
+        const atleticoWorkoutElement = document.getElementById('atletico-workout');
+        const weeklyErrandElement = document.getElementById('weekly-errand');
 
         if (bingwaElement) bingwaElement.textContent = ergosphereData.bingwaChampion || defaultData.bingwaChampion;
         if (atleticoElement) atleticoElement.textContent = ergosphereData.atleticoChamp || defaultData.atleticoChamp;
         if (movieElement) movieElement.textContent = ergosphereData.movieNight || defaultData.movieNight;
         if (banquetElement) banquetElement.textContent = ergosphereData.banquetMeal || defaultData.banquetMeal;
         if (brunchElement) brunchElement.textContent = ergosphereData.brunchMeal || defaultData.brunchMeal;
+        
+        // Update Weekly Choices
+        if (nextBingwaChallengeElement) nextBingwaChallengeElement.textContent = ergosphereData.nextBingwaChallenge || 'SELECT A CHALLENGE';
+        if (atleticoWorkoutElement) atleticoWorkoutElement.textContent = ergosphereData.atleticoWorkout || 'SELECT A WORKOUT';
+        if (weeklyErrandElement) weeklyErrandElement.textContent = ergosphereData.weeklyErrand || 'SELECT AN ERRAND';
         
         if (youtubeElement) {
           let youtubeHTML = defaultData.youtubeTheater; // Default to a string
@@ -161,6 +173,11 @@ function applyDefaultSelections(defaultData) {
   const brunchElement = document.getElementById('current-brunch'); // Get brunch element
   const youtubeElement = document.getElementById('current-youtube'); // Get YouTube element
   
+  // Weekly Choices - New elements
+  const nextBingwaChallengeElement = document.getElementById('next-bingwa-challenge');
+  const atleticoWorkoutElement = document.getElementById('atletico-workout');
+  const weeklyErrandElement = document.getElementById('weekly-errand');
+  
   if (bingwaElement) {
     bingwaElement.textContent = defaultData.bingwaChampion;
   }
@@ -179,6 +196,19 @@ function applyDefaultSelections(defaultData) {
 
   if (brunchElement) { // Set default brunch
     brunchElement.textContent = defaultData.brunchMeal;
+  }
+  
+  // Set defaults for Weekly Choices
+  if (nextBingwaChallengeElement) {
+    nextBingwaChallengeElement.textContent = defaultData.nextBingwaChallenge || 'SELECT A CHALLENGE';
+  }
+  
+  if (atleticoWorkoutElement) {
+    atleticoWorkoutElement.textContent = defaultData.atleticoWorkout || 'SELECT A WORKOUT';
+  }
+  
+  if (weeklyErrandElement) {
+    weeklyErrandElement.textContent = defaultData.weeklyErrand || 'SELECT AN ERRAND';
   }
 
   if (youtubeElement) { // Set default YouTube

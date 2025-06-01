@@ -104,6 +104,7 @@
   </style>
 </head>
 <body>
+  <script src="../../js/weekly-choices.js"></script>
   <nav id="navbar">
     <button><a href="../../index.html">HOME</a></button>
     <button><a href="../ErgoShop.html">ErgoShop</a></button>
@@ -148,8 +149,7 @@
             <option value="Loading...">Loading...</option>
           </select>
         </div>
-        
-        <div class="form-group">
+          <div class="form-group">
           <label for="banquetMeal">Bingwa Banquet Meal:</label>
           <select id="banquetMeal" name="banquetMeal" required>
             <option value="Loading...">Loading...</option>
@@ -161,7 +161,32 @@
           <select id="bingwaBrunch" name="bingwaBrunch" required>
             <option value="Loading...">Loading...</option>
           </select>
-        </div>        <div class="form-group">
+        </div>
+        
+        <div class="form-group section-separator">
+          <h3>Weekly Choices</h3>
+        </div>
+        
+        <div class="form-group">
+          <label for="nextBingwaChallenge">Next Week's BINGWA Challenge:</label>
+          <select id="nextBingwaChallenge" name="nextBingwaChallenge">
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="atleticoWorkout">ATLETICO Workout:</label>
+          <select id="atleticoWorkout" name="atleticoWorkout">
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="weeklyErrand">Weekly Errand:</label>
+          <select id="weeklyErrand" name="weeklyErrand">
+            <option value="Loading...">Loading...</option>
+          </select>
+        </div><div class="form-group">
           <label for="youtubeTheater1">YouTube Theater Selection:</label>
           <select id="youtubeTheater1" name="youtubeTheater1" required>
             <option value="">-- Select Video 1 --</option>
@@ -213,14 +238,17 @@
         </div>
         
         <button type="submit" class="submit-btn">Update Selections</button>        <div class="preview-card">
-          <div class="preview-title">Preview</div>
-          <div class="preview-content">
+          <div class="preview-title">Preview</div>        <div class="preview-content">
             <p><strong>Bingwa Champion:</strong> <span id="preview-bingwa"></span></p>
             <p><strong>Atletico Champion:</strong> <span id="preview-atletico"></span></p>
             <p><strong>Movie Night:</strong> <span id="preview-movie"></span></p>
             <p><strong>Bingwa Banquet:</strong> <span id="preview-banquet"></span></p>
             <p><strong>Bingwa Brunch:</strong> <span id="preview-brunch"></span></p>
             <p><strong>YouTube Theater:</strong> <span id="preview-youtube"></span></p>
+            <hr>
+            <p><strong>Next Bingwa Challenge:</strong> <span id="preview-next-bingwa"></span></p>
+            <p><strong>Atletico Workout:</strong> <span id="preview-atletico-workout"></span></p>
+            <p><strong>Weekly Errand:</strong> <span id="preview-weekly-errand"></span></p>
             <hr>
             <p><strong>Q1 Game:</strong> <span id="preview-q1game"></span></p>
             <p><strong>Q2 Game:</strong> <span id="preview-q2game"></span></p>
@@ -399,9 +427,7 @@
           console.error('Error loading data:', error);
           document.getElementById('movieNight').innerHTML = '<option value="Error">Error loading movies</option>';
           document.getElementById('banquetMeal').innerHTML = '<option value="Error">Error loading meals</option>';
-        });
-
-      // Form submission
+        });        // Form submission
       document.getElementById('selectionsForm').addEventListener('submit', function(e) {
         e.preventDefault();
           const bingwaChampion = document.getElementById('bingwaChampion').value;
@@ -414,6 +440,11 @@
           document.getElementById('youtubeTheater2').value,
           document.getElementById('youtubeTheater3').value
         ].filter(Boolean);
+        
+        // Get Weekly Choices
+        const nextBingwaChallenge = document.getElementById('nextBingwaChallenge').value;
+        const atleticoWorkout = document.getElementById('atleticoWorkout').value;
+        const weeklyErrand = document.getElementById('weeklyErrand').value;
         
         // Get quarterly games
         const quarterlyGames = {
@@ -431,12 +462,11 @@
         const originalBtnText = submitBtn.textContent;
         submitBtn.textContent = 'Saving...';
         submitBtn.disabled = true;
-        
-        if (!checkYouTubeRuntimeLimit()) {
+          if (!checkYouTubeRuntimeLimit()) {
           e.preventDefault();
           return;
         }
-
+        
         // Update server via API
         fetch('/api/selections', {
           method: 'POST',
@@ -450,7 +480,10 @@
             brunchMeal,
             youtubeTheater,
             quarterlyGames,
-            ergoArtSubject
+            ergoArtSubject,
+            nextBingwaChallenge,
+            atleticoWorkout,
+            weeklyErrand
           })
         })
         .then(response => {
@@ -475,12 +508,16 @@
           submitBtn.textContent = originalBtnText;
           submitBtn.disabled = false;
         });
-      });      // Update preview when selection changes
-      document.getElementById('bingwaChampion').addEventListener('change', updatePreview);
+      });      // Update preview when selection changes      document.getElementById('bingwaChampion').addEventListener('change', updatePreview);
       document.getElementById('atleticoChamp').addEventListener('change', updatePreview);
       document.getElementById('movieNight').addEventListener('change', updatePreview);
       document.getElementById('banquetMeal').addEventListener('change', updatePreview);
       document.getElementById('bingwaBrunch').addEventListener('change', updatePreview);
+      
+      // Add event listeners for Weekly Choices
+      document.getElementById('nextBingwaChallenge').addEventListener('change', updatePreview);
+      document.getElementById('atleticoWorkout').addEventListener('change', updatePreview);
+      document.getElementById('weeklyErrand').addEventListener('change', updatePreview);
       
       // Add event listeners for quarterly games and ErgoArt subject
       document.getElementById('q1Game').addEventListener('change', updatePreview);
@@ -635,6 +672,72 @@
                 }
               });
             }
+              // Handle Weekly Choices
+            // Next Bingwa Challenge
+            if (ergosphereData.nextBingwaChallenge) {
+              const nextBingwaChallengeSelect = document.getElementById('nextBingwaChallenge');
+              let found = false;
+              
+              for (let i = 0; i < nextBingwaChallengeSelect.options.length; i++) {
+                if (nextBingwaChallengeSelect.options[i].value === ergosphereData.nextBingwaChallenge) {
+                  nextBingwaChallengeSelect.value = ergosphereData.nextBingwaChallenge;
+                  found = true;
+                  break;
+                }
+              }
+              
+              if (!found && ergosphereData.nextBingwaChallenge) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.nextBingwaChallenge;
+                option.textContent = ergosphereData.nextBingwaChallenge;
+                nextBingwaChallengeSelect.appendChild(option);
+                nextBingwaChallengeSelect.value = ergosphereData.nextBingwaChallenge;
+              }
+            }
+            
+            // Atletico Workout
+            if (ergosphereData.atleticoWorkout) {
+              const atleticoWorkoutSelect = document.getElementById('atleticoWorkout');
+              let found = false;
+              
+              for (let i = 0; i < atleticoWorkoutSelect.options.length; i++) {
+                if (atleticoWorkoutSelect.options[i].value === ergosphereData.atleticoWorkout) {
+                  atleticoWorkoutSelect.value = ergosphereData.atleticoWorkout;
+                  found = true;
+                  break;
+                }
+              }
+              
+              if (!found && ergosphereData.atleticoWorkout) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.atleticoWorkout;
+                option.textContent = ergosphereData.atleticoWorkout;
+                atleticoWorkoutSelect.appendChild(option);
+                atleticoWorkoutSelect.value = ergosphereData.atleticoWorkout;
+              }
+            }
+            
+            // Weekly Errand
+            if (ergosphereData.weeklyErrand) {
+              const weeklyErrandSelect = document.getElementById('weeklyErrand');
+              let found = false;
+              
+              for (let i = 0; i < weeklyErrandSelect.options.length; i++) {
+                if (weeklyErrandSelect.options[i].value === ergosphereData.weeklyErrand) {
+                  weeklyErrandSelect.value = ergosphereData.weeklyErrand;
+                  found = true;
+                  break;
+                }
+              }
+              
+              if (!found && ergosphereData.weeklyErrand) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.weeklyErrand;
+                option.textContent = ergosphereData.weeklyErrand;
+                weeklyErrandSelect.appendChild(option);
+                weeklyErrandSelect.value = ergosphereData.weeklyErrand;
+              }
+            }
             
             // Update last updated time if available
             if (ergosphereData.lastUpdated) {
@@ -648,13 +751,17 @@
             console.error('Error loading selections:', error);
             showNotification('Error loading current selections', 'error');
           });
-      }
-        function updatePreview() {
+      }        function updatePreview() {
         document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
         document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
         document.getElementById('preview-movie').textContent = document.getElementById('movieNight').value;
         document.getElementById('preview-banquet').textContent = document.getElementById('banquetMeal').value;
         document.getElementById('preview-brunch').textContent = document.getElementById('bingwaBrunch').value;
+        
+        // Update Weekly Choices preview
+        document.getElementById('preview-next-bingwa').textContent = document.getElementById('nextBingwaChallenge').value || 'None selected';
+        document.getElementById('preview-atletico-workout').textContent = document.getElementById('atleticoWorkout').value || 'None selected';
+        document.getElementById('preview-weekly-errand').textContent = document.getElementById('weeklyErrand').value || 'None selected';
         
         // Update quarterly games preview
         document.getElementById('preview-q1game').textContent = document.getElementById('q1Game').value || 'None selected';
