@@ -109,7 +109,8 @@
       {"name": "Chicago Sky", "primaryColor": "#418FDE", "secondaryColor": "#FDB927"},
       {"name": "Atlanta Dream", "primaryColor": "#E03A3E", "secondaryColor": "#C4CED4"},
       {"name": "Dallas Wings", "primaryColor": "#C4CED4", "secondaryColor": "#0053BC"},
-      {"name": "Washington Mystics", "primaryColor": "#002B5C", "secondaryColor": "#E03A3E"}
+      {"name": "Washington Mystics", "primaryColor": "#002B5C", "secondaryColor": "#E03A3E"},
+      {"name": "Golden State Valkyries", "primaryColor": "#5A2D81", "secondaryColor": "#FFD700"}
     ],
     "ergoball": [
       {"name": "Team FLIGHTx12!", "primaryColor": "#FF6B35", "secondaryColor": "#004E89"},
