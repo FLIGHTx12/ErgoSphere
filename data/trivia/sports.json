@@ -1882,5 +1882,353 @@
       "A defender's arms must be straight up.",
       "A defender cannot make contact above the offensive player's shoulders."
     ]
+  },
+  {
+    "question": "What year was Jaden McDaniels drafted by the Timberwolves?",
+    "correctAnswer": "2020",
+    "wrongAnswers": [
+      "2019",
+      "2021",
+      "2018",
+      "2022",
+      "2017",
+      "2023"
+    ]
+  },
+  {
+    "question": "What pick was Jaden McDaniels selected with in the 2020 NBA Draft?",
+    "correctAnswer": "28th overall",
+    "wrongAnswers": [
+      "25th overall",
+      "30th overall",
+      "22nd overall",
+      "26th overall",
+      "24th overall",
+      "29th overall"
+    ]
+  },
+  {
+    "question": "Which university did Jaden McDaniels attend before being drafted?",
+    "correctAnswer": "Washington",
+    "wrongAnswers": [
+      "UCLA",
+      "USC",
+      "Oregon",
+      "Arizona State",
+      "Stanford",
+      "Cal"
+    ]
+  },
+  {
+    "question": "What year was Rudy Gobert acquired by the Timberwolves via trade?",
+    "correctAnswer": "2022",
+    "wrongAnswers": [
+      "2021",
+      "2023",
+      "2020",
+      "2024",
+      "2019",
+      "2025"
+    ]
+  },
+  {
+    "question": "What year was Rudy Gobert originally drafted?",
+    "correctAnswer": "2013",
+    "wrongAnswers": [
+      "2012",
+      "2014",
+      "2011",
+      "2015",
+      "2010",
+      "2016"
+    ]
+  },
+  {
+    "question": "What pick was Rudy Gobert selected with in the 2013 NBA Draft?",
+    "correctAnswer": "27th overall",
+    "wrongAnswers": [
+      "30th overall",
+      "25th overall",
+      "28th overall",
+      "26th overall",
+      "29th overall",
+      "24th overall"
+    ]
+  },
+  {
+    "question": "What year was Mike Conley Jr. acquired by the Timberwolves via trade?",
+    "correctAnswer": "2023",
+    "wrongAnswers": [
+      "2022",
+      "2024",
+      "2021",
+      "2025",
+      "2020",
+      "2019"
+    ]
+  },
+  {
+    "question": "What year was Mike Conley Jr. originally drafted?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004",
+      "2010"
+    ]
+  },
+  {
+    "question": "What pick was Mike Conley Jr. selected with in the 2007 NBA Draft?",
+    "correctAnswer": "4th overall",
+    "wrongAnswers": [
+      "3rd overall",
+      "5th overall",
+      "2nd overall",
+      "6th overall",
+      "1st overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "What year was Shabazz Muhammad drafted by the Timberwolves?",
+    "correctAnswer": "2013",
+    "wrongAnswers": [
+      "2012",
+      "2014",
+      "2011",
+      "2015",
+      "2010",
+      "2016"
+    ]
+  },
+  {
+    "question": "What pick was Shabazz Muhammad selected with in the 2013 NBA Draft?",
+    "correctAnswer": "14th overall",
+    "wrongAnswers": [
+      "12th overall",
+      "16th overall",
+      "10th overall",
+      "13th overall",
+      "15th overall",
+      "18th overall"
+    ]
+  },
+  {
+    "question": "Which university did Shabazz Muhammad attend before being drafted?",
+    "correctAnswer": "UCLA",
+    "wrongAnswers": [
+      "USC",
+      "Stanford",
+      "Cal",
+      "Arizona",
+      "Oregon",
+      "Washington"
+    ]
+  },
+  {
+    "question": "What year was Derrick Williams drafted by the Timberwolves?",
+    "correctAnswer": "2011",
+    "wrongAnswers": [
+      "2010",
+      "2012",
+      "2009",
+      "2013",
+      "2008",
+      "2014"
+    ]
+  },
+  {
+    "question": "What pick was Derrick Williams selected with in the 2011 NBA Draft?",
+    "correctAnswer": "2nd overall",
+    "wrongAnswers": [
+      "1st overall",
+      "3rd overall",
+      "4th overall",
+      "5th overall",
+      "6th overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "Which university did Derrick Williams attend before being drafted?",
+    "correctAnswer": "Arizona",
+    "wrongAnswers": [
+      "Arizona State",
+      "UCLA",
+      "USC",
+      "Oregon",
+      "Stanford",
+      "Cal"
+    ]
+  },
+  {
+    "question": "What year was Wesley Johnson drafted by the Timberwolves?",
+    "correctAnswer": "2010",
+    "wrongAnswers": [
+      "2009",
+      "2011",
+      "2008",
+      "2012",
+      "2007",
+      "2013"
+    ]
+  },
+  {
+    "question": "What pick was Wesley Johnson selected with in the 2010 NBA Draft?",
+    "correctAnswer": "4th overall",
+    "wrongAnswers": [
+      "3rd overall",
+      "5th overall",
+      "2nd overall",
+      "6th overall",
+      "1st overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "Which university did Wesley Johnson attend before being drafted?",
+    "correctAnswer": "Syracuse",
+    "wrongAnswers": [
+      "Georgetown",
+      "UConn",
+      "Villanova",
+      "Providence",
+      "St. John's",
+      "Seton Hall"
+    ]
+  },
+  {
+    "question": "What year was Jonny Flynn drafted by the Timberwolves?",
+    "correctAnswer": "2009",
+    "wrongAnswers": [
+      "2008",
+      "2010",
+      "2007",
+      "2011",
+      "2006",
+      "2012"
+    ]
+  },
+  {
+    "question": "What pick was Jonny Flynn selected with in the 2009 NBA Draft?",
+    "correctAnswer": "6th overall",
+    "wrongAnswers": [
+      "5th overall",
+      "7th overall",
+      "4th overall",
+      "8th overall",
+      "3rd overall",
+      "9th overall"
+    ]
+  },
+  {
+    "question": "Which university did Jonny Flynn attend before being drafted?",
+    "correctAnswer": "Syracuse",
+    "wrongAnswers": [
+      "Georgetown",
+      "UConn",
+      "Villanova",
+      "Providence",
+      "St. John's",
+      "Seton Hall"
+    ]
+  },
+  {
+    "question": "What year was O.J. Mayo acquired by the Timberwolves via trade?",
+    "correctAnswer": "2009",
+    "wrongAnswers": [
+      "2008",
+      "2010",
+      "2007",
+      "2011",
+      "2006",
+      "2012"
+    ]
+  },
+  {
+    "question": "What year was O.J. Mayo originally drafted?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2007",
+      "2009",
+      "2006",
+      "2010",
+      "2005",
+      "2011"
+    ]
+  },
+  {
+    "question": "What pick was O.J. Mayo selected with in the 2008 NBA Draft?",
+    "correctAnswer": "3rd overall",
+    "wrongAnswers": [
+      "1st overall",
+      "2nd overall",
+      "4th overall",
+      "5th overall",
+      "6th overall",
+      "7th overall"
+    ]
+  },
+  {
+    "question": "What year was Corey Brewer drafted by the Timberwolves?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004",
+      "2010"
+    ]
+  },
+  {
+    "question": "What pick was Corey Brewer selected with in the 2007 NBA Draft?",
+    "correctAnswer": "7th overall",
+    "wrongAnswers": [
+      "5th overall",
+      "9th overall",
+      "6th overall",
+      "8th overall",
+      "4th overall",
+      "10th overall"
+    ]
+  },
+  {
+    "question": "Which university did Corey Brewer attend before being drafted?",
+    "correctAnswer": "Florida",
+    "wrongAnswers": [
+      "Florida State",
+      "Georgia",
+      "Auburn",
+      "Tennessee",
+      "Kentucky",
+      "Alabama"
+    ]
+  },
+  {
+    "question": "What year was Randy Foye drafted by the Timberwolves?",
+    "correctAnswer": "2006",
+    "wrongAnswers": [
+      "2005",
+      "2007",
+      "2004",
+      "2008",
+      "2003",
+      "2009"
+    ]
+  },
+  {
+    "question": "What pick was Randy Foye selected with in the 2006 NBA Draft?",
+    "correctAnswer": "7th overall",
+    "wrongAnswers": [
+      "5th overall",
+      "9th overall",
+      "6th overall",
+      "8th overall",
+      "4th overall",
+      "10th overall"
+    ]
   }
 ]

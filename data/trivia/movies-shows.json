@@ -2555,7 +2555,7 @@
       "Daniel Zacapa"
     ]
   },
-   {
+     {
     "question": "What are the killer's murders based on in Se7en (1995)?",
     "correctAnswer": "The seven deadly sins",
     "wrongAnswers": [
@@ -3660,6 +3660,486 @@
     ]
   },
   {
+    "question": "Who directed Cowboy Bebop (1998)?",
+    "correctAnswer": "Shinichiro Watanabe",
+    "wrongAnswers": [
+      "Hayao Miyazaki",
+      "Mamoru Oshii",
+      "Satoshi Kon",
+      "Katsuhiro Otomo",
+      "Hideaki Anno",
+      "Yoshiaki Kawajiri"
+    ]
+  },
+  {
+    "question": "What is the name of Spike Spiegel's ship in Cowboy Bebop (1998)?",
+    "correctAnswer": "Swordfish II",
+    "wrongAnswers": [
+      "Red Tail",
+      "Hammerhead",
+      "Blue Crow",
+      "Mono Racer",
+      "Space Lion",
+      "Flying Fish"
+    ]
+  },
+  {
+    "question": "What is the name of the main spaceship where the crew lives in Cowboy Bebop (1998)?",
+    "correctAnswer": "Bebop",
+    "wrongAnswers": [
+      "Outlaw Star",
+      "Space Dandy",
+      "Big Shot",
+      "Red Dragon",
+      "Cowboy",
+      "Bounty Hunter"
+    ]
+  },
+  {
+    "question": "Who is Spike Spiegel's former partner in the Red Dragon Syndicate in Cowboy Bebop (1998)?",
+    "correctAnswer": "Vicious",
+    "wrongAnswers": [
+      "Jet Black",
+      "Faye Valentine",
+      "Lin",
+      "Shin",
+      "Mao Yenrai",
+      "Annie"
+    ]
+  },
+  {
+    "question": "What is the name of Spike's lost love in Cowboy Bebop (1998)?",
+    "correctAnswer": "Julia",
+    "wrongAnswers": [
+      "Faye",
+      "Electra",
+      "Alisa",
+      "Stella",
+      "Annie",
+      "Katerina"
+    ]
+  },
+  {
+    "question": "What is Jet Black's former profession in Cowboy Bebop (1998)?",
+    "correctAnswer": "Police detective (ISSP officer)",
+    "wrongAnswers": [
+      "Military pilot",
+      "Space mechanic",
+      "Bounty hunter",
+      "Ship captain",
+      "Security guard",
+      "Private investigator"
+    ]
+  },
+  {
+    "question": "What happened to Jet Black's arm in Cowboy Bebop (1998)?",
+    "correctAnswer": "He lost it and has a cybernetic replacement",
+    "wrongAnswers": [
+      "It was injured in a ship crash",
+      "He was born without it",
+      "It was damaged by Vicious",
+      "He lost it in the war",
+      "It was poisoned by a bounty head",
+      "Nothing happened to his arm"
+    ]
+  },
+  {
+    "question": "What does Faye Valentine suffer from in Cowboy Bebop (1998)?",
+    "correctAnswer": "Amnesia from cryogenic sleep",
+    "wrongAnswers": [
+      "A terminal illness",
+      "Drug addiction",
+      "Multiple personalities",
+      "Chronic pain",
+      "PTSD from war",
+      "Genetic modification side effects"
+    ]
+  },
+  {
+    "question": "What is Edward's full name in Cowboy Bebop (1998)?",
+    "correctAnswer": "Edward Wong Hau Pepelu Tivrusky IV",
+    "wrongAnswers": [
+      "Edward Elric Fullmetal",
+      "Edward Van Hohenheim",
+      "Edward Christopher Sheeran",
+      "Edward Radical Ed Computer",
+      "Edward Space Cowboy",
+      "Edward Tequila Sunrise"
+    ]
+  },
+  {
+    "question": "What is the name of Edward's pet corgi in Cowboy Bebop (1998)?",
+    "correctAnswer": "Ein",
+    "wrongAnswers": [
+      "Zwei",
+      "Drei",
+      "Spike",
+      "Jet",
+      "Cowboy",
+      "Bebop"
+    ]
+  },
+  {
+    "question": "What special ability does Ein the corgi have in Cowboy Bebop (1998)?",
+    "correctAnswer": "Enhanced intelligence from genetic experiments",
+    "wrongAnswers": [
+      "Telepathic powers",
+      "The ability to fly",
+      "Super strength",
+      "Time manipulation",
+      "Invisibility",
+      "Nothing special, he's just a normal dog"
+    ]
+  },
+  {
+    "question": "What is the name of the TV show the bounty hunters watch for leads in Cowboy Bebop (1998)?",
+    "correctAnswer": "Big Shot",
+    "wrongAnswers": [
+      "Bounty Hunter News",
+      "Space Chase",
+      "Cowboy Channel",
+      "Wanted Weekly",
+      "The Hunt",
+      "Criminal Update"
+    ]
+  },
+  {
+    "question": "What drug is central to the movie 'Cowboy Bebop: The Movie' and several episodes?",
+    "correctAnswer": "Red Eye",
+    "wrongAnswers": [
+      "Blue Dream",
+      "Green Death",
+      "Black Star",
+      "White Lightning",
+      "Purple Haze",
+      "Yellow Fever"
+    ]
+  },
+  {
+    "question": "What martial art does Spike Spiegel practice in Cowboy Bebop (1998)?",
+    "correctAnswer": "Jeet Kune Do",
+    "wrongAnswers": [
+      "Karate",
+      "Taekwondo",
+      "Kung Fu",
+      "Aikido",
+      "Muay Thai",
+      "Boxing"
+    ]
+  },
+  {
+    "question": "What is the name of the criminal organization Spike used to belong to in Cowboy Bebop (1998)?",
+    "correctAnswer": "Red Dragon Syndicate",
+    "wrongAnswers": [
+      "Black Snake Society",
+      "Blue Tiger Gang",
+      "White Wolf Clan",
+      "Golden Dragon Triad",
+      "Silver Serpent Brotherhood",
+      "Crimson Phoenix Organization"
+    ]
+  },
+    {
+    "question": "Who directed Cowboy Bebop (1998)?",
+    "correctAnswer": "Shinichiro Watanabe",
+    "wrongAnswers": [
+      "Hayao Miyazaki",
+      "Mamoru Oshii",
+      "Satoshi Kon",
+      "Katsuhiro Otomo",
+      "Hideaki Anno",
+      "Yoshiaki Kawajiri"
+    ]
+  },
+  {
+    "question": "What is the name of Spike Spiegel's ship in Cowboy Bebop (1998)?",
+    "correctAnswer": "Swordfish II",
+    "wrongAnswers": [
+      "Red Tail",
+      "Hammerhead",
+      "Blue Crow",
+      "Mono Racer",
+      "Space Lion",
+      "Flying Fish"
+    ]
+  },
+  {
+    "question": "What is the name of the main spaceship where the crew lives in Cowboy Bebop (1998)?",
+    "correctAnswer": "Bebop",
+    "wrongAnswers": [
+      "Outlaw Star",
+      "Space Dandy",
+      "Big Shot",
+      "Red Dragon",
+      "Cowboy",
+      "Bounty Hunter"
+    ]
+  },
+  {
+    "question": "Who is Spike Spiegel's former partner in the Red Dragon Syndicate in Cowboy Bebop (1998)?",
+    "correctAnswer": "Vicious",
+    "wrongAnswers": [
+      "Jet Black",
+      "Faye Valentine",
+      "Lin",
+      "Shin",
+      "Mao Yenrai",
+      "Annie"
+    ]
+  },
+  {
+    "question": "What is the name of Spike's lost love in Cowboy Bebop (1998)?",
+    "correctAnswer": "Julia",
+    "wrongAnswers": [
+      "Faye",
+      "Electra",
+      "Alisa",
+      "Stella",
+      "Annie",
+      "Katerina"
+    ]
+  },
+  {
+    "question": "What is Jet Black's former profession in Cowboy Bebop (1998)?",
+    "correctAnswer": "Police detective (ISSP officer)",
+    "wrongAnswers": [
+      "Military pilot",
+      "Space mechanic",
+      "Bounty hunter",
+      "Ship captain",
+      "Security guard",
+      "Private investigator"
+    ]
+  },
+  {
+    "question": "What happened to Jet Black's arm in Cowboy Bebop (1998)?",
+    "correctAnswer": "He lost it and has a cybernetic replacement",
+    "wrongAnswers": [
+      "It was injured in a ship crash",
+      "He was born without it",
+      "It was damaged by Vicious",
+      "He lost it in the war",
+      "It was poisoned by a bounty head",
+      "Nothing happened to his arm"
+    ]
+  },
+  {
+    "question": "What does Faye Valentine suffer from in Cowboy Bebop (1998)?",
+    "correctAnswer": "Amnesia from cryogenic sleep",
+    "wrongAnswers": [
+      "A terminal illness",
+      "Drug addiction",
+      "Multiple personalities",
+      "Chronic pain",
+      "PTSD from war",
+      "Genetic modification side effects"
+    ]
+  },
+  {
+    "question": "What is Edward's full name in Cowboy Bebop (1998)?",
+    "correctAnswer": "Edward Wong Hau Pepelu Tivrusky IV",
+    "wrongAnswers": [
+      "Edward Elric Fullmetal",
+      "Edward Van Hohenheim",
+      "Edward Christopher Sheeran",
+      "Edward Radical Ed Computer",
+      "Edward Space Cowboy",
+      "Edward Tequila Sunrise"
+    ]
+  },
+  {
+    "question": "What is the name of Edward's pet corgi in Cowboy Bebop (1998)?",
+    "correctAnswer": "Ein",
+    "wrongAnswers": [
+      "Zwei",
+      "Drei",
+      "Spike",
+      "Jet",
+      "Cowboy",
+      "Bebop"
+    ]
+  },
+  {
+    "question": "What special ability does Ein the corgi have in Cowboy Bebop (1998)?",
+    "correctAnswer": "Enhanced intelligence from genetic experiments",
+    "wrongAnswers": [
+      "Telepathic powers",
+      "The ability to fly",
+      "Super strength",
+      "Time manipulation",
+      "Invisibility",
+      "Nothing special, he's just a normal dog"
+    ]
+  },
+  {
+    "question": "What is the name of the TV show the bounty hunters watch for leads in Cowboy Bebop (1998)?",
+    "correctAnswer": "Big Shot",
+    "wrongAnswers": [
+      "Bounty Hunter News",
+      "Space Chase",
+      "Cowboy Channel",
+      "Wanted Weekly",
+      "The Hunt",
+      "Criminal Update"
+    ]
+  },
+  {
+    "question": "What drug is central to the movie 'Cowboy Bebop: The Movie' and several episodes?",
+    "correctAnswer": "Red Eye",
+    "wrongAnswers": [
+      "Blue Dream",
+      "Green Death",
+      "Black Star",
+      "White Lightning",
+      "Purple Haze",
+      "Yellow Fever"
+    ]
+  },
+  {
+    "question": "What martial art does Spike Spiegel practice in Cowboy Bebop (1998)?",
+    "correctAnswer": "Jeet Kune Do",
+    "wrongAnswers": [
+      "Karate",
+      "Taekwondo",
+      "Kung Fu",
+      "Aikido",
+      "Muay Thai",
+      "Boxing"
+    ]
+  },
+  {
+    "question": "What is the name of the criminal organization Spike used to belong to in Cowboy Bebop (1998)?",
+    "correctAnswer": "Red Dragon Syndicate",
+    "wrongAnswers": [
+      "Black Snake Society",
+      "Blue Tiger Gang",
+      "White Wolf Clan",
+      "Golden Dragon Triad",
+      "Silver Serpent Brotherhood",
+      "Crimson Phoenix Organization"
+    ]
+  },
+  {
+    "question": "In which year is Cowboy Bebop (1998) set?",
+    "correctAnswer": "2071",
+    "wrongAnswers": [
+      "2099",
+      "2050",
+      "2080",
+      "2065",
+      "2090",
+      "2075"
+    ]
+  },
+  {
+    "question": "What happened to Earth in the backstory of Cowboy Bebop (1998)?",
+    "correctAnswer": "The Moon was shattered, causing meteor bombardment that made Earth mostly uninhabitable",
+    "wrongAnswers": [
+      "Nuclear war destroyed most of the planet",
+      "An alien invasion devastated the surface",
+      "Climate change flooded most continents",
+      "A plague wiped out most of humanity",
+      "Solar flares burned the atmosphere",
+      "Earth was destroyed completely"
+    ]
+  },
+  {
+    "question": "What is Spike's catchphrase when he seemingly dies at the end of Cowboy Bebop (1998)?",
+    "correctAnswer": "\"Bang.\"",
+    "wrongAnswers": [
+      "\"See you space cowboy.\"",
+      "\"Whatever happens, happens.\"",
+      "\"I'm gonna carry that weight.\"",
+      "\"It's all a dream.\"",
+      "\"The end.\"",
+      "\"Finally awake.\""
+    ]
+  },
+  {
+    "question": "What is the famous closing line that appears at the end of most Cowboy Bebop (1998) episodes?",
+    "correctAnswer": "\"See you space cowboy...\"",
+    "wrongAnswers": [
+      "\"Until next time, bounty hunters\"",
+      "\"The hunt continues\"",
+      "\"Bang\"",
+      "\"Whatever happens, happens\"",
+      "\"Cowboy Bebop will return\"",
+      "\"End of session\""
+    ]
+  },
+  {
+    "question": "In Cowboy Bebop (1998), what philosophy does Spike often express about life?",
+    "correctAnswer": "\"Whatever happens, happens\"",
+    "wrongAnswers": [
+      "\"Life is but a dream\"",
+      "\"The past defines us\"",
+      "\"Tomorrow never comes\"",
+      "\"Money makes the world go round\"",
+      "\"Live fast, die young\"",
+      "\"Hunt or be hunted\""
+    ]
+  },
+  {
+    "question": "In which year is Cowboy Bebop (1998) set?",
+    "correctAnswer": "2071",
+    "wrongAnswers": [
+      "2099",
+      "2050",
+      "2080",
+      "2065",
+      "2090",
+      "2075"
+    ]
+  },
+  {
+    "question": "What happened to Earth in the backstory of Cowboy Bebop (1998)?",
+    "correctAnswer": "The Moon was shattered, causing meteor bombardment that made Earth mostly uninhabitable",
+    "wrongAnswers": [
+      "Nuclear war destroyed most of the planet",
+      "An alien invasion devastated the surface",
+      "Climate change flooded most continents",
+      "A plague wiped out most of humanity",
+      "Solar flares burned the atmosphere",
+      "Earth was destroyed completely"
+    ]
+  },
+  {
+    "question": "What is Spike's catchphrase when he seemingly dies at the end of Cowboy Bebop (1998)?",
+    "correctAnswer": "\"Bang.\"",
+    "wrongAnswers": [
+      "\"See you space cowboy.\"",
+      "\"Whatever happens, happens.\"",
+      "\"I'm gonna carry that weight.\"",
+      "\"It's all a dream.\"",
+      "\"The end.\"",
+      "\"Finally awake.\""
+    ]
+  },
+  {
+    "question": "What is the famous closing line that appears at the end of most Cowboy Bebop (1998) episodes?",
+    "correctAnswer": "\"See you space cowboy...\"",
+    "wrongAnswers": [
+      "\"Until next time, bounty hunters\"",
+      "\"The hunt continues\"",
+      "\"Bang\"",
+      "\"Whatever happens, happens\"",
+      "\"Cowboy Bebop will return\"",
+      "\"End of session\""
+    ]
+  },
+  {
+    "question": "In Cowboy Bebop (1998), what philosophy does Spike often express about life?",
+    "correctAnswer": "\"Whatever happens, happens\"",
+    "wrongAnswers": [
+      "\"Life is but a dream\"",
+      "\"The past defines us\"",
+      "\"Tomorrow never comes\"",
+      "\"Money makes the world go round\"",
+      "\"Live fast, die young\"",
+      "\"Hunt or be hunted\""
+    ]
+  },
+  {
     "question": "Who directed The Dark Tower (2017)?",
     "correctAnswer": "Nikolaj Arcel",
     "wrongAnswers": [
@@ -4469,9 +4949,9 @@
       "For trying to steal the Tesseract",
       "For disobeying Loki",
       "For losing Mjolnir",
-      "For refusing to become king",
-      "For an affair with a mortal",
-      "For destroying part of Asgard"
+      "Heimdall",
+      "Volstagg",
+      "Fandral"
     ]
   },
   {
@@ -4967,7 +5447,7 @@
     ]
   },
   {
-    "question": "What causes the disaster at the Kepler  822 station?",
+    "question": "What causes the disaster at the Kepler      822 station?",
     "correctAnswer": "An earthquake that awakens deep-sea creatures",
     "wrongAnswers": [
       "A catastrophic equipment malfunction",
@@ -5492,6 +5972,675 @@
       "Demonic",
       "Rakka (short film)",
       "Firebase (short film)"
+    ]
+  },
+  {
+    "question": "Which film won the Academy Award for Best Picture in 1976?",
+    "correctAnswer": "Rocky",
+    "wrongAnswers": [
+      "All the President's Men",
+      "Bound for Glory",
+      "Network",
+      "Taxi Driver",
+      "The Omen"
+    ]
+  },
+  {
+    "question": "What movie won the Oscar for Best Picture in 1994?",
+    "correctAnswer": "Forrest Gump",
+    "wrongAnswers": [
+      "The Shawshank Redemption",
+      "Pulp Fiction",
+      "Quiz Show",
+      "Four Weddings and a Funeral",
+      "The Lion King"
+    ]
+  },
+  {
+    "question": "Which film took home Best Picture at the 2020 Academy Awards?",
+    "correctAnswer": "Parasite",
+    "wrongAnswers": [
+      "1917",
+      "Once Upon a Time in Hollywood",
+      "Joker",
+      "Jojo Rabbit",
+      "Little Women"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner at the 1973 Oscars?",
+    "correctAnswer": "The Godfather",
+    "wrongAnswers": [
+      "Cabaret",
+      "Deliverance",
+      "The Emigrants",
+      "Sounder",
+      "The Poseidon Adventure"
+    ]
+  },
+  {
+    "question": "Which movie won Best Picture in 1998?",
+    "correctAnswer": "Titanic",
+    "wrongAnswers": [
+      "L.A. Confidential",
+      "Good Will Hunting",
+      "The Full Monty",
+      "As Good as It Gets",
+      "The English Patient"
+    ]
+  },
+  {
+    "question": "What film won the Academy Award for Best Picture in 2008?",
+    "correctAnswer": "Slumdog Millionaire",
+    "wrongAnswers": [
+      "The Curious Case of Benjamin Button",
+      "Frost/Nixon",
+      "Milk",
+      "The Reader",
+      "The Dark Knight"
+    ]
+  },
+  {
+    "question": "Which movie was awarded Best Picture in 1991?",
+    "correctAnswer": "The Silence of the Lambs",
+    "wrongAnswers": [
+      "Beauty and the Beast",
+      "Bugsy",
+      "JFK",
+      "The Prince of Tides",
+      "Terminator 2: Judgment Day"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner in 2017?",
+    "correctAnswer": "Moonlight",
+    "wrongAnswers": [
+      "La La Land",
+      "Arrival",
+      "Fences",
+      "Hacksaw Ridge",
+      "Manchester by the Sea"
+    ]
+  },
+  {
+    "question": "Which film won Best Picture at the 1980 Academy Awards?",
+    "correctAnswer": "Kramer vs. Kramer",
+    "wrongAnswers": [
+      "Apocalypse Now",
+      "Breaking Away",
+      "Norma Rae",
+      "All That Jazz",
+      "Alien"
+    ]
+  },
+  {
+    "question": "What movie took home the Oscar for Best Picture in 2014?",
+    "correctAnswer": "Birdman",
+    "wrongAnswers": [
+      "Boyhood",
+      "American Sniper",
+      "The Grand Budapest Hotel",
+      "The Imitation Game",
+      "Selma"
+    ]
+  },
+  {
+    "question": "Which film was the Best Picture winner in 1975?",
+    "correctAnswer": "One Flew Over the Cuckoo's Nest",
+    "wrongAnswers": [
+      "Barry Lyndon",
+      "Dog Day Afternoon",
+      "Jaws",
+      "Nashville",
+      "Three Days of the Condor"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner at the 2019 Oscars?",
+    "correctAnswer": "Green Book",
+    "wrongAnswers": [
+      "Black Panther",
+      "BlacKkKlansman",
+      "Bohemian Rhapsody",
+      "The Favourite",
+      "Roma"
+    ]
+  },
+  {
+    "question": "Which movie won the Academy Award for Best Picture in 1985?",
+    "correctAnswer": "Amadeus",
+    "wrongAnswers": [
+      "The Killing Fields",
+      "A Passage to India",
+      "Places in the Heart",
+      "A Soldier's Story",
+      "The Terminator"
+    ]
+  },
+  {
+    "question": "What film won Best Picture in 2010?",
+    "correctAnswer": "The King's Speech",
+    "wrongAnswers": [
+      "The Social Network",
+      "Black Swan",
+      "The Fighter",
+      "Inception",
+      "True Grit"
+    ]
+  },
+  {
+    "question": "Which movie was awarded Best Picture in 1977?",
+    "correctAnswer": "Annie Hall",
+    "wrongAnswers": [
+      "The Goodbye Girl",
+      "Julia",
+      "The Turning Point",
+      "Star Wars",
+      "Close Encounters of the Third Kind"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner at the 2021 Academy Awards?",
+    "correctAnswer": "Nomadland",
+    "wrongAnswers": [
+      "The Father",
+      "Judas and the Black Messiah",
+      "Mank",
+      "Minari",
+      "Sound of Metal"
+    ]
+  },
+  {
+    "question": "Which film won the Oscar for Best Picture in 2003?",
+    "correctAnswer": "Chicago",
+    "wrongAnswers": [
+      "The Lord of the Rings: The Two Towers",
+      "Gangs of New York",
+      "The Hours",
+      "The Pianist",
+      "Finding Nemo"
+    ]
+  },
+  {
+    "question": "What movie won Best Picture in 1999?",
+    "correctAnswer": "American Beauty",
+    "wrongAnswers": [
+      "The Insider",
+      "The Sixth Sense",
+      "The Cider House Rules",
+      "The Green Mile",
+      "Being John Malkovich"
+    ]
+  },
+  {
+    "question": "Which film was the Best Picture winner in 1993?",
+    "correctAnswer": "Schindler's List",
+    "wrongAnswers": [
+      "The Fugitive",
+      "In the Name of the Father",
+      "The Piano",
+      "The Remains of the Day",
+      "Jurassic Park"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner at the 2022 Academy Awards?",
+    "correctAnswer": "CODA",
+    "wrongAnswers": [
+      "Belfast",
+      "Don't Look Up",
+      "Drive My Car",
+      "Dune",
+      "West Side Story"
+    ]
+  },
+  {
+    "question": "Which film won Best Picture in 1982?",
+    "correctAnswer": "Chariots of Fire",
+    "wrongAnswers": [
+      "Raiders of the Lost Ark",
+      "Atlantic City",
+      "On Golden Pond",
+      "Reds",
+      "E.T. the Extra-Terrestrial"
+    ]
+  },
+  {
+    "question": "What movie won the Oscar for Best Picture in 2007?",
+    "correctAnswer": "The Departed",
+    "wrongAnswers": [
+      "Babel",
+      "Letters from Iwo Jima",
+      "Little Miss Sunshine",
+      "The Queen",
+      "Dreamgirls"
+    ]
+  },
+  {
+    "question": "Which film was awarded Best Picture in 1986?",
+    "correctAnswer": "Platoon",
+    "wrongAnswers": [
+      "Top Gun",
+      "Hannah and Her Sisters",
+      "The Mission",
+      "A Room with a View",
+      "Children of a Lesser God"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner in 2012?",
+    "correctAnswer": "Argo",
+    "wrongAnswers": [
+      "Lincoln",
+      "Life of Pi",
+      "Les Misérables",
+      "Zero Dark Thirty",
+      "Silver Linings Playbook"
+    ]
+  },
+  {
+    "question": "Which movie won Best Picture at the 1990 Academy Awards?",
+    "correctAnswer": "Driving Miss Daisy",
+    "wrongAnswers": [
+      "Born on the Fourth of July",
+      "Dead Poets Society",
+      "Field of Dreams",
+      "My Left Foot",
+      "Glory"
+    ]
+  },
+  {
+    "question": "What film won the Oscar for Best Picture in 2005?",
+    "correctAnswer": "Crash",
+    "wrongAnswers": [
+      "Brokeback Mountain",
+      "Capote",
+      "Good Night, and Good Luck",
+      "Munich",
+      "Walk the Line"
+    ]
+  },
+  {
+    "question": "Which film was the Best Picture winner in 1988?",
+    "correctAnswer": "Rain Man",
+    "wrongAnswers": [
+      "The Accidental Tourist",
+      "Dangerous Liaisons",
+      "Mississippi Burning",
+      "Working Girl",
+      "Big"
+    ]
+  },
+  {
+    "question": "What movie won Best Picture in 2001?",
+    "correctAnswer": "A Beautiful Mind",
+    "wrongAnswers": [
+      "Gosford Park",
+      "In the Bedroom",
+      "The Lord of the Rings: The Fellowship of the Ring",
+      "Moulin Rouge!",
+      "Shrek"
+    ]
+  },
+  {
+    "question": "Which film won the Academy Award for Best Picture in 1979?",
+    "correctAnswer": "The Deer Hunter",
+    "wrongAnswers": [
+      "An Unmarried Woman",
+      "Coming Home",
+      "Heaven Can Wait",
+      "Midnight Express",
+      "Superman"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner at the 2015 Oscars?",
+    "correctAnswer": "Birdman",
+    "wrongAnswers": [
+      "Boyhood",
+      "American Sniper",
+      "The Grand Budapest Hotel",
+      "The Imitation Game",
+      "Selma"
+    ]
+  },
+  {
+    "question": "Which movie was awarded Best Picture in 1987?",
+    "correctAnswer": "The Last Emperor",
+    "wrongAnswers": [
+      "Broadcast News",
+      "Fatal Attraction",
+      "Hope and Glory",
+      "Moonstruck",
+      "Wall Street"
+    ]
+  },
+  {
+    "question": "What film won Best Picture in 2006?",
+    "correctAnswer": "The Departed",
+    "wrongAnswers": [
+      "Babel",
+      "Letters from Iwo Jima",
+      "Little Miss Sunshine",
+      "The Queen",
+      "Blood Diamond"
+    ]
+  },
+  {
+    "question": "Which film was the Best Picture winner in 1983?",
+    "correctAnswer": "Terms of Endearment",
+    "wrongAnswers": [
+      "The Big Chill",
+      "The Dresser",
+      "The Right Stuff",
+      "Tender Mercies",
+      "Flashdance"
+    ]
+  },
+  {
+    "question": "What movie won the Oscar for Best Picture in 2011?",
+    "correctAnswer": "The King's Speech",
+    "wrongAnswers": [
+      "127 Hours",
+      "Black Swan",
+      "The Fighter",
+      "Inception",
+      "The Social Network"
+    ]
+  },
+  {
+    "question": "Which movie won Best Picture at the 1989 Academy Awards?",
+    "correctAnswer": "Rain Man",
+    "wrongAnswers": [
+      "The Accidental Tourist",
+      "Dangerous Liaisons",
+      "Mississippi Burning",
+      "Working Girl",
+      "A Fish Called Wanda"
+    ]
+  },
+  {
+    "question": "What was the Best Picture winner in 2004?",
+    "correctAnswer": "Million Dollar Baby",
+    "wrongAnswers": [
+      "The Aviator",
+      "Finding Neverland",
+      "Ray",
+      "Sideways",
+      "Eternal Sunshine of the Spotless Mind"
+    ]
+  },
+  {
+    "question": "Which movie was awarded Best Picture in 1981?",
+    "correctAnswer": "Ordinary People",
+    "wrongAnswers": [
+      "Coal Miner's Daughter",
+      "The Elephant Man",
+      "Raging Bull",
+      "Tess",
+      "The Empire Strikes Back"
+    ]
+  },
+  {
+    "question": "What film won the Academy Award for Best Picture in 2016?",
+    "correctAnswer": "Spotlight",
+    "wrongAnswers": [
+      "The Big Short",
+      "Bridge of Spies",
+      "Brooklyn",
+      "Mad Max: Fury Road",
+      "The Revenant"
+    ]
+  },
+  {
+    "question": "Which film was the Best Picture winner in 1978?",
+    "correctAnswer": "The Deer Hunter",
+    "wrongAnswers": [
+      "An Unmarried Woman",
+      "Coming Home",
+      "Heaven Can Wait",
+      "Midnight Express",
+      "Grease"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what are the names of the two main sister characters?",
+    "correctAnswer": "Vi and Jinx (Powder)",
+    "wrongAnswers": [
+      "Caitlyn and Cassandra",
+      "Mel and Ambessa",
+      "Grayson and Sevika",
+      "Mylo and Claggor",
+      "Jayce and Viktor",
+      "Silco and Vander"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is the name of the underground city where Vi and Jinx grew up?",
+    "correctAnswer": "Zaun (The Undercity)",
+    "wrongAnswers": [
+      "Piltover",
+      "Demacia",
+      "Noxus",
+      "Ionia",
+      "Bilgewater",
+      "Shurima"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what magical substance becomes central to the conflict between Piltover and Zaun?",
+    "correctAnswer": "Shimmer",
+    "wrongAnswers": [
+      "Hextech crystals",
+      "Chemtech",
+      "Void essence",
+      "Runes",
+      "Petricite",
+      "Brackern crystals"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), who becomes Jinx's adoptive father figure after Vander's death?",
+    "correctAnswer": "Silco",
+    "wrongAnswers": [
+      "Marcus",
+      "Finn",
+      "Sevika",
+      "Chuck",
+      "Thieram",
+      "Smeech"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what technology do Jayce and Viktor develop together?",
+    "correctAnswer": "Hextech",
+    "wrongAnswers": [
+      "Chemtech",
+      "Shimmer enhancement",
+      "Void technology",
+      "Runic magic",
+      "Steam technology",
+      "Clockwork machinery"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is the name of the Piltover Enforcer who partners with Vi?",
+    "correctAnswer": "Caitlyn Kiramman",
+    "wrongAnswers": [
+      "Cassandra Kiramman",
+      "Mel Medarda",
+      "Grayson",
+      "Ambessa Medarda",
+      "Shoola",
+      "Hoskel"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what tragic event separates Vi and Jinx as children?",
+    "correctAnswer": "Powder accidentally kills Mylo, Claggor, and Vander with a Hextech crystal bomb",
+    "wrongAnswers": [
+      "Vi is captured by Enforcers",
+      "Powder is kidnapped by Silco",
+      "Vander abandons them both",
+      "The bridge collapses during a fight",
+      "A Shimmer explosion destroys their hideout",
+      "Marcus arrests Vi for theft"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is Vander's relationship to Silco before the series begins?",
+    "correctAnswer": "They were brothers-in-arms who became enemies",
+    "wrongAnswers": [
+      "Business partners in crime",
+      "Biological brothers",
+      "Mentor and student",
+      "Rival gang leaders",
+      "Former Enforcers together",
+      "Childhood friends only"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what happens to Viktor's health throughout the series?",
+    "correctAnswer": "He becomes increasingly ill and begins experimenting on himself with Hextech",
+    "wrongAnswers": [
+      "He is poisoned by Shimmer",
+      "He is injured in a Hextech explosion",
+      "He contracts a disease from the Undercity",
+      "He is cursed by ancient magic",
+      "He is wounded in battle with Zaun",
+      "He suffers from radiation exposure"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is the name of the Noxian councilwoman who influences Piltover politics?",
+    "correctAnswer": "Mel Medarda",
+    "wrongAnswers": [
+      "Ambessa Medarda",
+      "Cassandra Kiramman",
+      "Shoola",
+      "Caitlyn Kiramman",
+      "Grayson",
+      "Sevika"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what weapon does Jinx primarily use in combat?",
+    "correctAnswer": "Her custom-built rocket launcher 'Fishbones' and various explosives",
+    "wrongAnswers": [
+      "Hextech gauntlets",
+      "A chainsaw sword",
+      "Shimmer-enhanced claws",
+      "Twin pistols",
+      "A sniper rifle",
+      "Throwing knives"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is the name of the corrupt Enforcer who works with Silco?",
+    "correctAnswer": "Sheriff Marcus",
+    "wrongAnswers": [
+      "Captain Grayson",
+      "Officer Caitlyn",
+      "Commander Kiramman",
+      "Lieutenant Vi",
+      "Sergeant Mylo",
+      "Deputy Finn"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), how does Silco ultimately die?",
+    "correctAnswer": "Jinx accidentally shoots him during a confrontation with Vi",
+    "wrongAnswers": [
+      "Vi kills him in direct combat",
+      "He overdoses on Shimmer",
+      "Marcus betrays and shoots him",
+      "He is killed by Sevika",
+      "A Hextech explosion kills him",
+      "Vander's ghost possesses and kills him"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what does Jinx do at the end of the first season?",
+    "correctAnswer": "She fires a rocket at the Piltover Council building",
+    "wrongAnswers": [
+      "She reunites with Vi permanently",
+      "She takes over Silco's criminal empire",
+      "She surrenders to the Enforcers",
+      "She flees Zaun forever",
+      "She destroys all Shimmer production",
+      "She kills Marcus in revenge"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is the relationship between Mel and Ambessa Medarda?",
+    "correctAnswer": "Mother and daughter",
+    "wrongAnswers": [
+      "Sisters",
+      "Aunt and niece",
+      "Mentor and student",
+      "Political rivals",
+      "Business partners",
+      "Grandmother and granddaughter"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what happens to Caitlyn's mother, Cassandra Kiramman?",
+    "correctAnswer": "She is presumably killed in Jinx's rocket attack on the Council",
+    "wrongAnswers": [
+      "She is kidnapped by Silco",
+      "She dies from Shimmer poisoning",
+      "She is murdered by Marcus",
+      "She falls ill and dies naturally",
+      "She is exiled from Piltover",
+      "She survives the entire first season"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is Heimerdinger's role in Piltover?",
+    "correctAnswer": "He is the head of the Council and founder of Piltover",
+    "wrongAnswers": [
+      "He is Jayce's mentor only",
+      "He is the chief of the Enforcers",
+      "He is a Hextech researcher",
+      "He is Mel's advisor",
+      "He is the city's treasurer",
+      "He is Viktor's teacher"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what motivates Jayce to initially pursue Hextech technology?",
+    "correctAnswer": "He wants to use magic to help people after being saved by a mage as a child",
+    "wrongAnswers": [
+      "He wants to become wealthy and powerful",
+      "He wants to destroy Zaun",
+      "He is ordered by the Council",
+      "He wants to impress Mel Medarda",
+      "He wants to cure Viktor's illness",
+      "He wants to compete with other inventors"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what is Sevika's role in Silco's organization?",
+    "correctAnswer": "She is his loyal lieutenant and enforcer",
+    "wrongAnswers": [
+      "She is his daughter",
+      "She is a rival gang leader",
+      "She is his accountant",
+      "She is a double agent for Marcus",
+      "She is his personal bodyguard only",
+      "She is his romantic partner"
+    ]
+  },
+  {
+    "question": "In Arcane (2021), what ultimately drives Jinx's mental instability throughout the series?",
+    "correctAnswer": "Guilt over accidentally killing her friends and feeling abandoned by Vi",
+    "wrongAnswers": [
+      "Shimmer addiction and withdrawal",
+      "Genetic mental illness",
+      "Silco's psychological manipulation only",
+      "Head trauma from explosions",
+      "Exposure to Hextech radiation",
+      "A curse placed by an enemy"
     ]
   }
 ]

@@ -1546,5 +1546,1325 @@
       "Cupid Shuffle",
       "Walk It Out"
     ]
+  },
+  {
+    "question": "What were the three main reasons European explorers sailed to the Americas in the 1400s and 1500s?",
+    "correctAnswer": "Gold, God, and Glory",
+    "wrongAnswers": [
+      "Trade, Land, and Power",
+      "Spices, Silk, and Silver",
+      "Fame, Fortune, and Freedom",
+      "Money, Maps, and Materials",
+      "Conquest, Commerce, and Christianity"
+    ]
+  },
+  {
+    "question": "Which ancient river valley civilization built the pyramids?",
+    "correctAnswer": "Egyptian",
+    "wrongAnswers": [
+      "Mesopotamian",
+      "Indus Valley",
+      "Chinese",
+      "Persian",
+      "Greek"
+    ]
+  },
+  {
+    "question": "The Boston Tea Party happened because colonists were angry about what?",
+    "correctAnswer": "Tea taxes without representation in government",
+    "wrongAnswers": [
+      "Bad quality tea from Britain",
+      "Not enough tea being shipped",
+      "Tea being too expensive to buy",
+      "British soldiers drinking all the tea",
+      "Tea ships blocking the harbor"
+    ]
+  },
+  {
+    "question": "What was the main cause of the American Civil War?",
+    "correctAnswer": "Slavery and states' rights",
+    "wrongAnswers": [
+      "Disagreements about money",
+      "Arguments over land ownership",
+      "Religious differences",
+      "Trade disputes with Europe",
+      "Conflicts over Native American territory"
+    ]
+  },
+  {
+    "question": "Which explorer is credited with 'discovering' America in 1492?",
+    "correctAnswer": "Christopher Columbus",
+    "wrongAnswers": [
+      "Vasco da Gama",
+      "Ferdinand Magellan",
+      "Marco Polo",
+      "Amerigo Vespucci",
+      "John Cabot"
+    ]
+  },
+  {
+    "question": "The Renaissance period began in which country?",
+    "correctAnswer": "Italy",
+    "wrongAnswers": [
+      "France",
+      "England",
+      "Spain",
+      "Germany",
+      "Greece"
+    ]
+  },
+  {
+    "question": "What document gave English people certain rights and limited the king's power in 1215?",
+    "correctAnswer": "Magna Carta",
+    "wrongAnswers": [
+      "Bill of Rights",
+      "Declaration of Independence",
+      "Constitution",
+      "Petition of Right",
+      "English Charter"
+    ]
+  },
+  {
+    "question": "The ancient trade route connecting Asia and Europe was called what?",
+    "correctAnswer": "Silk Road",
+    "wrongAnswers": [
+      "Spice Route",
+      "Gold Path",
+      "Trade Highway",
+      "Asian Way",
+      "Eastern Trail"
+    ]
+  },
+  {
+    "question": "Which Native American helped the Pilgrims at Plymouth survive their first winter?",
+    "correctAnswer": "Squanto",
+    "wrongAnswers": [
+      "Pocahontas",
+      "Sacagawea",
+      "Sitting Bull",
+      "Chief Joseph",
+      "Crazy Horse"
+    ]
+  },
+  {
+    "question": "The Industrial Revolution began in which country?",
+    "correctAnswer": "Great Britain",
+    "wrongAnswers": [
+      "United States",
+      "France",
+      "Germany",
+      "Russia",
+      "Italy"
+    ]
+  },
+  {
+    "question": "What was the period called when alcohol was illegal in the United States?",
+    "correctAnswer": "Prohibition",
+    "wrongAnswers": [
+      "The Dry Years",
+      "Temperance Era",
+      "Alcohol Ban",
+      "The Sober Period",
+      "Dry Law Era"
+    ]
+  },
+  {
+    "question": "Which ancient civilization created the first system of writing called cuneiform?",
+    "correctAnswer": "Mesopotamians",
+    "wrongAnswers": [
+      "Egyptians",
+      "Greeks",
+      "Romans",
+      "Chinese",
+      "Phoenicians"
+    ]
+  },
+  {
+    "question": "The 13 original colonies were ruled by which European country?",
+    "correctAnswer": "Great Britain",
+    "wrongAnswers": [
+      "France",
+      "Spain",
+      "Portugal",
+      "Netherlands",
+      "Germany"
+    ]
+  },
+  {
+    "question": "Who was the first person to walk on the moon?",
+    "correctAnswer": "Neil Armstrong",
+    "wrongAnswers": [
+      "Buzz Aldrin",
+      "John Glenn",
+      "Alan Shepard",
+      "Michael Collins",
+      "Yuri Gagarin"
+    ]
+  },
+  {
+    "question": "The attack on Pearl Harbor brought which country into World War II?",
+    "correctAnswer": "United States",
+    "wrongAnswers": [
+      "Canada",
+      "Australia",
+      "Mexico",
+      "Brazil",
+      "Argentina"
+    ]
+  },
+  {
+    "question": "What was the name of the ship that brought the Pilgrims to America?",
+    "correctAnswer": "Mayflower",
+    "wrongAnswers": [
+      "Santa Maria",
+      "Pinta",
+      "Nina",
+      "Half Moon",
+      "Golden Hind"
+    ]
+  },
+  {
+    "question": "Which ancient wonder of the world was located in Egypt?",
+    "correctAnswer": "Great Pyramid of Giza",
+    "wrongAnswers": [
+      "Hanging Gardens of Babylon",
+      "Colossus of Rhodes",
+      "Lighthouse of Alexandria",
+      "Temple of Artemis",
+      "Statue of Zeus"
+    ]
+  },
+  {
+    "question": "The Louisiana Purchase doubled the size of which country?",
+    "correctAnswer": "United States",
+    "wrongAnswers": [
+      "France",
+      "Spain",
+      "Mexico",
+      "Canada",
+      "Britain"
+    ]
+  },
+  {
+    "question": "Which empire was ruled by emperors called Caesars?",
+    "correctAnswer": "Roman Empire",
+    "wrongAnswers": [
+      "Greek Empire",
+      "Persian Empire",
+      "Egyptian Empire",
+      "Mongol Empire",
+      "Ottoman Empire"
+    ]
+  },
+  {
+    "question": "The Great Depression began in which decade?",
+    "correctAnswer": "1930s",
+    "wrongAnswers": [
+      "1920s",
+      "1940s",
+      "1910s",
+      "1950s",
+      "1890s"
+    ]
+  },
+  {
+    "question": "Who wrote the Declaration of Independence?",
+    "correctAnswer": "Thomas Jefferson",
+    "wrongAnswers": [
+      "George Washington",
+      "Benjamin Franklin",
+      "John Adams",
+      "Alexander Hamilton",
+      "James Madison"
+    ]
+  },
+  {
+    "question": "The Treaty of Westphalia (1648) is considered foundational to which modern political concept?",
+    "correctAnswer": "State sovereignty and the modern nation-state system",
+    "wrongAnswers": [
+      "Democratic governance",
+      "Constitutional monarchy",
+      "International human rights",
+      "Free trade agreements",
+      "Colonial imperialism"
+    ]
+  },
+  {
+    "question": "Which historiographical school emphasized the role of economic factors and class struggle in historical development?",
+    "correctAnswer": "Marxist historiography",
+    "wrongAnswers": [
+      "Annales School",
+      "Great Man theory",
+      "Whig historiography",
+      "Postcolonial historiography",
+      "New Cultural History"
+    ]
+  },
+  {
+    "question": "The Sykes-Picot Agreement (1916) primarily concerned the division of which region?",
+    "correctAnswer": "Ottoman Empire territories in the Middle East",
+    "wrongAnswers": [
+      "German colonies in Africa",
+      "Austro-Hungarian territories in Europe",
+      "Russian territories in Central Asia",
+      "Chinese territories in Manchuria",
+      "Italian territories in North Africa"
+    ]
+  },
+  {
+    "question": "Which concept best describes the Ottoman Empire's administrative system for governing non-Muslim minorities?",
+    "correctAnswer": "Millet system",
+    "wrongAnswers": [
+      "Devshirme system",
+      "Janissary corps",
+      "Tanzimat reforms",
+      "Capitulations system",
+      "Sublime Porte"
+    ]
+  },
+  {
+    "question": "The 'Eastern Question' in 19th-century European diplomacy primarily referred to what issue?",
+    "correctAnswer": "The decline of the Ottoman Empire and its territorial implications",
+    "wrongAnswers": [
+      "Russian expansion into Central Asia",
+      "The unification of Germany",
+      "British control of India",
+      "The Crimean War causes",
+      "Balkan nationalism"
+    ]
+  },
+  {
+    "question": "Which Mesoamerican civilization developed the most sophisticated writing system in pre-Columbian America?",
+    "correctAnswer": "Maya",
+    "wrongAnswers": [
+      "Aztec",
+      "Inca",
+      "Olmec",
+      "Zapotec",
+      "Toltec"
+    ]
+  },
+  {
+    "question": "The Congress of Vienna (1815) established which principle as central to European balance of power?",
+    "correctAnswer": "Legitimacy and restoration of traditional monarchies",
+    "wrongAnswers": [
+      "National self-determination",
+      "Constitutional government",
+      "Free trade economics",
+      "Colonial expansion rights",
+      "Religious tolerance"
+    ]
+  },
+  {
+    "question": "Which economic theory influenced European colonial policies in the 16th-18th centuries?",
+    "correctAnswer": "Mercantilism",
+    "wrongAnswers": [
+      "Capitalism",
+      "Physiocracy",
+      "Classical liberalism",
+      "Socialism",
+      "Keynesianism"
+    ]
+  },
+  {
+    "question": "The 'Great Divergence' in economic history refers to what phenomenon?",
+    "correctAnswer": "Europe's economic advancement relative to Asia beginning around 1800",
+    "wrongAnswers": [
+      "The split between capitalism and socialism",
+      "Industrial vs. agricultural economies",
+      "Urban vs. rural development patterns",
+      "Protestant vs. Catholic economic systems",
+      "Colonial vs. metropolitan economies"
+    ]
+  },
+  {
+    "question": "Which Chinese dynasty implemented the most extensive civil service examination system?",
+    "correctAnswer": "Song Dynasty",
+    "wrongAnswers": [
+      "Tang Dynasty",
+      "Ming Dynasty",
+      "Qing Dynasty",
+      "Yuan Dynasty",
+      "Han Dynasty"
+    ]
+  },
+  {
+    "question": "The Schlieffen Plan was Germany's strategic blueprint for which conflict?",
+    "correctAnswer": "World War I",
+    "wrongAnswers": [
+      "Franco-Prussian War",
+      "World War II",
+      "Seven Years' War",
+      "Austro-Prussian War",
+      "Napoleonic Wars"
+    ]
+  },
+  {
+    "question": "Which African kingdom successfully resisted European colonization until the 20th century?",
+    "correctAnswer": "Ethiopia",
+    "wrongAnswers": [
+      "Morocco",
+      "Sokoto Caliphate",
+      "Kingdom of Kongo",
+      "Ashanti Empire",
+      "Zulu Kingdom"
+    ]
+  },
+  {
+    "question": "The 'Thaw' in Soviet history is associated with which leader's policies?",
+    "correctAnswer": "Nikita Khrushchev",
+    "wrongAnswers": [
+      "Leonid Brezhnev",
+      "Mikhail Gorbachev",
+      "Yuri Andropov",
+      "Konstantin Chernenko",
+      "Alexei Kosygin"
+    ]
+  },
+  {
+    "question": "Which philosophical movement most influenced the American and French Revolutions?",
+    "correctAnswer": "The Enlightenment",
+    "wrongAnswers": [
+      "Romanticism",
+      "Empiricism",
+      "Scholasticism",
+      "Humanism",
+      "Positivism"
+    ]
+  },
+  {
+    "question": "The 'Mandate of Heaven' was a key legitimizing concept for rulers in which civilization?",
+    "correctAnswer": "Chinese",
+    "wrongAnswers": [
+      "Japanese",
+      "Korean",
+      "Vietnamese",
+      "Mongol",
+      "Tibetan"
+    ]
+  },
+  {
+    "question": "Which treaty ended the Thirty Years' War and established principles of religious coexistence in Europe?",
+    "correctAnswer": "Peace of Westphalia",
+    "wrongAnswers": [
+      "Treaty of Utrecht",
+      "Peace of Augsburg",
+      "Treaty of Versailles",
+      "Congress of Vienna",
+      "Treaty of Aix-la-Chapelle"
+    ]
+  },
+  {
+    "question": "The 'Price Revolution' of the 16th century in Europe was primarily caused by what factor?",
+    "correctAnswer": "Influx of precious metals from the Americas",
+    "wrongAnswers": [
+      "Population growth",
+      "Agricultural improvements",
+      "Technological innovations",
+      "Increased trade with Asia",
+      "Religious wars"
+    ]
+  },
+  {
+    "question": "Which historical concept describes the gradual shift from feudalism to centralized monarchies in medieval Europe?",
+    "correctAnswer": "State formation",
+    "wrongAnswers": [
+      "Manorialism",
+      "Investiture Controversy",
+      "Scholasticism",
+      "Crusading movement",
+      "Renaissance humanism"
+    ]
+  },
+  {
+    "question": "The 'Satrap' system was an administrative innovation of which ancient empire?",
+    "correctAnswer": "Persian (Achaemenid) Empire",
+    "wrongAnswers": [
+      "Roman Empire",
+      "Macedonian Empire",
+      "Assyrian Empire",
+      "Babylonian Empire",
+      "Byzantine Empire"
+    ]
+  },
+  {
+    "question": "Which demographic transition theory stage is characterized by declining birth and death rates?",
+    "correctAnswer": "Stage 3 (Late expanding)",
+    "wrongAnswers": [
+      "Stage 1 (High stationary)",
+      "Stage 2 (Early expanding)",
+      "Stage 4 (Low stationary)",
+      "Stage 5 (Declining)",
+      "Pre-transition stage"
+    ]
+  },
+  {
+    "question": "Which ancient Mayan city is considered one of the largest and most powerful in Mayan history?",
+    "correctAnswer": "Tikal",
+    "wrongAnswers": [
+      "Chichen Itza",
+      "Palenque",
+      "Copan",
+      "Caracol",
+      "Calakmul"
+    ]
+  },
+  {
+    "question": "The Mayan calendar system was based on how many different calendars working together?",
+    "correctAnswer": "Three main calendars",
+    "wrongAnswers": [
+      "Two calendars",
+      "Four calendars",
+      "Five calendars",
+      "One complex calendar",
+      "Seven calendars"
+    ]
+  },
+  {
+    "question": "What was the primary writing system used by the ancient Maya called?",
+    "correctAnswer": "Hieroglyphic writing",
+    "wrongAnswers": [
+      "Cuneiform",
+      "Alphabetic script",
+      "Pictographic writing",
+      "Syllabic script",
+      "Logographic system"
+    ]
+  },
+  {
+    "question": "Which agricultural technique was crucial to Mayan civilization in swampy areas?",
+    "correctAnswer": "Raised field agriculture (chinampas)",
+    "wrongAnswers": [
+      "Terraced farming",
+      "Slash-and-burn agriculture",
+      "Irrigation canals",
+      "Crop rotation",
+      "Greenhouse cultivation"
+    ]
+  },
+  {
+    "question": "The famous Mayan pyramid at Chichen Itza is dedicated to which deity?",
+    "correctAnswer": "Kukulkan (Feathered Serpent)",
+    "wrongAnswers": [
+      "Itzamna",
+      "Chaac",
+      "Ah Puch",
+      "Ixchel",
+      "Kinich Ahau"
+    ]
+  },
+  {
+    "question": "What was the duration of the Mayan Long Count calendar cycle?",
+    "correctAnswer": "5,125 years",
+    "wrongAnswers": [
+      "1,000 years",
+      "2,600 years",
+      "10,000 years",
+      "365 years",
+      "7,200 years"
+    ]
+  },
+  {
+    "question": "Which period is considered the height of classical Mayan civilization?",
+    "correctAnswer": "250-900 CE (Classic Period)",
+    "wrongAnswers": [
+      "1000 BCE-250 CE (Pre-Classic)",
+      "900-1500 CE (Post-Classic)",
+      "1500-1800 CE (Colonial Period)",
+      "100-600 CE (Early Classic)",
+      "600-1200 CE (Late Classic)"
+    ]
+  },
+  {
+    "question": "What was the sacred ball game played by the Maya called?",
+    "correctAnswer": "Pitz or Tlachtli",
+    "wrongAnswers": [
+      "Ulama",
+      "Pelota",
+      "Chunkey",
+      "Batey",
+      "Juego de pelota"
+    ]
+  },
+  {
+    "question": "Which Mayan city-state was famous for its astronomical observatory called 'El Caracol'?",
+    "correctAnswer": "Chichen Itza",
+    "wrongAnswers": [
+      "Tikal",
+      "Palenque",
+      "Copan",
+      "Uxmal",
+      "Calakmul"
+    ]
+  },
+  {
+    "question": "What was the primary purpose of Mayan bloodletting rituals?",
+    "correctAnswer": "Communication with gods and ancestors",
+    "wrongAnswers": [
+      "Medical treatment",
+      "Punishment for crimes",
+      "Coming-of-age ceremonies",
+      "War preparation",
+      "Seasonal celebrations"
+    ]
+  },
+  {
+    "question": "Which mathematical concept did the Maya develop independently?",
+    "correctAnswer": "The concept of zero",
+    "wrongAnswers": [
+      "Negative numbers",
+      "Decimal system",
+      "Algebra",
+      "Geometry",
+      "Trigonometry"
+    ]
+  },
+  {
+    "question": "What was the main staple crop of Mayan agriculture?",
+    "correctAnswer": "Maize (corn)",
+    "wrongAnswers": [
+      "Beans",
+      "Squash",
+      "Cacao",
+      "Sweet potatoes",
+      "Quinoa"
+    ]
+  },
+  {
+    "question": "Which Spanish conquistador is primarily associated with the conquest of the Maya?",
+    "correctAnswer": "Francisco de Montejo",
+    "wrongAnswers": [
+      "Hernán Cortés",
+      "Francisco Pizarro",
+      "Pedro de Alvarado",
+      "Vasco Núñez de Balboa",
+      "Diego Velázquez"
+    ]
+  },
+  {
+    "question": "What was the Mayan creation myth book called?",
+    "correctAnswer": "Popol Vuh",
+    "wrongAnswers": [
+      "Chilam Balam",
+      "Dresden Codex",
+      "Madrid Codex",
+      "Paris Codex",
+      "Ritual of the Bacabs"
+    ]
+  },
+  {
+    "question": "Which Mayan ruler was famous for his elaborate tomb at Palenque?",
+    "correctAnswer": "K'inich Janaab Pakal I (Pacal the Great)",
+    "wrongAnswers": [
+      "Jasaw Chan K'awiil",
+      "Itzamnaaj B'alam II",
+      "Yuknoom Ch'een II",
+      "Wak Chan K'awiil",
+      "Siyaj Chan K'awiil II"
+    ]
+  },
+  {
+    "question": "What was the approximate population of the Maya at their peak?",
+    "correctAnswer": "10-15 million people",
+    "wrongAnswers": [
+      "2-3 million people",
+      "5-7 million people",
+      "20-25 million people",
+      "1-2 million people",
+      "30-35 million people"
+    ]
+  },
+  {
+    "question": "Which natural disaster is believed to have contributed to the Mayan collapse?",
+    "correctAnswer": "Severe droughts",
+    "wrongAnswers": [
+      "Volcanic eruptions",
+      "Earthquakes",
+      "Hurricanes",
+      "Floods",
+      "Meteor impact"
+    ]
+  },
+  {
+    "question": "What was the Mayan unit of trade and currency often made from?",
+    "correctAnswer": "Cacao beans",
+    "wrongAnswers": [
+      "Jade stones",
+      "Gold pieces",
+      "Silver coins",
+      "Obsidian blades",
+      "Feathers"
+    ]
+  },
+  {
+    "question": "Which Mayan city was known as the 'Paris of the New World' by early explorers?",
+    "correctAnswer": "Palenque",
+    "wrongAnswers": [
+      "Tikal",
+      "Chichen Itza",
+      "Copan",
+      "Uxmal",
+      "Caracol"
+    ]
+  },
+  {
+    "question": "What was the primary building material used in Mayan architecture?",
+    "correctAnswer": "Limestone",
+    "wrongAnswers": [
+      "Adobe",
+      "Sandstone",
+      "Granite",
+      "Volcanic rock",
+      "Clay bricks"
+    ]
+  },
+  {
+    "question": "Which Native American confederation was led by Chief Powhatan in early Virginia?",
+    "correctAnswer": "Powhatan Confederacy",
+    "wrongAnswers": [
+      "Iroquois Confederacy",
+      "Cherokee Nation",
+      "Creek Confederacy",
+      "Algonquin Alliance",
+      "Susquehannock Federation"
+    ]
+  },
+  {
+    "question": "The Stamp Act of 1765 required colonists to pay taxes on what items?",
+    "correctAnswer": "Paper documents and printed materials",
+    "wrongAnswers": [
+      "Tea and coffee",
+      "Sugar and molasses",
+      "Glass and paint",
+      "Textiles and clothing",
+      "Tools and weapons"
+    ]
+  },
+  {
+    "question": "Which battle is considered the turning point of the American Revolution?",
+    "correctAnswer": "Battle of Saratoga",
+    "wrongAnswers": [
+      "Battle of Yorktown",
+      "Battle of Bunker Hill",
+      "Battle of Lexington and Concord",
+      "Battle of Trenton",
+      "Battle of Valley Forge"
+    ]
+  },
+  {
+    "question": "The Missouri Compromise of 1820 admitted Missouri as a slave state and which territory as a free state?",
+    "correctAnswer": "Maine",
+    "wrongAnswers": [
+      "Vermont",
+      "New Hampshire",
+      "Delaware",
+      "Rhode Island",
+      "Connecticut"
+    ]
+  },
+  {
+    "question": "Which president purchased the Louisiana Territory from France?",
+    "correctAnswer": "Thomas Jefferson",
+    "wrongAnswers": [
+      "John Adams",
+      "James Madison",
+      "James Monroe",
+      "George Washington",
+      "John Quincy Adams"
+    ]
+  },
+  {
+    "question": "The Trail of Tears primarily affected which Native American tribe?",
+    "correctAnswer": "Cherokee",
+    "wrongAnswers": [
+      "Sioux",
+      "Apache",
+      "Navajo",
+      "Iroquois",
+      "Seminole"
+    ]
+  },
+  {
+    "question": "Which amendment to the Constitution abolished slavery?",
+    "correctAnswer": "13th Amendment",
+    "wrongAnswers": [
+      "14th Amendment",
+      "15th Amendment",
+      "12th Amendment",
+      "16th Amendment",
+      "19th Amendment"
+    ]
+  },
+  {
+    "question": "The Transcontinental Railroad was completed in which year?",
+    "correctAnswer": "1869",
+    "wrongAnswers": [
+      "1865",
+      "1872",
+      "1876",
+      "1863",
+      "1881"
+    ]
+  },
+  {
+    "question": "Which president established the New Deal programs during the Great Depression?",
+    "correctAnswer": "Franklin D. Roosevelt",
+    "wrongAnswers": [
+      "Herbert Hoover",
+      "Theodore Roosevelt",
+      "Harry S. Truman",
+      "Woodrow Wilson",
+      "Calvin Coolidge"
+    ]
+  },
+  {
+    "question": "The Manhattan Project was the secret U.S. program to develop what?",
+    "correctAnswer": "Atomic weapons",
+    "wrongAnswers": [
+      "Radar technology",
+      "Jet engines",
+      "Code-breaking machines",
+      "Rocket technology",
+      "Sonar systems"
+    ]
+  },
+  {
+    "question": "Which Supreme Court case established the principle of 'separate but equal'?",
+    "correctAnswer": "Plessy v. Ferguson",
+    "wrongAnswers": [
+      "Brown v. Board of Education",
+      "Marbury v. Madison",
+      "Dred Scott v. Sandford",
+      "Miranda v. Arizona",
+      "Roe v. Wade"
+    ]
+  },
+  {
+    "question": "The Monroe Doctrine was announced in which year?",
+    "correctAnswer": "1823",
+    "wrongAnswers": [
+      "1812",
+      "1835",
+      "1845",
+      "1820",
+      "1830"
+    ]
+  },
+  {
+    "question": "Which Civil War battle had the highest number of casualties?",
+    "correctAnswer": "Battle of Gettysburg",
+    "wrongAnswers": [
+      "Battle of Antietam",
+      "Battle of Shiloh",
+      "Battle of Bull Run",
+      "Battle of Chancellorsville",
+      "Battle of Fredericksburg"
+    ]
+  },
+  {
+    "question": "The Homestead Act of 1862 granted settlers how many acres of free land?",
+    "correctAnswer": "160 acres",
+    "wrongAnswers": [
+      "40 acres",
+      "80 acres",
+      "320 acres",
+      "100 acres",
+      "240 acres"
+    ]
+  },
+  {
+    "question": "Which president was in office during the Cuban Missile Crisis?",
+    "correctAnswer": "John F. Kennedy",
+    "wrongAnswers": [
+      "Dwight D. Eisenhower",
+      "Lyndon B. Johnson",
+      "Harry S. Truman",
+      "Richard Nixon",
+      "Gerald Ford"
+    ]
+  },
+  {
+    "question": "The Watergate scandal led to the resignation of which president?",
+    "correctAnswer": "Richard Nixon",
+    "wrongAnswers": [
+      "Gerald Ford",
+      "Jimmy Carter",
+      "Lyndon B. Johnson",
+      "Ronald Reagan",
+      "George H.W. Bush"
+    ]
+  },
+  {
+    "question": "Which act gave the federal government the power to regulate interstate commerce?",
+    "correctAnswer": "Interstate Commerce Act of 1887",
+    "wrongAnswers": [
+      "Sherman Antitrust Act",
+      "Clayton Act",
+      "Federal Trade Commission Act",
+      "Pure Food and Drug Act",
+      "Hepburn Act"
+    ]
+  },
+  {
+    "question": "The 19th Amendment granted which group the right to vote?",
+    "correctAnswer": "Women",
+    "wrongAnswers": [
+      "African Americans",
+      "Native Americans",
+      "18-year-olds",
+      "Non-property owners",
+      "Immigrants"
+    ]
+  },
+  {
+    "question": "Which president served more than two terms?",
+    "correctAnswer": "Franklin D. Roosevelt",
+    "wrongAnswers": [
+      "George Washington",
+      "Thomas Jefferson",
+      "Theodore Roosevelt",
+      "Abraham Lincoln",
+      "Andrew Jackson"
+    ]
+  },
+  {
+    "question": "The Teapot Dome Scandal occurred during which president's administration?",
+    "correctAnswer": "Warren G. Harding",
+    "wrongAnswers": [
+      "Calvin Coolidge",
+      "Herbert Hoover",
+      "Woodrow Wilson",
+      "William Howard Taft",
+      "Theodore Roosevelt"
+    ]
+  },
+  {
+    "question": "The printing press was invented by Johannes Gutenberg around which year?",
+    "correctAnswer": "1440",
+    "wrongAnswers": [
+      "1420",
+      "1460",
+      "1400",
+      "1480",
+      "1380"
+    ]
+  },
+  {
+    "question": "The telephone was invented by Alexander Graham Bell in which year?",
+    "correctAnswer": "1876",
+    "wrongAnswers": [
+      "1874",
+      "1878",
+      "1872",
+      "1880",
+      "1870"
+    ]
+  },
+  {
+    "question": "Thomas Edison invented the practical incandescent light bulb in which year?",
+    "correctAnswer": "1879",
+    "wrongAnswers": [
+      "1877",
+      "1881",
+      "1875",
+      "1883",
+      "1873"
+    ]
+  },
+  {
+    "question": "The Wright brothers achieved the first powered flight in which year?",
+    "correctAnswer": "1903",
+    "wrongAnswers": [
+      "1901",
+      "1905",
+      "1899",
+      "1907",
+      "1897"
+    ]
+  },
+  {
+    "question": "The steam engine was significantly improved by James Watt in which year?",
+    "correctAnswer": "1769",
+    "wrongAnswers": [
+      "1765",
+      "1773",
+      "1761",
+      "1777",
+      "1757"
+    ]
+  },
+  {
+    "question": "The World Wide Web was invented by Tim Berners-Lee in which year?",
+    "correctAnswer": "1989",
+    "wrongAnswers": [
+      "1987",
+      "1991",
+      "1985",
+      "1993",
+      "1983"
+    ]
+  },
+  {
+    "question": "The transistor was invented at Bell Labs in which year?",
+    "correctAnswer": "1947",
+    "wrongAnswers": [
+      "1945",
+      "1949",
+      "1943",
+      "1951",
+      "1941"
+    ]
+  },
+  {
+    "question": "The microprocessor (Intel 4004) was first developed in which year?",
+    "correctAnswer": "1971",
+    "wrongAnswers": [
+      "1969",
+      "1973",
+      "1967",
+      "1975",
+      "1965"
+    ]
+  },
+  {
+    "question": "The television was first demonstrated by John Logie Baird in which year?",
+    "correctAnswer": "1926",
+    "wrongAnswers": [
+      "1924",
+      "1928",
+      "1922",
+      "1930",
+      "1920"
+    ]
+  },
+  {
+    "question": "Penicillin was discovered by Alexander Fleming in which year?",
+    "correctAnswer": "1928",
+    "wrongAnswers": [
+      "1926",
+      "1930",
+      "1924",
+      "1932",
+      "1922"
+    ]
+  },
+  {
+    "question": "The first successful vaccination (for smallpox) was developed by Edward Jenner in which year?",
+    "correctAnswer": "1796",
+    "wrongAnswers": [
+      "1794",
+      "1798",
+      "1792",
+      "1800",
+      "1790"
+    ]
+  },
+  {
+    "question": "The radio was first transmitted across the Atlantic by Marconi in which year?",
+    "correctAnswer": "1901",
+    "wrongAnswers": [
+      "1899",
+      "1903",
+      "1897",
+      "1905",
+      "1895"
+    ]
+  },
+  {
+    "question": "The mechanical clock was invented in Europe around which century?",
+    "correctAnswer": "13th century (1200s)",
+    "wrongAnswers": [
+      "12th century (1100s)",
+      "14th century (1300s)",
+      "11th century (1000s)",
+      "15th century (1400s)",
+      "10th century (900s)"
+    ]
+  },
+  {
+    "question": "The steam locomotive was first successfully demonstrated by George Stephenson in which year?",
+    "correctAnswer": "1814",
+    "wrongAnswers": [
+      "1812",
+      "1816",
+      "1810",
+      "1818",
+      "1808"
+    ]
+  },
+  {
+    "question": "The photography process was first developed by Louis Daguerre in which year?",
+    "correctAnswer": "1839",
+    "wrongAnswers": [
+      "1837",
+      "1841",
+      "1835",
+      "1843",
+      "1833"
+    ]
+  },
+  {
+    "question": "The cotton gin was invented by Eli Whitney in which year?",
+    "correctAnswer": "1793",
+    "wrongAnswers": [
+      "1791",
+      "1795",
+      "1789",
+      "1797",
+      "1787"
+    ]
+  },
+  {
+    "question": "The first electronic computer (ENIAC) was completed in which year?",
+    "correctAnswer": "1946",
+    "wrongAnswers": [
+      "1944",
+      "1948",
+      "1942",
+      "1950",
+      "1940"
+    ]
+  },
+  {
+    "question": "The sewing machine was invented by Elias Howe in which year?",
+    "correctAnswer": "1846",
+    "wrongAnswers": [
+      "1844",
+      "1848",
+      "1842",
+      "1850",
+      "1840"
+    ]
+  },
+  {
+    "question": "The internal combustion engine was first developed by Nikolaus Otto in which year?",
+    "correctAnswer": "1876",
+    "wrongAnswers": [
+      "1874",
+      "1878",
+      "1872",
+      "1880",
+      "1870"
+    ]
+  },
+  {
+    "question": "The laser was first demonstrated in which year?",
+    "correctAnswer": "1960",
+    "wrongAnswers": [
+      "1958",
+      "1962",
+      "1956",
+      "1964",
+      "1954"
+    ]
+  },
+  {
+    "question": "Which Roman emperor once declared war on the sea and ordered his soldiers to stab the waves?",
+    "correctAnswer": "Caligula",
+    "wrongAnswers": [
+      "Nero",
+      "Commodus",
+      "Caracalla",
+      "Elagabalus",
+      "Domitian"
+    ]
+  },
+  {
+    "question": "What bizarre item did Napoleon Bonaparte always carry with him for good luck?",
+    "correctAnswer": "A piece of licorice",
+    "wrongAnswers": [
+      "A rabbit's foot",
+      "His mother's ring",
+      "A lucky coin",
+      "A pressed flower",
+      "A miniature cannon"
+    ]
+  },
+  {
+    "question": "Which historical figure accidentally started a war by sitting on the wrong chair?",
+    "correctAnswer": "A Spanish ambassador in 1739 (War of Jenkins' Ear)",
+    "wrongAnswers": [
+      "King Louis XIV",
+      "Benjamin Franklin",
+      "Winston Churchill",
+      "Kaiser Wilhelm II",
+      "Catherine the Great"
+    ]
+  },
+  {
+    "question": "What did ancient Romans use as mouthwash that would horrify us today?",
+    "correctAnswer": "Urine",
+    "wrongAnswers": [
+      "Wine",
+      "Vinegar",
+      "Salt water",
+      "Olive oil",
+      "Honey water"
+    ]
+  },
+  {
+    "question": "Which medieval king died from eating too many of his favorite fruit?",
+    "correctAnswer": "King John of England (peaches)",
+    "wrongAnswers": [
+      "King Henry VIII (turkey legs)",
+      "King Louis IX (grapes)",
+      "King Richard III (apples)",
+      "King Edward II (pears)",
+      "King Charles I (cherries)"
+    ]
+  },
+  {
+    "question": "What was the strangest tax ever imposed in England during the 18th century?",
+    "correctAnswer": "Window tax",
+    "wrongAnswers": [
+      "Beard tax",
+      "Hat tax",
+      "Shoe tax",
+      "Smile tax",
+      "Door tax"
+    ]
+  },
+  {
+    "question": "Which historical figure was known for taking ice-cold baths in winter and claimed it made him smarter?",
+    "correctAnswer": "Benjamin Franklin",
+    "wrongAnswers": [
+      "Thomas Jefferson",
+      "Isaac Newton",
+      "Leonardo da Vinci",
+      "Voltaire",
+      "John Adams"
+    ]
+  },
+  {
+    "question": "What ridiculous law existed in ancient Sparta regarding bachelors?",
+    "correctAnswer": "Unmarried men had to march naked around the town square in winter",
+    "wrongAnswers": [
+      "They were forced to wear pink togas",
+      "They had to sing love songs daily",
+      "They were banned from eating meat",
+      "They couldn't own property",
+      "They had to sleep outside"
+    ]
+  },
+  {
+    "question": "Which famous explorer got lost for months because he refused to ask for directions?",
+    "correctAnswer": "Christopher Columbus",
+    "wrongAnswers": [
+      "Marco Polo",
+      "Vasco da Gama",
+      "Ferdinand Magellan",
+      "James Cook",
+      "Henry Hudson"
+    ]
+  },
+  {
+    "question": "What absurd reason did the ancient Egyptians give for mummifying cats?",
+    "correctAnswer": "To keep them company in the afterlife",
+    "wrongAnswers": [
+      "They thought cats were gods",
+      "To preserve their hunting skills",
+      "For good luck in battle",
+      "To scare away evil spirits",
+      "Because they ran out of people to mummify"
+    ]
+  },
+  {
+    "question": "Which U.S. President got stuck in the White House bathtub?",
+    "correctAnswer": "William Howard Taft",
+    "wrongAnswers": [
+      "Grover Cleveland",
+      "Theodore Roosevelt",
+      "Calvin Coolidge",
+      "Warren G. Harding",
+      "Herbert Hoover"
+    ]
+  },
+  {
+    "question": "What bizarre fashion trend was popular among European nobility in the 16th century?",
+    "correctAnswer": "Wearing fake beauty marks made of mouse skin",
+    "wrongAnswers": [
+      "Painting their teeth black",
+      "Wearing shoes on their hands",
+      "Dyeing their hair green",
+      "Wearing backwards clothing",
+      "Carrying live animals as accessories"
+    ]
+  },
+  {
+    "question": "Which ancient civilization believed that headaches were caused by what ridiculous thing?",
+    "correctAnswer": "Evil spirits living in their hair",
+    "wrongAnswers": [
+      "Too much thinking",
+      "Angry ancestors",
+      "Bad weather",
+      "Eating too much bread",
+      "Looking at the sun"
+    ]
+  },
+  {
+    "question": "What hilariously impractical weapon did medieval knights sometimes use?",
+    "correctAnswer": "A war hammer shaped like a chicken",
+    "wrongAnswers": [
+      "A sword made of cheese",
+      "A shield made of feathers",
+      "A lance with a flower on the end",
+      "Armor made of bread",
+      "A helmet shaped like a fish"
+    ]
+  },
+  {
+    "question": "Which historical figure was famous for never taking a bath and claimed it was healthy?",
+    "correctAnswer": "King Louis XIV of France",
+    "wrongAnswers": [
+      "Henry VIII",
+      "Ivan the Terrible",
+      "Peter the Great",
+      "Frederick the Great",
+      "Charles II"
+    ]
+  },
+  {
+    "question": "What ridiculous superstition did sailors have about women on ships?",
+    "correctAnswer": "Women would make the sea angry and cause storms",
+    "wrongAnswers": [
+      "Women would eat all the food",
+      "Women would scare away the fish",
+      "Women would make the ship sink faster",
+      "Women would curse the compass",
+      "Women would steal the treasure"
+    ]
+  },
+  {
+    "question": "Which ancient Roman delicacy would disgust most people today?",
+    "correctAnswer": "Flamingo tongues",
+    "wrongAnswers": [
+      "Peacock brains",
+      "Lion steaks",
+      "Eagle eggs",
+      "Dolphin fins",
+      "Elephant ears"
+    ]
+  },
+  {
+    "question": "What absurd method did medieval doctors use to cure the plague?",
+    "correctAnswer": "Placing live chickens on the patient's buboes",
+    "wrongAnswers": [
+      "Making patients dance for hours",
+      "Painting them completely blue",
+      "Feeding them only purple foods",
+      "Making them hop on one foot",
+      "Covering them in flower petals"
+    ]
+  },
+  {
+    "question": "Which famous historical event was caused by someone literally spilling the beans?",
+    "correctAnswer": "The Boston Tea Party (tea, not beans, but close enough!)",
+    "wrongAnswers": [
+      "The French Revolution",
+      "The Great Fire of London",
+      "The Fall of Rome",
+      "The American Civil War",
+      "The Russian Revolution"
+    ]
   }
 ]

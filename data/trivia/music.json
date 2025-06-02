@@ -2038,5 +2038,852 @@
       "The Minneapolis Sound",
       "Symbolina"
     ]
+  },
+  {
+    "question": "Which underground hip-hop duo released the album 'The Cold Vein' in 2001?",
+    "correctAnswer": "Cannibal Ox",
+    "wrongAnswers": [
+      "Company Flow",
+      "Atmosphere",
+      "Eyedea & Abilities",
+      "Blackalicious",
+      "Dilated Peoples"
+    ]
+  },
+  {
+    "question": "What is the real name of underground rapper Aesop Rock?",
+    "correctAnswer": "Ian Matthias Bavitz",
+    "wrongAnswers": [
+      "Jeremy Fish",
+      "Sean Daley",
+      "Tony Simon",
+      "Matt Martians",
+      "Rob Sonic"
+    ]
+  },
+  {
+    "question": "Which producer created the beats for Cannibal Ox's 'The Cold Vein'?",
+    "correctAnswer": "El-P",
+    "wrongAnswers": [
+      "Blockhead",
+      "RJD2",
+      "DJ Shadow",
+      "Madlib",
+      "J Dilla"
+    ]
+  },
+  {
+    "question": "Atmosphere consists of rapper Slug and which producer/DJ?",
+    "correctAnswer": "Ant",
+    "wrongAnswers": [
+      "Evidence",
+      "Alchemist",
+      "Blockhead",
+      "Exile",
+      "Oddisee"
+    ]
+  },
+  {
+    "question": "Which Atmosphere album from 2003 featured the track 'Trying to Find a Balance'?",
+    "correctAnswer": "Seven's Travels",
+    "wrongAnswers": [
+      "God's Bathroom Floor",
+      "When Life Gives You Lemons",
+      "Overcast!",
+      "You Can't Imagine How Much Fun We're Having",
+      "The Lucy Ford EPs"
+    ]
+  },
+  {
+    "question": "What was Company Flow's only full-length studio album called?",
+    "correctAnswer": "Funcrusher Plus",
+    "wrongAnswers": [
+      "I'll Sleep When You're Dead",
+      "The Cold Vein",
+      "Since I Left You",
+      "Fantastic Damage",
+      "Labor Days"
+    ]
+  },
+  {
+    "question": "Which underground collective did Sage Francis belong to?",
+    "correctAnswer": "Non-Prophets",
+    "wrongAnswers": [
+      "Anticon",
+      "Rhymesayers",
+      "Def Jux",
+      "Stones Throw",
+      "Living Legends"
+    ]
+  },
+  {
+    "question": "What was Aesop Rock's breakthrough album released in 2001?",
+    "correctAnswer": "Labor Days",
+    "wrongAnswers": [
+      "Float",
+      "Bazooka Tooth",
+      "None Shall Pass",
+      "Music for Earthworms",
+      "Appleseed"
+    ]
+  },
+  {
+    "question": "Which producer worked extensively with Atmosphere in the early 2000s?",
+    "correctAnswer": "Ant",
+    "wrongAnswers": [
+      "Blockhead",
+      "El-P",
+      "The Alchemist",
+      "Evidence",
+      "RJD2"
+    ]
+  },
+  {
+    "question": "What label was home to artists like El-P, Aesop Rock, and Cannibal Ox?",
+    "correctAnswer": "Definitive Jux",
+    "wrongAnswers": [
+      "Rhymesayers",
+      "Anticon",
+      "Stones Throw",
+      "Ninja Tune",
+      "Warp Records"
+    ]
+  },
+  {
+    "question": "Which Eyedea & Abilities album won the 2001 Scribble Jam MC Battle?",
+    "correctAnswer": "First Born",
+    "wrongAnswers": [
+      "E&A",
+      "The Many Faces of Oliver Hart",
+      "By the Throat",
+      "The Telepathic Session",
+      "Underground Summer"
+    ]
+  },
+  {
+    "question": "What was the name of Slug's (Atmosphere) alter ego character?",
+    "correctAnswer": "Sean Daley",
+    "wrongAnswers": [
+      "Lucy Ford",
+      "God's Bathroom Floor",
+      "Seven",
+      "The Overcast Kid",
+      "Mr. Dibbs"
+    ]
+  },
+  {
+    "question": "Which underground rapper released 'Personal Journals' in 2002?",
+    "correctAnswer": "Sage Francis",
+    "wrongAnswers": [
+      "Slug",
+      "Aesop Rock",
+      "El-P",
+      "Eyedea",
+      "Dose One"
+    ]
+  },
+  {
+    "question": "What collective did artists like Dose One, Why?, and Pedestrian belong to?",
+    "correctAnswer": "Anticon",
+    "wrongAnswers": [
+      "Def Jux",
+      "Rhymesayers",
+      "Living Legends",
+      "Hieroglyphics",
+      "Stones Throw"
+    ]
+  },
+  {
+    "question": "Which Little Brother album was released in 2003?",
+    "correctAnswer": "The Listening",
+    "wrongAnswers": [
+      "The Minstrel Show",
+      "Chitlin Circuit 1.5",
+      "Separate but Equal",
+      "May the Lord Watch",
+      "Leftback"
+    ]
+  },
+  {
+    "question": "What was El-P's debut solo album called?",
+    "correctAnswer": "Fantastic Damage",
+    "wrongAnswers": [
+      "I'll Sleep When You're Dead",
+      "Weareallgoingtoburninhellmegamixxx3",
+      "Cancer 4 Cure",
+      "Funcrusher Plus",
+      "The Cold Vein"
+    ]
+  },
+  {
+    "question": "Which producer created beats for both Aesop Rock and Atmosphere?",
+    "correctAnswer": "Blockhead",
+    "wrongAnswers": [
+      "Ant",
+      "El-P",
+      "The Alchemist",
+      "RJD2",
+      "Madlib"
+    ]
+  },
+  {
+    "question": "What was Blackalicious's most well-known single from 2002?",
+    "correctAnswer": "Make You Feel That Way",
+    "wrongAnswers": [
+      "Alphabet Aerobics",
+      "The Craft",
+      "Chemical Calisthenics",
+      "Blazing Arrow",
+      "Passion"
+    ]
+  },
+  {
+    "question": "Which Dilated Peoples album featured the track 'Worst Comes to Worst'?",
+    "correctAnswer": "The Platform",
+    "wrongAnswers": [
+      "Expansion Team",
+      "Neighborhood Watch",
+      "20/20",
+      "Directors of Photography",
+      "The Release Party"
+    ]
+  },
+  {
+    "question": "What Minneapolis-based label was home to Atmosphere and Eyedea & Abilities?",
+    "correctAnswer": "Rhymesayers Entertainment",
+    "wrongAnswers": [
+      "Def Jux",
+      "Anticon",
+      "Fat Beats",
+      "Stones Throw",
+      "ABB Records"
+    ]
+  },
+  {
+    "question": "Which experimental hip-hop group consisted of Dose One, Why?, and Odd Nosdam?",
+    "correctAnswer": "cLOUDDEAD",
+    "wrongAnswers": [
+      "Anticon",
+      "Themselves",
+      "Subtle",
+      "Deep Puddle Dynamics",
+      "13 & God"
+    ]
+  },
+  {
+    "question": "What was Busdriver's breakthrough album released in 2004?",
+    "correctAnswer": "Temporary Forever",
+    "wrongAnswers": [
+      "Fear of a Black Tangent",
+      "RoadKillOvercoat",
+      "Jhelli Beam",
+      "Cosmic Cleavage",
+      "Perfect Hair"
+    ]
+  },
+  {
+    "question": "Which producer worked with both Dälek and Cannibal Ox?",
+    "correctAnswer": "El-P",
+    "wrongAnswers": [
+      "Blockhead",
+      "Madlib",
+      "RJD2",
+      "DJ Shadow",
+      "The Alchemist"
+    ]
+  },
+  {
+    "question": "What was Murs's group before going solo?",
+    "correctAnswer": "Living Legends",
+    "wrongAnswers": [
+      "Hieroglyphics",
+      "Freestyle Fellowship",
+      "Project Blowed",
+      "Rhymesayers",
+      "Anticon"
+    ]
+  },
+  {
+    "question": "Which underground rapper released 'When the Kite String Pops' in 1999?",
+    "correctAnswer": "Acid Bath",
+    "wrongAnswers": [
+      "Eyedea",
+      "Sage Francis",
+      "Doseone",
+      "Busdriver",
+      "Abstract Rude"
+    ]
+  },
+  {
+    "question": "What was the name of Jel's most acclaimed solo album?",
+    "correctAnswer": "10 Seconds",
+    "wrongAnswers": [
+      "Soft Money",
+      "Late Pass",
+      "Greenball",
+      "WiLD",
+      "Fieldmouse"
+    ]
+  },
+  {
+    "question": "Which collective did Aceyalone belong to?",
+    "correctAnswer": "Freestyle Fellowship",
+    "wrongAnswers": [
+      "Living Legends",
+      "Hieroglyphics",
+      "Anticon",
+      "Project Blowed",
+      "Rhymesayers"
+    ]
+  },
+  {
+    "question": "What was Dälek's most experimental album from the early 2000s?",
+    "correctAnswer": "From Filthy Tongue of Gods and Griots",
+    "wrongAnswers": [
+      "Negro Necro Nekros",
+      "Absence",
+      "Abandoned Language",
+      "Gutter Tactics",
+      "Asphalt for Eden"
+    ]
+  },
+  {
+    "question": "Which rapper was known for his fast-paced, abstract lyrical style and worked with Prefuse 73?",
+    "correctAnswer": "MF DOOM",
+    "wrongAnswers": [
+      "Busdriver",
+      "Aesop Rock",
+      "El-P",
+      "Vast Aire",
+      "Doseone"
+    ]
+  },
+  {
+    "question": "What was Blueprint's debut album called?",
+    "correctAnswer": "1988",
+    "wrongAnswers": [
+      "Chamber Music",
+      "Sign Language",
+      "Adventures in Counter-Culture",
+      "Two-Headed Monster",
+      "Weightless"
+    ]
+  },
+  {
+    "question": "Which underground hip-hop documentary featured many Def Jux artists?",
+    "correctAnswer": "Scratch",
+    "wrongAnswers": [
+      "Freestyle: The Art of Rhyme",
+      "Beef",
+      "Something from Nothing",
+      "Word Is Bond",
+      "Rhyme & Reason"
+    ]
+  },
+  {
+    "question": "What was Sole's most political album?",
+    "correctAnswer": "Selling Live Water",
+    "wrongAnswers": [
+      "Bottle of Humans",
+      "Live from Rome",
+      "The Pyre",
+      "Plastique",
+      "Mansbestfriend"
+    ]
+  },
+  {
+    "question": "Which producer created the beats for Eyedea & Abilities?",
+    "correctAnswer": "DJ Abilities",
+    "wrongAnswers": [
+      "Ant",
+      "Blockhead",
+      "El-P",
+      "RJD2",
+      "The Alchemist"
+    ]
+  },
+  {
+    "question": "What was Alias's most acclaimed album?",
+    "correctAnswer": "Muted",
+    "wrongAnswers": [
+      "The Other Side of the Looking Glass",
+      "Lillian",
+      "Resurgam",
+      "Brookland/Oaklyn",
+      "All Things Fixable"
+    ]
+  },
+  {
+    "question": "Which Living Legends member released 'The End of Everything'?",
+    "correctAnswer": "Murs",
+    "wrongAnswers": [
+      "Eligh",
+      "Scarub",
+      "Luckyiam",
+      "Bicasso",
+      "GROUCH"
+    ]
+  },
+  {
+    "question": "What was Themselves' debut album?",
+    "correctAnswer": "Them",
+    "wrongAnswers": [
+      "The No Music",
+      "crowdpleaser",
+      "Free Houdini",
+      "Joyful Rebellion",
+      "WE"
+    ]
+  },
+  {
+    "question": "Which underground rapper was known for the album 'The Many Faces of Oliver Hart'?",
+    "correctAnswer": "Eyedea",
+    "wrongAnswers": [
+      "Sage Francis",
+      "Aesop Rock",
+      "Doseone",
+      "Slug",
+      "El-P"
+    ]
+  },
+  {
+    "question": "What collective did The Grouch belong to?",
+    "correctAnswer": "Living Legends",
+    "wrongAnswers": [
+      "Hieroglyphics",
+      "Freestyle Fellowship",
+      "Anticon",
+      "Rhymesayers",
+      "Project Blowed"
+    ]
+  },
+  {
+    "question": "Which producer worked on Illogic's 'Got Lyrics'?",
+    "correctAnswer": "Blueprint",
+    "wrongAnswers": [
+      "RJD2",
+      "Blockhead",
+      "El-P",
+      "Ant",
+      "The Alchemist"
+    ]
+  },
+  {
+    "question": "What was Prefuse 73's most hip-hop oriented album?",
+    "correctAnswer": "Vocal Studies + Uprock Narratives",
+    "wrongAnswers": [
+      "One Word Extinguisher",
+      "Surrounded by Silence",
+      "Security Screenings",
+      "Preparations",
+      "The Only She Chapters"
+    ]
+  },
+  {
+    "question": "Which rapper formed Deep Puddle Dynamics with Sole, Alias, and Slug?",
+    "correctAnswer": "Doseone",
+    "wrongAnswers": [
+      "Why?",
+      "Jel",
+      "Odd Nosdam",
+      "Pedestrian",
+      "Yoni Wolf"
+    ]
+  },
+  {
+    "question": "What was Radioinactive's most well-known album?",
+    "correctAnswer": "Free Kamal",
+    "wrongAnswers": [
+      "The Akashic Record",
+      "Pyramidi",
+      "Soundtrack to a Book",
+      "The Weathermen",
+      "Weight Watchers"
+    ]
+  },
+  {
+    "question": "Which label was home to Subtle and Why?",
+    "correctAnswer": "Lex Records",
+    "wrongAnswers": [
+      "Anticon",
+      "Def Jux",
+      "Rhymesayers",
+      "Stones Throw",
+      "Ninja Tune"
+    ]
+  },
+  {
+    "question": "What was Shapeshifters' most acclaimed release?",
+    "correctAnswer": "Adopted by Aliens",
+    "wrongAnswers": [
+      "The Roach Approach",
+      "Psych Ward Lounge",
+      "UFO",
+      "The Abduction",
+      "Invasion"
+    ]
+  },
+  {
+    "question": "Which underground rapper released 'Politics of Business' in 2001?",
+    "correctAnswer": "Antipop Consortium",
+    "wrongAnswers": [
+      "Company Flow",
+      "Cannibal Ox",
+      "Dälek",
+      "cLOUDDEAD",
+      "Themselves"
+    ]
+  },
+  {
+    "question": "What was Boom Bip's collaboration album with Dose One called?",
+    "correctAnswer": "Circle",
+    "wrongAnswers": [
+      "Seed to Sun",
+      "Blue Eyed in the Red Room",
+      "Corduroy",
+      "Neon",
+      "Super ae"
+    ]
+  },
+  {
+    "question": "Which producer was part of both Subtle and 13 & God?",
+    "correctAnswer": "Jel",
+    "wrongAnswers": [
+      "Odd Nosdam",
+      "Doseone",
+      "Why?",
+      "Boom Bip",
+      "Alias"
+    ]
+  },
+  {
+    "question": "What was Cage's breakthrough album in the underground scene?",
+    "correctAnswer": "Movies for the Blind",
+    "wrongAnswers": [
+      "Hell's Winter",
+      "Depart from Me",
+      "Kill the Architect",
+      "Agent Orange",
+      "Nighthawks"
+    ]
+  },
+  {
+    "question": "Which underground collective did Josh Martinez belong to?",
+    "correctAnswer": "Chicharones",
+    "wrongAnswers": [
+      "Living Legends",
+      "Anticon",
+      "Rhymesayers",
+      "Hieroglyphics",
+      "Def Jux"
+    ]
+  },
+  {
+    "question": "What year did 'Hotel California' by Eagles win a Grammy for Record of the Year?",
+    "correctAnswer": "1978",
+    "wrongAnswers": [
+      "1977",
+      "1979",
+      "1976",
+      "1980",
+      "1975"
+    ]
+  },
+  {
+    "question": "In what year did 'Billie Jean' by Michael Jackson win a Grammy?",
+    "correctAnswer": "1984",
+    "wrongAnswers": [
+      "1983",
+      "1985",
+      "1982",
+      "1986",
+      "1981"
+    ]
+  },
+  {
+    "question": "What year did 'I Will Always Love You' by Whitney Houston win a Grammy for Record of the Year?",
+    "correctAnswer": "1994",
+    "wrongAnswers": [
+      "1993",
+      "1995",
+      "1992",
+      "1996",
+      "1991"
+    ]
+  },
+  {
+    "question": "In what year did 'Tears in Heaven' by Eric Clapton win a Grammy for Song of the Year?",
+    "correctAnswer": "1993",
+    "wrongAnswers": [
+      "1992",
+      "1994",
+      "1991",
+      "1995",
+      "1990"
+    ]
+  },
+  {
+    "question": "What year did 'Another Day in Paradise' by Phil Collins win a Grammy for Record of the Year?",
+    "correctAnswer": "1991",
+    "wrongAnswers": [
+      "1990",
+      "1992",
+      "1989",
+      "1993",
+      "1988"
+    ]
+  },
+  {
+    "question": "In what year did 'Wind of Change' by Scorpions win a Grammy?",
+    "correctAnswer": "Never won a Grammy",
+    "wrongAnswers": [
+      "1991",
+      "1992",
+      "1990",
+      "1993",
+      "1989"
+    ]
+  },
+  {
+    "question": "What year did 'Smooth' by Santana featuring Rob Thomas win a Grammy for Record of the Year?",
+    "correctAnswer": "2000",
+    "wrongAnswers": [
+      "1999",
+      "2001",
+      "1998",
+      "2002",
+      "1997"
+    ]
+  },
+  {
+    "question": "In what year did 'Don't Know Why' by Norah Jones win a Grammy for Record of the Year?",
+    "correctAnswer": "2003",
+    "wrongAnswers": [
+      "2002",
+      "2004",
+      "2001",
+      "2005",
+      "2000"
+    ]
+  },
+  {
+    "question": "What year did 'Clocks' by Coldplay win a Grammy for Record of the Year?",
+    "correctAnswer": "2004",
+    "wrongAnswers": [
+      "2003",
+      "2005",
+      "2002",
+      "2006",
+      "2001"
+    ]
+  },
+  {
+    "question": "In what year did 'Boulevard of Broken Dreams' by Green Day win a Grammy for Record of the Year?",
+    "correctAnswer": "2006",
+    "wrongAnswers": [
+      "2005",
+      "2007",
+      "2004",
+      "2008",
+      "2003"
+    ]
+  },
+  {
+    "question": "What year did 'Not Ready to Make Nice' by Dixie Chicks win a Grammy for Record of the Year?",
+    "correctAnswer": "2007",
+    "wrongAnswers": [
+      "2006",
+      "2008",
+      "2005",
+      "2009",
+      "2004"
+    ]
+  },
+  {
+    "question": "In what year did 'Rehab' by Amy Winehouse win a Grammy for Record of the Year?",
+    "correctAnswer": "2008",
+    "wrongAnswers": [
+      "2007",
+      "2009",
+      "2006",
+      "2010",
+      "2005"
+    ]
+  },
+  {
+    "question": "What year did 'Please Read the Letter' by Robert Plant and Alison Krauss win a Grammy for Record of the Year?",
+    "correctAnswer": "2009",
+    "wrongAnswers": [
+      "2008",
+      "2010",
+      "2007",
+      "2011",
+      "2006"
+    ]
+  },
+  {
+    "question": "In what year did 'Use Somebody' by Kings of Leon win a Grammy for Record of the Year?",
+    "correctAnswer": "2010",
+    "wrongAnswers": [
+      "2009",
+      "2011",
+      "2008",
+      "2012",
+      "2007"
+    ]
+  },
+  {
+    "question": "What year did 'Need You Now' by Lady Antebellum win a Grammy for Record of the Year?",
+    "correctAnswer": "2011",
+    "wrongAnswers": [
+      "2010",
+      "2012",
+      "2009",
+      "2013",
+      "2008"
+    ]
+  },
+  {
+    "question": "In what year did 'Rolling in the Deep' by Adele win a Grammy for Record of the Year?",
+    "correctAnswer": "2012",
+    "wrongAnswers": [
+      "2011",
+      "2013",
+      "2010",
+      "2014",
+      "2009"
+    ]
+  },
+  {
+    "question": "What year did 'Somebody That I Used to Know' by Gotye win a Grammy for Record of the Year?",
+    "correctAnswer": "2013",
+    "wrongAnswers": [
+      "2012",
+      "2014",
+      "2011",
+      "2015",
+      "2010"
+    ]
+  },
+  {
+    "question": "In what year did 'Get Lucky' by Daft Punk win a Grammy for Record of the Year?",
+    "correctAnswer": "2014",
+    "wrongAnswers": [
+      "2013",
+      "2015",
+      "2012",
+      "2016",
+      "2011"
+    ]
+  },
+  {
+    "question": "What year did 'Stay With Me' by Sam Smith win a Grammy for Record of the Year?",
+    "correctAnswer": "2015",
+    "wrongAnswers": [
+      "2014",
+      "2016",
+      "2013",
+      "2017",
+      "2012"
+    ]
+  },
+  {
+    "question": "In what year did 'Uptown Funk' by Mark Ronson featuring Bruno Mars win a Grammy for Record of the Year?",
+    "correctAnswer": "2016",
+    "wrongAnswers": [
+      "2015",
+      "2017",
+      "2014",
+      "2018",
+      "2013"
+    ]
+  },
+  {
+    "question": "What year did 'Hello' by Adele win a Grammy for Record of the Year?",
+    "correctAnswer": "2017",
+    "wrongAnswers": [
+      "2016",
+      "2018",
+      "2015",
+      "2019",
+      "2014"
+    ]
+  },
+  {
+    "question": "In what year did '24K Magic' by Bruno Mars win a Grammy for Record of the Year?",
+    "correctAnswer": "2018",
+    "wrongAnswers": [
+      "2017",
+      "2019",
+      "2016",
+      "2020",
+      "2015"
+    ]
+  },
+  {
+    "question": "What year did 'This Is America' by Childish Gambino win a Grammy for Record of the Year?",
+    "correctAnswer": "2019",
+    "wrongAnswers": [
+      "2018",
+      "2020",
+      "2017",
+      "2021",
+      "2016"
+    ]
+  },
+  {
+    "question": "In what year did 'Bad Guy' by Billie Eilish win a Grammy for Record of the Year?",
+    "correctAnswer": "2020",
+    "wrongAnswers": [
+      "2019",
+      "2021",
+      "2018",
+      "2022",
+      "2017"
+    ]
+  },
+  {
+    "question": "What year did 'Everything I Wanted' by Billie Eilish win a Grammy for Record of the Year?",
+    "correctAnswer": "2021",
+    "wrongAnswers": [
+      "2020",
+      "2022",
+      "2019",
+      "2023",
+      "2018"
+    ]
+  },
+  {
+    "question": "In what year did 'Leave the Door Open' by Silk Sonic win a Grammy for Record of the Year?",
+    "correctAnswer": "2022",
+    "wrongAnswers": [
+      "2021",
+      "2023",
+      "2020",
+      "2024",
+      "2019"
+    ]
+  },
+  {
+    "question": "What year did 'About Damn Time' by Lizzo win a Grammy for Record of the Year?",
+    "correctAnswer": "2023",
+    "wrongAnswers": [
+      "2022",
+      "2024",
+      "2021",
+      "2025",
+      "2020"
+    ]
+  },
+  {
+    "question": "In what year did 'Flowers' by Miley Cyrus win a Grammy for Record of the Year?",
+    "correctAnswer": "2024",
+    "wrongAnswers": [
+      "2023",
+      "2025",
+      "2022",
+      "2026",
+      "2021"
+    ]
   }
 ]
