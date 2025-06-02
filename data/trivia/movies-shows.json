@@ -2555,7 +2555,7 @@
       "Daniel Zacapa"
     ]
   },
-    {
+   {
     "question": "What are the killer's murders based on in Se7en (1995)?",
     "correctAnswer": "The seven deadly sins",
     "wrongAnswers": [
@@ -4859,6 +4859,690 @@
     ]
   },
   {
+    "question": "What movie features the line, 'Here's looking at you, kid'?",
+    "correctAnswer": "Casablanca",
+    "wrongAnswers": [
+      "The Maltese Falcon",
+      "Gone with the Wind",
+      "Citizen Kane",
+      "Sunset Boulevard",
+      "The African Queen",
+      "It's a Wonderful Life"
+    ]
+  },
+  {
+    "question": "In what film would you hear, 'May the Force be with you'?",
+    "correctAnswer": "Star Wars: A New Hope",
+    "wrongAnswers": [
+      "Star Trek",
+      "Close Encounters of the Third Kind",
+      "E.T. the Extra-Terrestrial",
+      "Blade Runner",
+      "Dune",
+      "Alien"
+    ]
+  },
+  {
+    "question": "Which movie is famous for the quote, 'I'll be back'?",
+    "correctAnswer": "The Terminator",
+    "wrongAnswers": [
+      "Terminator 2: Judgment Day",
+      "RoboCop",
+      "Total Recall",
+      "Predator",
+      "Commando",
+      "Running Man"
+    ]
+  },
+  {
+    "question": "The line, 'Frankly, my dear, I don't give a damn', is from what classic movie?",
+    "correctAnswer": "Gone with the Wind",
+    "wrongAnswers": [
+      "Casablanca",
+      "Wuthering Heights",
+      "Rebecca",
+      "Jezebel",
+      "The Philadelphia Story",
+      "All About Eve"
+    ]
+  },
+  {
+    "question": "What film contains the iconic line, 'You can't handle the truth!'?",
+    "correctAnswer": "A Few Good Men",
+    "wrongAnswers": [
+      "Top Gun",
+      "Jerry Maguire",
+      "Mission: Impossible",
+      "Days of Thunder",
+      "Rain Man",
+      "Born on the Fourth of July"
+    ]
+  },
+  {
+    "question": "From which movie does the line, 'Go ahead, make my day' originate?",
+    "correctAnswer": "Sudden Impact",
+    "wrongAnswers": [
+      "Dirty Harry",
+      "Magnum Force",
+      "The Enforcer",
+      "Dead Pool",
+      "Escape from Alcatraz",
+      "Gran Torino"
+    ]
+  },
+  {
+    "question": "The quote, 'Show me the money!' is a famous line from what sports drama?",
+    "correctAnswer": "Jerry Maguire",
+    "wrongAnswers": [
+      "Varsity Blues",
+      "Any Given Sunday",
+      "Remember the Titans",
+      "Field of Dreams",
+      "Major League",
+      "Moneyball"
+    ]
+  },
+  {
+    "question": "Which movie features the chilling line, 'I see dead people'?",
+    "correctAnswer": "The Sixth Sense",
+    "wrongAnswers": [
+      "Signs",
+      "Unbreakable",
+      "Split",
+      "Glass",
+      "The Village",
+      "A Quiet Place"
+    ]
+  },
+  {
+    "question": "What film is known for the line, 'Bond. James Bond.'?",
+    "correctAnswer": "Dr. No",
+    "wrongAnswers": [
+      "Goldfinger",
+      "From Russia with Love",
+      "Thunderball",
+      "Casino Royale",
+      "Live and Let Die",
+      "Skyfall"
+    ]
+  },
+  {
+    "question": "In what movie does the character say, 'Houston, we have a problem'?",
+    "correctAnswer": "Apollo 13",
+    "wrongAnswers": [
+      "Gravity",
+      "The Martian",
+      "First Man",
+      "Armageddon",
+      "Interstellar",
+      "2001: A Space Odyssey"
+    ]
+  },
+  {
+    "question": "The line, 'E.T. phone home', is from which beloved sci-fi film?",
+    "correctAnswer": "E.T. the Extra-Terrestrial",
+    "wrongAnswers": [
+      "Close Encounters of the Third Kind",
+      "Poltergeist",
+      "Gremlins",
+      "Flight of the Navigator",
+      "Mac and Me",
+      "Explorers"
+    ]
+  },
+  {
+    "question": "What movie contains the memorable line, 'Life is like a box of chocolates; you never know what you're gonna get'?",
+    "correctAnswer": "Forrest Gump",
+    "wrongAnswers": [
+      "The Shawshank Redemption",
+      "Pulp Fiction",
+      "Titanic",
+      "Good Will Hunting",
+      "Cast Away",
+      "Saving Private Ryan"
+    ]
+  },
+  {
+    "question": "Which film features the famous line, 'Keep your friends close, but your enemies closer'?",
+    "correctAnswer": "The Godfather Part II",
+    "wrongAnswers": [
+      "The Godfather",
+      "Goodfellas",
+      "Scarface",
+      "Casino",
+      "Once Upon a Time in America",
+      "Donnie Brasco"
+    ]
+  },
+  {
+    "question": "From what movie does the line, 'Here's Johnny!' come?",
+    "correctAnswer": "The Shining",
+    "wrongAnswers": [
+      "Psycho",
+      "Halloween",
+      "A Nightmare on Elm Street",
+      "Friday the 13th",
+      "Scream",
+      "The Exorcist"
+    ]
+  },
+  {
+    "question": "What movie has the line, 'To infinity and beyond!'?",
+    "correctAnswer": "Toy Story",
+    "wrongAnswers": [
+      "Toy Story 2",
+      "Lightyear",
+      "A Bug's Life",
+      "Monsters, Inc.",
+      "Up",
+      "WALL-E"
+    ]
+  },
+  {
+    "question": "The quote, 'We're gonna need a bigger boat', is from what classic thriller?",
+    "correctAnswer": "Jaws",
+    "wrongAnswers": [
+      "Deep Blue Sea",
+      "The Meg",
+      "Piranha",
+      "Anaconda",
+      "The Shallows",
+      "Open Water"
+    ]
+  },
+  {
+    "question": "Which film features the line, 'Say hello to my little friend!'?",
+    "correctAnswer": "Scarface",
+    "wrongAnswers": [
+      "The Untouchables",
+      "Goodfellas",
+      "Casino",
+      "Pulp Fiction",
+      "Reservoir Dogs",
+      "Carlito's Way"
+    ]
+  },
+  {
+    "question": "What movie is known for the quote, 'Nobody puts Baby in a corner'?",
+    "correctAnswer": "Dirty Dancing",
+    "wrongAnswers": [
+      "Flashdance",
+      "Footloose",
+      "Grease",
+      "Fame",
+      "Saturday Night Fever",
+      "Center Stage"
+    ]
+  },
+  {
+    "question": "In what film would you hear, 'After all, tomorrow is another day!'?",
+    "correctAnswer": "Gone with the Wind",
+    "wrongAnswers": [
+      "Rebecca",
+      "Jezebel",
+      "Dark Victory",
+      "Mildred Pierce",
+      "All About Eve",
+      "Now, Voyager"
+    ]
+  },
+  {
+    "question": "The line, 'The first rule of Fight Club is: You do not talk about Fight Club', is from which movie?",
+    "correctAnswer": "Fight Club",
+    "wrongAnswers": [
+      "Se7en",
+      "The Social Network",
+      "Gone Girl",
+      "Zodiac",
+      "Mr. Brooks",
+      "Panic Room"
+    ]
+  },
+  {
+    "question": "Which sci-fi film features the line, 'Live long and prosper'?",
+    "correctAnswer": "Star Trek: The Motion Picture",
+    "wrongAnswers": [
+      "Star Trek II: The Wrath of Khan",
+      "Star Trek IV: The Voyage Home",
+      "Star Trek: First Contact",
+      "Star Trek Beyond",
+      "Star Wars",
+      "Battlestar Galactica"
+    ]
+  },
+  {
+    "question": "From what movie does the line, 'I'm king of the world!' originate?",
+    "correctAnswer": "Titanic",
+    "wrongAnswers": [
+      "Avatar",
+      "The Abyss",
+      "Deep Impact",
+      "Armageddon",
+      "The Perfect Storm",
+      "Poseidon"
+    ]
+  },
+  {
+    "question": "What film features the line, 'Why so serious?'",
+    "correctAnswer": "The Dark Knight",
+    "wrongAnswers": [
+      "Batman Begins",
+      "The Dark Knight Rises",
+      "Joker",
+      "Suicide Squad",
+      "Batman",
+      "The Batman"
+    ]
+  },
+  {
+    "question": "Which classic film contains the line, 'Of all the gin joints in all the towns in all the world, she walks into mine'?",
+    "correctAnswer": "Casablanca",
+    "wrongAnswers": [
+      "The Maltese Falcon",
+      "Key Largo",
+      "To Have and Have Not",
+      "The Big Sleep",
+      "Laura",
+      "Double Indemnity"
+    ]
+  },
+  {
+    "question": "In what movie would you hear, 'Carpe Diem. Seize the day, boys. Make your lives extraordinary'?",
+    "correctAnswer": "Dead Poets Society",
+    "wrongAnswers": [
+      "Good Will Hunting",
+      "Patch Adams",
+      "Awakenings",
+      "Good Morning, Vietnam",
+      "Mrs. Doubtfire",
+      "Jumanji"
+    ]
+  },
+  {
+    "question": "The line, 'Elementary, my dear Watson', is often associated with which character?",
+    "correctAnswer": "Sherlock Holmes",
+    "wrongAnswers": [
+      "Hercule Poirot",
+      "Miss Marple",
+      "Philip Marlowe",
+      "Sam Spade",
+      "James Bond",
+      "Inspector Clouseau"
+    ]
+  },
+  {
+    "question": "From what movie does the line, 'We're not in Kansas anymore' come?",
+    "correctAnswer": "The Wizard of Oz",
+    "wrongAnswers": [
+      "Singin' in the Rain",
+      "Mary Poppins",
+      "Chitty Chitty Bang Bang",
+      "Willy Wonka & the Chocolate Factory",
+      "Fantasia",
+      "Snow White and the Seven Dwarfs"
+    ]
+  },
+  {
+    "question": "What movie includes the iconic line, 'As God is my witness, I'll never be hungry again'?",
+    "correctAnswer": "Gone with the Wind",
+    "wrongAnswers": [
+      "Gone with the Wind",
+      "Casablanca",
+      "The Grapes of Wrath",
+      "Rebecca",
+      "Wuthering Heights",
+      "It's a Wonderful Life"
+    ]
+  },
+  {
+    "question": "The quote, 'I feel the need... the need for speed', is from what action film?",
+    "correctAnswer": "Top Gun",
+    "wrongAnswers": [
+      "Days of Thunder",
+      "Mission: Impossible",
+      "Risky Business",
+      "Cocktail",
+      "Rain Man",
+      "Edge of Tomorrow"
+    ]
+  },
+  {
+    "question": "Which movie features the line, 'You talking to me?'",
+    "correctAnswer": "Taxi Driver",
+    "wrongAnswers": [
+      "Raging Bull",
+      "Goodfellas",
+      "Cape Fear",
+      "The Deer Hunter",
+      "King of Comedy",
+      "Mean Streets"
+    ]
+  },
+  {
+    "question": "In what film would you hear, 'Get busy livin', or get busy dyin''?",
+    "correctAnswer": "The Shawshank Redemption",
+    "wrongAnswers": [
+      "Forrest Gump",
+      "Pulp Fiction",
+      "Fight Club",
+      "Se7en",
+      "Good Will Hunting",
+      "American History X"
+    ]
+  },
+  {
+    "question": "The line, 'Louis, I think this is the beginning of a beautiful friendship', is from what classic movie?",
+    "correctAnswer": "Casablanca",
+    "wrongAnswers": [
+      "The Maltese Falcon",
+      "The Big Sleep",
+      "Key Largo",
+      "To Have and Have Not",
+      "Sunset Boulevard",
+      "The African Queen"
+    ]
+  },
+  {
+    "question": "What film is known for the line, 'Greed, for lack of a better word, is good'?",
+    "correctAnswer": "Wall Street",
+    "wrongAnswers": [
+      "Boiler Room",
+      "Margin Call",
+      "The Wolf of Wall Street",
+      "American Psycho",
+      "Glengarry Glen Ross",
+      "Arbitrage"
+    ]
+  },
+  {
+    "question": "Which sci-fi movie features the famous line, 'The truth is out there'?",
+    "correctAnswer": "The X-Files: Fight the Future",
+    "wrongAnswers": [
+      "Arrival",
+      "Contact",
+      "Close Encounters of the Third Kind",
+      "Independence Day",
+      "Men in Black",
+      "District 9"
+    ]
+  },
+  {
+    "question": "What movie contains the line, 'I'm the king of the world!'?",
+    "correctAnswer": "Titanic",
+    "wrongAnswers": [
+      "Avatar",
+      "The Abyss",
+      "Poseidon Adventure",
+      "The Perfect Storm",
+      "Armageddon",
+      "Deep Impact"
+    ]
+  },
+  {
+    "question": "The quote, 'Oh, Jerry, don't let's ask for the moon. We have the stars', is from what romantic drama?",
+    "correctAnswer": "Now, Voyager",
+    "wrongAnswers": [
+      "Casablanca",
+      "Gone with the Wind",
+      "Wuthering Heights",
+      "Rebecca",
+      "Dark Victory",
+      "All About Eve"
+    ]
+  },
+  {
+    "question": "Which film features the line, 'Hello. My name is Inigo Montoya. You killed my father. Prepare to die'?",
+    "correctAnswer": "The Princess Bride",
+    "wrongAnswers": [
+      "Labyrinth",
+      "Willow",
+      "Legend",
+      "Stardust",
+      "Ever After",
+      "Robin Hood: Prince of Thieves"
+    ]
+  },
+  {
+    "question": "In what movie would you hear, 'I love the smell of napalm in the morning'?",
+    "correctAnswer": "Apocalypse Now",
+    "wrongAnswers": [
+      "Full Metal Jacket",
+      "Platoon",
+      "Born on the Fourth of July",
+      "Good Morning, Vietnam",
+      "The Deer Hunter",
+      "Casualties of War"
+    ]
+  },
+  {
+    "question": "The line, 'Attica! Attica!', is from what true-story based film?",
+    "correctAnswer": "Dog Day Afternoon",
+    "wrongAnswers": [
+      "Serpico",
+      "Network",
+      "One Flew Over the Cuckoo's Nest",
+      "The French Connection",
+      "All the President's Men",
+      "Midnight Cowboy"
+    ]
+  },
+  {
+    "question": "What movie is known for the quote, 'I'll have what she's having'?",
+    "correctAnswer": "When Harry Met Sally...",
+    "wrongAnswers": [
+      "Sleepless in Seattle",
+      "You've Got Mail",
+      "Notting Hill",
+      "Pretty Woman",
+      "Bridget Jones's Diary",
+      "Love Actually"
+    ]
+  },
+  {
+    "question": "From which movie does the line, 'To me, you are perfect' come?",
+    "correctAnswer": "Love Actually",
+    "wrongAnswers": [
+      "Notting Hill",
+      "Four Weddings and a Funeral",
+      "Bridget Jones's Diary",
+      "When Harry Met Sally...",
+      "Sleepless in Seattle",
+      "About Time"
+    ]
+  },
+  {
+    "question": "What film features the line, 'Roads? Where we're going, we don't need roads'?",
+    "correctAnswer": "Back to the Future",
+    "wrongAnswers": [
+      "Back to the Future Part II",
+      "E.T. the Extra-Terrestrial",
+      "Flight of the Navigator",
+      "Explorers",
+      "Bill & Ted's Excellent Adventure",
+      "A Wrinkle in Time"
+    ]
+  },
+  {
+    "question": "The quote, 'It's alive! It's alive!', is from what classic horror film?",
+    "correctAnswer": "Frankenstein",
+    "wrongAnswers": [
+      "Dracula",
+      "The Wolf Man",
+      "The Mummy",
+      "Bride of Frankenstein",
+      "Young Frankenstein",
+      "The Invisible Man"
+    ]
+  },
+  {
+    "question": "Which movie includes the line, 'Just keep swimming'?",
+    "correctAnswer": "Finding Nemo",
+    "wrongAnswers": [
+      "Finding Dory",
+      "The Little Mermaid",
+      "Moana",
+      "Dory",
+      "Shark Tale",
+      "Free Willy"
+    ]
+  },
+  {
+    "question": "In what movie would you hear, 'Wax on, wax off'?",
+    "correctAnswer": "The Karate Kid",
+    "wrongAnswers": [
+      "Karate Kid Part II",
+      "Cobra Kai",
+      "Kung Fu Panda",
+      "Rush Hour",
+      "Enter the Dragon",
+      "Fist of Fury"
+    ]
+  },
+  {
+    "question": "The line, 'They're here', is from what supernatural horror film?",
+    "correctAnswer": "Poltergeist",
+    "wrongAnswers": [
+      "The Exorcist",
+      "The Conjuring",
+      "Insidious",
+      "Paranormal Activity",
+      "The Babadook",
+      "Ghostbusters"
+    ]
+  },
+  {
+    "question": "What movie features the line, 'Say 'hello' to my little friend!'?",
+    "correctAnswer": "Scarface",
+    "wrongAnswers": [
+      "Goodfellas",
+      "Casino",
+      "The Godfather",
+      "Pulp Fiction",
+      "Reservoir Dogs",
+      "American Gangster"
+    ]
+  },
+  {
+    "question": "Which film contains the memorable line, 'I'm walking here! I'm walking here!'?",
+    "correctAnswer": "Midnight Cowboy",
+    "wrongAnswers": [
+      "Taxi Driver",
+      "Serpico",
+      "Dog Day Afternoon",
+      "Network",
+      "Raging Bull",
+      "A Streetcar Named Desire"
+    ]
+  },
+  {
+    "question": "From what movie does the line, 'I'm mad as hell, and I'm not going to take this anymore!' come?",
+    "correctAnswer": "Network",
+    "wrongAnswers": [
+      "Dog Day Afternoon",
+      "Taxi Driver",
+      "Serpico",
+      "All the President's Men",
+      "Broadcast News",
+      "The Insider"
+    ]
+  },
+  {
+    "question": "What movie features the line, 'You've got mail!'?",
+    "correctAnswer": "You've Got Mail",
+    "wrongAnswers": [
+      "Sleepless in Seattle",
+      "When Harry Met Sally...",
+      "Notting Hill",
+      "Bridget Jones's Diary",
+      "Love Actually",
+      "The Proposal"
+    ]
+  },
+  {
+    "question": "Who directed Thor: The Dark World (2013)?",
+    "correctAnswer": "Alan Taylor",
+    "wrongAnswers": [
+      "Kenneth Branagh",
+      "Taika Waititi",
+      "Joss Whedon",
+      "Jon Favreau",
+      "James Gunn",
+      "Shane Black"
+    ]
+  },
+  {
+    "question": "Who plays Thor in Thor: The Dark World (2013)?",
+    "correctAnswer": "Chris Hemsworth",
+    "wrongAnswers": [
+      "Tom Hiddleston",
+      "Natalie Portman",
+      "Anthony Hopkins",
+      "Stellan Skarsgård",
+      "Idris Elba",
+      "Clark Gregg"
+    ]
+  },
+  {
+    "question": "What is the name of Thor's home realm?",
+    "correctAnswer": "Asgard",
+    "wrongAnswers": [
+      "Midgard (Earth)",
+      "Jotunheim",
+      "Vanaheim",
+      "Alfheim",
+      "Svartalfheim",
+      "Nidavellir"
+    ]
+  },
+  {
+    "question": "Who plays Loki in Thor: The Dark World (2013)?",
+    "correctAnswer": "Tom Hiddleston",
+    "wrongAnswers": [
+      "Chris Hemsworth",
+      "Anthony Hopkins",
+      "Natalie Portman",
+      "Stellan Skarsgård",
+      "Idris Elba",
+      "Clark Gregg"
+    ]
+  },
+  {
+    "question": "What is the name of the Dark Elves' leader in Thor: The Dark World (2013)?",
+    "correctAnswer": "Malekith",
+    "wrongAnswers": [
+      "Kurse",
+      "Loki",
+      "Surtur",
+      "Hela",
+      "The Collector",
+      "Ronan"
+    ]
+  },
+  {
+    "question": "What is the name of the powerful artifact sought by Malekith in Thor: The Dark World (2013)?",
+    "correctAnswer": "The Aether (Reality Stone)",
+    "wrongAnswers": [
+      "The Tesseract (Space Stone)",
+      "The Orb (Power Stone)",
+      "The Eye of Agamotto (Time Stone)",
+      "The Scepter (Mind Stone)",
+      "The Soul Stone",
+      "The Casket of Ancient Winters"
+    ]
+  },
+  {
+    "question": "What is the name of Thor's mother, who is killed by Malekith in Thor: The Dark World (2013)?",
+    "correctAnswer": "Frigga",
+    "wrongAnswers": [
+      "Sif",
+      "Jane Foster",
+      "Hela",
+      "Idunn",
+      "Eir",
+      "Sigyn"
+    ]
+  },
+  {
     "question": "What realm do the Dark Elves come from in Thor: The Dark World (2013)?",
     "correctAnswer": "Svartalfheim",
     "wrongAnswers": [
@@ -5845,7 +6529,7 @@
     ]
   },
   {
-    "question": "Which film was the Best Picture winner in 1975?",
+    "question": "Which movie was the Best Picture winner in 1975?",
     "correctAnswer": "One Flew Over the Cuckoo's Nest",
     "wrongAnswers": [
       "Barry Lyndon",
@@ -6101,6 +6785,435 @@
       "She seeks revenge against Adam Smasher",
       "She retires from edgerunning",
       "She starts a new crew with Rebecca"
+    ]
+  },
+  {
+    "question": "What is the name of the human girl discovered by robots in Eden (2021)?",
+    "correctAnswer": "Sara Grace",
+    "wrongAnswers": [
+      "Eva Grace",
+      "Anna Grace",
+      "Maria Grace",
+      "Luna Grace",
+      "Rose Grace"
+    ]
+  },
+  {
+    "question": "In Eden (2021), what are the two robot caretakers who find Sara called?",
+    "correctAnswer": "E92 and A37",
+    "wrongAnswers": [
+      "R2D2 and C3PO",
+      "A1 and B2",
+      "X99 and Y88",
+      "Alpha and Beta",
+      "Prime and Echo"
+    ]
+  },
+  {
+    "question": "What happened to humans in the world of Eden (2021)?",
+    "correctAnswer": "They were believed to be extinct but some survived in hiding",
+    "wrongAnswers": [
+      "They were enslaved by robots",
+      "They left Earth for space colonies",
+      "They merged with artificial intelligence",
+      "They were transformed into cyborgs",
+      "They died from a pandemic"
+    ]
+  },
+  {
+    "question": "What is the central theme of Eden (2021)?",
+    "correctAnswer": "Coexistence between humans and artificial intelligence",
+    "wrongAnswers": [
+      "Time travel paradoxes",
+      "Environmental destruction",
+      "Alien invasion",
+      "Genetic engineering",
+      "Virtual reality addiction"
+    ]
+  },
+  {
+    "question": "What is the central theme of Eden (2021)?",
+    "correctAnswer": "Coexistence between humans and artificial intelligence",
+    "wrongAnswers": [
+      "Time travel paradoxes",
+      "Environmental destruction",
+      "Alien invasion",
+      "Genetic engineering",
+      "Virtual reality addiction"
+    ]
+  },
+  {
+    "question": "Who directed the movie Inception (2010)?",
+    "correctAnswer": "Christopher Nolan",
+    "wrongAnswers": [
+      "Denis Villeneuve",
+      "Ridley Scott",
+      "David Fincher",
+      "Jordan Peele",
+      "Quentin Tarantino"
+    ]
+  },
+  {
+    "question": "What is the name of the coffee shop in Friends?",
+    "correctAnswer": "Central Perk",
+    "wrongAnswers": [
+      "Coffee Central",
+      "The Daily Grind",
+      "Brew & You",
+      "Manhattan Café",
+      "The Corner Cup"
+    ]
+  },
+  {
+    "question": "In Breaking Bad, what alias does Walter White use when selling drugs?",
+    "correctAnswer": "Heisenberg",
+    "wrongAnswers": [
+      "Mr. Lambert",
+      "Flynn",
+      "Scarface",
+      "The Cook",
+      "Blue Sky"
+    ]
+  },
+  {
+    "question": "What planet is the setting for most of Dune (2021)?",
+    "correctAnswer": "Arrakis",
+    "wrongAnswers": [
+      "Caladan",
+      "Giedi Prime",
+      "Kaitain",
+      "Salusa Secundus",
+      "Ix"
+    ]
+  },
+  {
+    "question": "In The Office (US), what company do the characters work for?",
+    "correctAnswer": "Dunder Mifflin",
+    "wrongAnswers": [
+      "Staples",
+      "Office Depot",
+      "Paper Express",
+      "Stratton Oakmont",
+      "Initech"
+    ]
+  },
+  {
+    "question": "What is the name of the ring in The Lord of the Rings trilogy?",
+    "correctAnswer": "The One Ring",
+    "wrongAnswers": [
+      "The Master Ring",
+      "The Golden Ring",
+      "The Ring of Power",
+      "The Supreme Ring",
+      "The Ancient Ring"
+    ]
+  },
+  {
+    "question": "In Stranger Things, what is the name of the alternate dimension?",
+    "correctAnswer": "The Upside Down",
+    "wrongAnswers": [
+      "The Shadow Realm",
+      "The Dark World",
+      "The Void",
+      "The Other Side",
+      "The Mirror Dimension"
+    ]
+  },
+  {
+    "question": "Who plays the main character Neo in The Matrix (1999)?",
+    "correctAnswer": "Keanu Reeves",
+    "wrongAnswers": [
+      "Brad Pitt",
+      "Will Smith",
+      "Tom Cruise",
+      "Johnny Depp",
+      "Leonardo DiCaprio"
+    ]
+  },
+  {
+    "question": "In Game of Thrones, what is the name of Jon Snow's direwolf?",
+    "correctAnswer": "Ghost",
+    "wrongAnswers": [
+      "Shadow",
+      "Winter",
+      "Storm",
+      "Frost",
+      "Snow"
+    ]
+  },
+  {
+    "question": "What is the name of the spaceship in Firefly?",
+    "correctAnswer": "Serenity",
+    "wrongAnswers": [
+      "Enterprise",
+      "Millennium Falcon",
+      "Normandy",
+      "Bebop",
+      "Rocinante"
+    ]
+  },
+  {
+    "question": "In Pulp Fiction (1994), what is in the mysterious briefcase?",
+    "correctAnswer": "It's never revealed",
+    "wrongAnswers": [
+      "Gold bars",
+      "Diamonds",
+      "Marsellus Wallace's soul",
+      "Drug money",
+      "Ancient artifacts"
+    ]
+  },
+  {
+    "question": "What streaming service originally produced The Mandalorian?",
+    "correctAnswer": "Disney+",
+    "wrongAnswers": [
+      "Netflix",
+      "HBO Max",
+      "Amazon Prime",
+      "Hulu",
+      "Apple TV+"
+    ]
+  },
+  {
+    "question": "In The Shawshank Redemption (1994), what does Andy Dufresne carve chess pieces from?",
+    "correctAnswer": "Soap",
+    "wrongAnswers": [
+      "Wood",
+      "Stone",
+      "Bread",
+      "Clay",
+      "Metal"
+    ]
+  },
+  {
+    "question": "What is the name of the bar in How I Met Your Mother?",
+    "correctAnswer": "MacLaren's Pub",
+    "wrongAnswers": [
+      "Central Perk",
+      "Cheers",
+      "The Rabbit Hole",
+      "Puzzles",
+      "The Drunken Clam"
+    ]
+  },
+  {
+    "question": "In Avatar (2009), what is the name of the planet where most of the story takes place?",
+    "correctAnswer": "Pandora",
+    "wrongAnswers": [
+      "Navi",
+      "Eywa",
+      "Hometree",
+      "Alpha Centauri",
+      "Polyphemus"
+    ]
+  },
+  {
+    "question": "What is the name of the high school in Glee?",
+    "correctAnswer": "William McKinley High School",
+    "wrongAnswers": [
+      "East High School",
+      "Rydell High",
+      "Bayside High",
+      "West Beverly High",
+      "Sunnydale High"
+    ]
+  },
+  {
+    "question": "In The Dark Knight (2008), what does the Joker use to rob the bank in the opening scene?",
+    "correctAnswer": "School bus",
+    "wrongAnswers": [
+      "Armored truck",
+      "Motorcycle",
+      "Helicopter",
+      "Subway train",
+      "Ice cream truck"
+    ]
+  },
+  {
+    "question": "What is the name of the fictional metal in Black Panther (2018)?",
+    "correctAnswer": "Vibranium",
+    "wrongAnswers": [
+      "Adamantium",
+      "Unobtainium",
+      "Kryptonite",
+      "Dilithium",
+      "Mithril"
+    ]
+  },
+  {
+    "question": "In The Crown, which actress portrays Queen Elizabeth II in the first two seasons?",
+    "correctAnswer": "Claire Foy",
+    "wrongAnswers": [
+      "Olivia Colman",
+      "Helena Bonham Carter",
+      "Vanessa Kirby",
+      "Gillian Anderson",
+      "Imelda Staunton"
+    ]
+  },
+  {
+    "question": "What is the name of the hotel in The Shining (1980)?",
+    "correctAnswer": "The Overlook Hotel",
+    "wrongAnswers": [
+      "The Stanley Hotel",
+      "The Grand Hotel",
+      "The Plaza Hotel",
+      "The Continental Hotel",
+      "The Bates Motel"
+    ]
+  },
+  {
+    "question": "In Lost, what is the name of the mysterious island organization?",
+    "correctAnswer": "DHARMA Initiative",
+    "wrongAnswers": [
+      "The Others",
+      "Widmore Industries",
+      "Oceanic Airlines",
+      "The Hatch Project",
+      "Black Rock Corporation"
+    ]
+  },
+  {
+    "question": "Who composed the iconic theme music for Jaws (1975)?",
+    "correctAnswer": "John Williams",
+    "wrongAnswers": [
+      "Hans Zimmer",
+      "Danny Elfman",
+      "Ennio Morricone",
+      "Bernard Herrmann",
+      "Jerry Goldsmith"
+    ]
+  },
+  {
+    "question": "In The Big Bang Theory, what is Sheldon Cooper's favorite number?",
+    "correctAnswer": "73",
+    "wrongAnswers": [
+      "42",
+      "37",
+      "23",
+      "17",
+      "13"
+    ]
+  },
+  {
+    "question": "What year is Marty McFly transported to in Back to the Future (1985)?",
+    "correctAnswer": "1955",
+    "wrongAnswers": [
+      "1885",
+      "1965",
+      "1945",
+      "1975",
+      "1950"
+    ]
+  },
+  {
+    "question": "In The Walking Dead, what does Rick Grimes' group call zombies?",
+    "correctAnswer": "Walkers",
+    "wrongAnswers": [
+      "Biters",
+      "Roamers",
+      "Lurkers",
+      "Geeks",
+      "Rotters"
+    ]
+  },
+  {
+    "question": "What is the name of the AI computer in 2001: A Space Odyssey (1968)?",
+    "correctAnswer": "HAL 9000",
+    "wrongAnswers": [
+      "GERTY",
+      "TARS",
+      "Samantha",
+      "WALL-E",
+      "Data"
+    ]
+  },
+  {
+    "question": "In Parks and Recreation, what is the name of the town where the show takes place?",
+    "correctAnswer": "Pawnee",
+    "wrongAnswers": [
+      "Eagleton",
+      "Springfield",
+      "Scranton",
+      "Hawkins",
+      "Stars Hollow"
+    ]
+  },
+  {
+    "question": "What is the name of the starship in Star Trek: The Next Generation?",
+    "correctAnswer": "USS Enterprise NCC-1701-D",
+    "wrongAnswers": [
+      "USS Voyager",
+      "USS Defiant",
+      "USS Discovery",
+      "USS Constitution",
+      "USS Excelsior"
+    ]
+  },
+  {
+    "question": "In Forrest Gump (1994), what does Forrest say life is like?",
+    "correctAnswer": "A box of chocolates",
+    "wrongAnswers": [
+      "A river",
+      "A feather in the wind",
+      "A marathon",
+      "A garden",
+      "A puzzle"
+    ]
+  },
+  {
+    "question": "In The Simpsons, what is the name of the town where the show is set?",
+    "correctAnswer": "Springfield",
+    "wrongAnswers": [
+      "Shelbyville",
+      "Capital City",
+      "Ogdenville",
+      "North Haverbrook",
+      "Cypress Creek"
+    ]
+  },
+  {
+    "question": "In The Witcher series, what is the name of Geralt's horse?",
+    "correctAnswer": "Roach",
+    "wrongAnswers": [
+      "Shadowfax",
+      "Bucephalus",
+      "Storm",
+      "Thunder",
+      "Silver"
+    ]
+  },
+  {
+    "question": "In Stranger Things, what is Eleven's favorite food?",
+    "correctAnswer": "Eggo waffles",
+    "wrongAnswers": [
+      "Pizza",
+      "Ice cream",
+      "Chocolate cake",
+      "French fries",
+      "Burgers"
+    ]
+  },
+  {
+    "question": "In The Mandalorian, what is the real name of 'Baby Yoda'?",
+    "correctAnswer": "Grogu",
+    "wrongAnswers": [
+      "Yaddle",
+      "Yoda Jr.",
+      "Yodito",
+      "Yoditoo",
+      "Yoditoo Jr."
+    ]
+  },
+  {
+    "question": "In Eden (2021), what is the setting where the story takes place?",
+    "correctAnswer": "A futuristic automated city run entirely by robots",
+    "wrongAnswers": [
+      "A post-apocalyptic wasteland",
+      "A space station orbiting Earth",
+      "An underwater colony",
+      "A virtual reality simulation",
+      "A parallel dimension"
     ]
   }
 ]

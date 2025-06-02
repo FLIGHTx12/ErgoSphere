@@ -60,6 +60,2490 @@
     ]
   },
   {
+    "question": "Which historic Minneapolis bridge spans the Mississippi River near downtown?",
+    "correctAnswer": "Stone Arch Bridge",
+    "wrongAnswers": [
+      "I-35W Bridge",
+      "Hennepin Avenue Bridge",
+      "Franklin Avenue Bridge",
+      "Washington Avenue Bridge",
+      "Cedar Avenue Bridge",
+      "Lake Street Bridge"
+    ]
+  },
+  {
+    "question": "What is the name of Chicago's famous deep-dish pizza style?",
+    "correctAnswer": "Deep Dish",
+    "wrongAnswers": [
+      "Thin Crust",
+      "Stuffed Crust",
+      "New York Style",
+      "Detroit Style",
+      "Neapolitan",
+      "Sicilian"
+    ]
+  },
+  {
+    "question": "Minneapolis is often referred to as one half of what metropolitan area?",
+    "correctAnswer": "Twin Cities",
+    "wrongAnswers": [
+      "Great Cities",
+      "Midwest Metropolis",
+      "North Star Cities",
+      "River Cities",
+      "Lake Cities",
+      "Metro Cities"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark features a large, reflective bean-shaped sculpture?",
+    "correctAnswer": "Cloud Gate (The Bean)",
+    "wrongAnswers": [
+      "Sears Tower",
+      "John Hancock Center",
+      "Navy Pier",
+      "Buckingham Fountain",
+      "Art Institute of Chicago",
+      "Millennium Park Fountain"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's professional baseball team?",
+    "correctAnswer": "Minnesota Twins",
+    "wrongAnswers": [
+      "Minnesota Vikings",
+      "Minnesota Timberwolves",
+      "Minnesota Wild",
+      "Minnesota Lynx",
+      "Chicago Cubs",
+      "Chicago White Sox"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is known for its vast collection of Impressionist and Post-Impressionist art?",
+    "correctAnswer": "Art Institute of Chicago",
+    "wrongAnswers": [
+      "Field Museum",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "Adler Planetarium",
+      "DuSable Museum",
+      "Museum of Contemporary Art"
+    ]
+  },
+  {
+    "question": "What is the largest university in Minneapolis?",
+    "correctAnswer": "University of Minnesota",
+    "wrongAnswers": [
+      "University of St. Thomas",
+      "Augsburg University",
+      "Macalester College",
+      "Hamline University",
+      "Concordia University",
+      "North Central University"
+    ]
+  },
+  {
+    "question": "Which Chicago river is famously dyed green for St. Patrick's Day?",
+    "correctAnswer": "Chicago River",
+    "wrongAnswers": [
+      "Mississippi River",
+      "Illinois River",
+      "Des Plaines River",
+      "Calumet River",
+      "Fox River",
+      "DuPage River"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's famous indoor shopping and entertainment complex?",
+    "correctAnswer": "Mall of America (actually in Bloomington, near Minneapolis)",
+    "wrongAnswers": [
+      "Nicollet Mall",
+      "Uptown Shops",
+      "Warehouse District",
+      "Midtown Global Market",
+      "City Center",
+      "Southdale Center"
+    ]
+  },
+  {
+    "question": "Which Chicago baseball team plays on the South Side?",
+    "correctAnswer": "Chicago White Sox",
+    "wrongAnswers": [
+      "Chicago Cubs",
+      "Chicago Bulls",
+      "Chicago Bears",
+      "Chicago Blackhawks",
+      "Chicago Fire",
+      "Chicago Sky"
+    ]
+  },
+  {
+    "question": "What is the name of the professional ice hockey team in Minnesota?",
+    "correctAnswer": "Minnesota Wild",
+    "wrongAnswers": [
+      "Minnesota Vikings",
+      "Minnesota Timberwolves",
+      "Minnesota Twins",
+      "Minnesota Lynx",
+      "Chicago Blackhawks",
+      "Detroit Red Wings"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark was formerly known as the Sears Tower?",
+    "correctAnswer": "Willis Tower",
+    "wrongAnswers": [
+      "John Hancock Center",
+      "Aon Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Two Prudential Plaza",
+      "Chase Tower"
+    ]
+  },
+  {
+    "question": "What is the name of the famous sculpture garden adjacent to the Walker Art Center in Minneapolis?",
+    "correctAnswer": "Minneapolis Sculpture Garden",
+    "wrongAnswers": [
+      "Loring Park Sculpture Garden",
+      "Minnehaha Park Sculpture Garden",
+      "Gold Medal Park Sculpture Garden",
+      "Boom Island Sculpture Garden",
+      "Mill Ruins Park Sculpture Garden",
+      "Art Park"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large Ferris wheel located on Lake Michigan?",
+    "correctAnswer": "Navy Pier",
+    "wrongAnswers": [
+      "Cloud Gate",
+      "Buckingham Fountain",
+      "Lincoln Park Zoo",
+      "Soldier Field",
+      "Shedd Aquarium",
+      "Adler Planetarium"
+    ]
+  },
+  {
+    "question": "What is the name of the professional football team in Minnesota?",
+    "correctAnswer": "Minnesota Vikings",
+    "wrongAnswers": [
+      "Minnesota Wild",
+      "Minnesota Twins",
+      "Minnesota Timberwolves",
+      "Minnesota Lynx",
+      "Chicago Bears",
+      "Green Bay Packers"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic German roots and Old Town buildings?",
+    "correctAnswer": "Old Town",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Wicker Park",
+      "Gold Coast",
+      "River North",
+      "Streeterville",
+      "Lakeview"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's main downtown shopping street, often referred to as a mall?",
+    "correctAnswer": "Nicollet Mall",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "Marquette Avenue",
+      "Washington Avenue",
+      "Lake Street",
+      "Lyndale Avenue",
+      "Central Avenue"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is dedicated to natural history and features Sue the T. Rex?",
+    "correctAnswer": "Field Museum",
+    "wrongAnswers": [
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "Adler Planetarium",
+      "DuSable Museum",
+      "Museum of Contemporary Art"
+    ]
+  },
+  {
+    "question": "What is the name of the largest freshwater lake entirely within Minnesota, near Minneapolis?",
+    "correctAnswer": "Lake Minnetonka",
+    "wrongAnswers": [
+      "Lake Superior",
+      "Lake Michigan",
+      "Lake of the Woods",
+      "Mille Lacs Lake",
+      "Red Lake",
+      "Lake Pepin"
+    ]
+  },
+  {
+    "question": "Which Chicago park is home to the Cloud Gate sculpture?",
+    "correctAnswer": "Millennium Park",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Grant Park",
+      "Jackson Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's professional basketball team?",
+    "correctAnswer": "Minnesota Timberwolves",
+    "wrongAnswers": [
+      "Minnesota Wild",
+      "Minnesota Twins",
+      "Minnesota Vikings",
+      "Minnesota Lynx",
+      "Chicago Bulls",
+      "Milwaukee Bucks"
+    ]
+  },
+  {
+    "question": "Which Chicago team won the World Series in 2016?",
+    "correctAnswer": "Chicago Cubs",
+    "wrongAnswers": [
+      "Chicago White Sox",
+      "Chicago Bulls",
+      "Chicago Bears",
+      "Chicago Blackhawks",
+      "Chicago Fire",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's professional women's basketball team?",
+    "correctAnswer": "Minnesota Lynx",
+    "wrongAnswers": [
+      "Minnesota Wild",
+      "Minnesota Twins",
+      "Minnesota Vikings",
+      "Minnesota Timberwolves",
+      "Chicago Sky",
+      "Seattle Storm"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its blues and jazz clubs, particularly on the South Side?",
+    "correctAnswer": "Bronzeville",
+    "wrongAnswers": [
+      "Hyde Park",
+      "Pilsen",
+      "Andersonville",
+      "Chinatown",
+      "Little Italy",
+      "Ukranian Village"
+    ]
+  },
+  {
+    "question": "What is the name of the famous theater district in Minneapolis that includes the Orpheum and State Theatres?",
+    "correctAnswer": "Hennepin Theatre District",
+    "wrongAnswers": [
+      "Mill District Theatre",
+      "Uptown Arts District",
+      "North Loop Theatre",
+      "Downtown East Arts",
+      "Loring Park Arts",
+      "Warehouse Arts"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is primarily associated with its vibrant Polish-American community and pierogi restaurants?",
+    "correctAnswer": "Portage Park (or Polish Triangle)",
+    "wrongAnswers": [
+      "Lincoln Square",
+      "Albany Park",
+      "Jefferson Park",
+      "Belmont Cragin",
+      "Avondale",
+      "Logan Square"
+    ]
+  },
+  {
+    "question": "What type of mill is the Mill City Museum in Minneapolis built within?",
+    "correctAnswer": "Flour Mill",
+    "wrongAnswers": [
+      "Sawmill",
+      "Textile Mill",
+      "Paper Mill",
+      "Steel Mill",
+      "Corn Mill",
+      "Grain Mill"
+    ]
+  },
+  {
+    "question": "Which Chicago university is located in Hyde Park and known for its strong economics department?",
+    "correctAnswer": "University of Chicago",
+    "wrongAnswers": [
+      "Northwestern University",
+      "Loyola University Chicago",
+      "DePaul University",
+      "University of Illinois Chicago",
+      "Illinois Institute of Technology",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the Chain of Lakes in Minneapolis?",
+    "correctAnswer": "Chain of Lakes Regional Park",
+    "wrongAnswers": [
+      "Great Lakes Chain",
+      "Mississippi Chain",
+      "Minnesota Lakes Chain",
+      "Twin Cities Lakes",
+      "Uptown Lakes",
+      "City Lakes"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is one of the largest aquariums in the world?",
+    "correctAnswer": "Shedd Aquarium",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "Adler Planetarium",
+      "Lincoln Park Zoo",
+      "Brookfield Zoo"
+    ]
+  },
+  {
+    "question": "What is the name of the large outdoor venue in Minneapolis known for concerts and events, near the Mississippi River?",
+    "correctAnswer": "Boom Island Park",
+    "wrongAnswers": [
+      "Loring Park",
+      "Minnehaha Park",
+      "Theodore Wirth Park",
+      "Powderhorn Park",
+      "Gold Medal Park",
+      "Mill Ruins Park"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is famous for its vibrant arts scene, murals, and Mexican-American culture?",
+    "correctAnswer": "Pilsen",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Wicker Park",
+      "Logan Square",
+      "River North",
+      "Ukrainian Village",
+      "Little Village"
+    ]
+  },
+  {
+    "question": "What famous landmark is known for its 'Spoonbridge and Cherry' sculpture in Minneapolis?",
+    "correctAnswer": "Minneapolis Sculpture Garden",
+    "wrongAnswers": [
+      "Loring Park",
+      "Minnehaha Park",
+      "Theodore Wirth Park",
+      "Powderhorn Park",
+      "Mill City Museum",
+      "Walker Art Center"
+    ]
+  },
+  {
+    "question": "Which Chicago park is home to the Lincoln Park Zoo?",
+    "correctAnswer": "Lincoln Park",
+    "wrongAnswers": [
+      "Grant Park",
+      "Millennium Park",
+      "Jackson Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the iconic music venue in Downtown Minneapolis that was once a bus depot?",
+    "correctAnswer": "First Avenue",
+    "wrongAnswers": [
+      "Fine Line Music Cafe",
+      "Varsity Theater",
+      "Palace Theatre",
+      "Armory",
+      "Dakota",
+      "Cabooze"
+    ]
+  },
+  {
+    "question": "Which Chicago structure is famous for its 'L' train system?",
+    "correctAnswer": "The Loop (Chicago 'L')",
+    "wrongAnswers": [
+      "Magnificent Mile",
+      "Navy Pier",
+      "Willis Tower",
+      "Wrigley Field",
+      "McCormick Place",
+      "Union Station"
+    ]
+  },
+  {
+    "question": "What is the name of the long-standing outdoor market in Minneapolis's Lyndale neighborhood?",
+    "correctAnswer": "Minneapolis Farmers Market",
+    "wrongAnswers": [
+      "Mill City Farmers Market",
+      "Kingfield Farmers Market",
+      "Fulton Farmers Market",
+      "Linden Hills Farmers Market",
+      "Northeast Farmers Market",
+      "Midtown Farmers Market"
+    ]
+  },
+  {
+    "question": "Which Chicago university is located in Evanston, just north of the city?",
+    "correctAnswer": "Northwestern University",
+    "wrongAnswers": [
+      "University of Chicago",
+      "Loyola University Chicago",
+      "DePaul University",
+      "University of Illinois Chicago",
+      "Illinois Institute of Technology",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the popular independent record store in Minneapolis's Whittier neighborhood?",
+    "correctAnswer": "Electric Fetus",
+    "wrongAnswers": [
+      "Cheapo Discs",
+      "Treehouse Records",
+      "Agharta Records",
+      "Roadrunner Records",
+      "Hymie's Vintage Records",
+      "Down in the Valley"
+    ]
+  },
+  {
+    "question": "Which Chicago street is famous for its high-end shopping, known as 'The Magnificent Mile'?",
+    "correctAnswer": "Michigan Avenue",
+    "wrongAnswers": [
+      "State Street",
+      "Oak Street",
+      "Rush Street",
+      "Wacker Drive",
+      "LaSalle Street",
+      "Lake Shore Drive"
+    ]
+  },
+  {
+    "question": "What is the name of the famous waterfall in Minneapolis's Minnehaha Park?",
+    "correctAnswer": "Minnehaha Falls",
+    "wrongAnswers": [
+      "St. Anthony Falls",
+      "Hidden Falls",
+      "Vermillion Falls",
+      "Gooseberry Falls",
+      "High Falls",
+      "Willow River Falls"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large outdoor concert venue in Grant Park?",
+    "correctAnswer": "Jay Pritzker Pavilion",
+    "wrongAnswers": [
+      "United Center",
+      "Soldier Field",
+      "Wrigley Field",
+      "Huntington Bank Pavilion",
+      "Thalia Hall",
+      "Chicago Theatre"
+    ]
+  },
+  {
+    "question": "What is the name of Minneapolis's oldest and largest public park, located in North Minneapolis?",
+    "correctAnswer": "Theodore Wirth Park",
+    "wrongAnswers": [
+      "Minnehaha Park",
+      "Loring Park",
+      "Powderhorn Park",
+      "Boom Island Park",
+      "Victory Memorial Park",
+      "Lake Harriet"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is often called 'Andersonville' and is known for its Swedish heritage?",
+    "correctAnswer": "Andersonville",
+    "wrongAnswers": [
+      "Lincoln Square",
+      "Old Town",
+      "Wicker Park",
+      "Lakeview",
+      "Uptown",
+      "Rogers Park"
+    ]
+  },
+  {
+    "question": "What is the name of the popular juicy hamburger with cheese inside the patty, claimed by Minneapolis?",
+    "correctAnswer": "Jucy Lucy",
+    "wrongAnswers": [
+      "Cheese Burger",
+      "Patty Melt",
+      "Sloppy Joe",
+      "Burger Royale",
+      "Hot Dish Burger",
+      "Minnesota Burger"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is located on the Museum Campus and focuses on science and technology?",
+    "correctAnswer": "Museum of Science and Industry",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Shedd Aquarium",
+      "Adler Planetarium",
+      "Peggy Notebaert Nature Museum",
+      "Chicago History Museum"
+    ]
+  },
+  {
+    "question": "What is the name of the major annual summer festival in Minneapolis, celebrating its lakes and rivers?",
+    "correctAnswer": "Minneapolis Aquatennial",
+    "wrongAnswers": [
+      "Uptown Art Fair",
+      "Twin Cities Pride",
+      "Minnesota State Fair",
+      "Art-A-Whirl",
+      "Holidazzle",
+      "May Day Parade"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large, ornate fountain in Grant Park?",
+    "correctAnswer": "Buckingham Fountain",
+    "wrongAnswers": [
+      "Crown Fountain",
+      "Picasso Sculpture",
+      "Cloud Gate",
+      "Board of Trade Building",
+      "Chicago Cultural Center",
+      "Art Institute Lion"
+    ]
+  },
+  {
+    "question": "What is the name of the professional soccer team based in Minnesota?",
+    "correctAnswer": "Minnesota United FC",
+    "wrongAnswers": [
+      "Minnesota Vikings",
+      "Minnesota Timberwolves",
+      "Minnesota Wild",
+      "Minnesota Lynx",
+      "Chicago Fire FC",
+      "Sporting Kansas City"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is one of the oldest and most respected improv comedy theaters?",
+    "correctAnswer": "The Second City",
+    "wrongAnswers": [
+      "iO Theater",
+      "Annoyance Theatre",
+      "Steppenwolf Theatre Company",
+      "Goodman Theatre",
+      "Lookingglass Theatre Company",
+      "Victory Gardens Theater"
+    ]
+  },
+  {
+    "question": "What is the name of the popular indoor performance venue in Minneapolis, known for concerts and sporting events?",
+    "correctAnswer": "Target Center",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Xcel Energy Center",
+      "Williams Arena",
+      "Mariucci Arena",
+      "Roy Wilkins Auditorium",
+      "Minneapolis Convention Center"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic architecture, especially residential buildings like greystones?",
+    "correctAnswer": "Lincoln Park",
+    "wrongAnswers": [
+      "Gold Coast",
+      "Streeterville",
+      "River North",
+      "Loop",
+      "Wicker Park",
+      "Bucktown"
+    ]
+  },
+  {
+    "question": "What is the name of the historic open-air market and entertainment area in Minneapolis near the Stone Arch Bridge?",
+    "correctAnswer": "St. Anthony Main",
+    "wrongAnswers": [
+      "Mill District",
+      "North Loop",
+      "Warehouse District",
+      "Dinkytown",
+      "Cedar-Riverside",
+      "Northeast Arts District"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is a world-renowned museum and research center focused on astronomy and astrophysics?",
+    "correctAnswer": "Adler Planetarium",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "Chicago History Museum",
+      "DuSable Museum of African American History"
+    ]
+  },
+  {
+    "question": "What is the name of the famous outdoor theater in Minneapolis's Mill District, known for its unique architecture?",
+    "correctAnswer": "Guthrie Theater",
+    "wrongAnswers": [
+      "Orpheum Theatre",
+      "State Theatre",
+      "Pantages Theatre",
+      "Young Playwrights Center",
+      "Mixed Blood Theatre",
+      "Children's Theatre Company"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its Victorian-era architecture and as a hub for alternative music and art?",
+    "correctAnswer": "Wicker Park",
+    "wrongAnswers": [
+      "Bucktown",
+      "Logan Square",
+      "Fulton Market",
+      "West Loop",
+      "Lincoln Park",
+      "Old Town"
+    ]
+  },
+  {
+    "question": "What is the name of the large dome-shaped arena in Minneapolis that previously hosted the Vikings and Twins?",
+    "correctAnswer": "Hubert H. Humphrey Metrodome",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Target Field",
+      "Target Center",
+      "Williams Arena",
+      "Metropolitan Stadium",
+      "Minneapolis Arena"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its lively nightlife, especially along Halsted Street, and its LGBTQ+ community?",
+    "correctAnswer": "Boystown (part of Lakeview)",
+    "wrongAnswers": [
+      "Wicker Park",
+      "Lincoln Park",
+      "River North",
+      "Old Town",
+      "Logan Square",
+      "Andersonville"
+    ]
+  },
+  {
+    "question": "What is the name of the professional football stadium in Minneapolis?",
+    "correctAnswer": "U.S. Bank Stadium",
+    "wrongAnswers": [
+      "Target Field",
+      "Target Center",
+      "Hubert H. Humphrey Metrodome",
+      "TCF Bank Stadium",
+      "Huntington Bank Stadium",
+      "Ford Field"
+    ]
+  },
+  {
+    "question": "Which Chicago street is famous for its vibrant restaurant scene in the West Loop?",
+    "correctAnswer": "Restaurant Row (Randolph Street)",
+    "wrongAnswers": [
+      "Michigan Avenue",
+      "State Street",
+      "Halsted Street",
+      "Clark Street",
+      "Wells Street",
+      "Oak Street"
+    ]
+  },
+  {
+    "question": "What is the name of the largest public park in Minneapolis, known for its lakes and trails?",
+    "correctAnswer": "Theodore Wirth Park",
+    "wrongAnswers": [
+      "Minnehaha Park",
+      "Loring Park",
+      "Powderhorn Park",
+      "Boom Island Park",
+      "Lake Harriet Park",
+      "Lake Calhoun Park"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is one of the world's leading business schools, located in Hyde Park?",
+    "correctAnswer": "University of Chicago Booth School of Business",
+    "wrongAnswers": [
+      "Kellogg School of Management (Northwestern)",
+      "DePaul University Kellstadt Graduate School of Business",
+      "UIC Liautaud Graduate School of Business",
+      "Loyola University Chicago Quinlan School of Business",
+      "Illinois Institute of Technology Stuart School of Business",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the annual winter festival in Minneapolis that features ice sculptures and winter sports?",
+    "correctAnswer": "Holidazzle (or Great Northern Festival)",
+    "wrongAnswers": [
+      "Aquatennial",
+      "Art-A-Whirl",
+      "Twin Cities Pride",
+      "May Day Parade",
+      "Uptown Art Fair",
+      "Powderhorn Art Fair"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large, glass-enclosed conservancy in Lincoln Park?",
+    "correctAnswer": "Lincoln Park Conservatory",
+    "wrongAnswers": [
+      "Garfield Park Conservatory",
+      "Chicago Botanic Garden",
+      "Brookfield Zoo",
+      "Lincoln Park Zoo",
+      "Shedd Aquarium",
+      "Adler Planetarium"
+    ]
+  },
+  {
+    "question": "What is the name of the neighborhood in Northeast Minneapolis known for its arts district and breweries?",
+    "correctAnswer": "Northeast Arts District",
+    "wrongAnswers": [
+      "Dinkytown",
+      "Marcy-Holmes",
+      "St. Anthony Main",
+      "Warehouse District",
+      "North Loop",
+      "Uptown"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic theaters, including the Cadillac Palace and CIBC Theatre?",
+    "correctAnswer": "Loop (Theatre District)",
+    "wrongAnswers": [
+      "River North",
+      "Magnificent Mile",
+      "Old Town",
+      "Streeterville",
+      "West Loop",
+      "Gold Coast"
+    ]
+  },
+  {
+    "question": "What is the name of the large outdoor venue in Minneapolis where the Twins play baseball?",
+    "correctAnswer": "Target Field",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Target Center",
+      "Hubert H. Humphrey Metrodome",
+      "TCF Bank Stadium",
+      "American Family Field",
+      "Comerica Park"
+    ]
+  },
+  {
+    "question": "Which Chicago building is famous for its distinctive diamond-shaped top?",
+    "correctAnswer": "Crain Communications Building (formerly Smurfit-Stone Building)",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aon Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Two Prudential Plaza"
+    ]
+  },
+  {
+    "question": "What is the name of the pedestrian-friendly street in Uptown Minneapolis known for its shops and restaurants?",
+    "correctAnswer": "Lake Street",
+    "wrongAnswers": [
+      "Hennepin Avenue",
+      "Lyndale Avenue",
+      "Nicollet Avenue",
+      "Grand Avenue",
+      "Franklin Avenue",
+      "Excelsior Boulevard"
+    ]
+  },
+  {
+    "question": "Which Chicago area is known for its historic meatpacking district now transformed into a trendy culinary and nightlife destination?",
+    "correctAnswer": "Fulton Market District",
+    "wrongAnswers": [
+      "River North",
+      "West Loop",
+      "Printer's Row",
+      "Streeterville",
+      "Near North Side",
+      "Magnificent Mile"
+    ]
+  },
+  {
+    "question": "What is the name of the historic park in South Minneapolis, known for its beautiful lake and diverse community?",
+    "correctAnswer": "Powderhorn Park",
+    "wrongAnswers": [
+      "Minnehaha Park",
+      "Loring Park",
+      "Theodore Wirth Park",
+      "Lake Harriet Park",
+      "Lake Calhoun Park",
+      "Gold Medal Park"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large, outdoor art installation featuring faces spouting water?",
+    "correctAnswer": "Crown Fountain (Millennium Park)",
+    "wrongAnswers": [
+      "Buckingham Fountain",
+      "Cloud Gate",
+      "Picasso Sculpture",
+      "Flamingo Sculpture",
+      "The Bowman and The Spearman",
+      "Four Seasons Mosaic"
+    ]
+  },
+  {
+    "question": "What is the name of the oldest standing bridge across the Mississippi River in Minneapolis?",
+    "correctAnswer": "Stone Arch Bridge",
+    "wrongAnswers": [
+      "Hennepin Avenue Bridge",
+      "Franklin Avenue Bridge",
+      "Washington Avenue Bridge",
+      "I-35W Bridge",
+      "Broadway Bridge",
+      "Lake Street Bridge"
+    ]
+  },
+  {
+    "question": "Which Chicago architectural style is characterized by its reliance on steel-frame construction and large windows?",
+    "correctAnswer": "Chicago School (architecture)",
+    "wrongAnswers": [
+      "Art Deco",
+      "Gothic Revival",
+      "Beaux-Arts",
+      "Prairie School",
+      "International Style",
+      "Brutalism"
+    ]
+  },
+  {
+    "question": "What is the name of the annual art festival held in Northeast Minneapolis studios?",
+    "correctAnswer": "Art-A-Whirl",
+    "wrongAnswers": [
+      "Uptown Art Fair",
+      "Powderhorn Art Fair",
+      "Loring Park Art Festival",
+      "Stone Arch Bridge Festival",
+      "Midtown Art Festival",
+      "Nicollet Mall Art Fair"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic former train station now used for Amtrak and Metra services?",
+    "correctAnswer": "Union Station",
+    "wrongAnswers": [
+      "O'Hare International Airport",
+      "Midway International Airport",
+      "Navy Pier",
+      "McCormick Place",
+      "Willis Tower",
+      "Chicago Board of Trade Building"
+    ]
+  },
+  {
+    "question": "What is the name of the street in South Minneapolis known for its diverse ethnic restaurants, often called 'Eat Street'?",
+    "correctAnswer": "Nicollet Avenue",
+    "wrongAnswers": [
+      "Lyndale Avenue",
+      "Hennepin Avenue",
+      "Lake Street",
+      "Franklin Avenue",
+      "Chicago Avenue",
+      "Bloomington Avenue"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its affluent residential areas and luxury boutiques, particularly along Oak Street?",
+    "correctAnswer": "Gold Coast",
+    "wrongAnswers": [
+      "Streeterville",
+      "Lincoln Park",
+      "River North",
+      "Old Town",
+      "Wicker Park",
+      "Lakeview"
+    ]
+  },
+  {
+    "question": "What is the name of the historic park in Minneapolis's downtown area, known for its formal gardens and concerts?",
+    "correctAnswer": "Loring Park",
+    "wrongAnswers": [
+      "Minnehaha Park",
+      "Theodore Wirth Park",
+      "Powderhorn Park",
+      "Boom Island Park",
+      "Mill Ruins Park",
+      "Gold Medal Park"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is one of the largest and oldest zoological parks in the United States?",
+    "correctAnswer": "Lincoln Park Zoo",
+    "wrongAnswers": [
+      "Brookfield Zoo",
+      "Shedd Aquarium",
+      "Field Museum",
+      "Museum of Science and Industry",
+      "Adler Planetarium",
+      "Peggy Notebaert Nature Museum"
+    ]
+  },
+  {
+    "question": "What is the name of the professional women's soccer team in Minnesota?",
+    "correctAnswer": "Minnesota Aurora FC",
+    "wrongAnswers": [
+      "Minnesota United FC",
+      "Minnesota Lynx",
+      "Minnesota Wild",
+      "Minnesota Twins",
+      "Chicago Red Stars",
+      "Kansas City Current"
+    ]
+  },
+  {
+    "question": "Which Chicago architectural landmark is a distinctive tapering skyscraper often referred to as the 'Big John'?",
+    "correctAnswer": "John Hancock Center (875 North Michigan Avenue)",
+    "wrongAnswers": [
+      "Willis Tower",
+      "Aon Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "One Chicago",
+      "Two Prudential Plaza"
+    ]
+  },
+  {
+    "question": "What is the name of the riverfront park in Minneapolis with industrial ruins and waterfalls?",
+    "correctAnswer": "Mill Ruins Park",
+    "wrongAnswers": [
+      "Boom Island Park",
+      "Gold Medal Park",
+      "Father Hennepin Bluff Park",
+      "Loring Park",
+      "Minnehaha Park",
+      "Stone Arch Bridge Park"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its annual Jazz Festival and Blues Festival?",
+    "correctAnswer": "Grant Park (where the festivals are held)",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Wicker Park",
+      "Hyde Park",
+      "Loop",
+      "Bronzeville",
+      "Uptown"
+    ]
+  },
+  {
+    "question": "What is the name of the popular outdoor market held near the Guthrie Theater in Minneapolis?",
+    "correctAnswer": "Mill City Farmers Market",
+    "wrongAnswers": [
+      "Minneapolis Farmers Market",
+      "Kingfield Farmers Market",
+      "Fulton Farmers Market",
+      "Linden Hills Farmers Market",
+      "Northeast Farmers Market",
+      "Midtown Farmers Market"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is focused on African American art, history, and culture?",
+    "correctAnswer": "DuSable Museum of African American History",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "Chicago History Museum",
+      "Museum of Contemporary Art"
+    ]
+  },
+  {
+    "question": "What is the name of the former railroad corridor in South Minneapolis now used for biking and walking?",
+    "correctAnswer": "Midtown Greenway",
+    "wrongAnswers": [
+      "Cedar Lake Trail",
+      "Grand Rounds Scenic Byway",
+      "Mississippi Riverfront Trail",
+      "Luce Line Trail",
+      "Dakota Rail Trail",
+      "Gateway State Trail"
+    ]
+  },
+  {
+    "question": "Which Chicago building is famous for its distinct zigzag structural pattern on its exterior?",
+    "correctAnswer": "Aqua Tower",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aon Center",
+      "Trump International Hotel and Tower",
+      "Marina City",
+      "Lake Point Tower"
+    ]
+  },
+  {
+    "question": "What is the name of the professional baseball stadium in Chicago's North Side?",
+    "correctAnswer": "Wrigley Field",
+    "wrongAnswers": [
+      "Guaranteed Rate Field",
+      "Soldier Field",
+      "United Center",
+      "Comiskey Park",
+      "Fenway Park",
+      "Dodger Stadium"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its strong Irish-American heritage and St. Patrick's Day parades?",
+    "correctAnswer": "Beverly",
+    "wrongAnswers": [
+      "Bridgeport",
+      "Canaryville",
+      "Lincoln Park",
+      "Old Town",
+      "Pilsen",
+      "Irving Park"
+    ]
+  },
+  {
+    "question": "What is the name of the annual festival held in Loring Park, celebrating the LGBTQ+ community?",
+    "correctAnswer": "Twin Cities Pride",
+    "wrongAnswers": [
+      "Aquatennial",
+      "Uptown Art Fair",
+      "Art-A-Whirl",
+      "Holidazzle",
+      "May Day Parade",
+      "Powderhorn Art Fair"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic warehouses converted into trendy lofts, restaurants, and art galleries?",
+    "correctAnswer": "River North",
+    "wrongAnswers": [
+      "West Loop",
+      "Gold Coast",
+      "Streeterville",
+      "Loop",
+      "Lincoln Park",
+      "Old Town"
+    ]
+  },
+  {
+    "question": "What is the name of the famous performing arts school in Minneapolis, part of the University of Minnesota?",
+    "correctAnswer": "University of Minnesota College of Liberal Arts (with specific departments like Theatre Arts & Dance)",
+    "wrongAnswers": [
+      "MacPhail Center for Music",
+      "Children's Theatre Company",
+      "Guthrie Theater",
+      "Penumbra Theatre",
+      "Mixed Blood Theatre",
+      "Minneapolis Institute of Arts"
+    ]
+  },
+  {
+    "question": "Which Chicago building is famous for its corn-cob like appearance?",
+    "correctAnswer": "Marina City",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aqua Tower",
+      "Crain Communications Building",
+      "Lake Point Tower",
+      "Chicago Spire (unbuilt)"
+    ]
+  },
+  {
+    "question": "What is the name of the annual outdoor art fair held in Uptown Minneapolis?",
+    "correctAnswer": "Uptown Art Fair",
+    "wrongAnswers": [
+      "Art-A-Whirl",
+      "Powderhorn Art Fair",
+      "Loring Park Art Festival",
+      "Stone Arch Bridge Festival",
+      "Midtown Art Festival",
+      "Nicollet Mall Art Fair"
+    ]
+  },
+  {
+    "question": "Which Chicago park is famous for its annual Taste of Chicago food festival?",
+    "correctAnswer": "Grant Park",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Millennium Park",
+      "Jackson Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the public art museum in Minneapolis, known for its contemporary and modern art collections?",
+    "correctAnswer": "Walker Art Center",
+    "wrongAnswers": [
+      "Minneapolis Institute of Arts (Mia)",
+      "Weisman Art Museum",
+      "American Swedish Institute",
+      "Frederick R. Weisman Art Museum",
+      "Bell Museum",
+      "Bakken Museum"
+    ]
+  },
+  {
+    "question": "Which Chicago structure is a historic water pumping station and one of the few buildings to survive the Great Chicago Fire?",
+    "correctAnswer": "Chicago Water Tower",
+    "wrongAnswers": [
+      "Chicago Pumping Station",
+      "Chicago Firehouse",
+      "Old Post Office",
+      "Board of Trade Building",
+      "Chicago Cultural Center",
+      "Monadnock Building"
+    ]
+  },
+  {
+    "question": "What is the name of the residential island in the Mississippi River within Minneapolis?",
+    "correctAnswer": "Nicollet Island",
+    "wrongAnswers": [
+      "Boom Island",
+      "Hennepin Island",
+      "Raspberry Island",
+      "Pig's Eye Island",
+      "Lemon Island",
+      "Black Dog Island"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic former department store building now a mixed-use complex?",
+    "correctAnswer": "Marshall Field and Company Building (now Macy's)",
+    "wrongAnswers": [
+      "Carson Pirie Scott and Company Building",
+      "The Rookery Building",
+      "Reliance Building",
+      "Monadnock Building",
+      "Auditorium Building",
+      "Chicago Cultural Center"
+    ]
+  },
+  {
+    "question": "What is the name of the Minneapolis neighborhood known for its lively arts scene, boutiques, and diverse population?",
+    "correctAnswer": "Uptown",
+    "wrongAnswers": [
+      "Northeast",
+      "Mill District",
+      "North Loop",
+      "Whittier",
+      "Longfellow",
+      "Kingfield"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its significant Greek-American population and annual Greek Festival?",
+    "correctAnswer": "Greektown",
+    "wrongAnswers": [
+      "Little Italy",
+      "Chinatown",
+      "Pilsen",
+      "Ukrainian Village",
+      "Andersonville",
+      "Bronzeville"
+    ]
+  },
+  {
+    "question": "What is the name of the large greenhouse and botanical garden in Minneapolis's Como Park Zoo and Conservatory?",
+    "correctAnswer": "Marjorie McNeely Conservatory",
+    "wrongAnswers": [
+      "Minnehaha Conservatory",
+      "Theodore Wirth Conservatory",
+      "Loring Park Conservatory",
+      "Japanese Garden Conservatory",
+      "Sunken Garden Conservatory",
+      "Como Park Floral Dome"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large convention center on the lakefront?",
+    "correctAnswer": "McCormick Place",
+    "wrongAnswers": [
+      "Navy Pier",
+      "Willis Tower",
+      "United Center",
+      "Soldier Field",
+      "Wrigley Field",
+      "Art Institute of Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the historical neighborhood in Minneapolis, once a hub for grain mills and now a residential area?",
+    "correctAnswer": "Mill District",
+    "wrongAnswers": [
+      "Warehouse District",
+      "North Loop",
+      "Uptown",
+      "Northeast",
+      "Dinkytown",
+      "Marcy-Holmes"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic former federal building now a cultural center with a Tiffany glass dome?",
+    "correctAnswer": "Chicago Cultural Center",
+    "wrongAnswers": [
+      "Art Institute of Chicago",
+      "Field Museum",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "Union Station",
+      "Rookery Building"
+    ]
+  },
+  {
+    "question": "What is the name of the largest indoor arena in Minneapolis, home to the Timberwolves and Lynx?",
+    "correctAnswer": "Target Center",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Williams Arena",
+      "Mariucci Arena",
+      "Xcel Energy Center",
+      "Roy Wilkins Auditorium",
+      "Minneapolis Convention Center"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its large Italian-American population and restaurants on Taylor Street?",
+    "correctAnswer": "Little Italy (University Village)",
+    "wrongAnswers": [
+      "Pilsen",
+      "Chinatown",
+      "Greektown",
+      "Andersonville",
+      "Bronzeville",
+      "Ukrainian Village"
+    ]
+  },
+  {
+    "question": "What is the name of the major annual running event held in Minneapolis/St. Paul?",
+    "correctAnswer": "Twin Cities Marathon",
+    "wrongAnswers": [
+      "Medtronic Twin Cities Marathon",
+      "Grandma's Marathon",
+      "City of Lakes Loppet",
+      "Minneapolis Marathon",
+      "Saint Paul Marathon",
+      "Run Twin Cities"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic churches, particularly St. Nicholas Cathedral, and Eastern European culture?",
+    "correctAnswer": "Ukrainian Village",
+    "wrongAnswers": [
+      "Wicker Park",
+      "Pilsen",
+      "Logan Square",
+      "Lincoln Park",
+      "Old Town",
+      "Greektown"
+    ]
+  },
+  {
+    "question": "What is the name of the professional women's hockey team in Minnesota?",
+    "correctAnswer": "PWHL Minnesota",
+    "wrongAnswers": [
+      "Minnesota Wild",
+      "Minnesota Whitecaps",
+      "Minnesota Warriors",
+      "Minnesota Frost",
+      "Minnesota North Stars",
+      "Chicago Blackhawks"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a former military base now a popular park with a museum and gardens?",
+    "correctAnswer": "Museum of Science and Industry (in Jackson Park)",
+    "wrongAnswers": [
+      "Lincoln Park Zoo",
+      "Garfield Park Conservatory",
+      "Chicago Botanic Garden",
+      "Navy Pier",
+      "Soldier Field",
+      "Grant Park"
+    ]
+  },
+  {
+    "question": "What is the name of the oldest performing arts theater in Minneapolis, located downtown?",
+    "correctAnswer": "Pantages Theatre",
+    "wrongAnswers": [
+      "Orpheum Theatre",
+      "State Theatre",
+      "Guthrie Theater",
+      "Mixed Blood Theatre",
+      "Children's Theatre Company",
+      "Penumbra Theatre"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a famous outdoor sculpture by Pablo Picasso?",
+    "correctAnswer": "The Picasso (Chicago Picasso)",
+    "wrongAnswers": [
+      "Cloud Gate",
+      "Crown Fountain",
+      "Flamingo (Calder)",
+      "Agora (Magdalena Abakanowicz)",
+      "Miró's Chicago",
+      "Dubuffet's Monument with Standing Beast"
+    ]
+  },
+  {
+    "question": "What is the name of the well-known independent movie theater in Uptown Minneapolis, known for its classic films?",
+    "correctAnswer": "Uptown Theatre",
+    "wrongAnswers": [
+      "Lagoon Cinema",
+      "St. Anthony Main Theatre",
+      "Trylon Cinema",
+      "Riverview Theater",
+      "Parkway Theater",
+      "Heights Theater"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its large Chinatown community?",
+    "correctAnswer": "Chinatown",
+    "wrongAnswers": [
+      "Little Italy",
+      "Greektown",
+      "Pilsen",
+      "Andersonville",
+      "Bronzeville",
+      "Ukrainian Village"
+    ]
+  },
+  {
+    "question": "What is the name of the historical building in Downtown Minneapolis that is home to the city's government?",
+    "correctAnswer": "Minneapolis City Hall and Hennepin County Courthouse",
+    "wrongAnswers": [
+      "IDS Center",
+      "Foshay Tower",
+      "Capella Tower",
+      "Wells Fargo Center",
+      "US Bank Plaza",
+      "Baker Center"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is a prominent fine arts school located in the Loop?",
+    "correctAnswer": "School of the Art Institute of Chicago",
+    "wrongAnswers": [
+      "Art Institute of Chicago (museum)",
+      "Columbia College Chicago",
+      "DePaul University",
+      "Loyola University Chicago",
+      "University of Illinois Chicago",
+      "Illinois Institute of Technology"
+    ]
+  },
+  {
+    "question": "What is the name of the pedestrian and bike bridge that connects Minneapolis to St. Paul over the Mississippi River?",
+    "correctAnswer": "Midtown Greenway (does not cross into St. Paul, but connects to trails that do)",
+    "wrongAnswers": [
+      "Stone Arch Bridge",
+      "I-35W Bridge",
+      "Washington Avenue Bridge",
+      "Franklin Avenue Bridge",
+      "Lake Street Bridge",
+      "Cedar Lake Trail"
+    ]
+  },
+  {
+    "question": "Which Chicago university is known for its urban campus in Lincoln Park and the Loop?",
+    "correctAnswer": "DePaul University",
+    "wrongAnswers": [
+      "University of Chicago",
+      "Northwestern University",
+      "Loyola University Chicago",
+      "University of Illinois Chicago",
+      "Illinois Institute of Technology",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the annual festival held in Powderhorn Park, celebrating art and community?",
+    "correctAnswer": "Powderhorn Art Fair",
+    "wrongAnswers": [
+      "Uptown Art Fair",
+      "Art-A-Whirl",
+      "Loring Park Art Festival",
+      "Stone Arch Bridge Festival",
+      "Midtown Art Festival",
+      "Nicollet Mall Art Fair"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic fountain known for its four seahorses and allegorical figures?",
+    "correctAnswer": "Fountain of the Great Lakes (Art Institute of Chicago)",
+    "wrongAnswers": [
+      "Buckingham Fountain",
+      "Crown Fountain",
+      "Picasso Sculpture",
+      "Cloud Gate",
+      "Flamingo (Calder)",
+      "Chicago Water Tower"
+    ]
+  },
+  {
+    "question": "What is the name of the famous bakery in Minneapolis's Kingfield neighborhood, known for its pastries?",
+    "correctAnswer": "Patisserie 46",
+    "wrongAnswers": [
+      "Rustica Bakery",
+      "Baker's Wife",
+      "Bogart's Doughnut Co.",
+      "Glam Doll Donuts",
+      "Cafe & Bar Lurcat",
+      "Black Walnut Bakery"
+    ]
+  },
+  {
+    "question": "Which Chicago building is known for its distinct shape, resembling a giant chessboard, and is part of the Illinois Center complex?",
+    "correctAnswer": "Aon Center",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Two Prudential Plaza",
+      "Blue Cross Blue Shield Tower"
+    ]
+  },
+  {
+    "question": "What is the name of the largest public university in Chicago?",
+    "correctAnswer": "University of Illinois Chicago (UIC)",
+    "wrongAnswers": [
+      "University of Chicago",
+      "Northwestern University",
+      "Loyola University Chicago",
+      "DePaul University",
+      "Illinois Institute of Technology",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic sports arena, formerly home to the Bulls and Blackhawks?",
+    "correctAnswer": "Chicago Stadium (Original)",
+    "wrongAnswers": [
+      "United Center",
+      "Soldier Field",
+      "Wrigley Field",
+      "Guaranteed Rate Field",
+      "McCormick Place",
+      "Chicago Coliseum"
+    ]
+  },
+  {
+    "question": "What is the name of the historic art museum in Minneapolis, known for its extensive collections?",
+    "correctAnswer": "Minneapolis Institute of Arts (Mia)",
+    "wrongAnswers": [
+      "Walker Art Center",
+      "Weisman Art Museum",
+      "American Swedish Institute",
+      "Frederick R. Weisman Art Museum",
+      "Bell Museum",
+      "Bakken Museum"
+    ]
+  },
+  {
+    "question": "Which Chicago park is home to the Shedd Aquarium, Field Museum, and Adler Planetarium?",
+    "correctAnswer": "Museum Campus (part of Grant Park)",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Millennium Park",
+      "Jackson Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the famous dive bar in South Minneapolis, known for its live music and local atmosphere?",
+    "correctAnswer": "Matt's Bar",
+    "wrongAnswers": [
+      "5-8 Club",
+      "CC Club",
+      "Grumpy's Bar & Grill",
+      "Psycho Suzi's Motor Lounge",
+      "Palmer's Bar",
+      "Fine Line Music Cafe"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is a leading research university known for its engineering and architecture programs?",
+    "correctAnswer": "Illinois Institute of Technology (IIT)",
+    "wrongAnswers": [
+      "University of Chicago",
+      "Northwestern University",
+      "Loyola University Chicago",
+      "DePaul University",
+      "University of Illinois Chicago",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the professional indoor football team in Minnesota?",
+    "correctAnswer": "Minnesota Myth",
+    "wrongAnswers": [
+      "Minnesota Vikings",
+      "Minnesota Valor",
+      "Minnesota Blaze",
+      "Minnesota Storm",
+      "Minnesota Fury",
+      "Chicago Rush"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its thriving arts scene, numerous galleries, and furniture showrooms?",
+    "correctAnswer": "River North",
+    "wrongAnswers": [
+      "West Loop",
+      "Gold Coast",
+      "Streeterville",
+      "Loop",
+      "Lincoln Park",
+      "Old Town"
+    ]
+  },
+  {
+    "question": "What is the name of the historical mansion in Minneapolis, known for its art and architecture, now a museum?",
+    "correctAnswer": "American Swedish Institute (Turnblad Mansion)",
+    "wrongAnswers": [
+      "Bakken Museum",
+      "Bell Museum",
+      "James J. Hill House",
+      "Pillsbury Mansion",
+      "Congdon Estate",
+      "Glensheen Mansion"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a famous outdoor sculpture by Alexander Calder, known for its bright red color?",
+    "correctAnswer": "Flamingo (Calder)",
+    "wrongAnswers": [
+      "The Picasso (Chicago Picasso)",
+      "Cloud Gate",
+      "Crown Fountain",
+      "Buckingham Fountain",
+      "Agora (Magdalena Abakanowicz)",
+      "Miró's Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the large greenhouse and botanical garden in Chicago's Garfield Park?",
+    "correctAnswer": "Garfield Park Conservatory",
+    "wrongAnswers": [
+      "Lincoln Park Conservatory",
+      "Chicago Botanic Garden",
+      "Brookfield Zoo",
+      "Lincoln Park Zoo",
+      "Shedd Aquarium",
+      "Adler Planetarium"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic mansions and proximity to Lincoln Park Zoo?",
+    "correctAnswer": "Lincoln Park",
+    "wrongAnswers": [
+      "Gold Coast",
+      "Old Town",
+      "Streeterville",
+      "River North",
+      "Wicker Park",
+      "Bucktown"
+    ]
+  },
+  {
+    "question": "What is the name of the university campus in Minneapolis, near the Mississippi River, known as 'Dinkytown'?",
+    "correctAnswer": "University of Minnesota (East Bank/Dinkytown)",
+    "wrongAnswers": [
+      "Augsburg University",
+      "North Central University",
+      "University of St. Thomas",
+      "Macalester College",
+      "Hamline University",
+      "Concordia University"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic building by Frank Lloyd Wright in the Hyde Park neighborhood?",
+    "correctAnswer": "Robie House",
+    "wrongAnswers": [
+      "Unity Temple",
+      "Frederick C. Robie House",
+      "Home and Studio",
+      "Fallingwater",
+      "Taliesin",
+      "Johnson Wax Headquarters"
+    ]
+  },
+  {
+    "question": "What is the name of the popular LGBTQ+ nightclub in Downtown Minneapolis, known for its multiple rooms?",
+    "correctAnswer": "Gay 90's",
+    "wrongAnswers": [
+      "First Avenue",
+      "Lush Lounge & The ashamed puppy",
+      "The Saloon",
+      "Brass Rail",
+      "The Eagle Bolt Bar",
+      "Club Jaxx"
+    ]
+  },
+  {
+    "question": "Which Chicago building is famous for its distinctive crown-like top and illuminated spires?",
+    "correctAnswer": "Chicago Spire (unbuilt design, but often referenced for this feature)",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Aon Center",
+      "Two Prudential Plaza"
+    ]
+  },
+  {
+    "question": "What is the name of the historic train depot in Minneapolis, now a hotel and event center?",
+    "correctAnswer": "Minneapolis Depot (Renaissance Minneapolis Hotel, The Depot)",
+    "wrongAnswers": [
+      "Union Depot (St. Paul)",
+      "Great Northern Depot",
+      "Milwaukee Road Depot",
+      "Northern Pacific Depot",
+      "Soo Line Depot",
+      "Rock Island Depot"
+    ]
+  },
+  {
+    "question": "Which Chicago park is famous for its series of large, outdoor murals painted on building walls?",
+    "correctAnswer": "Pilsen (neighborhood, not a single park, but associated with murals)",
+    "wrongAnswers": [
+      "Humboldt Park",
+      "Lincoln Park",
+      "Grant Park",
+      "Millennium Park",
+      "Jackson Park",
+      "Washington Park"
+    ]
+  },
+  {
+    "question": "What is the name of the popular independent cinema in South Minneapolis, known for its affordable tickets and classic charm?",
+    "correctAnswer": "Riverview Theater",
+    "wrongAnswers": [
+      "Uptown Theatre",
+      "Lagoon Cinema",
+      "St. Anthony Main Theatre",
+      "Trylon Cinema",
+      "Parkway Theater",
+      "Heights Theater"
+    ]
+  },
+  {
+    "question": "Which Chicago building is known for its distinct shape, resembling a giant concrete wedding cake, and is part of a residential complex?",
+    "correctAnswer": "Thompson Center (James R. Thompson Center)",
+    "wrongAnswers": [
+      "Marina City",
+      "Aqua Tower",
+      "Willis Tower",
+      "John Hancock Center",
+      "Tribune Tower",
+      "Wrigley Building"
+    ]
+  },
+  {
+    "question": "What is the name of the large indoor concert venue in Minneapolis, formerly an armory?",
+    "correctAnswer": "The Armory",
+    "wrongAnswers": [
+      "First Avenue",
+      "Fine Line Music Cafe",
+      "Varsity Theater",
+      "Palace Theatre",
+      "Dakota",
+      "Fillmore Minneapolis"
+    ]
+  },
+  {
+    "question": "Which Chicago street is famous for its concentration of historic skyscrapers and a major financial hub?",
+    "correctAnswer": "LaSalle Street",
+    "wrongAnswers": [
+      "Michigan Avenue",
+      "State Street",
+      "Wacker Drive",
+      "Clark Street",
+      "Wells Street",
+      "Dearborn Street"
+    ]
+  },
+  {
+    "question": "What is the name of the famous jazz club in Minneapolis's Downtown East neighborhood?",
+    "correctAnswer": "The Dakota",
+    "wrongAnswers": [
+      "Fine Line Music Cafe",
+      "First Avenue",
+      "Bunkers Music Bar & Grill",
+      "Vieux Carré",
+      "Crooners Supper Club",
+      "Jazz Central Studios"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic Art Deco and neoclassical architecture, often called 'Printer's Row'?",
+    "correctAnswer": "Printer's Row",
+    "wrongAnswers": [
+      "South Loop",
+      "Central Station",
+      "River North",
+      "West Loop",
+      "Loop",
+      "Hyde Park"
+    ]
+  },
+  {
+    "question": "What is the name of the largest African American history museum in Minnesota, located in Minneapolis?",
+    "correctAnswer": "Minnesota African American Heritage Museum and Gallery",
+    "wrongAnswers": [
+      "American Swedish Institute",
+      "Bell Museum",
+      "Bakken Museum",
+      "Mill City Museum",
+      "Science Museum of Minnesota",
+      "Minnesota Historical Society"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic bridge known for its bascule (drawbridge) design, often lifted for boats?",
+    "correctAnswer": "DuSable Bridge (Michigan Avenue Bridge)",
+    "wrongAnswers": [
+      "Lake Shore Drive Bridge",
+      "Wells Street Bridge",
+      "Clark Street Bridge",
+      "Dearborn Street Bridge",
+      "State Street Bridge",
+      "Kinzie Street Bridge"
+    ]
+  },
+  {
+    "question": "What is the name of the famous craft brewery in Northeast Minneapolis, known for its IPA?",
+    "correctAnswer": "Indeed Brewing Company",
+    "wrongAnswers": [
+      "Surly Brewing Company",
+      "Bauhaus Brew Labs",
+      "Fulton Beer",
+      "Dangerous Man Brewing Co.",
+      "Fair State Brewing Cooperative",
+      "Able Seedhouse + Brewery"
+    ]
+  },
+  {
+    "question": "Which Chicago area is known for its annual Air and Water Show?",
+    "correctAnswer": "Lakefront (North Avenue Beach area)",
+    "wrongAnswers": [
+      "Navy Pier",
+      "Northerly Island",
+      "Lincoln Park",
+      "Grant Park",
+      "Jackson Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the public university in Minneapolis, known for its medical research and academic hospital?",
+    "correctAnswer": "University of Minnesota (Twin Cities Campus)",
+    "wrongAnswers": [
+      "Mayo Clinic (Rochester)",
+      "Hennepin Healthcare",
+      "Children's Minnesota",
+      "Regions Hospital",
+      "St. Cloud State University",
+      "University of St. Thomas"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic water tower that famously survived the Great Chicago Fire?",
+    "correctAnswer": "Chicago Water Tower",
+    "wrongAnswers": [
+      "Pumping Station",
+      "Old Stone Tower",
+      "City Hall Tower",
+      "Tribune Tower",
+      "Wrigley Building",
+      "London Guarantee Building"
+    ]
+  },
+  {
+    "question": "What is the name of the professional theatre company in Minneapolis known for its commitment to diverse voices?",
+    "correctAnswer": "Mixed Blood Theatre",
+    "wrongAnswers": [
+      "Guthrie Theater",
+      "Children's Theatre Company",
+      "Penumbra Theatre Company",
+      "Theater Mu",
+      "Park Square Theatre",
+      "Frank Theatre"
+    ]
+  },
+  {
+    "question": "Which Chicago park is famous for its Japanese Garden and Museum of Science and Industry?",
+    "correctAnswer": "Jackson Park",
+    "wrongAnswers": [
+      "Grant Park",
+      "Lincoln Park",
+      "Millennium Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the largest convention center in Minneapolis?",
+    "correctAnswer": "Minneapolis Convention Center",
+    "wrongAnswers": [
+      "U.S. Bank Stadium",
+      "Target Center",
+      "The Armory",
+      "State Theatre",
+      "Orpheum Theatre",
+      "Historic Old City Hall"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is one of the oldest public aquariums in the United States?",
+    "correctAnswer": "Shedd Aquarium",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "Adler Planetarium",
+      "Lincoln Park Zoo",
+      "Brookfield Zoo"
+    ]
+  },
+  {
+    "question": "What is the name of the annual festival held in the Mill District of Minneapolis, celebrating arts and food?",
+    "correctAnswer": "Stone Arch Bridge Festival",
+    "wrongAnswers": [
+      "Aquatennial",
+      "Art-A-Whirl",
+      "Uptown Art Fair",
+      "Powderhorn Art Fair",
+      "Twin Cities Pride",
+      "Holidazzle"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a large, public, indoor botanical garden and cultural center?",
+    "correctAnswer": "Garfield Park Conservatory",
+    "wrongAnswers": [
+      "Lincoln Park Conservatory",
+      "Chicago Botanic Garden",
+      "Brookfield Zoo",
+      "Lincoln Park Zoo",
+      "Shedd Aquarium",
+      "Adler Planetarium"
+    ]
+  },
+  {
+    "question": "What is the name of the Minneapolis neighborhood known for its historic homes, tree-lined streets, and access to Lake Harriet?",
+    "correctAnswer": "Linden Hills",
+    "wrongAnswers": [
+      "Uptown",
+      "Kingfield",
+      "Tangletown",
+      "East Harriet",
+      "Kenwood",
+      "Lowry Hill"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is focused on the history of broadcast media and television?",
+    "correctAnswer": "Museum of Broadcast Communications",
+    "wrongAnswers": [
+      "Museum of Science and Industry",
+      "Chicago History Museum",
+      "Field Museum",
+      "Art Institute of Chicago",
+      "National Museum of Mexican Art",
+      "DuSable Museum"
+    ]
+  },
+  {
+    "question": "What is the name of the oldest continuously operating movie theater in Minneapolis, located in South Minneapolis?",
+    "correctAnswer": "Trylon Cinema",
+    "wrongAnswers": [
+      "Riverview Theater",
+      "Uptown Theatre",
+      "Lagoon Cinema",
+      "Parkway Theater",
+      "Heights Theater",
+      "St. Anthony Main Theatre"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is a Catholic research university located on the North Side?",
+    "correctAnswer": "Loyola University Chicago",
+    "wrongAnswers": [
+      "University of Chicago",
+      "Northwestern University",
+      "DePaul University",
+      "University of Illinois Chicago",
+      "Illinois Institute of Technology",
+      "Columbia College Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the public park in Minneapolis featuring a band shell and a Japanese Garden?",
+    "correctAnswer": "Lake Harriet Park",
+    "wrongAnswers": [
+      "Loring Park",
+      "Minnehaha Park",
+      "Theodore Wirth Park",
+      "Powderhorn Park",
+      "Boom Island Park",
+      "Gold Medal Park"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic skyscraper with a distinctive clock tower, located on Michigan Avenue?",
+    "correctAnswer": "Jewelers' Building (now 35 East Wacker)",
+    "wrongAnswers": [
+      "Wrigley Building",
+      "Tribune Tower",
+      "London Guarantee Building",
+      "Rookery Building",
+      "Monadnock Building",
+      "Fisher Building"
+    ]
+  },
+  {
+    "question": "What is the name of the largest indoor water park in Minnesota, located near Minneapolis?",
+    "correctAnswer": "Great Wolf Lodge (Bloomington)",
+    "wrongAnswers": [
+      "Water Park of America",
+      "Tropics Indoor Waterpark",
+      "Edinborough Park",
+      "Cascade Bay",
+      "Como Park Pool",
+      "Bunker Beach"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is located in a historic former post office building and focuses on contemporary art?",
+    "correctAnswer": "Museum of Contemporary Art (MCA)",
+    "wrongAnswers": [
+      "Art Institute of Chicago",
+      "Field Museum",
+      "Museum of Science and Industry",
+      "Shedd Aquarium",
+      "DuSable Museum",
+      "Chicago History Museum"
+    ]
+  },
+  {
+    "question": "What is the name of the historic avenue in Minneapolis known for its diverse culinary scene, often called 'Eat Street'?",
+    "correctAnswer": "Nicollet Avenue",
+    "wrongAnswers": [
+      "Lyndale Avenue",
+      "Hennepin Avenue",
+      "Lake Street",
+      "Franklin Avenue",
+      "Grand Avenue",
+      "Central Avenue"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic hotel known for its distinctive red sign on the Chicago River?",
+    "correctAnswer": "LondonHouse Chicago",
+    "wrongAnswers": [
+      "Palmer House Hilton",
+      "Drake Hotel",
+      "The Peninsula Chicago",
+      "Langham Chicago",
+      "Thompson Chicago",
+      "Viceroy Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the public university in Minneapolis, known for its strong design and architecture programs?",
+    "correctAnswer": "University of Minnesota College of Design",
+    "wrongAnswers": [
+      "Minneapolis College of Art and Design (MCAD)",
+      "Dunwoody College of Technology",
+      "St. Catherine University",
+      "Minneapolis Community and Technical College",
+      "Augsburg University",
+      "North Central University"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is famous for its vibrant blues and jazz music scene, particularly on the North Side?",
+    "correctAnswer": "Uptown (Green Mill Jazz Club)",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Wicker Park",
+      "Old Town",
+      "River North",
+      "Lakeview",
+      "Logan Square"
+    ]
+  },
+  {
+    "question": "What is the name of the iconic statue of Mary in Minneapolis, located on the Basilica of Saint Mary?",
+    "correctAnswer": "Immaculate Conception Statue",
+    "wrongAnswers": [
+      "Our Lady of Lourdes Statue",
+      "St. Anthony Statue",
+      "St. Joseph Statue",
+      "Sacred Heart Statue",
+      "St. Paul Statue",
+      "Divine Mercy Statue"
+    ]
+  },
+  {
+    "question": "Which Chicago institution is a significant cultural landmark known for its architecture and theater productions?",
+    "correctAnswer": "Auditorium Building (Roosevelt University)",
+    "wrongAnswers": [
+      "Goodman Theatre",
+      "Steppenwolf Theatre Company",
+      "Chicago Theatre",
+      "Cadillac Palace Theatre",
+      "CIBC Theatre",
+      "Thalia Hall"
+    ]
+  },
+  {
+    "question": "What is the name of the popular independent bookstore in Minneapolis's Linden Hills neighborhood, known for its children's books?",
+    "correctAnswer": "Wild Rumpus",
+    "wrongAnswers": [
+      "Magers & Quinn Booksellers",
+      "Moon Palace Books",
+      "Birchbark Books & Native Arts",
+      "Uncle Hugo's Science Fiction Bookstore",
+      "DreamHaven Books & Comics",
+      "Once Upon A Crime"
+    ]
+  },
+  {
+    "question": "Which Chicago building is a famous example of Art Deco architecture, known for its distinctive top?",
+    "correctAnswer": "Chicago Board of Trade Building",
+    "wrongAnswers": [
+      "Tribune Tower",
+      "Wrigley Building",
+      "Merchandise Mart",
+      "Union Station",
+      "Rookery Building",
+      "Monadnock Building"
+    ]
+  },
+  {
+    "question": "What is the name of the largest freshwater lake in Minneapolis's Chain of Lakes, popular for sailing and recreation?",
+    "correctAnswer": "Lake Harriet",
+    "wrongAnswers": [
+      "Lake Calhoun (Bde Maka Ska)",
+      "Lake of the Isles",
+      "Cedar Lake",
+      "Lake Nokomis",
+      "Lake Hiawatha",
+      "Brownie Lake"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic indoor theater known for its ornate interior and broadway shows?",
+    "correctAnswer": "Chicago Theatre",
+    "wrongAnswers": [
+      "Goodman Theatre",
+      "Steppenwolf Theatre Company",
+      "Cadillac Palace Theatre",
+      "CIBC Theatre",
+      "Thalia Hall",
+      "Oriental Theatre"
+    ]
+  },
+  {
+    "question": "What is the name of the large shopping mall in Minneapolis's Downtown East, known for its skyway connections?",
+    "correctAnswer": "City Center",
+    "wrongAnswers": [
+      "Nicollet Mall",
+      "IDS Center",
+      "Gaviidae Common",
+      "Young-Quinlan Building",
+      "Baker Center",
+      "Butler Square"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its large Mexican-American population and cultural festivals?",
+    "correctAnswer": "Little Village (La Villita)",
+    "wrongAnswers": [
+      "Pilsen",
+      "Chinatown",
+      "Greektown",
+      "Andersonville",
+      "Bronzeville",
+      "Ukrainian Village"
+    ]
+  },
+  {
+    "question": "What is the name of the historic performing arts center in Minneapolis's Marcy-Holmes neighborhood?",
+    "correctAnswer": "Varsity Theater",
+    "wrongAnswers": [
+      "First Avenue",
+      "Fine Line Music Cafe",
+      "Palace Theatre",
+      "Armory",
+      "Dakota",
+      "Cabooze"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a famous outdoor art installation of a gorilla, known for its popular photo opportunities?",
+    "correctAnswer": "The Gorilla (Lincoln Park Zoo)",
+    "wrongAnswers": [
+      "Cloud Gate",
+      "Crown Fountain",
+      "The Picasso",
+      "Flamingo (Calder)",
+      "The Bowman and The Spearman",
+      "Miró's Chicago"
+    ]
+  },
+  {
+    "question": "What is the name of the popular outdoor market in Minneapolis, near the University of Minnesota, known for its diverse food vendors?",
+    "correctAnswer": "Midtown Global Market",
+    "wrongAnswers": [
+      "Minneapolis Farmers Market",
+      "Mill City Farmers Market",
+      "Kingfield Farmers Market",
+      "Uptown Art Fair",
+      "Nicollet Mall",
+      "Eat Street"
+    ]
+  },
+  {
+    "question": "Which Chicago park is famous for its rose garden and Japanese Tea Garden?",
+    "correctAnswer": "Jackson Park",
+    "wrongAnswers": [
+      "Lincoln Park",
+      "Grant Park",
+      "Millennium Park",
+      "Humboldt Park",
+      "Washington Park",
+      "Burnham Park"
+    ]
+  },
+  {
+    "question": "What is the name of the large urban park in Minneapolis, surrounding Lake of the Isles?",
+    "correctAnswer": "Lake of the Isles Park",
+    "wrongAnswers": [
+      "Lake Harriet Park",
+      "Lake Calhoun Park (Bde Maka Ska Park)",
+      "Cedar Lake Park",
+      "Minnehaha Park",
+      "Loring Park",
+      "Theodore Wirth Park"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is focused on the history of the city and its diverse communities?",
+    "correctAnswer": "Chicago History Museum",
+    "wrongAnswers": [
+      "Field Museum",
+      "Art Institute of Chicago",
+      "Museum of Science and Industry",
+      "DuSable Museum",
+      "Museum of Contemporary Art",
+      "National Museum of Mexican Art"
+    ]
+  },
+  {
+    "question": "What is the name of the oldest neighborhood in Minneapolis, located just east of downtown?",
+    "correctAnswer": "Marcy-Holmes",
+    "wrongAnswers": [
+      "Northeast",
+      "Dinkytown",
+      "St. Anthony Main",
+      "Mill District",
+      "Southeast Como",
+      "Cedar-Riverside"
+    ]
+  },
+  {
+    "question": "Which Chicago building is a historic landmark known for its distinctive red granite exterior and stepped-back design?",
+    "correctAnswer": "Carbide & Carbon Building",
+    "wrongAnswers": [
+      "Tribune Tower",
+      "Wrigley Building",
+      "London Guarantee Building",
+      "Rookery Building",
+      "Monadnock Building",
+      "Reliance Building"
+    ]
+  },
+  {
+    "question": "What is the name of the major annual summer event in Minneapolis, featuring parades and fireworks?",
+    "correctAnswer": "Minneapolis Aquatennial",
+    "wrongAnswers": [
+      "Uptown Art Fair",
+      "Twin Cities Pride",
+      "Minnesota State Fair",
+      "Art-A-Whirl",
+      "Holidazzle",
+      "May Day Parade"
+    ]
+  },
+  {
+    "question": "Which Chicago bridge is famous for its lion statues and its connection to the Art Institute of Chicago?",
+    "correctAnswer": "Michigan Avenue Bridge (Art Institute Bridge)",
+    "wrongAnswers": [
+      "DuSable Bridge",
+      "Wells Street Bridge",
+      "Clark Street Bridge",
+      "Dearborn Street Bridge",
+      "State Street Bridge",
+      "Kinzie Street Bridge"
+    ]
+  },
+  {
+    "question": "What is the name of the contemporary arts museum in Minneapolis's downtown, known for its diverse exhibitions?",
+    "correctAnswer": "Museum of Contemporary Art (MoCA)",
+    "wrongAnswers": [
+      "Walker Art Center",
+      "Minneapolis Institute of Arts (Mia)",
+      "Weisman Art Museum",
+      "American Swedish Institute",
+      "Bell Museum",
+      "Bakken Museum"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its strong Puerto Rican community and the National Museum of Puerto Rican Arts and Culture?",
+    "correctAnswer": "Humboldt Park",
+    "wrongAnswers": [
+      "Logan Square",
+      "Wicker Park",
+      "Pilsen",
+      "Little Village",
+      "Ukranian Village",
+      "West Town"
+    ]
+  },
+  {
+    "question": "What is the name of the popular park in Minneapolis, known for its scenic views of the Mississippi River?",
+    "correctAnswer": "Father Hennepin Bluff Park",
+    "wrongAnswers": [
+      "Boom Island Park",
+      "Gold Medal Park",
+      "Mill Ruins Park",
+      "Minnehaha Park",
+      "Loring Park",
+      "Theodore Wirth Park"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic skyscraper with a distinctive Gothic Revival crown, home to the Chicago Tribune?",
+    "correctAnswer": "Tribune Tower",
+    "wrongAnswers": [
+      "Wrigley Building",
+      "London Guarantee Building",
+      "Rookery Building",
+      "Monadnock Building",
+      "Reliance Building",
+      "Carbide & Carbon Building"
+    ]
+  },
+  {
+    "question": "What is the name of the large concert venue in St. Paul, often hosting major touring acts?",
+    "correctAnswer": "Xcel Energy Center",
+    "wrongAnswers": [
+      "Target Center",
+      "U.S. Bank Stadium",
+      "Armory",
+      "Palace Theatre",
+      "Roy Wilkins Auditorium",
+      "Ordway Center for the Performing Arts"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic architecture and vibrant arts scene, particularly in the West Loop?",
+    "correctAnswer": "West Loop",
+    "wrongAnswers": [
+      "River North",
+      "Lincoln Park",
+      "Wicker Park",
+      "Bucktown",
+      "Logan Square",
+      "Old Town"
+    ]
+  },
+  {
+    "question": "What is the name of the historic theater in Minneapolis, known for its Broadway shows and concerts?",
+    "correctAnswer": "Orpheum Theatre",
+    "wrongAnswers": [
+      "State Theatre",
+      "Pantages Theatre",
+      "Guthrie Theater",
+      "Palace Theatre",
+      "The Armory",
+      "Varsity Theater"
+    ]
+  },
+  {
+    "question": "Which Chicago building is known for its distinctive 'corn cob' design and is a residential skyscraper?",
+    "correctAnswer": "Marina City",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Aon Center",
+      "Two Prudential Plaza"
+    ]
+  },
+  {
+    "question": "What is the name of the historic district in Minneapolis known for its preserved 19th-century buildings?",
+    "correctAnswer": "Mill District",
+    "wrongAnswers": [
+      "Northeast",
+      "Dinkytown",
+      "Marcy-Holmes",
+      "St. Anthony Main",
+      "Loring Park",
+      "Whittier"
+    ]
+  },
+  {
+    "question": "Which Chicago museum is dedicated to the history and culture of African Americans in the city?",
+    "correctAnswer": "DuSable Museum of African American History",
+    "wrongAnswers": [
+      "Chicago History Museum",
+      "Field Museum",
+      "Museum of Science and Industry",
+      "Art Institute of Chicago",
+      "National Museum of Mexican Art",
+      "Museum of Contemporary Art"
+    ]
+  },
+  {
+    "question": "What is the name of the large public market in Minneapolis, known for its local vendors and food stalls?",
+    "correctAnswer": "Minneapolis Farmers Market",
+    "wrongAnswers": [
+      "Mill City Farmers Market",
+      "Midtown Global Market",
+      "Kingfield Farmers Market",
+      "Uptown Art Fair",
+      "Nicollet Mall",
+      "Eat Street"
+    ]
+  },
+  {
+    "question": "Which Chicago landmark is a historic clock tower located in the Loop, often used as a meeting point?",
+    "correctAnswer": "The Jewelers' Building Clock Tower",
+    "wrongAnswers": [
+      "Wrigley Building Clock Tower",
+      "Tribune Tower Clock",
+      "London Guarantee Building Clock",
+      "Carbide & Carbon Building Clock",
+      "Rookery Building Clock",
+      "Reliance Building Clock"
+    ]
+  },
+  {
+    "question": "What is the name of the popular outdoor music festival held annually in Chicago's Grant Park?",
+    "correctAnswer": "Lollapalooza",
+    "wrongAnswers": [
+      "Pitchfork Music Festival",
+      "Chicago Blues Festival",
+      "Chicago Jazz Festival",
+      "Chicago Gospel Music Festival",
+      "Chicago Air and Water Show",
+      "Chicago Gourmet"
+    ]
+  },
+  {
+    "question": "Which Chicago neighborhood is known for its historic brownstones and vibrant cultural scene, particularly in the Lincoln Park area?",
+    "correctAnswer": "Lincoln Park",
+    "wrongAnswers": [
+      "Old Town",
+      "River North",
+      "Wicker Park",
+      "Bucktown",
+      "Logan Square",
+      "West Loop"
+    ]
+  },
+  {
+    "question": "What is the name of the historic theater in Minneapolis, known for its Art Deco architecture and live performances?",
+    "correctAnswer": "State Theatre",
+    "wrongAnswers": [
+      "Orpheum Theatre",
+      "Pantages Theatre",
+      "Guthrie Theater",
+      "Palace Theatre",
+      "The Armory",
+      "Varsity Theater"
+    ]
+  },
+  {
+    "question": "Which Chicago building is known for its distinctive 'corn cob' design and is a residential skyscraper?",
+    "correctAnswer": "Marina City",
+    "wrongAnswers": [
+      "Willis Tower",
+      "John Hancock Center",
+      "Aqua Tower",
+      "Trump International Hotel and Tower",
+      "Aon Center",
+      "Two Prudential Plaza"
+    ]
+  },
+  {
+    "question": "What is the name of the historic district in Minneapolis known for its preserved 19th-century buildings?",
+    "correctAnswer": "Mill District",
+    "wrongAnswers": [
+      "Northeast",
+      "Dinkytown",
+      "Marcy-Holmes",
+      "St. Anthony Main",
+      "Loring Park",
+      "Whittier"
+    ]
+  },
+  {
     "question": "Which famous architect designed many buildings in Chicago?",
     "correctAnswer": "Frank Lloyd Wright",
     "wrongAnswers": [

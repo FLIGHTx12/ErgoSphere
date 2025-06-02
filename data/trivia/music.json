@@ -2799,6 +2799,749 @@
     ]
   },
   {
+    "question": "Which artist is known as the 'King of Pop'?",
+    "correctAnswer": "Michael Jackson",
+    "wrongAnswers": [
+      "Elvis Presley",
+      "Prince",
+      "James Brown",
+      "Stevie Wonder",
+      "Freddie Mercury",
+      "Justin Timberlake"
+    ]
+  },
+  {
+    "question": "Which band released the hit song 'Bohemian Rhapsody'?",
+    "correctAnswer": "Queen",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "The Beatles",
+      "Pink Floyd",
+      "The Rolling Stones",
+      "Aerosmith",
+      "Deep Purple"
+    ]
+  },
+  {
+    "question": "What is the name of Taylor Swift's re-recorded album released in 2021?",
+    "correctAnswer": "Red (Taylor's Version)",
+    "wrongAnswers": [
+      "Fearless (Taylor's Version)",
+      "1989 (Taylor's Version)",
+      "Speak Now (Taylor's Version)",
+      "Folklore",
+      "Evermore",
+      "Midnights"
+    ]
+  },
+  {
+    "question": "Which singer is known for her hit song 'Rolling in the Deep'?",
+    "correctAnswer": "Adele",
+    "wrongAnswers": [
+      "Beyoncé",
+      "Rihanna",
+      "Lady Gaga",
+      "Amy Winehouse",
+      "Dua Lipa",
+      "Billie Eilish"
+    ]
+  },
+  {
+    "question": "What is the primary instrument played by Elton John?",
+    "correctAnswer": "Piano",
+    "wrongAnswers": [
+      "Guitar",
+      "Drums",
+      "Saxophone",
+      "Trumpet",
+      "Violin",
+      "Bass"
+    ]
+  },
+  {
+    "question": "Which rap group released the album 'Straight Outta Compton'?",
+    "correctAnswer": "N.W.A",
+    "wrongAnswers": [
+      "Public Enemy",
+      "A Tribe Called Quest",
+      "Run-DMC",
+      "Beastie Boys",
+      "Wu-Tang Clan",
+      "De La Soul"
+    ]
+  },
+  {
+    "question": "Who composed the opera 'The Marriage of Figaro'?",
+    "correctAnswer": "Wolfgang Amadeus Mozart",
+    "wrongAnswers": [
+      "Ludwig van Beethoven",
+      "Johann Sebastian Bach",
+      "Giuseppe Verdi",
+      "Richard Wagner",
+      "George Frideric Handel",
+      "Pyotr Ilyich Tchaikovsky"
+    ]
+  },
+  {
+    "question": "Which pop superstar broke streaming records with her 2024 album 'The Tortured Poets Department'?",
+    "correctAnswer": "Taylor Swift",
+    "wrongAnswers": [
+      "Beyoncé",
+      "Billie Eilish",
+      "Ariana Grande",
+      "Dua Lipa",
+      "Olivia Rodrigo",
+      "SZA"
+    ]
+  },
+  {
+    "question": "What country did the band ABBA originate from?",
+    "correctAnswer": "Sweden",
+    "wrongAnswers": [
+      "Norway",
+      "Denmark",
+      "Finland",
+      "United Kingdom",
+      "Germany",
+      "Netherlands"
+    ]
+  },
+  {
+    "question": "Which singer is known for the hit song 'I Will Survive'?",
+    "correctAnswer": "Gloria Gaynor",
+    "wrongAnswers": [
+      "Donna Summer",
+      "Diana Ross",
+      "Aretha Franklin",
+      "Tina Turner",
+      "Chaka Khan",
+      "Patti LaBelle"
+    ]
+  },
+  {
+    "question": "Which band released the album 'The Dark Side of the Moon'?",
+    "correctAnswer": "Pink Floyd",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "The Beatles",
+      "Queen",
+      "The Rolling Stones",
+      "Deep Purple",
+      "Black Sabbath"
+    ]
+  },
+  {
+    "question": "What is the name of Beyoncé's country-inspired album released in 2024?",
+    "correctAnswer": "Cowboy Carter",
+    "wrongAnswers": [
+      "Renaissance",
+      "Lemonade",
+      "Dangerously in Love",
+      "B'Day",
+      "I Am... Sasha Fierce",
+      "Homecoming: The Live Album"
+    ]
+  },
+  {
+    "question": "Who is often referred to as the 'Queen of Soul'?",
+    "correctAnswer": "Aretha Franklin",
+    "wrongAnswers": [
+      "Etta James",
+      "Tina Turner",
+      "Diana Ross",
+      "Whitney Houston",
+      "Patti LaBelle",
+      "Mary J. Blige"
+    ]
+  },
+  {
+    "question": "Which rock band had a hit with 'Stairway to Heaven'?",
+    "correctAnswer": "Led Zeppelin",
+    "wrongAnswers": [
+      "Deep Purple",
+      "Black Sabbath",
+      "The Who",
+      "Queen",
+      "Aerosmith",
+      "Guns N' Roses"
+    ]
+  },
+  {
+    "question": "Which artist is known for the song 'Like a Rolling Stone'?",
+    "correctAnswer": "Bob Dylan",
+    "wrongAnswers": [
+      "Neil Young",
+      "Bruce Springsteen",
+      "Tom Petty",
+      "John Lennon",
+      "Paul Simon",
+      "Van Morrison"
+    ]
+  },
+  {
+    "question": "What genre of music is often associated with Bob Marley?",
+    "correctAnswer": "Reggae",
+    "wrongAnswers": [
+      "Ska",
+      "Calypso",
+      "Soca",
+      "Dancehall",
+      "Dub",
+      "Afrobeat"
+    ]
+  },
+  {
+    "question": "Which classical composer was deaf by the end of his life?",
+    "correctAnswer": "Ludwig van Beethoven",
+    "wrongAnswers": [
+      "Johann Sebastian Bach",
+      "Wolfgang Amadeus Mozart",
+      "Frédéric Chopin",
+      "Franz Schubert",
+      "Joseph Haydn",
+      "Antonio Vivaldi"
+    ]
+  },
+  {
+    "question": "Who wrote the song 'Hallelujah', popularized by many artists?",
+    "correctAnswer": "Leonard Cohen",
+    "wrongAnswers": [
+      "Bob Dylan",
+      "Paul Simon",
+      "Cat Stevens",
+      "Carole King",
+      "Joni Mitchell",
+      "James Taylor"
+    ]
+  },
+  {
+    "question": "Which singer is known for the hit song 'Wrecking Ball'?",
+    "correctAnswer": "Miley Cyrus",
+    "wrongAnswers": [
+      "Katy Perry",
+      "Rihanna",
+      "Lady Gaga",
+      "Demi Lovato",
+      "Selena Gomez",
+      "Ariana Grande"
+    ]
+  },
+  {
+    "question": "What is the name of the band fronted by Freddie Mercury?",
+    "correctAnswer": "Queen",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "The Rolling Stones",
+      "The Beatles",
+      "Pink Floyd",
+      "Deep Purple",
+      "Black Sabbath"
+    ]
+  },
+  {
+    "question": "Which pop star is often called the 'Princess of Pop'?",
+    "correctAnswer": "Britney Spears",
+    "wrongAnswers": [
+      "Madonna",
+      "Mariah Carey",
+      "Christina Aguilera",
+      "Katy Perry",
+      "Rihanna",
+      "Lady Gaga"
+    ]
+  },
+  {
+    "question": "What is the name of the music festival known for its iconic 1969 event?",
+    "correctAnswer": "Woodstock",
+    "wrongAnswers": [
+      "Glastonbury",
+      "Monterey Pop",
+      "Newport Folk Festival",
+      "Isle of Wight Festival",
+      "Reading Festival",
+      "Lollapalooza"
+    ]
+  },
+  {
+    "question": "Which artist released the album 'Thriller' in 1982?",
+    "correctAnswer": "Michael Jackson",
+    "wrongAnswers": [
+      "Prince",
+      "Stevie Wonder",
+      "Lionel Richie",
+      "Marvin Gaye",
+      "James Brown",
+      "Whitney Houston"
+    ]
+  },
+  {
+    "question": "What instrument is Eddie Van Halen famously associated with?",
+    "correctAnswer": "Electric Guitar",
+    "wrongAnswers": [
+      "Bass Guitar",
+      "Drums",
+      "Keyboard",
+      "Violin",
+      "Saxophone",
+      "Trumpet"
+    ]
+  },
+  {
+    "question": "Which band released the album 'Nevermind' featuring the song 'Smells Like Teen Spirit'?",
+    "correctAnswer": "Nirvana",
+    "wrongAnswers": [
+      "Pearl Jam",
+      "Soundgarden",
+      "Alice in Chains",
+      "Stone Temple Pilots",
+      "Bush",
+      "Foo Fighters"
+    ]
+  },
+  {
+    "question": "What is the term for a musical composition for a solo instrument or voice?",
+    "correctAnswer": "Sonata",
+    "wrongAnswers": [
+      "Symphony",
+      "Concerto",
+      "Oratorio",
+      "Cantata",
+      "Fugue",
+      "Chamber music"
+    ]
+  },
+  {
+    "question": "Which female artist is known for breaking records at the Grammys for most wins by a female artist?",
+    "correctAnswer": "Beyoncé",
+    "wrongAnswers": [
+      "Adele",
+      "Taylor Swift",
+      "Whitney Houston",
+      "Aretha Franklin",
+      "Mariah Carey",
+      "Norah Jones"
+    ]
+  },
+  {
+    "question": "Which rapper is known for the album 'The Slim Shady LP'?",
+    "correctAnswer": "Eminem",
+    "wrongAnswers": [
+      "Jay-Z",
+      "Dr. Dre",
+      "Snoop Dogg",
+      "50 Cent",
+      "Nas",
+      "Tupac Shakur"
+    ]
+  },
+  {
+    "question": "What is the highest note in music notation?",
+    "correctAnswer": "C8 (C7 on piano)",
+    "wrongAnswers": [
+      "A7",
+      "B6",
+      "G5",
+      "F4",
+      "D3",
+      "E2"
+    ]
+  },
+  {
+    "question": "Which pop group was famous for the song 'Wannabe'?",
+    "correctAnswer": "Spice Girls",
+    "wrongAnswers": [
+      "Destiny's Child",
+      "TLC",
+      "All Saints",
+      "Pussycat Dolls",
+      "Fifth Harmony",
+      "Little Mix"
+    ]
+  },
+  {
+    "question": "What is the name of the musical genre that originated in Jamaica in the late 1960s?",
+    "correctAnswer": "Reggae",
+    "wrongAnswers": [
+      "Ska",
+      "Dancehall",
+      "Rocksteady",
+      "Dub",
+      "Calypso",
+      "Soca"
+    ]
+  },
+  {
+    "question": "Which singer is known for the hit song 'All Star'?",
+    "correctAnswer": "Smash Mouth",
+    "wrongAnswers": [
+      "Green Day",
+      "Blink-182",
+      "Sum 41",
+      "Offspring",
+      "Sugar Ray",
+      "Lit"
+    ]
+  },
+  {
+    "question": "Which band released the album 'Rumours' in 1977?",
+    "correctAnswer": "Fleetwood Mac",
+    "wrongAnswers": [
+      "Eagles",
+      "The Rolling Stones",
+      "Led Zeppelin",
+      "Pink Floyd",
+      "Queen",
+      "The Beatles"
+    ]
+  },
+  {
+    "question": "What is the name of the traditional Japanese musical instrument with three strings?",
+    "correctAnswer": "Shamisen",
+    "wrongAnswers": [
+      "Koto",
+      "Taiko",
+      "Shakuhachi",
+      "Biwa",
+      "Ryūteki",
+      "Hichiriki"
+    ]
+  },
+  {
+    "question": "Who composed 'The Nutcracker' ballet?",
+    "correctAnswer": "Pyotr Ilyich Tchaikovsky",
+    "wrongAnswers": [
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Ludwig van Beethoven",
+      "Igor Stravinsky",
+      "Sergei Prokofiev",
+      "George Frideric Handel"
+    ]
+  },
+  {
+    "question": "Which singer is known as 'The Boss'?",
+    "correctAnswer": "Bruce Springsteen",
+    "wrongAnswers": [
+      "Bob Dylan",
+      "Tom Petty",
+      "Billy Joel",
+      "Elton John",
+      "Jon Bon Jovi",
+      "Meat Loaf"
+    ]
+  },
+  {
+    "question": "What is the name of the music notation symbol that tells you to hold a note for a longer duration?",
+    "correctAnswer": "Fermata",
+    "wrongAnswers": [
+      "Staccato",
+      "Legato",
+      "Accent",
+      "Tie",
+      "Slur",
+      "Crescendo"
+    ]
+  },
+  {
+    "question": "Which artist is known for the hit song 'Purple Rain'?",
+    "correctAnswer": "Prince",
+    "wrongAnswers": [
+      "Michael Jackson",
+      "Stevie Wonder",
+      "James Brown",
+      "Marvin Gaye",
+      "Lionel Richie",
+      "George Michael"
+    ]
+  },
+  {
+    "question": "Which band released the song 'Sweet Child o' Mine'?",
+    "correctAnswer": "Guns N' Roses",
+    "wrongAnswers": [
+      "Aerosmith",
+      "Bon Jovi",
+      "Def Leppard",
+      "Mötley Crüe",
+      "Poison",
+      "Metallica"
+    ]
+  },
+  {
+    "question": "What is the name of the musical instrument that is a large wooden box with metal strings, played by sitting on it and striking it with your hands?",
+    "correctAnswer": "Cajón",
+    "wrongAnswers": [
+      "Bongo",
+      "Conga",
+      "Djembe",
+      "Tabla",
+      "Maraca",
+      "Tambourine"
+    ]
+  },
+  {
+    "question": "Which pop singer is known for her 'Material Girl' persona?",
+    "correctAnswer": "Madonna",
+    "wrongAnswers": [
+      "Cyndi Lauper",
+      "Janet Jackson",
+      "Paula Abdul",
+      "Tina Turner",
+      "Cher",
+      "Kylie Minogue"
+    ]
+  },
+  {
+    "question": "What is the name of the Beatles' album famous for its white cover?",
+    "correctAnswer": "The White Album",
+    "wrongAnswers": [
+      "Abbey Road",
+      "Sgt. Pepper's Lonely Hearts Club Band",
+      "Revolver",
+      "Rubber Soul",
+      "Magical Mystery Tour",
+      "Let It Be"
+    ]
+  },
+  {
+    "question": "Who is the lead singer of the rock band U2?",
+    "correctAnswer": "Bono",
+    "wrongAnswers": [
+      "The Edge",
+      "Adam Clayton",
+      "Larry Mullen Jr.",
+      "Chris Martin",
+      "Thom Yorke",
+      "Michael Stipe"
+    ]
+  },
+  {
+    "question": "Which American singer-songwriter recorded the hit song 'Piano Man'?",
+    "correctAnswer": "Billy Joel",
+    "wrongAnswers": [
+      "Elton John",
+      "James Taylor",
+      "Paul Simon",
+      "Bruce Springsteen",
+      "Jackson Browne",
+      "Carole King"
+    ]
+  },
+  {
+    "question": "What is the name of the annual music awards ceremony that started in 1959?",
+    "correctAnswer": "Grammy Awards",
+    "wrongAnswers": [
+      "MTV Video Music Awards",
+      "American Music Awards",
+      "Billboard Music Awards",
+      "Brit Awards",
+      "Juno Awards",
+      "Soul Train Music Awards"
+    ]
+  },
+  {
+    "question": "Which British singer-songwriter is known for his soulful voice and hits like 'Shape of You'?",
+    "correctAnswer": "Ed Sheeran",
+    "wrongAnswers": [
+      "Sam Smith",
+      "Harry Styles",
+      "Lewis Capaldi",
+      "George Ezra",
+      "James Bay",
+      "Shawn Mendes"
+    ]
+  },
+  {
+    "question": "What is the name of the highest female singing voice?",
+    "correctAnswer": "Soprano",
+    "wrongAnswers": [
+      "Mezzo-soprano",
+      "Alto",
+      "Contralto",
+      "Tenor",
+      "Baritone",
+      "Bass"
+    ]
+  },
+  {
+    "question": "Which genre of music is characterized by improvisation, syncopation, and a strong rhythmic pulse?",
+    "correctAnswer": "Jazz",
+    "wrongAnswers": [
+      "Blues",
+      "Rock and Roll",
+      "Funk",
+      "Soul",
+      "Gospel",
+      "Swing"
+    ]
+  },
+  {
+    "question": "Who is the lead singer of the Rolling Stones?",
+    "correctAnswer": "Mick Jagger",
+    "wrongAnswers": [
+      "Keith Richards",
+      "Ronnie Wood",
+      "Charlie Watts",
+      "Paul McCartney",
+      "Robert Plant",
+      "Roger Daltrey"
+    ]
+  },
+  {
+    "question": "Which band released the album 'Back in Black'?",
+    "correctAnswer": "AC/DC",
+    "wrongAnswers": [
+      "Led Zeppelin",
+      "Black Sabbath",
+      "Iron Maiden",
+      "Metallica",
+      "Guns N' Roses",
+      "Deep Purple"
+    ]
+  },
+  {
+    "question": "What is the term for a group of musicians playing together?",
+    "correctAnswer": "Ensemble",
+    "wrongAnswers": [
+      "Solo",
+      "Duet",
+      "Trio",
+      "Quartet",
+      "Orchestra",
+      "Band"
+    ]
+  },
+  {
+    "question": "Which artist is known for the song 'Shape of You'?",
+    "correctAnswer": "Ed Sheeran",
+    "wrongAnswers": [
+      "Justin Bieber",
+      "Sam Smith",
+      "Harry Styles",
+      "Shawn Mendes",
+      "Charlie Puth",
+      "James Arthur"
+    ]
+  },
+  {
+    "question": "What is the name of the famous music festival held annually in California?",
+    "correctAnswer": "Coachella",
+    "wrongAnswers": [
+      "Lollapalooza",
+      "Glastonbury",
+      "Bonnaroo",
+      "Woodstock",
+      "Reading Festival",
+      "Isle of Wight Festival"
+    ]
+  },
+  {
+    "question": "Which singer is known for her hit song 'Bad Romance'?",
+    "correctAnswer": "Lady Gaga",
+    "wrongAnswers": [
+      "Katy Perry",
+      "Rihanna",
+      "Beyoncé",
+      "Ariana Grande",
+      "Demi Lovato",
+      "Taylor Swift"
+    ]
+  },
+  {
+    "question": "What is the name of the musical genre that originated in the African American communities of New Orleans in the late 19th century?",
+    "correctAnswer": "Jazz",
+    "wrongAnswers": [
+      "Blues",
+      "R&B",
+      "Rock and Roll",
+      "Funk",
+      "Soul",
+      "Gospel"
+    ]
+  },
+  {
+    "question": "Which artist is known for the song 'Rolling in the Deep'?",
+    "correctAnswer": "Adele",
+    "wrongAnswers": [
+      "Beyoncé",
+      "Rihanna",
+      "Taylor Swift",
+      "Lady Gaga",
+      "Katy Perry",
+      "Billie Eilish"
+    ]
+  },
+  {
+    "question": "What is the name of the famous music festival held annually in Tennessee?",
+    "correctAnswer": "Bonnaroo",
+    "wrongAnswers": [
+      "Coachella",
+      "Lollapalooza",
+      "Glastonbury",
+      "Woodstock",
+      "Reading Festival",
+      "Isle of Wight Festival"
+    ]
+  },
+  {
+    "question": "Which band released the album 'Abbey Road'?",
+    "correctAnswer": "The Beatles",
+    "wrongAnswers": [
+      "The Rolling Stones",
+      "Pink Floyd",
+      "Led Zeppelin",
+      "Queen",
+      "The Who",
+      "The Doors"
+    ]
+  },
+  {
+    "question": "What is the name of the musical genre that originated in the African American communities of the Southern United States in the late 19th century?",
+    "correctAnswer": "Blues",
+    "wrongAnswers": [
+      "Jazz",
+      "R&B",
+      "Rock and Roll",
+      "Funk",
+      "Soul",
+      "Gospel"
+    ]
+  },
+  {
+    "question": "Which artist is known for the song 'Uptown Funk'?",
+    "correctAnswer": "Mark Ronson featuring Bruno Mars",
+    "wrongAnswers": [
+      "Justin Timberlake",
+      "Pharrell Williams",
+      "Drake",
+      "Kendrick Lamar",
+      "Ed Sheeran",
+      "Charlie Puth"
+    ]
+  },
+  {
+    "question": "What is the name of the famous music festival held annually in England?",
+    "correctAnswer": "Glastonbury",
+    "wrongAnswers": [
+      "Coachella",
+      "Lollapalooza",
+      "Bonnaroo",
+      "Woodstock",
+      "Reading Festival",
+      "Isle of Wight Festival"
+    ]
+  },
+  {
+    "question": "'Hello' by Adele won a Grammy for Record of the Year in which year?",
+    "correctAnswer": "2017",
+    "wrongAnswers": [
+      "2016",
+      "2018",
+      "2015",
+      "2019",
+      "2014"
+    ]
+  },
+  {
     "question": "What year did 'Hello' by Adele win a Grammy for Record of the Year?",
     "correctAnswer": "2017",
     "wrongAnswers": [

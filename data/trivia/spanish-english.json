@@ -36,6 +36,1938 @@
     ]
   },
   {
+    "question": "What does 'Adiós' mean in English?",
+    "correctAnswer": "Goodbye",
+    "wrongAnswers": [
+      "Hello",
+      "Thank you",
+      "Please",
+      "Excuse me",
+      "Good morning",
+      "See you later"
+    ]
+  },
+  {
+    "question": "How do you say 'Thank you' in Spanish?",
+    "correctAnswer": "Gracias",
+    "wrongAnswers": [
+      "Por favor",
+      "De nada",
+      "Hola",
+      "Adiós",
+      "Lo siento",
+      "Permiso"
+    ]
+  },
+  {
+    "question": "What does 'Sí' mean in English?",
+    "correctAnswer": "Yes",
+    "wrongAnswers": [
+      "No",
+      "Maybe",
+      "Please",
+      "Thank you",
+      "Hello",
+      "Goodbye"
+    ]
+  },
+  {
+    "question": "How do you say 'No' in Spanish?",
+    "correctAnswer": "No",
+    "wrongAnswers": [
+      "Sí",
+      "Quizás",
+      "Por favor",
+      "Gracias",
+      "Hola",
+      "Adiós"
+    ]
+  },
+  {
+    "question": "What does 'Uno' mean in English?",
+    "correctAnswer": "One",
+    "wrongAnswers": [
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six",
+      "Zero"
+    ]
+  },
+  {
+    "question": "How do you say 'Two' in Spanish?",
+    "correctAnswer": "Dos",
+    "wrongAnswers": [
+      "Uno",
+      "Tres",
+      "Cuatro",
+      "Cinco",
+      "Seis",
+      "Siete"
+    ]
+  },
+  {
+    "question": "What does 'Grande' mean in English?",
+    "correctAnswer": "Big",
+    "wrongAnswers": [
+      "Small",
+      "Tall",
+      "Short",
+      "Wide",
+      "Long",
+      "Fat"
+    ]
+  },
+  {
+    "question": "How do you say 'Small' in Spanish?",
+    "correctAnswer": "Pequeño",
+    "wrongAnswers": [
+      "Grande",
+      "Alto",
+      "Bajo",
+      "Ancho",
+      "Largo",
+      "Gordo"
+    ]
+  },
+  {
+    "question": "What does 'Feliz' mean in English?",
+    "correctAnswer": "Happy",
+    "wrongAnswers": [
+      "Sad",
+      "Angry",
+      "Tired",
+      "Excited",
+      "Bored",
+      "Scared"
+    ]
+  },
+  {
+    "question": "How do you say 'Sad' in Spanish?",
+    "correctAnswer": "Triste",
+    "wrongAnswers": [
+      "Feliz",
+      "Enojado",
+      "Cansado",
+      "Emocionado",
+      "Aburrido",
+      "Asustado"
+    ]
+  },
+  {
+    "question": "What does 'Comida' mean in English?",
+    "correctAnswer": "Food",
+    "wrongAnswers": [
+      "Drink",
+      "Water",
+      "House",
+      "Car",
+      "Book",
+      "Money"
+    ]
+  },
+  {
+    "question": "How do you say 'Drink' in Spanish?",
+    "correctAnswer": "Bebida",
+    "wrongAnswers": [
+      "Comida",
+      "Agua",
+      "Casa",
+      "Coche",
+      "Libro",
+      "Dinero"
+    ]
+  },
+  {
+    "question": "What does 'Sol' mean in English?",
+    "correctAnswer": "Sun",
+    "wrongAnswers": [
+      "Moon",
+      "Star",
+      "Cloud",
+      "Rain",
+      "Wind",
+      "Sky"
+    ]
+  },
+  {
+    "question": "How do you say 'Moon' in Spanish?",
+    "correctAnswer": "Luna",
+    "wrongAnswers": [
+      "Sol",
+      "Estrella",
+      "Nube",
+      "Lluvia",
+      "Viento",
+      "Cielo"
+    ]
+  },
+  {
+    "question": "What does 'Familia' mean in English?",
+    "correctAnswer": "Family",
+    "wrongAnswers": [
+      "Friend",
+      "Brother",
+      "Sister",
+      "Mother",
+      "Father",
+      "House"
+    ]
+  },
+  {
+    "question": "How do you say 'Friend' in Spanish?",
+    "correctAnswer": "Amigo/Amiga",
+    "wrongAnswers": [
+      "Familia",
+      "Hermano",
+      "Hermana",
+      "Madre",
+      "Padre",
+      "Casa"
+    ]
+  },
+  {
+    "question": "What does 'Mesa' mean in English?",
+    "correctAnswer": "Table",
+    "wrongAnswers": [
+      "Chair",
+      "Bed",
+      "Door",
+      "Window",
+      "Floor",
+      "Wall"
+    ]
+  },
+  {
+    "question": "How do you say 'Chair' in Spanish?",
+    "correctAnswer": "Silla",
+    "wrongAnswers": [
+      "Mesa",
+      "Cama",
+      "Puerta",
+      "Ventana",
+      "Piso",
+      "Pared"
+    ]
+  },
+  {
+    "question": "What does 'Libro' mean in English?",
+    "correctAnswer": "Book",
+    "wrongAnswers": [
+      "Paper",
+      "Pen",
+      "Pencil",
+      "Notebook",
+      "Library",
+      "Read"
+    ]
+  },
+  {
+    "question": "How do you say 'Pen' in Spanish?",
+    "correctAnswer": "Bolígrafo",
+    "wrongAnswers": [
+      "Libro",
+      "Papel",
+      "Lápiz",
+      "Cuaderno",
+      "Biblioteca",
+      "Leer"
+    ]
+  },
+  {
+    "question": "What does 'Blanco' mean in English?",
+    "correctAnswer": "White",
+    "wrongAnswers": [
+      "Black",
+      "Red",
+      "Blue",
+      "Green",
+      "Yellow",
+      "Brown"
+    ]
+  },
+  {
+    "question": "How do you say 'Black' in Spanish?",
+    "correctAnswer": "Negro",
+    "wrongAnswers": [
+      "Blanco",
+      "Rojo",
+      "Azul",
+      "Verde",
+      "Amarillo",
+      "Marrón"
+    ]
+  },
+  {
+    "question": "What does 'Día' mean in English?",
+    "correctAnswer": "Day",
+    "wrongAnswers": [
+      "Night",
+      "Morning",
+      "Afternoon",
+      "Evening",
+      "Week",
+      "Month"
+    ]
+  },
+  {
+    "question": "How do you say 'Night' in Spanish?",
+    "correctAnswer": "Noche",
+    "wrongAnswers": [
+      "Día",
+      "Mañana",
+      "Tarde",
+      "Nochecita",
+      "Semana",
+      "Mes"
+    ]
+  },
+  {
+    "question": "What does 'Hoy' mean in English?",
+    "correctAnswer": "Today",
+    "wrongAnswers": [
+      "Yesterday",
+      "Tomorrow",
+      "Now",
+      "Later",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "How do you say 'Tomorrow' in Spanish?",
+    "correctAnswer": "Mañana",
+    "wrongAnswers": [
+      "Hoy",
+      "Ayer",
+      "Ahora",
+      "Más tarde",
+      "Siempre",
+      "Nunca"
+    ]
+  },
+  {
+    "question": "What does 'Ayer' mean in English?",
+    "correctAnswer": "Yesterday",
+    "wrongAnswers": [
+      "Today",
+      "Tomorrow",
+      "Now",
+      "Later",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "How do you say 'Now' in Spanish?",
+    "correctAnswer": "Ahora",
+    "wrongAnswers": [
+      "Hoy",
+      "Ayer",
+      "Mañana",
+      "Más tarde",
+      "Siempre",
+      "Nunca"
+    ]
+  },
+  {
+    "question": "What does 'Hora' mean in English?",
+    "correctAnswer": "Hour",
+    "wrongAnswers": [
+      "Minute",
+      "Second",
+      "Day",
+      "Week",
+      "Month",
+      "Year"
+    ]
+  },
+  {
+    "question": "How do you say 'Minute' in Spanish?",
+    "correctAnswer": "Minuto",
+    "wrongAnswers": [
+      "Hora",
+      "Segundo",
+      "Día",
+      "Semana",
+      "Mes",
+      "Año"
+    ]
+  },
+  {
+    "question": "What does 'Agua' mean in English?",
+    "correctAnswer": "Water",
+    "wrongAnswers": [
+      "Fire",
+      "Earth",
+      "Air",
+      "Food",
+      "Drink",
+      "Coffee"
+    ]
+  },
+  {
+    "question": "How do you say 'Coffee' in Spanish?",
+    "correctAnswer": "Café",
+    "wrongAnswers": [
+      "Agua",
+      "Té",
+      "Leche",
+      "Jugo",
+      "Bebida",
+      "Vino"
+    ]
+  },
+  {
+    "question": "What does 'Té' mean in English?",
+    "correctAnswer": "Tea",
+    "wrongAnswers": [
+      "Coffee",
+      "Milk",
+      "Juice",
+      "Water",
+      "Drink",
+      "Soup"
+    ]
+  },
+  {
+    "question": "How do you say 'Milk' in Spanish?",
+    "correctAnswer": "Leche",
+    "wrongAnswers": [
+      "Té",
+      "Café",
+      "Jugo",
+      "Agua",
+      "Bebida",
+      "Sopa"
+    ]
+  },
+  {
+    "question": "What does 'Perro' mean in English?",
+    "correctAnswer": "Dog",
+    "wrongAnswers": [
+      "Cat",
+      "Bird",
+      "Fish",
+      "Horse",
+      "Cow",
+      "Rabbit"
+    ]
+  },
+  {
+    "question": "How do you say 'Cat' in Spanish?",
+    "correctAnswer": "Gato",
+    "wrongAnswers": [
+      "Perro",
+      "Pájaro",
+      "Pez",
+      "Caballo",
+      "Vaca",
+      "Conejo"
+    ]
+  },
+  {
+    "question": "What does 'Casa' mean in English?",
+    "correctAnswer": "House",
+    "wrongAnswers": [
+      "Building",
+      "Apartment",
+      "Room",
+      "Street",
+      "City",
+      "Country"
+    ]
+  },
+  {
+    "question": "How do you say 'Building' in Spanish?",
+    "correctAnswer": "Edificio",
+    "wrongAnswers": [
+      "Casa",
+      "Apartamento",
+      "Habitación",
+      "Calle",
+      "Ciudad",
+      "País"
+    ]
+  },
+  {
+    "question": "What does 'Coche' mean in English?",
+    "correctAnswer": "Car",
+    "wrongAnswers": [
+      "Bike",
+      "Bus",
+      "Train",
+      "Plane",
+      "Boat",
+      "Motorcycle"
+    ]
+  },
+  {
+    "question": "How do you say 'Bike' in Spanish?",
+    "correctAnswer": "Bicicleta",
+    "wrongAnswers": [
+      "Coche",
+      "Autobús",
+      "Tren",
+      "Avión",
+      "Barco",
+      "Motocicleta"
+    ]
+  },
+  {
+    "question": "What does 'Ciudad' mean in English?",
+    "correctAnswer": "City",
+    "wrongAnswers": [
+      "Town",
+      "Village",
+      "Country",
+      "State",
+      "Region",
+      "Street"
+    ]
+  },
+  {
+    "question": "How do you say 'Town' in Spanish?",
+    "correctAnswer": "Pueblo",
+    "wrongAnswers": [
+      "Ciudad",
+      "Aldea",
+      "País",
+      "Estado",
+      "Región",
+      "Calle"
+    ]
+  },
+  {
+    "question": "What does 'País' mean in English?",
+    "correctAnswer": "Country",
+    "wrongAnswers": [
+      "City",
+      "State",
+      "Region",
+      "World",
+      "Continent",
+      "Nation"
+    ]
+  },
+  {
+    "question": "How do you say 'World' in Spanish?",
+    "correctAnswer": "Mundo",
+    "wrongAnswers": [
+      "País",
+      "Ciudad",
+      "Estado",
+      "Región",
+      "Continente",
+      "Nación"
+    ]
+  },
+  {
+    "question": "What does 'Mundo' mean in English?",
+    "correctAnswer": "World",
+    "wrongAnswers": [
+      "Earth",
+      "Universe",
+      "Planet",
+      "Space",
+      "Galaxy",
+      "Star"
+    ]
+  },
+  {
+    "question": "How do you say 'Earth' in Spanish?",
+    "correctAnswer": "Tierra",
+    "wrongAnswers": [
+      "Mundo",
+      "Universo",
+      "Planeta",
+      "Espacio",
+      "Galaxia",
+      "Estrella"
+    ]
+  },
+  {
+    "question": "What does 'Amor' mean in English?",
+    "correctAnswer": "Love",
+    "wrongAnswers": [
+      "Hate",
+      "Friendship",
+      "Family",
+      "Life",
+      "Happiness",
+      "Peace"
+    ]
+  },
+  {
+    "question": "How do you say 'Hate' in Spanish?",
+    "correctAnswer": "Odio",
+    "wrongAnswers": [
+      "Amor",
+      "Amistad",
+      "Familia",
+      "Vida",
+      "Felicidad",
+      "Paz"
+    ]
+  },
+  {
+    "question": "What does 'Tiempo' mean in English?",
+    "correctAnswer": "Time/Weather",
+    "wrongAnswers": [
+      "Clock",
+      "Watch",
+      "Season",
+      "Moment",
+      "Era",
+      "Period"
+    ]
+  },
+  {
+    "question": "How do you say 'Clock' in Spanish?",
+    "correctAnswer": "Reloj",
+    "wrongAnswers": [
+      "Tiempo",
+      "Minuto",
+      "Hora",
+      "Segundo",
+      "Momento",
+      "Periodo"
+    ]
+  },
+  {
+    "question": "What does 'Cielo' mean in English?",
+    "correctAnswer": "Sky/Heaven",
+    "wrongAnswers": [
+      "Cloud",
+      "Sun",
+      "Moon",
+      "Star",
+      "Earth",
+      "Air"
+    ]
+  },
+  {
+    "question": "How do you say 'Cloud' in Spanish?",
+    "correctAnswer": "Nube",
+    "wrongAnswers": [
+      "Cielo",
+      "Sol",
+      "Luna",
+      "Estrella",
+      "Tierra",
+      "Aire"
+    ]
+  },
+  {
+    "question": "What does 'Mano' mean in English?",
+    "correctAnswer": "Hand",
+    "wrongAnswers": [
+      "Foot",
+      "Arm",
+      "Leg",
+      "Head",
+      "Finger",
+      "Toe"
+    ]
+  },
+  {
+    "question": "How do you say 'Foot' in Spanish?",
+    "correctAnswer": "Pie",
+    "wrongAnswers": [
+      "Mano",
+      "Brazo",
+      "Pierna",
+      "Cabeza",
+      "Dedo",
+      "Uña"
+    ]
+  },
+  {
+    "question": "What does 'Ojo' mean in English?",
+    "correctAnswer": "Eye",
+    "wrongAnswers": [
+      "Nose",
+      "Mouth",
+      "Ear",
+      "Face",
+      "Hair",
+      "Hand"
+    ]
+  },
+  {
+    "question": "How do you say 'Nose' in Spanish?",
+    "correctAnswer": "Nariz",
+    "wrongAnswers": [
+      "Ojo",
+      "Boca",
+      "Oreja",
+      "Cara",
+      "Pelo",
+      "Mano"
+    ]
+  },
+  {
+    "question": "What does 'Verde' mean in English?",
+    "correctAnswer": "Green",
+    "wrongAnswers": [
+      "Red",
+      "Blue",
+      "Yellow",
+      "Black",
+      "White",
+      "Purple"
+    ]
+  },
+  {
+    "question": "How do you say 'Yellow' in Spanish?",
+    "correctAnswer": "Amarillo",
+    "wrongAnswers": [
+      "Verde",
+      "Rojo",
+      "Azul",
+      "Negro",
+      "Blanco",
+      "Morado"
+    ]
+  },
+  {
+    "question": "What does 'Azul' mean in English?",
+    "correctAnswer": "Blue",
+    "wrongAnswers": [
+      "Red",
+      "Green",
+      "Yellow",
+      "Black",
+      "White",
+      "Orange"
+    ]
+  },
+  {
+    "question": "How do you say 'Orange' in Spanish?",
+    "correctAnswer": "Naranja",
+    "wrongAnswers": [
+      "Azul",
+      "Rojo",
+      "Verde",
+      "Amarillo",
+      "Negro",
+      "Blanco"
+    ]
+  },
+  {
+    "question": "What does 'Comprender' mean in English?",
+    "correctAnswer": "To understand",
+    "wrongAnswers": [
+      "To know",
+      "To speak",
+      "To hear",
+      "To see",
+      "To write",
+      "To read"
+    ]
+  },
+  {
+    "question": "How do you say 'To know' in Spanish?",
+    "correctAnswer": "Saber/Conocer",
+    "wrongAnswers": [
+      "Comprender",
+      "Hablar",
+      "Escuchar",
+      "Ver",
+      "Escribir",
+      "Leer"
+    ]
+  },
+  {
+    "question": "What does 'Hablar' mean in English?",
+    "correctAnswer": "To speak",
+    "wrongAnswers": [
+      "To listen",
+      "To write",
+      "To read",
+      "To understand",
+      "To see",
+      "To hear"
+    ]
+  },
+  {
+    "question": "How do you say 'To listen' in Spanish?",
+    "correctAnswer": "Escuchar",
+    "wrongAnswers": [
+      "Hablar",
+      "Escribir",
+      "Leer",
+      "Comprender",
+      "Ver",
+      "Oír"
+    ]
+  },
+  {
+    "question": "What does 'Escribir' mean in English?",
+    "correctAnswer": "To write",
+    "wrongAnswers": [
+      "To read",
+      "To speak",
+      "To listen",
+      "To see",
+      "To think",
+      "To learn"
+    ]
+  },
+  {
+    "question": "How do you say 'To read' in Spanish?",
+    "correctAnswer": "Leer",
+    "wrongAnswers": [
+      "Escribir",
+      "Hablar",
+      "Escuchar",
+      "Ver",
+      "Pensar",
+      "Aprender"
+    ]
+  },
+  {
+    "question": "What does 'Trabajo' mean in English?",
+    "correctAnswer": "Work",
+    "wrongAnswers": [
+      "Study",
+      "Play",
+      "Rest",
+      "Travel",
+      "Job",
+      "Office"
+    ]
+  },
+  {
+    "question": "How do you say 'Job' in Spanish?",
+    "correctAnswer": "Empleo",
+    "wrongAnswers": [
+      "Trabajo",
+      "Estudio",
+      "Juego",
+      "Descanso",
+      "Viaje",
+      "Oficina"
+    ]
+  },
+  {
+    "question": "What does 'Escuela' mean in English?",
+    "correctAnswer": "School",
+    "wrongAnswers": [
+      "University",
+      "College",
+      "Class",
+      "Student",
+      "Teacher",
+      "Book"
+    ]
+  },
+  {
+    "question": "How do you say 'Student' in Spanish?",
+    "correctAnswer": "Estudiante",
+    "wrongAnswers": [
+      "Escuela",
+      "Universidad",
+      "Colegio",
+      "Clase",
+      "Profesor",
+      "Libro"
+    ]
+  },
+  {
+    "question": "What does 'Profesor' mean in English?",
+    "correctAnswer": "Teacher",
+    "wrongAnswers": [
+      "Student",
+      "Doctor",
+      "Lawyer",
+      "Engineer",
+      "Chef",
+      "Artist"
+    ]
+  },
+  {
+    "question": "How do you say 'Doctor' in Spanish?",
+    "correctAnswer": "Médico/Doctor",
+    "wrongAnswers": [
+      "Profesor",
+      "Estudiante",
+      "Abogado",
+      "Ingeniero",
+      "Chef",
+      "Artista"
+    ]
+  },
+  {
+    "question": "What does 'Mañana' mean in English (besides tomorrow)?",
+    "correctAnswer": "Morning",
+    "wrongAnswers": [
+      "Night",
+      "Afternoon",
+      "Evening",
+      "Today",
+      "Yesterday",
+      "Day"
+    ]
+  },
+  {
+    "question": "How do you say 'Afternoon' in Spanish?",
+    "correctAnswer": "Tarde",
+    "wrongAnswers": [
+      "Mañana",
+      "Noche",
+      "Día",
+      "Hoy",
+      "Ayer",
+      "Siempre"
+    ]
+  },
+  {
+    "question": "What does 'Noche' mean in English?",
+    "correctAnswer": "Night",
+    "wrongAnswers": [
+      "Day",
+      "Morning",
+      "Afternoon",
+      "Evening",
+      "Dark",
+      "Sleep"
+    ]
+  },
+  {
+    "question": "How do you say 'Dark' in Spanish?",
+    "correctAnswer": "Oscuro",
+    "wrongAnswers": [
+      "Noche",
+      "Día",
+      "Luz",
+      "Brillante",
+      "Negro",
+      "Claro"
+    ]
+  },
+  {
+    "question": "What does 'Luz' mean in English?",
+    "correctAnswer": "Light",
+    "wrongAnswers": [
+      "Dark",
+      "Shadow",
+      "Bright",
+      "Day",
+      "Sun",
+      "Moon"
+    ]
+  },
+  {
+    "question": "How do you say 'Shadow' in Spanish?",
+    "correctAnswer": "Sombra",
+    "wrongAnswers": [
+      "Luz",
+      "Oscuro",
+      "Brillante",
+      "Día",
+      "Sol",
+      "Luna"
+    ]
+  },
+  {
+    "question": "What does 'Grande' mean in English (alternative translation)?",
+    "correctAnswer": "Large",
+    "wrongAnswers": [
+      "Small",
+      "Medium",
+      "Tiny",
+      "Huge",
+      "Massive",
+      "Giant"
+    ]
+  },
+  {
+    "question": "How do you say 'Tiny' in Spanish?",
+    "correctAnswer": "Minúsculo",
+    "wrongAnswers": [
+      "Pequeño",
+      "Grande",
+      "Enorme",
+      "Gigante",
+      "Mediano",
+      "Diminuto"
+    ]
+  },
+  {
+    "question": "What does 'Nuevo' mean in English?",
+    "correctAnswer": "New",
+    "wrongAnswers": [
+      "Old",
+      "Young",
+      "Modern",
+      "Ancient",
+      "Fresh",
+      "Used"
+    ]
+  },
+  {
+    "question": "How do you say 'Old' (for things, not people) in Spanish?",
+    "correctAnswer": "Viejo",
+    "wrongAnswers": [
+      "Nuevo",
+      "Joven",
+      "Antiguo",
+      "Moderno",
+      "Fresco",
+      "Usado"
+    ]
+  },
+  {
+    "question": "What does 'Joven' mean in English?",
+    "correctAnswer": "Young",
+    "wrongAnswers": [
+      "Old",
+      "Adult",
+      "Child",
+      "Teenager",
+      "Mature",
+      "Elderly"
+    ]
+  },
+  {
+    "question": "How do you say 'Adult' in Spanish?",
+    "correctAnswer": "Adulto",
+    "wrongAnswers": [
+      "Joven",
+      "Viejo",
+      "Niño",
+      "Adolescente",
+      "Maduro",
+      "Anciano"
+    ]
+  },
+  {
+    "question": "What does '¿Cómo estás?' mean in English?",
+    "correctAnswer": "How are you?",
+    "wrongAnswers": [
+      "What is your name?",
+      "Where are you from?",
+      "How old are you?",
+      "Good morning",
+      "Thank you",
+      "Goodbye"
+    ]
+  },
+  {
+    "question": "What does '¿De dónde eres?' mean in English?",
+    "correctAnswer": "Where are you from?",
+    "wrongAnswers": [
+      "What is your name?",
+      "How are you?",
+      "How old are you?",
+      "I am from Mexico",
+      "What do you do?",
+      "Where do you live?"
+    ]
+  },
+  {
+    "question": "What does 'Me llamo...' mean in English?",
+    "correctAnswer": "My name is...",
+    "wrongAnswers": [
+      "I am called...",
+      "His name is...",
+      "Her name is...",
+      "You are called...",
+      "I am...",
+      "What is your name?"
+    ]
+  },
+  {
+    "question": "What does 'Lo siento' mean in English?",
+    "correctAnswer": "I'm sorry",
+    "wrongAnswers": [
+      "Excuse me",
+      "Please",
+      "Thank you",
+      "You're welcome",
+      "I don't understand",
+      "It's okay"
+    ]
+  },
+  {
+    "question": "What does 'Con permiso' mean in English?",
+    "correctAnswer": "Excuse me (to pass by)",
+    "wrongAnswers": [
+      "I'm sorry",
+      "Please",
+      "Thank you",
+      "You're welcome",
+      "I don't understand",
+      "Pardon me"
+    ]
+  },
+  {
+    "question": "What does 'De nada' mean in English?",
+    "correctAnswer": "You're welcome",
+    "wrongAnswers": [
+      "Thank you",
+      "Please",
+      "I'm sorry",
+      "Excuse me",
+      "It's nothing",
+      "No problem"
+    ]
+  },
+  {
+    "question": "What does 'Por favor' mean in English?",
+    "correctAnswer": "Please",
+    "wrongAnswers": [
+      "Thank you",
+      "You're welcome",
+      "I'm sorry",
+      "Excuse me",
+      "Hello",
+      "Goodbye"
+    ]
+  },
+  {
+    "question": "What does 'Hasta luego' mean in English?",
+    "correctAnswer": "See you later",
+    "wrongAnswers": [
+      "Goodbye",
+      "See you soon",
+      "Hello",
+      "Thank you",
+      "Good day",
+      "Until tomorrow"
+    ]
+  },
+  {
+    "question": "What does 'Buenos días' mean in English?",
+    "correctAnswer": "Good morning",
+    "wrongAnswers": [
+      "Good afternoon",
+      "Good evening",
+      "Good night",
+      "Hello",
+      "Goodbye",
+      "How are you?"
+    ]
+  },
+  {
+    "question": "What does 'Buenas tardes' mean in English?",
+    "correctAnswer": "Good afternoon",
+    "wrongAnswers": [
+      "Good morning",
+      "Good evening",
+      "Good night",
+      "Hello",
+      "Goodbye",
+      "How are you?"
+    ]
+  },
+  {
+    "question": "What does 'Buenas noches' mean in English?",
+    "correctAnswer": "Good evening/Good night",
+    "wrongAnswers": [
+      "Good morning",
+      "Good afternoon",
+      "Hello",
+      "Goodbye",
+      "How are you?",
+      "Sleep well"
+    ]
+  },
+  {
+    "question": "What does '¿Cuántos años tienes?' mean in English?",
+    "correctAnswer": "How old are you?",
+    "wrongAnswers": [
+      "What is your name?",
+      "How are you?",
+      "Where are you from?",
+      "What time is it?",
+      "How much does it cost?",
+      "Are you well?"
+    ]
+  },
+  {
+    "question": "What does 'Tengo sed' mean in English?",
+    "correctAnswer": "I am thirsty",
+    "wrongAnswers": [
+      "I am hungry",
+      "I am tired",
+      "I am happy",
+      "I need water",
+      "I want a drink",
+      "I have a cold"
+    ]
+  },
+  {
+    "question": "What does 'Tengo frío' mean in English?",
+    "correctAnswer": "I am cold",
+    "wrongAnswers": [
+      "I am hot",
+      "I am tired",
+      "I am hungry",
+      "I feel good",
+      "I have a fever",
+      "I am sleepy"
+    ]
+  },
+  {
+    "question": "What does 'Tengo calor' mean in English?",
+    "correctAnswer": "I am hot",
+    "wrongAnswers": [
+      "I am cold",
+      "I am tired",
+      "I am hungry",
+      "I feel bad",
+      "I have a headache",
+      "I am sleepy"
+    ]
+  },
+  {
+    "question": "What does '¿Qué es esto?' mean in English?",
+    "correctAnswer": "What is this?",
+    "wrongAnswers": [
+      "What is that?",
+      "What are you doing?",
+      "How is this?",
+      "Who is this?",
+      "Where is this?",
+      "When is this?"
+    ]
+  },
+  {
+    "question": "What does 'Quiero' mean in English?",
+    "correctAnswer": "I want",
+    "wrongAnswers": [
+      "I need",
+      "I like",
+      "I have",
+      "I can",
+      "I do",
+      "I see"
+    ]
+  },
+  {
+    "question": "What does 'Necesito' mean in English?",
+    "correctAnswer": "I need",
+    "wrongAnswers": [
+      "I want",
+      "I like",
+      "I have",
+      "I can",
+      "I do",
+      "I see"
+    ]
+  },
+  {
+    "question": "What does '¿Dónde está...?' mean in English?",
+    "correctAnswer": "Where is...?",
+    "wrongAnswers": [
+      "What is...?",
+      "Who is...?",
+      "When is...?",
+      "How is...?",
+      "Why is...?",
+      "Is it...?"
+    ]
+  },
+  {
+    "question": "What does 'Aquí' mean in English?",
+    "correctAnswer": "Here",
+    "wrongAnswers": [
+      "There",
+      "Now",
+      "Later",
+      "Near",
+      "Far",
+      "Always"
+    ]
+  },
+  {
+    "question": "What does 'Allí' mean in English?",
+    "correctAnswer": "There",
+    "wrongAnswers": [
+      "Here",
+      "Now",
+      "Later",
+      "Near",
+      "Far",
+      "Always"
+    ]
+  },
+  {
+    "question": "What does 'Izquierda' mean in English?",
+    "correctAnswer": "Left",
+    "wrongAnswers": [
+      "Right",
+      "Straight",
+      "Up",
+      "Down",
+      "Here",
+      "There"
+    ]
+  },
+  {
+    "question": "What does 'Derecha' mean in English?",
+    "correctAnswer": "Right",
+    "wrongAnswers": [
+      "Left",
+      "Straight",
+      "Up",
+      "Down",
+      "Here",
+      "There"
+    ]
+  },
+  {
+    "question": "What does 'Todo' mean in English?",
+    "correctAnswer": "All/Everything",
+    "wrongAnswers": [
+      "Some",
+      "None",
+      "Part",
+      "Many",
+      "Few",
+      "Nothing"
+    ]
+  },
+  {
+    "question": "What does 'Nada' mean in English?",
+    "correctAnswer": "Nothing",
+    "wrongAnswers": [
+      "All",
+      "Some",
+      "Everything",
+      "Part",
+      "Many",
+      "Few"
+    ]
+  },
+  {
+    "question": "What does 'Siempre' mean in English?",
+    "correctAnswer": "Always",
+    "wrongAnswers": [
+      "Never",
+      "Sometimes",
+      "Often",
+      "Rarely",
+      "Today",
+      "Tomorrow"
+    ]
+  },
+  {
+    "question": "What does 'Nunca' mean in English?",
+    "correctAnswer": "Never",
+    "wrongAnswers": [
+      "Always",
+      "Sometimes",
+      "Often",
+      "Rarely",
+      "Today",
+      "Tomorrow"
+    ]
+  },
+  {
+    "question": "What does 'Abierto' mean in English?",
+    "correctAnswer": "Open",
+    "wrongAnswers": [
+      "Closed",
+      "Empty",
+      "Full",
+      "Big",
+      "Small",
+      "New"
+    ]
+  },
+  {
+    "question": "What does 'Cerrado' mean in English?",
+    "correctAnswer": "Closed",
+    "wrongAnswers": [
+      "Open",
+      "Empty",
+      "Full",
+      "Big",
+      "Small",
+      "Old"
+    ]
+  },
+  {
+    "question": "What does 'Fácil' mean in English?",
+    "correctAnswer": "Easy",
+    "wrongAnswers": [
+      "Difficult",
+      "Hard",
+      "Simple",
+      "Complicated",
+      "Fast",
+      "Slow"
+    ]
+  },
+  {
+    "question": "What does 'Difícil' mean in English?",
+    "correctAnswer": "Difficult",
+    "wrongAnswers": [
+      "Easy",
+      "Hard",
+      "Simple",
+      "Complicated",
+      "Fast",
+      "Slow"
+    ]
+  },
+  {
+    "question": "What does 'Rápido' mean in English?",
+    "correctAnswer": "Fast",
+    "wrongAnswers": [
+      "Slow",
+      "Quick",
+      "Rapid",
+      "Speedy",
+      "Quickly",
+      "Hurried"
+    ]
+  },
+  {
+    "question": "What does 'Lento' mean in English?",
+    "correctAnswer": "Slow",
+    "wrongAnswers": [
+      "Fast",
+      "Quick",
+      "Rapid",
+      "Speedy",
+      "Slowly",
+      "Delayed"
+    ]
+  },
+  {
+    "question": "What does 'Grande' mean in English (yet another alternative)?",
+    "correctAnswer": "Great",
+    "wrongAnswers": [
+      "Small",
+      "Terrible",
+      "Bad",
+      "Good",
+      "Huge",
+      "Tiny"
+    ]
+  },
+  {
+    "question": "What does 'Malo' mean in English?",
+    "correctAnswer": "Bad",
+    "wrongAnswers": [
+      "Good",
+      "Great",
+      "Evil",
+      "Wrong",
+      "Difficult",
+      "Sad"
+    ]
+  },
+  {
+    "question": "What does 'Bueno' mean in English?",
+    "correctAnswer": "Good",
+    "wrongAnswers": [
+      "Bad",
+      "Great",
+      "Evil",
+      "Right",
+      "Easy",
+      "Happy"
+    ]
+  },
+  {
+    "question": "What does 'Caliente' mean in English?",
+    "correctAnswer": "Hot",
+    "wrongAnswers": [
+      "Cold",
+      "Warm",
+      "Cool",
+      "Spicy",
+      "Burning",
+      "Heated"
+    ]
+  },
+  {
+    "question": "What does 'Frío' mean in English?",
+    "correctAnswer": "Cold",
+    "wrongAnswers": [
+      "Hot",
+      "Warm",
+      "Cool",
+      "Icy",
+      "Freezing",
+      "Chilly"
+    ]
+  },
+  {
+    "question": "What does 'Solamente' mean in English?",
+    "correctAnswer": "Only",
+    "wrongAnswers": [
+      "Always",
+      "Never",
+      "Sometimes",
+      "Also",
+      "Just",
+      "Alone"
+    ]
+  },
+  {
+    "question": "What does 'También' mean in English?",
+    "correctAnswer": "Also/Too",
+    "wrongAnswers": [
+      "Only",
+      "Never",
+      "Sometimes",
+      "Alone",
+      "Just",
+      "Without"
+    ]
+  },
+  {
+    "question": "What does 'Con' mean in English?",
+    "correctAnswer": "With",
+    "wrongAnswers": [
+      "Without",
+      "And",
+      "But",
+      "Or",
+      "To",
+      "From"
+    ]
+  },
+  {
+    "question": "What does 'Sin' mean in English?",
+    "correctAnswer": "Without",
+    "wrongAnswers": [
+      "With",
+      "And",
+      "But",
+      "Or",
+      "To",
+      "From"
+    ]
+  },
+  {
+    "question": "What does 'De' mean in English?",
+    "correctAnswer": "Of/From",
+    "wrongAnswers": [
+      "To",
+      "With",
+      "Without",
+      "And",
+      "But",
+      "In"
+    ]
+  },
+  {
+    "question": "What does 'A' mean in English?",
+    "correctAnswer": "To/At",
+    "wrongAnswers": [
+      "From",
+      "With",
+      "Without",
+      "And",
+      "But",
+      "In"
+    ]
+  },
+  {
+    "question": "What does 'En' mean in English?",
+    "correctAnswer": "In/On/At",
+    "wrongAnswers": [
+      "Out",
+      "Under",
+      "Over",
+      "Near",
+      "Far",
+      "With"
+    ]
+  },
+  {
+    "question": "What does 'Por' mean in English?",
+    "correctAnswer": "For/By/Through",
+    "wrongAnswers": [
+      "To",
+      "With",
+      "Without",
+      "And",
+      "But",
+      "In"
+    ]
+  },
+  {
+    "question": "What does 'Para' mean in English?",
+    "correctAnswer": "For/To (purpose)",
+    "wrongAnswers": [
+      "By",
+      "With",
+      "Without",
+      "And",
+      "But",
+      "In"
+    ]
+  },
+  {
+    "question": "What does 'Y' mean in English?",
+    "correctAnswer": "And",
+    "wrongAnswers": [
+      "Or",
+      "But",
+      "So",
+      "Then",
+      "If",
+      "With"
+    ]
+  },
+  {
+    "question": "What does 'O' mean in English?",
+    "correctAnswer": "Or",
+    "wrongAnswers": [
+      "And",
+      "But",
+      "So",
+      "Then",
+      "If",
+      "With"
+    ]
+  },
+  {
+    "question": "What does 'Pero' mean in English?",
+    "correctAnswer": "But",
+    "wrongAnswers": [
+      "And",
+      "Or",
+      "So",
+      "Then",
+      "If",
+      "With"
+    ]
+  },
+  {
+    "question": "What does 'Si' mean in English?",
+    "correctAnswer": "If",
+    "wrongAnswers": [
+      "Yes",
+      "No",
+      "But",
+      "And",
+      "Or",
+      "So"
+    ]
+  },
+  {
+    "question": "What does 'Porque' mean in English?",
+    "correctAnswer": "Because",
+    "wrongAnswers": [
+      "Why",
+      "How",
+      "What",
+      "When",
+      "Where",
+      "Who"
+    ]
+  },
+  {
+    "question": "What does '¿Por qué?' mean in English?",
+    "correctAnswer": "Why?",
+    "wrongAnswers": [
+      "Because",
+      "How?",
+      "What?",
+      "When?",
+      "Where?",
+      "Who?"
+    ]
+  },
+  {
+    "question": "What does 'Cuando' mean in English?",
+    "correctAnswer": "When",
+    "wrongAnswers": [
+      "Where",
+      "What",
+      "How",
+      "Why",
+      "Who",
+      "If"
+    ]
+  },
+  {
+    "question": "What does '¿Qué?' mean in English?",
+    "correctAnswer": "What?",
+    "wrongAnswers": [
+      "When?",
+      "Where?",
+      "How?",
+      "Why?",
+      "Who?",
+      "Which?"
+    ]
+  },
+  {
+    "question": "What does '¿Quién?' mean in English?",
+    "correctAnswer": "Who?",
+    "wrongAnswers": [
+      "What?",
+      "When?",
+      "Where?",
+      "How?",
+      "Why?",
+      "Which?"
+    ]
+  },
+  {
+    "question": "What does '¿Cómo?' mean in English?",
+    "correctAnswer": "How?",
+    "wrongAnswers": [
+      "What?",
+      "When?",
+      "Where?",
+      "Why?",
+      "Who?",
+      "Which?"
+    ]
+  },
+  {
+    "question": "What does 'Muy' mean in English?",
+    "correctAnswer": "Very",
+    "wrongAnswers": [
+      "Much",
+      "Little",
+      "More",
+      "Less",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "What does 'Mucho' mean in English?",
+    "correctAnswer": "Much/Many",
+    "wrongAnswers": [
+      "Very",
+      "Little",
+      "More",
+      "Less",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "What does 'Poco' mean in English?",
+    "correctAnswer": "Little/Few",
+    "wrongAnswers": [
+      "Much",
+      "Very",
+      "More",
+      "Less",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "What does 'Más' mean in English?",
+    "correctAnswer": "More",
+    "wrongAnswers": [
+      "Less",
+      "Much",
+      "Little",
+      "Very",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "What does 'Menos' mean in English?",
+    "correctAnswer": "Less",
+    "wrongAnswers": [
+      "More",
+      "Much",
+      "Little",
+      "Very",
+      "Always",
+      "Never"
+    ]
+  },
+  {
+    "question": "What does 'Cero' mean in English?",
+    "correctAnswer": "Zero",
+    "wrongAnswers": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six"
+    ]
+  },
+  {
+    "question": "What does 'Tres' mean in English?",
+    "correctAnswer": "Three",
+    "wrongAnswers": [
+      "One",
+      "Two",
+      "Four",
+      "Five",
+      "Six",
+      "Zero"
+    ]
+  },
+  {
+    "question": "What does 'Cuatro' mean in English?",
+    "correctAnswer": "Four",
+    "wrongAnswers": [
+      "One",
+      "Two",
+      "Three",
+      "Five",
+      "Six",
+      "Seven"
+    ]
+  },
+  {
+    "question": "What does 'Cinco' mean in English?",
+    "correctAnswer": "Five",
+    "wrongAnswers": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Six",
+      "Seven"
+    ]
+  },
+  {
+    "question": "What does 'Seis' mean in English?",
+    "correctAnswer": "Six",
+    "wrongAnswers": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Seven"
+    ]
+  },
+  {
+    "question": "What does 'Siete' mean in English?",
+    "correctAnswer": "Seven",
+    "wrongAnswers": [
+      "Six",
+      "Eight",
+      "Nine",
+      "Ten",
+      "Five",
+      "Four"
+    ]
+  },
+  {
+    "question": "What does 'Ocho' mean in English?",
+    "correctAnswer": "Eight",
+    "wrongAnswers": [
+      "Seven",
+      "Nine",
+      "Ten",
+      "Six",
+      "Five",
+      "Four"
+    ]
+  },
+  {
+    "question": "What does 'Nueve' mean in English?",
+    "correctAnswer": "Nine",
+    "wrongAnswers": [
+      "Eight",
+      "Ten",
+      "Seven",
+      "Six",
+      "Five",
+      "Four"
+    ]
+  },
+  {
+    "question": "What does 'Diez' mean in English?",
+    "correctAnswer": "Ten",
+    "wrongAnswers": [
+      "Nine",
+      "Eight",
+      "Seven",
+      "Six",
+      "Five",
+      "Four"
+    ]
+  },
+  {
+    "question": "What does 'Cien' mean in English?",
+    "correctAnswer": "One Hundred",
+    "wrongAnswers": [
+      "Ten",
+      "Thousand",
+      "Million",
+      "Fifty",
+      "Twenty",
+      "Five Hundred"
+    ]
+  },
+  {
+    "question": "What does 'Mil' mean in English?",
+    "correctAnswer": "One Thousand",
+    "wrongAnswers": [
+      "One Hundred",
+      "Ten",
+      "Million",
+      "Fifty",
+      "Twenty",
+      "Five Hundred"
+    ]
+  },
+  {
+    "question": "What does 'Millón' mean in English?",
+    "correctAnswer": "Million",
+    "wrongAnswers": [
+      "Thousand",
+      "Hundred",
+      "Billion",
+      "Trillion",
+      "Fifty Thousand",
+      "Five Million"
+    ]
+  },
+  {
+    "question": "What does 'Billion' mean in Spanish?",
+    "correctAnswer": "Mil millones",
+    "wrongAnswers": [
+      "Cien millones",
+      "Un millón",
+      "Mil millones",
+      "Cien mil",
+      "Diez mil",
+      "Un billón"
+    ]
+  },
+  {
+    "question": "What does 'Trillion' mean in Spanish?",
+    "correctAnswer": "Un billón",
+    "wrongAnswers": [
+      "Mil millones",
+      "Cien millones",
+      "Un millón",
+      "Cien mil",
+      "Diez mil",
+      "Un trillón"
+    ]
+  },
+  {
+    "question": "What does 'Agua' mean in English?",
+    "correctAnswer": "Water",
+    "wrongAnswers": [
+      "Fire",
+      "Earth",
+      "Air",
+      "Food",
+      "House",
+      "Book"
+    ]
+  },
+  {
     "question": "Which word means 'water' in Spanish?",
     "correctAnswer": "Agua",
     "wrongAnswers": [
