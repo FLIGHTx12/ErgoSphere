@@ -424,10 +424,10 @@
       {"text": "MN has the biggest lead of the game", "value": "High"},
       {"text": "First MN FG is a 2 pointer.", "value": "Medium"},
       {"text": "First MN FG is a 3 pointer", "value": "High"},
-      {"text": "MN wins by 10+ points", "value": "Medium"},
+      {"text": "MN wins by 10+ points", "value": "High"},
       {"text": "Technical foul is called this game (either team)", "value": "High"},
-      {"text": "Flagrant foul is called this game (either team)", "value": "High"},
-      {"text": "Game goes into overtime", "value": "High"},
+      {"text": "Flagrant foul is called this game (either team)", "value": "Extreme"},
+      {"text": "Game goes into overtime", "value": "Extreme"},
       {"text": "MN wins by 20+ points", "value": "Extreme"},
       {"text": "Half+ court shot made", "value": "Extreme"}
     ]
