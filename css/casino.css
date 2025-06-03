@@ -175,6 +175,36 @@ section a {
   }
 }
 
+/* Mobile-specific styles for screens under 800px */
+@media (max-width: 800px) {
+  #betting-system {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* Also adjust the bet-container to match */
+  #bet-container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  /* Make selects and inputs use full available width */
+  #betting-system select,
+  #betting-system input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 #bet-container {
   border: 2px solid #0f0;
   box-shadow: 0 0 10px #0f0;
