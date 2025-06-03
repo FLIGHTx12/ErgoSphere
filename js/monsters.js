@@ -1,20 +1,45 @@
-// Function to determine the current quarter and adjust health
+// Function to determine the current quarter and adjust health using WeekTracker
 function adjustHealthByQuarter(baseHealth) {
-  const currentMonth = new Date().getMonth() + 1; // getMonth() is zero-based
-  let quarterMultiplier = 0;
-
-  if (currentMonth >= 1 && currentMonth <= 3) {
-    quarterMultiplier = 0; // Q1
-  } else if (currentMonth >= 4 && currentMonth <= 6) {
-    quarterMultiplier = 1; // Q2
-  } else if (currentMonth >= 7 && currentMonth <= 9) {
-    quarterMultiplier = 2; // Q3
-  } else if (currentMonth >= 10 && currentMonth <= 12) {
-    quarterMultiplier = 3; // Q4
+  // Use WeekTracker to get the current quarter if available
+  let currentQuarter = 1; // Default to Q1
+  
+  try {
+    if (typeof WeekTracker !== 'undefined' && WeekTracker.getCurrentQuarter) {
+      currentQuarter = WeekTracker.getCurrentQuarter();
+    } else {
+      // Fallback to manual calculation if WeekTracker is not available
+      const currentMonth = new Date().getMonth() + 1; // getMonth() is zero-based
+      if (currentMonth >= 1 && currentMonth <= 3) {
+        currentQuarter = 1; // Q1
+      } else if (currentMonth >= 4 && currentMonth <= 6) {
+        currentQuarter = 2; // Q2
+      } else if (currentMonth >= 7 && currentMonth <= 9) {
+        currentQuarter = 3; // Q3
+      } else if (currentMonth >= 10 && currentMonth <= 12) {
+        currentQuarter = 4; // Q4
+      }
+    }
+  } catch (error) {
+    console.warn('Error getting quarter, defaulting to Q1:', error);
+    currentQuarter = 1;
   }
 
-  // Ensure health doesn't go below zero
-  return Math.max(0, baseHealth + (quarterMultiplier * 200));
+  // Calculate health multiplier based on quarter (progressive scaling)
+  // Q1: 100% base health, Q2: 125%, Q3: 150%, Q4: 175%
+  const quarterMultipliers = {
+    1: 1.0,   // Q1: Base health
+    2: 1.25,  // Q2: 25% increase
+    3: 1.5,   // Q3: 50% increase  
+    4: 1.75   // Q4: 75% increase
+  };
+
+  const multiplier = quarterMultipliers[currentQuarter] || 1.0;
+  const adjustedHealth = Math.floor(baseHealth * multiplier);
+
+  console.log(`Quarter ${currentQuarter}: Base health ${baseHealth} adjusted to ${adjustedHealth} (${multiplier}x multiplier)`);
+  
+  // Ensure health doesn't go below original base value
+  return Math.max(baseHealth, adjustedHealth);
 }
 
 // New helper: selects a random dialogue if an array
@@ -43,7 +68,7 @@ window.monsters = [
   },
   {name: "EtchWraith Swarm",
     attackType: "Swarm (Player level)",
-    health: adjustHealthByQuarter(400),
+    health: adjustHealthByQuarter(500),
     hitNumbers: [ 5, 19, 4, 1, 8, 12, 5, 3, 6, 17],
     Rewards: "Spinner gets to pick any available CO-OP game instead of spinning. Player also gains 50 ducats and a random weapon. ",
     Punishment:"Spinner Deletes 4 spin options. No CO-OP game will be picked this week. ",
@@ -568,7 +593,7 @@ hitDialogues: {
     health: adjustHealthByQuarter(612),
     hitNumbers: [1, 2, 3, 4, 5],
     Rewards:"Party leader gets to pick any available PVP game for the week. Party also gains 50 ducats ",
-    Punishment:"{CLAIRVOYANCE} Block and positive weekly mods gained next week. Party leader deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week ",
+    Punishment:"{CLAIRVOYANCE} Block any positive weekly mods gained next week. Party leader deletes 2 spin options and 2 weekday “FUN” events (can not be PvP). No PvP game will be picked this week ",
     imageSrc: "https://i.ibb.co/6JB8WQ2g/Curve-Ergo-Villian.jpg",
     defeatedImageSrc: "https://static.vecteezy.com/system/resources/thumbnails/023/122/996/small/skull-with-roses-human-skull-in-beautiful-flowers-halloween-images-day-of-the-dead-generative-ai-photo.jpg",
     damageDialogues: {

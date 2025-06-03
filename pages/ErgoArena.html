@@ -109,6 +109,16 @@
     <footer>
         <p>ErgoSphere ARENA &copy; 2025 | <a href="#" id="creditsLink">Credits</a></p>
     </footer>    <!-- Load JavaScript files -->
+    <script src="../js/week-tracker.js"></script>
+    <script>
+        // Initialize WeekTracker as soon as it loads
+        if (typeof WeekTracker !== 'undefined') {
+            WeekTracker.init();
+            console.log('WeekTracker initialized for current quarter:', WeekTracker.getCurrentQuarter());
+        } else {
+            console.warn('WeekTracker not loaded properly');
+        }
+    </script>
     <script src="../js/monsters.js"></script>
     <script src="../js/trivia.js"></script>
     <script src="../js/BossFight.js"></script>

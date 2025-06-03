@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Health Adjustment</title>
+</head>
+<body>
+  <h1>Health Adjustment Test</h1>
+  <p>Open the console to see test results (F12 or Ctrl+Shift+I)</p>
+  
+  <!-- Load the necessary scripts -->
+  <script src="../js/week-tracker.js"></script>
+  <script>
+    // Initialize WeekTracker
+    if (typeof WeekTracker !== 'undefined') {
+      WeekTracker.init();
+      console.log('WeekTracker initialized for testing');
+    } else {
+      console.warn('WeekTracker not loaded properly');
+    }
+  </script>
+  <script>
+    // Copy of the adjustHealthByQuarter function
+    function adjustHealthByQuarter(baseHealth) {
+      // Use WeekTracker to get the current quarter if available
+      let currentQuarter = 1; // Default to Q1
+      
+      try {
+        if (typeof WeekTracker !== 'undefined' && WeekTracker.getCurrentQuarter) {
+          currentQuarter = WeekTracker.getCurrentQuarter();
+        } else {
+          // Fallback to manual calculation if WeekTracker is not available
+          const currentMonth = new Date().getMonth() + 1; // getMonth() is zero-based
+          if (currentMonth >= 1 && currentMonth <= 3) {
+            currentQuarter = 1; // Q1
+          } else if (currentMonth >= 4 && currentMonth <= 6) {
+            currentQuarter = 2; // Q2
+          } else if (currentMonth >= 7 && currentMonth <= 9) {
+            currentQuarter = 3; // Q3
+          } else if (currentMonth >= 10 && currentMonth <= 12) {
+            currentQuarter = 4; // Q4
+          }
+        }
+      } catch (error) {
+        console.warn('Error getting quarter, defaulting to Q1:', error);
+        currentQuarter = 1;
+      }
+
+      // Calculate health multiplier based on quarter (progressive scaling)
+      // Q1: 100% base health, Q2: 125%, Q3: 150%, Q4: 175%
+      const quarterMultipliers = {
+        1: 1.0,   // Q1: Base health
+        2: 1.25,  // Q2: 25% increase
+        3: 1.5,   // Q3: 50% increase  
+        4: 1.75   // Q4: 75% increase
+      };
+
+      const multiplier = quarterMultipliers[currentQuarter] || 1.0;
+      const adjustedHealth = Math.floor(baseHealth * multiplier);
+
+      console.log(`Quarter ${currentQuarter}: Base health ${baseHealth} adjusted to ${adjustedHealth} (${multiplier}x multiplier)`);
+      
+      // Ensure health doesn't go below original base value
+      return Math.max(baseHealth, adjustedHealth);
+    }
+  </script>
+  <script src="../js/test-health-adjustment.js"></script>
+</body>
+</html>
