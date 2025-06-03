@@ -12,11 +12,18 @@
       /* Responsive main-content on smaller screens */
       @media (max-width: 600px) {
         #main-content {
-          width: 90vw;
+          width: 98vw; /* Increased from 90vw to 98vw */
+          padding: 0 5px; /* Reduced padding from default 20px */
           transition: width 0.3s ease-in-out;
         }
         #main-content.sidebar-visible {
-          width: 65vw;
+          width: 75vw; /* Increased from 65vw */
+        }
+        #main-content > div {
+          width: 98%; /* Increased from default 90% */
+          margin-left: auto;
+          margin-right: auto;
+          padding: 8px; /* Slightly reduced padding */
         }
       }
       
@@ -72,6 +79,77 @@
         #main-content {
           /* Ensure smooth transition for margin change */
           transition: margin-right 0.3s ease-in-out, width 0.3s ease-in-out; /* Transition margin-right */
+        }
+      }
+
+      /* Comprehensive Mobile-Only Styles */
+      @media (max-width: 800px) {
+        /* Main content container adjustments */
+        #main-content {
+          width: 98vw;
+          padding: 0 5px; /* Reduced horizontal padding */
+        }
+        
+        /* Main content children adjustment */
+        #main-content > div {
+          width: 98%;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 8px; /* Reduced padding */
+        }
+        
+        /* Card header and content padding adjustments */
+        .card-header {
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+        }
+        
+        .card-content {
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+        }
+        
+        /* Cyber grid adjustments */
+        .cyber-grid {
+          gap: 10px;
+          padding: 0;
+        }
+        
+        /* Cyber card adjustments */
+        .cyber-card {
+          min-width: 0;
+          width: 100%;
+          margin: 5px auto;
+        }
+        
+        /* Text content padding */
+        .champion-name, .movie-title, .meal-title {
+          padding: 0 5px;
+          box-sizing: border-box;
+        }
+        
+        /* Cyber panel adjustments - remove horizontal padding and margin */
+        .cyber-panel {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box;
+        }
+      }
+      
+      /* Even smaller screens get additional adjustments */
+      @media (max-width: 480px) {
+        #main-content {
+          width: 100vw;
+          padding: 0 3px;
+        }
+        
+        #main-content > div {
+          width: 99%;
+          border-radius: 15px;
+          margin: 15px auto;
         }
       }
     </style>
