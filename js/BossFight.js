@@ -674,11 +674,14 @@ document.addEventListener("DOMContentLoaded", () => {
           const shakeIntensity = Math.min(totalDamage / 15, 20); // Cap intensity at 10
           const redIntensity = Math.min(totalDamage / 150, 4); // Cap red intensity at 1
           const duration = Math.min(totalDamage / 50, 4); // Cap duration at 3 seconds
-          monsterImage.style.animation = `shake ${shakeIntensity * 0.1}s infinite, redFlash ${redIntensity * 0.5}s infinite`;
-          navigator.vibrate(shakeIntensity * 100); // Vibrate for intensity * 100ms
-          setTimeout(() => {
-            monsterImage.style.animation = "";
-          }, duration * 1000);
+          const imageElement = monsterImage.querySelector('img'); // Get the actual img element
+          if (imageElement) {
+            imageElement.style.animation = `shake ${shakeIntensity * 0.1}s infinite, redFlash ${redIntensity * 0.5}s infinite`;
+            navigator.vibrate(shakeIntensity * 100); // Vibrate for intensity * 100ms
+            setTimeout(() => {
+              imageElement.style.animation = "";
+            }, duration * 1000);
+          }
         }
 
         const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";        if (monsterLife === 0) {
@@ -1094,12 +1097,15 @@ document.addEventListener("DOMContentLoaded", () => {
       historyContainer.scrollTop = historyContainer.scrollHeight;
       
       // Visual feedback - green flash on monster
-      const monsterImage = activeMonsterContainer.querySelector(".monster-image img");
+      const monsterImage = activeMonsterContainer.querySelector(".monster-image");
       if (monsterImage) {
-        monsterImage.style.filter = "hue-rotate(120deg) brightness(1.3)";
-        setTimeout(() => {
-          monsterImage.style.filter = "";
-        }, 500);
+        const imageElement = monsterImage.querySelector('img');
+        if (imageElement) {
+          imageElement.style.filter = "hue-rotate(120deg) brightness(1.3)";
+          setTimeout(() => {
+            imageElement.style.filter = "";
+          }, 500);
+        }
       }
       
       // Play a healing sound effect
@@ -1164,12 +1170,15 @@ document.addEventListener("DOMContentLoaded", () => {
       historyContainer.scrollTop = historyContainer.scrollHeight;
       
       // Visual feedback - red flash on monster (different from timeout)
-      const monsterImage = activeMonsterContainer.querySelector(".monster-image img");
+      const monsterImage = activeMonsterContainer.querySelector(".monster-image");
       if (monsterImage) {
-        monsterImage.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
-        setTimeout(() => {
-          monsterImage.style.filter = "";
-        }, 700);
+        const imageElement = monsterImage.querySelector('img');
+        if (imageElement) {
+          imageElement.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
+          setTimeout(() => {
+            imageElement.style.filter = "";
+          }, 700);
+        }
       }
       
       // Play a different healing sound effect for wrong answers
