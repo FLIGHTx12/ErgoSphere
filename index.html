@@ -125,20 +125,19 @@
         /* Text content padding */
         .champion-name, .movie-title, .meal-title {
           padding: 0 5px;
-          box-sizing: border-box;
-        }
-        
-        /* Cyber panel adjustments - remove horizontal padding and margin */
-        .cyber-panel {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-          margin-left: 0 !important;
-          margin-right: 0 !important;
-          width: 100% !important;
-          box-sizing: border-box;
         }
       }
       
+      /* Large Screen Adjustment for Symmetrical Alignment */
+      @media (min-width: 924px) {
+        #main-content {
+          margin-left: 60px; /* Shift content slightly right for better alignment with nav */
+          margin-right: auto;
+          width: calc(100% - 60px); /* Adjust width to compensate for the margin */
+          max-width: 1200px; /* Maintain maximum width constraint */
+        }
+      }
+
       /* Even smaller screens get additional adjustments */
       @media (max-width: 480px) {
         #main-content {

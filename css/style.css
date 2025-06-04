@@ -150,6 +150,16 @@ header {
   transform: none;
 }
 
+/* Add this specific rule for larger screens to make the content symmetrical with header and nav */
+@media (min-width: 900px) {
+  #main-content {
+    margin-left: 80px; /* Increased from previous 60px for more pronounced shift */
+    margin-right: auto;
+    width: calc(100% - 80px);
+    max-width: 1200px;
+  }
+}
+
 /* 2.3 Containers */
 div {
   border: 2px solid purple;
@@ -486,16 +496,7 @@ button a {
   }
 }
 
-/* 2.4 Main Content Layout */
-#main-content {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px; /* Set a max-width for better readability on large screens */
-  box-sizing: border-box;
-  padding: 0 20px; /* Add some padding on the sides */
-  /* Remove the transform that was causing offset on larger screens */
-  transform: none;
-}
+/* 2.4 Main Content Layout - See primary definition in section 2.2 */
 
 /* 2.5 Section Elements */
 section {
