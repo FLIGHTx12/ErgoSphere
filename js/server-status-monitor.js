@@ -1,50 +1,16 @@
 /**
- * Server Status Monitor for ErgoSphere
+ * Server Status Monitor for ErgoSphere - Disabled Version
  * 
- * This script checks the status of the API server and displays a visual indicator
- * to help debug connection issues.
+ * This script has been intentionally disabled to remove the status indicator
+ * from the UI in the ErgoShop page as requested.
  */
 
+// Variables kept for compatibility but not used
 let serverStatusCheckInterval;
 let serverIsConnected = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Create server status indicator
-  createServerStatusIndicator();
-  
-  // Check server status immediately and then periodically
-  checkServerStatus();
-  serverStatusCheckInterval = setInterval(checkServerStatus, 30000); // Check every 30 seconds
-});
-
-/**
- * Create the visual server status indicator
- */
-function createServerStatusIndicator() {
-  const statusIndicator = document.createElement('div');
-  statusIndicator.id = 'server-status-indicator';
-  statusIndicator.className = 'status-unknown';
-  statusIndicator.title = 'Checking server connection...';
-    // Style the indicator - positioned bottom-right and smaller
-  statusIndicator.style.position = 'fixed';
-  statusIndicator.style.bottom = '10px'; // Changed from top to bottom
-  statusIndicator.style.right = '10px';
-  statusIndicator.style.width = '10px'; // Reduced from 15px to 10px
-  statusIndicator.style.height = '10px'; // Reduced from 15px to 10px
-  statusIndicator.style.borderRadius = '50%';
-  statusIndicator.style.backgroundColor = '#888';
-  statusIndicator.style.border = '1px solid #555'; // Reduced border from 2px to 1px
-  statusIndicator.style.zIndex = '9999';
-  statusIndicator.style.cursor = 'pointer';
-  statusIndicator.style.transition = 'all 0.3s ease';
-  statusIndicator.style.opacity = '0.7'; // Added slight transparency
-  
-  // Add click handler to show more info
-  statusIndicator.addEventListener('click', showServerStatusDetails);
-  
-  // Add to the document
-  document.body.appendChild(statusIndicator);
-}
+// No event listeners or status indicators are created
+console.log('Server status monitoring disabled for ErgoShop page');
 
 /**
  * Check the status of the server/API connection

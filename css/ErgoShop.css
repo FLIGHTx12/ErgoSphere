@@ -32,11 +32,13 @@ body {
   padding: 0;
   background-image: url("../assets/img/backgrounds/nightSky.jpg");
   background-repeat: no-repeat;
+  background-size: cover; /* Ensure full coverage */
   transition: transform 0.3s ease-in-out, color 0.5s ease, background-color 0.5s ease;
   animation: pan-bg 350s linear infinite;
   background-attachment: fixed;
   font-family: 'Raleway', 'Segoe UI', sans-serif;
   line-height: 1.6;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
 }
 
 /* ===== 2. LAYOUT COMPONENTS ===== */
@@ -103,6 +105,7 @@ header h1::after {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden; /* To prevent overflow issues */
 }
 
 #navbar.hidden {
@@ -112,35 +115,192 @@ header h1::after {
 #navbar a {
   color: var(--text-color);
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px; /* Slightly reduced letter spacing to save space */
   text-transform: uppercase;
   font-weight: 600;
+  display: block;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 #navbar button {
-  background-color: var(--background-dark);
+  background-color: rgba(10, 10, 15, 0.7); /* More transparent for jewel effect */
   color: var(--text-color);
   text-align: center;
-  display: inline-block;
+  display: inline-flex; /* Better for alignment */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
   font-size: 14px;
-  margin: 5px;
+  margin: 4px;
   cursor: pointer;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3); /* More visible border */
   transition: all var(--transition-speed) ease;
-  padding: 10px 15px;
+  padding: 10px 8px; /* Horizontally more compact */
   width: auto;
-  min-width: 100px;
+  min-width: 95px; /* Slightly smaller to fit more buttons */
   height: auto;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  flex-shrink: 1; /* Allow buttons to shrink if needed */
+  flex-grow: 0; /* Don't allow buttons to grow bigger than their content */
+  /* Jewel effect styles */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 
+    inset 0 0 10px rgba(255, 255, 255, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+  /* Glass/crystal effect */
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 #navbar button:hover {
   border-color: var(--active-user-theme);
-  box-shadow: 0 0 10px var(--active-user-theme-dark);
+  box-shadow: 
+    0 0 10px var(--active-user-theme-dark),
+    inset 0 0 8px rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
+}
+
+/* Active state for jewel buttons to simulate pressing */
+#navbar button:active {
+  transform: translateY(0px);
+  box-shadow: 
+    0 0 5px var(--active-user-theme-dark),
+    inset 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+#navbar button:active::before {
+  opacity: 0.5;
+}
+
+#navbar button:active::after {
+  opacity: 0.2;
+  transform: scale(0.98);
+}
+
+#navbar button.flight-theme:active {
+  box-shadow: 
+    0 0 5px var(--flight-color-dark),
+    inset 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+#navbar button.jaybers-theme:active {
+  box-shadow: 
+    0 0 5px var(--jaybers-color-dark),
+    inset 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced hover effects for jewel buttons */
+#navbar button:hover::before {
+  opacity: 0.9;
+  filter: brightness(1.3);
+}
+
+#navbar button:hover::after {
+  opacity: 0.6;
+  transform: scale(1.05);
+}
+
+/* Theme-specific hover glows */
+.flight-theme #navbar button:hover {
+  border-color: var(--flight-color);
+  box-shadow: 
+    0 0 12px var(--flight-color),
+    inset 0 0 8px rgba(0, 255, 0, 0.3);
+}
+
+.jaybers-theme #navbar button:hover {
+  border-color: var(--jaybers-color);
+  box-shadow: 
+    0 0 12px var(--jaybers-color),
+    inset 0 0 8px rgba(153, 50, 204, 0.3);
+}
+
+/* Navbar button jewel effect overlays */
+#navbar button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.02) 51%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0.7;
+  z-index: 0;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  transition: all var(--transition-speed) ease;
+}
+
+/* Add subtle theme-colored reflection */
+.flight-theme #navbar button::before {
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 0, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.02) 51%, 
+    rgba(0, 255, 0, 0.1) 100%);
+}
+
+.jaybers-theme #navbar button::before {
+  background: linear-gradient(135deg, 
+    rgba(153, 50, 204, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.02) 51%, 
+    rgba(153, 50, 204, 0.1) 100%);
+}
+
+/* Add light reflection effect */
+#navbar button::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: var(--border-radius);
+  transition: all 0.5s ease;
+}
+
+/* Theme-specific light reflection */
+.flight-theme #navbar button::after {
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(0, 255, 0, 0.25) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
+.jaybers-theme #navbar button::after {
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(153, 50, 204, 0.25) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
+/* Position anchor tags above the reflection layers */
+#navbar button a {
+  position: relative;
+  z-index: 1;
 }
 
 /* Sidebar */
@@ -575,7 +735,7 @@ summary::-webkit-details-marker {
     background-position: 70% 70%;
   }
   75% {
-    background-size: 100%;
+    background-size: 120%; /* Increased from 100% to ensure better coverage */
     background-position: 50% 50%;
   }
 }
@@ -585,7 +745,63 @@ summary::-webkit-details-marker {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Shimmer animation for jewel buttons */
+@keyframes jewel-shimmer {
+  0% {
+    background-position: -50px 0;
+  }
+  100% {
+    background-position: 150px 0;
+  }
+}
+
+#navbar button::before {
+  animation: jewel-shimmer 4s infinite linear;
+  background-size: 200px 100%;
+}
+
+/* Pulse animation for the active theme */
+@keyframes theme-pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.flight-theme #navbar button::after {
+  animation: theme-pulse 3s infinite ease-in-out;
+}
+
+.jaybers-theme #navbar button::after {
+  animation: theme-pulse 3s infinite ease-in-out;
+}
+
 /* ===== 7. MEDIA QUERIES ===== */
+/* Fix for background coverage at 1000px and below */
+@media (max-width: 1000px) {
+  body {
+    background-size: cover !important; /* Force background to cover entire screen */
+    background-position: center center !important; /* Center the background */
+  }
+  
+  /* Override the animation for smaller screens to ensure full coverage */
+  @keyframes pan-bg {
+    0%, 100% {
+      background-size: cover !important;
+      background-position: center center !important;
+    }
+    50% {
+      background-size: cover !important;
+      background-position: center center !important;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   div {
     max-width: 100%;
@@ -593,17 +809,76 @@ summary::-webkit-details-marker {
   }
 }
 
+/* Medium screen navbar button adjustments */
+@media (max-width: 768px) and (min-width: 601px) {
+  #navbar {
+    padding: 8px 0;
+  }
+  
+  #navbar button {
+    min-width: 85px;
+    font-size: 13px;
+    padding: 8px 6px;
+    margin: 3px;
+  }
+}
+
+/* Tablet and small desktop screens */
+@media (max-width: 992px) and (min-width: 769px) {
+  #navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #navbar button {
+    margin: 4px 6px;
+    min-width: 90px;
+    flex-basis: auto;
+  }
+}
+
+/* Handle navbar responsiveness for screens between 481px and 600px */
+@media (max-width: 600px) and (min-width: 481px) {
+  #navbar {
+    padding: 5px 0;
+  }
+  
+  #navbar button a {
+    font-size: 12px;
+    white-space: nowrap; /* Prevent text wrapping within button */
+  }
+}
+
 @media (max-width: 600px) {
   div {
     width: 95%;
   }
-  
+
+  /* Only stack navbar buttons at very small screen widths */
+  #navbar button {
+    margin: 2px;
+    min-width: 80px; /* Reduce minimum width to fit more buttons per row */
+    padding: 8px 6px; /* Slightly reduce padding to make buttons more compact */
+  }
+}
+
+/* Only stack buttons when absolutely necessary - at very small screens */
+@media (max-width: 480px) {
   #navbar {
-    flex-direction: column;
+    flex-direction: row; /* Keep horizontal as long as possible */
+    justify-content: center;
   }
   
   #navbar button {
-    margin: 2px;
+    min-width: 70px;
+    font-size: 12px;
+  }
+}
+
+/* Final fallback for extremely small screens */
+@media (max-width: 360px) {
+  #navbar {
+    flex-direction: column;
   }
 }
 
@@ -723,6 +998,11 @@ summary::-webkit-details-marker {
   background: var(--futuristic-gradient);
   box-shadow: var(--card-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: none; /* Hide by default */
+}
+
+.user-purchases.active {
+  display: block; /* Show only active user */
 }
 
 .user-purchases:hover {
@@ -846,6 +1126,30 @@ summary::-webkit-details-marker {
   
   .user-purchases {
     width: 100%;
+  }
+}
+
+/* Responsive styles for user selector container */
+@media (max-width: 480px) {
+  .user-selector-container {
+    width: 160px; /* Even thinner on small screens */
+    padding: 6px 8px;
+  }
+  
+  .user-selector-container label {
+    font-size: 0.75rem;
+  }
+  
+  .user-selector-container select {
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    min-width: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .user-selector-container {
+    width: 200px; /* Slightly wider on large screens for better proportions */
   }
 }
 
@@ -1019,10 +1323,15 @@ summary::-webkit-details-marker {
 }
 
 .user-bar {
-  display: flex;
+  display: none; /* Hide by default */
   align-items: center;
   margin: 15px 0;
   animation: fadeIn 0.5s ease-out;
+}
+
+/* Show only current user's bars */
+.user-bar.active {
+  display: flex;
 }
 
 .user-bar .label {
@@ -1122,145 +1431,136 @@ summary::-webkit-details-marker {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-  margin: 15px auto;
-  background-color: var(--card-background);
+  padding: 6px 12px; /* Reduced vertical padding */
+  margin: 8px auto;
+  background-color: rgba(10, 10, 15, 0.7);
   border-radius: var(--border-radius);
   border: 1px solid var(--active-user-theme);
-  width: 300px;
-  box-shadow: var(--card-shadow), 0 0 20px var(--active-user-theme-dark);
+  width: auto;
+  min-width: 200px;
+  max-width: 260px;
+  box-shadow: var(--card-shadow), 0 0 10px var(--active-user-theme-dark);
   position: relative;
   z-index: 5;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  /* Jewel effect styles */
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+.user-selector-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.02) 51%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0.7;
+  z-index: 1;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  transition: all var(--transition-speed) ease;
+  animation: jewel-shimmer 4s infinite linear;
+  background-size: 200px 100%;
+}
+
+.user-selector-container::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: var(--border-radius);
+  transition: all 0.5s ease;
+}
+
+.user-selector-container:hover {
+  box-shadow: 0 0 15px var(--active-user-theme), inset 0 0 8px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.user-selector-container:hover::before {
+  opacity: 0.9;
+  filter: brightness(1.3);
 }
 
 .user-selector-container label {
   color: #fff;
-  margin-right: 10px;
-  font-weight: bold;
+  margin-right: 8px;
+  font-weight: 600;
+  font-size: 0.85rem; /* Slightly reduced font size */
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 .user-selector-container select {
-  border: 2px solid purple;
-  background-color: #111;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--text-color);
+  padding: 5px 8px; /* Reduced padding for less height */
+  border-radius: calc(var(--border-radius) - 4px);
   cursor: pointer;
+  font-size: 0.85rem; /* Slightly reduced font size */
+  min-width: 100px;
+  border: 1px solid var(--active-user-theme);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='10'><polygon points='0,0 12,0 6,10' fill='%23ffffff'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 8px;
+  padding-right: 25px;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  z-index: 2;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+  height: 30px; /* Fixed height for consistency */
 }
 
-/* ===== Theme Classes ===== */
-.flight-theme div {
-  border-color: var(--flight-color);
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-}
-
-.flight-theme .custom-select {
-  border-color: var(--flight-color);
-}
-
-.flight-theme button {
-  border-color: var(--flight-color);
-}
-
-.flight-theme .action-button {
-  background-image: linear-gradient(to bottom, #003300, #006600);
-  border-color: var(--flight-color);
-}
-
-.flight-theme .action-button:hover {
-  background-image: linear-gradient(to bottom, #006600, #00aa00);
-}
-
-.jaybers-theme div {
-  border-color: var(--jaybers-color);
-  box-shadow: 0 0 10px rgba(153, 50, 204, 0.2);
-}
-
-.jaybers-theme .custom-select {
-  border-color: var(--jaybers-color);
-}
-
-.jaybers-theme button {
-  border-color: var(--jaybers-color);
-}
-
-.jaybers-theme .action-button {
-  background-image: linear-gradient(to bottom, #330033, #660066);
-  border-color: var(--jaybers-color);
-}
-
-.jaybers-theme .action-button:hover {
-  background-image: linear-gradient(to bottom, #660066, #9900cc);
-}
-
-/* User-specific styling for labels and icons */
-.flight-theme h2,
-.flight-theme h3,
-.flight-theme h4,
-.flight-theme summary {
-  color: var(--flight-color);
-  text-shadow: 0 0 10px rgba(0, 102, 0, 0.5);
-}
-
-.flight-theme .weekly-stats {
-  background-color: rgba(0, 102, 0, 0.1);
-  border-left: 3px solid var(--flight-color);
-}
-
-.flight-theme .user-bar .label {
-  color: var(--flight-color);
-}
-
-.jaybers-theme h2,
-.jaybers-theme h3,
-.jaybers-theme h4,
-.jaybers-theme summary {
-  color: var(--jaybers-color);
-  text-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
-}
-
-.jaybers-theme .weekly-stats {
-  background-color: rgba(75, 0, 130, 0.1);
-  border-left: 3px solid var(--jaybers-color);
-}
-
-.jaybers-theme .user-bar .label {
-  color: var(--jaybers-color);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--active-user-theme-dark);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--active-user-theme);
-}
-
-.flight-theme::-webkit-scrollbar-thumb {
-  background: var(--flight-color-dark);
-}
-
-.flight-theme::-webkit-scrollbar-thumb:hover {
-  background: var(--flight-color);
-}
-
-.jaybers-theme::-webkit-scrollbar-thumb {
-  background: var(--jaybers-color-dark);
-}
-
-.jaybers-theme::-webkit-scrollbar-thumb:hover {
-  background: var(--jaybers-color);
+/* Make it responsive */
+@media (max-width: 480px) {
+  .user-selector-container {
+    min-width: 170px;
+    padding: 5px 10px; /* Further reduced padding for small screens */
+  }
+  
+  .user-selector-container label {
+    font-size: 0.75rem;
+    margin-right: 4px;
+  }
+  
+  .user-selector-container select {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+    min-width: 80px;
+    padding-right: 22px;
+    background-position: right 5px center;
+    height: 26px; /* Even smaller height for mobile */
+  }
 }
 
 /* Loading animation */
@@ -1392,15 +1692,28 @@ summary::-webkit-details-marker {
   border-left: 4px solid #17a2b8;
 }
 
-/* Add animation for deletion */
-@keyframes fadeOutLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
+/* Theme-specific button backgrounds */
+.flight-theme #navbar button {
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 255, 0, 0.1) 0%,
+    rgba(10, 10, 15, 0.7) 100%
+  );
+  border-color: rgba(0, 255, 0, 0.3);
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.jaybers-theme #navbar button {
+  background-image: linear-gradient(
+    135deg,
+    rgba(153, 50, 204, 0.1) 0%,
+    rgba(10, 10, 15, 0.7) 100%
+  );
+  border-color: rgba(153, 50, 204, 0.3);
+  box-shadow: 
+    inset 0 0 10px rgba(153, 50, 204, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.4);
 }
 

@@ -44,22 +44,36 @@ class WebSocketReconnector {
       this.ws.close();
       this.ws = null;
     }
-      console.log(`Connecting to WebSocket: ${this.url}`);
-    try {
+      console.log(`Connecting to WebSocket: ${this.url}`);    try {
+      // Safety check to ensure URL is valid
+      if (!this.url || typeof this.url !== 'string' || !this.url.startsWith('ws')) {
+        throw new Error(`Invalid WebSocket URL: ${this.url}`);
+      }
+      
       this.ws = new WebSocket(this.url);
     
       this.ws.onopen = (event) => {
         console.log('WebSocket connection established');
         this.reconnectAttempts = 0; // Reset reconnect attempts on successful connection
         
-        // Notify listeners
-        this.listeners.open.forEach(callback => callback(event));
+        // Notify listeners with error handling
+        this.listeners.open.forEach(callback => {
+          try {
+            callback(event);
+          } catch (err) {
+            console.error('Error in WebSocket open listener:', err);
+          }
+        });
         
         if (this.reconnectAttempts > 0) {
           // This was a reconnection
-          this.listeners.reconnected.forEach(callback => 
-            callback({ attempts: this.reconnectAttempts })
-          );
+          this.listeners.reconnected.forEach(callback => {
+            try {
+              callback({ attempts: this.reconnectAttempts });
+            } catch (err) {
+              console.error('Error in WebSocket reconnected listener:', err);
+            }
+          });
         }
         
         // Show a notification using our new helper
@@ -72,15 +86,26 @@ class WebSocketReconnector {
       // Schedule a reconnect attempt
       this.scheduleReconnect();
     }
-    
-    this.ws.onmessage = (event) => {
-      // Notify listeners
-      this.listeners.message.forEach(callback => callback(event));
+      this.ws.onmessage = (event) => {
+      // Notify listeners with error handling
+      this.listeners.message.forEach(callback => {
+        try {
+          callback(event);
+        } catch (err) {
+          console.error('Error in WebSocket message listener:', err);
+        }
+      });
     };
     
     this.ws.onclose = (event) => {
-      // Notify close listeners
-      this.listeners.close.forEach(callback => callback(event));
+      // Notify close listeners with error handling
+      this.listeners.close.forEach(callback => {
+        try {
+          callback(event);
+        } catch (err) {
+          console.error('Error in WebSocket close listener:', err);
+        }
+      });
       
       // Don't reconnect if the close was intentional
       if (!event.wasClean && this.options.autoReconnect !== false) {
@@ -90,8 +115,14 @@ class WebSocketReconnector {
     
     this.ws.onerror = (error) => {
       console.error('WebSocket error:', error);
-      // Notify error listeners
-      this.listeners.error.forEach(callback => callback(error));
+      // Notify error listeners with error handling
+      this.listeners.error.forEach(callback => {
+        try {
+          callback(error);
+        } catch (err) {
+          console.error('Error in WebSocket error listener:', err);
+        }
+      });
     };
   }
   
@@ -120,15 +151,27 @@ class WebSocketReconnector {
     );
     
     console.log(`WebSocket reconnecting in ${Math.round(delay / 1000)}s (attempt ${this.reconnectAttempts}/${this.options.maxReconnectAttempts})`);
+      // Notify listeners that we're reconnecting with error handling
+    this.listeners.reconnecting.forEach(callback => {
+      try {
+        callback({ attempts: this.reconnectAttempts, delay });
+      } catch (err) {
+        console.error('Error in WebSocket reconnecting listener:', err);
+      }
+    });
     
-    // Notify listeners that we're reconnecting
-    this.listeners.reconnecting.forEach(callback => 
-      callback({ attempts: this.reconnectAttempts, delay })
-    );
-    
-    this.reconnectTimeout = setTimeout(() => {
-      this.connect();
-    }, delay);
+    // Create a safe reconnect timeout
+    try {
+      this.reconnectTimeout = setTimeout(() => {
+        try {
+          this.connect();
+        } catch (err) {
+          console.error('Error during reconnect attempt:', err);
+        }
+      }, delay);
+    } catch (err) {
+      console.error('Error setting reconnect timeout:', err);
+    }
   }
   
   /**

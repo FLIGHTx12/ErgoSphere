@@ -22,13 +22,6 @@ function initWeeklyPurchaseTracker() {
     updateWeekDisplay();
     loadPurchasesForWeek(currentDisplayWeek);
   }
-
-  // Add user selection dropdown
-  addUserSelector();
-  
-  // Set up WebSocket connection for real-time updates
-  setupWebSocket();
-  
   // Set up initial theme based on stored user
   if (localStorage.getItem('ergoShopCurrentUser')) {
     currentUser = localStorage.getItem('ergoShopCurrentUser');
@@ -36,19 +29,28 @@ function initWeeklyPurchaseTracker() {
   } else {
     updateUserTheme('FLIGHTx12'); // Default to FLIGHTx12 theme
   }
+  
+  // Initialize user sections visibility immediately on page load
+  initializeUserVisibility();
+  
+  // Add user selection dropdown
+  addUserSelector();
+  
+  // Set up WebSocket connection for real-time updates
+  setupWebSocket();
 }
 
 /**
  * Set up WebSocket connection for real-time updates
  */
-function setupWebSocket() {
-  // Check if WebSocket is available in the environment
+function setupWebSocket() {  // Check if WebSocket is available in the environment
   if (typeof WebSocket === 'undefined') {
     console.warn('WebSocket not available, real-time updates disabled');
     return;
   }
   
-  // Create WebSocket connection  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  // Create WebSocket connection  
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   let host = window.location.host;
   
   // If we're on port 1550, try port 3000 for WebSocket
@@ -68,13 +70,17 @@ function setupWebSocket() {
       host = host.replace(':1550', ':3000');
     }
   }
-  
-  // For local testing, handle case when server might be down
+    // For local testing, handle case when server might be down
   if (host.includes('localhost') || host.includes('127.0.0.1')) {
     console.log('Local development detected - WebSocket failures will be handled gracefully');
   }
+    const wsUrl = `${protocol}//${host}`;
   
-  const wsUrl = `${protocol}//${host}`;
+  // Make sure the WebSocket setup function is available globally for testing
+  // But don't override the function reference, just make it accessible
+  if (!window.setupWebSocket) {
+    window.setupWebSocket = setupWebSocket;
+  }
   console.log(`Setting up WebSocket connection to: ${wsUrl}`);
   
   // Use the WebSocketReconnector if available for better reliability
@@ -234,12 +240,16 @@ function addUserSelector() {
       option.value = user;
       option.textContent = user;
       userSelector.appendChild(option);
-    });
-      // Add change event listener
+    });    // Add change event listener
     userSelector.addEventListener('change', function() {
       currentUser = this.value;
       localStorage.setItem('ergoShopCurrentUser', currentUser);
       updateUserTheme(currentUser);
+      
+      // Reload purchases for the current week with the new user
+      if (typeof currentDisplayWeek !== 'undefined' && typeof loadPurchasesForWeek === 'function') {
+        loadPurchasesForWeek(currentDisplayWeek);
+      }
     });
     
     // Add elements to the container
@@ -248,13 +258,63 @@ function addUserSelector() {
     
     // Insert after the header
     headerElement.after(selectorContainer);
-    
-    // Set initial value from localStorage if available
+      // Set initial value from localStorage if available
     if (localStorage.getItem('ergoShopCurrentUser')) {
       currentUser = localStorage.getItem('ergoShopCurrentUser');
       userSelector.value = currentUser;
     }
+    
+    // Initialize user sections visibility - show current user, hide others
+    window.users.forEach(user => {
+      const userSection = document.querySelector(`#${user}-purchases`);
+      if (userSection) {
+        if (user === currentUser) {
+          userSection.classList.add('active');
+        } else {
+          userSection.classList.remove('active');
+        }
+      }
+    });
   }
+}
+
+/**
+ * Initialize the visibility of user sections based on the current user
+ */
+function initializeUserVisibility() {
+  // Initialize user sections visibility - show current user, hide others
+  users.forEach(user => {
+    const userSection = document.querySelector(`#${user}-purchases`);
+    if (userSection) {
+      if (user === currentUser) {
+        userSection.classList.add('active');
+        // Force display directly in case of CSS specificity issues
+        userSection.style.display = 'block';
+        console.log(`Setting ${user} section to active and displayed`);
+      } else {
+        userSection.classList.remove('active');
+        // Force hide
+        userSection.style.display = 'none';
+        console.log(`Hiding ${user} section`);
+      }
+    } else {
+      console.warn(`User section #${user}-purchases not found`);
+    }
+    
+    // Also initialize metrics bars
+    ['spent', 'calories', 'alcohol'].forEach(metricType => {
+      const userBar = document.querySelector(`#${user}-${metricType}`);
+      if (userBar) {
+        if (user === currentUser) {
+          userBar.classList.add('active');
+          userBar.style.display = 'flex';
+        } else {
+          userBar.classList.remove('active');
+          userBar.style.display = 'none';
+        }
+      }
+    });
+  });
 }
 
 /**
@@ -909,26 +969,34 @@ async function updateMetricsCharts(weekKey) {
       console.error('Error fetching metrics for charts:', err);
       // Continue with empty metrics, interface will still work
     }
-    
-    // Find metrics for each user
+      // Find metrics for the current user only
     const userMetrics = {};
-    users.forEach(user => {
-      userMetrics[user] = metrics.find(m => m.username === user) || {
-        total_spent: 0,
-        total_calories: 0,
-        alcohol_count: 0
-      };
-    });
+    const user = currentUser; // Use the current user
+    userMetrics[user] = metrics.find(m => m.username === user) || {
+      total_spent: 0,
+      total_calories: 0,
+      alcohol_count: 0
+    };
     
-    // Calculate max values for scaling
-    const maxSpent = Math.max(...Object.values(userMetrics).map(m => m.total_spent || 0), 1);
-    const maxCalories = Math.max(...Object.values(userMetrics).map(m => m.total_calories || 0), 1);
-    const maxAlcohol = Math.max(...Object.values(userMetrics).map(m => m.alcohol_count || 0), 1);
+    // Use the current user's metrics for scaling
+    const maxSpent = Math.max(userMetrics[user].total_spent || 0, 1);
+    const maxCalories = Math.max(userMetrics[user].total_calories || 0, 1);
+    const maxAlcohol = Math.max(userMetrics[user].alcohol_count || 0, 1);
     
-    // Update the spent chart
+    // Update the spent chart for all users (but only the current will be visible via CSS)
     users.forEach(user => {
       const spentBar = document.querySelector(`#${user}-spent .bar`);
       const spentValue = document.querySelector(`#${user}-spent .value`);
+      
+      // Add/remove active class based on current user
+      const spentBarContainer = document.querySelector(`#${user}-spent`);
+      if (spentBarContainer) {
+        if (user === currentUser) {
+          spentBarContainer.classList.add('active');
+        } else {
+          spentBarContainer.classList.remove('active');
+        }
+      }
       
       if (spentBar && spentValue) {
         const value = userMetrics[user].total_spent || 0;

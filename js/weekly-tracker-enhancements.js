@@ -7,6 +7,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Wait for all scripts to load
   setTimeout(enhanceWeeklyTracker, 1000);
+  
+  // Force visibility for the current user's purchase section after a delay
+  setTimeout(() => {
+    if (typeof window.currentUser !== 'undefined') {
+      const user = window.currentUser;
+      const userSection = document.querySelector(`#${user}-purchases`);
+      if (userSection) {
+        console.log(`Force showing ${user} purchases section`);
+        userSection.style.display = 'block';
+        userSection.classList.add('active');
+      }
+    }
+  }, 1500);
 });
 
 /**
@@ -25,15 +38,13 @@ function enhanceWeeklyTracker() {
   if (typeof window.loadPurchasesForWeek === 'function') {
     const originalLoadPurchases = window.loadPurchasesForWeek;
     
-    window.loadPurchasesForWeek = async function(weekKey) {
-      // Show loading state in purchase containers
-      if (typeof window.users !== 'undefined') {
-        window.users.forEach(user => {
-          const purchaseList = document.querySelector(`#${user}-purchases ul`);
-          if (purchaseList && typeof window.showLoading === 'function') {
-            window.showLoading(purchaseList);
-          }
-        });
+    window.loadPurchasesForWeek = async function(weekKey) {      // Show loading state in purchase container for current user only
+      if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
+        const user = window.currentUser;
+        const purchaseList = document.querySelector(`#${user}-purchases ul`);
+        if (purchaseList && typeof window.showLoading === 'function') {
+          window.showLoading(purchaseList);
+        }
       }
       
       // Also show loading in the metrics summary
@@ -124,28 +135,25 @@ function enhanceWeeklyTracker() {
             }
           }
         }
-        
-        // Continue with the original processing of purchases and metrics
-        if (typeof window.users !== 'undefined') {
-          // Group purchases by user
+          // Continue with the original processing of purchases and metrics
+        if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
+          // Group purchases by user, but we only care about the current user
           const purchasesByUser = {};
-          window.users.forEach(user => {
-            purchasesByUser[user] = [];
-          });
+          purchasesByUser[window.currentUser] = [];
           
-          // Organize purchases by user
+          // Organize purchases for the current user only
           purchases.forEach(purchase => {
-            if (purchasesByUser[purchase.username]) {
-              purchasesByUser[purchase.username].push(purchase);
+            if (purchase.username === window.currentUser) {
+              purchasesByUser[window.currentUser].push(purchase);
             }
           });
           
-          // Update display for each user
-          window.users.forEach(user => {
-            const userPurchases = purchasesByUser[user] || [];
-            const purchaseList = document.querySelector(`#${user}-purchases ul`);
-            const totalElement = document.querySelector(`#${user}-purchases .weekly-total`);
-            const statsElement = document.querySelector(`#${user}-purchases .weekly-stats`);
+          // Only update the current user's display
+          const user = window.currentUser;
+          const userPurchases = purchasesByUser[user] || [];
+          const purchaseList = document.querySelector(`#${user}-purchases ul`);
+          const totalElement = document.querySelector(`#${user}-purchases .weekly-total`);
+          const statsElement = document.querySelector(`#${user}-purchases .weekly-stats`);
             
             if (purchaseList && totalElement) {
               // Clear existing content
@@ -207,8 +215,7 @@ function enhanceWeeklyTracker() {
                   purchaseList.appendChild(li);
                 });
               });
-              
-              // Update total display
+                // Update total display
               totalElement.textContent = `Total: ${userTotal} 💷`;
               
               // Update or create stats element
@@ -249,7 +256,30 @@ function enhanceWeeklyTracker() {
                 }
               }
             }
-          });
+              // Show/hide user sections and metrics based on current user
+            window.users.forEach(otherUser => {
+              // Handle purchase sections
+              const userSection = document.querySelector(`#${otherUser}-purchases`);
+              if (userSection) {
+                if (otherUser === window.currentUser) {
+                  userSection.classList.add('active');
+                } else {
+                  userSection.classList.remove('active');
+                }
+              }
+              
+              // Handle metrics bars
+              ['spent', 'calories', 'alcohol'].forEach(metricType => {
+                const userBar = document.querySelector(`#${otherUser}-${metricType}`);
+                if (userBar) {
+                  if (otherUser === window.currentUser) {
+                    userBar.classList.add('active');
+                  } else {
+                    userBar.classList.remove('active');
+                  }
+                }
+              });
+            });
         }
         
         // Update the metrics charts
@@ -282,26 +312,35 @@ function enhanceWeeklyTracker() {
         } catch (err) {
           console.warn(`Failed to load metrics for charts: ${err.message || err}`);
         }
-        
-        // Continue with original implementation if we have window.users
-        if (typeof window.users !== 'undefined') {
-          // Find metrics for each user
+          // Continue with original implementation if we have window.users and currentUser
+        if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
+          // Find metrics only for current user
           const userMetrics = {};
-          window.users.forEach(user => {
-            userMetrics[user] = metrics.find(m => m.username === user) || {
-              total_spent: 0,
-              total_calories: 0,
-              alcohol_count: 0
-            };
+          const user = window.currentUser;
+          userMetrics[user] = metrics.find(m => m.username === user) || {
+            total_spent: 0,
+            total_calories: 0,
+            alcohol_count: 0
+          };
+            // Calculate max values for scaling (using only current user)
+          const maxSpent = Math.max(userMetrics[user].total_spent || 0, 1);
+          const maxCalories = Math.max(userMetrics[user].total_calories || 0, 1);
+          const maxAlcohol = Math.max(userMetrics[user].alcohol_count || 0, 1);
+          
+          // Update the charts only for current user - the CSS will hide the others
+          users.forEach(username => {
+            // Show or hide the metrics bars based on current user
+            ['spent', 'calories', 'alcohol'].forEach(metricType => {
+              const userBar = document.querySelector(`#${username}-${metricType}`);
+              if (userBar) {
+                if (username === window.currentUser) {
+                  userBar.classList.add('active');
+                } else {
+                  userBar.classList.remove('active');
+                }
+              }
+            });
           });
-          
-          // Calculate max values for scaling
-          const maxSpent = Math.max(...Object.values(userMetrics).map(m => m.total_spent || 0), 1);
-          const maxCalories = Math.max(...Object.values(userMetrics).map(m => m.total_calories || 0), 1);
-          const maxAlcohol = Math.max(...Object.values(userMetrics).map(m => m.alcohol_count || 0), 1);
-          
-          // Update all the charts and metrics displays
-          // ... (same implementation as before)
           
           // Apply visual enhancements
           setTimeout(() => {
