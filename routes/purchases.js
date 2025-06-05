@@ -36,14 +36,51 @@ router.get('/:weekKey/:username', async (req, res) => {
 router.get('/metrics/:weekKey', async (req, res) => {
   try {
     const { weekKey } = req.params;
+    console.log(`Fetching metrics for week: ${weekKey}`);
+    
+    // First check if user_metrics table exists
+    const tableCheck = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_name = 'user_metrics'
+      );
+    `);
+    
+    if (!tableCheck.rows[0].exists) {
+      console.log('User metrics table does not exist, creating it now');
+      // Create the table if it doesn't exist
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS user_metrics (
+          id SERIAL PRIMARY KEY,
+          username VARCHAR(50) NOT NULL,
+          week_key DATE NOT NULL,
+          total_spent INTEGER NOT NULL DEFAULT 0,
+          total_calories INTEGER NOT NULL DEFAULT 0,
+          snack_count INTEGER NOT NULL DEFAULT 0,
+          concoction_count INTEGER NOT NULL DEFAULT 0,
+          alcohol_count INTEGER NOT NULL DEFAULT 0,
+          last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+          
+          UNIQUE(username, week_key)
+        );
+        
+        -- Create index on username and week_key for faster lookups
+        CREATE INDEX IF NOT EXISTS idx_user_metrics_username_week ON user_metrics(username, week_key);
+      `);
+      console.log('User metrics table created successfully');
+    }
+    
+    // Query metrics
     const result = await pool.query(
       'SELECT * FROM user_metrics WHERE week_key = $1',
       [weekKey]
     );
+    console.log(`Found ${result.rows.length} metrics for week ${weekKey}`);
     res.json(result.rows);
   } catch (error) {
     console.error('Error retrieving user metrics:', error);
-    res.status(500).json({ error: 'Failed to retrieve user metrics' });
+    // Return an empty array instead of an error to make the client more resilient
+    res.json([]);
   }
 });
 
@@ -60,6 +97,25 @@ router.post('/', async (req, res) => {
     if (!username || !weekKey || !items || totalValue === undefined) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
+    
+    console.log(`Recording purchase for ${username} in week ${weekKey} with ${items.length} items`);
+    
+    // Make sure purchases table exists
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS purchases (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        week_key DATE NOT NULL,
+        items JSONB NOT NULL,
+        total_value INTEGER NOT NULL,
+        total_calories INTEGER DEFAULT 0,
+        purchase_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+      
+      -- Create indexes for performance if they don't exist
+      CREATE INDEX IF NOT EXISTS idx_purchases_week_key ON purchases(week_key);
+      CREATE INDEX IF NOT EXISTS idx_purchases_username ON purchases(username);
+    `);
     
     // Insert the purchase
     const purchaseResult = await client.query(
@@ -92,6 +148,25 @@ router.post('/', async (req, res) => {
       item.includes('🥃') || 
       item.includes('🍾')
     ).length;
+      // Make sure user_metrics table exists
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_metrics (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        week_key DATE NOT NULL,
+        total_spent INTEGER NOT NULL DEFAULT 0,
+        total_calories INTEGER NOT NULL DEFAULT 0,
+        snack_count INTEGER NOT NULL DEFAULT 0,
+        concoction_count INTEGER NOT NULL DEFAULT 0,
+        alcohol_count INTEGER NOT NULL DEFAULT 0,
+        last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        
+        UNIQUE(username, week_key)
+      );
+      
+      -- Create index on username and week_key for faster lookups
+      CREATE INDEX IF NOT EXISTS idx_user_metrics_username_week ON user_metrics(username, week_key);
+    `);
     
     // Update user metrics
     await client.query(`

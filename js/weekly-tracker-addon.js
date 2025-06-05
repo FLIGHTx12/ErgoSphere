@@ -50,7 +50,23 @@ function setupWebSocket() {
   
   // Create WebSocket connection
   const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-  const wsUrl = `${protocol}//${window.location.host}`;
+  let host = window.location.host;
+  
+  // If we're on port 1550, try port 3000 for WebSocket
+  if (window.location.port === '1550') {
+    // Try to use known good port from sessionStorage if available
+    const apiBaseUrl = sessionStorage.getItem('apiBaseUrl');
+    if (apiBaseUrl) {
+      // Extract host from stored API URL
+      host = new URL(apiBaseUrl).host;
+    } else {
+      // Otherwise replace 1550 with 3000
+      host = host.replace(':1550', ':3000');
+    }
+  }
+  
+  const wsUrl = `${protocol}//${host}`;
+  console.log(`Setting up WebSocket connection to: ${wsUrl}`);
   const ws = new WebSocket(wsUrl);
   
   ws.onopen = () => {
@@ -237,53 +253,120 @@ async function recordPurchase(items, totalValue) {
     const calories = await calculateCalories(item.name, item.quantity);
     totalCalories += calories;
   }
-  
-  try {
-    // Send purchase to server
-    const response = await fetch('/api/purchases', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: currentUser,
-        weekKey: weekKey,
-        items: items,
-        totalValue: totalValue,
-        totalCalories: totalCalories
-      })
-    });
+    try {
+    console.log(`Recording purchase for ${currentUser} with ${items.length} items (${totalValue}💷)`);
+      // Try sending purchase to server with retry mechanism
+    let serverSuccess = false;
+    let retryCount = 0;
+    const maxRetries = 2;
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error recording purchase:', errorData);
-      return;
+    while (!serverSuccess && retryCount <= maxRetries) {
+      try {
+        // Use the stored base URL if available, otherwise use current origin
+        let baseUrl = sessionStorage.getItem('apiBaseUrl') || window.location.origin;
+        // If we're on port 1550, also try port 3000 as fallback
+        const usePort3000 = !sessionStorage.getItem('apiBaseUrl') && window.location.port === '1550';
+        
+        console.log(`Trying to post purchase to: ${baseUrl}/api/purchases`);
+        let response = await fetch(`${baseUrl}/api/purchases`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: currentUser,
+            weekKey: weekKey,
+            items: items,
+            totalValue: totalValue,
+            totalCalories: totalCalories
+          })
+        });
+        
+        // If failed and we're on port 1550, try port 3000
+        if (!response.ok && usePort3000 && retryCount === 0) {
+          baseUrl = baseUrl.replace(':1550', ':3000');
+          console.log(`Retrying with port 3000: ${baseUrl}/api/purchases`);
+          response = await fetch(`${baseUrl}/api/purchases`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              username: currentUser,
+              weekKey: weekKey,
+              items: items,
+              totalValue: totalValue,
+              totalCalories: totalCalories
+            })
+          });
+          
+          if (response.ok) {
+            // Store the successful base URL in session storage for future requests
+            sessionStorage.setItem('apiBaseUrl', baseUrl);
+          }
+        }
+        
+        if (response.ok) {
+          console.log('Purchase successfully recorded on server');
+          serverSuccess = true;
+          
+          // Show toast notification for success
+          showToast('Purchase recorded successfully!', 'success');
+          
+          // Update the display if we're viewing the current week
+          if (currentDisplayWeek === weekKey) {
+            loadPurchasesForWeek(weekKey);
+          }
+          break;
+        } else {
+          const errorData = await response.json();
+          console.error(`Error recording purchase (attempt ${retryCount + 1}):`, errorData);
+          retryCount++;
+          
+          if (retryCount <= maxRetries) {
+            console.log(`Retrying... (${retryCount}/${maxRetries})`);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retry
+          }
+        }
+      } catch (networkError) {
+        console.error(`Network error (attempt ${retryCount + 1}):`, networkError);
+        retryCount++;
+        
+        if (retryCount <= maxRetries) {
+          console.log(`Retrying... (${retryCount}/${maxRetries})`);
+          await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retry
+        }
+      }
     }
     
-    // Update the display if we're viewing the current week
-    if (currentDisplayWeek === weekKey) {
-      loadPurchasesForWeek(weekKey);
+    // If server recording failed after retries, fall back to localStorage
+    if (!serverSuccess) {
+      console.log('Server recording failed, falling back to localStorage');
+      
+      // Show toast notification for fallback
+      showToast('Server unavailable - saving offline', 'warning');
+      
+      // Fallback to localStorage if server request fails
+      const weeklyPurchases = JSON.parse(localStorage.getItem(`ergoShop_purchases_${weekKey}`) || '{}');
+      if (!weeklyPurchases[currentUser]) {
+        weeklyPurchases[currentUser] = [];
+      }
+      weeklyPurchases[currentUser].push({
+        date: new Date().toISOString(),
+        items: items,
+        total: totalValue,
+        calories: totalCalories
+      });
+      localStorage.setItem(`ergoShop_purchases_${weekKey}`, JSON.stringify(weeklyPurchases));
+      
+      // Update the display
+      if (currentDisplayWeek === weekKey) {
+        loadPurchasesForWeek(weekKey);
+      }
     }
   } catch (error) {
-    console.error('Error sending purchase to server:', error);
-    
-    // Fallback to localStorage if server request fails
-    const weeklyPurchases = JSON.parse(localStorage.getItem(`ergoShop_purchases_${weekKey}`) || '{}');
-    if (!weeklyPurchases[currentUser]) {
-      weeklyPurchases[currentUser] = [];
-    }
-    weeklyPurchases[currentUser].push({
-      date: new Date().toISOString(),
-      items: items,
-      total: totalValue,
-      calories: totalCalories
-    });
-    localStorage.setItem(`ergoShop_purchases_${weekKey}`, JSON.stringify(weeklyPurchases));
-    
-    // Update the display
-    if (currentDisplayWeek === weekKey) {
-      loadPurchasesForWeek(weekKey);
-    }
+    console.error('Unexpected error in recordPurchase:', error);
+    showToast('Error recording purchase - please try again', 'error');
   }
 }
 
@@ -299,13 +382,37 @@ async function deletePurchase(purchaseId) {
       purchaseLi.classList.add('deleting');
     }
     
-    // Call the API to delete the purchase
-    const response = await fetch(`/api/purchases/${purchaseId}`, {
+    // Use the stored base URL if available, otherwise use current origin
+    let baseUrl = sessionStorage.getItem('apiBaseUrl') || window.location.origin;
+      // Call the API to delete the purchase
+    // Use the stored base URL if available
+    let response;
+    const usePort3000 = !sessionStorage.getItem('apiBaseUrl') && window.location.port === '1550';
+    
+    console.log(`Trying to delete purchase from: ${baseUrl}/api/purchases/${purchaseId}`);
+    response = await fetch(`${baseUrl}/api/purchases/${purchaseId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     });
+    
+    // If failed and we're on port 1550, try port 3000
+    if (!response.ok && usePort3000) {
+      baseUrl = baseUrl.replace(':1550', ':3000');
+      console.log(`Retrying with port 3000: ${baseUrl}/api/purchases/${purchaseId}`);
+      response = await fetch(`${baseUrl}/api/purchases/${purchaseId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Store the successful base URL in session storage for future requests
+        sessionStorage.setItem('apiBaseUrl', baseUrl);
+      }
+    }
     
     if (!response.ok) {
       throw new Error(`Server returned ${response.status}`);
@@ -379,19 +486,67 @@ async function loadPurchasesForWeek(weekKey) {
   if (metricsContainer) {
     showLoading(metricsContainer);
   }
-  
-  try {
-    // Get purchases from server
-    const purchasesResponse = await fetch(`/api/purchases/${weekKey}`);
-    if (!purchasesResponse.ok) {
-      throw new Error(`Server returned ${purchasesResponse.status}`);
+    try {    // Get purchases from server with better error handling and correct port
+    let purchases = [];
+    try {
+      // First try the current origin
+      let baseUrl = window.location.origin;
+      // If we're on port 1550, also try port 3000 as fallback
+      const usePort3000 = window.location.port === '1550';
+      
+      console.log(`Trying to fetch purchases from current origin: ${baseUrl}/api/purchases/${weekKey}`);
+      let purchasesResponse = await fetch(`${baseUrl}/api/purchases/${weekKey}`);
+      
+      // If failed and we're on port 1550, try port 3000
+      if (!purchasesResponse.ok && usePort3000) {
+        baseUrl = baseUrl.replace(':1550', ':3000');
+        console.log(`Retrying with port 3000: ${baseUrl}/api/purchases/${weekKey}`);
+        purchasesResponse = await fetch(`${baseUrl}/api/purchases/${weekKey}`);
+      }
+      
+      if (purchasesResponse.ok) {
+        purchases = await purchasesResponse.json();
+        console.log(`Loaded ${purchases.length} purchases for week ${weekKey}`);
+        // Store the successful base URL in session storage for future requests
+        sessionStorage.setItem('apiBaseUrl', baseUrl);
+      } else {
+        console.warn(`Failed to load purchases: ${purchasesResponse.status} ${purchasesResponse.statusText}`);
+      }
+    } catch (purchaseErr) {
+      console.error('Error fetching purchases:', purchaseErr);
     }
-    
-    const purchases = await purchasesResponse.json();
-    
-    // Get user metrics from server
-    const metricsResponse = await fetch(`/api/purchases/metrics/${weekKey}`);
-    const metrics = metricsResponse.ok ? await metricsResponse.json() : [];
+      // Get user metrics from server with better error handling
+    let metrics = [];
+    try {
+      // Use the stored base URL if available, otherwise use current origin
+      let baseUrl = sessionStorage.getItem('apiBaseUrl') || window.location.origin;
+      // If we're on port 1550, also try port 3000 as fallback
+      const usePort3000 = !sessionStorage.getItem('apiBaseUrl') && window.location.port === '1550';
+      
+      console.log(`Trying to fetch metrics from: ${baseUrl}/api/purchases/metrics/${weekKey}`);
+      let metricsResponse = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
+      
+      // If failed and we're on port 1550, try port 3000
+      if (!metricsResponse.ok && usePort3000) {
+        baseUrl = baseUrl.replace(':1550', ':3000');
+        console.log(`Retrying with port 3000: ${baseUrl}/api/purchases/metrics/${weekKey}`);
+        metricsResponse = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
+        
+        if (metricsResponse.ok) {
+          // Store the successful base URL in session storage for future requests
+          sessionStorage.setItem('apiBaseUrl', baseUrl);
+        }
+      }
+      
+      if (metricsResponse.ok) {
+        metrics = await metricsResponse.json();
+        console.log(`Loaded ${metrics.length} metrics for week ${weekKey}`);
+      } else {
+        console.warn(`Failed to load metrics: ${metricsResponse.status} ${metricsResponse.statusText}`);
+      }
+    } catch (metricErr) {
+      console.error('Error fetching metrics:', metricErr);
+    }
     
     // Group purchases by user
     const purchasesByUser = {};
@@ -625,13 +780,39 @@ async function loadPurchasesForWeek(weekKey) {
  */
 async function updateMetricsCharts(weekKey) {
   try {
-    // Get user metrics from server
-    const response = await fetch(`/api/purchases/metrics/${weekKey}`);
-    if (!response.ok) {
-      throw new Error(`Server returned ${response.status}`);
+    // Get user metrics from server with better error handling
+    let metrics = [];
+    try {
+      // Use the stored base URL if available, otherwise use current origin
+      let baseUrl = sessionStorage.getItem('apiBaseUrl') || window.location.origin;
+      // If we're on port 1550, also try port 3000 as fallback
+      const usePort3000 = !sessionStorage.getItem('apiBaseUrl') && window.location.port === '1550';
+      
+      console.log(`Trying to fetch metrics for charts from: ${baseUrl}/api/purchases/metrics/${weekKey}`);
+      let response = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
+      
+      // If failed and we're on port 1550, try port 3000
+      if (!response.ok && usePort3000) {
+        baseUrl = baseUrl.replace(':1550', ':3000');
+        console.log(`Retrying with port 3000: ${baseUrl}/api/purchases/metrics/${weekKey}`);
+        response = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
+        
+        if (response.ok) {
+          // Store the successful base URL in session storage for future requests
+          sessionStorage.setItem('apiBaseUrl', baseUrl);
+        }
+      }
+      
+      if (response.ok) {
+        metrics = await response.json();
+        console.log(`Loaded ${metrics.length} metrics for charts - week ${weekKey}`);
+      } else {
+        console.warn(`Failed to load metrics for charts: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.error('Error fetching metrics for charts:', err);
+      // Continue with empty metrics, interface will still work
     }
-    
-    const metrics = await response.json();
     
     // Find metrics for each user
     const userMetrics = {};

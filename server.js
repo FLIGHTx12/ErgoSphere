@@ -97,8 +97,16 @@ app.use((req, res, next) => {
     if (!res.getHeader('Last-Modified')) {
       res.setHeader('Last-Modified', new Date().toUTCString());
     }
-  }
-  next();
+  }  next();
+});
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    version: '1.0.0'
+  });
 });
 
 // Import selection routes
