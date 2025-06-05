@@ -67,46 +67,125 @@ function setupWebSocket() {
   
   const wsUrl = `${protocol}//${host}`;
   console.log(`Setting up WebSocket connection to: ${wsUrl}`);
-  const ws = new WebSocket(wsUrl);
   
-  ws.onopen = () => {
-    console.log('WebSocket connection established');
-    // Send a ping to keep connection alive
-    setInterval(() => {
-      if (ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({ type: 'ping' }));
+  // Use the WebSocketReconnector if available for better reliability
+  if (typeof WebSocketReconnector !== 'undefined') {
+    console.log('Using WebSocketReconnector for resilient connections');
+    
+    const wsConnection = new WebSocketReconnector(wsUrl, {
+      reconnectInterval: 2000,          // Start with 2 seconds delay
+      maxReconnectInterval: 60000,      // Max of 1 minute between retries
+      maxReconnectAttempts: 20          // More generous reconnect attempts
+    });
+    
+    // Set up ping interval
+    const pingInterval = setInterval(() => {
+      wsConnection.send(JSON.stringify({ type: 'ping' }));
+    }, 30000);
+    
+    // Handle connection events
+    wsConnection.on('open', () => {
+      console.log('WebSocket connection established');
+      // Update server status if available
+      if (typeof checkServerStatus === 'function') {
+        checkServerStatus();
       }
-    }, 30000); // Every 30 seconds
-  };
-  
-  ws.onmessage = (event) => {
-    try {
-      const message = JSON.parse(event.data);
-      
-      // Handle purchase updates
-      if (message.type === 'newPurchase') {
-        // Reload purchases if the purchase is for the currently displayed week
-        if (message.data.week_key === currentDisplayWeek) {
+    });
+    
+    wsConnection.on('message', (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        
+        // Handle purchase updates
+        if (message.type === 'newPurchase') {
+          // Reload purchases if the purchase is for the currently displayed week
+          if (message.data.week_key === currentDisplayWeek) {
+            loadPurchasesForWeek(currentDisplayWeek);
+          }
+        } else if (message.type === 'deletePurchase') {
+          // Reload purchases if a purchase is deleted
           loadPurchasesForWeek(currentDisplayWeek);
         }
-      } else if (message.type === 'deletePurchase') {
-        // Reload purchases if a purchase is deleted
-        loadPurchasesForWeek(currentDisplayWeek);
+      } catch (error) {
+        console.error('Error processing WebSocket message:', error);
       }
-    } catch (error) {
-      console.error('Error processing WebSocket message:', error);
-    }
-  };
-  
-  ws.onerror = (error) => {
-    console.error('WebSocket error:', error);
-  };
-  
-  ws.onclose = () => {
-    console.log('WebSocket connection closed');
-    // Try to reconnect after a delay
-    setTimeout(setupWebSocket, 5000);
-  };
+    });
+      wsConnection.on('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+    
+    wsConnection.on('close', () => {
+      console.log('WebSocket connection closed');
+    });
+    
+    wsConnection.on('reconnecting', (data) => {
+      console.log(`WebSocket reconnecting (attempt ${data.attempts})...`);
+      // Show offline banner if available
+      if (typeof showOfflineModeBanner === 'function') {
+        showOfflineModeBanner();
+      }
+    });
+    
+    wsConnection.on('reconnected', () => {
+      console.log('WebSocket reconnected successfully');
+      // Hide offline banner if available
+      if (typeof hideOfflineModeBanner === 'function') {
+        hideOfflineModeBanner();
+      }
+      // Refresh purchases for current week
+      loadPurchasesForWeek(currentDisplayWeek);
+    });
+    
+    wsConnection.on('maxAttemptsExceeded', () => {
+      console.error('Maximum WebSocket reconnection attempts exceeded');
+      // Keep offline banner showing
+    });
+    
+    // Store the connection in a global for later access
+    window.wsConnection = wsConnection;
+  } else {
+    // Fallback to standard WebSocket implementation
+    const ws = new WebSocket(wsUrl);
+    
+    ws.onopen = () => {
+      console.log('WebSocket connection established (standard)');
+      // Send a ping to keep connection alive
+      setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: 'ping' }));
+        }
+      }, 30000); // Every 30 seconds
+    };
+    
+    ws.onmessage = (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        
+        // Handle purchase updates
+        if (message.type === 'newPurchase') {
+          // Reload purchases if the purchase is for the currently displayed week
+          if (message.data.week_key === currentDisplayWeek) {
+            loadPurchasesForWeek(currentDisplayWeek);
+          }
+        } else if (message.type === 'deletePurchase') {
+          // Reload purchases if a purchase is deleted
+          loadPurchasesForWeek(currentDisplayWeek);
+        }
+      } catch (error) {
+        console.error('Error processing WebSocket message:', error);
+      }
+    };
+    
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+    
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
+      // Try to reconnect after a delay
+      setTimeout(setupWebSocket, 5000);
+    };
+  }
 }
 
 /**

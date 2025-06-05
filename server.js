@@ -100,12 +100,41 @@ app.use((req, res, next) => {
   }  next();
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Enhanced health check endpoint with detailed system status
+app.get('/api/health', async (req, res) => {
+  let dbStatus = 'unknown';
+  let dbResponseTime = null;
+  
+  // Check database connectivity
+  const dbStartTime = Date.now();
+  try {
+    // Try a simple query to test database connection
+    const dbResult = await pool.query('SELECT NOW()');
+    dbStatus = 'connected';
+    dbResponseTime = Date.now() - dbStartTime;
+  } catch (error) {
+    console.error('Health check - Database error:', error);
+    dbStatus = 'error';
+  }
+  
+  // Get system info
+  const systemInfo = {
+    nodeVersion: process.version,
+    platform: process.platform,
+    memory: process.memoryUsage(),
+    uptime: process.uptime()
+  };
+  
+  // Build the detailed health response
   res.json({ 
-    status: 'ok', 
+    status: dbStatus === 'connected' ? 'ok' : 'degraded', 
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.1',
+    database: {
+      status: dbStatus,
+      responseTime: dbResponseTime
+    },
+    system: systemInfo
   });
 });
 

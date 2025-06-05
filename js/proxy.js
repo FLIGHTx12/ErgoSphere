@@ -92,11 +92,23 @@ async function proxiedFetch(url, options = {}) {
       
       // Add response status to help with conditional handling
       responseError.status = response.status;
-      
-      // Try to get response body as JSON if possible
+        // Try to get response body as JSON if possible
       try {
         const errorData = await response.clone().json();
         responseError.data = errorData;
+        
+        // Track the error with our error tracker if available
+        if (window.apiErrorTracker && typeof window.apiErrorTracker.trackApiError === 'function') {
+          window.apiErrorTracker.trackApiError({
+            url: fullUrl,
+            status: response.status,
+            method: options?.method || 'GET',
+            responseData: errorData,
+            message: `${response.status} ${statusText} for ${url}`,
+            severity: response.status >= 500 ? 'high' : 'medium',
+            source: 'proxy-js'
+          });
+        }
       } catch (e) {
         // If it's not valid JSON, don't worry about it
       }
@@ -106,13 +118,25 @@ async function proxiedFetch(url, options = {}) {
     }
     
     return response;
-  } catch (error) {
-    // For network errors, add more context
+  } catch (error) {    // For network errors, add more context
     if (error.name === 'TypeError' && error.message.includes('fetch')) {
       console.error(`Network error accessing ${fullUrl}`, error);
       const networkError = new Error(`Network error: Could not connect to ${fullUrl}`);
       networkError.originalError = error;
       networkError.isNetworkError = true;
+      
+      // Track network errors with our error tracker if available
+      if (window.apiErrorTracker && typeof window.apiErrorTracker.trackApiError === 'function') {
+        window.apiErrorTracker.trackApiError({
+          url: fullUrl,
+          status: 0,
+          method: options?.method || 'GET',
+          requestData: options?.body ? JSON.parse(options.body) : null,
+          message: `Network error: Could not connect to ${url}`,
+          severity: 'high',
+          source: 'proxy-js'
+        });
+      }
       throw networkError;
     }
     
