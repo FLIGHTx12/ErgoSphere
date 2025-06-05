@@ -22,9 +22,9 @@
   <h1>ErgoShop</h1>
 </header>
 <hr>
-
+<!-- User selector will be inserted here by JavaScript -->
 <main>
-  <div id="snacks" class="glass-effect">
+  <div id="snacks" class="modern-container">
     <details><summary>REFRESHMENTS</summary>
     <ul>
       <li>
@@ -119,7 +119,7 @@
       </li>
     </ul>
   </div>
-   <div id="mealMods" class="glass-effect">
+   <div id="mealMods" class="modern-container">
     <details><summary>MEAL MODS</summary>
 
     <ul>
@@ -193,7 +193,7 @@
   </div> </details>
   <!-- End of Meal Mods container -->
     <!-- Entertainment section with additional containers -->
-  <div id="entertainment" class="glass-effect">
+  <div id="entertainment" >
     <details><summary>LEISURE</summary>
     <h3>ENTERTAINMENT MODS</h3>
     <div id="entertainmentContainer">
@@ -256,19 +256,88 @@
       <button class="add-button">+</button>
     </div>
   </div></Details>
-
   <button type="button" class="action-button" onclick="submitSelection()">Submit</button>
   <br>
   <div id="summary" class="summary" onclick="screenshotDiv()"></div>
   <br>
   <button type="button" class="action-button copy-clear" onclick="clearSelection()">Clear</button>
   <button type="button" class="action-button copy-clear" onclick="copySummary()">Copy</button>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  
+  <!-- Weekly Purchase Tracker -->
+  <div id="weekly-purchases" >
+    <details open>
+      <summary>WEEKLY PURCHASES (Week <span class="week-number"></span>)</summary>
+      <div class="user-section">
+        <div class="user-purchases" id="FLIGHTx12-purchases">
+          <h3>FLIGHTx12</h3>
+          <ul></ul>
+          <p class="weekly-total">Total: 0 💷</p>
+        </div>
+        <div class="user-purchases" id="Jaybers8-purchases">
+          <h3>Jaybers8</h3>
+          <ul></ul>
+          <p class="weekly-total">Total: 0 💷</p>        </div>
+      </div>
+      <div class="week-controls">
+        <button class="week-nav-button" onclick="switchToPreviousWeek()">◀</button>
+        <span id="current-week-display"></span>
+        <button class="week-nav-button" onclick="switchToNextWeek()">▶</button>
+      </div>
+    </details>
+  </div>
+  
+  <!-- Weekly metrics summary -->
+  <div id="weekly-metrics-summary" class="modern-container">
+    <h3>Weekly Metrics Summary</h3>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <h4>Total Spent</h4>
+        <div id="total-spent-chart" class="chart-container">
+          <div class="user-bar" id="FLIGHTx12-spent">
+            <span class="label">FLIGHTx12</span>
+            <div class="bar"></div>
+            <span class="value">0 💷</span>
+          </div>
+          <div class="user-bar" id="Jaybers8-spent">
+            <span class="label">Jaybers8</span>
+            <div class="bar"></div>
+            <span class="value">0 💷</span>
+          </div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <h4>Total Calories</h4>
+        <div id="total-calories-chart" class="chart-container">
+          <div class="user-bar" id="FLIGHTx12-calories">
+            <span class="label">FLIGHTx12</span>
+            <div class="bar"></div>
+            <span class="value">0 cal</span>
+          </div>
+          <div class="user-bar" id="Jaybers8-calories">
+            <span class="label">Jaybers8</span>
+            <div class="bar"></div>
+            <span class="value">0 cal</span>
+          </div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <h4>Alcohol Consumption</h4>
+        <div id="alcohol-consumption-chart" class="chart-container">
+          <div class="user-bar" id="FLIGHTx12-alcohol">
+            <span class="label">FLIGHTx12</span>
+            <div class="bar"></div>
+            <span class="value">0 🍸</span>
+          </div>
+          <div class="user-bar" id="Jaybers8-alcohol">
+            <span class="label">Jaybers8</span>
+            <div class="bar"></div>
+            <span class="value">0 🍸</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <br>
   <br>
   <br>
@@ -278,6 +347,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/utils.js"></script>
 <script src="../js/script.js"></script>
+<script src="../js/week-tracker.js"></script>
 <script src="../js/ErgoShop.js"></script>
+<script src="../js/weekly-tracker-addon.js"></script>
 </body>
 </html>

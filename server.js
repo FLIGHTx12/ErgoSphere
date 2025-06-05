@@ -513,7 +513,9 @@ app.use('/api/items', itemsRouter);
 const betsRouter = require('./routes/bets');
 app.use('/api/bets', betsRouter);
 
-
+// Import and use the purchases routes
+const purchasesRouter = require('./routes/purchases');
+app.use('/api/purchases', purchasesRouter);
 
 // Error handling
 app.use((err, req, res, next) => {
@@ -524,20 +526,22 @@ app.use((err, req, res, next) => {
 // Run database migrations
 const runMigration = require('./runMigration');
 
-// Start the server after attempting migration
+// Start the server after running all database migrations
 const startServer = async () => {
   try {
-    // Run the quarterly games migration
+    // Run all database migrations
+    console.log('Running database migrations...');
     const migrationResult = await runMigration();
     if (migrationResult.success) {
-      console.log('Database migration successful');
+      console.log('All database migrations completed successfully');
     } else {
-      console.error('Database migration failed:', migrationResult.error);
+      console.error('Database migrations failed:', migrationResult.error);
     }
   } catch (err) {
-    console.error('Error running migrations:', err);
+    console.error('Error running database migrations:', err);
   }
-    // Start the server regardless of migration result
+    
+  // Start the server regardless of migration result
   server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
     console.log(`WebSocket server is running on ws://localhost:${port}`);

@@ -4,6 +4,8 @@ const pool = require('./db');
 
 async function runMigration() {
   try {
+    console.log('Starting database migration process...');
+    
     // Try to run the quarterly games migration if it exists
     try {
       const quarterlyGamesSqlPath = path.join(__dirname, 'db/migrations/add_quarterly_games_ergoart_to_weekly_selections_fixed.sql');
@@ -11,10 +13,12 @@ async function runMigration() {
         const quarterlyGamesSql = fs.readFileSync(quarterlyGamesSqlPath, 'utf8');
         console.log('Executing quarterly games SQL');
         await pool.query(quarterlyGamesSql);
-        console.log('Quarterly games migration completed successfully');
+        console.log('✅ Quarterly games migration completed successfully');
+      } else {
+        console.log('📝 Quarterly games migration file not found (this may be expected)');
       }
     } catch (quarterlyError) {
-      console.log('Quarterly games migration not needed or failed:', quarterlyError.message);
+      console.error('❌ Quarterly games migration failed:', quarterlyError.message);
     }
     
     // Run the weekly choices migration
@@ -24,10 +28,40 @@ async function runMigration() {
         const weeklyChoicesSql = fs.readFileSync(weeklyChoicesSqlPath, 'utf8');
         console.log('Executing weekly choices SQL');
         await pool.query(weeklyChoicesSql);
-        console.log('Weekly choices migration completed successfully');
+        console.log('✅ Weekly choices migration completed successfully');
+      } else {
+        console.log('📝 Weekly choices migration file not found (this may be expected)');
       }
     } catch (weeklyChoicesError) {
-      console.log('Weekly choices migration not needed or failed:', weeklyChoicesError.message);
+      console.error('❌ Weekly choices migration failed:', weeklyChoicesError.message);
+    }
+    
+    // Run purchases table migration for weekly purchase tracker
+    try {
+      console.log('Creating purchases table for weekly purchase tracker...');
+      const createPurchasesTable = require('./db/migrations/create_purchases_table');
+      const purchasesResult = await createPurchasesTable();
+      if (purchasesResult) {
+        console.log('✅ Purchases table migration completed successfully');
+      } else {
+        console.log('⚠️ Purchases table migration returned false');
+      }
+    } catch (purchasesError) {
+      console.error('❌ Purchases table migration failed:', purchasesError.message);
+    }
+    
+    // Run user metrics table migration for weekly purchase tracker
+    try {
+      console.log('Creating user metrics table for weekly purchase tracker...');
+      const createUserMetricsTable = require('./db/migrations/create_user_metrics_table');
+      const metricsResult = await createUserMetricsTable();
+      if (metricsResult) {
+        console.log('✅ User metrics table migration completed successfully');
+      } else {
+        console.log('⚠️ User metrics table migration returned false');
+      }
+    } catch (metricsError) {
+      console.error('❌ User metrics table migration failed:', metricsError.message);
     }
     
     return { success: true, message: 'Migrations completed successfully' };
