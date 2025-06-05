@@ -575,6 +575,10 @@ app.use('/api/bets', betsRouter);
 const purchasesRouter = require('./routes/purchases');
 app.use('/api/purchases', purchasesRouter);
 
+// Import and use the health check routes
+const healthRouter = require('./routes/health');
+app.use('/api/health', healthRouter);
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error('!!!!!! GLOBAL ERROR HANDLER HIT !!!!!!', err, err.stack); // Made log more prominent and detailed

@@ -42,6 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
  * @param {string} options.source - Source component that encountered the error
  */
 function trackApiError(options) {
+  // Special case handling: ignore errors for pre-inception date queries (before June 4, 2025)
+  if (options.url) {
+    const urlObj = new URL(options.url, window.location.origin);
+    const weekKeyMatch = urlObj.pathname.match(/\/api\/purchases(?:\/metrics)?\/(\d{4}-\d{2}-\d{2})/);
+    
+    if (weekKeyMatch) {
+      const weekDate = new Date(weekKeyMatch[1]);
+      const inceptionDate = new Date('2025-06-04');
+      
+      // If this is for a date before inception, downgrade severity and mark as expected
+      if (weekDate < inceptionDate) {
+        console.info(`Ignoring error for pre-inception date ${weekKeyMatch[1]}`);
+        
+        // If no data is the expected behavior, reduce severity or skip tracking entirely
+        options.severity = 'low';
+        options.expected = true;
+        
+        // For 404 responses before inception date, we don't need to track this as an error
+        if (options.status === 404) {
+          return; // Skip tracking this error altogether
+        }
+      }
+    }
+  }
+
   const {
     url,
     status,

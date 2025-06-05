@@ -123,12 +123,16 @@ async function checkServerConnectivity() {
       // Short timeout to quickly determine connectivity
       signal: AbortSignal.timeout(3000)
     });
-    
-    if (response.ok) {
+      if (response.ok) {
       // Server is reachable, store the working base URL and hide offline banner
       sessionStorage.setItem('apiBaseUrl', baseUrl);
       hideOfflineModeBanner();
       console.log('Server connectivity restored. Using API at:', baseUrl);
+      
+      // Show notification if we were offline before
+      if (isOfflineMode && typeof window.showNotification === 'function') {
+        window.showNotification('Connection restored! Now back online.', 'success', 5000);
+      }
       
       // If we have a user, refresh their data
       if (typeof loadPurchasesForWeek === 'function' && typeof currentDisplayWeek !== 'undefined') {
@@ -137,11 +141,24 @@ async function checkServerConnectivity() {
       
       return true;
     } else {
+      // Log the specific HTTP error
+      console.warn(`Server returned error status: ${response.status} ${response.statusText}`);
+      
+      // Show error notification
+      if (typeof window.showNotification === 'function') {
+        window.showNotification(`Server error: ${response.status} ${response.statusText}`, 'warning', 5000);
+      }
+      
       throw new Error(`Server returned ${response.status}`);
-    }
-  } catch (error) {
+    }  } catch (error) {
     console.error('Server connectivity check failed:', error);
     showOfflineModeBanner();
+    
+    // If this is the first connectivity issue, show a notification
+    if (!isOfflineMode && typeof window.showNotification === 'function') {
+      window.showNotification('Unable to reach server. Switching to offline mode.', 'warning', 5000);
+    }
+    
     return false;
   }
 }

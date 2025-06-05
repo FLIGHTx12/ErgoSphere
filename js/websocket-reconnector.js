@@ -44,24 +44,34 @@ class WebSocketReconnector {
       this.ws.close();
       this.ws = null;
     }
+      console.log(`Connecting to WebSocket: ${this.url}`);
+    try {
+      this.ws = new WebSocket(this.url);
     
-    console.log(`Connecting to WebSocket: ${this.url}`);
-    this.ws = new WebSocket(this.url);
-    
-    this.ws.onopen = (event) => {
-      console.log('WebSocket connection established');
-      this.reconnectAttempts = 0; // Reset reconnect attempts on successful connection
-      
-      // Notify listeners
-      this.listeners.open.forEach(callback => callback(event));
-      
-      if (this.reconnectAttempts > 0) {
-        // This was a reconnection
-        this.listeners.reconnected.forEach(callback => 
-          callback({ attempts: this.reconnectAttempts })
-        );
-      }
-    };
+      this.ws.onopen = (event) => {
+        console.log('WebSocket connection established');
+        this.reconnectAttempts = 0; // Reset reconnect attempts on successful connection
+        
+        // Notify listeners
+        this.listeners.open.forEach(callback => callback(event));
+        
+        if (this.reconnectAttempts > 0) {
+          // This was a reconnection
+          this.listeners.reconnected.forEach(callback => 
+            callback({ attempts: this.reconnectAttempts })
+          );
+        }
+        
+        // Show a notification using our new helper
+        if (typeof window.showNotification === 'function') {
+          window.showNotification('Server connection established', 'success', 3000);
+        }
+      };
+    } catch (e) {
+      console.error('Failed to create WebSocket connection:', e);
+      // Schedule a reconnect attempt
+      this.scheduleReconnect();
+    }
     
     this.ws.onmessage = (event) => {
       // Notify listeners

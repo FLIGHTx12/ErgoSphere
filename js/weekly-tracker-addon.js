@@ -48,8 +48,7 @@ function setupWebSocket() {
     return;
   }
   
-  // Create WebSocket connection
-  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  // Create WebSocket connection  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   let host = window.location.host;
   
   // If we're on port 1550, try port 3000 for WebSocket
@@ -58,11 +57,21 @@ function setupWebSocket() {
     const apiBaseUrl = sessionStorage.getItem('apiBaseUrl');
     if (apiBaseUrl) {
       // Extract host from stored API URL
-      host = new URL(apiBaseUrl).host;
+      try {
+        host = new URL(apiBaseUrl).host;
+      } catch (e) {
+        console.warn('Invalid apiBaseUrl in sessionStorage, using default port 3000');
+        host = host.replace(':1550', ':3000');
+      }
     } else {
       // Otherwise replace 1550 with 3000
       host = host.replace(':1550', ':3000');
     }
+  }
+  
+  // For local testing, handle case when server might be down
+  if (host.includes('localhost') || host.includes('127.0.0.1')) {
+    console.log('Local development detected - WebSocket failures will be handled gracefully');
   }
   
   const wsUrl = `${protocol}//${host}`;
@@ -626,8 +635,7 @@ async function loadPurchasesForWeek(weekKey) {
     } catch (metricErr) {
       console.error('Error fetching metrics:', metricErr);
     }
-    
-    // Group purchases by user
+      // Group purchases by user
     const purchasesByUser = {};
     users.forEach(user => {
       purchasesByUser[user] = [];
@@ -639,6 +647,15 @@ async function loadPurchasesForWeek(weekKey) {
         purchasesByUser[purchase.username].push(purchase);
       }
     });
+    
+    // Check if we're displaying a week before the app's inception date
+    const weekDate = new Date(weekKey);
+    const inceptionDate = new Date('2025-06-04');
+    const isBeforeInception = weekDate < inceptionDate;
+    
+    if (isBeforeInception && typeof showNotification === 'function') {
+      showNotification('No data available before June 4th, 2025', 'info', 5000);
+    }
     
     // Update display for each user
     users.forEach(user => {

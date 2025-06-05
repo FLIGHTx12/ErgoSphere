@@ -52,14 +52,42 @@ router.get('/metrics/:weekKey', async (req, res) => {
       console.error('Error checking/creating user_metrics table:', tableError);
       // Continue execution - we'll try to query anyway
     }
-    
-    try {
+      try {
       // Query metrics
       const result = await pool.query(
         'SELECT * FROM user_metrics WHERE week_key = $1',
         [weekKey]
       );
       console.log(`Found ${result.rows.length} metrics for week ${weekKey}`);
+      
+      // If no metrics found for this week, generate empty ones
+      if (result.rows.length === 0) {
+        // Check if the requested date is before the app's inception (June 4, 2025)
+        const weekDate = new Date(weekKey);
+        const inceptionDate = new Date('2025-06-04');
+        
+        if (weekDate < inceptionDate) {
+          console.log(`No metrics available for week ${weekKey} (before app inception date)`);
+        } else {
+          console.log(`No metrics found for week ${weekKey}, generating empty metrics`);
+        }
+        
+        // Generate empty metrics for known users
+        const defaultUsers = ['FLIGHTx12', 'Jaybers8'];
+        const emptyMetrics = defaultUsers.map(username => ({
+          username,
+          week_key: weekKey,
+          total_spent: 0,
+          total_calories: 0,
+          snack_count: 0,
+          concoction_count: 0,
+          alcohol_count: 0,
+          last_updated: new Date().toISOString()
+        }));
+        
+        return res.json(emptyMetrics);
+      }
+      
       return res.json(result.rows);
     } catch (queryError) {
       console.error('Error querying user metrics:', queryError);
@@ -132,11 +160,24 @@ router.get('/:weekKey', async (req, res) => {
       console.error('Error checking/creating purchases table:', tableError);
       return res.json([]); // Return empty array on error
     }
-    
-    const result = await pool.query(
+      const result = await pool.query(
       'SELECT * FROM purchases WHERE week_key = $1 ORDER BY purchase_date DESC',
       [weekKey]
     );
+    
+    // Check if the requested date is before the app's inception (June 4, 2025)
+    // and log appropriate message
+    if (result.rows.length === 0) {
+      const weekDate = new Date(weekKey);
+      const inceptionDate = new Date('2025-06-04');
+      
+      if (weekDate < inceptionDate) {
+        console.log(`No purchases available for week ${weekKey} (before app inception date)`);
+      } else {
+        console.log(`No purchases found for week ${weekKey}`);
+      }
+    }
+    
     res.json(result.rows);
   } catch (error) {
     console.error('Error retrieving purchases:', error);

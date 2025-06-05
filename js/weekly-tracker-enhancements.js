@@ -85,8 +85,7 @@ function enhanceWeeklyTracker() {
             // If successful, break out of retry loop
             break;
           } catch (metricsErr) {
-            metricsRetries++;
-            console.warn(`Failed to load metrics (attempt ${metricsRetries}): ${metricsErr.message || metricsErr}`);
+            metricsRetries++;          console.warn(`Failed to load metrics (attempt ${metricsRetries}): ${metricsErr.message || metricsErr}`);
             
             if (metricsRetries <= MAX_METRICS_RETRIES) {
               // Wait before retrying - exponential backoff
@@ -97,6 +96,21 @@ function enhanceWeeklyTracker() {
               // Generate default metrics for users when all retries fail
               console.log('Generating default metrics after all retries failed');
               if (typeof window.users !== 'undefined') {
+                // Add message about no data before June 4, 2025 to avoid confusion
+                const currentDate = new Date();
+                const weekDate = new Date(weekKey);
+                const june4th2025 = new Date('2025-06-04');
+                
+                // If requested week is before June 4th 2025, show a more specific message
+                if (weekDate < june4th2025) {
+                  console.info(`No data available before June 4th, 2025. Generating empty metrics for ${weekKey}.`);
+                  
+                  // Show a banner notification
+                  if (typeof showNotification === 'function') {
+                    showNotification('No historical data available before June 4th, 2025', 'info', 5000);
+                  }
+                }
+                
                 metrics = window.users.map(username => ({
                   username,
                   week_key: weekKey,
