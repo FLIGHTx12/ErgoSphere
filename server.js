@@ -104,6 +104,7 @@ app.use((req, res, next) => {
 app.get('/api/health', async (req, res) => {
   let dbStatus = 'unknown';
   let dbResponseTime = null;
+  let dbTableStatus = {};
   
   // Check database connectivity
   const dbStartTime = Date.now();
@@ -112,12 +113,31 @@ app.get('/api/health', async (req, res) => {
     const dbResult = await pool.query('SELECT NOW()');
     dbStatus = 'connected';
     dbResponseTime = Date.now() - dbStartTime;
+    
+    // Check for critical tables
+    try {
+      const tablesResult = await pool.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name IN ('purchases', 'user_metrics')
+      `);
+      
+      const existingTables = tablesResult.rows.map(row => row.table_name);
+      
+      dbTableStatus = {
+        purchases: existingTables.includes('purchases'),
+        user_metrics: existingTables.includes('user_metrics')
+      };
+    } catch (tableError) {
+      console.error('Health check - Table check error:', tableError);
+      dbTableStatus = { error: tableError.message };
+    }
   } catch (error) {
     console.error('Health check - Database error:', error);
     dbStatus = 'error';
   }
-  
-  // Get system info
+    // Get system info
   const systemInfo = {
     nodeVersion: process.version,
     platform: process.platform,
@@ -129,10 +149,11 @@ app.get('/api/health', async (req, res) => {
   res.json({ 
     status: dbStatus === 'connected' ? 'ok' : 'degraded', 
     timestamp: new Date().toISOString(),
-    version: '1.0.1',
+    version: '1.0.2',
     database: {
       status: dbStatus,
-      responseTime: dbResponseTime
+      responseTime: dbResponseTime,
+      tables: dbTableStatus
     },
     system: systemInfo
   });

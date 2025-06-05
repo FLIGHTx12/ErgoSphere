@@ -70,16 +70,45 @@ function enhanceWeeklyTracker() {
             }
           }
         }
-        
-        // Get user metrics using proxiedFetch
+          // Get user metrics using proxiedFetch with retry logic
         let metrics = [];
-        try {
-          console.log(`Fetching metrics for week ${weekKey} with proxiedFetch`);
-          const metricsResponse = await window.proxiedFetch(`/api/purchases/metrics/${weekKey}`);
-          metrics = await metricsResponse.json();
-          console.log(`Loaded ${metrics.length} metrics for week ${weekKey}`);
-        } catch (metricsErr) {
-          console.warn(`Failed to load metrics: ${metricsErr.message || metricsErr}`);
+        let metricsRetries = 0;
+        const MAX_METRICS_RETRIES = 2;
+        
+        while (metricsRetries <= MAX_METRICS_RETRIES) {
+          try {
+            console.log(`Fetching metrics for week ${weekKey} with proxiedFetch (attempt ${metricsRetries + 1})`);
+            const metricsResponse = await window.proxiedFetch(`/api/purchases/metrics/${weekKey}`);
+            metrics = await metricsResponse.json();
+            console.log(`Loaded ${metrics.length} metrics for week ${weekKey}`);
+            
+            // If successful, break out of retry loop
+            break;
+          } catch (metricsErr) {
+            metricsRetries++;
+            console.warn(`Failed to load metrics (attempt ${metricsRetries}): ${metricsErr.message || metricsErr}`);
+            
+            if (metricsRetries <= MAX_METRICS_RETRIES) {
+              // Wait before retrying - exponential backoff
+              const delay = Math.pow(2, metricsRetries - 1) * 1000;
+              console.log(`Retrying metrics fetch in ${delay}ms...`);
+              await new Promise(resolve => setTimeout(resolve, delay));
+            } else {
+              // Generate default metrics for users when all retries fail
+              console.log('Generating default metrics after all retries failed');
+              if (typeof window.users !== 'undefined') {
+                metrics = window.users.map(username => ({
+                  username,
+                  week_key: weekKey,
+                  total_spent: 0,
+                  total_calories: 0,
+                  snack_count: 0,
+                  concoction_count: 0,
+                  alcohol_count: 0
+                }));
+              }
+            }
+          }
         }
         
         // Continue with the original processing of purchases and metrics
