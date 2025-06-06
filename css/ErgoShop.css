@@ -1084,222 +1084,120 @@ summary::-webkit-details-marker {
   }
 }
 
-/* Weekly totals styling */
-.user-purchases .weekly-total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 20px;
-  padding: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: right;
-}
-
 /* Weekly stats styling */
 .user-purchases .weekly-stats {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 15px;
+  justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 15px;
+  padding: 10px;
   border-radius: var(--border-radius);
 }
 
 .user-purchases .weekly-stats p {
   margin: 0;
-  padding: 8px 15px 8px 40px;
-  font-size: 0.95rem;
+  padding: 6px 8px 6px 28px;
+  font-size: 0.8rem;
   position: relative;
-  min-height: 30px;
+  min-height: 24px;
   display: flex;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
   transition: transform 0.2s ease;
   overflow: visible;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
 }
 
-/* Add responsive styles for different screen sizes */
-@media (max-width: 1400px) {
-  .user-purchases ul {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
-@media (max-width: 1200px) {
-  .user-purchases ul {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
+/* For tablets and small desktops */
 @media (max-width: 992px) {
-  .user-purchases {
-    flex: 1 1 100%;
-    max-width: 95%;
-    margin-bottom: 20px;
-    min-width: 95%;
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-}
-
-@media (max-width: 768px) {
-  .user-purchases ul {
-    grid-template-columns: 1fr;
-    padding: 2px 1px;
+  .user-purchases .weekly-stats {
+    gap: 6px;
+    padding: 8px;
   }
   
-  .user-purchases {
-    width: 95%;
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-}
-
-/* Responsive styles for user selector container */
-@media (max-width: 480px) {
-  .user-selector-container {
-    width: 160px; /* Even thinner on small screens */
-    padding: 6px 8px;
-  }
-  
-  .user-selector-container label {
+  .user-purchases .weekly-stats p {
     font-size: 0.75rem;
+    padding: 5px 6px 5px 26px;
   }
   
-  .user-selector-container select {
-    font-size: 0.8rem;
-    padding: 2px 4px;
-    min-width: 80px;
+  .user-purchases .weekly-stats p:nth-child(1)::before,
+  .user-purchases .weekly-stats p:nth-child(2)::before,
+  .user-purchases .weekly-stats p:nth-child(3)::before,
+  .user-purchases .weekly-stats p:nth-child(4)::before {
+    font-size: 11px;
+    left: 5px;
   }
 }
 
-@media (min-width: 1024px) {
-  .user-selector-container {
-    width: 200px; /* Slightly wider on large screens for better proportions */
-  }
-}
-
-/* ===== RESPONSIVE STYLES ===== */
-@media (max-width: 767px) {
-  .week-controls {
-    max-width: 100%;
-    padding: 0 10px;
+/* For mobile phones */
+@media (max-width: 768px) {
+  .user-purchases .weekly-stats {
+    gap: 4px;
+    padding: 6px;
   }
   
-  #current-week-display {
-    min-width: 200px;
-    font-size: 1rem;
-    padding: 8px 10px;
+  .user-purchases .weekly-stats p {
+    font-size: 0.7rem;
+    padding: 4px 4px 4px 22px;
+    min-height: 20px;
+  }
+  
+  .user-purchases .weekly-stats p:nth-child(1)::before,
+  .user-purchases .weekly-stats p:nth-child(2)::before,
+  .user-purchases .weekly-stats p:nth-child(3)::before,
+  .user-purchases .weekly-stats p:nth-child(4)::before {
+    font-size: 10px;
+    left: 4px;
   }
 }
 
+/* For very small phones */
 @media (max-width: 480px) {
-  .week-controls {
-    flex-wrap: wrap;
+  .user-purchases .weekly-stats {
+    gap: 2px;
+    padding: 4px;
   }
   
-  #current-week-display {
-    order: -1;
-    width: 100%;
-    margin-bottom: 10px;
-    min-width: unset;
+  .user-purchases .weekly-stats p {
+    font-size: 0.65rem;
+    padding: 3px 2px 3px 18px;
+    min-height: 18px;
   }
   
-  .week-nav-button {
-    margin: 5px !important;
+  .user-purchases .weekly-stats p:nth-child(1)::before,
+  .user-purchases .weekly-stats p:nth-child(2)::before,
+  .user-purchases .weekly-stats p:nth-child(3)::before,
+  .user-purchases .weekly-stats p:nth-child(4)::before {
+    font-size: 9px;
+    left: 3px;
   }
 }
 
-/* Weekly Stats Styles */
-.weekly-stats {
-  margin-top: 15px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.weekly-stats:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.user-purchases .weekly-stats p:hover {
-  transform: translateY(-2px);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.user-purchases .weekly-stats p:nth-child(1)::before {
-  content: '🔥';
-  display: inline-block;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  margin-right: 8px;
-  text-align: center;
-  z-index: 2;
-}
-
-.user-purchases .weekly-stats p:nth-child(2)::before {
-  content: '🍔';
-  display: inline-block;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  margin-right: 8px;
-  text-align: center;
-  z-index: 2;
-}
-
-.user-purchases .weekly-stats p:nth-child(3)::before {
-  content: '🥤';
-  display: inline-block;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  margin-right: 8px;
-  text-align: center;
-  z-index: 2;
-}
-
-.user-purchases .weekly-stats p:nth-child(4)::before {
-  content: '🍸';
-  display: inline-block;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  margin-right: 8px;
-  text-align: center;
-  z-index: 2;
-}
-
-.weekly-stats p:hover {
-  transform: translateY(-2px);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-#FLIGHTx12-purchases .weekly-stats {
-  background-color: rgba(0, 50, 0, 0.3);
-  border-left: 3px solid var(--flight-color);
-}
-
-#Jaybers8-purchases .weekly-stats {
-  background-color: rgba(50, 0, 50, 0.3);
-  border-left: 3px solid var(--jaybers-color);
+/* For extremely small screens */
+@media (max-width: 360px) {
+  .user-purchases .weekly-stats {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .user-purchases .weekly-stats p {
+    font-size: 0.7rem;
+    padding: 4px 4px 4px 22px;
+    min-height: 20px;
+  }
+  
+  .user-purchases .weekly-stats p:nth-child(1)::before,
+  .user-purchases .weekly-stats p:nth-child(2)::before,
+  .user-purchases .weekly-stats p:nth-child(3)::before,
+  .user-purchases .weekly-stats p:nth-child(4)::before {
+    font-size: 10px;
+    left: 4px;
+  }
 }
 
 /* Metrics styles removed */
