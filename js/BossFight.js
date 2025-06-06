@@ -477,9 +477,223 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     alert('🎯 Battle report screenshot downloaded!');
+  }  function showGameResultsScreen(result) {
+    // First show Astral Coalescence Phase overlay
+    showAstralCoalescencePhase(result);
   }
 
-  function showGameResultsScreen(result) {
+  function showAstralCoalescencePhase(battleResult) {
+    const coalescenceDiv = document.createElement("div");
+    coalescenceDiv.id = "astralCoalescence";
+    coalescenceDiv.style.position = "fixed";
+    coalescenceDiv.style.top = "0";
+    coalescenceDiv.style.left = "0";
+    coalescenceDiv.style.width = "100%";
+    coalescenceDiv.style.height = "100%";
+    coalescenceDiv.style.backgroundColor = "rgba(0, 0, 0, 0.95)";
+    coalescenceDiv.style.color = "white";
+    coalescenceDiv.style.zIndex = "10000";
+    coalescenceDiv.style.overflowY = "auto";
+    coalescenceDiv.style.padding = "20px";
+
+    const jaybers8Hits = gameStats.playerStats.jaybers8.bossHitsReceived;
+    const flightHits = gameStats.playerStats.flight.bossHitsReceived;
+    const totalHits = jaybers8Hits + flightHits;
+    
+    const isVictory = battleResult === "victory";
+    const battleIcon = isVictory ? "🏆" : "💀";
+    const battleText = isVictory ? "BATTLE VICTORY!" : "BATTLE DEFEAT!";
+    const battleColor = isVictory ? "#27ae60" : "#e74c3c";
+
+    coalescenceDiv.innerHTML = `
+      <div class="modal-overlay"></div>
+      <div class="battle-manual-content" style="max-height: 90vh; overflow-y: auto;">
+        <div class="manual-header">
+          <h2 style="color: ${battleColor};">${battleIcon} ${battleText}</h2>
+          <div class="manual-subtitle">🌌 Entering Astral Coalescence Phase 🌌</div>
+        </div>
+        
+        <div class="manual-columns">
+          <div class="manual-column">
+            <div class="section-card" style="border: 3px solid #9b59b6; background: linear-gradient(135deg, rgba(155,89,182,0.2) 0%, rgba(142,68,173,0.1) 100%);">
+              <h3>🌌 Astral Coalescence Phase</h3>
+              <p style="font-size: 1.1em; margin-bottom: 20px;">The battle has ended, but the astral energies from this dimensional encounter now threaten to overwhelm your team. Each hit received during combat must be survived using your Habitica resources.</p>
+              
+              <div style="background: rgba(155,89,182,0.3); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                <h4 style="color: #e8d5f2; margin-bottom: 10px;">💥 Astral Impact Summary</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div style="text-align: center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="font-size: 2em;">🐿️</div>
+                    <div style="color: #f39c12; font-weight: bold;">Jaybers8</div>
+                    <div style="color: #e74c3c; font-size: 1.5em; font-weight: bold;">${jaybers8Hits} Hits</div>
+                    <div style="font-size: 0.9em; color: #bdc3c7;">Astral damage received</div>
+                  </div>
+                  <div style="text-align: center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <div style="font-size: 2em;">🐨</div>
+                    <div style="color: #3498db; font-weight: bold;">FLIGHTx12!</div>
+                    <div style="color: #e74c3c; font-size: 1.5em; font-weight: bold;">${flightHits} Hits</div>
+                    <div style="font-size: 0.9em; color: #bdc3c7;">Astral damage received</div>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; padding: 10px; background: rgba(231,76,60,0.2); border-radius: 8px; border: 2px solid #e74c3c;">
+                  <div style="color: #e74c3c; font-weight: bold; font-size: 1.2em;">Total Astral Hits: ${totalHits}</div>
+                  <div style="color: #e74c3c; font-size: 0.9em;">Each hit = -1 Health click in Habitica</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="manual-column">
+            <div class="section-card">
+              <h3>🛡️ Survival Instructions</h3>
+              <ol style="font-size: 1.1em; line-height: 1.6;">
+                <li><strong>Go to Habitica</strong> - Open your Habitica app/website</li>
+                <li><strong>Use Resources</strong> - Expend Mana, activate Skills, or consume Potions to prepare</li>
+                <li><strong>Take the Hits</strong> - Click your Health ${totalHits} times to simulate astral damage</li>
+                <li><strong>Survive or Perish</strong> - See if your character survives the onslaught</li>
+                <li><strong>Report Back</strong> - Use the buttons below to report your fate</li>
+              </ol>
+            </div>
+            
+            <div class="section-card" style="border-color: #f39c12;">
+              <h3>⚠️ Important Notes</h3>
+              <ul>
+                <li><strong>Strategic Resource Use:</strong> Use Habitica mana/skills/potions BEFORE taking hits</li>
+                <li><strong>Death Consequences:</strong> Dying forfeits all battle rewards</li>
+                <li><strong>Survival Rewards:</strong> Successfully surviving claims full victory spoils</li>
+                <li><strong>No Cheating:</strong> Honor system - accurately report your survival status</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+          <div class="manual-footer" style="text-align: center; padding: 20px;">
+          <div style="margin-bottom: 25px; font-size: 1.1em; color: #f39c12;">
+            Ready to resolve the Astral Coalescence Phase? Each player takes their own hits in Habitica:
+          </div>
+          
+          ${jaybers8Hits > 0 ? `
+          <div style="margin-bottom: 20px; padding: 15px; background: rgba(243,156,18,0.1); border-radius: 10px; border: 2px solid #f39c12;">
+            <h4 style="color: #f39c12; margin-bottom: 15px;">🐿️ Jaybers8's Astral Trial</h4>
+            <p style="margin-bottom: 15px; color: #ecf0f1;">Take ${jaybers8Hits} hits in Habitica, then report back:</p>
+            <button id="jaybers8SurvivedBtn" class="menu-button" style="background: #27ae60; margin-right: 15px; padding: 12px 25px;">
+              <i class="fas fa-shield-alt"></i> Jaybers8 Survived!
+            </button>
+            <button id="jaybers8DiedBtn" class="menu-button" style="background: #e74c3c; padding: 12px 25px;">
+              <i class="fas fa-skull"></i> Jaybers8 Died...
+            </button>
+          </div>
+          ` : `
+          <div style="margin-bottom: 15px; padding: 10px; background: rgba(39,174,96,0.1); border-radius: 8px; border: 2px solid #27ae60;">
+            <h4 style="color: #27ae60; margin: 0;">🐿️ Jaybers8: No Astral Hits - Automatically Survived!</h4>
+          </div>
+          `}
+          
+          ${flightHits > 0 ? `
+          <div style="margin-bottom: 20px; padding: 15px; background: rgba(52,152,219,0.1); border-radius: 10px; border: 2px solid #3498db;">
+            <h4 style="color: #3498db; margin-bottom: 15px;">🐨 FLIGHTx12!'s Astral Trial</h4>
+            <p style="margin-bottom: 15px; color: #ecf0f1;">Take ${flightHits} hits in Habitica, then report back:</p>
+            <button id="flightSurvivedBtn" class="menu-button" style="background: #27ae60; margin-right: 15px; padding: 12px 25px;">
+              <i class="fas fa-shield-alt"></i> FLIGHTx12! Survived!
+            </button>
+            <button id="flightDiedBtn" class="menu-button" style="background: #e74c3c; padding: 12px 25px;">
+              <i class="fas fa-skull"></i> FLIGHTx12! Died...
+            </button>
+          </div>
+          ` : `
+          <div style="margin-bottom: 15px; padding: 10px; background: rgba(39,174,96,0.1); border-radius: 8px; border: 2px solid #27ae60;">
+            <h4 style="color: #27ae60; margin: 0;">🐨 FLIGHTx12!: No Astral Hits - Automatically Survived!</h4>
+          </div>
+          `}
+          
+          <div id="survivalStatus" style="margin-top: 20px; padding: 15px; background: rgba(155,89,182,0.1); border-radius: 8px; display: none;">
+            <h4 style="color: #9b59b6; margin-bottom: 10px;">⚖️ Survival Status</h4>
+            <p id="survivalText" style="margin: 0; color: #e8d5f2;"></p>
+            <button id="proceedToSummaryBtn" class="menu-button" style="background: #9b59b6; margin-top: 15px; padding: 12px 25px; display: none;">
+              <i class="fas fa-scroll"></i> View Final Battle Summary
+            </button>
+          </div>
+        </div>
+      </div>
+    `;    document.body.appendChild(coalescenceDiv);
+    
+    // Track survival status for each player
+    let jaybers8Survived = jaybers8Hits === 0; // Auto-survive if no hits
+    let flightSurvived = flightHits === 0; // Auto-survive if no hits
+    let jaybers8Resolved = jaybers8Hits === 0; // Auto-resolved if no hits
+    let flightResolved = flightHits === 0; // Auto-resolved if no hits
+    
+    function updateSurvivalStatus() {
+      const statusDiv = document.getElementById('survivalStatus');
+      const statusText = document.getElementById('survivalText');
+      const proceedBtn = document.getElementById('proceedToSummaryBtn');
+      
+      if (jaybers8Resolved && flightResolved) {
+        statusDiv.style.display = 'block';
+        
+        let statusMessage = '';
+        if (jaybers8Survived && flightSurvived) {
+          statusMessage = '🏆 Both players survived the Astral Coalescence! Proceeding to claim full victory...';
+        } else if (jaybers8Survived && !flightSurvived) {
+          statusMessage = '⚰️ Jaybers8 survived, but FLIGHTx12! perished. Partial survival outcome...';
+        } else if (!jaybers8Survived && flightSurvived) {
+          statusMessage = '⚰️ FLIGHTx12! survived, but Jaybers8 perished. Partial survival outcome...';
+        } else {
+          statusMessage = '💀 Both players perished during the Astral Coalescence. All rewards forfeited...';
+        }
+        
+        statusText.textContent = statusMessage;
+        proceedBtn.style.display = 'block';
+      }
+    }
+    
+    // Add event listeners for survival buttons
+    if (jaybers8Hits > 0) {
+      document.getElementById('jaybers8SurvivedBtn').addEventListener('click', () => {
+        jaybers8Survived = true;
+        jaybers8Resolved = true;
+        document.getElementById('jaybers8SurvivedBtn').style.display = 'none';
+        document.getElementById('jaybers8DiedBtn').style.display = 'none';
+        updateSurvivalStatus();
+      });
+      
+      document.getElementById('jaybers8DiedBtn').addEventListener('click', () => {
+        jaybers8Survived = false;
+        jaybers8Resolved = true;
+        document.getElementById('jaybers8SurvivedBtn').style.display = 'none';
+        document.getElementById('jaybers8DiedBtn').style.display = 'none';
+        updateSurvivalStatus();
+      });
+    }
+    
+    if (flightHits > 0) {
+      document.getElementById('flightSurvivedBtn').addEventListener('click', () => {
+        flightSurvived = true;
+        flightResolved = true;
+        document.getElementById('flightSurvivedBtn').style.display = 'none';
+        document.getElementById('flightDiedBtn').style.display = 'none';
+        updateSurvivalStatus();
+      });
+      
+      document.getElementById('flightDiedBtn').addEventListener('click', () => {
+        flightSurvived = false;
+        flightResolved = true;
+        document.getElementById('flightSurvivedBtn').style.display = 'none';
+        document.getElementById('flightDiedBtn').style.display = 'none';
+        updateSurvivalStatus();
+      });
+    }
+    
+    // Initialize status if both players auto-survived
+    updateSurvivalStatus();
+    
+    // Proceed to final summary
+    document.getElementById('proceedToSummaryBtn').addEventListener('click', () => {
+      document.body.removeChild(coalescenceDiv);
+      showFinalBattleSummary(battleResult, jaybers8Survived, flightSurvived);
+    });
+  }
+
+  function showFinalBattleSummary(battleResult, jaybers8Survived, flightSurvived) {
     const resultDiv = document.createElement("div");
     resultDiv.id = "gameResults";
     resultDiv.style.position = "fixed";
@@ -491,36 +705,96 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDiv.style.color = "white";
     resultDiv.style.zIndex = "10000";
     resultDiv.style.overflowY = "auto";
-    resultDiv.style.padding = "20px";
-
-    const battleDuration = gameStats.endTime - gameStats.startTime;
+    resultDiv.style.padding = "20px";    const battleDuration = gameStats.endTime - gameStats.startTime;
     const minutes = Math.floor(battleDuration / 60000);
     const seconds = Math.floor((battleDuration % 60000) / 1000);
+      // Determine final outcome: need battle victory AND at least one player survival
+    const battleWon = battleResult === "victory";
+    const anyPlayerSurvived = jaybers8Survived || flightSurvived;
+    const allPlayersSurvived = jaybers8Survived && flightSurvived;
+    const finalVictory = battleWon && allPlayersSurvived;
     
-    const isVictory = result === "victory";
-    const headerIcon = isVictory ? "🏆" : "💀";
-    const headerText = isVictory ? "VICTORY!" : "DEFEAT!";
-    const headerColor = isVictory ? "#27ae60" : "#e74c3c";
+    let headerIcon, headerText, headerColor;
+    if (finalVictory) {
+      headerIcon = "🏆";
+      headerText = "ULTIMATE VICTORY!";
+      headerColor = "#27ae60";
+    } else if (battleWon && anyPlayerSurvived) {
+      headerIcon = "⚰️";
+      headerText = "PARTIAL VICTORY";
+      headerColor = "#f39c12";
+    } else if (battleWon && !anyPlayerSurvived) {
+      headerIcon = "💀";
+      headerText = "PYRRHIC DEFEAT";
+      headerColor = "#e74c3c";
+    } else {
+      headerIcon = "💀";
+      headerText = "COMPLETE DEFEAT";
+      headerColor = "#e74c3c";
+    }
+    
+    // Determine battle mode based on whether summon was used
+    const monsterDropdown = document.getElementById("monsterDropdown");
+    const wasRandomSummon = monsterDropdown && monsterDropdown.getAttribute('data-was-summon') === 'true';
+    const battleMode = wasRandomSummon ? "🪄 Summon Mode" : "🔬 HCMC Portal Mode";
+    const battleModeIcon = wasRandomSummon ? "🪄" : "🔬";
 
     resultDiv.innerHTML = `
       <div class="modal-overlay"></div>
       <div class="battle-manual-content" style="max-height: 90vh; overflow-y: auto;">
-        <span class="close" id="closeResults">&times;</span>
-        <div class="manual-header">
+        <span class="close" id="closeResults">&times;</span>        <div class="manual-header">
           <h2 style="color: ${headerColor};">${headerIcon} ${headerText} ${headerIcon}</h2>
           <div class="manual-subtitle">Battle Statistics & Performance Analysis</div>
+          <div class="battle-mode-badge" style="
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 10px auto;
+            width: fit-content;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          ">
+            ${battleMode} Combat
+          </div>
         </div>
         
         <div class="manual-columns">
-          <div class="manual-column">
-            <div class="section-card">
+          <div class="manual-column">            <div class="section-card">
               <h3>⚔️ Battle Overview</h3>
+              <p><strong>Entry Mode:</strong> ${battleMode}</p>
               <p><strong>Opponent:</strong> ${gameStats.currentMonster?.name || 'Unknown'}</p>
               <p><strong>Duration:</strong> ${minutes}m ${seconds}s</p>
               <p><strong>Final Boss Health:</strong> ${gameStats.finalBossHealth} / ${gameStats.currentMonster?.health || 0} HP</p>
               <p><strong>Total Boss Hits:</strong> ${gameStats.totalBossHits}</p>
               <p><strong>Boss Damage Taken:</strong> ${gameStats.bossDamageDealt}</p>
               <p><strong>Peak Memory Sync:</strong> ×${gameStats.maxTriviaMultiplier.toFixed(1)}</p>
+            </div>            <div class="section-card" style="border: 2px solid #9b59b6; background: linear-gradient(135deg, rgba(155,89,182,0.1) 0%, rgba(142,68,173,0.05) 100%);">
+              <h3>🌌 Astral Coalescence Phase - RESOLVED</h3>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                <div style="text-align: center; padding: 15px; background: ${jaybers8Survived ? 'rgba(39,174,96,0.2)' : 'rgba(231,76,60,0.2)'}; border-radius: 8px; border: 2px solid ${jaybers8Survived ? '#27ae60' : '#e74c3c'};">
+                  <div style="font-size: 2em; margin-bottom: 5px;">🐿️</div>
+                  <div style="color: #f39c12; font-weight: bold; margin-bottom: 5px;">Jaybers8</div>
+                  <div style="color: ${jaybers8Survived ? '#27ae60' : '#e74c3c'}; font-size: 1.2em; font-weight: bold;">
+                    ${gameStats.playerStats.jaybers8.bossHitsReceived} hits - ${jaybers8Survived ? '✅ Survived' : '💀 Perished'}
+                  </div>
+                </div>
+                <div style="text-align: center; padding: 15px; background: ${flightSurvived ? 'rgba(39,174,96,0.2)' : 'rgba(231,76,60,0.2)'}; border-radius: 8px; border: 2px solid ${flightSurvived ? '#27ae60' : '#e74c3c'};">
+                  <div style="font-size: 2em; margin-bottom: 5px;">🐨</div>
+                  <div style="color: #3498db; font-weight: bold; margin-bottom: 5px;">FLIGHTx12!</div>
+                  <div style="color: ${flightSurvived ? '#27ae60' : '#e74c3c'}; font-size: 1.2em; font-weight: bold;">
+                    ${gameStats.playerStats.flight.bossHitsReceived} hits - ${flightSurvived ? '✅ Survived' : '💀 Perished'}
+                  </div>
+                </div>
+              </div>
+              <div style="padding: 10px; background: ${allPlayersSurvived ? 'rgba(39,174,96,0.2)' : anyPlayerSurvived ? 'rgba(243,156,18,0.2)' : 'rgba(231,76,60,0.2)'}; border-radius: 8px; border-left: 4px solid ${allPlayersSurvived ? '#27ae60' : anyPlayerSurvived ? '#f39c12' : '#e74c3c'};">
+                <small style="color: ${allPlayersSurvived ? '#27ae60' : anyPlayerSurvived ? '#f39c12' : '#e74c3c'}; font-weight: bold;">
+                  ${allPlayersSurvived ? 
+                    '🛡️ Both players successfully withstood the astral bombardment through strategic use of Habitica resources!' : 
+                    anyPlayerSurvived ?
+                    '⚔️ Partial survival - only one player endured the astral coalescence. Rewards will be affected.' :
+                    '💀 Both players perished during the astral coalescence phase, forfeiting all battle gains.'}
+                </small>
+              </div>
             </div>
             
             <div class="section-card">
@@ -538,17 +812,76 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               <p><strong>Accuracy Rate:</strong> ${gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers > 0 ? 
                 ((gameStats.triviaStats.correctAnswers / (gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers)) * 100).toFixed(1) : 0}%</p>
-            </div>
-
-            ${!isVictory ? `
-            <div class="section-card" style="border-color: #e74c3c;">
-              <h3>💀 Consequences</h3>
-              <p style="color: #e74c3c; font-weight: bold;">${gameStats.currentMonster?.Punishment || "No punishment defined."}</p>
+            </div>            ${!finalVictory ? `
+            <div class="section-card" style="border-color: ${!battleWon ? '#e74c3c' : anyPlayerSurvived ? '#f39c12' : '#e74c3c'};">
+              <h3>${!battleWon ? '💀 Battle Defeat' : anyPlayerSurvived ? '⚰️ Partial Victory' : '💀 Pyrrhic Defeat'}</h3>
+              ${!battleWon ? `
+                <div style="margin-bottom: 15px;">
+                  <strong style="color: #e74c3c;">Battle Lost - Mode-Specific Penalties:</strong>
+                  <div style="margin-top: 8px; padding: 10px; background: rgba(231,76,60,0.1); border-radius: 6px;">
+                    ${wasRandomSummon ? 
+                      '🪄 <strong>Summon Mode Failure:</strong> No Ducat rewards earned. Early Habitica gold cashout forfeited.' :
+                      '🔬 <strong>HCMC Portal Accident:</strong> Running away penalty applied as per HCMC safety protocols.'}
+                  </div>
+                </div>
+                <div style="border-top: 1px solid #e74c3c; padding-top: 10px;">
+                  <strong>ErgoVillain Punishment:</strong>
+                  <p style="color: #e74c3c; font-weight: bold; margin-top: 8px;">${gameStats.currentMonster?.Punishment || "No punishment defined."}</p>
+                </div>
+              ` : anyPlayerSurvived ? `
+                <div style="margin-bottom: 15px;">
+                  <strong style="color: #f39c12;">Battle Won, Partial Astral Survival:</strong>
+                  <div style="margin-top: 8px; padding: 10px; background: rgba(243,156,18,0.1); border-radius: 6px;">
+                    <p style="color: #f39c12; margin: 0;">You defeated the ErgoVillain and ${jaybers8Survived && flightSurvived ? 'both players survived' : jaybers8Survived ? 'Jaybers8 survived but FLIGHTx12! perished' : 'FLIGHTx12! survived but Jaybers8 perished'}. Reduced rewards granted.</p>
+                  </div>
+                </div>
+                <div style="border-top: 1px solid #f39c12; padding-top: 10px;">
+                  <strong style="color: #f39c12;">Partial Rewards (50% of full):</strong>
+                  <p style="color: #f39c12; font-weight: bold; margin-top: 8px;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
+                </div>
+              ` : `
+                <div style="margin-bottom: 15px;">
+                  <strong style="color: #e74c3c;">Battle Won, But Total Astral Failure:</strong>
+                  <div style="margin-top: 8px; padding: 10px; background: rgba(231,76,60,0.1); border-radius: 6px;">
+                    <p style="color: #e74c3c; margin: 0;">You defeated the ErgoVillain but both players perished during the Astral Coalescence Phase. All rewards are forfeited.</p>
+                  </div>
+                </div>
+                <div style="border-top: 1px solid #e74c3c; padding-top: 10px;">
+                  <strong style="color: #e74c3c;">Forfeited Rewards:</strong>
+                  <p style="color: #95a5a6; font-weight: bold; margin-top: 8px; text-decoration: line-through;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
+                </div>
+              `}
+              <div style="margin-top: 15px; padding: 10px; background: rgba(231,76,60,0.15); border-radius: 6px; border-left: 4px solid #e74c3c;">
+                <strong style="color: #e74c3c;">💀 Astral Casualties:</strong>
+                <p style="color: #e74c3c; margin-top: 5px; font-size: 0.9em;">
+                  ${!jaybers8Survived && !flightSurvived ? 'Both players perished during coalescence.' : 
+                    !jaybers8Survived ? 'Jaybers8 could not withstand the astral energies.' :
+                    !flightSurvived ? 'FLIGHTx12! was overwhelmed by astral forces.' : 
+                    'Astral energies proved manageable for the surviving team.'}
+                </p>
+              </div>
             </div>
             ` : `
             <div class="section-card" style="border-color: #27ae60;">
-              <h3>🎁 Rewards</h3>
-              <p style="color: #27ae60; font-weight: bold;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
+              <h3>🏆 Ultimate Victory!</h3>
+              <div style="margin-bottom: 15px;">
+                <strong style="color: #27ae60;">Mode-Specific Rewards Earned:</strong>
+                <div style="margin-top: 8px; padding: 10px; background: rgba(39,174,96,0.1); border-radius: 6px;">
+                  ${wasRandomSummon ? 
+                    '🪄 <strong>Summon Mode Victory:</strong> 50 Ducats earned (scalable)! Early Habitica gold cashout unlocked.' :
+                    '🔬 <strong>HCMC Portal Escape:</strong> Successfully navigated accidental portal breach. No penalties applied.'}
+                </div>
+              </div>
+              <div style="border-top: 1px solid #27ae60; padding-top: 10px;">
+                <strong>ErgoVillain Rewards:</strong>
+                <p style="color: #27ae60; font-weight: bold; margin-top: 8px;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
+              </div>
+              <div style="margin-top: 15px; padding: 10px; background: rgba(39,174,96,0.15); border-radius: 6px; border-left: 4px solid #27ae60;">
+                <strong style="color: #27ae60;">🌌 Perfect Astral Mastery:</strong>
+                <p style="color: #27ae60; margin-top: 5px; font-size: 0.9em;">
+                  Both players successfully weathered their astral impacts (Jaybers8: ${gameStats.playerStats.jaybers8.bossHitsReceived}, FLIGHTx12!: ${gameStats.playerStats.flight.bossHitsReceived})! This complete victory demonstrates exceptional coordination between ErgoSphere combat skills and Habitica resource management.
+                </p>
+              </div>
             </div>
             `}
           </div>          <div class="manual-column">
@@ -654,15 +987,27 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               <div class="cyber-corner bottom-left"></div>
               <div class="cyber-corner bottom-right"></div>
-            </div>
-
-            <div class="section-card">
-              <h3>🔄 Battle Actions</h3>
+            </div>            <div class="section-card">
+              <h3>🔄 Battle Actions & Individual Astral Impact</h3>
               <p><strong>Total Attacks:</strong> ${gameStats.playerStats.jaybers8.attackCount + gameStats.playerStats.flight.attackCount}</p>
               <p><strong>Total Special Moves:</strong> ${gameStats.playerStats.jaybers8.specialMoves + gameStats.playerStats.flight.specialMoves}</p>
               <p><strong>Total Trivia Questions:</strong> ${gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers + gameStats.triviaStats.timeouts}</p>
               <p><strong>Boss Healing Events:</strong> ${gameStats.triviaStats.wrongAnswers + gameStats.triviaStats.timeouts}</p>
               <p><strong>HP Healed by Boss:</strong> ${(gameStats.triviaStats.wrongAnswers * 50) + (gameStats.triviaStats.timeouts * 20)}</p>
+              <div style="margin-top: 15px; padding: 10px; background: rgba(155,89,182,0.1); border-radius: 6px;">
+                <strong style="color: #9b59b6;">🌌 Individual Astral Exposure:</strong>
+                <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div style="text-align: center; padding: 8px; background: rgba(243,156,18,0.1); border-radius: 4px;">
+                    <div style="color: #f39c12; font-weight: bold;">🐿️ Jaybers8</div>
+                    <div style="color: #9b59b6;">${gameStats.playerStats.jaybers8.bossHitsReceived} astral hits</div>
+                  </div>
+                  <div style="text-align: center; padding: 8px; background: rgba(52,152,219,0.1); border-radius: 4px;">
+                    <div style="color: #3498db; font-weight: bold;">🐨 FLIGHTx12!</div>
+                    <div style="color: #9b59b6;">${gameStats.playerStats.flight.bossHitsReceived} astral hits</div>
+                  </div>
+                </div>
+                <p style="margin-top: 8px; color: #9b59b6; font-size: 0.9em;">Each player resolved their individual astral trial through separate Habitica resource management.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -676,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <button id="leaveArenaBtn" class="menu-button">
             <i class="fas fa-arrow-left"></i> Leave Arena
           </button>
-          <div class="version-info">ErgoSphere ARENA Battle Report v1.0</div>
+          <div class="version-info">ErgoSphere ARENA Battle Report v3.0 | Dual-Mode Combat & Astral Coalescence</div>
         </div>
       </div>
     `;
