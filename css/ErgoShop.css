@@ -955,7 +955,7 @@ summary::-webkit-details-marker {
 /* Weekly Purchase Tracker Styles */
 #weekly-purchases {
   margin-top: 40px;
-  padding: 25px;
+  padding: 25px 5px 15px;
   width: 100%;
   max-width: 100%;
   margin-left: auto;
@@ -982,18 +982,21 @@ summary::-webkit-details-marker {
 .user-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 15px;
   margin-top: 20px;
-  width: 100%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
   justify-content: center;
   align-items: stretch;
 }
 
 .user-purchases {
   flex: 1 1 45%;
-  max-width: 800px;
+  max-width: 95%;
   min-width: 450px;
-  padding: 30px;
+  padding: 10px 5px;
   border-radius: var(--border-radius);
   background: var(--futuristic-gradient);
   box-shadow: var(--card-shadow);
@@ -1041,8 +1044,8 @@ summary::-webkit-details-marker {
 .user-purchases ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 15px;
+  padding: 5px 2px;
   list-style-type: none;
   width: 100%;
 }
@@ -1050,15 +1053,35 @@ summary::-webkit-details-marker {
 .user-purchases li {
   margin-bottom: 8px;
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 10px 15px;
+  padding: 8px 10px;
   border-radius: 8px;
   border-left: 3px solid var(--active-user-theme);
   transition: all var(--transition-speed) ease;
 }
 
-.user-purchases li:hover {
-  transform: translateX(5px);
-  background-color: rgba(0, 0, 0, 0.3);
+/* Updated media queries for user-purchases */
+@media (max-width: 992px) {
+  .user-purchases {
+    flex: 1 1 100%;
+    max-width: 95%;
+    margin-bottom: 20px;
+    min-width: 95%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-purchases ul {
+    grid-template-columns: 1fr;
+    padding: 2px 1px;
+  }
+  
+  .user-purchases {
+    width: 95%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
 }
 
 /* Weekly totals styling */
@@ -1113,19 +1136,24 @@ summary::-webkit-details-marker {
 @media (max-width: 992px) {
   .user-purchases {
     flex: 1 1 100%;
-    max-width: 100%;
+    max-width: 95%;
     margin-bottom: 20px;
-    min-width: 100%;
+    min-width: 95%;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }
 
 @media (max-width: 768px) {
   .user-purchases ul {
     grid-template-columns: 1fr;
+    padding: 2px 1px;
   }
   
   .user-purchases {
-    width: 100%;
+    width: 95%;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }
 
@@ -1274,157 +1302,7 @@ summary::-webkit-details-marker {
   border-left: 3px solid var(--jaybers-color);
 }
 
-/* Metrics Summary Styles */
-#weekly-metrics-summary {
-  margin-top: 30px;
-  padding: 25px;
-  text-align: center;
-  width: 95%;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeIn 0.8s ease-out;
-}
-
-.metrics-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.metric-card {
-  flex: 1;
-  min-width: 300px;
-  padding: 20px;
-  border: 1px solid var(--active-user-theme);
-  border-radius: var(--border-radius);
-  background: var(--futuristic-gradient);
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.metric-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow), 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-.metric-card h4 {
-  margin-top: 0;
-  border-bottom: 1px solid var(--active-user-theme);
-  padding-bottom: 12px;
-  color: var(--active-user-theme);
-  letter-spacing: 1px;
-}
-
-.chart-container {
-  margin-top: 15px;
-}
-
-.user-bar {
-  display: none; /* Hide by default */
-  align-items: center;
-  margin: 15px 0;
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* Show only current user's bars */
-.user-bar.active {
-  display: flex;
-}
-
-.user-bar .label {
-  width: 100px;
-  text-align: right;
-  padding-right: 15px;
-  font-size: 0.9em;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.user-bar .bar {
-  flex: 1;
-  height: 25px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  position: relative;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.user-bar .bar::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: var(--bar-width, 0%);
-  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
-}
-
-#FLIGHTx12-spent .bar::before {
-  background: linear-gradient(90deg, var(--flight-color-dark), var(--flight-color));
-  box-shadow: 0 0 10px var(--flight-color-dark);
-}
-
-#Jaybers8-spent .bar::before {
-  background: linear-gradient(90deg, var(--jaybers-color-dark), var(--jaybers-color));
-  box-shadow: 0 0 10px var(--jaybers-color-dark);
-}
-
-#FLIGHTx12-calories .bar::before {
-  background: linear-gradient(90deg, var(--flight-color-dark), var(--flight-color));
-  box-shadow: 0 0 10px var(--flight-color-dark);
-}
-
-#Jaybers8-calories .bar::before {
-  background: linear-gradient(90deg, var(--jaybers-color-dark), var(--jaybers-color));
-  box-shadow: 0 0 10px var(--jaybers-color-dark);
-}
-
-#FLIGHTx12-alcohol .bar::before {
-  background: linear-gradient(90deg, rgba(0, 102, 0, 0.8), rgba(0, 255, 0, 0.8));
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-}
-
-#Jaybers8-alcohol .bar::before {
-  background: linear-gradient(90deg, rgba(75, 0, 130, 0.8), rgba(153, 50, 204, 0.8));
-  box-shadow: 0 0 15px rgba(153, 50, 204, 0.4);
-}
-
-/* Add a warning indicator for excessive consumption */
-.user-bar[data-high-consumption="true"] .bar {
-  border: 2px solid #ff3030;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-  position: relative;
-}
-
-.user-bar[data-high-consumption="true"] .bar::after {
-  content: '⚠️';
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: pulse 1s infinite;
-  font-size: 1.1em;
-  z-index: 5;
-}
-
-.user-bar[data-high-consumption="true"] .value {
-  color: #ff3030;
-  font-weight: bold;
-  text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
-}
-
-.user-bar .value {
-  width: 80px;
-  text-align: left;
-  padding-left: 10px;
-  font-size: 0.9em;
-}
+/* Metrics styles removed */
 
 /* User Selector Container Styles */
 .user-selector-container {

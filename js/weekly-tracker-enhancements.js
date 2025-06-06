@@ -46,12 +46,7 @@ function enhanceWeeklyTracker() {
           window.showLoading(purchaseList);
         }
       }
-      
-      // Also show loading in the metrics summary
-      const metricsContainer = document.querySelector('#weekly-metrics-summary');
-      if (metricsContainer && typeof window.showLoading === 'function') {
-        window.showLoading(metricsContainer);
-      }
+        // Metrics functionality removed
       
       try {
         // Get purchases from server using proxiedFetch
@@ -80,61 +75,9 @@ function enhanceWeeklyTracker() {
               window.offlineMode.checkConnectivity();
             }
           }
-        }
-          // Get user metrics using proxiedFetch with retry logic
+        }          // Metrics functionality removed
+        // Initialize empty metrics array (keeping this for compatibility)
         let metrics = [];
-        let metricsRetries = 0;
-        const MAX_METRICS_RETRIES = 2;
-        
-        while (metricsRetries <= MAX_METRICS_RETRIES) {
-          try {
-            console.log(`Fetching metrics for week ${weekKey} with proxiedFetch (attempt ${metricsRetries + 1})`);
-            const metricsResponse = await window.proxiedFetch(`/api/purchases/metrics/${weekKey}`);
-            metrics = await metricsResponse.json();
-            console.log(`Loaded ${metrics.length} metrics for week ${weekKey}`);
-            
-            // If successful, break out of retry loop
-            break;
-          } catch (metricsErr) {
-            metricsRetries++;          console.warn(`Failed to load metrics (attempt ${metricsRetries}): ${metricsErr.message || metricsErr}`);
-            
-            if (metricsRetries <= MAX_METRICS_RETRIES) {
-              // Wait before retrying - exponential backoff
-              const delay = Math.pow(2, metricsRetries - 1) * 1000;
-              console.log(`Retrying metrics fetch in ${delay}ms...`);
-              await new Promise(resolve => setTimeout(resolve, delay));
-            } else {
-              // Generate default metrics for users when all retries fail
-              console.log('Generating default metrics after all retries failed');
-              if (typeof window.users !== 'undefined') {
-                // Add message about no data before June 4, 2025 to avoid confusion
-                const currentDate = new Date();
-                const weekDate = new Date(weekKey);
-                const june4th2025 = new Date('2025-06-04');
-                
-                // If requested week is before June 4th 2025, show a more specific message
-                if (weekDate < june4th2025) {
-                  console.info(`No data available before June 4th, 2025. Generating empty metrics for ${weekKey}.`);
-                  
-                  // Show a banner notification
-                  if (typeof showNotification === 'function') {
-                    showNotification('No historical data available before June 4th, 2025', 'info', 5000);
-                  }
-                }
-                
-                metrics = window.users.map(username => ({
-                  username,
-                  week_key: weekKey,
-                  total_spent: 0,
-                  total_calories: 0,
-                  snack_count: 0,
-                  concoction_count: 0,
-                  alcohol_count: 0
-                }));
-              }
-            }
-          }
-        }
           // Continue with the original processing of purchases and metrics
         if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
           // Group purchases by user, but we only care about the current user
@@ -162,9 +105,7 @@ function enhanceWeeklyTracker() {
               // Calculate totals
               let userTotal = 0;
               let userCalories = 0;
-              
-              // Find metrics for this user
-              const userMetrics = metrics.find(m => m.username === user);
+                // Metrics functionality removed
               
               // Add each purchase
               userPurchases.forEach(purchase => {
@@ -217,43 +158,24 @@ function enhanceWeeklyTracker() {
               });
                 // Update total display
               totalElement.textContent = `Total: ${userTotal} 💷`;
-              
-              // Update or create stats element
+                // Update or create stats element
               if (!statsElement) {
                 const stats = document.createElement('div');
                 stats.className = 'weekly-stats';
                 
-                // Display metrics if available from server, otherwise use calculated values
-                if (userMetrics) {
-                  stats.innerHTML = `
-                    <p>Calories: ${userMetrics.total_calories || 0} cal</p>
-                    <p>Snacks: ${userMetrics.snack_count || 0}</p>
-                    <p>Drinks: ${userMetrics.concoction_count || 0}</p>
-                    <p>Alcohol: ${userMetrics.alcohol_count || 0} 🍸</p>
-                  `;
-                } else {
-                  stats.innerHTML = `
-                    <p>Calories: ${userCalories} cal</p>
-                    <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
-                  `;
-                }
+                // Only display basic stats now that metrics functionality is removed
+                stats.innerHTML = `
+                  <p>Calories: ${userCalories} cal</p>
+                  <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
+                `;
                 
                 totalElement.parentNode.insertBefore(stats, totalElement.nextSibling);
               } else {
                 // Update existing stats
-                if (userMetrics) {
-                  statsElement.innerHTML = `
-                    <p>Calories: ${userMetrics.total_calories || 0} cal</p>
-                    <p>Snacks: ${userMetrics.snack_count || 0}</p>
-                    <p>Drinks: ${userMetrics.concoction_count || 0}</p>
-                    <p>Alcohol: ${userMetrics.alcohol_count || 0} 🍸</p>
-                  `;
-                } else {
-                  statsElement.innerHTML = `
-                    <p>Calories: ${userCalories} cal</p>
-                    <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
-                  `;
-                }
+                statsElement.innerHTML = `
+                  <p>Calories: ${userCalories} cal</p>
+                  <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
+                `;
               }
             }
               // Show/hide user sections and metrics based on current user
@@ -267,25 +189,10 @@ function enhanceWeeklyTracker() {
                   userSection.classList.remove('active');
                 }
               }
-              
-              // Handle metrics bars
-              ['spent', 'calories', 'alcohol'].forEach(metricType => {
-                const userBar = document.querySelector(`#${otherUser}-${metricType}`);
-                if (userBar) {
-                  if (otherUser === window.currentUser) {
-                    userBar.classList.add('active');
-                  } else {
-                    userBar.classList.remove('active');
-                  }
-                }
-              });
+                // Metrics functionality removed
             });
         }
-        
-        // Update the metrics charts
-        if (typeof window.updateMetricsCharts === 'function') {
-          window.updateMetricsCharts(weekKey);
-        }
+          // Metrics functionality removed
       } catch (error) {
         console.error('Error in enhanced loadPurchasesForWeek:', error);
         
@@ -295,72 +202,22 @@ function enhanceWeeklyTracker() {
     };
     console.log('Successfully enhanced loadPurchasesForWeek with proxiedFetch');
   }
-  
-  // Also enhance updateMetricsCharts function
+    // Convert updateMetricsCharts enhancement to a no-op since metrics functionality has been removed
   if (typeof window.updateMetricsCharts === 'function') {
-    const originalUpdateMetrics = window.updateMetricsCharts;
+    console.log('Metrics functionality has been removed, enhancment for updateMetricsCharts not needed');
     
+    // Ensure the function is always a no-op
     window.updateMetricsCharts = async function(weekKey) {
+      // This function is now a no-op (metrics functionality removed)
+      console.log('Metrics summary functionality has been removed');
       try {
-        // Get user metrics using proxiedFetch
-        let metrics = [];
-        try {
-          console.log(`Fetching metrics for charts for week ${weekKey} with proxiedFetch`);
-          const response = await window.proxiedFetch(`/api/purchases/metrics/${weekKey}`);
-          metrics = await response.json();
-          console.log(`Loaded ${metrics.length} metrics for charts - week ${weekKey}`);
-        } catch (err) {
-          console.warn(`Failed to load metrics for charts: ${err.message || err}`);
-        }
-          // Continue with original implementation if we have window.users and currentUser
-        if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
-          // Find metrics only for current user
-          const userMetrics = {};
-          const user = window.currentUser;
-          userMetrics[user] = metrics.find(m => m.username === user) || {
-            total_spent: 0,
-            total_calories: 0,
-            alcohol_count: 0
-          };
-            // Calculate max values for scaling (using only current user)
-          const maxSpent = Math.max(userMetrics[user].total_spent || 0, 1);
-          const maxCalories = Math.max(userMetrics[user].total_calories || 0, 1);
-          const maxAlcohol = Math.max(userMetrics[user].alcohol_count || 0, 1);
-          
-          // Update the charts only for current user - the CSS will hide the others
-          users.forEach(username => {
-            // Show or hide the metrics bars based on current user
-            ['spent', 'calories', 'alcohol'].forEach(metricType => {
-              const userBar = document.querySelector(`#${username}-${metricType}`);
-              if (userBar) {
-                if (username === window.currentUser) {
-                  userBar.classList.add('active');
-                } else {
-                  userBar.classList.remove('active');
-                }
-              }
-            });
-          });
-          
-          // Apply visual enhancements
-          setTimeout(() => {
-            if (typeof window.enhanceMetricsVisuals === 'function') {
-              window.enhanceMetricsVisuals();
-            }
-          }, 100);
-          
-          return; // Don't fall back to original if we've successfully processed
-        }
-        
-        // If we didn't have window.users, fall back to original implementation
-        return originalUpdateMetrics(weekKey);
+        // No-op function
+        return;
       } catch (error) {
         console.error('Error in enhanced updateMetricsCharts:', error);
-        // Fall back to original implementation
-        return originalUpdateMetrics(weekKey);
+        return;
       }
     };
-    console.log('Successfully enhanced updateMetricsCharts with proxiedFetch');
   }
   
   // Enhance deletePurchase function

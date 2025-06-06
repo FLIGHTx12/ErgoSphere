@@ -628,12 +628,7 @@ async function loadPurchasesForWeek(weekKey) {
       showLoading(purchaseList);
     }
   });
-  
-  // Also show loading in the metrics summary
-  const metricsContainer = document.querySelector('#weekly-metrics-summary');
-  if (metricsContainer) {
-    showLoading(metricsContainer);
-  }
+    // Metrics functionality removed
     try {    // Get purchases from server with better error handling and correct port
     let purchases = [];
     try {
@@ -933,42 +928,14 @@ async function loadPurchasesForWeek(weekKey) {
 
 /**
  * Update the metrics chart visualization
+ * (This function is now a no-op since metrics functionality has been removed)
  */
 async function updateMetricsCharts(weekKey) {
+  // This function is now a no-op (metrics functionality removed)
+  console.log('Metrics summary functionality has been removed');
   try {
-    // Get user metrics from server with better error handling
-    let metrics = [];
-    try {
-      // Use the stored base URL if available, otherwise use current origin
-      let baseUrl = sessionStorage.getItem('apiBaseUrl') || window.location.origin;
-      // If we're on port 1550, also try port 3000 as fallback
-      const usePort3000 = !sessionStorage.getItem('apiBaseUrl') && window.location.port === '1550';
-      
-      console.log(`Trying to fetch metrics for charts from: ${baseUrl}/api/purchases/metrics/${weekKey}`);
-      let response = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
-      
-      // If failed and we're on port 1550, try port 3000
-      if (!response.ok && usePort3000) {
-        baseUrl = baseUrl.replace(':1550', ':3000');
-        console.log(`Retrying with port 3000: ${baseUrl}/api/purchases/metrics/${weekKey}`);
-        response = await fetch(`${baseUrl}/api/purchases/metrics/${weekKey}`);
-        
-        if (response.ok) {
-          // Store the successful base URL in session storage for future requests
-          sessionStorage.setItem('apiBaseUrl', baseUrl);
-        }
-      }
-      
-      if (response.ok) {
-        metrics = await response.json();
-        console.log(`Loaded ${metrics.length} metrics for charts - week ${weekKey}`);
-      } else {
-        console.warn(`Failed to load metrics for charts: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.error('Error fetching metrics for charts:', err);
-      // Continue with empty metrics, interface will still work
-    }
+    // No-op function
+    return;
       // Find metrics for the current user only
     const userMetrics = {};
     const user = currentUser; // Use the current user
@@ -1062,46 +1029,11 @@ async function updateMetricsCharts(weekKey) {
 
 /**
  * Apply visual enhancements to metrics bars
+ * (This function is now a no-op since metrics functionality has been removed)
  */
 function enhanceMetricsVisuals() {
-  // Add animations to metric cards
-  const metricCards = document.querySelectorAll('.metric-card');
-  
-  metricCards.forEach((card, index) => {
-    // Stagger animation for cards
-    card.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s both`;
-    
-    // Add hover effect to show more details
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-5px)';
-      this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.8)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = '';
-      this.style.boxShadow = '';
-    });
-  });
-  
-  // Add glow effect to high values
-  const userBars = document.querySelectorAll('.user-bar');
-  userBars.forEach(bar => {
-    const valueEl = bar.querySelector('.value');
-    const barEl = bar.querySelector('.bar');
-    
-    if (valueEl && barEl) {
-      const value = parseFloat(valueEl.textContent);
-      if (!isNaN(value)) {
-        // If the bar has high value (width > 70%)
-        const barWidth = barEl.firstElementChild ? 
-          parseInt(barEl.firstElementChild.style.width) : 0;
-        
-        if (barWidth > 70) {
-          barEl.style.animation = 'glow 3s infinite';
-        }
-      }
-    }
-  });
+  // Metrics functionality removed
+  return;
 }
 
 /**
