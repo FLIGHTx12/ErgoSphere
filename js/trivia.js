@@ -358,6 +358,17 @@ class TriviaManager {
     });    if (isCorrect) {
       this.damageMultiplier += 0.5;
       this.updateMultiplierDisplay();
+      
+      // Dispatch event for correct answer tracking
+      const triviaCorrectAnswerEvent = new CustomEvent('triviaCorrectAnswer', {
+        detail: {
+          message: 'Correct trivia answer',
+          multiplierBonus: 0.5,
+          timestamp: Date.now()
+        }
+      });
+      document.dispatchEvent(triviaCorrectAnswerEvent);
+      
       this.showFeedback('Correct! +0.5 memory sync multiplier!', 'success');
     } else {
       // Wrong answer - reduce multiplier by 5.0 (but don't go below 0)

@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeFighters = {
     jaybers8: true,
     flight: true  };
-
   let timerStarted = false;
   let timer;
   let audioDuration = 365; // Default duration, will be updated
@@ -26,10 +25,77 @@ document.addEventListener("DOMContentLoaded", () => {
   fightMusic.volume = 0.5; // Set volume to 50% (adjust as needed)
   healerSound.volume = 0.7; // Set healer sound volume
 
+  // Game stats tracking
+  let gameStats = {
+    startTime: null,
+    endTime: null,
+    winner: null, // "victory" or "defeat"
+    totalDamageDealt: 0,
+    bossDamageDealt: 0,
+    triviaStats: {
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      timeouts: 0
+    },
+    playerStats: {
+      jaybers8: {
+        damageDealt: 0,
+        attackCount: 0,
+        specialMoves: 0, // 8s and 12s
+        triviaCorrect: 0,
+        triviaWrong: 0
+      },
+      flight: {
+        damageDealt: 0,
+        attackCount: 0,
+        specialMoves: 0, // 8s and 12s
+        triviaCorrect: 0,
+        triviaWrong: 0
+      }
+    },
+    currentMonster: null,
+    finalBossHealth: 0,
+    maxTriviaMultiplier: 0
+  };
   // Preload audio
   gameOverAudio.preload = 'auto';
   fightMusic.preload = 'auto';
   healerSound.preload = 'auto';
+
+  // Initialize game stats when a monster is selected
+  function initializeGameStats(monster) {
+    gameStats = {
+      startTime: Date.now(),
+      endTime: null,
+      winner: null,
+      totalDamageDealt: 0,
+      bossDamageDealt: 0,
+      triviaStats: {
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        timeouts: 0
+      },
+      playerStats: {
+        jaybers8: {
+          damageDealt: 0,
+          attackCount: 0,
+          specialMoves: 0,
+          triviaCorrect: 0,
+          triviaWrong: 0
+        },
+        flight: {
+          damageDealt: 0,
+          attackCount: 0,
+          specialMoves: 0,
+          triviaCorrect: 0,
+          triviaWrong: 0
+        }
+      },
+      currentMonster: monster,
+      finalBossHealth: 0,
+      maxTriviaMultiplier: 0
+    };
+  }
 
   // Function to attempt playing the audio
   function playFightMusic() {
@@ -234,8 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bindGameKeys(); // Bind keys when timer starts (game starts)
     return timer;
-  }
-  function gameOver() {
+  }  function gameOver() {
     fightMusic.pause(); // Pause fight music
     fightMusic.currentTime = 0; // Reset to the beginning
     gameOverAudio.play();
@@ -245,50 +310,206 @@ document.addEventListener("DOMContentLoaded", () => {
       window.triviaManager.stopTrivia();
     }
     
-    const gameOverDiv = document.createElement("div");
-    gameOverDiv.id = "gameOver";
-    gameOverDiv.style.position = "fixed";
-    gameOverDiv.style.top = "0";
-    gameOverDiv.style.left = "0";
-    gameOverDiv.style.width = "100%";
-    gameOverDiv.style.height = "100%";
-    gameOverDiv.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-    gameOverDiv.style.display = "flex";
-    gameOverDiv.style.flexDirection = "column";
-    gameOverDiv.style.justifyContent = "center";
-    gameOverDiv.style.alignItems = "center";
-    gameOverDiv.style.color = "white";
-    gameOverDiv.style.zIndex = "10000";
+    // Set end time and defeat status
+    gameStats.endTime = Date.now();
+    gameStats.winner = "defeat";
+    
+    // Get current monster health for final stats
+    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
+                                   .find(c => c.style.display === "block");
+    if (activeMonsterContainer) {
+      const lifeBarText = activeMonsterContainer.querySelector("#lifeBarText");
+      if (lifeBarText) {
+        gameStats.finalBossHealth = parseInt(lifeBarText.textContent) || 0;
+      }
+    }
 
-    const gameOverImage = document.createElement("img");
-    gameOverImage.src = "../assets/img/backgrounds/YouDied.jpg";
-    gameOverImage.style.maxWidth = "80%";
-    gameOverImage.style.maxHeight = "80%";
-    gameOverImage.onerror = function() {
-      console.error("Error loading game over image:", this.src);
-    };
-    gameOverDiv.appendChild(gameOverImage);
-
-    // Ensure currentMonster is defined before accessing its properties
-    let currentMonster = monsters[document.getElementById("monsterDropdown").value];
-    const punishmentText = document.createElement("p");
-    punishmentText.innerHTML = currentMonster ? currentMonster.Punishment : "No punishment defined.";
-    punishmentText.style.marginTop = "20px";
-    punishmentText.style.fontSize = "1.5em";
-    gameOverDiv.appendChild(punishmentText);
-
-    // Add restart button
-    const restartButton = document.createElement("button");
-    restartButton.textContent = "Restart Game";
-    restartButton.style.marginTop = "20px";
-    restartButton.style.fontSize = "1.2em";
-    restartButton.addEventListener("click", () => {
-      location.reload(); // Reload the page to restart the game
-    });
-    gameOverDiv.appendChild(restartButton);
-
-    document.body.appendChild(gameOverDiv);
+    showGameResultsScreen("defeat");
     unbindGameKeys(); // Unbind keys when game ends
+  }
+
+  function showVictoryScreen() {
+    fightMusic.pause(); // Pause fight music
+    fightMusic.currentTime = 0; // Reset to the beginning
+    
+    // Stop trivia system
+    if (window.triviaManager) {
+      window.triviaManager.stopTrivia();
+    }
+    
+    // Set end time and victory status
+    gameStats.endTime = Date.now();
+    gameStats.winner = "victory";
+    gameStats.finalBossHealth = 0;
+
+    // Play healer sound for victory
+    healerSound.currentTime = 0;
+    healerSound.play().catch(err => console.error("Error playing healer sound:", err));
+
+    showGameResultsScreen("victory");
+    unbindGameKeys(); // Unbind keys when game ends
+  }
+
+  function showGameResultsScreen(result) {
+    const resultDiv = document.createElement("div");
+    resultDiv.id = "gameResults";
+    resultDiv.style.position = "fixed";
+    resultDiv.style.top = "0";
+    resultDiv.style.left = "0";
+    resultDiv.style.width = "100%";
+    resultDiv.style.height = "100%";
+    resultDiv.style.backgroundColor = "rgba(0, 0, 0, 0.95)";
+    resultDiv.style.color = "white";
+    resultDiv.style.zIndex = "10000";
+    resultDiv.style.overflowY = "auto";
+    resultDiv.style.padding = "20px";
+
+    const battleDuration = gameStats.endTime - gameStats.startTime;
+    const minutes = Math.floor(battleDuration / 60000);
+    const seconds = Math.floor((battleDuration % 60000) / 1000);
+    
+    const isVictory = result === "victory";
+    const headerIcon = isVictory ? "🏆" : "💀";
+    const headerText = isVictory ? "VICTORY!" : "DEFEAT!";
+    const headerColor = isVictory ? "#27ae60" : "#e74c3c";
+
+    resultDiv.innerHTML = `
+      <div class="modal-overlay"></div>
+      <div class="battle-manual-content" style="max-height: 90vh; overflow-y: auto;">
+        <span class="close" id="closeResults">&times;</span>
+        <div class="manual-header">
+          <h2 style="color: ${headerColor};">${headerIcon} ${headerText} ${headerIcon}</h2>
+          <div class="manual-subtitle">Battle Statistics & Performance Analysis</div>
+        </div>
+        
+        <div class="manual-columns">
+          <div class="manual-column">
+            <div class="section-card">
+              <h3>⚔️ Battle Overview</h3>
+              <p><strong>Opponent:</strong> ${gameStats.currentMonster?.name || 'Unknown'}</p>
+              <p><strong>Duration:</strong> ${minutes}m ${seconds}s</p>
+              <p><strong>Final Boss Health:</strong> ${gameStats.finalBossHealth} / ${gameStats.currentMonster?.health || 0} HP</p>
+              <p><strong>Total Damage Dealt:</strong> ${gameStats.totalDamageDealt}</p>
+              <p><strong>Boss Damage Taken:</strong> ${gameStats.bossDamageDealt}</p>
+              <p><strong>Peak Memory Sync:</strong> ×${gameStats.maxTriviaMultiplier.toFixed(1)}</p>
+            </div>
+            
+            <div class="section-card">
+              <h3>🧠 Dimension Sync Performance</h3>
+              <div class="sync-mechanics">
+                <div class="sync-item correct">
+                  ✅ Correct Answers: <strong>${gameStats.triviaStats.correctAnswers}</strong>
+                </div>
+                <div class="sync-item wrong">
+                  ❌ Wrong Answers: <strong>${gameStats.triviaStats.wrongAnswers}</strong>
+                </div>
+                <div class="sync-item timeout">
+                  ⏰ Timeouts: <strong>${gameStats.triviaStats.timeouts}</strong>
+                </div>
+              </div>
+              <p><strong>Accuracy Rate:</strong> ${gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers > 0 ? 
+                ((gameStats.triviaStats.correctAnswers / (gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers)) * 100).toFixed(1) : 0}%</p>
+            </div>
+
+            ${!isVictory ? `
+            <div class="section-card" style="border-color: #e74c3c;">
+              <h3>💀 Consequences</h3>
+              <p style="color: #e74c3c; font-weight: bold;">${gameStats.currentMonster?.Punishment || "No punishment defined."}</p>
+            </div>
+            ` : `
+            <div class="section-card" style="border-color: #27ae60;">
+              <h3>🎁 Rewards</h3>
+              <p style="color: #27ae60; font-weight: bold;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
+            </div>
+            `}
+          </div>
+          
+          <div class="manual-column">
+            <div class="section-card">
+              <h3 class="player-jaybers">🟣 Jaybers8 Performance</h3>
+              <ul>
+                <li><strong>Damage Dealt:</strong> ${gameStats.playerStats.jaybers8.damageDealt}</li>
+                <li><strong>Attack Count:</strong> ${gameStats.playerStats.jaybers8.attackCount}</li>
+                <li><strong>Special Moves (8s/12s):</strong> ${gameStats.playerStats.jaybers8.specialMoves}</li>
+                <li><strong>Trivia Correct:</strong> ${gameStats.playerStats.jaybers8.triviaCorrect}</li>
+                <li><strong>Trivia Wrong:</strong> ${gameStats.playerStats.jaybers8.triviaWrong}</li>
+                <li><strong>Avg Damage/Attack:</strong> ${gameStats.playerStats.jaybers8.attackCount > 0 ? 
+                  (gameStats.playerStats.jaybers8.damageDealt / gameStats.playerStats.jaybers8.attackCount).toFixed(1) : 0}</li>
+              </ul>
+            </div>
+            
+            <div class="section-card">
+              <h3 class="player-flight">🟢 FLIGHTx12! Performance</h3>
+              <ul>
+                <li><strong>Damage Dealt:</strong> ${gameStats.playerStats.flight.damageDealt}</li>
+                <li><strong>Attack Count:</strong> ${gameStats.playerStats.flight.attackCount}</li>
+                <li><strong>Special Moves (8s/12s):</strong> ${gameStats.playerStats.flight.specialMoves}</li>
+                <li><strong>Trivia Correct:</strong> ${gameStats.playerStats.flight.triviaCorrect}</li>
+                <li><strong>Trivia Wrong:</strong> ${gameStats.playerStats.flight.triviaWrong}</li>
+                <li><strong>Avg Damage/Attack:</strong> ${gameStats.playerStats.flight.attackCount > 0 ? 
+                  (gameStats.playerStats.flight.damageDealt / gameStats.playerStats.flight.attackCount).toFixed(1) : 0}</li>
+              </ul>
+            </div>
+
+            <div class="section-card">
+              <h3>🔄 Battle Actions</h3>
+              <p><strong>Total Attacks:</strong> ${gameStats.playerStats.jaybers8.attackCount + gameStats.playerStats.flight.attackCount}</p>
+              <p><strong>Total Special Moves:</strong> ${gameStats.playerStats.jaybers8.specialMoves + gameStats.playerStats.flight.specialMoves}</p>
+              <p><strong>Total Trivia Questions:</strong> ${gameStats.triviaStats.correctAnswers + gameStats.triviaStats.wrongAnswers + gameStats.triviaStats.timeouts}</p>
+              <p><strong>Boss Healing Events:</strong> ${gameStats.triviaStats.wrongAnswers + gameStats.triviaStats.timeouts}</p>
+              <p><strong>HP Healed by Boss:</strong> ${(gameStats.triviaStats.wrongAnswers * 50) + (gameStats.triviaStats.timeouts * 20)}</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="manual-footer">
+          <button id="restartGameBtn" class="menu-button" style="margin-right: 15px;">
+            <i class="fas fa-redo"></i> Battle Again
+          </button>
+          <button id="leaveArenaBtn" class="menu-button">
+            <i class="fas fa-arrow-left"></i> Leave Arena
+          </button>
+          <div class="version-info">ErgoSphere ARENA Battle Report v1.0</div>
+        </div>
+      </div>
+    `;
+
+    // Add event listeners
+    document.body.appendChild(resultDiv);
+    
+    // Close button
+    document.getElementById('closeResults').addEventListener('click', () => {
+      location.reload();
+    });
+    
+    // Restart button
+    document.getElementById('restartGameBtn').addEventListener('click', () => {
+      location.reload();
+    });
+    
+    // Leave arena button  
+    const leaveBtn = resultDiv.querySelector('#leaveArenaBtn');
+    if (leaveBtn) {
+      leaveBtn.addEventListener('click', () => {
+        window.location.href = '../index.html';
+      });
+    }
+
+    // Click outside to close
+    const overlay = resultDiv.querySelector('.modal-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        location.reload();
+      });
+    }
+
+    // Escape key to close
+    document.addEventListener('keydown', function escapeHandler(event) {
+      if (event.key === 'Escape') {
+        document.removeEventListener('keydown', escapeHandler);
+        location.reload();
+      }
+    });
   }
 
   if (!document.getElementById("chooseOpponentBtn")) {
@@ -655,13 +876,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalDamage += damage;
               }            }
           }
-        }
-
-        // Apply trivia multiplier to total damage
+        }        // Apply trivia multiplier to total damage
         let triviaMultiplier = 1;
         if (window.triviaManager && totalDamage > 0) {
           triviaMultiplier = window.triviaManager.applyMultiplierAndReset();
           totalDamage = Math.floor(totalDamage * triviaMultiplier);
+        }
+
+        // Track game stats for this attack
+        const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
+        
+        // Update player-specific stats
+        gameStats.playerStats[playerKey].attackCount++;
+        gameStats.playerStats[playerKey].damageDealt += totalDamage;
+        
+        // Count special moves (8s for Jaybers8, 12s for FLIGHTx12!) using existing currentContainer
+        for (let i = 0; i < currentContainer.children.length; i++) {
+          const input = currentContainer.children[i];
+          const damage = parseInt(input.value);
+          if (!isNaN(damage)) {
+            if ((currentPlayer === 1 && damage === 8) || (currentPlayer === 2 && damage === 12)) {
+              gameStats.playerStats[playerKey].specialMoves++;
+            }
+          }
+        }
+        
+        // Update total damage dealt and track max trivia multiplier
+        gameStats.totalDamageDealt += totalDamage;
+        gameStats.bossDamageDealt += totalDamage;
+        if (triviaMultiplier > gameStats.maxTriviaMultiplier) {
+          gameStats.maxTriviaMultiplier = triviaMultiplier;
         }
 
         monsterLife -= totalDamage;
@@ -682,29 +926,26 @@ document.addEventListener("DOMContentLoaded", () => {
               imageElement.style.animation = "";
             }, duration * 1000);
           }
-        }
-
-        const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";        if (monsterLife === 0) {
+        }        const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";        if (monsterLife === 0) {
           clearInterval(timer);  // Stop timer when boss is defeated
-          fightMusic.pause(); // Pause fight music
-          fightMusic.currentTime = 0; // Reset to the beginning
           
-          // Stop trivia system when boss is defeated
-          if (window.triviaManager) {
-            window.triviaManager.stopTrivia();
-          }
+          // Update game stats for victory
+          gameStats.endTime = Date.now();
+          gameStats.winner = "victory";
+          gameStats.finalBossHealth = 0;
           
-          // Play healer sound immediately
-          healerSound.currentTime = 0; // Ensure it plays from the beginning
-          healerSound.play().catch(err => console.error("Error playing healer sound:", err));
-          
-          // Announce defeat in historyContainer with large, bold, bright red font
+          // Announce victory in historyContainer with large, bold, bright red font
           historyContainer.innerHTML += `<p style="font-size:2rem; font-weight:bold; color:#FF0000; text-align: center; margin: 15px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);">${playerName} defeated the ${monster.name}!</p>`;
           image.src = monster.defeatedImageSrc;
           
           // Always add the copy log button after updating innerHTML
           ensureCopyLogButton(monster, historyContainer);
-        }        // Use the monster-specific dialogue methods:
+          
+          // Show victory screen with detailed stats
+          setTimeout(() => {
+            showVictoryScreen();
+          }, 2000); // Small delay to let players see the victory message first
+        }// Use the monster-specific dialogue methods:
         const damageDialogue = monster.getDamageDialogue(totalDamage, playerName);
         const hitDialogue = hitCount > 0 ? monster.getHitDialogue(hitCount, playerName) : "";
 
@@ -854,14 +1095,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // Stop trivia when changing monsters
       if (window.triviaManager) {
         window.triviaManager.stopTrivia();
-      }
-
-      if (selectedMonsterIndex !== "") {
+      }      if (selectedMonsterIndex !== "") {
         // Hide the How To Play modal when game starts
         const modal = document.getElementById('howToPlayModal');
         if (modal) {
           modal.style.display = 'none';
         }
+        
+        // Initialize game stats for the selected monster
+        const selectedMonster = monsters[selectedMonsterIndex];
+        initializeGameStats(selectedMonster);
         
         // Show the selected monster container
         const activeMonsterContainer = monsterContainers[selectedMonsterIndex];
@@ -1030,10 +1273,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-
   // Keep only the event listeners for trivia events - remove all the duplicate functions
   document.addEventListener('triviaTimeout', handleTriviaTimeout);
   document.addEventListener('triviaWrongAnswer', handleTriviaWrongAnswer);
+  document.addEventListener('triviaCorrectAnswer', handleTriviaCorrectAnswer);
   
   // Maintain a registry of processed events by timestamp to avoid duplicates
   const processedTriviaEvents = new Set();
@@ -1084,11 +1327,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const oldHealth = currentHealth;
     currentHealth = Math.min(currentHealth + 20, maxHealth);
     const actualHealing = currentHealth - oldHealth;
-    
-    if (actualHealing > 0) {
+      if (actualHealing > 0) {
       // Update life bar display
       lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
       lifeBarText.textContent = currentHealth;
+      
+      // Track trivia timeout stats
+      gameStats.triviaStats.timeouts++;
       
       // Add healing message to battle log
       const healMessage = `⏰ Trivia timeout! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
@@ -1157,11 +1402,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const oldHealth = currentHealth;
     currentHealth = Math.min(currentHealth + 50, maxHealth);
     const actualHealing = currentHealth - oldHealth;
-    
-    if (actualHealing > 0) {
+      if (actualHealing > 0) {
       // Update life bar display
       lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
       lifeBarText.textContent = currentHealth;
+        // Track trivia wrong answer stats
+      gameStats.triviaStats.wrongAnswers++;
+      
+      // Track for current player
+      const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
+      gameStats.playerStats[playerKey].triviaWrong++;
       
       // Add healing message to battle log
       const healMessage = `❌ Wrong answer! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
@@ -1186,9 +1436,33 @@ document.addEventListener("DOMContentLoaded", () => {
       wrongHealSound.volume = 0.4;
       wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
       wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
-      
-      console.log(`Boss healed from wrong answer: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+        console.log(`Boss healed from wrong answer: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
     }
+  }
+  // Handler for trivia correct answers
+  function handleTriviaCorrectAnswer(event) {
+    // Extract timestamp from event if available
+    const timestamp = event.detail?.timestamp || Date.now();
+    const eventId = `correct_${timestamp}`;
+    
+    // Check if we've already processed this event
+    if (processedTriviaEvents.has(eventId)) {
+      console.log('Ignoring duplicate trivia correct answer event', eventId);
+      return;
+    }
+    
+    // Add to registry of processed events
+    processedTriviaEvents.add(eventId);
+    console.log('Processing trivia correct answer event', eventId);
+    
+    // Track trivia correct answer stats (global and per-player)
+    gameStats.triviaStats.correctAnswers++;
+    
+    // Track for current player
+    const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
+    gameStats.playerStats[playerKey].triviaCorrect++;
+    
+    console.log(`Trivia correct answer tracked for ${playerKey}. Total correct: ${gameStats.triviaStats.correctAnswers}`);
   }
 
 });
