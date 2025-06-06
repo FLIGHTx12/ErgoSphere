@@ -17,19 +17,20 @@ function showNotification(message, type = 'info', duration = 3000) {
   if (!notification) {
     notification = document.createElement('div');
     notification.id = 'notification-banner';
-    
-    // Style the notification
+      // Style the notification
     notification.style.position = 'fixed';
     notification.style.top = '10px';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.padding = '10px 20px';
-    notification.style.borderRadius = '5px';
-    notification.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+    notification.style.right = '0px';
+    opacity = '100%';
+    notification.style.padding = '4px 2px';
+    notification.style.borderRadius = '30px';
+    notification.style.boxShadow = '0 2px 8px rgba(0.3, 0, 0, 0.1)';
     notification.style.zIndex = '10001'; // Above other UI elements
     notification.style.textAlign = 'center';
-    notification.style.transition = 'opacity 0.3s ease-in-out';
-    notification.style.maxWidth = '80%';
+    notification.style.transition = 'opacity .1s ease-in-out';
+    notification.style.maxWidth = '50px';
+    notification.style.fontSize = '10px';
+    notification.style.fontWeight = '50';
     
     document.body.appendChild(notification);
   }

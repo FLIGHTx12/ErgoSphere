@@ -599,23 +599,7 @@ summary::-webkit-details-marker {
   margin: auto;
 }
 
-.action-button {
-  margin: -15px 0px 0px 0px;
-  padding: 10px;
-  border-radius: 50px;
-  float: right;
-  display: block;
-  cursor: pointer;
-}
-
-.copy-clear-container {
-  text-align: right;
-  margin-left: 200px;
-}
-
-.action-button.copy-clear {
-  display: none;
-}
+/* Legacy action button styles - no longer needed */
 
 #description-popup {
   position: fixed;
@@ -701,6 +685,46 @@ summary::-webkit-details-marker {
 
 .jaybers-theme .modern-container::after {
   background: linear-gradient(90deg, transparent, var(--jaybers-color), transparent);
+}
+
+/* ===== Container Height Reduction for Screen Clutter Reduction ===== */
+/* Reduce vertical height of refreshments, meal mods, and leisure containers by half */
+#snacks.modern-container,
+#mealMods.modern-container,
+#entertainment.modern-container {
+  padding: 5px 10px; /* Reduced from default padding by half */
+  margin: 10px auto; /* Reduced vertical margins by half */
+  min-height: auto; /* Remove any minimum height constraints */
+}
+
+#snacks.modern-container details,
+#mealMods.modern-container details,
+#entertainment.modern-container details {
+  margin: 5px 0; /* Reduced margins by half */
+}
+
+#snacks.modern-container ul,
+#mealMods.modern-container ul,
+#entertainment.modern-container ul {
+  padding: 5px 0; /* Reduced padding by half */
+  margin: 5px 0; /* Reduced margins by half */
+}
+
+#snacks.modern-container li,
+#mealMods.modern-container li,
+#entertainment.modern-container li {
+  padding: 3px 0; /* Reduced padding by half */
+  margin: 3px 0; /* Reduced margins by half */
+}
+
+#snacks.modern-container h2,
+#mealMods.modern-container h2,
+#entertainment.modern-container h2,
+#snacks.modern-container h3,
+#mealMods.modern-container h3,
+#entertainment.modern-container h3 {
+  margin: 5px 0; /* Reduced heading margins by half */
+  padding: 3px 0; /* Reduced heading padding by half */
 }
 
 /* ===== 6. ANIMATIONS ===== */
@@ -805,7 +829,13 @@ summary::-webkit-details-marker {
 @media (max-width: 768px) {
   div {
     max-width: 100%;
-    width: 90%;
+    width: 95%;
+  }
+  
+  #summary {
+    width: 98% !important;
+    margin: 20px auto;
+    padding: 10px;
   }
 }
 
@@ -887,13 +917,16 @@ summary::-webkit-details-marker {
   div {
     max-width: 900px;
   }
-  
+    /* Legacy action button media queries - updated for new positioning */
   .action-button {
-    margin-right: 500px;
+    /* Base responsive styles for action buttons */
+    margin: 0;
+    float: none;
   }
   
   .action-button.copy-clear {
-    margin-right: 600px;
+    /* Copy/clear buttons now positioned via containers */
+    margin: 0;
   }
   
   #sidebar.hidden {
@@ -1448,5 +1481,54 @@ summary::-webkit-details-marker {
   box-shadow: 
     inset 0 0 10px rgba(153, 50, 204, 0.1),
     0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Button Positioning for Better UX ===== */
+/* Submit button positioned at bottom right of leisure div */
+.leisure-submit-btn {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  z-index: 100;
+  background: var(--futuristic-gradient) !important;
+  border: 1px solid var(--active-user-theme) !important;
+  border-radius: var(--border-radius) !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: var(--text-color) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-speed) ease !important;
+  box-shadow: var(--card-shadow), 0 0 10px rgba(0, 0, 0, 0.3) !important;
+  margin: 0 !important;
+  float: none !important;
+  display: inline-block !important;
+}
+
+.leisure-submit-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), var(--active-user-theme-dark)) !important;
+  box-shadow: var(--card-shadow), 0 0 15px var(--active-user-theme-dark) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Mobile responsiveness for button positioning */
+@media (max-width: 768px) {
+  .leisure-submit-btn {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .leisure-submit-btn {
+    right: 8px;
+    bottom: 8px;
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
+  }
 }
 

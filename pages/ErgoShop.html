@@ -194,8 +194,7 @@
     </ul>
   </div> </details>
   <!-- End of Meal Mods container -->
-    <!-- Entertainment section with additional containers -->
-  <div id="entertainment" >
+    <!-- Entertainment section with additional containers -->  <div id="entertainment" class="modern-container">
     <details><summary>LEISURE</summary>
     <h3>ENTERTAINMENT MODS</h3>
     <div id="entertainmentContainer">
@@ -254,16 +253,15 @@
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
-      </select>
-      <button class="add-button">+</button>
+      </select>      <button class="add-button">+</button>
     </div>
-  </div></Details>
-  <button type="button" class="action-button" onclick="submitSelection()">Submit</button>
+  </details>
+  <!-- Submit button positioned at bottom right of leisure div -->
+  <button type="button" class="leisure-submit-btn" onclick="submitSelection()">Submit</button>
+</div>
+  <br>  <div id="summary" class="summary" onclick="screenshotDiv()">
+  </div>
   <br>
-  <div id="summary" class="summary" onclick="screenshotDiv()"></div>
-  <br>
-  <button type="button" class="action-button copy-clear" onclick="clearSelection()">Clear</button>
-  <button type="button" class="action-button copy-clear" onclick="copySummary()">Copy</button>
     <!-- Weekly Purchase Tracker -->  <div id="weekly-purchases" >
     <details open>
       <summary>WEEKLY PURCHASES (Week <span class="week-number"></span>)</summary>

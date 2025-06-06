@@ -185,9 +185,7 @@ function submitSelection() {
         }
       });
     }
-  });
-  
-  // Create the receipt
+  });    // Create the receipt
   const summary = document.getElementById('summary');
   summary.innerHTML = `
       <hr>
@@ -197,24 +195,21 @@ function submitSelection() {
       <hr>
       <p class="wager-total">TOTAL: ${totalValue} 💷</p>
   `;
-  
-  // Make the receipt visible with reduced width
+    // Make the receipt visible with appropriate width
   summary.style.display = 'block';
   if (window.innerWidth < 768) {
-    summary.style.width = '70%'; // Reduced from 90%
+    summary.style.width = '99%'; // Wider for mobile screens
   } else {
-    summary.style.width = '35%'; // Reduced from 50%
+    summary.style.width = '50%'; // Wider for desktop screens
   }
-  
-  // Show the action buttons
-  document.querySelectorAll('.action-button.copy-clear').forEach(button => {
-    button.style.display = 'inline-block';
-  });
 }
 
 function clearSelection() {
   const summary = document.getElementById('summary');
-  if (summary) summary.innerHTML = '';
+  if (summary) {
+    summary.innerHTML = '';
+    summary.style.display = 'none';
+  }
 }
 
 function copySummary() {
