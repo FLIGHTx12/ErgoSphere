@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Performance Test</title>
+    <link rel="stylesheet" href="css/themed-cursors.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .test-element {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .test-element:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .metrics {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .theme-toggle {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .theme-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .flight-btn {
+            background: #00ff00;
+            color: #000;
+        }
+        
+        .jaybers-btn {
+            background: #9932cc;
+            color: white;
+        }
+        
+        .clear-btn {
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>ErgoSphere Themed Cursors - Performance Test</h1>
+    
+    <div class="metrics">
+        <h3>Performance Metrics</h3>
+        <p>Frame Rate: <span id="fps">--</span> FPS</p>
+        <p>Memory Usage: <span id="memory">--</span> MB</p>
+        <p>Theme: <span id="current-theme">None</span></p>
+        <p>Mouse Position: <span id="mouse-pos">--</span></p>
+        <p>Elements Created: <span id="element-count">0</span></p>
+    </div>
+    
+    <div class="theme-toggle">
+        <button class="theme-btn flight-btn" onclick="setTheme('flight')">FLIGHTx12! Green</button>
+        <button class="theme-btn jaybers-btn" onclick="setTheme('jaybers')">Jaybers8 Purple</button>
+        <button class="theme-btn clear-btn" onclick="setTheme('none')">Default</button>
+        <button class="theme-btn clear-btn" onclick="createElements()">Add 50 Elements</button>
+        <button class="theme-btn clear-btn" onclick="clearElements()">Clear Elements</button>
+    </div>
+    
+    <div id="performance-grid" class="performance-grid">
+        <!-- Dynamic elements will be added here -->
+    </div>
+    
+    <div style="margin-top: 40px;">
+        <h3>Cursor Test Area</h3>
+        <p>Move your mouse around this area to test cursor performance with different themes.</p>
+        <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 20px;">
+            <p>This is a large area for testing cursor movement. The performance metrics above should remain stable regardless of which theme is active.</p>
+            <button style="padding: 10px; margin: 10px;">Button</button>
+            <input type="text" placeholder="Input field" style="padding: 8px; margin: 10px;" />
+            <a href="#" style="margin: 10px; color: #4CAF50;">Link element</a>
+        </div>
+    </div>
+    
+    <script>
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let elementCount = 0;
+        
+        // Performance monitoring
+        function updateMetrics() {
+            const now = performance.now();
+            const delta = now - lastTime;
+            
+            if (delta >= 1000) {
+                const fps = Math.round((frameCount * 1000) / delta);
+                document.getElementById('fps').textContent = fps;
+                frameCount = 0;
+                lastTime = now;
+            }
+            
+            frameCount++;
+            
+            // Memory usage (if available)
+            if (performance.memory) {
+                const memory = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                document.getElementById('memory').textContent = memory;
+            } else {
+                document.getElementById('memory').textContent = 'Not available';
+            }
+            
+            requestAnimationFrame(updateMetrics);
+        }
+        
+        // Mouse position tracking
+        document.addEventListener('mousemove', function(e) {
+            document.getElementById('mouse-pos').textContent = `${e.clientX}, ${e.clientY}`;
+        });
+        
+        // Theme switching
+        function setTheme(theme) {
+            const body = document.body;
+            body.classList.remove('flight-theme', 'jaybers-theme');
+            
+            let themeName = 'None';
+            if (theme === 'flight') {
+                body.classList.add('flight-theme');
+                themeName = 'FLIGHTx12! (Green)';
+            } else if (theme === 'jaybers') {
+                body.classList.add('jaybers-theme');
+                themeName = 'Jaybers8 (Purple)';
+            }
+            
+            document.getElementById('current-theme').textContent = themeName;
+        }
+        
+        // Create test elements
+        function createElements() {
+            const grid = document.getElementById('performance-grid');
+            for (let i = 0; i < 50; i++) {
+                const element = document.createElement('div');
+                element.className = 'test-element';
+                element.textContent = `Element ${elementCount + i + 1}`;
+                element.addEventListener('click', function() {
+                    this.style.background = `hsl(${Math.random() * 360}, 50%, 50%)`;
+                });
+                grid.appendChild(element);
+            }
+            elementCount += 50;
+            document.getElementById('element-count').textContent = elementCount;
+        }
+        
+        // Clear elements
+        function clearElements() {
+            const grid = document.getElementById('performance-grid');
+            grid.innerHTML = '';
+            elementCount = 0;
+            document.getElementById('element-count').textContent = elementCount;
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setTheme('flight'); // Start with FLIGHTx12! theme
+            createElements(); // Create initial elements
+            updateMetrics(); // Start performance monitoring
+        });
+        
+        // Add some initial test elements
+        setTimeout(() => {
+            createElements();
+        }, 100);
+    </script>
+</body>
+</html>

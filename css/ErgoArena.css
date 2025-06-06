@@ -202,12 +202,13 @@ header h1 {
 /* Fighter Option Styles */
 .fighter-option {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin: 8px 0;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     border-radius: 3px;
     transition: background-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .fighter-option:hover {
@@ -222,6 +223,87 @@ header h1 {
 .fighter-option label {
     cursor: pointer;
     flex: 1;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Fighter option header row (checkbox + label) */
+.fighter-option > div:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Attack Input Controls */
+.attack-input-controls {
+    margin-top: 5px;
+    padding: 5px 0;
+}
+
+.input-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-indicator {
+    font-size: 1.1rem;
+    text-shadow: 0 0 4px currentColor;
+}
+
+.attack-input-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.attack-input-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.attack-input-btn:active {
+    transform: scale(0.95);
+}
+
+.attack-input-btn.decrease:hover {
+    background-color: rgba(231, 76, 60, 0.3);
+    border-color: #e74c3c;
+}
+
+.attack-input-btn.increase:hover {
+    background-color: rgba(39, 174, 96, 0.3);
+    border-color: #27ae60;
+}
+
+.attack-count {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+}
+
+.input-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
 }
 
 /* Main Game Container */
@@ -765,7 +847,7 @@ header h1 {
     100% { transform: scale(1); }
 }
 
-/* Add/Remove Attack Button Styling (Restored) */
+/* Add/Remove Attack Button Styling (Secondary Controls) */
 #addAttackButton, #removeAttackButton {
     background-color: #27ae60;
     background-image: linear-gradient(135deg, #27ae60, #2ecc71);
@@ -786,6 +868,16 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.8; /* Slightly dimmed to indicate secondary nature */
+    position: relative;
+}
+
+/* Add subtle indicator that these are secondary controls */
+#addAttackButton::after, #removeAttackButton::after {
+    content: " (alt)";
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-left: 2px;
 }
 
 #removeAttackButton {
@@ -797,12 +889,14 @@ header h1 {
     background-image: linear-gradient(135deg, #2ecc71, #27ae60);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 1; /* Full opacity on hover */
 }
 
 #removeAttackButton:hover {
     background-image: linear-gradient(135deg, #c0392b, #e74c3c);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 1; /* Full opacity on hover */
 }
 
 #addAttackButton:active, #removeAttackButton:active {

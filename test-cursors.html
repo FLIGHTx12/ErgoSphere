@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themed Cursor Test</title>
+    <link rel="stylesheet" href="css/themed-cursors.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .theme-switcher {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        
+        .test-area {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input, textarea, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .resize-handle {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            border: 2px dashed #666;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Themed Cursor Test Page</h1>
+    
+    <div class="theme-switcher">
+        <h2>Theme Switcher</h2>
+        <button onclick="setTheme('flight')">Switch to FLIGHTx12! Theme (Green)</button>
+        <button onclick="setTheme('jaybers')">Switch to Jaybers8 Theme (Purple)</button>
+        <button onclick="setTheme('none')">Remove Theme</button>
+        <p>Current theme: <span id="current-theme">None</span></p>
+    </div>
+    
+    <div class="test-area">
+        <h3>Test Different Cursor Types</h3>
+        <p>Move your mouse over different elements to see the themed cursors:</p>
+        
+        <h4>Clickable Elements:</h4>
+        <button>Sample Button</button>
+        <a href="#">Sample Link</a>
+        <input type="button" value="Input Button" />
+        
+        <h4>Text Input Elements:</h4>
+        <input type="text" placeholder="Text input" />
+        <textarea placeholder="Textarea"></textarea>
+        <select>
+            <option>Select option</option>
+        </select>
+        
+        <h4>Resizable Element:</h4>
+        <div class="resize-handle">Resize Handle</div>
+        
+        <h4>Regular Text:</h4>
+        <p>This is regular text. The cursor should show the default themed cursor when hovering over this text.</p>
+    </div>
+    
+    <script>
+        function setTheme(theme) {
+            const body = document.body;
+            
+            // Remove existing theme classes
+            body.classList.remove('flight-theme', 'jaybers-theme');
+            
+            // Add new theme class
+            if (theme === 'flight') {
+                body.classList.add('flight-theme');
+                document.getElementById('current-theme').textContent = 'FLIGHTx12! (Green)';
+            } else if (theme === 'jaybers') {
+                body.classList.add('jaybers-theme');
+                document.getElementById('current-theme').textContent = 'Jaybers8 (Purple)';
+            } else {
+                document.getElementById('current-theme').textContent = 'None';
+            }
+        }
+        
+        // Set default theme on load
+        setTheme('flight');
+    </script>
+</body>
+</html>

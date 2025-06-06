@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Integration Test</title>
+    <link rel="stylesheet" href="css/ErgoShop.css" />
+    <link rel="stylesheet" href="css/themed-cursors.css" />
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .status-indicator {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .flight-active {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+        }
+        
+        .jaybers-active {
+            background: rgba(153, 50, 204, 0.2);
+            color: #9932cc;
+            border: 2px solid #9932cc;
+        }
+        
+        .interactive-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .test-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .test-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #666;
+            background: #222;
+            color: white;
+        }
+        
+        .cursor-demo-area {
+            min-height: 200px;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ErgoSphere Theme Integration Test</h1>
+    
+    <div class="test-section">
+        <h2>Current Theme Status</h2>
+        <div id="theme-status" class="status-indicator">Detecting theme...</div>
+        <div class="interactive-elements">
+            <button class="test-button" onclick="switchToFlight()">Switch to FLIGHTx12!</button>
+            <button class="test-button" onclick="switchToJaybers()">Switch to Jaybers8</button>
+            <button class="test-button" onclick="testLocalStorage()">Check LocalStorage</button>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Cursor Demonstration Area</h2>
+        <p>Move your mouse around this area to test the themed cursors:</p>
+        
+        <div class="cursor-demo-area">
+            <div>
+                <label>Clickable Elements:</label>
+                <button class="test-button">Hover me for pointer cursor</button>
+                <a href="#" style="color: #4CAF50;">Link with custom cursor</a>
+            </div>
+            
+            <div>
+                <label>Input Elements:</label>
+                <input type="text" placeholder="Text input cursor" />
+                <select>
+                    <option>Select dropdown cursor</option>
+                </select>
+                <textarea placeholder="Textarea cursor"></textarea>
+            </div>
+            
+            <div>
+                <label>Regular Text Area:</label>
+                <p>This paragraph should show the default themed cursor. Move your mouse over this text to see the custom cursor in action.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>CSS Variables Test</h2>
+        <div id="css-vars-display"></div>
+    </div>
+    
+    <script src="js/weekly-tracker-addon.js"></script>
+    <script>
+        // Theme switching functions
+        function switchToFlight() {
+            updateUserTheme('FLIGHTx12');
+            updateThemeStatus();
+        }
+        
+        function switchToJaybers() {
+            updateUserTheme('Jaybers8');
+            updateThemeStatus();
+        }
+        
+        function testLocalStorage() {
+            const currentUser = localStorage.getItem('ergoShopCurrentUser');
+            alert(`Current user in localStorage: ${currentUser || 'Not set'}`);
+        }
+        
+        // Update theme status display
+        function updateThemeStatus() {
+            const statusDiv = document.getElementById('theme-status');
+            const body = document.body;
+            
+            if (body.classList.contains('flight-theme')) {
+                statusDiv.textContent = 'FLIGHTx12! Theme Active (Green Cursors)';
+                statusDiv.className = 'status-indicator flight-active';
+            } else if (body.classList.contains('jaybers-theme')) {
+                statusDiv.textContent = 'Jaybers8 Theme Active (Purple Cursors)';
+                statusDiv.className = 'status-indicator jaybers-active';
+            } else {
+                statusDiv.textContent = 'No Theme Active';
+                statusDiv.className = 'status-indicator';
+            }
+        }
+        
+        // Display CSS variables
+        function displayCSSVars() {
+            const varsDiv = document.getElementById('css-vars-display');
+            const root = document.documentElement;
+            const computedStyle = getComputedStyle(root);
+            
+            const activeTheme = computedStyle.getPropertyValue('--active-user-theme').trim();
+            const activeThemeDark = computedStyle.getPropertyValue('--active-user-theme-dark').trim();
+            const flightColor = computedStyle.getPropertyValue('--flight-color').trim();
+            const jaybersColor = computedStyle.getPropertyValue('--jaybers-color').trim();
+            
+            varsDiv.innerHTML = `
+                <p><strong>CSS Variables:</strong></p>
+                <p>--active-user-theme: ${activeTheme || 'Not set'}</p>
+                <p>--active-user-theme-dark: ${activeThemeDark || 'Not set'}</p>
+                <p>--flight-color: ${flightColor || 'Not set'}</p>
+                <p>--jaybers-color: ${jaybersColor || 'Not set'}</p>
+            `;
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateThemeStatus();
+            displayCSSVars();
+            
+            // Set up periodic updates
+            setInterval(() => {
+                updateThemeStatus();
+                displayCSSVars();
+            }, 1000);
+        });
+        
+        // Add keyboard shortcuts for testing
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        switchToFlight();
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        switchToJaybers();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

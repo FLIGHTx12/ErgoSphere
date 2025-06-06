@@ -20,10 +20,33 @@ document.addEventListener("DOMContentLoaded", () => {
   let audioDuration = 365; // Default duration, will be updated
   const gameOverAudio = new Audio('../assets/audio/hazzard.mp3');
   const fightMusic = new Audio('../assets/audio/ErgoArenaTheme.mp3');
-  const healerSound = new Audio('../assets/audio/healer.mp3'); // Add healer sound
-  fightMusic.loop = true; // loop the fight music
+  const healerSound = new Audio('../assets/audio/healer.mp3'); // Add healer sound  fightMusic.loop = true; // loop the fight music
   fightMusic.volume = 0.5; // Set volume to 50% (adjust as needed)
   healerSound.volume = 0.7; // Set healer sound volume
+    // ===== CURSOR THEME SWITCHING FOR FIGHTER TOGGLE =====
+  function updateCursorTheme(player) {
+    const body = document.body;
+    
+    // Remove existing theme classes
+    body.classList.remove('flight-theme', 'jaybers-theme');
+    
+    // Only apply themed cursors if the game has started (timer is active)
+    if (timerStarted) {
+      // Add appropriate theme class based on current player
+      if (player === 1) {
+        // Jaybers8 = Purple theme
+        body.classList.add('jaybers-theme');
+      } else if (player === 2) {
+        // FLIGHTx12! = Green theme
+        body.classList.add('flight-theme');
+      }
+    }
+    // If game hasn't started (timerStarted = false), cursor remains default
+  }
+  
+  // Initialize cursor theme on page load (will be default since timerStarted = false)
+  updateCursorTheme(currentPlayer);
+  
   // Game stats tracking
   let gameStats = {
     startTime: null,
@@ -326,10 +349,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (lifeBarText) {
         gameStats.finalBossHealth = parseInt(lifeBarText.textContent) || 0;
       }
-    }
-
-    showGameResultsScreen("defeat");
+    }    showGameResultsScreen("defeat");
     unbindGameKeys(); // Unbind keys when game ends
+    
+    // Reset cursor to default when game ends
+    const body = document.body;
+    body.classList.remove('flight-theme', 'jaybers-theme');
   }
 
   function showVictoryScreen() {
@@ -348,9 +373,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Play healer sound for victory
     healerSound.currentTime = 0;
-    healerSound.play().catch(err => console.error("Error playing healer sound:", err));
-
-    showGameResultsScreen("victory");    unbindGameKeys(); // Unbind keys when game ends
+    healerSound.play().catch(err => console.error("Error playing healer sound:", err));    showGameResultsScreen("victory");    unbindGameKeys(); // Unbind keys when game ends
+    
+    // Reset cursor to default when game ends
+    const body = document.body;
+    body.classList.remove('flight-theme', 'jaybers-theme');
   }
 
   // Function to capture screenshot of battle results
@@ -756,37 +783,144 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create Fighter Selection Dropdown
     const fighterDropdown = document.createElement("div");
-    fighterDropdown.id = "fighterDropdown";
-    
-    // Jaybers8 option
+    fighterDropdown.id = "fighterDropdown";    // Jaybers8 option with attack inputs
     const jaybers8Option = document.createElement("div");
     jaybers8Option.classList.add("fighter-option");
+    
+    // Create header row with checkbox and label
+    const jaybers8Header = document.createElement("div");
+    jaybers8Header.style.display = "flex";
+    jaybers8Header.style.alignItems = "center";
+    
     const jaybers8Checkbox = document.createElement("input");
     jaybers8Checkbox.type = "checkbox";
     jaybers8Checkbox.id = "jaybers8Checkbox";
     jaybers8Checkbox.checked = true;
+    
     const jaybers8Label = document.createElement("label");
     jaybers8Label.textContent = "Jaybers8";
     jaybers8Label.htmlFor = "jaybers8Checkbox";
-    jaybers8Option.appendChild(jaybers8Checkbox);
-    jaybers8Option.appendChild(jaybers8Label);
     
-    // FLIGHTx12! option
+    jaybers8Header.appendChild(jaybers8Checkbox);
+    jaybers8Header.appendChild(jaybers8Label);
+    jaybers8Option.appendChild(jaybers8Header);
+    
+    // Jaybers8 attack input controls
+    const jaybers8AttackControls = document.createElement("div");
+    jaybers8AttackControls.classList.add("attack-input-controls");
+    jaybers8AttackControls.innerHTML = `
+      <div class="input-counter">
+        <span class="player-indicator" style="color: var(--player1-color);">⚔️</span>
+        <button class="attack-input-btn decrease" data-player="1">-</button>
+        <span class="attack-count" id="jaybers8AttackCount">1</span>
+        <button class="attack-input-btn increase" data-player="1">+</button>
+        <span class="input-label">inputs</span>
+      </div>
+    `;
+    jaybers8Option.appendChild(jaybers8AttackControls);
+    
+    // FLIGHTx12! option with attack inputs
     const flightOption = document.createElement("div");
     flightOption.classList.add("fighter-option");
+    
+    // Create header row with checkbox and label
+    const flightHeader = document.createElement("div");
+    flightHeader.style.display = "flex";
+    flightHeader.style.alignItems = "center";
+    
     const flightCheckbox = document.createElement("input");
     flightCheckbox.type = "checkbox";
     flightCheckbox.id = "flightCheckbox";
     flightCheckbox.checked = true;
+    
     const flightLabel = document.createElement("label");
     flightLabel.textContent = "FLIGHTx12!";
     flightLabel.htmlFor = "flightCheckbox";
-    flightOption.appendChild(flightCheckbox);
-    flightOption.appendChild(flightLabel);
+    
+    flightHeader.appendChild(flightCheckbox);
+    flightHeader.appendChild(flightLabel);
+    flightOption.appendChild(flightHeader);
+    
+    // FLIGHTx12! attack input controls
+    const flightAttackControls = document.createElement("div");
+    flightAttackControls.classList.add("attack-input-controls");
+    flightAttackControls.innerHTML = `
+      <div class="input-counter">
+        <span class="player-indicator" style="color: var(--player2-color);">⚔️</span>
+        <button class="attack-input-btn decrease" data-player="2">-</button>
+        <span class="attack-count" id="flightAttackCount">1</span>
+        <button class="attack-input-btn increase" data-player="2">+</button>
+        <span class="input-label">inputs</span>
+      </div>
+    `;
+    flightOption.appendChild(flightAttackControls);
     
     fighterDropdown.appendChild(jaybers8Option);
     fighterDropdown.appendChild(flightOption);
     monsterButtonsContainer.appendChild(fighterDropdown);
+
+    // Store planned attack counts for each player
+    let plannedAttackCounts = { 1: 1, 2: 1 };
+
+    // Attack input control handlers
+    fighterDropdown.addEventListener("click", (e) => {
+      if (e.target.classList.contains("attack-input-btn")) {
+        e.stopPropagation(); // Prevent dropdown from closing
+        const player = parseInt(e.target.dataset.player);
+        const isIncrease = e.target.classList.contains("increase");
+        
+        if (isIncrease && plannedAttackCounts[player] < 11) {
+          plannedAttackCounts[player]++;
+        } else if (!isIncrease && plannedAttackCounts[player] > 1) {
+          plannedAttackCounts[player]--;
+        }
+        
+        // Update display
+        const countElement = document.getElementById(player === 1 ? "jaybers8AttackCount" : "flightAttackCount");
+        countElement.textContent = plannedAttackCounts[player];
+        
+        // Update existing monster containers if any
+        updateAllMonsterContainersForPlannedInputs();
+      }
+    });
+
+    // Function to update all monster containers with planned input counts
+    function updateAllMonsterContainersForPlannedInputs() {
+      const monsterContainers = document.querySelectorAll(".monster-container");
+      monsterContainers.forEach(container => {
+        const container1 = container.querySelector("#attackInputs1");
+        const container2 = container.querySelector("#attackInputs2");
+        
+        if (container1 && container2) {
+          // Update Jaybers8 inputs
+          updateContainerInputs(container1, plannedAttackCounts[1], 1);
+          // Update FLIGHTx12! inputs
+          updateContainerInputs(container2, plannedAttackCounts[2], 2);
+        }
+      });
+    }
+
+    // Function to update a specific container's inputs
+    function updateContainerInputs(container, targetCount, player) {
+      const currentInputs = container.children.length;
+      
+      if (currentInputs < targetCount) {
+        // Add inputs
+        for (let i = currentInputs; i < targetCount; i++) {
+          const input = document.createElement("input");
+          input.type = "number";
+          input.min = "1";
+          input.max = "20";
+          input.style.backgroundColor = player === 1 ? "purple" : "green";
+          container.appendChild(input);
+        }
+      } else if (currentInputs > targetCount) {
+        // Remove inputs
+        for (let i = currentInputs; i > targetCount; i--) {
+          container.removeChild(container.lastChild);
+        }
+      }
+    }
 
     // Fighter selection event handlers
     chooseFightersBtn.addEventListener("click", () => {
@@ -872,10 +1006,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Both active - normal toggle mode - use current player
         attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
         playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-        container1.style.display = currentPlayer === 1 ? "block" : "none";
-        container2.style.display = currentPlayer === 2 ? "block" : "none";      }
+        container1.style.display = currentPlayer === 1 ? "block" : "none";        container2.style.display = currentPlayer === 2 ? "block" : "none";      }
 
-      toggleButtonColors(currentPlayer);    }    // Add "Enemy Select" option first as default
+      updateCursorTheme(currentPlayer);    }    // Add "Enemy Select" option first as default
     const enemySelectOption = document.createElement("option");
     enemySelectOption.value = "";
     enemySelectOption.text = "Enemy Select";
@@ -985,11 +1118,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Only switch if both players are active
         if (activeFighters.jaybers8 && activeFighters.flight) {
           currentPlayer = currentPlayer === 1 ? 2 : 1;
-          attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
-          playerToggle.textContent =
+          attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;          playerToggle.textContent =
             currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
           toggleContainer(currentPlayer);
-          toggleButtonColors(currentPlayer);
+          updateCursorTheme(currentPlayer);
 
           // Add toggle dialogue to history container
           const playerName = currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!";
@@ -1029,42 +1161,74 @@ document.addEventListener("DOMContentLoaded", () => {
       monsterContainer.appendChild(container1);
       monsterContainer.appendChild(container2);
 
-      let monsterLife = monster.health;
-      let numAttacks = { 1: 1, 2: 1 }; // Track attack inputs for both players
+      let monsterLife = monster.health;      let numAttacks = { 1: plannedAttackCounts[1], 2: plannedAttackCounts[2] }; // Use planned attack counts
 
-      const initialInputs = {
-        1: document.createElement("input"),
-        2: document.createElement("input"),
-      };
-
-      for (let player in initialInputs) {
-        initialInputs[player].type = "number";
-        initialInputs[player].min = "1";
-        initialInputs[player].max = "20";
-        initialInputs[player].classList.add("initial");
-        initialInputs[player].style.backgroundColor =
-          player == 1 ? "purple" : "green";
+      // Create initial inputs based on planned counts
+      const initialInputs = {};
+      
+      // Create inputs for Jaybers8
+      for (let i = 0; i < plannedAttackCounts[1]; i++) {
+        const input = document.createElement("input");
+        input.type = "number";
+        input.min = "1";
+        input.max = "20";
+        input.style.backgroundColor = "purple";
+        container1.appendChild(input);
       }
-
-      container1.appendChild(initialInputs[1]); // Start with Jaybers8 input
-      container2.appendChild(initialInputs[2]); // Initialize FLIGHTx12!'s input
-
-      addAttackButton.addEventListener("click", () => {
+      
+      // Create inputs for FLIGHTx12!
+      for (let i = 0; i < plannedAttackCounts[2]; i++) {
+        const input = document.createElement("input");
+        input.type = "number";
+        input.min = "1";
+        input.max = "20";
+        input.style.backgroundColor = "green";
+        container2.appendChild(input);
+      }      addAttackButton.addEventListener("click", () => {
         const currentContainer = currentPlayer === 1 ? container1 : container2;
         const currentInputCount = currentContainer.children.length;
-        if (numAttacks[currentPlayer] < 11 && currentInputCount < 11) {
+        if (plannedAttackCounts[currentPlayer] < 11 && currentInputCount < 11) {
+          // Update planned count
+          plannedAttackCounts[currentPlayer]++;
+          
+          // Update dropdown display
+          const countElement = document.getElementById(currentPlayer === 1 ? "jaybers8AttackCount" : "flightAttackCount");
+          if (countElement) {
+            countElement.textContent = plannedAttackCounts[currentPlayer];
+          }
+          
+          // Add input to current container
           const input = document.createElement("input");
           input.type = "number";
           input.min = "1";
           input.max = "20";
+          input.style.backgroundColor = currentPlayer === 1 ? "purple" : "green";
           currentContainer.appendChild(input);
           numAttacks[currentPlayer]++;
+          
+          // Update all other monster containers
+          updateAllMonsterContainersForPlannedInputs();
         }
-      });      removeAttackButton.addEventListener("click", () => {
+      });
+
+      removeAttackButton.addEventListener("click", () => {
         const currentContainer = currentPlayer === 1 ? container1 : container2;
-        if (currentContainer.children.length > 1) {
+        if (currentContainer.children.length > 1 && plannedAttackCounts[currentPlayer] > 1) {
+          // Update planned count
+          plannedAttackCounts[currentPlayer]--;
+          
+          // Update dropdown display
+          const countElement = document.getElementById(currentPlayer === 1 ? "jaybers8AttackCount" : "flightAttackCount");
+          if (countElement) {
+            countElement.textContent = plannedAttackCounts[currentPlayer];
+          }
+          
+          // Remove input from current container
           currentContainer.removeChild(currentContainer.lastChild);
           numAttacks[currentPlayer]--;
+          
+          // Update all other monster containers
+          updateAllMonsterContainersForPlannedInputs();
         }
       });
 
@@ -1073,11 +1237,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (attackButtonCooldown) return; // If cooldown is active, ignore click
 
         attackButtonCooldown = true; // Activate cooldown
-        
-        if (!timerStarted) {
+          if (!timerStarted) {
           timerStarted = true;
           timer = startTimer();
           playFightMusic(); // Attempt to play fight music
+          updateCursorTheme(currentPlayer); // Apply themed cursor when game starts
         }
 
         // Original single player attack logic
@@ -1262,12 +1426,11 @@ document.addEventListener("DOMContentLoaded", () => {
       // Function to switch to the next player (moved inside monster container scope)
       function switchToNextPlayer() {
         // Only switch if both players are active
-        if (activeFighters.jaybers8 && activeFighters.flight) {
-          currentPlayer = currentPlayer === 1 ? 2 : 1;
+        if (activeFighters.jaybers8 && activeFighters.flight) {          currentPlayer = currentPlayer === 1 ? 2 : 1;
           attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
           playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
           toggleContainer(currentPlayer);
-          toggleButtonColors(currentPlayer);
+          updateCursorTheme(currentPlayer);
         }
       }
 
@@ -1380,42 +1543,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update the selected monster container for current fighter selection
         updateContainerForFighters(activeMonsterContainer);
         
-        monsterDropdown.style.display = "none";
-
-        // Always start/restart timer when a monster is selected
+        monsterDropdown.style.display = "none";        // Always start/restart timer when a monster is selected
         timerStarted = true;
-        timer = startTimer(); 
+        timer = startTimer();
         playFightMusic();
+        updateCursorTheme(currentPlayer); // Apply themed cursor when game starts
       }
-    });
-  }
-
-  function toggleButtonColors(player) {
-    // Ensure we are targeting buttons within the *active* monster container
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container")).find(c => c.style.display === "block");
-    if (!activeMonsterContainer) return;
-
-    const attackButton = activeMonsterContainer.querySelector("#attackButton");
-    const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
-
-    if (!attackButton || !playerToggle) return;
-
-    if (player === 1) {
-      attackButton.style.background = "purple";
-      attackButton.style.color = "white";
-      playerToggle.classList.remove("player2Active");
-      playerToggle.classList.add("player1Active");
-    } else {
-      attackButton.style.background = "green";
-      attackButton.style.color = "white";
-      playerToggle.classList.remove("player1Active");
-      playerToggle.classList.add("player2Active");
-    }
-
-    // Remove any background images that might interfere
-    attackButton.style.backgroundImage = "none";
-    playerToggle.style.backgroundImage = "none";
-  }
+    });  }
 
   // Helper to add/re-add the copy log button and handler
   function ensureCopyLogButton(monster, historyContainer) {
@@ -1521,15 +1655,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (attackButton && playerToggle) {
         attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
         playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-        
-        // Handle container toggling directly
+          // Handle container toggling directly
         if (container1 && container2) {
           container1.style.display = currentPlayer === 1 ? "block" : "none";
           container2.style.display = currentPlayer === 2 ? "block" : "none";
         }
         
         // Handle button colors directly
-        toggleButtonColors(currentPlayer);
+        updateCursorTheme(currentPlayer);
       }
     }
   }
