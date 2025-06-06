@@ -1443,23 +1443,235 @@ header h1 {
   color: #85c89b;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .cyber-card {
-    margin: 10px 0;
-    padding: 15px;
-  }
-  
-  .cyber-title {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-  }
-  
-  .cyber-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .squirrel-icon, .koala-icon {
+/* Enhanced Special Move Visual Effects */
+
+/* Keyframe Animations */
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6); }
+}
+
+@keyframes healingPulse {
+    0%, 100% { 
+        background: linear-gradient(45deg, #e8f5e8, #c8e6c9, #a5d6a7, #81c784);
+        box-shadow: 0 0 15px rgba(129, 199, 132, 0.8), 0 0 30px rgba(165, 214, 167, 0.6);
+        transform: scale(1);
+    }
+    25% { 
+        background: linear-gradient(45deg, #c8e6c9, #a5d6a7, #81c784, #66bb6a);
+        transform: scale(1.02);
+    }
+    50% { 
+        background: linear-gradient(45deg, #a5d6a7, #81c784, #66bb6a, #4caf50);
+        box-shadow: 0 0 25px rgba(76, 175, 80, 1), 0 0 50px rgba(102, 187, 106, 0.8);
+        transform: scale(1.05);
+    }
+    75% { 
+        background: linear-gradient(45deg, #81c784, #66bb6a, #4caf50, #388e3c);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ultimateHeal {
+    0% { 
+        background: linear-gradient(45deg, #ffd700, #ffecb3, #fff9c4, #f0f4c3);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 235, 179, 0.8);
+        transform: scale(1) rotate(0deg);
+    }
+    25% { 
+        background: linear-gradient(45deg, #ffecb3, #c8e6c9, #e8f5e8, #81c784);
+        box-shadow: 0 0 30px rgba(200, 230, 201, 1), 0 0 60px rgba(129, 199, 132, 0.8);
+        transform: scale(1.03) rotate(1deg);
+    }
+    50% { 
+        background: linear-gradient(45deg, #c8e6c9, #4caf50, #66bb6a, #ffd700);
+        box-shadow: 0 0 40px rgba(76, 175, 80, 1), 0 0 80px rgba(255, 215, 0, 0.9);
+        transform: scale(1.08) rotate(-1deg);
+    }
+    75% { 
+        background: linear-gradient(45deg, #4caf50, #ffd700, #ffecb3, #c8e6c9);
+        box-shadow: 0 0 35px rgba(255, 215, 0, 1), 0 0 70px rgba(76, 175, 80, 0.8);
+        transform: scale(1.05) rotate(0.5deg);
+    }
+    100% { 
+        background: linear-gradient(45deg, #ffd700, #ffecb3, #fff9c4, #f0f4c3);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 235, 179, 0.8);
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes shieldPulse {
+    0%, 100% { 
+        background: linear-gradient(45deg, #e1f5fe, #b3e5fc, #81d4fa, #4fc3f7);
+        box-shadow: 0 0 15px rgba(79, 195, 247, 0.8), 0 0 30px rgba(129, 212, 250, 0.6);
+        transform: scale(1);
+    }
+    50% { 
+        background: linear-gradient(45deg, #b3e5fc, #29b6f6, #03a9f4, #0277bd);
+        box-shadow: 0 0 25px rgba(41, 182, 246, 1), 0 0 50px rgba(3, 169, 244, 0.8);
+        transform: scale(1.03);
+    }
+}
+
+@keyframes fortressShield {
+    0% { 
+        background: linear-gradient(45deg, #e8eaf6, #c5cae9, #9fa8da, #7986cb);
+        box-shadow: 0 0 20px rgba(121, 134, 203, 1), 0 0 40px rgba(159, 168, 218, 0.8);
+        transform: scale(1) rotate(0deg);
+        border: 3px solid #3f51b5;
+    }
+    25% { 
+        background: linear-gradient(45deg, #c5cae9, #5c6bc0, #3949ab, #303f9f);
+        box-shadow: 0 0 30px rgba(92, 107, 192, 1), 0 0 60px rgba(57, 73, 171, 0.9);
+        transform: scale(1.05) rotate(2deg);
+        border: 5px solid #2196f3;
+    }
+    50% { 
+        background: linear-gradient(45deg, #5c6bc0, #2196f3, #03a9f4, #00bcd4);
+        box-shadow: 0 0 40px rgba(33, 150, 243, 1), 0 0 80px rgba(0, 188, 212, 0.9);
+        transform: scale(1.1) rotate(-2deg);
+        border: 7px solid #00bcd4;
+    }
+    75% { 
+        background: linear-gradient(45deg, #2196f3, #00bcd4, #009688, #4caf50);
+        box-shadow: 0 0 35px rgba(0, 188, 212, 1), 0 0 70px rgba(0, 150, 136, 0.8);
+        transform: scale(1.07) rotate(1deg);
+        border: 5px solid #009688;
+    }
+    100% { 
+        background: linear-gradient(45deg, #e8eaf6, #c5cae9, #9fa8da, #7986cb);
+        box-shadow: 0 0 25px rgba(121, 134, 203, 1), 0 0 50px rgba(159, 168, 218, 0.8);
+        transform: scale(1) rotate(0deg);
+        border: 3px solid #3f51b5;
+    }
+}
+
+@keyframes specialAttack {
+    0%, 100% { 
+        background: linear-gradient(45deg, #fff3e0, #ffcc02, #ffa000, #ff8f00);
+        box-shadow: 0 0 15px rgba(255, 143, 0, 0.8);
+        transform: scale(1);
+    }
+    50% { 
+        background: linear-gradient(45deg, #ffcc02, #ff8f00, #ff6f00, #e65100);
+        box-shadow: 0 0 25px rgba(255, 111, 0, 1), 0 0 50px rgba(230, 81, 0, 0.8);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes shieldBlock {
+    0% { 
+        background: linear-gradient(45deg, #e0f2f1, #b2dfdb, #80cbc4, #4db6ac);
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% { 
+        background: linear-gradient(45deg, #b2dfdb, #26a69a, #00897b, #00695c);
+        transform: scale(1.03);
+        opacity: 1;
+    }
+    100% { 
+        background: linear-gradient(45deg, #e0f2f1, #b2dfdb, #80cbc4, #4db6ac);
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}
+
+/* Special Move Effect Classes */
+.heal-effect {
+    animation: healingPulse 2s ease-in-out;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 10px 0 !important;
+    background: linear-gradient(45deg, #e8f5e8, #c8e6c9, #a5d6a7, #81c784);
+    border: 2px solid #4caf50;
+}
+
+.ultimate-heal-effect {
+    animation: ultimateHeal 3s ease-in-out;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 15px 0 !important;
+    background: linear-gradient(45deg, #ffd700, #ffecb3, #fff9c4, #f0f4c3);
+    border: 3px solid #ff9800;
+    position: relative;
+    overflow: hidden;
+}
+
+.ultimate-heal-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.shield-effect {
+    animation: shieldPulse 2s ease-in-out;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 10px 0 !important;
+    background: linear-gradient(45deg, #e1f5fe, #b3e5fc, #81d4fa, #4fc3f7);
+    border: 2px solid #2196f3;
+}
+
+.fortress-shield-effect {
+    animation: fortressShield 3.5s ease-in-out;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 15px 0 !important;
+    background: linear-gradient(45deg, #e8eaf6, #c5cae9, #9fa8da, #7986cb);
+    border: 3px solid #3f51b5;
+    position: relative;
+    overflow: hidden;
+}
+
+.fortress-shield-effect::after {
+    content: '🌀';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 1.5rem;
-  }
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.special-attack-effect {
+    animation: specialAttack 1.5s ease-in-out;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 10px 0 !important;
+    background: linear-gradient(45deg, #fff3e0, #ffcc02, #ffa000, #ff8f00);
+    border: 2px solid #ff9800;
+}
+
+.shield-block-effect {
+    animation: shieldBlock 1.5s ease-in-out;
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin: 8px 0 !important;
+    background: linear-gradient(45deg, #e0f2f1, #b2dfdb, #80cbc4, #4db6ac);
+    border: 2px solid #009688;
+}
+
+/* Enhanced glowing effects for ultimate moves */
+.ultimate-heal-effect, .fortress-shield-effect {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+}
+
+.fortress-shield-effect {
+    filter: drop-shadow(0 0 10px rgba(63, 81, 181, 0.7));
 }

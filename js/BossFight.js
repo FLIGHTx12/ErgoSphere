@@ -1596,41 +1596,106 @@ document.addEventListener("DOMContentLoaded", () => {
         let hitCount = 0;
         let specialMoveUsed = false;
         let specialMoveMessage = "";
+        let specialEffectClass = "";
         
         // Check if multiplayer mode for damage buff
         const isMultiplayer = activeFighters.jaybers8 && activeFighters.flight;
 
+        // Count special move occurrences for combo detection
+        let eightCount = 0;
+        let twelveCount = 0;
+        
+        // First pass: count special moves
+        for (let i = 0; i < currentContainer.children.length; i++) {
+          const input = currentContainer.children[i];
+          const damage = parseInt(input.value);
+          if (!isNaN(damage)) {
+            if (currentPlayer === 1 && damage === 8) eightCount++;
+            if (currentPlayer === 2 && damage === 12) twelveCount++;
+          }
+        }
+
+        // Second pass: process damage and special abilities
         for (let i = 0; i < currentContainer.children.length; i++) {
           const input = currentContainer.children[i];
           const damage = parseInt(input.value);
           if (!isNaN(damage)) {
             if (currentPlayer === 1 && damage === 8) {
-              // Jaybers8's enhanced special move: 100 DMG + Healing
+              // Jaybers8's enhanced special move: 100 DMG + Healing abilities
               totalDamage += 100;
               specialMoveUsed = true;
               
-              // Healing ability: remove 1 previous boss hit if any exist
-              if (gameStats.playerStats.jaybers8.bossHitsReceived > 0) {
-                gameStats.playerStats.jaybers8.bossHitsReceived--;
-                gameStats.totalBossHits = Math.max(0, gameStats.totalBossHits - 1);
-                gameStats.playerStats.jaybers8.healsUsed++;
-                specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage and heals 1 previous boss hit! ⚡";
-                
-                // Play healer sound
+              if (eightCount >= 2) {
+                // DOUBLE 8s - ULTIMATE HEALING SURGE
+                let totalHealed = 0;
+                if (isMultiplayer) {
+                  // Heal 4 hits from both players
+                  const jayHeal = Math.min(4, gameStats.playerStats.jaybers8.bossHitsReceived);
+                  const flightHeal = Math.min(4, gameStats.playerStats.flight.bossHitsReceived);
+                  
+                  gameStats.playerStats.jaybers8.bossHitsReceived -= jayHeal;
+                  gameStats.playerStats.flight.bossHitsReceived -= flightHeal;
+                  gameStats.totalBossHits = Math.max(0, gameStats.totalBossHits - (jayHeal + flightHeal));
+                  totalHealed = jayHeal + flightHeal;
+                  
+                  specialMoveMessage = "🌟✨ DOUBLE 8s! ULTIMATE HEALING SURGE! ✨🌟 Jaybers8 channels divine energy, healing " + totalHealed + " hits from both fighters! 💫🩹💫";
+                  specialEffectClass = "ultimate-heal-effect";
+                } else {
+                  // Solo mode: heal 4 hits from self
+                  const jayHeal = Math.min(4, gameStats.playerStats.jaybers8.bossHitsReceived);
+                  gameStats.playerStats.jaybers8.bossHitsReceived -= jayHeal;
+                  gameStats.totalBossHits = Math.max(0, gameStats.totalBossHits - jayHeal);
+                  totalHealed = jayHeal;
+                  
+                  specialMoveMessage = "🌟✨ DOUBLE 8s! DIVINE RESTORATION! ✨🌟 Jaybers8 unleashes ultimate healing magic, restoring " + totalHealed + " hits! 💫🩹💫";
+                  specialEffectClass = "ultimate-heal-effect";
+                }
+                gameStats.playerStats.jaybers8.healsUsed += totalHealed;
+              } else {
+                // Single 8 - Regular healing
+                if (gameStats.playerStats.jaybers8.bossHitsReceived > 0) {
+                  gameStats.playerStats.jaybers8.bossHitsReceived--;
+                  gameStats.totalBossHits = Math.max(0, gameStats.totalBossHits - 1);
+                  gameStats.playerStats.jaybers8.healsUsed++;
+                  specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage and heals 1 previous boss hit! ⚡🩹";
+                  specialEffectClass = "heal-effect";
+                } else {
+                  specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage! ⚡";
+                  specialEffectClass = "special-attack-effect";
+                }
+              }
+              
+              // Play enhanced healing sound for double 8s
+              if (eightCount >= 2) {
+                healerSound.volume = 0.6;
+                healerSound.play().catch(err => console.error("Error playing healer sound:", err));
+                // Add second sound for ultimate effect
+                setTimeout(() => {
+                  const ultimateSound = new Audio('../assets/audio/punch - 1.mp3');
+                  ultimateSound.volume = 0.4;
+                  ultimateSound.play().catch(err => console.error("Error playing ultimate sound:", err));
+                }, 300);
+              } else {
                 healerSound.volume = 0.4;
                 healerSound.play().catch(err => console.error("Error playing healer sound:", err));
-              } else {
-                specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage! ⚡";
               }
               
             } else if (currentPlayer === 2 && damage === 12) {
-              // Flight's enhanced special move: 100 DMG + Shield
+              // Flight's enhanced special move: 100 DMG + Shield abilities
               totalDamage += 100;
               specialMoveUsed = true;
               
-              // Shield ability: negate next incoming hit
-              gameStats.playerStats.flight.shieldsActive++;
-              specialMoveMessage = "🎯 FLIGHTx12! rolls a 12! Deals 100 special damage and activates shield (negates next hit)! 🛡️";
+              if (twelveCount >= 2) {
+                // DOUBLE 12s - FORTRESS SHIELD
+                gameStats.playerStats.flight.shieldsActive += 5;
+                specialMoveMessage = "🛡️⚔️ DOUBLE 12s! FORTRESS SHIELD ACTIVATED! ⚔️🛡️ FLIGHTx12! creates an impenetrable barrier that blocks the next 5 hits on BOTH fighters! 🌀💎🌀";
+                specialEffectClass = "fortress-shield-effect";
+              } else {
+                // Single 12 - Regular shield
+                gameStats.playerStats.flight.shieldsActive++;
+                specialMoveMessage = "🎯 FLIGHTx12! rolls a 12! Deals 100 special damage and activates shield (negates next hit)! 🛡️⚡";
+                specialEffectClass = "shield-effect";
+              }
               
             } else {
               // Count how many times the damage value appears in hitNumbers
@@ -1641,7 +1706,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalDamage += damage;
               }            }
           }
-        }        // Apply trivia multiplier to total damage
+        }// Apply trivia multiplier to total damage
         let triviaMultiplier = 1;
         if (window.triviaManager && totalDamage > 0) {
           triviaMultiplier = window.triviaManager.applyMultiplierAndReset();
@@ -1675,14 +1740,13 @@ document.addEventListener("DOMContentLoaded", () => {
         gameStats.bossDamageDealt += totalDamage;
         if (triviaMultiplier > gameStats.maxTriviaMultiplier) {
           gameStats.maxTriviaMultiplier = triviaMultiplier;
-        }
-          // Track boss hits received by the current player with shield consumption
+        }        // Track boss hits received by the current player with enhanced shield consumption
         let actualHitsReceived = hitCount;
         let shieldsUsed = 0;
         
         if (hitCount > 0) {
-          // Check if player has active shields (only for Flight)
-          if (playerKey === 'flight' && gameStats.playerStats.flight.shieldsActive > 0) {
+          // Check if ANY player has active shields (fortress shield protects both)
+          if (gameStats.playerStats.flight.shieldsActive > 0) {
             const shieldsToUse = Math.min(hitCount, gameStats.playerStats.flight.shieldsActive);
             gameStats.playerStats.flight.shieldsActive -= shieldsToUse;
             actualHitsReceived -= shieldsToUse;
@@ -1754,10 +1818,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (damageDialogue) {
-          historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;        }
-          // Add special move message first if any special moves were used
+          historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;        }        // Add special move message first if any special moves were used
         if (specialMoveUsed && specialMoveMessage) {
-          historyContainer.innerHTML += `<p style="color:gold; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);">${specialMoveMessage}</p>`;
+          historyContainer.innerHTML += `<p class="${specialEffectClass}" style="color:gold; font-size: 1.3rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); margin: 8px 0;">${specialMoveMessage}</p>`;
         }
         
         // Create damage message with trivia multiplier and multiplayer bonus info
@@ -1779,16 +1842,21 @@ document.addEventListener("DOMContentLoaded", () => {
           if (hitCount > 0) {
           // Play monster counter-attack sounds
           playPunchSounds(hitCount, '../assets/audio/Punch - 2.mp3');
-          
-          if (shieldsUsed > 0) {
-            // Show shield consumption message
-            historyContainer.innerHTML += `<p style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">🛡️ ${playerName}'s shield blocks ${shieldsUsed} hit${shieldsUsed > 1 ? 's' : ''}!</p>`;
+            if (shieldsUsed > 0) {
+            // Show enhanced shield consumption message
+            const shieldMessage = gameStats.playerStats.flight.shieldsActive >= 4 ? 
+              `🛡️🌀 FORTRESS SHIELD blocks ${shieldsUsed} hit${shieldsUsed > 1 ? 's' : ''} on ${playerName}! 🌀🛡️` :
+              `🛡️ ${playerName}'s shield blocks ${shieldsUsed} hit${shieldsUsed > 1 ? 's' : ''}!`;
+            historyContainer.innerHTML += `<p class="shield-block-effect" style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); margin: 5px 0;">${shieldMessage}</p>`;
           }
           
           if (actualHitsReceived > 0) {
             historyContainer.innerHTML += `<p style="color:red; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${monster.name} hits ${playerName} ${actualHitsReceived} time${actualHitsReceived > 1 ? 's' : ''}.</p>`;
           } else if (shieldsUsed > 0) {
-            historyContainer.innerHTML += `<p style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">All ${hitCount} hit${hitCount > 1 ? 's' : ''} blocked by shield!</p>`;
+            const blockMessage = gameStats.playerStats.flight.shieldsActive >= 4 ?
+              `🌀💎 FORTRESS SHIELD completely protects ${playerName} from all ${hitCount} hit${hitCount > 1 ? 's' : ''}! 💎🌀` :
+              `All ${hitCount} hit${hitCount > 1 ? 's' : ''} blocked by shield!`;
+            historyContainer.innerHTML += `<p class="shield-block-effect" style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); margin: 5px 0;">${blockMessage}</p>`;
           }
           
           if (hitDialogue && actualHitsReceived > 0) {
