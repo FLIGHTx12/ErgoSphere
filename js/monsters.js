@@ -54,18 +54,6 @@ function selectDialogue(dialogue) {
 }
 
 window.monsters = [
-  {name: "-Enemy Select-",
-    attackType: "",
-    health: adjustHealthByQuarter(0),
-    hitNumbers: [0, 0, 0, 0, 0],
-    imageSrc: "",
-    defeatedImageSrc: "",
-    // No dialogues needed for the dummy object.
-    toggleDialogues: {
-      player1: ["No toggle dialogue."],
-      player2: ["No toggle dialogue."]
-    }
-  },
   {name: "EtchWraith Swarm",
     attackType: "Swarm (Player level)",
     health: adjustHealthByQuarter(600),
