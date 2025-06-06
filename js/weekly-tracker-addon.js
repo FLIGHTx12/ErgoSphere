@@ -596,37 +596,13 @@ async function deletePurchase(purchaseId) {
 }
 
 /**
- * Shows a toast notification
+ * Shows a toast notification (disabled to reduce screen clutter)
  * @param {string} message - The message to display
  * @param {string} type - The type of toast (success, error, info)
  */
 function showToast(message, type = 'info') {
-  // Create toast container if it doesn't exist
-  let toastContainer = document.querySelector('.toast-container');
-  if (!toastContainer) {
-    toastContainer = document.createElement('div');
-    toastContainer.className = 'toast-container';
-    document.body.appendChild(toastContainer);
-  }
-  
-  // Create toast element
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.textContent = message;
-  
-  // Add to container
-  toastContainer.appendChild(toast);
-  
-  // Remove toast after animation
-  setTimeout(() => {
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => {
-        toast.remove();
-      }, 300);
-    }, 3000);
-  }, 10);
+  // Toast notifications disabled to reduce screen clutter
+  return;
 }
 
 /**
