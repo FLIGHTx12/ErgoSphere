@@ -875,8 +875,15 @@ document.addEventListener("DOMContentLoaded", () => {
         container1.style.display = currentPlayer === 1 ? "block" : "none";
         container2.style.display = currentPlayer === 2 ? "block" : "none";      }
 
-      toggleButtonColors(currentPlayer);
-    }    // Add "Summon" option first
+      toggleButtonColors(currentPlayer);    }    // Add "Enemy Select" option first as default
+    const enemySelectOption = document.createElement("option");
+    enemySelectOption.value = "";
+    enemySelectOption.text = "Enemy Select";
+    enemySelectOption.disabled = true;
+    enemySelectOption.selected = true;
+    monsterDropdown.appendChild(enemySelectOption);
+
+    // Add "Summon" option second
     const summonOption = document.createElement("option");
     summonOption.value = "summon";
     summonOption.text = "Summon";
@@ -1295,9 +1302,13 @@ document.addEventListener("DOMContentLoaded", () => {
     chooseOpponentBtn.addEventListener("click", () => {
       monsterDropdown.style.display = monsterDropdown.style.display === "block" ? "none" : "block";
       // Hide fighter dropdown if open
-      fighterDropdown.style.display = "none";
-    });    monsterDropdown.addEventListener("change", () => {
+      fighterDropdown.style.display = "none";    });    monsterDropdown.addEventListener("change", () => {
       let selectedMonsterIndex = monsterDropdown.value;
+      
+      // Do nothing if "Enemy Select" default option is selected
+      if (selectedMonsterIndex === "") {
+        return;
+      }
       
       // Handle "Summon" option - randomly pick a boss
       if (selectedMonsterIndex === "summon") {
@@ -1331,11 +1342,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (infoContainer) infoContainer.style.display = "none";
         if (triviaContainer) triviaContainer.style.display = "none";
       }
-      
-      // Stop trivia when changing monsters
+        // Stop trivia when changing monsters
       if (window.triviaManager) {
         window.triviaManager.stopTrivia();
-      }      if (selectedMonsterIndex !== "" && selectedMonsterIndex !== "summon") {
+      }
+      
+      if (selectedMonsterIndex !== "" && selectedMonsterIndex !== "summon") {
         // Hide the How To Play modal when game starts
         const modal = document.getElementById('howToPlayModal');
         if (modal) {
