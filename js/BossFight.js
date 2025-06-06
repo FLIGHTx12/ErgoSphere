@@ -876,7 +876,13 @@ document.addEventListener("DOMContentLoaded", () => {
         container2.style.display = currentPlayer === 2 ? "block" : "none";      }
 
       toggleButtonColors(currentPlayer);
-    }
+    }    // Add "Summon" option first
+    const summonOption = document.createElement("option");
+    summonOption.value = "summon";
+    summonOption.text = "Summon";
+    summonOption.style.color = "red";
+    summonOption.style.fontWeight = "bold";
+    monsterDropdown.appendChild(summonOption);
 
     // Create monster containers and populate dropdown
     monsters.forEach((monster, index) => {
@@ -929,12 +935,11 @@ document.addEventListener("DOMContentLoaded", () => {
   <h2 style="color:white; margin-bottom:5px;">${monster.name}</h2>
   <div style="font-size:0.9em; color:#888; margin-bottom:15px;">${monster.About}</div>
 </div>
-<div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:5px;">
-  <p><span style="color:deepskyblue; font-weight:bold;">Attack Type:</span> <span style="color:white;">${monster.attackType}</span></p>
+<div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:5px;">  <p><span style="color:deepskyblue; font-weight:bold;">Attack Type:</span> <span style="color:white;">${monster.attackType}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Health:</span> <span style="color:white;">${monster.health}</span></p>
   <p><span style="color:deepskyblue; font-weight:bold;">Hit Numbers:</span> <span style="color:white;">${monster.hitNumbers.join(', ')}</span></p>
-  <p><span style="color:deepskyblue; font-weight:bold;">Rewards:</span> <span style="color:white;">${monster.Rewards}</span></p>
-  <p><span style="color:deepskyblue; font-weight:bold;">Punishment:</span> <span style="color:white;">${monster.Punishment}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Rewards:</span> <span style="color:white; font-size:0.85em;">${monster.Rewards}</span></p>
+  <p><span style="color:deepskyblue; font-weight:bold;">Punishment:</span> <span style="color:white; font-size:0.85em;">${monster.Punishment}</span></p>
 </div>`;
       infoContainer.style.position = "absolute";
       infoContainer.style.top = "100px";
@@ -1291,10 +1296,26 @@ document.addEventListener("DOMContentLoaded", () => {
       monsterDropdown.style.display = monsterDropdown.style.display === "block" ? "none" : "block";
       // Hide fighter dropdown if open
       fighterDropdown.style.display = "none";
-    });
-
-    monsterDropdown.addEventListener("change", () => {
-      const selectedMonsterIndex = monsterDropdown.value;
+    });    monsterDropdown.addEventListener("change", () => {
+      let selectedMonsterIndex = monsterDropdown.value;
+      
+      // Handle "Summon" option - randomly pick a boss
+      if (selectedMonsterIndex === "summon") {
+        selectedMonsterIndex = Math.floor(Math.random() * monsters.length);
+        // Update the dropdown to show the selected monster
+        monsterDropdown.value = selectedMonsterIndex;
+        
+        // Add a summon message to history
+        setTimeout(() => {
+          const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
+          if (historyContainer) {
+            historyContainer.innerHTML += `<p style="color:red; font-size: 1.2rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); text-align: center;">🔮 HCMC Collison COMPLETE! 🔮</p>`;
+            historyContainer.innerHTML += `<p style="color:orange; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); text-align: center;"> ${monsters[selectedMonsterIndex].name} appears!</p>`;
+            historyContainer.innerHTML += `<hr>`;
+            historyContainer.scrollTop = historyContainer.scrollHeight;
+          }
+        }, 1000); // Delay to let the game setup complete first
+      }
 
       // Hide all containers
       const monsterContainers = document.querySelectorAll(".monster-container");
@@ -1314,7 +1335,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Stop trivia when changing monsters
       if (window.triviaManager) {
         window.triviaManager.stopTrivia();
-      }      if (selectedMonsterIndex !== "") {
+      }      if (selectedMonsterIndex !== "" && selectedMonsterIndex !== "summon") {
         // Hide the How To Play modal when game starts
         const modal = document.getElementById('howToPlayModal');
         if (modal) {
@@ -1630,62 +1651,67 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentHealthText = lifeBarText.textContent;
     let currentHealth = parseInt(currentHealthText);
     const maxHealth = monster.health; // Original max health from monster data
-    
-    // Heal boss by 50 points for wrong answer, but don't exceed max health
+      // Heal boss by 50 points for wrong answer, but don't exceed max health
     const oldHealth = currentHealth;
     currentHealth = Math.min(currentHealth + 50, maxHealth);
     const actualHealing = currentHealth - oldHealth;
-      if (actualHealing > 0) {
-      // Update life bar display
-      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
-      lifeBarText.textContent = currentHealth;
-        // Track trivia wrong answer stats
-      gameStats.triviaStats.wrongAnswers++;
-      
-      // Track for current player
-      gameStats.playerStats[playerKey].triviaWrong++;
-      
-      // Add player hit message to battle log
-      const hitMessage = `💥 ${playerName} takes a hit for the wrong answer! (Hits received: ${gameStats.playerStats[playerKey].bossHitsReceived})`;
-      historyContainer.innerHTML += `<p style="color:#ff6b6b; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitMessage}</p>`;
-      
-      // Add healing message to battle log
+    
+    // Track trivia wrong answer stats (always, regardless of healing)
+    gameStats.triviaStats.wrongAnswers++;
+    
+    // Track for current player (always, regardless of healing)
+    gameStats.playerStats[playerKey].triviaWrong++;
+    
+    // Add player hit message to battle log (always happens)
+    const hitMessage = `💥 ${playerName} takes a hit for the wrong answer! (Hits received: ${gameStats.playerStats[playerKey].bossHitsReceived})`;
+    historyContainer.innerHTML += `<p style="color:#ff6b6b; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitMessage}</p>`;
+    
+    // Add healing message to battle log (show even if no healing occurred)
+    if (actualHealing > 0) {
       const healMessage = `❌ Wrong answer! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
       historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
       
-      // Check if we should switch players (only if both players are active)
-      let switchMessage = "";
-      if (activeFighters.jaybers8 && activeFighters.flight) {
-        const oldPlayer = playerName;
-        switchToNextPlayer();
-        const newPlayerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
-        switchMessage = `🔄 Player switched! Now it's ${newPlayerName}'s turn!`;
-        historyContainer.innerHTML += `<p style="color:#4ecdc4; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${switchMessage}</p>`;
-      }
-      
-      historyContainer.innerHTML += `<hr>`;
-      historyContainer.scrollTop = historyContainer.scrollHeight;
-      
-      // Visual feedback - red flash on monster (different from timeout)
-      const monsterImage = activeMonsterContainer.querySelector(".monster-image");
-      if (monsterImage) {
-        const imageElement = monsterImage.querySelector('img');
-        if (imageElement) {
-          imageElement.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
-          setTimeout(() => {
-            imageElement.style.filter = "";
-          }, 700);
-        }
-      }
-      
-      // Play a different healing sound effect for wrong answers
-      const wrongHealSound = new Audio('../assets/audio/healer.mp3');
-      wrongHealSound.volume = 0.4;
-      wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
-      wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
-        console.log(`Boss healed from wrong answer: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
-        console.log(`${playerName} received a hit (total: ${gameStats.playerStats[playerKey].bossHitsReceived})${switchMessage ? ' and player switched' : ''}`);
+      // Update life bar display only if healing occurred
+      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
+      lifeBarText.textContent = currentHealth;
+    } else {
+      // Boss was already at full health
+      const noHealMessage = `❌ Wrong answer! ${monster.name} is already at full health!`;
+      historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${noHealMessage}</p>`;
     }
+    
+    // Check if we should switch players (always happens if both players are active)
+    let switchMessage = "";
+    if (activeFighters.jaybers8 && activeFighters.flight) {
+      const oldPlayer = playerName;
+      switchToNextPlayer();
+      const newPlayerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
+      switchMessage = `🔄 Player switched! Now it's ${newPlayerName}'s turn!`;
+      historyContainer.innerHTML += `<p style="color:#4ecdc4; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${switchMessage}</p>`;
+    }
+    
+    historyContainer.innerHTML += `<hr>`;
+    historyContainer.scrollTop = historyContainer.scrollHeight;
+    
+    // Visual feedback - red flash on monster (always happens)
+    const monsterImage = activeMonsterContainer.querySelector(".monster-image");
+    if (monsterImage) {
+      const imageElement = monsterImage.querySelector('img');
+      if (imageElement) {
+        imageElement.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
+        setTimeout(() => {
+          imageElement.style.filter = "";
+        }, 700);
+      }
+    }
+    
+    // Play a different healing sound effect for wrong answers (always happens)
+    const wrongHealSound = new Audio('../assets/audio/healer.mp3');
+    wrongHealSound.volume = 0.4;
+    wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
+    wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
+      console.log(`Boss healing attempt: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+    console.log(`${playerName} received a hit (total: ${gameStats.playerStats[playerKey].bossHitsReceived})${switchMessage ? ' and player switched' : ''}`);
   }
   // Handler for trivia correct answers
   function handleTriviaCorrectAnswer(event) {
