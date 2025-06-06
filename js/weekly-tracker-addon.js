@@ -1,7 +1,12 @@
 // Weekly Purchase Tracker
 let currentDisplayWeek = null;
-const users = ["FLIGHTx12", "Jaybers8"];
+// Make users array global so other functions can access it
+window.users = ["FLIGHTx12", "Jaybers8"];
+const users = window.users; // Local reference for convenience
 let currentUser = "FLIGHTx12"; // Default user
+
+// Make currentUser global for access from other scripts and testing
+window.currentUser = currentUser;
 
 /**
  * Initialize the weekly purchase tracker
@@ -21,10 +26,10 @@ function initWeeklyPurchaseTracker() {
     currentDisplayWeek = now.toISOString().slice(0, 10);
     updateWeekDisplay();
     loadPurchasesForWeek(currentDisplayWeek);
-  }
-  // Set up initial theme based on stored user
+  }  // Set up initial theme based on stored user
   if (localStorage.getItem('ergoShopCurrentUser')) {
     currentUser = localStorage.getItem('ergoShopCurrentUser');
+    window.currentUser = currentUser; // Update global reference
     updateUserTheme(currentUser);
   } else {
     updateUserTheme('FLIGHTx12'); // Default to FLIGHTx12 theme
@@ -243,8 +248,12 @@ function addUserSelector() {
     });    // Add change event listener
     userSelector.addEventListener('change', function() {
       currentUser = this.value;
+      window.currentUser = currentUser; // Update global reference
       localStorage.setItem('ergoShopCurrentUser', currentUser);
       updateUserTheme(currentUser);
+      
+      // Update user sections visibility immediately
+      initializeUserVisibility();
       
       // Reload purchases for the current week with the new user
       if (typeof currentDisplayWeek !== 'undefined' && typeof loadPurchasesForWeek === 'function') {
@@ -257,15 +266,15 @@ function addUserSelector() {
     selectorContainer.appendChild(userSelector);
     
     // Insert after the header
-    headerElement.after(selectorContainer);
-      // Set initial value from localStorage if available
+    headerElement.after(selectorContainer);    // Set initial value from localStorage if available
     if (localStorage.getItem('ergoShopCurrentUser')) {
       currentUser = localStorage.getItem('ergoShopCurrentUser');
+      window.currentUser = currentUser; // Update global reference
       userSelector.value = currentUser;
     }
     
     // Initialize user sections visibility - show current user, hide others
-    window.users.forEach(user => {
+    users.forEach(user => {
       const userSection = document.querySelector(`#${user}-purchases`);
       if (userSection) {
         if (user === currentUser) {
@@ -316,6 +325,9 @@ function initializeUserVisibility() {
     });
   });
 }
+
+// Make the function available globally for testing
+window.initializeUserVisibility = initializeUserVisibility;
 
 /**
  * Calculate calories from a product text and lookup in the options
