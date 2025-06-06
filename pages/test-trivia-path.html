@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErgoArena Trivia Path Test</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-result {
+            background: rgba(40, 40, 60, 0.8);
+            border: 1px solid #0f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .success { border-color: #27ae60; color: #27ae60; }
+        .error { border-color: #e74c3c; color: #e74c3c; }
+        .info { border-color: #3498db; color: #3498db; }
+    </style>
+</head>
+<body>
+    <h1>🎯 ErgoArena Trivia Path Test</h1>
+    <p>This test uses the EXACT same relative path that ErgoArena uses: <code>../data/trivia/</code></p>
+    
+    <div id="test-results"></div>
+    
+    <script>
+        const testResults = document.getElementById('test-results');
+        
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            testResults.appendChild(div);
+            console.log(message);
+        }
+        
+        // Use EXACT same categories as TriviaManager
+        const categories = [
+            'history',
+            'music', 
+            'games',
+            'sports',
+            'spanish-english',
+            'movies-shows',
+            'minneapolis-chicago',
+            'construction',
+            'coding'
+        ];
+        
+        async function testTriviaPathsFromPages() {
+            log('🚀 Testing trivia data loading from pages/ directory (like ErgoArena)...', 'info');
+            
+            let successCount = 0;
+            let totalQuestions = 0;
+            
+            for (const category of categories) {
+                try {
+                    // Use EXACT same path as ErgoArena trivia.js
+                    const url = `../data/trivia/${category}.json`;
+                    log(`📁 Testing fetch for: ${url}`);
+                    
+                    const response = await fetch(url);
+                    log(`📡 Response status: ${response.status} (${response.ok ? 'OK' : 'ERROR'})`);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        log(`✅ Successfully loaded ${category}: ${data.length} questions`, 'success');
+                        successCount++;
+                        totalQuestions += data.length;
+                        
+                        // Test question format
+                        if (data.length > 0) {
+                            const sample = data[0];
+                            if (sample.question && (sample.options || (sample.correctAnswer && sample.wrongAnswers))) {
+                                log(`📋 Sample question format is valid`, 'success');
+                            } else {
+                                log(`⚠️ Question format issue in ${category}`, 'error');
+                            }
+                        }
+                    } else {
+                        log(`❌ Failed to load ${category}: ${response.status} ${response.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    log(`💥 Error loading ${category}: ${error.message}`, 'error');
+                }
+            }
+            
+            log(`🎯 Test complete: ${successCount}/${categories.length} categories loaded successfully`, 
+                successCount === categories.length ? 'success' : 'error');
+            log(`📊 Total questions available: ${totalQuestions}`, 'info');
+            
+            // Test creating a TriviaManager instance
+            if (successCount > 0) {
+                log('🧪 Testing TriviaManager instantiation...', 'info');
+                try {
+                    // This will fail if trivia.js isn't loaded, but that's expected
+                    log('Note: TriviaManager test requires trivia.js to be loaded', 'info');
+                } catch (error) {
+                    log(`TriviaManager test: ${error.message}`, 'info');
+                }
+            }
+        }
+        
+        // Run the test when page loads
+        document.addEventListener('DOMContentLoaded', testTriviaPathsFromPages);
+    </script>
+</body>
+</html>

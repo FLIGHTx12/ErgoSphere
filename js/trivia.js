@@ -1,6 +1,5 @@
 // ErgoArena Trivia System
-class TriviaManager {
-  constructor() {
+class TriviaManager {  constructor() {
     this.categories = [
       'history',
       'music', 
@@ -24,28 +23,44 @@ class TriviaManager {
     this.questionTime = 30;
     this.handlingTimeout = false;
     this.questionInTransition = false;
+    this.dataLoaded = false;
     
     // Load all trivia data
     this.loadTriviaData();
     
     // Add keyboard handler binding
     this.boundKeyHandler = this.handleTriviaKeys.bind(this);
-  }
-
-  async loadTriviaData() {
+  }  async loadTriviaData() {
     try {
+      console.log('Starting to load trivia data...');
       for (const category of this.categories) {
-        const response = await fetch(`../data/trivia/${category}.json`);
-        if (response.ok) {
-          this.triviaData[category] = await response.json();
-        } else {
-          console.warn(`Failed to load trivia data for category: ${category} (Status: ${response.status})`);
+        const url = `../data/trivia/${category}.json`;
+        console.log(`Fetching trivia data from: ${url}`);
+        
+        try {
+          const response = await fetch(url);
+          console.log(`Response for ${category}: status ${response.status}, ok: ${response.ok}`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            this.triviaData[category] = data;
+            console.log(`Loaded trivia data for ${category}: ${data.length} questions`);
+          } else {
+            console.warn(`Failed to load trivia data for category: ${category} (Status: ${response.status})`);
+            this.triviaData[category] = [];
+          }
+        } catch (categoryError) {
+          console.error(`Error loading ${category}:`, categoryError);
           this.triviaData[category] = [];
         }
       }
-      console.log('Trivia data loaded successfully');
+      this.dataLoaded = true;
+      console.log('Trivia data loading complete. Data loaded:', this.dataLoaded);
+      console.log('Available categories:', Object.keys(this.triviaData));
+      console.log('Questions per category:', Object.entries(this.triviaData).map(([cat, data]) => `${cat}: ${data.length}`));
     } catch (error) {
-      console.error('Error loading trivia data:', error);
+      console.error('Error in loadTriviaData:', error);
+      this.dataLoaded = false;
     }
   }
 
@@ -99,7 +114,6 @@ class TriviaManager {
     this.triviaContainer = triviaContainer;
     return triviaContainer;
   }
-
   startTrivia() {
     if (!this.triviaContainer) return;
     
@@ -109,7 +123,25 @@ class TriviaManager {
     // Bind keyboard events when trivia starts
     document.addEventListener('keydown', this.boundKeyHandler);
     
-    this.loadNewQuestion();
+    // Check if data is loaded before starting
+    if (!this.dataLoaded) {
+      console.log('Trivia data not loaded yet, waiting...');
+      // Update display to show loading
+      const questionText = this.triviaContainer.querySelector('#questionText');
+      if (questionText) {
+        questionText.innerHTML = `<strong>[LOADING...]</strong><br>Loading trivia data...`;
+      }
+      // Wait for data to load
+      setTimeout(() => {
+        if (this.dataLoaded && this.isActive) {
+          this.loadNewQuestion();
+        } else if (this.isActive) {
+          this.startTrivia(); // Try again
+        }
+      }, 1000);
+    } else {
+      this.loadNewQuestion();
+    }
   }
 
   stopTrivia() {
@@ -139,10 +171,15 @@ class TriviaManager {
     // Reset multiplier
     this.resetMultiplier();
   }
-
   loadNewQuestion() {
     if (!this.isActive) {
       console.log('loadNewQuestion: Trivia not active, skipping');
+      return;
+    }
+
+    if (!this.dataLoaded) {
+      console.log('loadNewQuestion: Trivia data not loaded yet, retrying in 1 second...');
+      setTimeout(() => this.loadNewQuestion(), 1000);
       return;
     }
 
@@ -155,7 +192,9 @@ class TriviaManager {
       );
       
       if (availableCategories.length === 0) {
-        console.warn('No trivia data available');
+        console.warn('No trivia data available - data loaded:', this.dataLoaded);
+        console.warn('Trivia data keys:', Object.keys(this.triviaData));
+        console.warn('Categories with data:', this.categories.map(cat => `${cat}: ${this.triviaData[cat]?.length || 0}`));
         return;
       }
 

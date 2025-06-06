@@ -161,12 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Only act if a monster is selected and visible
     const monsterContainers = document.querySelectorAll(".monster-container");
     const visibleContainer = Array.from(monsterContainers).find(c => c.style.display === "block");
-    if (!visibleContainer) return;
-
-    const attackButton = visibleContainer.querySelector("#attackButton");
+    if (!visibleContainer) return;    const attackButton = visibleContainer.querySelector("#attackButton");
     const playerToggle = visibleContainer.querySelector("#playerToggle");
-    const addAttackButton = document.getElementById("addAttackButton");
-    const removeAttackButton = document.getElementById("removeAttackButton");
     if (!attackButton || !playerToggle) return;
 
     // Tab: cycle between attack inputs for the current player only
@@ -185,32 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
           inputs[idx].focus();
           inputs[idx].select && inputs[idx].select();
         }
-      }
-      return;
-    }
-
-    // + key: add attack input
-    if (
-      e.code === "NumpadAdd" ||
-      (e.code === "Equal" && (e.shiftKey || e.key === "+")) ||
-      (e.key === "+" && !e.ctrlKey && !e.altKey)
-    ) {
-      if (addAttackButton) {
-        e.preventDefault();
-        addAttackButton.click();
-      }
-      return;
-    }
-
-    // - key: remove attack input
-    if (
-      e.code === "NumpadSubtract" ||
-      e.code === "Minus" ||
-      (e.key === "-" && !e.ctrlKey && !e.altKey)
-    ) {
-      if (removeAttackButton) {
-        e.preventDefault();
-        removeAttackButton.click();
       }
       return;
     }
@@ -766,16 +736,6 @@ document.addEventListener("DOMContentLoaded", () => {
     chooseOpponentBtn.textContent = "Choose Opponent";
     monsterButtonsContainer.appendChild(chooseOpponentBtn);
 
-    const addAttackButton = document.createElement("button");
-    addAttackButton.id = "addAttackButton";
-    addAttackButton.textContent = "Add Attack";
-    navbar.appendChild(addAttackButton);
-
-    const removeAttackButton = document.createElement("button");
-    removeAttackButton.id = "removeAttackButton";
-    removeAttackButton.textContent = "Remove Attack";
-    navbar.appendChild(removeAttackButton);
-
     const monsterDropdown = document.createElement("select");
     monsterDropdown.id = "monsterDropdown";
     monsterDropdown.style.display = "none";
@@ -1184,53 +1144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.max = "20";
         input.style.backgroundColor = "green";
         container2.appendChild(input);
-      }      addAttackButton.addEventListener("click", () => {
-        const currentContainer = currentPlayer === 1 ? container1 : container2;
-        const currentInputCount = currentContainer.children.length;
-        if (plannedAttackCounts[currentPlayer] < 11 && currentInputCount < 11) {
-          // Update planned count
-          plannedAttackCounts[currentPlayer]++;
-          
-          // Update dropdown display
-          const countElement = document.getElementById(currentPlayer === 1 ? "jaybers8AttackCount" : "flightAttackCount");
-          if (countElement) {
-            countElement.textContent = plannedAttackCounts[currentPlayer];
-          }
-          
-          // Add input to current container
-          const input = document.createElement("input");
-          input.type = "number";
-          input.min = "1";
-          input.max = "20";
-          input.style.backgroundColor = currentPlayer === 1 ? "purple" : "green";
-          currentContainer.appendChild(input);
-          numAttacks[currentPlayer]++;
-          
-          // Update all other monster containers
-          updateAllMonsterContainersForPlannedInputs();
-        }
-      });
-
-      removeAttackButton.addEventListener("click", () => {
-        const currentContainer = currentPlayer === 1 ? container1 : container2;
-        if (currentContainer.children.length > 1 && plannedAttackCounts[currentPlayer] > 1) {
-          // Update planned count
-          plannedAttackCounts[currentPlayer]--;
-          
-          // Update dropdown display
-          const countElement = document.getElementById(currentPlayer === 1 ? "jaybers8AttackCount" : "flightAttackCount");
-          if (countElement) {
-            countElement.textContent = plannedAttackCounts[currentPlayer];
-          }
-          
-          // Remove input from current container
-          currentContainer.removeChild(currentContainer.lastChild);
-          numAttacks[currentPlayer]--;
-          
-          // Update all other monster containers
-          updateAllMonsterContainersForPlannedInputs();
-        }
-      });
+      }
 
       let attackButtonCooldown = false; // Cooldown flag
       attackButton.addEventListener("click", () => {
