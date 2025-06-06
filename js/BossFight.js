@@ -46,8 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Initialize cursor theme on page load (will be default since timerStarted = false)
   updateCursorTheme(currentPlayer);
-  
-  // Game stats tracking
+    // Game stats tracking
   let gameStats = {
     startTime: null,
     endTime: null,
@@ -67,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
         specialMoves: 0, // 8s and 12s
         bossHitsReceived: 0, // How many times boss hit this player
         triviaCorrect: 0,
-        triviaWrong: 0
+        triviaWrong: 0,
+        healsUsed: 0, // Special move: remove boss hits
+        shieldsActive: 0 // Not used for Jaybers8, but for consistency
       },
       flight: {
         damageDealt: 0,
@@ -75,7 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
         specialMoves: 0, // 8s and 12s
         bossHitsReceived: 0, // How many times boss hit this player
         triviaCorrect: 0,
-        triviaWrong: 0
+        triviaWrong: 0,
+        healsUsed: 0, // Not used for Flight, but for consistency
+        shieldsActive: 0 // Special move: negate next hit
       }
     },
     currentMonster: null,
@@ -85,8 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Preload audio
   gameOverAudio.preload = 'auto';
   fightMusic.preload = 'auto';
-  healerSound.preload = 'auto';
-  // Initialize game stats when a monster is selected
+  healerSound.preload = 'auto';  // Initialize game stats when a monster is selected
   function initializeGameStats(monster) {
     gameStats = {
       startTime: Date.now(),
@@ -107,7 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
           specialMoves: 0,
           bossHitsReceived: 0, // How many times boss hit this player
           triviaCorrect: 0,
-          triviaWrong: 0
+          triviaWrong: 0,
+          healsUsed: 0, // Special move: remove boss hits
+          shieldsActive: 0 // Not used for Jaybers8, but for consistency
         },
         flight: {
           damageDealt: 0,
@@ -115,7 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
           specialMoves: 0,
           bossHitsReceived: 0, // How many times boss hit this player
           triviaCorrect: 0,
-          triviaWrong: 0
+          triviaWrong: 0,
+          healsUsed: 0, // Not used for Flight, but for consistency
+          shieldsActive: 0 // Special move: negate next hit
         }
       },
       currentMonster: monster,
@@ -958,10 +964,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="cyber-stat">
                   <span class="cyber-label">INCOMING HITS</span>
                   <span class="cyber-value">${gameStats.playerStats.jaybers8.bossHitsReceived}</span>
-                </div>
-                <div class="cyber-stat">
+                </div>                <div class="cyber-stat">
                   <span class="cyber-label">SPECIAL PROTOCOLS</span>
                   <span class="cyber-value">${gameStats.playerStats.jaybers8.specialMoves}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">HEALING CHARGES</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.healsUsed}</span>
                 </div>
                 <div class="cyber-stat">
                   <span class="cyber-label">SYNC SUCCESS</span>
@@ -1013,10 +1022,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="cyber-stat">
                   <span class="cyber-label">INCOMING HITS</span>
                   <span class="cyber-value">${gameStats.playerStats.flight.bossHitsReceived}</span>
-                </div>
-                <div class="cyber-stat">
+                </div>                <div class="cyber-stat">
                   <span class="cyber-label">SPECIAL PROTOCOLS</span>
                   <span class="cyber-value">${gameStats.playerStats.flight.specialMoves}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SHIELDS REMAINING</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.shieldsActive}</span>
                 </div>
                 <div class="cyber-stat">
                   <span class="cyber-label">SYNC SUCCESS</span>
@@ -1578,21 +1590,48 @@ document.addEventListener("DOMContentLoaded", () => {
           timer = startTimer();
           playFightMusic(); // Attempt to play fight music
           updateCursorTheme(currentPlayer); // Apply themed cursor when game starts
-        }
-
-        // Original single player attack logic
+        }        // Enhanced attack logic with special abilities
         const currentContainer = currentPlayer === 1 ? container1 : container2;
         let totalDamage = 0;
         let hitCount = 0;
+        let specialMoveUsed = false;
+        let specialMoveMessage = "";
+        
+        // Check if multiplayer mode for damage buff
+        const isMultiplayer = activeFighters.jaybers8 && activeFighters.flight;
 
         for (let i = 0; i < currentContainer.children.length; i++) {
           const input = currentContainer.children[i];
           const damage = parseInt(input.value);
           if (!isNaN(damage)) {
             if (currentPlayer === 1 && damage === 8) {
-              totalDamage += 100; // Jaybers8's special damage
+              // Jaybers8's enhanced special move: 100 DMG + Healing
+              totalDamage += 100;
+              specialMoveUsed = true;
+              
+              // Healing ability: remove 1 previous boss hit if any exist
+              if (gameStats.playerStats.jaybers8.bossHitsReceived > 0) {
+                gameStats.playerStats.jaybers8.bossHitsReceived--;
+                gameStats.totalBossHits = Math.max(0, gameStats.totalBossHits - 1);
+                gameStats.playerStats.jaybers8.healsUsed++;
+                specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage and heals 1 previous boss hit! ⚡";
+                
+                // Play healer sound
+                healerSound.volume = 0.4;
+                healerSound.play().catch(err => console.error("Error playing healer sound:", err));
+              } else {
+                specialMoveMessage = "🎯 Jaybers8 rolls an 8! Deals 100 special damage! ⚡";
+              }
+              
             } else if (currentPlayer === 2 && damage === 12) {
-              totalDamage += 100; // FLIGHTx12's special damage
+              // Flight's enhanced special move: 100 DMG + Shield
+              totalDamage += 100;
+              specialMoveUsed = true;
+              
+              // Shield ability: negate next incoming hit
+              gameStats.playerStats.flight.shieldsActive++;
+              specialMoveMessage = "🎯 FLIGHTx12! rolls a 12! Deals 100 special damage and activates shield (negates next hit)! 🛡️";
+              
             } else {
               // Count how many times the damage value appears in hitNumbers
               const occurrences = monster.hitNumbers.filter(num => num === damage).length;
@@ -1607,6 +1646,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.triviaManager && totalDamage > 0) {
           triviaMultiplier = window.triviaManager.applyMultiplierAndReset();
           totalDamage = Math.floor(totalDamage * triviaMultiplier);
+        }
+        
+        // Apply 20% multiplayer damage buff when both players are active
+        if (isMultiplayer && totalDamage > 0) {
+          totalDamage = Math.floor(totalDamage * 1.2);
         }
 
         // Track game stats for this attack
@@ -1632,11 +1676,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (triviaMultiplier > gameStats.maxTriviaMultiplier) {
           gameStats.maxTriviaMultiplier = triviaMultiplier;
         }
+          // Track boss hits received by the current player with shield consumption
+        let actualHitsReceived = hitCount;
+        let shieldsUsed = 0;
         
-        // Track boss hits received by the current player
         if (hitCount > 0) {
-          gameStats.playerStats[playerKey].bossHitsReceived += hitCount;
-          gameStats.totalBossHits += hitCount;
+          // Check if player has active shields (only for Flight)
+          if (playerKey === 'flight' && gameStats.playerStats.flight.shieldsActive > 0) {
+            const shieldsToUse = Math.min(hitCount, gameStats.playerStats.flight.shieldsActive);
+            gameStats.playerStats.flight.shieldsActive -= shieldsToUse;
+            actualHitsReceived -= shieldsToUse;
+            shieldsUsed = shieldsToUse;
+          }
+          
+          // Only apply hits that weren't blocked by shields
+          if (actualHitsReceived > 0) {
+            gameStats.playerStats[playerKey].bossHitsReceived += actualHitsReceived;
+            gameStats.totalBossHits += actualHitsReceived;
+          }
         }
 
         monsterLife -= totalDamage;
@@ -1698,21 +1755,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (damageDialogue) {
           historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageDialogue}</p>`;        }
+          // Add special move message first if any special moves were used
+        if (specialMoveUsed && specialMoveMessage) {
+          historyContainer.innerHTML += `<p style="color:gold; font-size: 1.2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);">${specialMoveMessage}</p>`;
+        }
         
-        // Create damage message with trivia multiplier info
+        // Create damage message with trivia multiplier and multiplayer bonus info
         let damageMessage = `${playerName} attacks for a cumulative total of ${totalDamage} damage.`;
-        if (triviaMultiplier > 1) {
+        
+        if (triviaMultiplier > 1 && isMultiplayer) {
+          const preTriviaPreMultiplayer = Math.floor(totalDamage / (triviaMultiplier * 1.2));
+          const postTrivia = Math.floor(preTriviaPreMultiplayer * triviaMultiplier);
+          damageMessage = `${playerName} attacks for ${preTriviaPreMultiplayer} damage (×${triviaMultiplier.toFixed(1)} trivia + ×1.2 multiplayer = ${totalDamage} total damage).`;
+        } else if (triviaMultiplier > 1) {
           const baseDamage = Math.floor(totalDamage / triviaMultiplier);
           damageMessage = `${playerName} attacks for ${baseDamage} damage (×${triviaMultiplier.toFixed(1)} trivia bonus = ${totalDamage} total damage).`;
+        } else if (isMultiplayer) {
+          const baseDamage = Math.floor(totalDamage / 1.2);
+          damageMessage = `${playerName} attacks for ${baseDamage} damage (×1.2 multiplayer bonus = ${totalDamage} total damage).`;
         }
         
         historyContainer.innerHTML += `<p style="color:${playerName==="Jaybers8"?"purple":"green"}; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${damageMessage}</p>`;
-        
-        if (hitCount > 0) {
+          if (hitCount > 0) {
           // Play monster counter-attack sounds
           playPunchSounds(hitCount, '../assets/audio/Punch - 2.mp3');
-          historyContainer.innerHTML += `<p style="color:red; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${monster.name} hits ${playerName} ${hitCount} times.</p>`;
-          if (hitDialogue) {
+          
+          if (shieldsUsed > 0) {
+            // Show shield consumption message
+            historyContainer.innerHTML += `<p style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">🛡️ ${playerName}'s shield blocks ${shieldsUsed} hit${shieldsUsed > 1 ? 's' : ''}!</p>`;
+          }
+          
+          if (actualHitsReceived > 0) {
+            historyContainer.innerHTML += `<p style="color:red; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${monster.name} hits ${playerName} ${actualHitsReceived} time${actualHitsReceived > 1 ? 's' : ''}.</p>`;
+          } else if (shieldsUsed > 0) {
+            historyContainer.innerHTML += `<p style="color:cyan; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">All ${hitCount} hit${hitCount > 1 ? 's' : ''} blocked by shield!</p>`;
+          }
+          
+          if (hitDialogue && actualHitsReceived > 0) {
             historyContainer.innerHTML += `<p style="color:white; font-style: italic; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitDialogue}</p>`;
           }
         }

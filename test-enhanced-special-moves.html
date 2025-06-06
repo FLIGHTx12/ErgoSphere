@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Special Moves Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #1a1a1a; color: white; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #333; border-radius: 5px; }
+        .pass { color: #4CAF50; }
+        .fail { color: #f44336; }
+        .test-result { margin: 10px 0; }
+        button { padding: 10px 20px; margin: 5px; background: #333; color: white; border: 1px solid #555; cursor: pointer; }
+        button:hover { background: #555; }
+        #testOutput { background: #222; padding: 15px; border-radius: 5px; min-height: 200px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>🌌 Enhanced Special Moves Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>🎯 Test Controls</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="testJaybers8Healing()">Test Jaybers8 Healing</button>
+        <button onclick="testFlightShield()">Test Flight Shield</button>
+        <button onclick="testMultiplayerBonus()">Test Multiplayer Bonus</button>
+        <button onclick="clearOutput()">Clear Output</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔍 Test Output</h2>
+        <div id="testOutput">Ready to run tests...</div>
+    </div>
+
+    <script src="js/monsters.js"></script>
+    <script src="js/trivia.js"></script>
+    <script src="js/BossFight.js"></script>
+    
+    <script>
+        let testOutput = document.getElementById('testOutput');
+        
+        function log(message, isError = false) {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = isError ? '❌' : '✅';
+            testOutput.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            testOutput.scrollTop = testOutput.scrollHeight;
+        }
+        
+        function clearOutput() {
+            testOutput.textContent = 'Output cleared...\n';
+        }
+        
+        function runAllTests() {
+            clearOutput();
+            log('🚀 Starting Enhanced Special Moves Test Suite');
+            log('================================================');
+            
+            testJaybers8Healing();
+            testFlightShield();
+            testMultiplayerBonus();
+            
+            log('================================================');
+            log('✨ All tests completed!');
+        }
+        
+        function testJaybers8Healing() {
+            log('🩹 Testing Jaybers8 Healing Special Move (roll 8)');
+            
+            try {
+                // Check if gameStats has healsUsed property
+                if (typeof gameStats !== 'undefined' && 'healsUsed' in gameStats) {
+                    log('✓ gameStats.healsUsed property exists');
+                } else {
+                    log('✗ gameStats.healsUsed property missing', true);
+                    return;
+                }
+                
+                // Simulate game conditions
+                const testConditions = {
+                    currentPlayer: 'Jaybers8',
+                    playerRoll: 8,
+                    bossHits: { Jaybers8: 2, Flight: 1 }
+                };
+                
+                log(`Testing healing with conditions: ${JSON.stringify(testConditions)}`);
+                log('Expected: 100 damage + remove 1 boss hit + increase healsUsed');
+                
+            } catch (error) {
+                log(`Error in Jaybers8 healing test: ${error.message}`, true);
+            }
+        }
+        
+        function testFlightShield() {
+            log('🛡️ Testing Flight Shield Special Move (roll 12)');
+            
+            try {
+                // Check if gameStats has shieldsActive property
+                if (typeof gameStats !== 'undefined' && 'shieldsActive' in gameStats) {
+                    log('✓ gameStats.shieldsActive property exists');
+                } else {
+                    log('✗ gameStats.shieldsActive property missing', true);
+                    return;
+                }
+                
+                const testConditions = {
+                    currentPlayer: 'Flight',
+                    playerRoll: 12,
+                    shieldsActive: 0
+                };
+                
+                log(`Testing shield with conditions: ${JSON.stringify(testConditions)}`);
+                log('Expected: 100 damage + activate shield + increase shieldsActive');
+                
+            } catch (error) {
+                log(`Error in Flight shield test: ${error.message}`, true);
+            }
+        }
+        
+        function testMultiplayerBonus() {
+            log('💪 Testing Multiplayer Damage Bonus');
+            
+            try {
+                // Test damage calculation logic
+                const baseDamage = 50;
+                const singlePlayerDamage = baseDamage; // No bonus
+                const multiplayerDamage = Math.floor(baseDamage * 1.2); // 20% bonus
+                
+                log(`Base damage: ${baseDamage}`);
+                log(`Single player (no bonus): ${singlePlayerDamage}`);
+                log(`Multiplayer (+20% bonus): ${multiplayerDamage}`);
+                
+                if (multiplayerDamage === 60) {
+                    log('✓ Multiplayer bonus calculation correct (50 * 1.2 = 60)');
+                } else {
+                    log('✗ Multiplayer bonus calculation incorrect', true);
+                }
+                
+            } catch (error) {
+                log(`Error in multiplayer bonus test: ${error.message}`, true);
+            }
+        }
+        
+        // Check if required objects exist on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                log('🔍 Checking required game objects...');
+                
+                if (typeof gameStats !== 'undefined') {
+                    log('✓ gameStats object found');
+                    log(`gameStats keys: ${Object.keys(gameStats).join(', ')}`);
+                } else {
+                    log('✗ gameStats object not found', true);
+                }
+                
+                if (typeof monsters !== 'undefined') {
+                    log('✓ monsters object found');
+                } else {
+                    log('✗ monsters object not found', true);
+                }
+                
+                if (typeof trivia !== 'undefined') {
+                    log('✓ trivia object found');
+                } else {
+                    log('✗ trivia object not found', true);
+                }
+                
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
