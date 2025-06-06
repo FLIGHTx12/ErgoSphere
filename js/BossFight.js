@@ -322,6 +322,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }    showGameResultsScreen("defeat");
     unbindGameKeys(); // Unbind keys when game ends
     
+    // Show game setup buttons when game ends
+    showGameSetupButtons();
+    
     // Reset cursor to default when game ends
     const body = document.body;
     body.classList.remove('flight-theme', 'jaybers-theme');
@@ -344,6 +347,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Play healer sound for victory
     healerSound.currentTime = 0;
     healerSound.play().catch(err => console.error("Error playing healer sound:", err));    showGameResultsScreen("victory");    unbindGameKeys(); // Unbind keys when game ends
+    
+    // Show game setup buttons when game ends
+    showGameSetupButtons();
     
     // Reset cursor to default when game ends
     const body = document.body;
@@ -1456,14 +1462,61 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Update the selected monster container for current fighter selection
         updateContainerForFighters(activeMonsterContainer);
-        
-        monsterDropdown.style.display = "none";        // Always start/restart timer when a monster is selected
+          monsterDropdown.style.display = "none";        // Always start/restart timer when a monster is selected
         timerStarted = true;
         timer = startTimer();
         playFightMusic();
         updateCursorTheme(currentPlayer); // Apply themed cursor when game starts
+        
+        // Hide game setup buttons when game starts
+        hideGameSetupButtons();
       }
     });  }
+
+  // Function to hide game setup buttons when game starts
+  function hideGameSetupButtons() {
+    const chooseFightersBtn = document.getElementById("chooseFightersBtn");
+    const chooseOpponentBtn = document.getElementById("chooseOpponentBtn");
+    const howToPlayBtn = document.getElementById("howToPlayBtn");
+    const leaveArenaBtn = document.getElementById("leaveArenaBtn");
+    
+    if (chooseFightersBtn) chooseFightersBtn.style.display = "none";
+    if (chooseOpponentBtn) chooseOpponentBtn.style.display = "none";
+    if (howToPlayBtn) howToPlayBtn.style.display = "none";
+    
+    // Update leave arena button to show escape option
+    if (leaveArenaBtn) {
+      leaveArenaBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Escape - 2🌐';
+      leaveArenaBtn.onclick = function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to escape? This will cost you 2🌐 and end the current battle.')) {
+          // Handle escape logic - deduct 2 energy and return to home
+          window.location.href = '../index.html';
+        }
+      };
+    }
+  }
+
+  // Function to show game setup buttons when game ends
+  function showGameSetupButtons() {
+    const chooseFightersBtn = document.getElementById("chooseFightersBtn");
+    const chooseOpponentBtn = document.getElementById("chooseOpponentBtn");
+    const howToPlayBtn = document.getElementById("howToPlayBtn");
+    const leaveArenaBtn = document.getElementById("leaveArenaBtn");
+    
+    if (chooseFightersBtn) chooseFightersBtn.style.display = "block";
+    if (chooseOpponentBtn) chooseOpponentBtn.style.display = "block";
+    if (howToPlayBtn) howToPlayBtn.style.display = "block";
+    
+    // Reset leave arena button to normal
+    if (leaveArenaBtn) {
+      leaveArenaBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Leave Arena';
+      leaveArenaBtn.onclick = function(e) {
+        e.preventDefault();
+        window.location.href = '../index.html';
+      };
+    }
+  }
 
   // Helper to add/re-add the copy log button and handler
   function ensureCopyLogButton(monster, historyContainer) {
