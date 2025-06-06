@@ -374,12 +374,12 @@ class TriviaManager {
       // Wrong answer - reduce multiplier by 5.0 (but don't go below 0)
       this.damageMultiplier = Math.max(0, this.damageMultiplier - 5.0);
       this.updateMultiplierDisplay();
-      
-      // Dispatch event for boss healing ONLY ONCE
+        // Dispatch event for boss healing ONLY ONCE
       const triviaWrongAnswerEvent = new CustomEvent('triviaWrongAnswer', {
         detail: {
           message: 'Wrong trivia answer',
-          healingAmount: 50
+          healingAmount: 50,
+          timestamp: Date.now() // Add timestamp for deduplication consistency
         }
       });
       document.dispatchEvent(triviaWrongAnswerEvent);

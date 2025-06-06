@@ -1470,7 +1470,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     historyContainer.appendChild(copyLogButton);
   }
-
   // Function to switch to the next player
   function switchToNextPlayer() {
     // Only switch if both players are active
@@ -1483,11 +1482,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const attackButton = activeMonsterContainer.querySelector("#attackButton");
       const playerToggle = activeMonsterContainer.querySelector("#playerToggle");
+      const container1 = activeMonsterContainer.querySelector("#attackInputs1");
+      const container2 = activeMonsterContainer.querySelector("#attackInputs2");
       
       if (attackButton && playerToggle) {
         attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
         playerToggle.textContent = currentPlayer === 1 ? "Switch to FLIGHTx12!" : "Switch to Jaybers8";
-        toggleContainer(currentPlayer);
+        
+        // Handle container toggling directly
+        if (container1 && container2) {
+          container1.style.display = currentPlayer === 1 ? "block" : "none";
+          container2.style.display = currentPlayer === 2 ? "block" : "none";
+        }
+        
+        // Handle button colors directly
         toggleButtonColors(currentPlayer);
       }
     }
@@ -1580,7 +1588,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(`Boss healed from timeout: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
     }
   }
-
   // Similar update for wrong answers
   function handleTriviaWrongAnswer(event) {
     // Extract timestamp from event if available
@@ -1596,6 +1603,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add to registry of processed events
     processedTriviaEvents.add(eventId);
     console.log('Processing trivia wrong answer event', eventId);
+    
+    // Get current player info
+    const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
+    const playerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
+    
+    // Add hit to current player first (before healing boss)
+    gameStats.playerStats[playerKey].bossHitsReceived++;
     
     // Heal boss by 50 points for wrong answer, but don't exceed max health
     const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
@@ -1629,12 +1643,26 @@ document.addEventListener("DOMContentLoaded", () => {
       gameStats.triviaStats.wrongAnswers++;
       
       // Track for current player
-      const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
       gameStats.playerStats[playerKey].triviaWrong++;
+      
+      // Add player hit message to battle log
+      const hitMessage = `💥 ${playerName} takes a hit for the wrong answer! (Hits received: ${gameStats.playerStats[playerKey].bossHitsReceived})`;
+      historyContainer.innerHTML += `<p style="color:#ff6b6b; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitMessage}</p>`;
       
       // Add healing message to battle log
       const healMessage = `❌ Wrong answer! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
       historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
+      
+      // Check if we should switch players (only if both players are active)
+      let switchMessage = "";
+      if (activeFighters.jaybers8 && activeFighters.flight) {
+        const oldPlayer = playerName;
+        switchToNextPlayer();
+        const newPlayerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
+        switchMessage = `🔄 Player switched! Now it's ${newPlayerName}'s turn!`;
+        historyContainer.innerHTML += `<p style="color:#4ecdc4; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${switchMessage}</p>`;
+      }
+      
       historyContainer.innerHTML += `<hr>`;
       historyContainer.scrollTop = historyContainer.scrollHeight;
       
@@ -1656,6 +1684,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
       wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
         console.log(`Boss healed from wrong answer: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
+        console.log(`${playerName} received a hit (total: ${gameStats.playerStats[playerKey].bossHitsReceived})${switchMessage ? ' and player switched' : ''}`);
     }
   }
   // Handler for trivia correct answers
