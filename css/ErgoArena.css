@@ -1120,421 +1120,295 @@ header h1 {
     50% { background-position: 100% 50%; }
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .battle-manual-content {
-        width: 98%;
-        height: 98vh;
-        padding: 20px;
-    }
-    
-    .manual-columns {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .manual-header h2 {
-        font-size: 2rem;
-    }
+/* Cyberpunk Performance Cards */
+.cyber-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(20, 20, 30, 0.95), rgba(10, 10, 20, 0.9));
+  border: 2px solid transparent;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  animation: cyberScan 3s linear infinite;
+}
+
+@keyframes cyberScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.cyber-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 40px rgba(0, 255, 255, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Jaybers8 Theme (Purple) */
+.jaybers-theme {
+  border-image: linear-gradient(45deg, #8e44ad, #9b59b6, #6a0dad) 1;
+  box-shadow: 
+    0 0 20px rgba(142, 68, 173, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.jaybers-theme:hover {
+  box-shadow: 
+    0 10px 40px rgba(142, 68, 173, 0.6),
+    inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.jaybers-theme::before {
+  background: linear-gradient(45deg, transparent 30%, rgba(142, 68, 173, 0.2) 50%, transparent 70%);
+}
+
+/* FLIGHTx12! Theme (Green) */
+.flight-theme {
+  border-image: linear-gradient(45deg, #27ae60, #2ecc71, #00ff00) 1;
+  box-shadow: 
+    0 0 20px rgba(39, 174, 96, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.flight-theme:hover {
+  box-shadow: 
+    0 10px 40px rgba(39, 174, 96, 0.6),
+    inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.flight-theme::before {
+  background: linear-gradient(45deg, transparent 30%, rgba(39, 174, 96, 0.2) 50%, transparent 70%);
+}
+
+/* Cyber Header */
+.cyber-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.cyber-title {
+  position: relative;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.cyber-glow {
+  text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 30px currentColor;
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.cyber-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  letter-spacing: 2px;
+  color: #00ffff;
+}
+
+.squirrel-icon, .koala-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Cyber Corners */
+.cyber-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  z-index: 2;
+}
+
+.cyber-corner.top-left {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cyber-corner.top-right {
+  top: 10px;
+  right: 10px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.cyber-corner.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  border-right: none;
+  border-top: none;
+}
+
+.cyber-corner.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+.jaybers-theme .cyber-corner {
+  color: #8e44ad;
+}
+
+.flight-theme .cyber-corner {
+  color: #27ae60;
+}
+
+/* Cyber Grid */
+.cyber-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.cyber-stat {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.cyber-stat:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.cyber-stat.full-width {
+  grid-column: 1 / -1;
+}
+
+.cyber-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+  color: #00ffff;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.cyber-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Cyber Trophies */
+.cyber-trophies {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.trophy {
+  background: linear-gradient(45deg, #ffd700, #ffed4a, #f39c12);
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 
+    0 0 15px rgba(255, 215, 0, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: trophyGlow 2s ease-in-out infinite alternate;
+  border: 2px solid #ffd700;
+}
+
+@keyframes trophyGlow {
+  0% { 
+    box-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.6),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 0 25px rgba(255, 215, 0, 0.8),
+      inset 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Theme-specific colors for cyber elements */
+.jaybers-theme .cyber-glow {
+  color: #8e44ad;
+}
+
+.flight-theme .cyber-glow {
+  color: #27ae60;
+}
+
+.jaybers-theme .cyber-value {
+  color: #c39bd3;
+}
+
+.flight-theme .cyber-value {
+  color: #85c89b;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .battle-manual-content {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        padding: 15px;
-    }
-    
-    .controls-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .sync-mechanics {
-        gap: 8px;
-    }
-    
-    .manual-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .close {
-        top: 10px;
-        right: 15px;
-        font-size: 25px;
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/* Custom Scrollbar for Battle Manual */
-.battle-manual-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.battle-manual-content::-webkit-scrollbar-track {
-    background: rgba(52, 73, 94, 0.2);
-    border-radius: 4px;
-}
-
-.battle-manual-content::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #8e44ad, #27ae60);
-    border-radius: 4px;
-}
-
-.battle-manual-content::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #9b59b6, #2ecc71);
-}
-
-/* ===== LARGE SCREEN TV OPTIMIZATIONS ===== */
-
-/* Large TV screens only (55+ inch TVs - 2560px and up) */
-@media (min-width: 2560px) {
-    /* Scale up header */
-    header h1 {
-        font-size: 4rem;
-    }
-    
-    /* Scale up main game container */
-    .game-container {
-        max-width: 2400px;
-        padding: 40px;
-    }
-    
-    /* Monster Container - Much larger for TV */
-    .monster-container {
-        width: 70%;
-        max-width: 1400px;
-        padding: 40px;
-        margin-top: 40px;
-    }
-    
-    /* Monster Image - Significantly larger */
-    .monster-image img {
-        max-height: 900px;
-        min-height: 700px;
-    }
-    
-    /* Life Bar - Bigger and more prominent */
-    #lifeBar {
-        height: 50px;
-        margin: 30px 0;
-        border-radius: 25px;
-    }
-    
-    #lifeBarText {
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-    
-    /* Timer - Much larger and more visible */
-    #timer {
-        font-size: 2.5rem !important;
-        padding: 12px 24px;
-        border-radius: 25px;
-        min-width: 120px;
-        border-width: 3px;
-    }
-    
-    /* Attack Inputs - Larger for TV interaction */
-    #attackInputs1 input, #attackInputs2 input {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
-        border-width: 4px;
-    }
-    
-    /* Player Toggle Button - Larger */
-    #playerToggle {
-        padding: 12px 24px;
-        font-size: 1.4rem;
-        height: 50px;
-        min-width: 200px;
-        left: -40px;
-    }
-    
-    /* Attack Button - Much larger and more prominent */
-    .attack-button {
-        padding: 20px 40px;
-        font-size: 1.8rem;
-        height: 60px;
-        min-width: 250px;
-        right: -40px;
-        border-radius: 15px;
-    }
-    
-    /* Menu Buttons - Larger for TV */
-    .menu-button {
-        padding: 12px 24px;
-        font-size: 1.4rem;
-        height: 50px;
-    }
-    
-    /* Monster Selection Buttons */
-    #chooseOpponentBtn, #chooseFightersBtn {
-        padding: 12px 30px;
-        font-size: 1.4rem;
-        height: 50px;
-    }
-    
-    /* Add/Remove Attack Buttons */
-    #addAttackButton, #removeAttackButton {
-        padding: 12px 24px;
-        font-size: 1.4rem;
-        height: 50px;
-    }
-    
-    /* Side Panels - Larger and more readable */
-    [id^="infoContainer"] {
-        width: 500px;
-        padding: 30px;
-        font-size: 1.4rem;
-        left: 40px;
-        top: 120px;
-    }
-    
-    [id^="historyContainer"] {
-        width: 550px;
-        padding: 30px;
-        font-size: 1.4rem;
-        right: 40px;
-        top: 120px;
-    }
-    
-    [id^="historyContainer"] p {
-        font-size: 1.3rem;
-        margin-bottom: 12px;
-    }
-    
-    /* Trivia Container - Larger for TV */
-    .trivia-container {
-        width: 500px;
-        padding: 30px;
-        left: 40px;
-        top: 600px;
-        font-size: 1.2rem;
-    }
-    
-    .trivia-header h3 {
-        font-size: 1.8rem;
-    }
-    
-    .question-text {
-        font-size: 1.4rem;
-        padding: 20px;
-        min-height: 100px;
-    }
-    
-    .answer-btn {
-        padding: 15px 20px;
-        font-size: 1.2rem;
-        margin: 8px 0;
-    }
-    
-    .question-timer {
-        padding: 12px 20px;
-    }
-    
-    #timeLeft {
-        font-size: 1.4rem;
-        min-width: 50px;
-    }
-    
-    /* Monster top buttons container */
-    .monster-top-buttons {
-        height: 60px;
-        margin-bottom: 30px;
-    }
-}
-
-/* Extra Large TV screens (65+ inch TVs - 3200px and up) */
-@media (min-width: 3200px) {
-    /* Even larger scaling for large TVs */
-    header h1 {
-        font-size: 5rem;
-    }
-    
-    .game-container {
-        max-width: 3200px;
-        padding: 60px;
-    }
-    
-    .monster-container {
-        width: 75%;
-        max-width: 2000px;
-        padding: 60px;
-    }
-    
-    /* Monster Image - Massive for large TVs */
-    .monster-image img {
-        max-height: 1200px;
-        min-height: 900px;
-    }
-    
-    /* Life Bar - Even bigger */
-    #lifeBar {
-        height: 70px;
-        margin: 40px 0;
-        border-radius: 35px;
-    }
-    
-    #lifeBarText {
-        font-size: 2.5rem;
-    }
-    
-    /* Timer - Huge and prominent */
-    #timer {
-        font-size: 3.5rem !important;
-        padding: 20px 40px;
-        border-radius: 35px;
-        min-width: 180px;
-        border-width: 4px;
-    }
-    
-    /* Attack Inputs - Very large */
-    #attackInputs1 input, #attackInputs2 input {
-        width: 120px;
-        height: 120px;
-        font-size: 3rem;
-        border-width: 6px;
-    }
-    
-    /* Player Toggle - Very large */
-    #playerToggle {
-        padding: 20px 40px;
-        font-size: 2rem;
-        height: 70px;
-        min-width: 300px;
-        left: -60px;
-    }
-    
-    /* Attack Button - Massive */
-    .attack-button {
-        padding: 30px 60px;
-        font-size: 2.5rem;
-        height: 80px;
-        min-width: 350px;
-        right: -60px;
-        border-radius: 20px;
-    }
-    
-    /* Menu Buttons - Very large */
-    .menu-button {
-        padding: 20px 40px;
-        font-size: 2rem;
-        height: 70px;
-    }
-    
-    /* Monster Selection Buttons */
-    #chooseOpponentBtn, #chooseFightersBtn {
-        padding: 20px 40px;
-        font-size: 2rem;
-        height: 70px;
-    }
-    
-    /* Add/Remove Attack Buttons */
-    #addAttackButton, #removeAttackButton {
-        padding: 20px 40px;
-        font-size: 2rem;
-        height: 70px;
-    }
-    
-    /* Side Panels - Massive for large TVs */
-    [id^="infoContainer"] {
-        width: 700px;
-        padding: 50px;
-        font-size: 1.8rem;
-        left: 60px;
-        top: 160px;
-    }
-    
-    [id^="historyContainer"] {
-        width: 750px;
-        padding: 50px;
-        font-size: 1.8rem;
-        right: 60px;
-        top: 160px;
-    }
-    
-    [id^="historyContainer"] p {
-        font-size: 1.6rem;
-        margin-bottom: 16px;
-    }
-    
-    /* Trivia Container - Huge */
-    .trivia-container {
-        width: 700px;
-        padding: 50px;
-        left: 60px;
-        top: 800px;
-        font-size: 1.6rem;
-    }
-    
-    .trivia-header h3 {
-        font-size: 2.5rem;
-    }
-    
-    .question-text {
-        font-size: 1.8rem;
-        padding: 30px;
-        min-height: 140px;
-    }
-    
-    .answer-btn {
-        padding: 20px 30px;
-        font-size: 1.6rem;
-        margin: 12px 0;
-    }
-    
-    .question-timer {
-        padding: 20px 30px;
-    }
-    
-    #timeLeft {
-        font-size: 1.8rem;
-        min-width: 70px;
-    }
-    
-    /* Monster top buttons container */
-    .monster-top-buttons {
-        height: 80px;
-        margin-bottom: 40px;
-    }
-}
-
-/* Ultra-wide and 8K displays (75+ inch TVs - 3840px and up) */
-@media (min-width: 3840px) {
-    header h1 {
-        font-size: 6rem;
-    }
-    
-    .monster-container {
-        width: 80%;
-        max-width: 2800px;
-        padding: 80px;
-    }
-    
-    .monster-image img {
-        max-height: 1600px;
-        min-height: 1200px;
-    }
-    
-    #timer {
-        font-size: 4.5rem !important;
-        padding: 30px 60px;
-        min-width: 240px;
-    }
-    
-    .attack-button {
-        padding: 40px 80px;
-        font-size: 3rem;
-        height: 100px;
-        min-width: 450px;
-    }
-    
-    #attackInputs1 input, #attackInputs2 input {
-        width: 150px;
-        height: 150px;
-        font-size: 4rem;
-    }
+  .cyber-card {
+    margin: 10px 0;
+    padding: 15px;
+  }
+  
+  .cyber-title {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+  
+  .cyber-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .squirrel-icon, .koala-icon {
+    font-size: 1.5rem;
+  }
 }

@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fightMusic.loop = true; // loop the fight music
   fightMusic.volume = 0.5; // Set volume to 50% (adjust as needed)
   healerSound.volume = 0.7; // Set healer sound volume
-
   // Game stats tracking
   let gameStats = {
     startTime: null,
     endTime: null,
     winner: null, // "victory" or "defeat"
     totalDamageDealt: 0,
+    totalBossHits: 0, // Total boss hits across all players
     bossDamageDealt: 0,
     triviaStats: {
       correctAnswers: 0,
@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         damageDealt: 0,
         attackCount: 0,
         specialMoves: 0, // 8s and 12s
+        bossHitsReceived: 0, // How many times boss hit this player
         triviaCorrect: 0,
         triviaWrong: 0
       },
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         damageDealt: 0,
         attackCount: 0,
         specialMoves: 0, // 8s and 12s
+        bossHitsReceived: 0, // How many times boss hit this player
         triviaCorrect: 0,
         triviaWrong: 0
       }
@@ -61,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   gameOverAudio.preload = 'auto';
   fightMusic.preload = 'auto';
   healerSound.preload = 'auto';
-
   // Initialize game stats when a monster is selected
   function initializeGameStats(monster) {
     gameStats = {
@@ -69,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       endTime: null,
       winner: null,
       totalDamageDealt: 0,
+      totalBossHits: 0, // Total boss hits across all players
       bossDamageDealt: 0,
       triviaStats: {
         correctAnswers: 0,
@@ -80,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
           damageDealt: 0,
           attackCount: 0,
           specialMoves: 0,
+          bossHitsReceived: 0, // How many times boss hit this player
           triviaCorrect: 0,
           triviaWrong: 0
         },
@@ -87,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
           damageDealt: 0,
           attackCount: 0,
           specialMoves: 0,
+          bossHitsReceived: 0, // How many times boss hit this player
           triviaCorrect: 0,
           triviaWrong: 0
         }
@@ -346,8 +350,130 @@ document.addEventListener("DOMContentLoaded", () => {
     healerSound.currentTime = 0;
     healerSound.play().catch(err => console.error("Error playing healer sound:", err));
 
-    showGameResultsScreen("victory");
-    unbindGameKeys(); // Unbind keys when game ends
+    showGameResultsScreen("victory");    unbindGameKeys(); // Unbind keys when game ends
+  }
+
+  // Function to capture screenshot of battle results
+  function captureBattleScreenshot(element) {
+    // Hide the screenshot button temporarily for cleaner capture
+    const screenshotBtn = element.querySelector('#screenshotBtn');
+    const originalDisplay = screenshotBtn ? screenshotBtn.style.display : null;
+    if (screenshotBtn) {
+      screenshotBtn.style.display = 'none';
+    }
+
+    // Store original styles
+    const originalStyles = {
+      height: element.style.height,
+      maxHeight: element.style.maxHeight,
+      overflow: element.style.overflow
+    };
+    
+    // Optimize element for screenshot
+    element.style.height = 'auto';
+    element.style.maxHeight = 'none';
+    element.style.overflow = 'visible';
+    
+    // Add delay to ensure rendering is complete
+    setTimeout(() => {
+      html2canvas(element, {
+        allowTaint: true,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false,
+        scale: 2, // High quality
+        onclone: function(clonedDoc) {
+          // Enhance screenshot styling in the clone
+          const clonedElement = clonedDoc.querySelector('.battle-manual-content');
+          if (clonedElement) {
+            // Ensure cyberpunk cards are properly styled
+            const cyberCards = clonedElement.querySelectorAll('.cyber-card');
+            cyberCards.forEach(card => {
+              const styles = getComputedStyle(element.querySelector('.cyber-card'));
+              card.style.background = styles.background;
+              card.style.border = styles.border;
+              card.style.boxShadow = styles.boxShadow;
+            });
+            
+            // Enhance trophy visibility
+            const trophies = clonedElement.querySelectorAll('.trophy');
+            trophies.forEach(trophy => {
+              trophy.style.textShadow = '2px 2px 4px rgba(0,0,0,0.8)';
+              trophy.style.backgroundColor = 'rgba(255, 215, 0, 0.2)';
+              trophy.style.padding = '3px 6px';
+              trophy.style.borderRadius = '4px';
+            });
+          }
+        }
+      }).then(canvas => {
+        // Restore original styles
+        element.style.height = originalStyles.height;
+        element.style.maxHeight = originalStyles.maxHeight;
+        element.style.overflow = originalStyles.overflow;
+        
+        // Restore screenshot button
+        if (screenshotBtn && originalDisplay !== null) {
+          screenshotBtn.style.display = originalDisplay;
+        } else if (screenshotBtn) {
+          screenshotBtn.style.display = 'inline-block';
+        }
+        
+        // Convert to blob and copy to clipboard or download
+        canvas.toBlob(blob => {
+          if (!blob) {
+            console.error('Canvas is empty');
+            alert('Failed to capture screenshot');
+            return;
+          }
+          
+          if (navigator.clipboard && navigator.clipboard.write) {
+            navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]).then(() => {
+              alert('🎯 Battle report screenshot copied to clipboard!');
+            }).catch(err => {
+              console.error('Clipboard API failed:', err);
+              fallbackDownloadBattle(blob);
+            });
+          } else {
+            fallbackDownloadBattle(blob);
+          }
+        }, 'image/png', 1.0);
+      }).catch(err => {
+        // Restore styles even if capture fails
+        element.style.height = originalStyles.height;
+        element.style.maxHeight = originalStyles.maxHeight;
+        element.style.overflow = originalStyles.overflow;
+        
+        if (screenshotBtn && originalDisplay !== null) {
+          screenshotBtn.style.display = originalDisplay;
+        } else if (screenshotBtn) {
+          screenshotBtn.style.display = 'inline-block';
+        }
+        
+        console.error('Failed to capture battle screenshot:', err);
+        alert('Failed to capture screenshot. Please try again.');
+      });
+    }, 300); // Delay to ensure complete rendering
+  }
+
+  // Fallback download function for battle screenshots
+  function fallbackDownloadBattle(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    
+    // Generate filename with timestamp and battle result
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    const result = gameStats.winner === 'victory' ? 'VICTORY' : 'DEFEAT';
+    const monsterName = gameStats.currentMonster?.name?.replace(/\s+/g, '_') || 'Unknown';
+    a.download = `ErgoArena_${result}_vs_${monsterName}_${timestamp}.png`;
+    
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    alert('🎯 Battle report screenshot downloaded!');
   }
 
   function showGameResultsScreen(result) {
@@ -389,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <p><strong>Opponent:</strong> ${gameStats.currentMonster?.name || 'Unknown'}</p>
               <p><strong>Duration:</strong> ${minutes}m ${seconds}s</p>
               <p><strong>Final Boss Health:</strong> ${gameStats.finalBossHealth} / ${gameStats.currentMonster?.health || 0} HP</p>
-              <p><strong>Total Damage Dealt:</strong> ${gameStats.totalDamageDealt}</p>
+              <p><strong>Total Boss Hits:</strong> ${gameStats.totalBossHits}</p>
               <p><strong>Boss Damage Taken:</strong> ${gameStats.bossDamageDealt}</p>
               <p><strong>Peak Memory Sync:</strong> ×${gameStats.maxTriviaMultiplier.toFixed(1)}</p>
             </div>
@@ -422,33 +548,109 @@ document.addEventListener("DOMContentLoaded", () => {
               <p style="color: #27ae60; font-weight: bold;">${gameStats.currentMonster?.Rewards || "No rewards defined."}</p>
             </div>
             `}
-          </div>
-          
-          <div class="manual-column">
-            <div class="section-card">
-              <h3 class="player-jaybers">🟣 Jaybers8 Performance</h3>
-              <ul>
-                <li><strong>Damage Dealt:</strong> ${gameStats.playerStats.jaybers8.damageDealt}</li>
-                <li><strong>Attack Count:</strong> ${gameStats.playerStats.jaybers8.attackCount}</li>
-                <li><strong>Special Moves (8s/12s):</strong> ${gameStats.playerStats.jaybers8.specialMoves}</li>
-                <li><strong>Trivia Correct:</strong> ${gameStats.playerStats.jaybers8.triviaCorrect}</li>
-                <li><strong>Trivia Wrong:</strong> ${gameStats.playerStats.jaybers8.triviaWrong}</li>
-                <li><strong>Avg Damage/Attack:</strong> ${gameStats.playerStats.jaybers8.attackCount > 0 ? 
-                  (gameStats.playerStats.jaybers8.damageDealt / gameStats.playerStats.jaybers8.attackCount).toFixed(1) : 0}</li>
-              </ul>
+          </div>          <div class="manual-column">
+            <!-- Jaybers8 Cyberpunk Performance Card -->
+            <div class="cyber-card jaybers-theme">
+              <div class="cyber-header">
+                <div class="cyber-corner top-left"></div>
+                <div class="cyber-corner top-right"></div>
+                <h3 class="cyber-title">
+                  <span class="squirrel-icon">🐿️</span>
+                  <span class="cyber-glow">JAYBERS8</span>
+                  <span class="cyber-subtitle">BELKAN COMBAT UNIT</span>
+                </h3>
+              </div>
+              <div class="cyber-grid">
+                <div class="cyber-stat">
+                  <span class="cyber-label">DMG OUTPUT</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.damageDealt}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">ATTACK CYCLES</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.attackCount}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">INCOMING HITS</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.bossHitsReceived}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SPECIAL PROTOCOLS</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.specialMoves}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SYNC SUCCESS</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.triviaCorrect}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SYNC FAILURE</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.triviaWrong}</span>
+                </div>
+                <div class="cyber-stat full-width">
+                  <span class="cyber-label">AVG DMG/CYCLE</span>
+                  <span class="cyber-value">${gameStats.playerStats.jaybers8.attackCount > 0 ? 
+                    (gameStats.playerStats.jaybers8.damageDealt / gameStats.playerStats.jaybers8.attackCount).toFixed(1) : 0}</span>
+                </div>
+              </div>
+              <div class="cyber-trophies">
+                ${gameStats.playerStats.jaybers8.damageDealt > gameStats.playerStats.flight.damageDealt ? '<span class="trophy">⚔️ DAMAGE KING</span>' : ''}
+                ${gameStats.playerStats.jaybers8.triviaCorrect > gameStats.playerStats.flight.triviaCorrect ? '<span class="trophy">🧠 SYNC MASTER</span>' : ''}
+                ${gameStats.playerStats.jaybers8.bossHitsReceived > gameStats.playerStats.flight.bossHitsReceived ? '<span class="trophy">🛡️ PAIN ENDURED</span>' : ''}
+                ${gameStats.playerStats.jaybers8.specialMoves > gameStats.playerStats.flight.specialMoves ? '<span class="trophy">✨ SPECIAL OPS</span>' : ''}
+              </div>
+              <div class="cyber-corner bottom-left"></div>
+              <div class="cyber-corner bottom-right"></div>
             </div>
             
-            <div class="section-card">
-              <h3 class="player-flight">🟢 FLIGHTx12! Performance</h3>
-              <ul>
-                <li><strong>Damage Dealt:</strong> ${gameStats.playerStats.flight.damageDealt}</li>
-                <li><strong>Attack Count:</strong> ${gameStats.playerStats.flight.attackCount}</li>
-                <li><strong>Special Moves (8s/12s):</strong> ${gameStats.playerStats.flight.specialMoves}</li>
-                <li><strong>Trivia Correct:</strong> ${gameStats.playerStats.flight.triviaCorrect}</li>
-                <li><strong>Trivia Wrong:</strong> ${gameStats.playerStats.flight.triviaWrong}</li>
-                <li><strong>Avg Damage/Attack:</strong> ${gameStats.playerStats.flight.attackCount > 0 ? 
-                  (gameStats.playerStats.flight.damageDealt / gameStats.playerStats.flight.attackCount).toFixed(1) : 0}</li>
-              </ul>
+            <!-- FLIGHTx12! Cyberpunk Performance Card -->
+            <div class="cyber-card flight-theme">
+              <div class="cyber-header">
+                <div class="cyber-corner top-left"></div>
+                <div class="cyber-corner top-right"></div>
+                <h3 class="cyber-title">
+                  <span class="koala-icon">🐨</span>
+                  <span class="cyber-glow">FLIGHTx12!</span>
+                  <span class="cyber-subtitle">DILARDIAN STRIKE UNIT</span>
+                </h3>
+              </div>
+              <div class="cyber-grid">
+                <div class="cyber-stat">
+                  <span class="cyber-label">DMG OUTPUT</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.damageDealt}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">ATTACK CYCLES</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.attackCount}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">INCOMING HITS</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.bossHitsReceived}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SPECIAL PROTOCOLS</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.specialMoves}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SYNC SUCCESS</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.triviaCorrect}</span>
+                </div>
+                <div class="cyber-stat">
+                  <span class="cyber-label">SYNC FAILURE</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.triviaWrong}</span>
+                </div>
+                <div class="cyber-stat full-width">
+                  <span class="cyber-label">AVG DMG/CYCLE</span>
+                  <span class="cyber-value">${gameStats.playerStats.flight.attackCount > 0 ? 
+                    (gameStats.playerStats.flight.damageDealt / gameStats.playerStats.flight.attackCount).toFixed(1) : 0}</span>
+                </div>
+              </div>
+              <div class="cyber-trophies">
+                ${gameStats.playerStats.flight.damageDealt > gameStats.playerStats.jaybers8.damageDealt ? '<span class="trophy">⚔️ MOS HANDS</span>' : ''}
+                ${gameStats.playerStats.flight.triviaCorrect > gameStats.playerStats.jaybers8.triviaCorrect ? '<span class="trophy">🧠 SYNC MASTER</span>' : ''}
+                ${gameStats.playerStats.flight.bossHitsReceived > gameStats.playerStats.jaybers8.bossHitsReceived ? '<span class="trophy">🛡️ WALKING TANK</span>' : ''}
+                ${gameStats.playerStats.flight.specialMoves > gameStats.playerStats.jaybers8.specialMoves ? '<span class="trophy">✨ SPECIAL OPS</span>' : ''}
+              </div>
+              <div class="cyber-corner bottom-left"></div>
+              <div class="cyber-corner bottom-right"></div>
             </div>
 
             <div class="section-card">
@@ -461,8 +663,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         </div>
-        
-        <div class="manual-footer">
+          <div class="manual-footer">
+          <button id="screenshotBtn" class="menu-button" style="margin-right: 15px;">
+            <i class="fas fa-camera"></i> Screenshot Battle Report
+          </button>
           <button id="restartGameBtn" class="menu-button" style="margin-right: 15px;">
             <i class="fas fa-redo"></i> Battle Again
           </button>
@@ -486,12 +690,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('restartGameBtn').addEventListener('click', () => {
       location.reload();
     });
-    
-    // Leave arena button  
+      // Leave arena button  
     const leaveBtn = resultDiv.querySelector('#leaveArenaBtn');
     if (leaveBtn) {
       leaveBtn.addEventListener('click', () => {
         window.location.href = '../index.html';
+      });
+    }
+
+    // Screenshot button
+    const screenshotBtn = resultDiv.querySelector('#screenshotBtn');
+    if (screenshotBtn) {
+      screenshotBtn.addEventListener('click', () => {
+        const battleContent = resultDiv.querySelector('.battle-manual-content');
+        if (battleContent) {
+          captureBattleScreenshot(battleContent);
+        }
       });
     }
 
@@ -899,13 +1113,18 @@ document.addEventListener("DOMContentLoaded", () => {
               gameStats.playerStats[playerKey].specialMoves++;
             }
           }
-        }
-        
+        }        
         // Update total damage dealt and track max trivia multiplier
         gameStats.totalDamageDealt += totalDamage;
         gameStats.bossDamageDealt += totalDamage;
         if (triviaMultiplier > gameStats.maxTriviaMultiplier) {
           gameStats.maxTriviaMultiplier = triviaMultiplier;
+        }
+        
+        // Track boss hits received by the current player
+        if (hitCount > 0) {
+          gameStats.playerStats[playerKey].bossHitsReceived += hitCount;
+          gameStats.totalBossHits += hitCount;
         }
 
         monsterLife -= totalDamage;
