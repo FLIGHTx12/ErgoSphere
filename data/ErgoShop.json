@@ -301,19 +301,19 @@
 
   "mealModsContainer": [
     {
-      "text": "🍴Bfast Snack - 2💷",
+      "text": "🍳Bfast Snack (🍪Simple Truth Blueberry Breakfast Cookies ) - 2💷",
       "value": 2,
       "rating": "mod",
-      "calories": 0,
+      "calories": 230,
       "description": "",
       "status": "🟢",
       "stock": 0
     },
     {
-      "text": "🍴Lunch Snack - 2💷",
+      "text": "🍴Lunch Snack (🔺Tortilla Chips)- 2💷",
       "value": 2,
       "rating": "mod",
-      "calories": 0,
+      "calories": 130,
       "description": "",
       "status": "🟢",
       "stock": 0
