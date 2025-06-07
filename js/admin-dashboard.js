@@ -11,24 +11,22 @@ class AdminDashboard {
         this.selectedItems = new Set();
         this.isConnected = false;
         this.websocket = null;
-        
-        // Category-specific field configurations
+          // Category-specific field configurations
         this.categoryConfigs = {
             movies: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
+                fields: ['STATUS', 'WATCHED'],
+                timesSeenField: 'WATCHED',
                 watchedField: 'WATCHED',
                 showCopies: false
-            },
-            anime: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
+            },            anime: {
+                fields: ['STATUS', 'LAST WATCHED', 'Series Length'],
+                lastWatchedField: 'LAST WATCHED',
+                seriesLengthField: 'Series Length',
                 showCopies: false
             },
             youtube: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
+                fields: ['STATUS', 'WATCHED'],
+                timesSeenField: 'WATCHED',
                 watchedField: 'WATCHED',
                 showCopies: false
             },
@@ -53,17 +51,16 @@ class AdminDashboard {
                 copiesField: 'copies',
                 costField: 'cost',
                 showCopies: true
-            },
-            sundaymorning: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
+            },            sundaymorning: {
+                fields: ['STATUS', 'LAST WATCHED', 'Series Length'],
+                lastWatchedField: 'LAST WATCHED',
+                seriesLengthField: 'Series Length',
                 showCopies: false
             },
             sundaynight: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
+                fields: ['STATUS', 'LAST WATCHED', 'Series Length'],
+                lastWatchedField: 'LAST WATCHED',
+                seriesLengthField: 'Series Length',
                 showCopies: false
             }
         };
@@ -341,10 +338,17 @@ class AdminDashboard {
         
         if (config.completedField) {
             headersHTML += `<th class="col-completed">Completed?</th>`;
-        }
-        
+        }        
         if (config.timesSeenField) {
             headersHTML += `<th class="col-watched">Times Seen 👀</th>`;
+        }
+        
+        if (config.lastWatchedField) {
+            headersHTML += `<th class="col-last-watched">Last Watched</th>`;
+        }
+        
+        if (config.seriesLengthField) {
+            headersHTML += `<th class="col-series-length">Series Length</th>`;
         }
         
         if (config.timeField && this.currentCategory === 'singleplayer') {
@@ -427,8 +431,7 @@ class AdminDashboard {
                 <button class="completed-toggle" data-index="${index}">${completed}</button>
             </td>`;
         }
-        
-        // Add times seen field for movies/anime/youtube
+          // Add times seen field for movies/anime/youtube
         if (config.timesSeenField) {
             const timesSeen = item[config.timesSeenField] || item.watched || 0;
             rowContent += `
@@ -438,6 +441,24 @@ class AdminDashboard {
                     <span class="watched-count">${timesSeen} 👀</span>
                     <button class="control-btn plus" data-action="watched-plus" data-index="${index}">+</button>
                 </div>
+            </td>`;
+        }
+        
+        // Add last watched field for anime/Sunday shows
+        if (config.lastWatchedField) {
+            const lastWatched = item[config.lastWatchedField] || '';
+            rowContent += `
+            <td class="last-watched-cell">
+                <input type="text" class="editable-field" data-field="${config.lastWatchedField}" data-index="${index}" value="${lastWatched}" placeholder="e.g. se1, se2">
+            </td>`;
+        }
+        
+        // Add series length field for anime/Sunday shows  
+        if (config.seriesLengthField) {
+            const seriesLength = item[config.seriesLengthField] || '';
+            rowContent += `
+            <td class="series-length-cell">
+                <input type="text" class="editable-field" data-field="${config.seriesLengthField}" data-index="${index}" value="${seriesLength}" placeholder="e.g. 3 season, 10 episodes">
             </td>`;
         }
         
@@ -505,15 +526,23 @@ class AdminDashboard {
                 const action = e.target.dataset.action;
                 this.handleNumberControl(action, index);
             });
-        });
-
-        // Edit button
+        });        // Edit button
         const editBtn = row.querySelector('.edit-btn');
         if (editBtn) {
             editBtn.addEventListener('click', () => {
                 this.editItem(index);
             });
         }
+        
+        // Editable fields (for Last Watched and Series Length)
+        row.querySelectorAll('.editable-field').forEach(field => {
+            field.addEventListener('change', (e) => {
+                const fieldName = e.target.dataset.field;
+                const newValue = e.target.value;
+                this.updateItemField(index, fieldName, newValue);
+                e.target.classList.add('modified');
+            });
+        });
     }
 
     getCopiesClass(copies) {
@@ -592,7 +621,18 @@ class AdminDashboard {
         if (row) {
             row.classList.add('modified');
         }
-    }    updateStats() {
+    }
+
+    updateItemField(index, fieldName, newValue) {
+        const item = this.currentData[index];
+        if (item) {
+            item[fieldName] = newValue;
+            this.markAsModified(index);
+            this.updateStats();
+        }
+    }
+
+    updateStats() {
         const totalItems = this.currentData.length;
         const activeItems = this.currentData.filter(item => {
             if (this.currentCategory === 'loot') {
