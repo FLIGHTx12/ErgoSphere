@@ -1,9 +1,12 @@
-[
-  {
-    "TITLE": "Test Coop Game",
-    "STATUS": "??",
-    "copies": 5,
-    "WATCHED": "No",
-    "TIMES SEEN": 10
-  }
-]
+{
+  "Count": 1,
+  "value": [
+    {
+      "TITLE": "Test Coop Game",
+      "STATUS": "??",
+      "copies": 5,
+      "WATCHED": "No",
+      "TIMES SEEN": 10
+    }
+  ]
+}

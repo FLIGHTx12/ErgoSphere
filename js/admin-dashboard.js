@@ -33,68 +33,86 @@ class AdminDashboard {
 
         // Search functionality
         const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('input', (e) => {
-            this.filterData(e.target.value);
-        });
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.filterData(e.target.value);
+            });
+        }
 
-        document.getElementById('clear-search').addEventListener('click', () => {
-            searchInput.value = '';
-            this.filterData('');
-        });
+        const clearSearch = document.getElementById('clear-search');
+        if (clearSearch) {
+            clearSearch.addEventListener('click', () => {
+                if (searchInput) searchInput.value = '';
+                this.filterData('');
+            });
+        }
 
         // Filter and sort
-        document.getElementById('status-filter').addEventListener('change', (e) => {
-            this.applyFilters();
-        });
+        const statusFilter = document.getElementById('status-filter');
+        if (statusFilter) {
+            statusFilter.addEventListener('change', () => {
+                this.applyFilters();
+            });
+        }
 
-        document.getElementById('sort-options').addEventListener('change', (e) => {
-            this.sortData(e.target.value);
-        });
+        const sortOptions = document.getElementById('sort-options');
+        if (sortOptions) {
+            sortOptions.addEventListener('change', (e) => {
+                this.sortData(e.target.value);
+            });
+        }
 
-        // Action buttons
-        document.getElementById('refresh-data').addEventListener('click', () => {
-            this.refreshCurrentCategory();
-        });
+        // Refresh button
+        const refreshBtn = document.getElementById('refresh-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', () => {
+                this.refreshCurrentCategory();
+            });
+        }
 
-        document.getElementById('manual-sync').addEventListener('click', () => {
-            this.performManualSync();
-        });
-
-        document.getElementById('save-all').addEventListener('click', () => {
-            this.saveAllChanges();
-        });
-
-        document.getElementById('bulk-actions').addEventListener('click', () => {
-            this.showBulkModal();
-        });
+        // Save all changes
+        const saveBtn = document.getElementById('save-all-btn');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', () => {
+                this.saveAllChanges();
+            });
+        }
 
         // Select all checkbox
-        document.getElementById('select-all').addEventListener('change', (e) => {
-            this.toggleSelectAll(e.target.checked);
-        });
+        const selectAll = document.getElementById('select-all');
+        if (selectAll) {
+            selectAll.addEventListener('change', (e) => {
+                this.toggleSelectAll(e.target.checked);
+            });
+        }
 
-        // Bulk modal events
-        document.querySelector('.modal-close').addEventListener('click', () => {
-            this.hideBulkModal();
-        });
-
-        document.querySelectorAll('.bulk-action-btn').forEach(btn => {
+        // Bulk actions
+        const bulkActionsBtn = document.getElementById('bulk-actions-btn');
+        if (bulkActionsBtn) {
+            bulkActionsBtn.addEventListener('click', () => {
+                this.showBulkModal();
+            });
+        }        // Bulk modal buttons
+        const closeBulkModal = document.querySelector('.modal-close');
+        if (closeBulkModal) {
+            closeBulkModal.addEventListener('click', () => {
+                this.hideBulkModal();
+            });
+        }        const bulkActionButtons = document.querySelectorAll('[data-action]');
+        bulkActionButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                this.executeBulkAction(e.target.dataset.action);
+                const action = e.target.dataset.action;
+                this.executeBulkAction(action);
             });
         });
 
-        // Sidebar toggle for mobile
-        document.getElementById('sidebar-toggle').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.toggle('active');
-        });
-
-        // Close modal on backdrop click
-        document.getElementById('bulk-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'bulk-modal') {
-                this.hideBulkModal();
-            }
-        });
+        // Manual sync button
+        const syncBtn = document.getElementById('manual-sync-btn');
+        if (syncBtn) {
+            syncBtn.addEventListener('click', () => {
+                this.performManualSync();
+            });
+        }
     }
 
     async establishConnection() {
@@ -142,12 +160,14 @@ class AdminDashboard {
         const indicator = document.getElementById('connection-indicator');
         const text = document.getElementById('connection-text');
         
-        if (this.isConnected) {
-            indicator.textContent = '🟢';
-            text.textContent = 'Connected';
-        } else {
-            indicator.textContent = '🔴';
-            text.textContent = 'Disconnected';
+        if (indicator && text) {
+            if (this.isConnected) {
+                indicator.textContent = '🟢';
+                text.textContent = 'Connected';
+            } else {
+                indicator.textContent = '🔴';
+                text.textContent = 'Disconnected';
+            }
         }
     }
 
@@ -157,7 +177,7 @@ class AdminDashboard {
             btn.classList.remove('active');
         });
         document.querySelector(`[data-category="${category}"]`).classList.add('active');
-
+        
         this.currentCategory = category;
         await this.loadCategoryData(category);
         
@@ -173,7 +193,10 @@ class AdminDashboard {
             sundaynight: '🌙 Sunday Night',
             singleplayer: '🎯 Single Player'
         };
-        document.getElementById('category-title').textContent = titles[category];
+        const categoryTitle = document.getElementById('category-title');
+        if (categoryTitle) {
+            categoryTitle.textContent = titles[category] || category;
+        }
     }
 
     async loadCategoryData(category) {
@@ -182,7 +205,7 @@ class AdminDashboard {
         try {
             let data;
             const categoryBtn = document.querySelector(`[data-category="${category}"]`);
-            const table = categoryBtn.dataset.table;
+            const table = categoryBtn ? categoryBtn.dataset.table : null;
             
             if (table === 'loot_items') {
                 // Load from loot_items table
@@ -196,17 +219,17 @@ class AdminDashboard {
                         data = await response.json();
                     } else {
                         // Fallback to JSON file
-                        const jsonResponse = await fetch(`../../data/${category}.json`);
+                        const jsonResponse = await fetch(`/data/${category}.json`);
                         data = await jsonResponse.json();
                     }
                 } catch (error) {
                     // Fallback to JSON file
-                    const jsonResponse = await fetch(`../../data/${category}.json`);
+                    const jsonResponse = await fetch(`/data/${category}.json`);
                     data = await jsonResponse.json();
                 }
             }
             
-            this.currentData = data;
+            this.currentData = Array.isArray(data) ? data : [];
             this.renderTable();
             this.updateStats();
             
@@ -220,8 +243,10 @@ class AdminDashboard {
 
     renderTable() {
         const tbody = document.getElementById('table-body');
+        if (!tbody) return;
+        
         const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
-        const dataType = categoryBtn.dataset.type;
+        const dataType = categoryBtn ? categoryBtn.dataset.type : null;
         
         tbody.innerHTML = '';
         
@@ -244,47 +269,35 @@ class AdminDashboard {
         
         // Determine item properties based on data structure
         const isLoot = this.currentCategory === 'loot';
-        const name = isLoot ? item.text : (item.TITLE || item.Title || item.text);
+        const name = isLoot ? item.text : (item.TITLE || item.Title || item.text || 'Unknown');
         const status = isLoot ? (item.copies > 0 ? '🟢' : '🔴') : (item.STATUS || '');
         const copies = isLoot ? item.copies : (item.copies || 0);
         const watched = item.WATCHED || item.watched || item.times_seen || 0;
         
         row.innerHTML = `
-            <td class="col-checkbox">
-                <input type="checkbox" class="row-checkbox" data-index="${index}">
+            <td>
+                <input type="checkbox" class="item-checkbox" data-index="${index}">
             </td>
-            <td class="col-name">
-                <div class="item-name" title="${name}">${name}</div>
+            <td class="item-name">${name}</td>
+            <td class="status-cell">
+                <button class="status-toggle" data-index="${index}">${status}</button>
             </td>
-            <td class="col-status">
-                ${dataType === 'status' ? 
-                    `<button class="table-action-btn toggle-btn" data-index="${index}">
-                        ${status === '🟢' ? '🟢 Active' : '🔴 Inactive'}
-                    </button>` :
-                    `<span class="${status === '🟢' ? 'status-active' : 'status-inactive'}">${status || 'N/A'}</span>`
-                }
-            </td>
-            <td class="col-copies">
-                ${dataType === 'copies' ? 
-                    `<div class="number-controls">
-                        <button class="number-btn" data-action="decrease" data-index="${index}">-</button>
-                        <input type="number" class="editable-field copies-field" 
-                               value="${copies}" min="0" data-index="${index}" data-field="copies">
-                        <button class="number-btn" data-action="increase" data-index="${index}">+</button>
-                    </div>` :
-                    `<span class="${this.getCopiesClass(copies)}">${copies}</span>`
-                }
-            </td>
-            <td class="col-watched">
-                <div class="number-controls">
-                    <button class="number-btn" data-action="decrease-watched" data-index="${index}">-</button>
-                    <input type="number" class="editable-field watched-field" 
-                           value="${watched}" min="0" data-index="${index}" data-field="watched">
-                    <button class="number-btn" data-action="increase-watched" data-index="${index}">+</button>
+            <td class="copies-cell">
+                <div class="number-control">
+                    <button class="control-btn minus" data-action="minus" data-index="${index}">-</button>
+                    <span class="copies-count ${this.getCopiesClass(copies)}">${copies}</span>
+                    <button class="control-btn plus" data-action="plus" data-index="${index}">+</button>
                 </div>
             </td>
-            <td class="col-actions">
-                <button class="table-action-btn edit-btn" data-index="${index}">✏️ Edit</button>
+            <td class="watched-cell">
+                <div class="number-control">
+                    <button class="control-btn minus" data-action="watched-minus" data-index="${index}">-</button>
+                    <span class="watched-count">${watched} 👀</span>
+                    <button class="control-btn plus" data-action="watched-plus" data-index="${index}">+</button>
+                </div>
+            </td>
+            <td class="actions-cell">
+                <button class="edit-btn" data-index="${index}">✏️</button>
             </td>
         `;
         
@@ -293,63 +306,61 @@ class AdminDashboard {
     }
 
     attachRowEventListeners(row, index) {
-        // Checkbox selection
-        const checkbox = row.querySelector('.row-checkbox');
-        checkbox.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                this.selectedItems.add(index);
-            } else {
-                this.selectedItems.delete(index);
-            }
-            this.updateSelectAllState();
-        });
+        // Checkbox
+        const checkbox = row.querySelector('.item-checkbox');
+        if (checkbox) {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.selectedItems.add(index);
+                } else {
+                    this.selectedItems.delete(index);
+                }
+                this.updateSelectAllState();
+            });
+        }
 
         // Status toggle
-        const toggleBtn = row.querySelector('.toggle-btn');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
+        const statusToggle = row.querySelector('.status-toggle');
+        if (statusToggle) {
+            statusToggle.addEventListener('click', () => {
                 this.toggleItemStatus(index);
             });
         }
 
         // Number controls
-        row.querySelectorAll('.number-btn').forEach(btn => {
+        row.querySelectorAll('.control-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const action = e.target.dataset.action;
                 this.handleNumberControl(action, index);
             });
         });
 
-        // Editable fields
-        row.querySelectorAll('.editable-field').forEach(field => {
-            field.addEventListener('change', (e) => {
-                this.updateItemField(index, e.target.dataset.field, e.target.value);
-            });
-        });
-
         // Edit button
         const editBtn = row.querySelector('.edit-btn');
-        editBtn.addEventListener('click', () => {
-            this.editItem(index);
-        });
+        if (editBtn) {
+            editBtn.addEventListener('click', () => {
+                this.editItem(index);
+            });
+        }
     }
 
     getCopiesClass(copies) {
-        if (copies === 0) return 'copies-zero';
-        if (copies < 3) return 'copies-low';
-        return 'copies-high';
+        if (copies === 0) return 'zero';
+        if (copies <= 2) return 'low';
+        if (copies <= 5) return 'medium';
+        return 'high';
     }
 
     toggleItemStatus(index) {
         const item = this.currentData[index];
-        const isLoot = this.currentCategory === 'loot';
-        
-        if (isLoot) {
-            // For loot items, toggle copies between 0 and 1
+        if (this.currentCategory === 'loot') {
+            // For loot items, toggle between 0 and 1 copies
             item.copies = item.copies > 0 ? 0 : 1;
         } else {
-            // For media items, toggle STATUS
-            item.STATUS = item.STATUS === '🟢' ? '' : '🟢';
+            // For other categories, cycle through status options
+            const statuses = ['⚪', '🟢', '🟡', '🔴'];
+            const currentIndex = statuses.indexOf(item.STATUS || '⚪');
+            item.STATUS = statuses[(currentIndex + 1) % statuses.length];
         }
         
         this.markAsModified(index);
@@ -360,190 +371,133 @@ class AdminDashboard {
         const item = this.currentData[index];
         
         switch (action) {
-            case 'decrease':
-                if (item.copies > 0) {
-                    item.copies--;
-                    this.markAsModified(index);
-                }
+            case 'plus':
+                item.copies = (item.copies || 0) + 1;
                 break;
-            case 'increase':
-                item.copies++;
-                this.markAsModified(index);
+            case 'minus':
+                item.copies = Math.max(0, (item.copies || 0) - 1);
                 break;
-            case 'decrease-watched':
-                const currentWatched = item.WATCHED || item.watched || item.times_seen || 0;
-                if (currentWatched > 0) {
-                    this.updateItemField(index, 'watched', currentWatched - 1);
-                }
-                break;
-            case 'increase-watched':
-                const watched = item.WATCHED || item.watched || item.times_seen || 0;
-                this.updateItemField(index, 'watched', watched + 1);
-                break;
-        }
-        
-        this.renderTable();
-    }
-
-    updateItemField(index, field, value) {
-        const item = this.currentData[index];
-        const numValue = parseInt(value, 10) || 0;
-        
-        switch (field) {
-            case 'copies':
-                item.copies = Math.max(0, numValue);
-                break;
-            case 'watched':
-                // Handle different field names for times seen
-                if (item.WATCHED !== undefined) {
-                    item.WATCHED = Math.max(0, numValue);
-                } else if (item.watched !== undefined) {
-                    item.watched = Math.max(0, numValue);
+            case 'watched-plus':
+                if (this.currentCategory === 'loot') {
+                    item.times_seen = (item.times_seen || 0) + 1;
                 } else {
-                    item.times_seen = Math.max(0, numValue);
+                    item.WATCHED = (item.WATCHED || 0) + 1;
+                }
+                break;
+            case 'watched-minus':
+                if (this.currentCategory === 'loot') {
+                    item.times_seen = Math.max(0, (item.times_seen || 0) - 1);
+                } else {
+                    item.WATCHED = Math.max(0, (item.WATCHED || 0) - 1);
                 }
                 break;
         }
         
         this.markAsModified(index);
-        this.updateStats();
+        this.renderTable();
     }
 
     markAsModified(index) {
         this.modifiedItems.add(index);
-        this.updateStats();
-        
-        // Add visual indication
+        // Add visual indicator
         const row = document.querySelector(`tr[data-index="${index}"]`);
         if (row) {
-            row.style.background = 'rgba(251, 191, 36, 0.1)';
-            row.style.borderLeft = '3px solid #fbbf24';
+            row.classList.add('modified');
         }
-    }
-
-    updateStats() {
-        const total = this.currentData.length;
-        const active = this.currentData.filter(item => {
+    }    updateStats() {
+        const totalItems = this.currentData.length;
+        const activeItems = this.currentData.filter(item => {
             if (this.currentCategory === 'loot') {
                 return item.copies > 0;
             }
             return item.STATUS === '🟢';
         }).length;
-        const modified = this.modifiedItems.size;
         
-        document.getElementById('total-items').textContent = `${total} items`;
-        document.getElementById('active-items').textContent = `${active} active`;
-        document.getElementById('modified-items').textContent = `${modified} modified`;
+        const modifiedCount = this.modifiedItems.size;
+        
+        const statsElements = {
+            'total-items': `${totalItems} items`,
+            'active-items': `${activeItems} active`,
+            'modified-items': `${modifiedCount} modified`
+        };
+        
+        Object.entries(statsElements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        });
     }
 
     filterData(searchTerm) {
         const rows = document.querySelectorAll('#table-body tr');
-        const term = searchTerm.toLowerCase();
-        
         rows.forEach(row => {
             const name = row.querySelector('.item-name').textContent.toLowerCase();
-            const visible = name.includes(term);
-            row.style.display = visible ? '' : 'none';
+            const matches = name.includes(searchTerm.toLowerCase());
+            row.style.display = matches ? '' : 'none';
         });
     }
 
     applyFilters() {
-        const statusFilter = document.getElementById('status-filter').value;
-        const rows = document.querySelectorAll('#table-body tr');
+        const statusFilter = document.getElementById('status-filter');
+        const filterValue = statusFilter ? statusFilter.value : 'all';
         
+        const rows = document.querySelectorAll('#table-body tr');
         rows.forEach(row => {
-            const index = row.dataset.index;
-            const item = this.currentData[index];
-            let visible = true;
+            const statusButton = row.querySelector('.status-toggle');
+            const status = statusButton ? statusButton.textContent : '';
             
-            switch (statusFilter) {
-                case 'active':
-                    if (this.currentCategory === 'loot') {
-                        visible = item.copies > 0;
-                    } else {
-                        visible = item.STATUS === '🟢';
-                    }
-                    break;
-                case 'inactive':
-                    if (this.currentCategory === 'loot') {
-                        visible = item.copies === 0;
-                    } else {
-                        visible = item.STATUS !== '🟢';
-                    }
-                    break;
-                default:
-                    visible = true;
+            let show = true;
+            if (filterValue !== 'all') {
+                show = status === filterValue;
             }
             
-            row.style.display = visible ? '' : 'none';
+            row.style.display = show ? '' : 'none';
         });
     }
 
     sortData(sortBy) {
-        switch (sortBy) {
-            case 'name':
-                this.currentData.sort((a, b) => {
-                    const nameA = (a.text || a.TITLE || a.Title || '').toLowerCase();
-                    const nameB = (b.text || b.TITLE || b.Title || '').toLowerCase();
-                    return nameA.localeCompare(nameB);
-                });
-                break;
-            case 'status':
-                this.currentData.sort((a, b) => {
-                    const statusA = this.currentCategory === 'loot' ? (a.copies > 0 ? 1 : 0) : (a.STATUS === '🟢' ? 1 : 0);
-                    const statusB = this.currentCategory === 'loot' ? (b.copies > 0 ? 1 : 0) : (b.STATUS === '🟢' ? 1 : 0);
-                    return statusB - statusA;
-                });
-                break;
-            case 'copies':
-                this.currentData.sort((a, b) => (b.copies || 0) - (a.copies || 0));
-                break;
-            case 'watched':
-                this.currentData.sort((a, b) => {
-                    const watchedA = a.WATCHED || a.watched || a.times_seen || 0;
-                    const watchedB = b.WATCHED || b.watched || b.times_seen || 0;
-                    return watchedB - watchedA;
-                });
-                break;
-        }
-        
-        this.renderTable();
+        // Implementation for sorting data
+        console.log('Sorting by:', sortBy);
+        // TODO: Implement sorting logic
     }
 
     async refreshCurrentCategory() {
-        this.showSyncIndicator();
         await this.loadCategoryData(this.currentCategory);
-        this.hideSyncIndicator();
-        this.showToast('Data refreshed successfully', '🔄');
     }
 
     async saveAllChanges() {
         if (this.modifiedItems.size === 0) {
-            this.showToast('No changes to save', '💭');
+            this.showMessage('No changes to save');
             return;
         }
 
-        this.showSyncIndicator();
-        
         try {
+            this.showSyncIndicator();
+            
             const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
-            const table = categoryBtn.dataset.table;
+            const table = categoryBtn ? categoryBtn.dataset.table : null;
             
             if (table === 'loot_items') {
                 // Save to loot_items table
-                for (const index of this.modifiedItems) {
-                    const item = this.currentData[index];
-                    await fetch(`/api/loot/${item.id}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(item)
-                    });
+                const response = await fetch('/api/loot', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.currentData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to save loot data');
                 }
             } else {
-                // Save to json_data table or JSON file
+                // Save to json_data table
                 const response = await fetch(`/api/data/${this.currentCategory}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(this.currentData)
                 });
                 
@@ -553,16 +507,17 @@ class AdminDashboard {
             }
             
             this.modifiedItems.clear();
-            this.updateStats();
-            this.renderTable(); // Remove visual modifications
-            this.showToast('Changes saved successfully', '✅');
-            
-            // Broadcast update to HCMC and other pages
             this.broadcastUpdate();
+            this.showMessage('✅ Changes saved successfully');
+            
+            // Remove modified styling
+            document.querySelectorAll('.modified').forEach(row => {
+                row.classList.remove('modified');
+            });
             
         } catch (error) {
-            console.error('Failed to save changes:', error);
-            this.showToast('Failed to save changes', '❌');
+            console.error('Save failed:', error);
+            this.showError(`Failed to save changes: ${error.message}`);
         } finally {
             this.hideSyncIndicator();
         }
@@ -571,9 +526,9 @@ class AdminDashboard {
     broadcastUpdate() {
         if (this.websocket && this.websocket.readyState === WebSocket.OPEN) {
             this.websocket.send(JSON.stringify({
-                type: 'adminUpdate',
+                type: 'update',
                 category: this.currentCategory,
-                data: this.currentData
+                timestamp: Date.now()
             }));
         }
     }
@@ -581,234 +536,144 @@ class AdminDashboard {
     toggleSelectAll(checked) {
         this.selectedItems.clear();
         
-        if (checked) {
-            this.currentData.forEach((_, index) => {
-                this.selectedItems.add(index);
-            });
-        }
-        
-        document.querySelectorAll('.row-checkbox').forEach(checkbox => {
+        document.querySelectorAll('.item-checkbox').forEach((checkbox, index) => {
             checkbox.checked = checked;
+            if (checked) {
+                this.selectedItems.add(index);
+            }
         });
     }
 
     updateSelectAllState() {
         const selectAll = document.getElementById('select-all');
-        const totalCheckboxes = document.querySelectorAll('.row-checkbox').length;
+        const checkboxes = document.querySelectorAll('.item-checkbox');
+        const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
         
-        if (this.selectedItems.size === 0) {
-            selectAll.indeterminate = false;
-            selectAll.checked = false;
-        } else if (this.selectedItems.size === totalCheckboxes) {
-            selectAll.indeterminate = false;
-            selectAll.checked = true;
-        } else {
-            selectAll.indeterminate = true;
-            selectAll.checked = false;
+        if (selectAll) {
+            selectAll.indeterminate = checkedBoxes.length > 0 && checkedBoxes.length < checkboxes.length;
+            selectAll.checked = checkedBoxes.length === checkboxes.length && checkboxes.length > 0;
         }
     }
 
     showBulkModal() {
-        if (this.selectedItems.size === 0) {
-            this.showToast('Please select items first', '⚠️');
-            return;
+        const modal = document.getElementById('bulk-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
         }
-        
-        document.getElementById('selected-count').textContent = this.selectedItems.size;
-        document.getElementById('bulk-modal').classList.remove('hidden');
     }
 
     hideBulkModal() {
-        document.getElementById('bulk-modal').classList.add('hidden');
+        const modal = document.getElementById('bulk-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
     }
 
     async executeBulkAction(action) {
-        const selectedIndexes = Array.from(this.selectedItems);
-        
-        selectedIndexes.forEach(index => {
-            const item = this.currentData[index];
-            
-            switch (action) {
-                case 'activate':
-                    if (this.currentCategory === 'loot') {
-                        item.copies = Math.max(1, item.copies);
-                    } else {
-                        item.STATUS = '🟢';
-                    }
-                    break;
-                case 'deactivate':
-                    if (this.currentCategory === 'loot') {
+        if (this.selectedItems.size === 0) {
+            this.showError('No items selected');
+            return;
+        }
+
+        try {
+            this.selectedItems.forEach(index => {
+                const item = this.currentData[index];
+                  switch (action) {
+                    case 'activate':
+                        if (this.currentCategory === 'loot') {
+                            item.copies = Math.max(1, item.copies || 0);
+                        } else {
+                            item.STATUS = '🟢';
+                        }
+                        break;
+                    case 'deactivate':
+                        if (this.currentCategory === 'loot') {
+                            item.copies = 0;
+                        } else {
+                            item.STATUS = '🔴';
+                        }
+                        break;
+                    case 'reset-copies':
                         item.copies = 0;
-                    } else {
-                        item.STATUS = '';
-                    }
-                    break;
-                case 'reset-copies':
-                    item.copies = 0;
-                    break;
-                case 'reset-watched':
-                    if (item.WATCHED !== undefined) {
-                        item.WATCHED = 0;
-                    } else if (item.watched !== undefined) {
-                        item.watched = 0;
-                    } else {
-                        item.times_seen = 0;
-                    }
-                    break;
-            }
+                        break;
+                    case 'reset-watched':
+                        if (this.currentCategory === 'loot') {
+                            item.times_seen = 0;
+                        } else {
+                            item.WATCHED = 0;
+                        }
+                        break;
+                }
+                
+                this.markAsModified(index);
+            });
             
-            this.markAsModified(index);
-        });
-        
-        this.renderTable();
-        this.hideBulkModal();
-        this.selectedItems.clear();
-        this.updateSelectAllState();
-        
-        this.showToast(`Bulk action applied to ${selectedIndexes.length} items`, '📦');
+            this.renderTable();
+            this.hideBulkModal();
+            this.showMessage(`✅ Bulk action applied to ${this.selectedItems.size} items`);
+            
+        } catch (error) {
+            console.error('Bulk action failed:', error);
+            this.showError(`Bulk action failed: ${error.message}`);
+        }
     }
 
     editItem(index) {
-        // Open detailed edit modal (future enhancement)
-        console.log('Edit item:', this.currentData[index]);
-        this.showToast('Detailed edit coming soon', '🚧');
-    }    handleRealTimeUpdate(data) {
-        console.log('📡 Real-time update received:', data);
-        
-        switch (data.type) {
-            case 'dataUpdate':
-                if (data.category === this.currentCategory) {
-                    this.refreshCurrentCategory();
-                    this.showToast('Data updated from external source', '🔄');
-                }
-                break;
-                
-            case 'sync_status':
-                this.handleSyncStatusUpdate(data.data);
-                break;
-                
-            case 'connection':
-                if (data.status === 'connected') {
-                    this.isConnected = true;
-                    this.updateConnectionStatus();
-                }
-                break;
-                
-            default:
-                console.log('Unknown real-time update type:', data.type);
+        // Implementation for editing individual items
+        console.log('Editing item:', index);
+        // TODO: Implement item editing modal
+    }
+
+    handleRealTimeUpdate(data) {
+        if (data.type === 'update' && data.category === this.currentCategory) {
+            // Refresh current category data
+            this.loadCategoryData(this.currentCategory);
+        } else if (data.type === 'sync-status') {
+            this.handleSyncStatusUpdate(data);
         }
     }
 
     handleSyncStatusUpdate(syncData) {
-        console.log('📊 Processing sync status update:', syncData);
-        
-        if (syncData.action === 'data_updated' && syncData.category) {
-            // Show notification for data update with sync status
-            const message = syncData.syncSuccess 
-                ? `${syncData.category} updated and synced successfully`
-                : `${syncData.category} updated (sync failed)`;
-            const icon = syncData.syncSuccess ? '✅' : '⚠️';
-            this.showToast(message, icon);
-            
-            // Refresh if current category was updated
-            if (syncData.category === this.currentCategory) {
-                setTimeout(() => this.refreshCurrentCategory(), 1000);
-            }
-        } else if (syncData.action === 'manual_sync_completed') {
-            this.updateSyncStatus(syncData.results);
-            this.showToast('Manual sync completed successfully', '🔗');
-        } else if (syncData.action === 'category_sync_completed') {
-            const message = syncData.success 
-                ? `${syncData.category} sync completed`
-                : `${syncData.category} sync failed`;
-            const icon = syncData.success ? '✅' : '❌';
-            this.showToast(message, icon);
+        this.updateSyncStatus(syncData);
+    }    showLoading() {
+        const loading = document.getElementById('loading-state');
+        if (loading) {
+            loading.classList.remove('hidden');
         }
-    }
-
-    showLoading() {
-        document.getElementById('loading-state').classList.remove('hidden');
-        document.getElementById('table-body').innerHTML = '';
     }
 
     hideLoading() {
-        document.getElementById('loading-state').classList.add('hidden');
+        const loading = document.getElementById('loading-state');
+        if (loading) {
+            loading.classList.add('hidden');
+        }
     }
 
     showEmpty() {
-        document.getElementById('empty-state').classList.remove('hidden');
+        const empty = document.getElementById('empty-state');
+        if (empty) {
+            empty.classList.remove('hidden');
+        }
     }
 
     hideEmpty() {
-        document.getElementById('empty-state').classList.add('hidden');
+        const empty = document.getElementById('empty-state');
+        if (empty) {
+            empty.classList.add('hidden');
+        }
     }
 
     showSyncIndicator() {
-        document.getElementById('sync-indicator').classList.remove('hidden');
-    }    hideSyncIndicator() {
-        document.getElementById('sync-indicator').classList.add('hidden');
-    }
-
-    async performManualSync() {
-        try {
-            console.log('🔄 Initiating manual sync - Database to JSON files');
-            this.showSyncIndicator();
-            
-            const response = await fetch('/api/sync/database-to-json', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            if (!response.ok) {
-                throw new Error(`Sync failed: ${response.statusText}`);
-            }
-            
-            const result = await response.json();
-            
-            if (result.status === 'success') {
-                const { totalSuccess, totalAttempted } = result.data;
-                this.showToast(`Manual sync completed: ${totalSuccess}/${totalAttempted} successful`, '🔗');
-                console.log('✅ Manual sync completed successfully:', result.data);
-                
-                // Update sync status in UI if needed
-                this.updateSyncStatus(result.data);
-            } else {
-                throw new Error(result.message || 'Sync failed');
-            }
-        } catch (error) {
-            console.error('❌ Manual sync failed:', error);
-            this.showError(`Manual sync failed: ${error.message}`);
-        } finally {
-            this.hideSyncIndicator();
+        const indicator = document.getElementById('sync-indicator');
+        if (indicator) {
+            indicator.classList.remove('hidden');
         }
     }
 
-    updateSyncStatus(syncData) {
-        // Update any sync status indicators in the UI
-        const timestamp = new Date(syncData.timestamp).toLocaleTimeString();
-        console.log(`📊 Sync status updated at ${timestamp}:`, syncData);
-        
-        // Could add visual indicators here if needed
-        if (syncData.categories) {
-            Object.entries(syncData.categories).forEach(([category, success]) => {
-                const categoryBtn = document.querySelector(`[data-category="${category}"]`);
-                if (categoryBtn) {
-                    if (success) {
-                        categoryBtn.classList.add('sync-success');
-                        categoryBtn.classList.remove('sync-error');
-                    } else {
-                        categoryBtn.classList.add('sync-error');
-                        categoryBtn.classList.remove('sync-success');
-                    }
-                    
-                    // Remove status classes after 3 seconds
-                    setTimeout(() => {
-                        categoryBtn.classList.remove('sync-success', 'sync-error');
-                    }, 3000);
-                }
-            });
+    hideSyncIndicator() {
+        const indicator = document.getElementById('sync-indicator');
+        if (indicator) {
+            indicator.classList.add('hidden');
         }
     }
 
@@ -829,17 +694,11 @@ class AdminDashboard {
             }
             
             const result = await response.json();
+            console.log('✅ Manual sync completed:', result);
             
-            if (result.status === 'success') {
-                const { totalSuccess, totalAttempted } = result.data;
-                this.showToast(`Manual sync completed: ${totalSuccess}/${totalAttempted} successful`, '🔗');
-                console.log('✅ Manual sync completed successfully:', result.data);
-                
-                // Update sync status in UI if needed
-                this.updateSyncStatus(result.data);
-            } else {
-                throw new Error(result.message || 'Sync failed');
-            }
+            this.showMessage(`✅ Sync completed: ${result.message}`);
+            this.updateSyncStatus(result.data);
+            
         } catch (error) {
             console.error('❌ Manual sync failed:', error);
             this.showError(`Manual sync failed: ${error.message}`);
@@ -857,4 +716,27 @@ class AdminDashboard {
         if (syncData.categories) {
             Object.entries(syncData.categories).forEach(([category, success]) => {
                 const categoryBtn = document.querySelector(`[data-category="${category}"]`);
-                if
+                if (categoryBtn && success) {
+                    // Add visual indicator for successful sync
+                    categoryBtn.classList.add('sync-success');
+                    setTimeout(() => categoryBtn.classList.remove('sync-success'), 2000);
+                }
+            });
+        }
+    }
+
+    showMessage(message) {
+        console.log(message);
+        // TODO: Implement toast notification system
+    }
+
+    showError(message) {
+        console.error(message);
+        // TODO: Implement error notification system
+    }
+}
+
+// Initialize the admin dashboard when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new AdminDashboard();
+});
