@@ -1355,20 +1355,60 @@ summary::-webkit-details-marker {
   .user-selector-container {
     min-width: 170px;
     padding: 5px 10px; /* Further reduced padding for small screens */
+    display: flex;
+    flex-direction: row; /* Keep the inline layout */
+    justify-content: center;
+    align-items: center;
+    max-width: 95%;
+  }
+  
+  .user-selector-container label {
+    font-size: 0.8rem;
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+  
+  .user-selector-container select {
+    font-size: 0.78rem;
+    padding: 4px 6px;
+    min-width: 85px;
+    padding-right: 20px;
+    background-position: right 5px center;
+    height: 30px; /* Slightly increased height to prevent text cutting */
+    text-overflow: ellipsis;
+    overflow: visible; /* Allow text to be visible */
+    background-size: 7px;
+  }
+  
+  /* Custom select fixes for small screens */
+  .custom-select {
+    font-size: 0.78rem !important;
+    height: auto !important;
+    min-height: 28px;
+    padding: 3px 6px !important;
+  }
+}
+
+/* Extra small screens adjustments */
+@media (max-width: 360px) {
+  .user-selector-container {
+    padding: 4px 8px;
   }
   
   .user-selector-container label {
     font-size: 0.75rem;
-    margin-right: 4px;
+    margin-right: 3px;
   }
   
-  .user-selector-container select {
-    font-size: 0.75rem;
-    padding: 4px 6px;
+  .user-selector-container select,
+  .custom-select {
+    font-size: 0.75rem !important;
+    min-height: 28px;
+    padding: 3px 5px !important;
     min-width: 80px;
-    padding-right: 22px;
-    background-position: right 5px center;
-    height: 26px; /* Even smaller height for mobile */
+    background-size: 6px;
+    background-position: right 4px center;
+    padding-right: 16px !important;
   }
 }
 
