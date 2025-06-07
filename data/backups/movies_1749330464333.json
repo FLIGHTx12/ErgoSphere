@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "WATCHED": "Yes",
+      "title": "Movie 1",
+      "times_seen": 2,
+      "STATUS": "Active",
+      "copies": 3
+    },
+    {
+      "WATCHED": "No",
+      "title": "Movie 2",
+      "times_seen": 0,
+      "STATUS": "Inactive",
+      "copies": 1
+    },
+    {
+      "WATCHED": "Yes",
+      "title": "Movie 3",
+      "times_seen": 4,
+      "STATUS": "Active",
+      "copies": 5
+    }
+  ]
+}

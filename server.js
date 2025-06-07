@@ -200,6 +200,95 @@ app.get('/api/options/:category', async (req, res) => {
   }
 });
 
+// New endpoint for admin dashboard to load data from json_data table
+app.get('/api/data/:category', async (req, res) => {
+  const category = req.params.category;
+  console.log(`📊 Loading data for category: ${category}`);
+  try {
+    // Try to get from database first
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (result.rows.length > 0) {
+      console.log(`✅ Found data in database for ${category}`);
+      return res.json(result.rows[0].data);
+    }
+    
+    console.log(`📁 No database data found, trying JSON file for ${category}`);
+    // Fallback to JSON file if not in database yet
+    const filePath = path.join(__dirname, 'data', `${category}.json`);
+    const data = await fs.readFile(filePath, 'utf8');
+    console.log(`✅ Successfully loaded JSON file for ${category}`);
+    res.json(JSON.parse(data));
+  } catch (err) {
+    console.error(`❌ Error retrieving data for ${category}:`, err);
+    res.status(500).json({ error: 'Error retrieving data' });
+  }
+});
+
+// Add PUT endpoint for saving data back to json_data table
+app.put('/api/data/:category', async (req, res) => {
+  const category = req.params.category;
+  const data = req.body;
+    try {
+    // First create a backup in the database
+    await pool.query(
+      'INSERT INTO json_backups (category, data) VALUES ($1, $2)',
+      [category, JSON.stringify(data)]
+    );
+    
+    // Check if this category exists in the database
+    const existingResult = await pool.query(
+      'SELECT id FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (existingResult.rows.length > 0) {
+      // Update existing entry
+      await pool.query(
+        'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
+        [JSON.stringify(data), category]
+      );
+    } else {
+      // Insert new entry
+      await pool.query(
+        'INSERT INTO json_data (category, data) VALUES ($1, $2)',
+        [category, JSON.stringify(data)]
+      );
+    }
+    
+    // Also save to file as a fallback
+    const filePath = path.join(__dirname, 'data', `${category}.json`);
+    const backupDir = path.join(__dirname, 'data/backups');
+    
+    // Ensure backup directory exists
+    await fs.mkdir(backupDir, { recursive: true });
+    
+    // Create backup of current file if it exists
+    try {
+      const currentData = await fs.readFile(filePath, 'utf8');
+      const backupPath = path.join(backupDir, `${category}_${Date.now()}.json`);
+      await fs.writeFile(backupPath, currentData);
+    } catch (err) {
+      console.log('No existing file to backup');
+    }
+
+    // Write new data to file
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    
+    res.json({ 
+      success: true, 
+      message: `${category} data updated successfully`,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error saving data:', error);
+    res.status(500).json({ error: 'Failed to save data' });
+  }
+});
+
 /* Updated API endpoints for ErgoShop using database */
 app.get('/api/ErgoShop', (req, res) => {
   // Query the database for the ErgoShop JSON stored for id=1
@@ -566,6 +655,10 @@ app.put('/data/:filename', async (req, res) => {
 // Import and use the new items API routes
 const itemsRouter = require('./routes/items');
 app.use('/api/items', itemsRouter);
+
+// Import and use the loot API routes
+const lootRouter = require('./routes/loot');
+app.use('/api/loot', lootRouter);
 
 // Import and use the casino bets routes
 const betsRouter = require('./routes/bets');

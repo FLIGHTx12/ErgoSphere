@@ -1,38 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="../../css/admin.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErgoSphere Admin Dashboard</title>
+    <link rel="stylesheet" href="../../css/admin-dashboard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>">
 </head>
 <body>
-  <nav id="navbar">
-    <button><a href="../../index.html">HOME</a></button>
-    <button><a href="admin.html">ADMIN</a></button>
-    <button><a href="../HCMC.html">HCMC</a></button>
-  </nav>
-  <hr>
-<header>
-  <h1>ADMIN</h1>
-</header>
-<hr>
-  <div id="sidebar" class="hidden">
-    <button id="collapse-all" style="background-color: green; color: rgb(0, 0, 0);">Collapse All</button>
-    <button><a href="../admin/manage-selections.html" style="color: #f0f;">MANAGE WEEKLY SELECTIONS</a></button>
-    <button><a href="../admin/coop.html">CO-OP</a></button>
-    <button><a href="../admin/loot.html">LOOT</a></button>
-    <button><a href="../admin/pvp.html">PVP</a></button>
-    <button><a href="../admin/youtube.html">YOUTUBE</a></button>
-    <button><a href="../admin/movies.html">MOVIES</a></button>
-    <button><a href="../admin/anime.html">ANIME</a></button>
-    <button><a href="../admin/sundaymorning.html">SUNDAY MORNING</a></button>
-    <button><a href="../admin/sundaynight.html">SUNDAY NIGHT</a></button>
-    <button><a href="../admin/singleplayer.html">SINGLE PLAYER</a></button>
-  </div>
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="nav-brand">
+            <h1>🌟 ErgoSphere Admin Dashboard</h1>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html" class="nav-link">🏠 HOME</a>
+            <a href="../HCMC.html" class="nav-link">📊 HCMC</a>
+            <a href="../admin/manage-selections.html" class="nav-link">📅 SELECTIONS</a>
+        </div>
+        <div class="connection-status">
+            <span id="connection-indicator" class="status-indicator">🔄</span>
+            <span id="connection-text">Connecting...</span>
+        </div>
+    </nav>    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Sidebar for Categories -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>📚 Data Categories</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">📋</button>
+            </div>
+            <div class="category-list">
+                <button class="category-btn active" data-category="coop" data-table="json_data" data-type="copies">
+                    🎮 CO-OP Games
+                </button>
+                <button class="category-btn" data-category="loot" data-table="loot_items" data-type="copies">
+                    📦 LOOT Boxes
+                </button>
+                <button class="category-btn" data-category="pvp" data-table="json_data" data-type="copies">
+                    ⚔️ PVP Games
+                </button>
+                <button class="category-btn" data-category="movies" data-table="json_data" data-type="status">
+                    🎬 Movies
+                </button>
+                <button class="category-btn" data-category="anime" data-table="json_data" data-type="status">
+                    🎌 Anime
+                </button>
+                <button class="category-btn" data-category="youtube" data-table="json_data" data-type="status">
+                    📺 YouTube
+                </button>
+                <button class="category-btn" data-category="sundaymorning" data-table="json_data" data-type="status">
+                    🌅 Sunday Morning
+                </button>
+                <button class="category-btn" data-category="sundaynight" data-table="json_data" data-type="status">
+                    🌙 Sunday Night
+                </button>
+                <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
+                    🎯 Single Player
+                </button>
+            </div>        </aside>
 
-  <div class="container">
+        <!-- Content Area -->
+        <section class="content-area">
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="🔍 Search items..." autocomplete="off">
+                        <button id="clear-search" class="clear-btn">✖️</button>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">All Items</option>
+                        <option value="active">Active Only</option>
+                        <option value="inactive">Inactive Only</option>
+                    </select>
+                    <select id="sort-options" class="filter-select">
+                        <option value="name">Sort by Name</option>
+                        <option value="status">Sort by Status</option>
+                        <option value="copies">Sort by Copies</option>
+                        <option value="watched">Sort by Times Seen</option>
+                    </select>
+                </div>
+                <div class="action-section">
+                    <button id="refresh-data" class="action-btn refresh-btn">
+                        🔄 Refresh
+                    </button>
+                    <button id="save-all" class="action-btn save-btn">
+                        💾 Save All
+                    </button>
+                    <button id="bulk-actions" class="action-btn bulk-btn">
+                        📦 Bulk Edit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="data-table-container">
+                <div class="table-header">
+                    <h2 id="category-title">🎮 CO-OP Games</h2>
+                    <div class="table-stats">
+                        <span id="total-items">0 items</span>
+                        <span id="active-items">0 active</span>
+                        <span id="modified-items">0 modified</span>
+                    </div>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table id="data-table" class="data-table">
+                        <thead>
+                            <tr id="table-headers">
+                                <th class="col-checkbox">
+                                    <input type="checkbox" id="select-all">
+                                </th>
+                                <th class="col-name">Name</th>
+                                <th class="col-status">Status</th>
+                                <th class="col-copies">Copies</th>
+                                <th class="col-watched">Times Seen 👀</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Dynamic content will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loading-state" class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Loading data...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state hidden">
+                    <div class="empty-icon">📭</div>
+                    <h3>No items found</h3>
+                    <p>Try adjusting your search or filter criteria.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bulk Actions Modal -->
+    <div id="bulk-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📦 Bulk Actions</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Apply actions to <span id="selected-count">0</span> selected items:</p>
+                <div class="bulk-actions">
+                    <button class="bulk-action-btn" data-action="activate">🟢 Activate All</button>
+                    <button class="bulk-action-btn" data-action="deactivate">🔴 Deactivate All</button>
+                    <button class="bulk-action-btn" data-action="reset-copies">🔄 Reset Copies</button>
+                    <button class="bulk-action-btn" data-action="reset-watched">👁️ Reset Times Seen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Toast -->
+    <div id="status-toast" class="toast hidden">
+        <div class="toast-content">
+            <span id="toast-icon">✅</span>
+            <span id="toast-message">Action completed successfully</span>
+        </div>
+    </div>
+
+    <!-- Real-time Updates Indicator -->
+    <div id="sync-indicator" class="sync-indicator hidden">
+        <div class="sync-pulse"></div>
+        <span>Syncing with HCMC...</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/admin-dashboard.js"></script>
+</body>
+</html>
     <div class="column">
       <button class="collapsible">CO-OP</button>
       <div id="coop-items" class="content item-container">
