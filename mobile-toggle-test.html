@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Toggle Button Test - ErgoSphere</title>
+    <link rel="stylesheet" href="css/ErgoArena.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .mobile-simulator {
+            width: 375px;
+            height: 667px;
+            margin: 20px auto;
+            border: 10px solid #333;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+        
+        .monster-container {
+            display: block;
+            height: 100%;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            position: relative;
+        }
+        
+        .info-container-test {
+            position: fixed;
+            top: 0;
+            left: -100vw;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease-in-out;
+            z-index: 150;
+        }
+        
+        .info-container-test.mobile-overlay-active {
+            left: 0;
+        }
+        
+        .test-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .test-button:hover {
+            background: #2980b9;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: rgba(39, 174, 96, 0.2);
+            border: 1px solid #27ae60;
+            color: #27ae60;
+        }
+        
+        .status.error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .status.info {
+            background: rgba(52, 152, 219, 0.2);
+            border: 1px solid #3498db;
+            color: #3498db;
+        }
+        
+        .mobile-width-test {
+            width: 100%;
+            max-width: 799px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Mobile Toggle Button Test</h1>
+        <p>This page tests the mobile info container toggle button functionality.</p>
+        
+        <div class="test-section">
+            <h2>📱 Mobile Detection Test</h2>
+            <div id="mobileStatus" class="status info">Testing mobile detection...</div>
+            <button class="test-button" onclick="testMobileDetection()">Test Mobile Detection</button>
+            <button class="test-button" onclick="simulateMobile()">Force Mobile Mode</button>
+            <button class="test-button" onclick="simulateDesktop()">Force Desktop Mode</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔘 Toggle Button Test</h2>
+            <div id="toggleButtonStatus" class="status info">Testing toggle button creation...</div>
+            <button class="test-button" onclick="testToggleButton()">Test Toggle Button</button>
+            <button class="test-button" onclick="createTestToggleButton()">Create Test Toggle</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 Overlay Test</h2>
+            <div id="overlayStatus" class="status info">Testing overlay functionality...</div>
+            <button class="test-button" onclick="testInfoOverlay()">Test Info Overlay</button>
+            <button class="test-button" onclick="hideOverlays()">Hide Overlays</button>
+        </div>
+        
+        <div class="test-section mobile-width-test">
+            <h2>🎮 Interactive Test Area</h2>
+            <p>Resize your browser window to under 800px width to test mobile functionality.</p>
+            <div class="monster-container" id="testMonsterContainer">
+                <div style="padding: 20px; text-align: center;">
+                    <h3>Test Monster Container</h3>
+                    <p>Current width: <span id="currentWidth"></span>px</p>
+                    <p>Mobile mode: <span id="mobileMode"></span></p>
+                    <p>Toggle button visible: <span id="toggleVisible"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test info container -->
+        <div class="info-container-test" id="testInfoContainer">
+            <h2>📄 Test Info Container</h2>
+            <p>This is a test info container to verify the mobile toggle functionality.</p>
+            <p>If you can see this, the toggle button is working correctly!</p>
+            <ul>
+                <li>✅ Mobile detection active</li>
+                <li>✅ Toggle button created</li>
+                <li>✅ Info overlay displayed</li>
+                <li>✅ Touch/click interactions working</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Include BossFight.js for mobile functionality -->
+    <script src="js/monsters.js"></script>
+    <script src="js/trivia.js"></script>
+    <script src="js/BossFight.js"></script>
+    
+    <script>
+        // Test functions
+        let testMobileState = null;
+        
+        function updateStatus() {
+            document.getElementById('currentWidth').textContent = window.innerWidth;
+            document.getElementById('mobileMode').textContent = window.innerWidth < 800 ? 'YES' : 'NO';
+            
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            document.getElementById('toggleVisible').textContent = toggleButton ? 'YES' : 'NO';
+        }
+        
+        function testMobileDetection() {
+            const isMobile = window.innerWidth < 800;
+            const status = document.getElementById('mobileStatus');
+            
+            if (isMobile) {
+                status.className = 'status success';
+                status.textContent = '✅ Mobile mode detected (width < 800px)';
+            } else {
+                status.className = 'status info';
+                status.textContent = '📱 Desktop mode detected (width >= 800px)';
+            }
+            
+            updateStatus();
+        }
+        
+        function simulateMobile() {
+            // Temporarily override window.innerWidth for testing
+            Object.defineProperty(window, 'innerWidth', {
+                writable: true,
+                configurable: true,
+                value: 375
+            });
+            
+            // Trigger mobile initialization
+            if (window.mobileArenaControls) {
+                // Force mobile mode
+                const event = new Event('resize');
+                window.dispatchEvent(event);
+            }
+            
+            const status = document.getElementById('mobileStatus');
+            status.className = 'status success';
+            status.textContent = '🔧 Forced mobile mode (375px width)';
+            
+            updateStatus();
+        }
+        
+        function simulateDesktop() {
+            // Reset window.innerWidth
+            Object.defineProperty(window, 'innerWidth', {
+                writable: true,
+                configurable: true,
+                value: 1200
+            });
+            
+            // Trigger desktop mode
+            const event = new Event('resize');
+            window.dispatchEvent(event);
+            
+            const status = document.getElementById('mobileStatus');
+            status.className = 'status info';
+            status.textContent = '🖥️ Forced desktop mode (1200px width)';
+            
+            updateStatus();
+        }
+        
+        function testToggleButton() {
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            const status = document.getElementById('toggleButtonStatus');
+            
+            if (toggleButton) {
+                status.className = 'status success';
+                status.textContent = '✅ Mobile toggle button found and active';
+                
+                // Test button click
+                toggleButton.click();
+                
+                setTimeout(() => {
+                    const isActive = toggleButton.classList.contains('active');
+                    status.textContent += ` | Button clicked: ${isActive ? 'ACTIVE' : 'INACTIVE'}`;
+                }, 100);
+            } else {
+                status.className = 'status error';
+                status.textContent = '❌ Mobile toggle button not found';
+            }
+        }
+        
+        function createTestToggleButton() {
+            // Manually create a test toggle button if one doesn't exist
+            if (!document.querySelector('.mobile-info-toggle')) {
+                const button = document.createElement('button');
+                button.className = 'mobile-info-toggle';
+                button.innerHTML = 'ℹ️';
+                button.title = 'Test Toggle';
+                button.addEventListener('click', testInfoOverlay);
+                document.body.appendChild(button);
+                
+                const status = document.getElementById('toggleButtonStatus');
+                status.className = 'status success';
+                status.textContent = '✅ Test toggle button created manually';
+            }
+        }
+        
+        function testInfoOverlay() {
+            const infoContainer = document.getElementById('testInfoContainer');
+            const status = document.getElementById('overlayStatus');
+            
+            if (infoContainer) {
+                if (infoContainer.classList.contains('mobile-overlay-active')) {
+                    // Hide overlay
+                    infoContainer.classList.remove('mobile-overlay-active');
+                    status.className = 'status info';
+                    status.textContent = '📋 Info overlay hidden';
+                } else {
+                    // Show overlay
+                    infoContainer.classList.add('mobile-overlay-active');
+                    status.className = 'status success';
+                    status.textContent = '✅ Info overlay displayed';
+                }
+            } else {
+                status.className = 'status error';
+                status.textContent = '❌ Info container not found';
+            }
+        }
+        
+        function hideOverlays() {
+            const infoContainer = document.getElementById('testInfoContainer');
+            if (infoContainer) {
+                infoContainer.classList.remove('mobile-overlay-active');
+            }
+            
+            // Also hide any other overlays
+            if (window.mobileArenaControls && window.mobileArenaControls.hideOverlays) {
+                window.mobileArenaControls.hideOverlays();
+            }
+            
+            const status = document.getElementById('overlayStatus');
+            status.className = 'status info';
+            status.textContent = '📋 All overlays hidden';
+        }
+        
+        // Initialize tests when page loads
+        window.addEventListener('load', () => {
+            testMobileDetection();
+            
+            // Update status periodically
+            setInterval(updateStatus, 1000);
+            
+            // Test toggle button after a delay to allow BossFight.js to initialize
+            setTimeout(() => {
+                testToggleButton();
+            }, 2000);
+        });
+        
+        // Listen for window resize
+        window.addEventListener('resize', () => {
+            testMobileDetection();
+        });
+        
+        // Check if mobile arena controls are available
+        setTimeout(() => {
+            if (window.mobileArenaControls) {
+                console.log('✅ Mobile arena controls available:', window.mobileArenaControls);
+            } else {
+                console.log('❌ Mobile arena controls not available');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

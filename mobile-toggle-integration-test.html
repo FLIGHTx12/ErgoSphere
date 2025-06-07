@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Toggle Integration Test - ErgoArena</title>
+    <link rel="stylesheet" href="css/ErgoArena.css">
+    <style>
+        .test-section {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            color: white;
+        }
+        .test-button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .test-button:hover {
+            background: #c0392b;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .status.pass { background: #27ae60; }
+        .status.fail { background: #e74c3c; }
+        .status.pending { background: #f39c12; }
+        
+        .mobile-simulation {
+            border: 3px solid #8e44ad;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        #testLog {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body class="arena-background">
+    <div class="moving-stars"></div>
+    
+    <header>
+        <h1>Mobile Toggle Integration Test</h1>
+        <div style="text-align: center; color: #bdc3c7; margin-top: 10px;">
+            Comprehensive test for mobile info toggle button functionality
+        </div>
+    </header>
+
+    <main>
+        <div class="test-section">
+            <h2>📱 Mobile Detection Test</h2>
+            <p>Current screen width: <span id="screenWidth">Loading...</span></p>
+            <p>Mobile mode: <span id="mobileStatus" class="status pending">Detecting...</span></p>
+            <button class="test-button" onclick="simulateMobile()">Simulate Mobile (800px)</button>
+            <button class="test-button" onclick="simulateDesktop()">Simulate Desktop (1200px)</button>
+        </div>
+
+        <div class="test-section">
+            <h2>🔘 Toggle Button Tests</h2>
+            <div class="mobile-simulation">
+                <p>Toggle Button Present: <span id="togglePresent" class="status pending">Checking...</span></p>
+                <p>Toggle Button Position: <span id="togglePosition" class="status pending">Checking...</span></p>
+                <p>Toggle Button Events: <span id="toggleEvents" class="status pending">Checking...</span></p>
+                <button class="test-button" onclick="testToggleButton()">Test Toggle Button</button>
+                <button class="test-button" onclick="testToggleClick()">Test Toggle Click</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>↔️ Swipe Integration Tests</h2>
+            <div class="mobile-simulation">
+                <p>Swipe Handlers: <span id="swipeHandlers" class="status pending">Checking...</span></p>
+                <p>Left Swipe (Info): <span id="leftSwipe" class="status pending">Not tested</span></p>
+                <p>Right Swipe (History): <span id="rightSwipe" class="status pending">Not tested</span></p>
+                <p>Toggle Sync: <span id="toggleSync" class="status pending">Not tested</span></p>
+                <button class="test-button" onclick="simulateLeftSwipe()">Simulate Left Swipe</button>
+                <button class="test-button" onclick="simulateRightSwipe()">Simulate Right Swipe</button>
+                <button class="test-button" onclick="testToggleSync()">Test Toggle Sync</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎮 Mock ErgoArena Environment</h2>
+            <div id="mockArenaContainer" style="position: relative;">
+                <!-- Mock monster container -->
+                <div id="monsterContainer1" class="monster-container" style="display: block;">
+                    <div class="monster-top-buttons">
+                        <div id="playerToggle" class="player1Active">Jaybers8's Turn</div>
+                        <div id="timer">03:45</div>
+                        <div class="attack-button-container">
+                            <button class="attack-button">ATTACK</button>
+                        </div>
+                    </div>
+                    
+                    <div class="monster-image">
+                        <div style="background: #8e44ad; width: 200px; height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                            🐲 Test Monster
+                        </div>
+                    </div>
+                    
+                    <div id="lifeBar" style="background: #34495e; height: 20px; border-radius: 10px; overflow: hidden; margin: 20px 0;">
+                        <div style="background: #e74c3c; height: 100%; width: 65%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- Mock info container -->
+                <div id="infoContainer1" style="display: none;">
+                    <h3>Monster Info</h3>
+                    <p>This is a test monster with mock stats and information for testing the mobile toggle functionality.</p>
+                    <div class="cyber-grid">
+                        <div class="cyber-stat">
+                            <div class="cyber-label">Health</div>
+                            <div class="cyber-value">650/1000</div>
+                        </div>
+                        <div class="cyber-stat">
+                            <div class="cyber-label">Attack</div>
+                            <div class="cyber-value">85</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock history container -->
+                <div id="historyContainer1" style="display: none;">
+                    <h3>Battle History</h3>
+                    <p>Turn 1: Jaybers8 attacks for 45 damage</p>
+                    <p>Turn 2: Monster retaliates for 30 damage</p>
+                    <p>Turn 3: FLIGHTx12! uses special move for 60 damage</p>
+                </div>
+
+                <!-- Mock trivia container -->
+                <div id="triviaContainer1" class="trivia-container" style="display: none;">
+                    <div class="trivia-header">
+                        <h3>Test Trivia Question</h3>
+                        <div class="multiplier-display">Multiplier: <span id="multiplierValue">x2.0</span></div>
+                    </div>
+                    <div class="question-container">
+                        <div class="question-text">What is the primary color theme for Jaybers8?</div>
+                        <div class="answers-container">
+                            <button class="answer-btn">Purple</button>
+                            <button class="answer-btn">Green</button>
+                            <button class="answer-btn">Blue</button>
+                            <button class="answer-btn">Red</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Test Results</h2>
+            <button class="test-button" onclick="runAllTests()">Run All Tests</button>
+            <button class="test-button" onclick="clearLog()">Clear Log</button>
+            <div id="testLog">Ready to run tests...\n</div>
+        </div>
+    </main>
+
+    <script src="js/BossFight.js"></script>
+    <script>
+        // Test state
+        let currentTest = '';
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logElement = document.getElementById('testLog');
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : 'ℹ️';
+            logElement.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function updateStatus(elementId, status, message = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.className = `status ${status}`;
+                element.textContent = message || status.toUpperCase();
+            }
+        }
+
+        function simulateMobile() {
+            log('Simulating mobile viewport (800px width)');
+            document.body.style.width = '800px';
+            document.body.style.maxWidth = '800px';
+            window.dispatchEvent(new Event('resize'));
+            setTimeout(checkMobileStatus, 100);
+        }
+
+        function simulateDesktop() {
+            log('Simulating desktop viewport (1200px width)');
+            document.body.style.width = '1200px';
+            document.body.style.maxWidth = 'none';
+            window.dispatchEvent(new Event('resize'));
+            setTimeout(checkMobileStatus, 100);
+        }
+
+        function checkMobileStatus() {
+            const width = window.innerWidth;
+            const isMobile = width < 800;
+            
+            document.getElementById('screenWidth').textContent = `${width}px`;
+            updateStatus('mobileStatus', isMobile ? 'pass' : 'fail', isMobile ? 'Mobile' : 'Desktop');
+            
+            log(`Screen width: ${width}px, Mobile mode: ${isMobile}`);
+            
+            // Check if mobile features are active
+            setTimeout(() => {
+                checkToggleButton();
+            }, 200);
+        }
+
+        function checkToggleButton() {
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            const isMobile = window.innerWidth < 800;
+            
+            if (isMobile && toggleButton) {
+                updateStatus('togglePresent', 'pass', 'Present');
+                log('✅ Toggle button found in mobile mode');
+                
+                // Check position
+                const rect = toggleButton.getBoundingClientRect();
+                const isCorrectPosition = rect.top < 100 && rect.left < 100;
+                updateStatus('togglePosition', isCorrectPosition ? 'pass' : 'fail', 
+                    isCorrectPosition ? 'Top-left' : 'Wrong position');
+                
+                // Check events
+                const hasClickHandler = toggleButton.onclick !== null || 
+                    toggleButton.getAttribute('onclick') !== null;
+                updateStatus('toggleEvents', hasClickHandler ? 'pass' : 'fail',
+                    hasClickHandler ? 'Has events' : 'No events');
+                    
+            } else if (!isMobile && !toggleButton) {
+                updateStatus('togglePresent', 'pass', 'Correctly hidden');
+                log('✅ Toggle button correctly hidden in desktop mode');
+            } else {
+                updateStatus('togglePresent', 'fail', 'Incorrect state');
+                log('❌ Toggle button state incorrect for current mode');
+            }
+        }
+
+        function testToggleButton() {
+            log('Testing toggle button functionality...');
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            
+            if (!toggleButton) {
+                log('❌ Toggle button not found', 'error');
+                return;
+            }
+            
+            // Test initial state
+            const initialIcon = toggleButton.innerHTML;
+            log(`Initial toggle icon: ${initialIcon}`);
+            
+            // Test click
+            toggleButton.click();
+            
+            setTimeout(() => {
+                const newIcon = toggleButton.innerHTML;
+                const changed = newIcon !== initialIcon;
+                log(`Toggle icon after click: ${newIcon}, Changed: ${changed}`, 
+                    changed ? 'success' : 'error');
+                updateStatus('toggleEvents', changed ? 'pass' : 'fail', 
+                    changed ? 'Responsive' : 'Not responsive');
+            }, 100);
+        }
+
+        function testToggleClick() {
+            log('Testing toggle button click behavior...');
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            const infoContainer = document.getElementById('infoContainer1');
+            
+            if (!toggleButton || !infoContainer) {
+                log('❌ Required elements not found', 'error');
+                return;
+            }
+            
+            // Simulate toggle click
+            toggleButton.click();
+            
+            setTimeout(() => {
+                const isInfoVisible = infoContainer.classList.contains('mobile-overlay-active');
+                log(`Info container visible after toggle: ${isInfoVisible}`, 
+                    isInfoVisible ? 'success' : 'error');
+                
+                // Test close
+                if (isInfoVisible) {
+                    toggleButton.click();
+                    setTimeout(() => {
+                        const isInfoHidden = !infoContainer.classList.contains('mobile-overlay-active');
+                        log(`Info container hidden after second toggle: ${isInfoHidden}`, 
+                            isInfoHidden ? 'success' : 'error');
+                    }, 100);
+                }
+            }, 100);
+        }
+
+        function simulateLeftSwipe() {
+            log('Simulating left swipe gesture...');
+            
+            if (typeof window.mobileArenaControls !== 'undefined') {
+                window.mobileArenaControls.showOverlay('info');
+                updateStatus('leftSwipe', 'pass', 'Triggered');
+                log('✅ Left swipe simulation successful', 'success');
+            } else {
+                log('❌ Mobile controls not available', 'error');
+                updateStatus('leftSwipe', 'fail', 'No controls');
+            }
+        }
+
+        function simulateRightSwipe() {
+            log('Simulating right swipe gesture...');
+            
+            if (typeof window.mobileArenaControls !== 'undefined') {
+                window.mobileArenaControls.showOverlay('history');
+                updateStatus('rightSwipe', 'pass', 'Triggered');
+                log('✅ Right swipe simulation successful', 'success');
+            } else {
+                log('❌ Mobile controls not available', 'error');
+                updateStatus('rightSwipe', 'fail', 'No controls');
+            }
+        }
+
+        function testToggleSync() {
+            log('Testing toggle button synchronization with overlays...');
+            
+            const toggleButton = document.querySelector('.mobile-info-toggle');
+            if (!toggleButton) {
+                log('❌ Toggle button not found', 'error');
+                updateStatus('toggleSync', 'fail', 'No button');
+                return;
+            }
+            
+            // Test 1: Show info via toggle, check button state
+            toggleButton.click();
+            
+            setTimeout(() => {
+                const isActive = toggleButton.classList.contains('active');
+                log(`Toggle button active state after click: ${isActive}`);
+                
+                // Test 2: Show history via swipe, check button visibility
+                if (typeof window.mobileArenaControls !== 'undefined') {
+                    window.mobileArenaControls.showOverlay('history');
+                    
+                    setTimeout(() => {
+                        const isHidden = toggleButton.classList.contains('hidden');
+                        log(`Toggle button hidden when history active: ${isHidden}`);
+                        
+                        updateStatus('toggleSync', 
+                            isActive && isHidden ? 'pass' : 'fail',
+                            isActive && isHidden ? 'Synchronized' : 'Not synced');
+                    }, 100);
+                }
+            }, 100);
+        }
+
+        function runAllTests() {
+            log('Starting comprehensive test suite...', 'info');
+            clearLog();
+            
+            // Ensure we're in mobile mode for testing
+            simulateMobile();
+            
+            setTimeout(() => {
+                testToggleButton();
+                setTimeout(() => {
+                    testToggleClick();
+                    setTimeout(() => {
+                        simulateLeftSwipe();
+                        setTimeout(() => {
+                            simulateRightSwipe();
+                            setTimeout(() => {
+                                testToggleSync();
+                                log('🎉 All tests completed!', 'success');
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }
+
+        function clearLog() {
+            document.getElementById('testLog').textContent = '';
+        }
+
+        // Initialize page
+        window.addEventListener('load', () => {
+            log('Mobile Toggle Integration Test initialized');
+            checkMobileStatus();
+            
+            // Update screen width display
+            setInterval(() => {
+                document.getElementById('screenWidth').textContent = window.innerWidth + 'px';
+            }, 1000);
+        });
+
+        window.addEventListener('resize', () => {
+            setTimeout(checkMobileStatus, 100);
+        });
+    </script>
+</body>
+</html>

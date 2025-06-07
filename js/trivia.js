@@ -64,13 +64,15 @@ class TriviaManager {  constructor() {
     }
   }
 
+  // Enhanced mobile-friendly container creation
   createTriviaContainer(monsterContainerIndex) {
     // Create the trivia container
     const triviaContainer = document.createElement("div");
     triviaContainer.id = "triviaContainer" + monsterContainerIndex;
     triviaContainer.className = "trivia-container";
     
-    triviaContainer.innerHTML = `      <div class="trivia-header">
+    triviaContainer.innerHTML = `
+      <div class="trivia-header">
         <h3>🌐 DIMENSION SYNC</h3>
         <div class="multiplier-display">
           <span>Memory Sync: </span>
@@ -106,19 +108,72 @@ class TriviaManager {  constructor() {
     // Add event listeners for answer buttons
     const answerButtons = triviaContainer.querySelectorAll('.answer-btn');
     answerButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        this.handleAnswer(parseInt(e.target.dataset.answer));
+      button.addEventListener('click', () => {
+        const answer = parseInt(button.getAttribute('data-answer'));
+        this.handleAnswer(answer);
       });
     });
 
     this.triviaContainer = triviaContainer;
+    
+    // Setup mobile enhancements if needed
+    if (window.innerWidth < 800) {
+      setTimeout(() => this.setupMobileEnhancements(), 100);
+    }
+    
     return triviaContainer;
+  }
+
+  // Mobile-specific enhancements
+  setupMobileEnhancements() {
+    if (!this.triviaContainer) return;
+    
+    // Add mobile-specific classes and attributes
+    this.triviaContainer.setAttribute('data-mobile-overlay', 'true');
+    
+    // Improve touch interactions for answer buttons
+    const answerButtons = this.triviaContainer.querySelectorAll('.answer-btn');
+    answerButtons.forEach((button, index) => {
+      // Add larger touch targets
+      button.style.minHeight = '60px';
+      button.style.fontSize = '1.1rem';
+      
+      // Add touch feedback
+      button.addEventListener('touchstart', () => {
+        button.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+      });
+      
+      button.addEventListener('touchend', () => {
+        setTimeout(() => {
+          button.style.backgroundColor = '';
+        }, 150);
+      });
+    });
+    
+    // Optimize timer display for mobile
+    const timeDisplay = this.triviaContainer.querySelector('#timeLeft');
+    if (timeDisplay && window.innerWidth < 800) {
+      timeDisplay.style.fontSize = '1.2rem';
+      timeDisplay.style.fontWeight = 'bold';
+    }
   }
   startTrivia() {
     if (!this.triviaContainer) return;
     
     this.isActive = true;
     this.triviaContainer.style.display = "block";
+      // Mobile overlay activation
+    if (window.innerWidth < 800) {
+      this.triviaContainer.classList.add('mobile-overlay-active');
+      // Call the mobile overlay system if available
+      if (window.mobileArenaControls && window.mobileArenaControls.showTriviaOverlay) {
+        console.log('startTrivia: calling mobile trivia overlay');
+        window.mobileArenaControls.showTriviaOverlay(this.triviaContainer);
+      } else if (window.mobileArenaControls && window.mobileArenaControls.showOverlay) {
+        console.log('startTrivia: calling general mobile overlay');
+        window.mobileArenaControls.showOverlay('trivia');
+      }
+    }
     
     // Bind keyboard events when trivia starts
     document.addEventListener('keydown', this.boundKeyHandler);
@@ -162,10 +217,17 @@ class TriviaManager {  constructor() {
       clearInterval(this.questionTimer);
       this.questionTimer = null;
     }
-    
-    // Hide UI if it exists
+      // Hide UI if it exists
     if (this.triviaContainer) {
       this.triviaContainer.style.display = "none";
+      // Remove mobile overlay class if on mobile
+      if (window.innerWidth < 800) {
+        this.triviaContainer.classList.remove('mobile-overlay-active');
+        // Call the mobile overlay system to hide overlays if available
+        if (window.mobileArenaControls && window.mobileArenaControls.hideOverlays) {
+          window.mobileArenaControls.hideOverlays();
+        }
+      }
     }
     
     // Reset multiplier
@@ -568,7 +630,6 @@ class TriviaManager {  constructor() {
       btn.style.opacity = '0.6';
     });
   }
-
   hideTrivia() {
     this.isActive = false;
     
@@ -577,6 +638,14 @@ class TriviaManager {  constructor() {
     
     if (this.triviaContainer) {
       this.triviaContainer.style.display = 'none';
+      // Remove mobile overlay class if on mobile
+      if (window.innerWidth < 800) {
+        this.triviaContainer.classList.remove('mobile-overlay-active');
+        // Call the mobile overlay system to hide overlays if available
+        if (window.mobileArenaControls && window.mobileArenaControls.hideOverlays) {
+          window.mobileArenaControls.hideOverlays();
+        }
+      }
     }
     if (this.timer) {
       clearInterval(this.timer);

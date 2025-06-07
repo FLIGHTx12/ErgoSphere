@@ -1395,7 +1395,8 @@ document.addEventListener("DOMContentLoaded", () => {
         container2.style.display = "none";
       } else if (!activeFighters.jaybers8 && activeFighters.flight) {
         currentPlayer = 2;
-        attackButton.textContent = "FLIGHTx12! Attack!";        container1.style.display = "none";
+        attackButton.textContent = "FLIGHTx12! Attack!";
+        container1.style.display = "none";
         container2.style.display = "block";      } else {
         // Both active - normal toggle mode - use current player
         attackButton.textContent = `${currentPlayer === 1 ? "Jaybers8" : "FLIGHTx12!"} Attack!`;
@@ -1625,6 +1626,7 @@ document.addEventListener("DOMContentLoaded", () => {
               totalDamage += 100;
               specialMoveUsed = true;
               
+
               if (eightCount >= 2) {
                 // DOUBLE 8s - ULTIMATE HEALING SURGE
                 let totalHealed = 0;
@@ -1948,7 +1950,8 @@ document.addEventListener("DOMContentLoaded", () => {
     chooseOpponentBtn.addEventListener("click", () => {
       monsterDropdown.style.display = monsterDropdown.style.display === "block" ? "none" : "block";
       // Hide fighter dropdown if open
-      fighterDropdown.style.display = "none";    });    monsterDropdown.addEventListener("change", () => {
+      fighterDropdown.style.display = "none";
+    });    monsterDropdown.addEventListener("change", () => {
       let selectedMonsterIndex = monsterDropdown.value;
       
       // Do nothing if "Enemy Select" default option is selected
@@ -2196,222 +2199,357 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  // Keep only the event listeners for trivia events - remove all the duplicate functions
-  document.addEventListener('triviaTimeout', handleTriviaTimeout);
-  document.addEventListener('triviaWrongAnswer', handleTriviaWrongAnswer);
-  document.addEventListener('triviaCorrectAnswer', handleTriviaCorrectAnswer);
+  // ===== MOBILE INTERACTION SYSTEM =====
   
-  // Maintain a registry of processed events by timestamp to avoid duplicates
-  const processedTriviaEvents = new Set();
+  let isMobile = window.innerWidth < 800;
+  let mobileOverlays = {
+    info: null,
+    history: null,
+    trivia: null
+  };
   
-  // Function to handle trivia timeout and heal boss
-  function handleTriviaTimeout(event) {
-    // Extract timestamp from event if available
-    const timestamp = event.detail?.timestamp || Date.now();
-    const eventId = `timeout_${timestamp}`;
+  // Touch/swipe handling variables
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+  let isSwipeGesture = false;
+  
+  // Mobile toggle button functionality
+  let mobileToggleButton = null;
+  let isInfoToggleActive = false;
+  
+  function createMobileToggleButton() {
+    if (!isMobile || mobileToggleButton) return;
     
-    // Check if we've already processed this event
-    if (processedTriviaEvents.has(eventId)) {
-      console.log('Ignoring duplicate trivia timeout event', eventId);
-      return;
-    }
+    mobileToggleButton = document.createElement('button');
+    mobileToggleButton.className = 'mobile-info-toggle';
+    mobileToggleButton.innerHTML = 'ℹ️';
+    mobileToggleButton.setAttribute('aria-label', 'Toggle info container');
+    mobileToggleButton.title = 'Show/Hide Info';
     
-    // Add to registry of processed events
-    processedTriviaEvents.add(eventId);
-    console.log('Processing trivia timeout event', eventId);
+    mobileToggleButton.addEventListener('click', handleToggleButtonClick);
     
-    // Clear old events (keep registry from growing too large)
-    if (processedTriviaEvents.size > 100) {
-      const oldEvents = Array.from(processedTriviaEvents).slice(0, 50);
-      oldEvents.forEach(e => processedTriviaEvents.delete(e));
-    }
-    
-    // Rest of healing logic
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
-                                     .find(c => c.style.display === "block");
-    if (!activeMonsterContainer) return;
-
-    const selectedMonsterIndex = document.getElementById("monsterDropdown").value;
-    if (selectedMonsterIndex === "") return;
-
-    const monster = monsters[selectedMonsterIndex];
-    const lifeBarGreen = activeMonsterContainer.querySelector("#lifeBarGreen");
-    const lifeBarText = activeMonsterContainer.querySelector("#lifeBarText");
-    const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
-    
-    if (!monster || !lifeBarGreen || !lifeBarText || !historyContainer) return;
-
-    // Get current health from the display
-    const currentHealthText = lifeBarText.textContent;
-    let currentHealth = parseInt(currentHealthText);
-    const maxHealth = monster.health; // Original max health from monster data
-    
-    // Heal boss by 20 points, but don't exceed max health
-    const oldHealth = currentHealth;
-    currentHealth = Math.min(currentHealth + 20, maxHealth);
-    const actualHealing = currentHealth - oldHealth;
-      if (actualHealing > 0) {
-      // Update life bar display
-      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
-      lifeBarText.textContent = currentHealth;
-      
-      // Track trivia timeout stats
-      gameStats.triviaStats.timeouts++;
-      
-      // Add healing message to battle log
-      const healMessage = `⏰ Trivia timeout! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
-      historyContainer.innerHTML += `<p style="color:#f39c12; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
-      historyContainer.innerHTML += `<hr>`;
-      historyContainer.scrollTop = historyContainer.scrollHeight;
-      
-      // Visual feedback - green flash on monster
-      const monsterImage = activeMonsterContainer.querySelector(".monster-image");
-      if (monsterImage) {
-        const imageElement = monsterImage.querySelector('img');
-        if (imageElement) {
-          imageElement.style.filter = "hue-rotate(120deg) brightness(1.3)";
-          setTimeout(() => {
-            imageElement.style.filter = "";
-          }, 500);
-        }
-      }
-      
-      // Play a healing sound effect
-      const healSound = new Audio('../assets/audio/healer.mp3');
-      healSound.volume = 0.3;
-      healSound.play().catch(err => console.error("Error playing heal sound:", err));
-      
-      console.log(`Boss healed from timeout: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
-    }
+    document.body.appendChild(mobileToggleButton);
+    console.log('Mobile toggle button created');
   }
-  // Similar update for wrong answers
-  function handleTriviaWrongAnswer(event) {
-    // Extract timestamp from event if available
-    const timestamp = event.detail?.timestamp || Date.now();
-    const eventId = `wrong_${timestamp}`;
+    function handleToggleButtonClick() {
+    console.log('Toggle button clicked, isInfoToggleActive:', isInfoToggleActive);
     
-    // Check if we've already processed this event
-    if (processedTriviaEvents.has(eventId)) {
-      console.log('Ignoring duplicate trivia wrong answer event', eventId);
-      return;
-    }
-    
-    // Add to registry of processed events
-    processedTriviaEvents.add(eventId);
-    console.log('Processing trivia wrong answer event', eventId);
-    
-    // Get current player info
-    const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
-    const playerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
-    
-    // Add hit to current player first (before healing boss)
-    gameStats.playerStats[playerKey].bossHitsReceived++;
-    
-    // Heal boss by 50 points for wrong answer, but don't exceed max health
-    const activeMonsterContainer = Array.from(document.querySelectorAll(".monster-container"))
-                                     .find(c => c.style.display === "block");
-    if (!activeMonsterContainer) return;
-
-    const selectedMonsterIndex = document.getElementById("monsterDropdown").value;
-    if (selectedMonsterIndex === "") return;
-
-    const monster = monsters[selectedMonsterIndex];
-    const lifeBarGreen = activeMonsterContainer.querySelector("#lifeBarGreen");
-    const lifeBarText = activeMonsterContainer.querySelector("#lifeBarText");
-    const historyContainer = document.getElementById("historyContainer" + selectedMonsterIndex);
-    
-    if (!monster || !lifeBarGreen || !lifeBarText || !historyContainer) return;
-
-    // Get current health from the display
-    const currentHealthText = lifeBarText.textContent;
-    let currentHealth = parseInt(currentHealthText);
-    const maxHealth = monster.health; // Original max health from monster data
-      // Heal boss by 50 points for wrong answer, but don't exceed max health
-    const oldHealth = currentHealth;
-    currentHealth = Math.min(currentHealth + 50, maxHealth);
-    const actualHealing = currentHealth - oldHealth;
-    
-    // Track trivia wrong answer stats (always, regardless of healing)
-    gameStats.triviaStats.wrongAnswers++;
-    
-    // Track for current player (always, regardless of healing)
-    gameStats.playerStats[playerKey].triviaWrong++;
-    
-    // Add player hit message to battle log (always happens)
-    const hitMessage = `💥 ${playerName} takes a hit for the wrong answer! (Hits received: ${gameStats.playerStats[playerKey].bossHitsReceived})`;
-    historyContainer.innerHTML += `<p style="color:#ff6b6b; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${hitMessage}</p>`;
-    
-    // Add healing message to battle log (show even if no healing occurred)
-    if (actualHealing > 0) {
-      const healMessage = `❌ Wrong answer! ${monster.name} regenerates ${actualHealing} health! (${oldHealth} → ${currentHealth})`;
-      historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${healMessage}</p>`;
-      
-      // Update life bar display only if healing occurred
-      lifeBarGreen.style.width = (currentHealth / maxHealth) * 100 + "%";
-      lifeBarText.textContent = currentHealth;
+    if (isInfoToggleActive) {
+      hideMobileOverlays();
+      setToggleButtonState(false);
     } else {
-      // Boss was already at full health
-      const noHealMessage = `❌ Wrong answer! ${monster.name} is already at full health!`;
-      historyContainer.innerHTML += `<p style="color:#e74c3c; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${noHealMessage}</p>`;
+      showMobileOverlay('info');
+      setToggleButtonState(true);
     }
-    
-    // Check if we should switch players (always happens if both players are active)
-    let switchMessage = "";
-    if (activeFighters.jaybers8 && activeFighters.flight) {
-      const oldPlayer = playerName;
-      switchToNextPlayer();
-      const newPlayerName = currentPlayer === 1 ? 'Jaybers8' : 'FLIGHTx12!';
-      switchMessage = `🔄 Player switched! Now it's ${newPlayerName}'s turn!`;
-      historyContainer.innerHTML += `<p style="color:#4ecdc4; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">${switchMessage}</p>`;
-    }
-    
-    historyContainer.innerHTML += `<hr>`;
-    historyContainer.scrollTop = historyContainer.scrollHeight;
-    
-    // Visual feedback - red flash on monster (always happens)
-    const monsterImage = activeMonsterContainer.querySelector(".monster-image");
-    if (monsterImage) {
-      const imageElement = monsterImage.querySelector('img');
-      if (imageElement) {
-        imageElement.style.filter = "hue-rotate(-60deg) brightness(1.4) saturate(1.5)"; // Red healing flash
-        setTimeout(() => {
-          imageElement.style.filter = "";
-        }, 700);
-      }
-    }
-    
-    // Play a different healing sound effect for wrong answers (always happens)
-    const wrongHealSound = new Audio('../assets/audio/healer.mp3');
-    wrongHealSound.volume = 0.4;
-    wrongHealSound.playbackRate = 0.8; // Slower/deeper sound for wrong answers
-    wrongHealSound.play().catch(err => console.error("Error playing wrong answer heal sound:", err));
-      console.log(`Boss healing attempt: ${oldHealth} → ${currentHealth} (+${actualHealing})`);
-    console.log(`${playerName} received a hit (total: ${gameStats.playerStats[playerKey].bossHitsReceived})${switchMessage ? ' and player switched' : ''}`);
   }
-  // Handler for trivia correct answers
-  function handleTriviaCorrectAnswer(event) {
-    // Extract timestamp from event if available
-    const timestamp = event.detail?.timestamp || Date.now();
-    const eventId = `correct_${timestamp}`;
+  
+  function setToggleButtonState(active) {
+    if (!mobileToggleButton) return;
     
-    // Check if we've already processed this event
-    if (processedTriviaEvents.has(eventId)) {
-      console.log('Ignoring duplicate trivia correct answer event', eventId);
+    isInfoToggleActive = active;
+    if (active) {
+      mobileToggleButton.classList.add('active');
+      mobileToggleButton.innerHTML = '✖️';
+      mobileToggleButton.title = 'Close Info';
+    } else {
+      mobileToggleButton.classList.remove('active');
+      mobileToggleButton.innerHTML = 'ℹ️';
+      mobileToggleButton.title = 'Show Info';
+    }
+  }
+  
+  function removeMobileToggleButton() {
+    if (mobileToggleButton) {
+      mobileToggleButton.remove();
+      mobileToggleButton = null;
+      isInfoToggleActive = false;
+    }
+  }
+  
+  function updateToggleButtonVisibility() {
+    if (!mobileToggleButton) return;
+    
+    // Hide toggle when any overlay is active (except when toggled by button itself)
+    const hasActiveOverlay = Object.values(mobileOverlays).some(overlay => 
+      overlay && overlay.classList.contains('mobile-overlay-active')
+    );
+    
+    if (hasActiveOverlay && !isInfoToggleActive) {
+      mobileToggleButton.classList.add('hidden');
+    } else {
+      mobileToggleButton.classList.remove('hidden');
+    }
+  }  // Initialize mobile features if needed
+  function initializeMobileFeatures() {
+    const prevMobile = isMobile;
+    isMobile = window.innerWidth < 800;
+    
+    console.log('initializeMobileFeatures: window width:', window.innerWidth, 'isMobile:', isMobile, 'prevMobile:', prevMobile);
+    
+    if (isMobile) {
+      console.log('Initializing mobile features...');
+      setupMobileSwipeHandlers();
+      setupMobileOverlayCloseButtons();
+      addMobileSwipeIndicators();
+      createMobileToggleButton();
+    } else {
+      console.log('Removing mobile features...');
+      removeMobileToggleButton();
+    }
+  }
+  
+  // Setup swipe gesture detection
+  function setupMobileSwipeHandlers() {
+    const monsterContainers = document.querySelectorAll('.monster-container');
+    
+    monsterContainers.forEach(container => {
+      // Touch start
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      
+      // Touch end
+      container.addEventListener('touchend', handleTouchEnd, { passive: true });
+      
+      // Prevent default touch behaviors on swipe areas
+      container.addEventListener('touchmove', (e) => {
+        if (isSwipeGesture) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
+  }
+  
+  function handleTouchStart(e) {
+    if (!isMobile) return;
+    
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    isSwipeGesture = true;
+  }
+  
+  function handleTouchEnd(e) {
+    if (!isMobile || !isSwipeGesture) return;
+    
+    const touch = e.changedTouches[0];
+    touchEndX = touch.clientX;
+    touchEndY = touch.clientY;
+    
+    handleSwipeGesture();
+    isSwipeGesture = false;
+  }
+    function handleSwipeGesture() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const minSwipeDistance = 100;
+    const maxVerticalMovement = 150;
+    
+    // Check for upward swipe (trivia reveal)
+    if (deltaY < -minSwipeDistance && Math.abs(deltaX) < maxVerticalMovement) {
+      showMobileOverlay('trivia');
       return;
     }
     
-    // Add to registry of processed events
-    processedTriviaEvents.add(eventId);
-    console.log('Processing trivia correct answer event', eventId);
+    // Ensure it's a horizontal swipe (not vertical scroll)
+    if (Math.abs(deltaY) > maxVerticalMovement) return;
     
-    // Track trivia correct answer stats (global and per-player)
-    gameStats.triviaStats.correctAnswers++;
-    
-    // Track for current player
-    const playerKey = currentPlayer === 1 ? 'jaybers8' : 'flight';
-    gameStats.playerStats[playerKey].triviaCorrect++;
-    
-    console.log(`Trivia correct answer tracked for ${playerKey}. Total correct: ${gameStats.triviaStats.correctAnswers}`);
+    // Left swipe (show info/trivia overlays)
+    if (deltaX < -minSwipeDistance) {
+      showMobileOverlay('info');
+    }
+    // Right swipe (show history overlay)
+    else if (deltaX > minSwipeDistance) {
+      showMobileOverlay('history');
+    }
   }
-
+  
+  function showMobileOverlay(type) {
+    if (!isMobile) return;
+    
+    // Find the active monster container to get the correct overlay
+    const activeMonsterContainer = document.querySelector('.monster-container[style*="display: block"]');
+    if (!activeMonsterContainer) return;
+    
+    let overlay;
+    const containerIndex = activeMonsterContainer.id.replace('monsterContainer', '');
+    
+    switch (type) {      case 'info':
+        overlay = document.getElementById(`infoContainer${containerIndex}`);
+        // Also check if trivia should be shown instead
+        const triviaContainer = document.getElementById(`triviaContainer${containerIndex}`);
+        console.log('Mobile overlay: checking trivia container', triviaContainer?.id, 'display:', triviaContainer?.style.display);
+        if (triviaContainer && (triviaContainer.style.display === 'block' || triviaContainer.classList.contains('mobile-overlay-active'))) {
+          console.log('Mobile overlay: showing trivia overlay instead of info');
+          showTriviaOverlay(triviaContainer);
+          return;
+        }
+        break;
+      case 'history':
+        overlay = document.getElementById(`historyContainer${containerIndex}`);
+        break;
+      case 'trivia':
+        overlay = document.getElementById(`triviaContainer${containerIndex}`);
+        if (overlay) {
+          showTriviaOverlay(overlay);
+          return;
+        }
+        break;
+    }
+      if (overlay) {
+      // Hide any other active overlays first
+      hideMobileOverlays();
+      
+      // Show the overlay
+      overlay.style.display = 'block';
+      overlay.classList.add('mobile-overlay-active');
+      mobileOverlays[type] = overlay;
+      
+      // Update toggle button state if showing info overlay
+      if (type === 'info') {
+        setToggleButtonState(true);
+      }
+      
+      // Add close button if it doesn't exist
+      addMobileCloseButton(overlay, type);
+      
+      // Update toggle button visibility
+      updateToggleButtonVisibility();
+    }
+  }
+    function showTriviaOverlay(triviaContainer) {
+    if (!isMobile || !triviaContainer) {
+      console.log('showTriviaOverlay: not mobile or no container', isMobile, !!triviaContainer);
+      return;
+    }
+    
+    console.log('showTriviaOverlay: activating trivia overlay', triviaContainer.id);
+    
+    // Hide any other overlays
+    hideMobileOverlays();
+    
+    // Ensure trivia container is visible and has mobile overlay class
+    triviaContainer.style.display = 'block';
+    triviaContainer.classList.add('mobile-overlay-active');
+    mobileOverlays.trivia = triviaContainer;
+    
+    console.log('showTriviaOverlay: trivia overlay should now be visible');
+    
+    // Add close button
+    addMobileCloseButton(triviaContainer, 'trivia');
+  }
+    function hideMobileOverlays() {
+    Object.keys(mobileOverlays).forEach(type => {
+      const overlay = mobileOverlays[type];
+      if (overlay) {
+        overlay.classList.remove('mobile-overlay-active');
+        
+        // For non-trivia overlays, hide completely
+        if (type !== 'trivia') {
+          overlay.style.display = 'none';
+        }
+        
+        // Remove close button
+        const closeBtn = overlay.querySelector('.mobile-overlay-close');
+        if (closeBtn) {
+          closeBtn.remove();
+        }
+        
+        mobileOverlays[type] = null;
+      }
+    });
+    
+    // Reset toggle button state when overlays are hidden
+    setToggleButtonState(false);
+    updateToggleButtonVisibility();
+  }
+    function addMobileCloseButton(overlay, type) {
+    // Don't add if already exists
+    if (overlay.querySelector('.mobile-overlay-close')) return;
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'mobile-overlay-close';
+    closeBtn.innerHTML = '×';
+    closeBtn.setAttribute('aria-label', 'Close overlay');
+    
+    closeBtn.addEventListener('click', () => {
+      hideMobileOverlays();
+    });
+    
+    overlay.appendChild(closeBtn);
+  }
+  
+  function setupMobileOverlayCloseButtons() {
+    // Add escape key handler for mobile overlays
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMobile) {
+        hideMobileOverlays();
+      }
+    });
+  }
+  
+  function addMobileSwipeIndicators() {
+    if (!isMobile) return;
+    
+    // Add swipe indicator to monster container
+    const monsterContainers = document.querySelectorAll('.monster-container');
+    monsterContainers.forEach(container => {
+      if (!container.querySelector('.mobile-swipe-indicator')) {
+        const indicator = document.createElement('div');
+        indicator.className = 'mobile-swipe-indicator';
+        indicator.textContent = '← Swipe for Info/Trivia | Swipe for History →';
+        container.appendChild(indicator);
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+          if (indicator.parentNode) {
+            indicator.style.animation = 'fadeOut 1s ease-out forwards';
+            setTimeout(() => indicator.remove(), 1000);
+          }
+        }, 5000);
+      }
+    });
+  }
+    // Handle window resize to toggle mobile features
+  function handleResize() {
+    const wasMobile = isMobile;
+    isMobile = window.innerWidth < 800;
+    
+    if (wasMobile && !isMobile) {
+      // Switched from mobile to desktop
+      hideMobileOverlays();
+      removeMobileSwipeIndicators();
+      removeMobileToggleButton();
+    } else if (!wasMobile && isMobile) {
+      // Switched from desktop to mobile
+      initializeMobileFeatures();
+    }
+  }
+  
+  function removeMobileSwipeIndicators() {
+    document.querySelectorAll('.mobile-swipe-indicator').forEach(indicator => {
+      indicator.remove();
+    });
+  }
+  
+  // Add fadeOut animation for mobile indicators
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Initialize mobile features on load
+  window.addEventListener('load', initializeMobileFeatures);
+  window.addEventListener('resize', handleResize);
+    // Expose mobile functions globally for potential external use
+  window.mobileArenaControls = {
+    showOverlay: showMobileOverlay,
+    hideOverlays: hideMobileOverlays,
+    showTriviaOverlay: showTriviaOverlay,
+    isMobile: () => isMobile
+  };
 });
