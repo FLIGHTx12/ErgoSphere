@@ -1874,13 +1874,85 @@ header h1 {
     .mobile-info-toggle.active:hover {
         background: rgba(46, 204, 113, 1);
     }
-      /* Hide toggle button when overlay is active to prevent conflicts */
+    
+    /* Hide toggle button when overlay is active to prevent conflicts */
     .mobile-info-toggle.hidden {
         opacity: 0;
         pointer-events: none;
+    }    /* ===== MOBILE OVERLAY CONTAINERS ===== */
+      /* Info Container - Left Swipe Overlay */
+    [id^="infoContainer"] {
+        position: fixed;
+        top: 0;
+        left: -100vw;
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.95);
+        border: none;
+        border-radius: 0;
+        z-index: 150;
+        transition: left 0.3s ease-in-out;
+        overflow-y: auto;
+        backdrop-filter: blur(5px);
+        display: none; /* Hidden by default */
     }
-
-    /* ===== MOBILE OVERLAY CONTAINERS ===== */
+      /* Show info container when mobile overlay is active */
+    [id^="infoContainer"].mobile-overlay-active {
+        display: block !important;
+        left: 0;
+    }/* History Container - Right Swipe Overlay */
+    [id^="historyContainer"] {
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.95);
+        border: none;
+        border-radius: 0;
+        z-index: 150;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+        backdrop-filter: blur(5px);
+        display: none; /* Hidden by default */
+    }
+    
+    /* Show history container when mobile overlay is active */
+    [id^="historyContainer"].mobile-overlay-active {
+        display: block !important;
+        right: 0;
+    }
+    
+    [id^="historyContainer"].mobile-overlay-active {
+        right: 0;
+    }
+      /* ===== MOBILE TRIVIA CONTAINER ===== */
+    
+    .trivia-container {
+        position: fixed !important;
+        top: -100vh !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 20px !important;
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        z-index: 200 !important;
+        transition: top 0.3s ease-in-out !important;
+        overflow-y: auto !important;
+        backdrop-filter: blur(5px) !important;
+        display: none !important; /* Hidden by default */
+    }
+    
+    .trivia-container.mobile-overlay-active {
+        display: block !important;
+        top: 0 !important;
+    }
     
     /* Mobile trivia header */
     .trivia-header {
@@ -2181,82 +2253,9 @@ header h1 {
     [id^="historyContainer"].mobile-overlay-active {
         animation: mobileSlideInRight 0.3s ease-out;
     }
-      .trivia-container.mobile-overlay-active {
-        animation: mobileSlideInUp 0.3s ease-out;
-    }
-
-    /* ===== MOBILE OVERLAY CONTAINERS ===== */
-    /* Info Container - Left Swipe Overlay */
-    [id^="infoContainer"] {
-        position: fixed !important;
-        top: 0 !important;
-        left: -100vw !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        max-height: none !important;
-        padding: 20px !important;
-        background-color: rgba(0, 0, 0, 0.95) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        z-index: 150 !important;
-        transition: left 0.3s ease-in-out !important;
-        overflow-y: auto !important;
-        backdrop-filter: blur(5px) !important;
-        display: none !important; /* Hidden by default */
-    }
-    
-    /* Show info container when mobile overlay is active */
-    [id^="infoContainer"].mobile-overlay-active {
-        display: block !important;
-        left: 0 !important;
-    }
-
-    /* History Container - Right Swipe Overlay */
-    [id^="historyContainer"] {
-        position: fixed !important;
-        top: 0 !important;
-        right: -100vw !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        max-height: none !important;
-        padding: 20px !important;
-        background-color: rgba(0, 0, 0, 0.95) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        z-index: 150 !important;
-        transition: right 0.3s ease-in-out !important;
-        overflow-y: auto !important;
-        backdrop-filter: blur(5px) !important;
-        display: none !important; /* Hidden by default */
-    }
-    
-    /* Show history container when mobile overlay is active */
-    [id^="historyContainer"].mobile-overlay-active {
-        display: block !important;
-        right: 0 !important;
-    }
-
-    /* ===== MOBILE TRIVIA CONTAINER ===== */
-    .trivia-container {
-        position: fixed !important;
-        top: -100vh !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        padding: 20px !important;
-        background-color: rgba(0, 0, 0, 0.95) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        z-index: 200 !important;
-        transition: top 0.3s ease-in-out !important;
-        overflow-y: auto !important;
-        backdrop-filter: blur(5px) !important;
-        display: none !important; /* Hidden by default */
-    }
     
     .trivia-container.mobile-overlay-active {
-        display: block !important;
-        top: 0 !important;
+        animation: mobileSlideInUp 0.3s ease-out;
     }
 }
 

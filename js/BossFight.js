@@ -2281,21 +2281,17 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       mobileToggleButton.classList.remove('hidden');
     }
-  }  // Initialize mobile features if needed
+  }
+  // Initialize mobile features if needed
   function initializeMobileFeatures() {
-    const prevMobile = isMobile;
     isMobile = window.innerWidth < 800;
     
-    console.log('initializeMobileFeatures: window width:', window.innerWidth, 'isMobile:', isMobile, 'prevMobile:', prevMobile);
-    
     if (isMobile) {
-      console.log('Initializing mobile features...');
       setupMobileSwipeHandlers();
       setupMobileOverlayCloseButtons();
       addMobileSwipeIndicators();
       createMobileToggleButton();
     } else {
-      console.log('Removing mobile features...');
       removeMobileToggleButton();
     }
   }
