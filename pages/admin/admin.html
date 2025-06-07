@@ -82,10 +82,12 @@
                         <option value="copies">Sort by Copies</option>
                         <option value="watched">Sort by Times Seen</option>
                     </select>
-                </div>
-                <div class="action-section">
+                </div>                <div class="action-section">
                     <button id="refresh-data" class="action-btn refresh-btn">
                         🔄 Refresh
+                    </button>
+                    <button id="manual-sync" class="action-btn sync-btn">
+                        🔗 Sync DB → JSON
                     </button>
                     <button id="save-all" class="action-btn save-btn">
                         💾 Save All
@@ -174,166 +176,7 @@
     <div id="sync-indicator" class="sync-indicator hidden">
         <div class="sync-pulse"></div>
         <span>Syncing with HCMC...</span>
-    </div>
-
-    <!-- Scripts -->
+    </div>    <!-- Scripts -->
     <script src="../../js/admin-dashboard.js"></script>
-</body>
-</html>
-    <div class="column">
-      <button class="collapsible">CO-OP</button>
-      <div id="coop-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="coop-items">
-          <button class="refresh-button" data-file="../../data/coop.json" data-container="coop-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">LOOT</button>
-      <div id="loot-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="loot-items">
-          <button class="refresh-button" data-file="../../data/loot.json" data-container="loot-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">PVP</button>
-      <div id="pvp-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-copies,zero-copies" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="pvp-items">
-          <button class="refresh-button" data-file="../../data/pvp.json" data-container="pvp-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">MOVIES</button>
-      <div id="movies-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="movies-items">
-          <button class="refresh-button" data-file="../../data/movies.json" data-container="movies-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">ANIME</button>
-      <div id="anime-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="anime-items">
-          <button class="refresh-button" data-file="../../data/anime.json" data-container="anime-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">SUNDAY MORNING</button>
-      <div id="sundaymorning-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="sundaymorning-items">
-          <button class="refresh-button" data-file="../../data/sundaymorning.json" data-container="sundaymorning-items">↻</button>
-        </div>
-      </div>
-    </div>
-        <div class="column">
-      <button class="collapsible">SUNDAY NIGHT</button>
-      <div id="sundaynight-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="sundaynight-items">
-          <button class="refresh-button" data-file="../../data/sundaynight.json" data-container="sundaynight-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">SINGLE PLAYER</button>
-      <div id="singleplayer-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="singleplayer-items">
-          <button class="refresh-button" data-file="../../data/singleplayer.json" data-container="singleplayer-items">↻</button>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <button class="collapsible">YOUTUBE</button>
-      <div id="youtube-items" class="content item-container">
-        <div class="filters">
-          <button class="cycling-filter-button" data-filter-states="all,has-status,no-status" data-display-names="All,Active,Not Active" data-current-filter-index="0">Filter: All</button>
-          <input type="text" class="search-bar" placeholder="Search..." data-container="youtube-items">
-          <button class="refresh-button" data-file="../../data/youtube.json" data-container="youtube-items">↻</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="../../js/admin.js"></script>
-  <script src="../../js/auto-sync.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const coll = document.getElementsByClassName("collapsible");
-      for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          const content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
-      }
-
-      const sidebar = document.getElementById('sidebar');
-      const mainContent = document.querySelector('.container');      let touchstartX = 0;
-      let touchendX = 0;
-      const swipeThreshold = 100; // Define a swipe threshold
-
-      function handleGesture() {
-        const swipeDistance = touchendX - touchstartX;
-        if (swipeDistance < -swipeThreshold) {
-          sidebar.classList.remove('hidden');
-          sidebar.style.transform = 'translateX(0)';
-          mainContent.classList.add('sidebar-visible');
-        }
-        if (swipeDistance > swipeThreshold) {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          mainContent.classList.remove('sidebar-visible');
-        }
-      }
-
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      });
-
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleGesture();
-      });
-
-      // Ensure sidebar is fixed on larger screens
-      const mediaQuery = window.matchMedia('(min-width: 1024px)');
-      function handleScreenChange(e) {
-        if (e.matches) {
-          sidebar.classList.remove('hidden');
-          sidebar.style.transform = 'translateX(0)';
-          sidebar.style.transitionDuration = '0.65s'; // Increased by 30%
-          mainContent.classList.add('sidebar-visible');
-        } else {
-          sidebar.classList.add('hidden');
-          sidebar.style.transform = 'translateX(100%)';
-          sidebar.style.transitionDuration = '0.65s'; // Increased by 30%
-          mainContent.classList.remove('sidebar-visible');
-        }
-      }
-      mediaQuery.addListener(handleScreenChange);
-      handleScreenChange(mediaQuery);
-    });
-  </script>
 </body>
 </html>

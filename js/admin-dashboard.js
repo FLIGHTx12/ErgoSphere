@@ -56,6 +56,10 @@ class AdminDashboard {
             this.refreshCurrentCategory();
         });
 
+        document.getElementById('manual-sync').addEventListener('click', () => {
+            this.performManualSync();
+        });
+
         document.getElementById('save-all').addEventListener('click', () => {
             this.saveAllChanges();
         });
@@ -668,12 +672,57 @@ class AdminDashboard {
         // Open detailed edit modal (future enhancement)
         console.log('Edit item:', this.currentData[index]);
         this.showToast('Detailed edit coming soon', '🚧');
+    }    handleRealTimeUpdate(data) {
+        console.log('📡 Real-time update received:', data);
+        
+        switch (data.type) {
+            case 'dataUpdate':
+                if (data.category === this.currentCategory) {
+                    this.refreshCurrentCategory();
+                    this.showToast('Data updated from external source', '🔄');
+                }
+                break;
+                
+            case 'sync_status':
+                this.handleSyncStatusUpdate(data.data);
+                break;
+                
+            case 'connection':
+                if (data.status === 'connected') {
+                    this.isConnected = true;
+                    this.updateConnectionStatus();
+                }
+                break;
+                
+            default:
+                console.log('Unknown real-time update type:', data.type);
+        }
     }
 
-    handleRealTimeUpdate(data) {
-        if (data.type === 'dataUpdate' && data.category === this.currentCategory) {
-            this.refreshCurrentCategory();
-            this.showToast('Data updated from external source', '🔄');
+    handleSyncStatusUpdate(syncData) {
+        console.log('📊 Processing sync status update:', syncData);
+        
+        if (syncData.action === 'data_updated' && syncData.category) {
+            // Show notification for data update with sync status
+            const message = syncData.syncSuccess 
+                ? `${syncData.category} updated and synced successfully`
+                : `${syncData.category} updated (sync failed)`;
+            const icon = syncData.syncSuccess ? '✅' : '⚠️';
+            this.showToast(message, icon);
+            
+            // Refresh if current category was updated
+            if (syncData.category === this.currentCategory) {
+                setTimeout(() => this.refreshCurrentCategory(), 1000);
+            }
+        } else if (syncData.action === 'manual_sync_completed') {
+            this.updateSyncStatus(syncData.results);
+            this.showToast('Manual sync completed successfully', '🔗');
+        } else if (syncData.action === 'category_sync_completed') {
+            const message = syncData.success 
+                ? `${syncData.category} sync completed`
+                : `${syncData.category} sync failed`;
+            const icon = syncData.success ? '✅' : '❌';
+            this.showToast(message, icon);
         }
     }
 
@@ -696,31 +745,116 @@ class AdminDashboard {
 
     showSyncIndicator() {
         document.getElementById('sync-indicator').classList.remove('hidden');
-    }
-
-    hideSyncIndicator() {
+    }    hideSyncIndicator() {
         document.getElementById('sync-indicator').classList.add('hidden');
     }
 
-    showToast(message, icon = '✅') {
-        const toast = document.getElementById('status-toast');
-        document.getElementById('toast-icon').textContent = icon;
-        document.getElementById('toast-message').textContent = message;
-        
-        toast.classList.remove('hidden');
-        
-        setTimeout(() => {
-            toast.classList.add('hidden');
-        }, 3000);
+    async performManualSync() {
+        try {
+            console.log('🔄 Initiating manual sync - Database to JSON files');
+            this.showSyncIndicator();
+            
+            const response = await fetch('/api/sync/database-to-json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Sync failed: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                const { totalSuccess, totalAttempted } = result.data;
+                this.showToast(`Manual sync completed: ${totalSuccess}/${totalAttempted} successful`, '🔗');
+                console.log('✅ Manual sync completed successfully:', result.data);
+                
+                // Update sync status in UI if needed
+                this.updateSyncStatus(result.data);
+            } else {
+                throw new Error(result.message || 'Sync failed');
+            }
+        } catch (error) {
+            console.error('❌ Manual sync failed:', error);
+            this.showError(`Manual sync failed: ${error.message}`);
+        } finally {
+            this.hideSyncIndicator();
+        }
     }
 
-    showError(message) {
-        this.showToast(message, '❌');
-        this.hideLoading();
+    updateSyncStatus(syncData) {
+        // Update any sync status indicators in the UI
+        const timestamp = new Date(syncData.timestamp).toLocaleTimeString();
+        console.log(`📊 Sync status updated at ${timestamp}:`, syncData);
+        
+        // Could add visual indicators here if needed
+        if (syncData.categories) {
+            Object.entries(syncData.categories).forEach(([category, success]) => {
+                const categoryBtn = document.querySelector(`[data-category="${category}"]`);
+                if (categoryBtn) {
+                    if (success) {
+                        categoryBtn.classList.add('sync-success');
+                        categoryBtn.classList.remove('sync-error');
+                    } else {
+                        categoryBtn.classList.add('sync-error');
+                        categoryBtn.classList.remove('sync-success');
+                    }
+                    
+                    // Remove status classes after 3 seconds
+                    setTimeout(() => {
+                        categoryBtn.classList.remove('sync-success', 'sync-error');
+                    }, 3000);
+                }
+            });
+        }
     }
-}
 
-// Initialize the dashboard when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.adminDashboard = new AdminDashboard();
-});
+    async performManualSync() {
+        try {
+            console.log('🔄 Initiating manual sync - Database to JSON files');
+            this.showSyncIndicator();
+            
+            const response = await fetch('/api/sync/database-to-json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Sync failed: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                const { totalSuccess, totalAttempted } = result.data;
+                this.showToast(`Manual sync completed: ${totalSuccess}/${totalAttempted} successful`, '🔗');
+                console.log('✅ Manual sync completed successfully:', result.data);
+                
+                // Update sync status in UI if needed
+                this.updateSyncStatus(result.data);
+            } else {
+                throw new Error(result.message || 'Sync failed');
+            }
+        } catch (error) {
+            console.error('❌ Manual sync failed:', error);
+            this.showError(`Manual sync failed: ${error.message}`);
+        } finally {
+            this.hideSyncIndicator();
+        }
+    }
+
+    updateSyncStatus(syncData) {
+        // Update any sync status indicators in the UI
+        const timestamp = new Date(syncData.timestamp).toLocaleTimeString();
+        console.log(`📊 Sync status updated at ${timestamp}:`, syncData);
+        
+        // Could add visual indicators here if needed
+        if (syncData.categories) {
+            Object.entries(syncData.categories).forEach(([category, success]) => {
+                const categoryBtn = document.querySelector(`[data-category="${category}"]`);
+                if

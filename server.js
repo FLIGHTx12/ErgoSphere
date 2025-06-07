@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs').promises;
 const http = require('http');
 const WebSocket = require('ws');
+const { syncCategoryToJSON, syncLootToJSON, syncAllToJSON, createDatabaseBackup, broadcastSyncStatus } = require('./utils/jsonSync');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -228,16 +229,16 @@ app.get('/api/data/:category', async (req, res) => {
   }
 });
 
-// Add PUT endpoint for saving data back to json_data table
+// Enhanced PUT endpoint with auto-sync functionality
 app.put('/api/data/:category', async (req, res) => {
   const category = req.params.category;
   const data = req.body;
-    try {
-    // First create a backup in the database
-    await pool.query(
-      'INSERT INTO json_backups (category, data) VALUES ($1, $2)',
-      [category, JSON.stringify(data)]
-    );
+  
+  try {
+    console.log(`🔄 Updating data for category: ${category}`);
+    
+    // Create database backup
+    await createDatabaseBackup(category, data);
     
     // Check if this category exists in the database
     const existingResult = await pool.query(
@@ -251,32 +252,26 @@ app.put('/api/data/:category', async (req, res) => {
         'UPDATE json_data SET data = $1, updated_at = NOW() WHERE category = $2',
         [JSON.stringify(data), category]
       );
+      console.log(`✅ Updated existing ${category} data in database`);
     } else {
       // Insert new entry
       await pool.query(
         'INSERT INTO json_data (category, data) VALUES ($1, $2)',
         [category, JSON.stringify(data)]
       );
+      console.log(`✅ Inserted new ${category} data in database`);
     }
     
-    // Also save to file as a fallback
-    const filePath = path.join(__dirname, 'data', `${category}.json`);
-    const backupDir = path.join(__dirname, 'data/backups');
+    // Auto-sync to JSON file
+    const syncSuccess = await syncCategoryToJSON(category);
     
-    // Ensure backup directory exists
-    await fs.mkdir(backupDir, { recursive: true });
-    
-    // Create backup of current file if it exists
-    try {
-      const currentData = await fs.readFile(filePath, 'utf8');
-      const backupPath = path.join(backupDir, `${category}_${Date.now()}.json`);
-      await fs.writeFile(backupPath, currentData);
-    } catch (err) {
-      console.log('No existing file to backup');
-    }
-
-    // Write new data to file
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    // Broadcast update to connected WebSocket clients
+    broadcastSyncStatus(wss, {
+      action: 'data_updated',
+      category: category,
+      syncSuccess: syncSuccess,
+      timestamp: new Date().toISOString()
+    });
     
     res.json({ 
       success: true, 
@@ -704,3 +699,87 @@ const startServer = async () => {
 };
 
 startServer();
+
+// Auto-sync and manual sync endpoints
+app.get('/api/sync/status', async (req, res) => {
+  try {
+    const syncResults = await syncAllToJSON();
+    res.json({
+      status: 'success',
+      message: 'Sync status retrieved successfully',
+      data: syncResults
+    });
+  } catch (error) {
+    console.error('Error getting sync status:', error);
+    res.status(500).json({ 
+      status: 'error',
+      message: 'Failed to get sync status',
+      error: error.message 
+    });
+  }
+});
+
+// Manual sync endpoint - Database to JSON files
+app.post('/api/sync/database-to-json', async (req, res) => {
+  try {
+    console.log('🔄 Manual sync initiated - Database to JSON files');
+    const syncResults = await syncAllToJSON();
+    
+    // Broadcast sync completion to connected WebSocket clients
+    broadcastSyncStatus(wss, {
+      action: 'manual_sync_completed',
+      results: syncResults,
+      timestamp: new Date().toISOString()
+    });
+    
+    res.json({
+      status: 'success',
+      message: 'Manual sync completed successfully',
+      data: syncResults
+    });
+  } catch (error) {
+    console.error('❌ Manual sync failed:', error);
+    res.status(500).json({ 
+      status: 'error',
+      message: 'Manual sync failed',
+      error: error.message 
+    });
+  }
+});
+
+// Sync specific category endpoint
+app.post('/api/sync/:category', async (req, res) => {
+  const category = req.params.category;
+  try {
+    console.log(`🔄 Manual sync initiated for category: ${category}`);
+    
+    let syncSuccess;
+    if (category === 'loot') {
+      syncSuccess = await syncLootToJSON();
+    } else {
+      syncSuccess = await syncCategoryToJSON(category);
+    }
+    
+    // Broadcast sync completion to connected WebSocket clients
+    broadcastSyncStatus(wss, {
+      action: 'category_sync_completed',
+      category: category,
+      success: syncSuccess,
+      timestamp: new Date().toISOString()
+    });
+    
+    res.json({
+      status: 'success',
+      message: `${category} sync completed successfully`,
+      category: category,
+      syncSuccess: syncSuccess
+    });
+  } catch (error) {
+    console.error(`❌ Category sync failed for ${category}:`, error);
+    res.status(500).json({ 
+      status: 'error',
+      message: `${category} sync failed`,
+      error: error.message 
+    });
+  }
+});

@@ -1,0 +1,232 @@
+{
+  "bets": {
+    "2025-05-11": [
+      {
+        "id": 17,
+        "league": "WNBA",
+        "bet_data": {
+          "bets": [
+            {
+              "player": "⭐Napheesa Collier",
+              "betDesc": "",
+              "betText": "Reach 20 points",
+              "betAmount": 30,
+              "riskLevel": "Medium",
+              "potentialWin": 18,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "⭐Alanna Smith",
+              "betDesc": "",
+              "betText": "Reach 6 rebounds",
+              "betAmount": 20,
+              "riskLevel": "Medium",
+              "potentialWin": 12,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "",
+              "betDesc": "",
+              "betText": "First MN FG is a 2 pointer.",
+              "betAmount": 50,
+              "riskLevel": "Medium",
+              "potentialWin": 30,
+              "rolePlayerBoost": false
+            }
+          ],
+          "date": "5/16/2025, 6:15:16 PM",
+          "league": "WNBA",
+          "awayTeam": " 😼Minnesota Lynx",
+          "homeTeam": "Dallas Wings",
+          "userName": "Jaybers8",
+          "user_name": "Jaybers8"
+        },
+        "bet_date": "2025-05-17T04:15:17.399Z",
+        "away_team": " 😼Minnesota Lynx",
+        "home_team": "Dallas Wings",
+        "user_name": "Jaybers8",
+        "bet_status": {
+          "0": "won",
+          "1": "lost",
+          "2": "won"
+        },
+        "payout_data": {
+          "totalWin": 48,
+          "netPayout": 48,
+          "totalWager": 100,
+          "evaluatedAt": "2025-05-17T12:42:00.518Z"
+        }
+      },
+      {
+        "id": 14,
+        "league": "WNBA",
+        "bet_data": {
+          "bets": [
+            {
+              "player": "⭐Napheesa Collier",
+              "betDesc": "",
+              "betText": "Reach 20 points",
+              "betAmount": 50,
+              "riskLevel": "Medium",
+              "potentialWin": 30,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "",
+              "betDesc": "",
+              "betText": "Team blocks",
+              "betAmount": 10,
+              "riskLevel": "Medium",
+              "potentialWin": 6,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "",
+              "betDesc": "",
+              "betText": "Team Free-throws taken",
+              "betAmount": 20,
+              "riskLevel": "Medium",
+              "potentialWin": 12,
+              "rolePlayerBoost": false
+            }
+          ],
+          "date": "5/16/2025, 5:58:10 PM",
+          "league": "WNBA",
+          "awayTeam": " 😼Minnesota Lynx",
+          "homeTeam": "Dallas Wings",
+          "userName": "FLIGHTx12!",
+          "user_name": "FLIGHTx12!"
+        },
+        "bet_date": "2025-05-17T03:58:10.801Z",
+        "away_team": " 😼Minnesota Lynx",
+        "home_team": "Dallas Wings",
+        "user_name": "FLIGHTx12!",
+        "bet_status": {
+          "0": "won",
+          "1": "lost",
+          "2": "won"
+        },
+        "payout_data": {
+          "totalWin": 42,
+          "netPayout": 42,
+          "totalWager": 80,
+          "evaluatedAt": "2025-05-17T12:43:09.742Z"
+        }
+      }
+    ],
+    "2025-05-12": [
+      {
+        "id": 6,
+        "league": "NBA",
+        "bet_data": {
+          "bets": [
+            {
+              "player": "⭐Anthony Edwards",
+              "betDesc": "",
+              "betText": "Reach 20 points",
+              "betAmount": 30,
+              "riskLevel": "Medium",
+              "potentialWin": 18,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "⭐Rudy Gobert",
+              "betDesc": "",
+              "betText": "Reach 6 rebounds",
+              "betAmount": 30,
+              "riskLevel": "Medium",
+              "potentialWin": 18,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "",
+              "betDesc": "",
+              "betText": "Team Turnovers (less wins)",
+              "betAmount": 20,
+              "riskLevel": "Medium",
+              "potentialWin": 12,
+              "rolePlayerBoost": false
+            }
+          ],
+          "date": "5/14/2025, 11:44:07 PM",
+          "league": "NBA",
+          "awayTeam": "Golden State Warriors",
+          "homeTeam": " 🐺Minnesota Timberwolves",
+          "userName": "Jaybers8",
+          "user_name": "Jaybers8"
+        },
+        "bet_date": "2025-05-15T09:44:08.420Z",
+        "away_team": "Golden State Warriors",
+        "home_team": " 🐺Minnesota Timberwolves",
+        "user_name": "Jaybers8",
+        "bet_status": {
+          "0": "won",
+          "1": "won",
+          "2": "lost"
+        },
+        "payout_data": {
+          "totalWin": 36,
+          "netPayout": 36,
+          "totalWager": 80,
+          "evaluatedAt": "2025-05-15T04:44:45.334Z"
+        }
+      },
+      {
+        "id": 4,
+        "league": "NBA",
+        "bet_data": {
+          "bets": [
+            {
+              "player": "⭐Anthony Edwards",
+              "betDesc": "",
+              "betText": "Most Points",
+              "betAmount": 20,
+              "riskLevel": "High",
+              "potentialWin": 18,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "⭐Anthony Edwards",
+              "betDesc": "",
+              "betText": "Reach 20 points",
+              "betAmount": 50,
+              "riskLevel": "Medium",
+              "potentialWin": 30,
+              "rolePlayerBoost": false
+            },
+            {
+              "player": "",
+              "betDesc": "",
+              "betText": "Team Total Rebounds",
+              "betAmount": 60,
+              "riskLevel": "Medium",
+              "potentialWin": 36,
+              "rolePlayerBoost": false
+            }
+          ],
+          "date": "5/14/2025, 7:21:16 PM",
+          "league": "NBA",
+          "awayTeam": "Golden State Warriors",
+          "homeTeam": " 🐺Minnesota Timberwolves",
+          "userName": "FLIGHTx12!",
+          "user_name": "FLIGHTx12!"
+        },
+        "bet_date": "2025-05-15T05:21:16.538Z",
+        "away_team": "Golden State Warriors",
+        "home_team": " 🐺Minnesota Timberwolves",
+        "user_name": "FLIGHTx12!",
+        "bet_status": {
+          "0": "lost",
+          "1": "won",
+          "2": "lost"
+        },
+        "payout_data": {
+          "totalWin": 30,
+          "netPayout": 30,
+          "totalWager": 130,
+          "evaluatedAt": "2025-05-15T04:33:27.368Z"
+        }
+      }
+    ]
+  }
+}

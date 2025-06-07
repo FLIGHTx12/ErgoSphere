@@ -1,15 +1,15 @@
 [
   {
+    "GENRE": "Action",
     "TITLE": "Test Movie 1",
     "STATUS": "??",
-    "GENRE": "Action",
     "WATCHED": "2023-12-01",
     "TIMES SEEN": 3
   },
   {
+    "GENRE": "Comedy",
     "TITLE": "Test Movie 2",
     "STATUS": "??",
-    "GENRE": "Comedy",
     "WATCHED": "No",
     "TIMES SEEN": 0
   }

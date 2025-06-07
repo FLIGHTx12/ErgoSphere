@@ -1,437 +1,764 @@
 [
-    {"text": "EVIL ERGO DJINN!",
-    "image": ["../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn.png"
-    ,"../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn1.png"
-    ,"../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn2.png"
+  {
+    "id": 1,
+    "text": "Test Updated Item",
+    "image": [
+      "../assets/img/test.png"
     ],
-     "copies": 10,
-    "details": "You've brought forth a treacherous ERGO DJINN! Take -5 💔 damage to all party members.",
-    "genre": "hazzard",
+    "copies": 7,
+    "details": "Updated test item",
+    "genre": "test",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "CRITICAL FAILURE!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg",
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
+  },
+  {
+    "id": 2,
+    "text": "CRITICAL FAILURE!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg"
+    ],
     "copies": 15,
     "details": "⚠ Flawed Particle ⚠, HCMC has encountered a critical error.",
     "genre": "hazzard",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "CHARGED UP!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 3,
+    "text": "CHARGED UP!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png"
+    ],
     "copies": 1,
     "details": "You forget who, but someone thought it was a good idea to snort a god particle... GREAT IDEA!! Gain +10 💖 to all party members.",
     "genre": "helper",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "HABITICAN HEALERS!",
-    "image": ["../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
-    "../assets/img/Spin The Wheel Photos/Loot/Habitican healers2.png",
-    "../assets/img/Spin The Wheel Photos/Loot/Habitican healers3.png"],
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 4,
+    "text": "HABITICAN HEALERS!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers2.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers3.png"
+    ],
     "copies": 5,
     "details": "Habitican Healers have come to your aid! Gain +5 💖 to all party members. ",
     "genre": "helper",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "SNACK-A-THON!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 5,
+    "text": "SNACK-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png"
+    ],
     "copies": 5,
     "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week for everyone",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "GAME-A-THON!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 6,
+    "text": "GAME-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png"
+    ],
     "copies": 5,
     "details": "For the rest of the week, all freetime games cost no coins for everyone",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "GOLDEN TICKET!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 7,
+    "text": "GOLDEN TICKET!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png"
+    ],
     "copies": 4,
     "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit for everyone)",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "FEAST!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/feast.png",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 8,
+    "text": "FEAST!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/feast.png"
+    ],
     "copies": 2,
     "details": "Gained FEAST! the upcoming Friday or Sunday dinner can be changed to a Takout!!",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remains",
-    "link":""
-    },
-    {"text": "KIND ERGO DJINN!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 9,
+    "text": "KIND ERGO DJINN!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png"
+    ],
     "copies": 2,
     "details": "You've brought forth a Kind ERGO DJINN!, Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear. 🧞🧞🧞",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remains",
-    "link":""
-    },
-    {"text": "BECKONING HAND",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 10,
+    "text": "BECKONING HAND",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png"
+    ],
     "copies": 1,
     "details": "A portal opens up and a hand reaches out beckoning. Add 4 new probabilities to any Entertaiment pool.",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remains",
-    "link":""
-    },
-    {"text": "1 XBOX series X's",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 11,
+    "text": "1 XBOX series X's",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg"
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove after 2 both party members have found one",
-    "link":"https://a.co/d/6VWXgqg"
-    },
-    {"text": "Mattress topper",
-    "image": "https://www.cnet.com/a/img/resize/878c211441c1754593fb771e73de2ae2029f8686/hub/2023/12/04/8ceeb8e3-501b-4c36-b4b7-83631750593a/gettyimages-1568167702.jpg?auto=webp&fit=crop&height=1200&width=1200",
+    "cost": null,
+    "after_spin": "Remove after 2 both party members have found one",
+    "link": "https://a.co/d/6VWXgqg"
+  },
+  {
+    "id": 12,
+    "text": "EVIL ERGO DJINN!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn1.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn2.png"
+    ],
+    "copies": 10,
+    "details": "You've brought forth a treacherous ERGO DJINN! Take -5 💔 damage to all party members.",
+    "genre": "hazzard",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 13,
+    "text": "CRITICAL FAILURE!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg"
+    ],
+    "copies": 15,
+    "details": "⚠ Flawed Particle ⚠, HCMC has encountered a critical error.",
+    "genre": "hazzard",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 14,
+    "text": "CHARGED UP!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png"
+    ],
+    "copies": 1,
+    "details": "You forget who, but someone thought it was a good idea to snort a god particle... GREAT IDEA!! Gain +10 💖 to all party members.",
+    "genre": "helper",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 15,
+    "text": "HABITICAN HEALERS!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers2.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers3.png"
+    ],
+    "copies": 5,
+    "details": "Habitican Healers have come to your aid! Gain +5 💖 to all party members. ",
+    "genre": "helper",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 16,
+    "text": "SNACK-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png"
+    ],
+    "copies": 5,
+    "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week for everyone",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 17,
+    "text": "GAME-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png"
+    ],
+    "copies": 5,
+    "details": "For the rest of the week, all freetime games cost no coins for everyone",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 18,
+    "text": "GOLDEN TICKET!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png"
+    ],
     "copies": 4,
-    "details": "",
-    "genre": "Want",
+    "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit for everyone)",
+    "genre": "week modifiers",
     "type": "loot",
-    "cost": "$150",
-    "after spin": "Remove",
-    "link":"https://www.amazon.com/s?k=Mattress+topper"
-    },
-    {"text": "Oven Mitten",
-    "image": "https://c1.wallpaperflare.com/preview/145/422/486/stove-cooking-zone-electric-cooker-glove.jpg",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 19,
+    "text": "FEAST!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/feast.png"
+    ],
     "copies": 2,
-    "details": "",
-    "genre": "Want",
+    "details": "Gained FEAST! the upcoming Friday or Sunday dinner can be changed to a Takout!!",
+    "genre": "week modifiers",
     "type": "loot",
-    "cost": "$20",
-    "after spin": "Remove",
-    "link":"https://www.amazon.com/s?k=Oven+Mitten&crid=23QTB5O9XAQRX&sprefix=oven+mitten%2Caps%2C144&ref=nb_sb_noss_1"
-    },
-    {"text": "Spatula",
-    "image": "https://cdn.thewirecutter.com/wp-content/media/2024/11/spatula-2048px-4566.jpg?auto=webp&quality=75&width=1024",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 20,
+    "text": "KIND ERGO DJINN!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png"
+    ],
     "copies": 2,
-    "details": "",
+    "details": "You've brought forth a Kind ERGO DJINN!, Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear. 🧞🧞🧞",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 21,
+    "text": "BECKONING HAND",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png"
+    ],
+    "copies": 1,
+    "details": "A portal opens up and a hand reaches out beckoning. Add 4 new probabilities to any Entertaiment pool.",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 22,
+    "text": "1 XBOX series X's",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg"
+    ],
+    "copies": 1,
+    "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
     "genre": "Want",
     "type": "loot",
-    "cost": "$14",
-    "after spin": "Remove",
-    "link":"https://www.amazon.com/s?k=spatula&crid=STQ4Y512EC09&sprefix=Spatu%2Caps%2C143&ref=nb_sb_ss_ts-doa-p_1_5"
-    },
-    {"text": "Bathroom clock",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Bathroom clock (hide after spin).jpg",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove after 2 both party members have found one",
+    "link": "https://a.co/d/6VWXgqg"
+  },
+  {
+    "id": 23,
+    "text": "Mattress topper",
+    "image": [
+      "https://www.cnet.com/a/img/resize/878c211441c1754593fb771e73de2ae2029f8686/hub/2023/12/04/8ceeb8e3-501b-4c36-b4b7-83631750593a/gettyimages-1568167702.jpg?auto=webp&fit=crop&height=1200&width=1200"
+    ],
+    "copies": 1,
+    "details": null,
+    "genre": "Want",
+    "type": "loot",
+    "cost": 150,
+    "after_spin": "Remove",
+    "link": "https://www.amazon.com/s?k=Mattress+topper"
+  },
+  {
+    "id": 24,
+    "text": "Oven Mitten",
+    "image": [
+      "https://c1.wallpaperflare.com/preview/145/422/486/stove-cooking-zone-electric-cooker-glove.jpg"
+    ],
+    "copies": 1,
+    "details": null,
+    "genre": "Want",
+    "type": "loot",
+    "cost": 20,
+    "after_spin": "Remove",
+    "link": "https://www.amazon.com/s?k=Oven+Mitten&crid=23QTB5O9XAQRX&sprefix=oven+mitten%2Caps%2C144&ref=nb_sb_noss_1"
+  },
+  {
+    "id": 25,
+    "text": "Spatula",
+    "image": [
+      "https://cdn.thewirecutter.com/wp-content/media/2024/11/spatula-2048px-4566.jpg?auto=webp&quality=75&width=1024"
+    ],
+    "copies": 1,
+    "details": null,
+    "genre": "Want",
+    "type": "loot",
+    "cost": 14,
+    "after_spin": "Remove",
+    "link": "https://www.amazon.com/s?k=spatula&crid=STQ4Y512EC09&sprefix=Spatu%2Caps%2C143&ref=nb_sb_ss_ts-doa-p_1_5"
+  },
+  {
+    "id": 26,
+    "text": "Bathroom clock",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Bathroom clock (hide after spin).jpg"
+    ],
+    "copies": 1,
     "details": "JENLYSTIME 12 Inch Indoor/Outdoor Retro Waterproof Wall Clock with Thermometer Silent Round Quartz Battery Operated Easy to Read Decorative for Kitchen Patio,Bathroom,Deck,Porch,Pool(Blue)",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":"https://a.co/d/ebytpwT"
-    },
-    {"text": "PING PONG SET!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Ping-pong set.jpg",
-    "copies": 2,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/ebytpwT"
+  },
+  {
+    "id": 27,
+    "text": "PING PONG SET!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Ping-pong set.jpg"
+    ],
+    "copies": 1,
     "details": "Professional Ping Pong Net for Any Table | Portable Anywhere Table Tennis Set with Retractable Net, 2 and 4 Paddle Set, 3-Star Balls, Fitted Storage Case",
     "genre": "Want",
     "type": "loot",
-    "cost": "$50",
-    "after spin": "Remove",
-    "link":"https://a.co/d/5m0KWR4"
-    },
-    {"text": "1st floor clock",
-    "image": "https://images.pexels.com/photos/100733/pexels-photo-100733.jpeg?cs=srgb&dl=pexels-monoar-rahman-22660-100733.jpg&fm=jpg",
-    "copies": 0,
+    "cost": 50,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/5m0KWR4"
+  },
+  {
+    "id": 28,
+    "text": "1st floor clock",
+    "image": [
+      "https://images.pexels.com/photos/100733/pexels-photo-100733.jpeg?cs=srgb&dl=pexels-monoar-rahman-22660-100733.jpg&fm=jpg"
+    ],
+    "copies": 1,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "found",
-    "cost": "$18.91",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Kitchen scissors",
-    "image": "",
-    "copies": 0,
+    "cost": 1891,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 29,
+    "text": "Kitchen scissors",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "Astercook Heavy Duty Kitchen Shears with Serrated Blade, Ergonomic Handle - For Poultry, Herbs, Vegetables",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "MASSAGE GUN!",
-    "image": "https://m.media-amazon.com/images/I/61NOJil79KL._AC_SL1500_.jpg",
-    "copies": 3,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 30,
+    "text": "MASSAGE GUN!",
+    "image": [
+      "https://m.media-amazon.com/images/I/61NOJil79KL._AC_SL1500_.jpg"
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! RENPHO Massage Gun Deep Tissue, FSA HSA Eligible Portable Percussion Massager for Back and Neck, Gifts for Men and Women, Handheld Device with Carry Case, Active Green",
     "genre": "Want",
     "type": "loot",
-    "cost": "$100",
-    "after spin": "Remove",
-    "link":"https://a.co/d/e0zlhsk"
-    },
-    { "text": "BED COMFORTER!",
-    "image": "https://w0.peakpx.com/wallpaper/631/407/HD-wallpaper-white-bed-comforter-set-and-brown-wooden-bed-frame-beside-brown-wooden-nightstand.jpg",
+    "cost": 100,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/e0zlhsk"
+  },
+  {
+    "id": 31,
+    "text": "BED COMFORTER!",
+    "image": [
+      "https://w0.peakpx.com/wallpaper/631/407/HD-wallpaper-white-bed-comforter-set-and-brown-wooden-bed-frame-beside-brown-wooden-nightstand.jpg"
+    ],
     "copies": 2,
     "details": "YOU FOUND!! CozyLux Dark Grey Bed in a Bag - King Size Comforter Set, All Season Quilted Comforter, Flat & Fitted Sheets, Pillowcases",
     "genre": "Want",
     "type": "loot",
-    "cost": "$80",
-    "after spin": "Remove",
-    "link":"https://a.co/d/1nKPet3"
-    },
-    {"text": "BED SHEETS!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/New bed sheets.jpg",
+    "cost": 80,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/1nKPet3"
+  },
+  {
+    "id": 32,
+    "text": "BED SHEETS!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/New bed sheets.jpg"
+    ],
     "copies": 2,
     "details": "YOU FOUND!! LANE LINEN 100% Egyptian Cotton Queen Sheet Set (4 PC)  1000 Thread Count  Sateen Weave  Luxury Hotel Bedding Ultra Soft Queen Size Sheets Set Bed Sheets with 15” Deep Pocket  Charcoal",
     "genre": "Want",
     "type": "loot",
-    "cost": "$100",
-    "after spin": "Remove",
-    "link":"https://a.co/d/gMwcQtc"
-    },
-    {"text": "COMPUTER MONITOR!",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Computer Monitor.JPG",
+    "cost": 100,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/gMwcQtc"
+  },
+  {
+    "id": 33,
+    "text": "COMPUTER MONITOR!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Computer Monitor.JPG"
+    ],
     "copies": 1,
     "details": "Acer KB272 G0bi 27inch IPS Full HD (1920 x 1080) Gaming Office Monitor | Adaptive-Sync Support (FreeSync Compatible) | Up to 120Hz Refresh | 1ms (VRB) | sRGB 99% | Tilt | HDMI & VGA Ports",
     "genre": "Want",
     "type": "loot",
-    "cost": "$100",
-    "after spin": "Remove",
-    "link":"https://a.co/d/4kdU5ER"
-    },
-    {"text": "SMART TV!",
-    "image": "",
-    "copies": 6,
+    "cost": 100,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/4kdU5ER"
+  },
+  {
+    "id": 34,
+    "text": "SMART TV!",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! New living room TV! (hide after spin)",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "NEW ROBES!",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 35,
+    "text": "NEW ROBES!",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! New Robes",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove after 2 both party members have found one",
-    "link":""
-    },
-    {"text": "SALT ROCK LIGHT",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove after 2 both party members have found one",
+    "link": null
+  },
+  {
+    "id": 36,
+    "text": "SALT ROCK LIGHT",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! New Salt rock light",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "YOU FOUND!! New treadmill",
-    "image": "",
-    "copies": 0,
-    "details": "",
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 37,
+    "text": "YOU FOUND!! New treadmill",
+    "image": [
+      ""
+    ],
+    "copies": 1,
+    "details": null,
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "New yoga mats",
-    "image": "YOU FOUND!! New yoga mats",
-    "copies": 0,
-    "details": "",
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 38,
+    "text": "New yoga mats",
+    "image": [
+      "YOU FOUND!! New yoga mats"
+    ],
+    "copies": 1,
+    "details": null,
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "POACHED EGG MAKER",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 39,
+    "text": "POACHED EGG MAKER",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! Poached egg maker cozilife",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    {"text": "SPLATOON 3",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 40,
+    "text": "SPLATOON 3",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! Splatoon 3",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    },
-    { "text": "STEERING WHEEL COVER",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/Steering wheel cover (hide after spin).jpg",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 41,
+    "text": "STEERING WHEEL COVER",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Steering wheel cover (hide after spin).jpg"
+    ],
     "copies": 1,
     "details": "YOU FOUND!! KAFEEK Steering Wheel Cover, Universal 15 inch, Microfiber Leather Viscose, Breathable, Anti-Slip,Warm in Winter and Cool in Summer, Black",
     "genre": "Want",
     "type": "loot",
-    "cost": "$20",
-    "after spin": "",
-    "link":"https://www.amazon.com/dp/B07WNHR1JT/?coliid=I17RAGA2LWVJ0X&colid=3UL61GOF3BU6J&ref_=list_c_wl_lv_ov_lig_dp_it&th=1"
-    },
-    {"text": "Switch SPORTS equipment pack",
-    "image": "",
-    "copies": 0,
+    "cost": 20,
+    "after_spin": null,
+    "link": "https://www.amazon.com/dp/B07WNHR1JT/?coliid=I17RAGA2LWVJ0X&colid=3UL61GOF3BU6J&ref_=list_c_wl_lv_ov_lig_dp_it&th=1"
+  },
+  {
+    "id": 42,
+    "text": "Switch SPORTS equipment pack",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! Switch SPORTS equipment pack",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "LAUNDRY HAMPER",
-    "image": "../assets/img/Spin The Wheel Photos/Loot/VASAGLE Laundry Hamper.JPG",
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 43,
+    "text": "LAUNDRY HAMPER",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/VASAGLE Laundry Hamper.JPG"
+    ],
     "copies": 4,
     "details": "VASAGLE Laundry Hamper, Laundry Basket, Laundry Sorter with 2 Pull-Out and Removable Bags, Shelf, Metal Frame, 2 x 12.1 Gallons (46L), 28.8 x 13 x 28.4 Inches, Rustic Brown and Black UBLH201B01",
     "genre": "Want",
     "type": "loot",
-    "cost": "$60",
-    "after spin": "Remove",
-    "link":"https://a.co/d/iD1Y6N9"
-    },
-    {"text": "Dimmable front room lights",
-    "image": "",
-    "copies": 0,
+    "cost": 60,
+    "after_spin": "Remove",
+    "link": "https://a.co/d/iD1Y6N9"
+  },
+  {
+    "id": 44,
+    "text": "Dimmable front room lights",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!!: Dimmable front room lights",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "20gal fish tank",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 45,
+    "text": "20gal fish tank",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! 10 or 20-gallon fish tank, 30x15 max ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Bathroom rugs",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 46,
+    "text": "Bathroom rugs",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! Bathroom rugs",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    { "text": "Cupping Therapy Set",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 47,
+    "text": "Cupping Therapy Set",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Golf wedge",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 48,
+    "text": "Golf wedge",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "New Basketball",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 49,
+    "text": "New Basketball",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "New Kitchen mat",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 50,
+    "text": "New Kitchen mat",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "New Microphone for RockBand",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 51,
+    "text": "New Microphone for RockBand",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Outlet extender/adapter",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 52,
+    "text": "Outlet extender/adapter",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "Want",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Samsung Soundbar",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 53,
+    "text": "Samsung Soundbar",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "Remove",
-    "link":""
-    },
-    {"text": "Storage Freezer for the basement ",
-    "image": "",
-    "copies": 0,
+    "cost": null,
+    "after_spin": "Remove",
+    "link": null
+  },
+  {
+    "id": 54,
+    "text": "Storage Freezer for the basement ",
+    "image": [
+      ""
+    ],
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": "",
-    "after spin": "",
-    "link":""
-    }
-    ]
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  }
+]

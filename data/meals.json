@@ -102,141 +102,141 @@
   {
     "id": 21,
     "meal": "WORLD POLICE SPECIAL",
+    "mealType": "bingwa_brunch",
     "description": "1 cup Oatmeal, Half toast, 2 Turkey Bacon, 1 Kiwi and 1/2 cup blueberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 22,
     "meal": "CHEESY WREAK 'EMS ON A RAFT",
+    "mealType": "bingwa_brunch",
     "description": "2 Scrambled eggs with cheese and basil, 1 toast, 2 turkey bacon, Kiwi and 1/2 cup strawberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 23,
     "meal": "GOBERT SPECIAL",
+    "mealType": "bingwa_brunch",
     "description": "1 French toast w/ syrup. 2 Turkey bacon, Kiwi and 1/2 cup strawberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 24,
     "meal": "SUNNY SIDE ON A WRAFT W/ROLLERS",
+    "mealType": "bingwa_brunch",
     "description": "1 Sunny side up egg, 1 toast, 2 sausage links. Kiwi and 1/2 cup blueberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 25,
     "meal": "CHECKERBOARD, WREAK 'EM AND ROLLERS",
+    "mealType": "bingwa_brunch",
     "description": "2 Scrambled egg, 1 waffle, 2 sausage links.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 26,
     "meal": "EGG McVEEJAY ON HASH",
+    "mealType": "bingwa_brunch",
     "description": "1 Sunny side up round egg 1 sharp cheddar slice 1 turkey bacon on a buttered English muffin. Side hash brown patty W/ half apple.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 27,
     "meal": "AL GREENE SPECIAL",
+    "mealType": "bingwa_brunch",
     "description": "1 Cup buttered grits, 1/2 peanut butter English muffin, 4 sausage Links. 1/2 cup strawberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 28,
     "meal": "2 SHINGLES, A SHIMMY, A SHAKE AND WREAK 'EM",
+    "mealType": "bingwa_brunch",
     "description": "2 Buttered toast with Jam, 2 Scrambled Eggs, 1 Turkey Bacon  1/cup Blueberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 29,
     "meal": "GREEK POPE",
+    "mealType": "bingwa_brunch",
     "description": "1 poached egg on an English muffin. Blend egg with hot butter and drizzle on top. 1 cup Greek yogurt with granola and 1/2 cup Kiwi.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 30,
     "meal": "DEN-NOH COILS",
+    "mealType": "bingwa_brunch",
     "description": "Tamago Kake Gohan (1 cup rice with a 1 tbsp. soy sauce, raw egg mixed into rice and another egg on top) Salt, Sprinkle katsuobushi (bonito flakes) on top then add 1 tsp of the green part of spring onions chopped into small rings.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 31,
     "meal": "Sweepings, 2 silver dollars, and a couple country gentlemen, well dressed",
+    "mealType": "bingwa_brunch",
     "description": "1 cup shredded hash browns, 2 pancakes and 2 sausage links with 1 tablespoon of calcium butter, 2 tablespoons maple syrup.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 32,
     "meal": "Breakfast Quesadillas",
+    "mealType": "bingwa_brunch",
     "description": "fluffy scrambled eggs, green peppers, bacon and cheddar cheeses, all enveloped between two crispy tortilla shells.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 33,
     "meal": "Breakfast Skillet",
+    "mealType": "bingwa_brunch",
     "description": "Cheesy potatoes with bacon and over-easy eggs on top.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 34,
     "meal": "Avocado Toast",
+    "mealType": "bingwa_brunch",
     "description": "2 slices wheat toast topped with pureed avocado, cayenne powder and garlic. add chopped onion on top. side of 2 bacon and 4 strawberries.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 35,
     "meal": "Sausage, Egg and Cheese Breakfast muffins",
+    "mealType": "bingwa_brunch",
     "description": "scramble eggs. cook turkey meatballs. heat oven. top muffins with eggs sausage and top with cheese. bake. side of blueberries.  top with tsp of chili garlic oil.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 36,
     "meal": "Eggs and Oat Patty",
+    "mealType": "bingwa_brunch",
     "description": "2 eggs, 1 cup Quick Oats, 1 cup milk, shredded cheese. Pinch of salt, pinch of crushed red pepper, and pinch of basil.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 37,
     "meal": "Hash Brown Breakfast Sandwiches",
+    "mealType": "bingwa_brunch",
     "description": "2 hashbrown patties, 1 over-easy egg, bacon, and cheese. Assemble sandwich between the hashbrowns. Apple slices on the side.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 38,
     "meal": "Egg-In-A-Hole French Toast",
+    "mealType": "bingwa_brunch",
     "description": "1 Brochie bread, 1 egg, 2 sausages, and a side of strawberries. Create a hole in the slice of bread, and prepare French toast as usual. Allow both sides to lightly brown, then crack an egg in the hole and cook. Add a dash of salt and prepare with sausages and strawberries on the side. Syrup to taste.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 39,
     "meal": "PopEye and Olive Oil",
+    "mealType": "bingwa_brunch",
     "description": "2 eggs scrambled with spinach, 2 sasagues, a side of oatmeal, and apple slices.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   },
   {
     "id": 40,
     "meal": "Original Grand Slam",
+    "mealType": "bingwa_brunch",
     "description": "2 eggs cooked just the way a Bingwa likes [scrambled/over-easy/sunnyside up], 2 fluffy pancakes, 2 strips of crispy bacon, and 2 savory sasague links.",
-    "recipeStatus": "complete",
-    "mealType": "bingwa_brunch"
+    "recipeStatus": "complete"
   }
 ]

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const { syncLootToJSON, createDatabaseBackup } = require('../utils/jsonSync');
 
 // Get all loot items, optionally filtered by type
 router.get('/', async (req, res) => {
@@ -40,7 +41,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create a new loot item
+// Create a new loot item with auto-sync
 router.post('/', async (req, res) => {
   try {
     const { text, image, copies, details, genre, type, cost, after_spin, link } = req.body;
@@ -52,19 +53,32 @@ router.post('/', async (req, res) => {
       [text, JSON.stringify(imageArray), copies || 1, details, genre, type, cost, after_spin, link]
     );
     
-    res.status(201).json(result.rows[0]);
+    // Auto-sync to JSON file
+    const syncSuccess = await syncLootToJSON();
+    console.log(`✅ Created new loot item with auto-sync: ${syncSuccess}`);
+    
+    res.status(201).json({
+      ...result.rows[0],
+      syncStatus: syncSuccess
+    });
   } catch (err) {
     console.error('Error creating loot item:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// Update an existing loot item
+// Update an existing loot item with auto-sync
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { text, image, copies, details, genre, type, cost, after_spin, link } = req.body;
     const imageArray = Array.isArray(image) ? image : [image];
+    
+    // Create backup before updating
+    const backupResult = await pool.query('SELECT * FROM loot_items WHERE id = $1', [id]);
+    if (backupResult.rows.length > 0) {
+      await createDatabaseBackup('loot_item', backupResult.rows[0]);
+    }
     
     const result = await pool.query(
       `UPDATE loot_items SET 
@@ -78,24 +92,45 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Item not found' });
     }
     
-    res.json(result.rows[0]);
+    // Auto-sync to JSON file
+    const syncSuccess = await syncLootToJSON();
+    console.log(`✅ Updated loot item ${id} with auto-sync: ${syncSuccess}`);
+    
+    res.json({
+      ...result.rows[0],
+      syncStatus: syncSuccess
+    });
   } catch (err) {
     console.error('Error updating loot item:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// Delete a loot item
+// Delete a loot item with auto-sync
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    
+    // Create backup before deleting
+    const backupResult = await pool.query('SELECT * FROM loot_items WHERE id = $1', [id]);
+    if (backupResult.rows.length > 0) {
+      await createDatabaseBackup('loot_item_deleted', backupResult.rows[0]);
+    }
+    
     const result = await pool.query('DELETE FROM loot_items WHERE id = $1 RETURNING *', [id]);
     
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Item not found' });
     }
+      // Auto-sync to JSON file
+    const syncSuccess = await syncLootToJSON();
+    console.log(`✅ Deleted loot item ${id} with auto-sync: ${syncSuccess}`);
     
-    res.json({ message: 'Item deleted successfully', item: result.rows[0] });
+    res.json({ 
+      message: 'Item deleted successfully', 
+      item: result.rows[0],
+      syncStatus: syncSuccess
+    });
   } catch (err) {
     console.error('Error deleting loot item:', err);
     res.status(500).json({ error: err.message });
