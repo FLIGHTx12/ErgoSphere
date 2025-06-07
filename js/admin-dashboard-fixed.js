@@ -12,62 +12,6 @@ class AdminDashboard {
         this.isConnected = false;
         this.websocket = null;
         
-        // Category-specific field configurations
-        this.categoryConfigs = {
-            movies: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
-                showCopies: false
-            },
-            anime: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
-                showCopies: false
-            },
-            youtube: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
-                showCopies: false
-            },
-            singleplayer: {
-                fields: ['STATUS', 'COMPLETED?', 'TIME TO BEAT'],
-                completedField: 'COMPLETED?',
-                timeField: 'TIME TO BEAT',
-                showCopies: false
-            },
-            coop: {
-                fields: ['STATUS', 'COMPLETED?', 'copies'],
-                completedField: 'COMPLETED?',
-                showCopies: true
-            },
-            pvp: {
-                fields: ['STATUS', 'COMPLETED?', 'copies'],
-                completedField: 'COMPLETED?',
-                showCopies: true
-            },
-            loot: {
-                fields: ['STATUS', 'copies', 'cost'],
-                copiesField: 'copies',
-                costField: 'cost',
-                showCopies: true
-            },
-            sundaymorning: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
-                showCopies: false
-            },
-            sundaynight: {
-                fields: ['STATUS', 'WATCHED', 'TIMES SEEN'],
-                timesSeenField: 'TIMES SEEN',
-                watchedField: 'WATCHED',
-                showCopies: false
-            }
-        };
-        
         this.init();
     }
 
@@ -148,16 +92,20 @@ class AdminDashboard {
             bulkActionsBtn.addEventListener('click', () => {
                 this.showBulkModal();
             });
-        }        // Bulk modal buttons
-        const closeBulkModal = document.querySelector('.modal-close');
+        }
+
+        // Bulk modal buttons
+        const closeBulkModal = document.getElementById('close-bulk-modal');
         if (closeBulkModal) {
             closeBulkModal.addEventListener('click', () => {
                 this.hideBulkModal();
             });
-        }        const bulkActionButtons = document.querySelectorAll('[data-action]');
+        }
+
+        const bulkActionButtons = document.querySelectorAll('[data-bulk-action]');
         bulkActionButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const action = e.target.dataset.action;
+                const action = e.target.dataset.bulkAction;
                 this.executeBulkAction(action);
             });
         });
@@ -295,15 +243,14 @@ class AdminDashboard {
         } finally {
             this.hideLoading();
         }
-    }    renderTable() {
+    }
+
+    renderTable() {
         const tbody = document.getElementById('table-body');
         if (!tbody) return;
         
         const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
         const dataType = categoryBtn ? categoryBtn.dataset.type : null;
-        
-        // Update table headers based on category
-        this.updateTableHeaders();
         
         tbody.innerHTML = '';
         
@@ -320,156 +267,49 @@ class AdminDashboard {
         });
     }
 
-    updateTableHeaders() {
-        const headersRow = document.getElementById('table-headers');
-        if (!headersRow) return;
-        
-        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
-        const isLoot = this.currentCategory === 'loot';
-        
-        let headersHTML = `
-            <th class="col-checkbox">
-                <input type="checkbox" id="select-all">
-            </th>
-            <th class="col-name">Name</th>
-            <th class="col-status">Status</th>`;
-        
-        // Add category-specific headers
-        if (config.showCopies) {
-            headersHTML += `<th class="col-copies">Copies</th>`;
-        }
-        
-        if (config.completedField) {
-            headersHTML += `<th class="col-completed">Completed?</th>`;
-        }
-        
-        if (config.timesSeenField) {
-            headersHTML += `<th class="col-watched">Times Seen 👀</th>`;
-        }
-        
-        if (config.timeField && this.currentCategory === 'singleplayer') {
-            headersHTML += `<th class="col-time">Time to Beat</th>`;
-        }
-        
-        if (config.costField && isLoot) {
-            headersHTML += `<th class="col-cost">Cost 💰</th>`;
-        }
-        
-        headersHTML += `<th class="col-actions">Actions</th>`;
-        
-        headersRow.innerHTML = headersHTML;
-          // Re-setup select all functionality
-        this.setupSelectAllCheckbox();
-    }
-
-    setupSelectAllCheckbox() {
-        const selectAllCheckbox = document.getElementById('select-all');
-        if (selectAllCheckbox) {
-            // Remove existing event listeners
-            selectAllCheckbox.replaceWith(selectAllCheckbox.cloneNode(true));
-            
-            // Re-get the element and add event listener
-            const newSelectAllCheckbox = document.getElementById('select-all');
-            if (newSelectAllCheckbox) {
-                newSelectAllCheckbox.addEventListener('change', (e) => {
-                    const checkboxes = document.querySelectorAll('.item-checkbox');
-                    checkboxes.forEach((checkbox, index) => {
-                        checkbox.checked = e.target.checked;
-                        if (e.target.checked) {
-                            this.selectedItems.add(index);
-                        } else {
-                            this.selectedItems.delete(index);
-                        }
-                    });
-                });
-            }
-        }
-    }createTableRow(item, index, dataType) {
+    createTableRow(item, index, dataType) {
         const row = document.createElement('tr');
         row.dataset.index = index;
         
-        // Get category configuration
-        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
-        
-        // Determine item properties based on data structure and category
+        // Determine item properties based on data structure
         const isLoot = this.currentCategory === 'loot';
         const name = isLoot ? item.text : (item.TITLE || item.Title || item.text || 'Unknown');
         const status = isLoot ? (item.copies > 0 ? '🟢' : '🔴') : (item.STATUS || '');
+        const copies = isLoot ? item.copies : (item.copies || 0);
+        const watched = item.WATCHED || item.watched || item.times_seen || 0;
         
-        // Build row content based on category configuration
-        let rowContent = `
+        row.innerHTML = `
             <td>
                 <input type="checkbox" class="item-checkbox" data-index="${index}">
             </td>
             <td class="item-name">${name}</td>
             <td class="status-cell">
                 <button class="status-toggle" data-index="${index}">${status}</button>
-            </td>`;
-        
-        // Add category-specific columns
-        if (config.showCopies) {
-            const copies = item.copies || 0;
-            rowContent += `
+            </td>
             <td class="copies-cell">
                 <div class="number-control">
                     <button class="control-btn minus" data-action="minus" data-index="${index}">-</button>
                     <span class="copies-count ${this.getCopiesClass(copies)}">${copies}</span>
                     <button class="control-btn plus" data-action="plus" data-index="${index}">+</button>
                 </div>
-            </td>`;
-        }
-        
-        // Add completion field for games
-        if (config.completedField) {
-            const completed = item[config.completedField] || '';
-            rowContent += `
-            <td class="completed-cell">
-                <button class="completed-toggle" data-index="${index}">${completed}</button>
-            </td>`;
-        }
-        
-        // Add times seen field for movies/anime/youtube
-        if (config.timesSeenField) {
-            const timesSeen = item[config.timesSeenField] || item.watched || 0;
-            rowContent += `
+            </td>
             <td class="watched-cell">
                 <div class="number-control">
                     <button class="control-btn minus" data-action="watched-minus" data-index="${index}">-</button>
-                    <span class="watched-count">${timesSeen} 👀</span>
+                    <span class="watched-count">${watched} 👀</span>
                     <button class="control-btn plus" data-action="watched-plus" data-index="${index}">+</button>
                 </div>
-            </td>`;
-        }
-        
-        // Add time to beat field for single player games
-        if (config.timeField && this.currentCategory === 'singleplayer') {
-            const timeValue = item[config.timeField] || '';
-            rowContent += `
-            <td class="time-cell">
-                <span class="time-value">${timeValue}</span>
-            </td>`;
-        }
-        
-        // Add cost field for loot
-        if (config.costField && isLoot) {
-            const cost = item[config.costField] || 0;
-            rowContent += `
-            <td class="cost-cell">
-                <span class="cost-value">${cost} 💰</span>
-            </td>`;
-        }
-        
-        // Actions column
-        rowContent += `
+            </td>
             <td class="actions-cell">
                 <button class="edit-btn" data-index="${index}">✏️</button>
             </td>
         `;
         
-        row.innerHTML = rowContent;
         this.attachRowEventListeners(row, index);
         return row;
-    }    attachRowEventListeners(row, index) {
+    }
+
+    attachRowEventListeners(row, index) {
         // Checkbox
         const checkbox = row.querySelector('.item-checkbox');
         if (checkbox) {
@@ -488,14 +328,6 @@ class AdminDashboard {
         if (statusToggle) {
             statusToggle.addEventListener('click', () => {
                 this.toggleItemStatus(index);
-            });
-        }
-
-        // Completion toggle (for games)
-        const completedToggle = row.querySelector('.completed-toggle');
-        if (completedToggle) {
-            completedToggle.addEventListener('click', () => {
-                this.toggleItemCompletion(index);
             });
         }
 
@@ -537,46 +369,30 @@ class AdminDashboard {
         
         this.markAsModified(index);
         this.renderTable();
-    }    toggleItemCompletion(index) {
-        const item = this.currentData[index];
-        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
-        
-        if (config.completedField) {
-            // Cycle through completion statuses for games
-            const statuses = ['', '🏆', 'In Progress', 'Dropped'];
-            const currentIndex = statuses.indexOf(item[config.completedField] || '');
-            item[config.completedField] = statuses[(currentIndex + 1) % statuses.length];
-        }
-        
-        this.markAsModified(index);
-        this.renderTable();
     }
 
     handleNumberControl(action, index) {
         const item = this.currentData[index];
-        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
         switch (action) {
             case 'plus':
-                if (config.showCopies) {
-                    item.copies = (item.copies || 0) + 1;
-                }
+                item.copies = (item.copies || 0) + 1;
                 break;
             case 'minus':
-                if (config.showCopies) {
-                    item.copies = Math.max(0, (item.copies || 0) - 1);
-                }
+                item.copies = Math.max(0, (item.copies || 0) - 1);
                 break;
             case 'watched-plus':
-                if (config.timesSeenField) {
-                    const field = config.timesSeenField;
-                    item[field] = (item[field] || 0) + 1;
+                if (this.currentCategory === 'loot') {
+                    item.times_seen = (item.times_seen || 0) + 1;
+                } else {
+                    item.WATCHED = (item.WATCHED || 0) + 1;
                 }
                 break;
             case 'watched-minus':
-                if (config.timesSeenField) {
-                    const field = config.timesSeenField;
-                    item[field] = Math.max(0, (item[field] || 0) - 1);
+                if (this.currentCategory === 'loot') {
+                    item.times_seen = Math.max(0, (item.times_seen || 0) - 1);
+                } else {
+                    item.WATCHED = Math.max(0, (item.WATCHED || 0) - 1);
                 }
                 break;
         }
@@ -592,7 +408,9 @@ class AdminDashboard {
         if (row) {
             row.classList.add('modified');
         }
-    }    updateStats() {
+    }
+
+    updateStats() {
         const totalItems = this.currentData.length;
         const activeItems = this.currentData.filter(item => {
             if (this.currentCategory === 'loot') {
@@ -601,12 +419,12 @@ class AdminDashboard {
             return item.STATUS === '🟢';
         }).length;
         
-        const modifiedCount = this.modifiedItems.size;
+        const totalCopies = this.currentData.reduce((sum, item) => sum + (item.copies || 0), 0);
         
         const statsElements = {
-            'total-items': `${totalItems} items`,
-            'active-items': `${activeItems} active`,
-            'modified-items': `${modifiedCount} modified`
+            'total-items': totalItems,
+            'active-items': activeItems,
+            'total-copies': totalCopies
         };
         
         Object.entries(statsElements).forEach(([id, value]) => {
@@ -766,7 +584,8 @@ class AdminDashboard {
         try {
             this.selectedItems.forEach(index => {
                 const item = this.currentData[index];
-                  switch (action) {
+                
+                switch (action) {
                     case 'activate':
                         if (this.currentCategory === 'loot') {
                             item.copies = Math.max(1, item.copies || 0);
@@ -781,26 +600,11 @@ class AdminDashboard {
                             item.STATUS = '🔴';
                         }
                         break;
-                    case 'reset-copies':
-                        item.copies = 0;
-                        break;                    case 'reset-watched':
-                        if (this.currentCategory === 'loot') {
-                            item.times_seen = 0;
-                        } else {
-                            item.WATCHED = 0;
-                        }
+                    case 'increment-copies':
+                        item.copies = (item.copies || 0) + 1;
                         break;
-                    case 'mark-completed':
-                        const config = this.categoryConfigs[this.currentCategory];
-                        if (config && config.completedField) {
-                            item[config.completedField] = '✅';
-                        }
-                        break;
-                    case 'mark-incomplete':
-                        const configIncomplete = this.categoryConfigs[this.currentCategory];
-                        if (configIncomplete && configIncomplete.completedField) {
-                            item[configIncomplete.completedField] = '⏳';
-                        }
+                    case 'decrement-copies':
+                        item.copies = Math.max(0, (item.copies || 0) - 1);
                         break;
                 }
                 
@@ -834,15 +638,17 @@ class AdminDashboard {
 
     handleSyncStatusUpdate(syncData) {
         this.updateSyncStatus(syncData);
-    }    showLoading() {
-        const loading = document.getElementById('loading-state');
+    }
+
+    showLoading() {
+        const loading = document.getElementById('loading-indicator');
         if (loading) {
             loading.classList.remove('hidden');
         }
     }
 
     hideLoading() {
-        const loading = document.getElementById('loading-state');
+        const loading = document.getElementById('loading-indicator');
         if (loading) {
             loading.classList.add('hidden');
         }

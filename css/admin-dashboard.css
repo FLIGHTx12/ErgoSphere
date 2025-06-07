@@ -438,7 +438,10 @@ body {
 
 .col-status,
 .col-copies,
-.col-watched {
+.col-watched,
+.col-completed,
+.col-time,
+.col-cost {
     width: 120px;
     text-align: center;
 }
@@ -471,6 +474,64 @@ body {
 .copies-zero {
     color: var(--error-color);
     font-weight: 600;
+}
+
+/* Category-specific cell styles */
+.completed-cell {
+    text-align: center;
+    padding: 0.75rem;
+}
+
+.completed-toggle {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: var(--text-white);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    min-width: 60px;
+}
+
+.completed-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.time-cell {
+    text-align: center;
+    padding: 0.75rem;
+}
+
+.time-value {
+    color: var(--text-white);
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--glass-bg);
+    border-radius: 4px;
+    border: 1px solid var(--glass-border);
+    display: inline-block;
+    min-width: 80px;
+}
+
+.cost-cell {
+    text-align: center;
+    padding: 0.75rem;
+}
+
+.cost-value {
+    color: var(--warning-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    display: inline-block;
+    min-width: 70px;
 }
 
 /* Action buttons in table */
