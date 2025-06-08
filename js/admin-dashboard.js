@@ -170,12 +170,10 @@ class AdminDashboard {
             mobileCategoryToggle.addEventListener('click', () => {
                 this.toggleMobileCategoryNav();
             });
-        }
-
-        // Close mobile category nav when clicking outside
+        }        // Close mobile category nav when clicking outside
         document.addEventListener('click', (e) => {
-            const categoryNavContainer = document.querySelector('.category-nav-container');
-            const categoryNav = document.getElementById('category-nav');
+            const categoryNavContainer = document.querySelector('.mobile-category-nav-container');
+            const categoryNav = document.getElementById('mobile-category-nav');
             if (categoryNavContainer && !categoryNavContainer.contains(e.target) && categoryNav.classList.contains('expanded')) {
                 this.closeMobileCategoryNav();
             }
@@ -1039,11 +1037,9 @@ class AdminDashboard {
                 toast.classList.add('hidden');
             }, 5000);
         }
-    }
-
-    // Mobile Category Navigation Methods
+    }    // Mobile Category Navigation Methods
     toggleMobileCategoryNav() {
-        const categoryNav = document.getElementById('category-nav');
+        const categoryNav = document.getElementById('mobile-category-nav');
         const mobileToggle = document.getElementById('mobile-category-toggle');
         
         if (categoryNav && mobileToggle) {
@@ -1058,7 +1054,7 @@ class AdminDashboard {
     }
 
     openMobileCategoryNav() {
-        const categoryNav = document.getElementById('category-nav');
+        const categoryNav = document.getElementById('mobile-category-nav');
         const mobileToggle = document.getElementById('mobile-category-toggle');
         
         if (categoryNav && mobileToggle) {
@@ -1072,7 +1068,7 @@ class AdminDashboard {
     }
 
     closeMobileCategoryNav() {
-        const categoryNav = document.getElementById('category-nav');
+        const categoryNav = document.getElementById('mobile-category-nav');
         const mobileToggle = document.getElementById('mobile-category-toggle');
         
         if (categoryNav && mobileToggle) {

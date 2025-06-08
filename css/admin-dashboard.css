@@ -7,7 +7,7 @@
     --warning-color: #f59e0b;
     --error-color: #ef4444;
     --background-dark: #1f2937;
-    --background-light: #f9fafb;    --card-background: rgba(64, 64, 64, 0.1); /* Gun metal black tint for glass effect */
+    --background-light: #f9fafb;    --card-background: rgba(8, 8, 8, 0.2); /* Very dark gun metal black tint for glass effect */
     --text-primary: #1f2937;
     --text-secondary: #6b7280;
     --text-white: #ffffff;
@@ -16,7 +16,7 @@
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --glass-bg: rgba(47, 49, 54, 0.15); /* Gun metal black glass effect */
+    --glass-bg: rgba(6, 7, 8, 0.35); /* Nearly black gun metal glass effect */
     --glass-border: rgba(169, 175, 185, 0.3); /* Match ErgoSphere border colors */
 }
 
@@ -1049,9 +1049,7 @@ body {
     /* Mobile category navigation */
     .mobile-category-toggle {
         display: block;
-    }
-
-    .category-nav {
+    }    .mobile-category-nav {
         max-height: 0;
         overflow: hidden;
         padding: 0 1.5rem;
@@ -1059,14 +1057,14 @@ body {
         margin-bottom: 0;
     }
 
-    .category-nav.expanded {
+    .mobile-category-nav.expanded {
         max-height: 500px;
         padding: 1.5rem;
         opacity: 1;
         margin-bottom: 1rem;
     }
 
-    .category-nav .category-btn {
+    .mobile-category-nav .category-btn {
         flex: 1 1 calc(50% - 0.5rem);
         min-width: 200px;
     }
@@ -1122,8 +1120,7 @@ body {
         max-width: none;
     }
 
-    /* Enhanced mobile category navigation */
-    .category-nav .category-btn {
+    /* Enhanced mobile category navigation */    .mobile-category-nav .category-btn {
         flex: 1 1 100%;
         min-width: unset;
         text-align: center;
