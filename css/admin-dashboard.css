@@ -1,14 +1,14 @@
 /* ErgoSphere Admin Dashboard CSS */
 :root {
-    --primary-color: #6366f1;
-    --primary-dark: #4338ca;
+    --primary-color: #8b5cf6; /* Updated to match ErgoSphere purple theme */
+    --primary-dark: #7c3aed;
     --secondary-color: #8b5cf6;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --error-color: #ef4444;
     --background-dark: #1f2937;
     --background-light: #f9fafb;
-    --card-background: rgba(255, 255, 255, 0.1);
+    --card-background: rgba(128, 0, 128, 0.1); /* Purple tint for glass effect */
     --text-primary: #1f2937;
     --text-secondary: #6b7280;
     --text-white: #ffffff;
@@ -17,8 +17,8 @@
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-bg: rgba(128, 0, 128, 0.15); /* Purple-tinted glass effect */
+    --glass-border: rgba(169, 175, 185, 0.3); /* Match ErgoSphere border colors */
 }
 
 * {
@@ -28,56 +28,116 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(7, 7, 7);
+    background-image: url("../assets/img/backgrounds/nightSky.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: pan-bg 350s linear infinite;
     min-height: 100vh;
     color: var(--text-white);
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
 }
 
-/* Navigation Header */
-.nav-header {
+/* Standard ErgoSphere Navigation */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    box-shadow: -3px 1px 10px rgba(169, 175, 185, 0.6);
+    background-image: url("https://i.ibb.co/fSKYjtW/liquid-black-backgroung.jpg");
+    background-color: rgb(14, 13, 13);
+    transition: top 0.3s;
+    animation: pan-navbar 90s linear infinite;
+}
+
+/* Navbar state variations */
+#navbar.hidden {
+    top: -100px;
+}
+
+/* Navbar links */
+#navbar a {
+    color: rgb(12, 12, 12);
+    text-decoration: none;
+}
+
+/* Navbar buttons - overriding general button styles */
+#navbar button {
+    background-color: purple;
+    background-image: url("https://i.ibb.co/D7WptKF/purple-button3.jpg");
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.5s ease, transform 0.2s ease;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    box-sizing: border-box;
+    font-weight: 900;
+    text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+    padding: 5px 10px;
+    box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(128, 0, 128, 0.7);
+}
+
+#navbar button:hover {
+    transform: scale(1.05);
+}
+
+#navbar button:active {
+    transform: translateY(2px);
+}
+
+/* Override any conflicting general button styles to ensure 3D appearance */
+#navbar button {
+    padding: 5px 10px !important; 
+    box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(128, 0, 128, 0.7) !important;
+    max-height: none !important;
+}
+
+/* Connection Status Bar */
+.connection-status-bar {
+    position: fixed;
+    top: 60px; /* Below the navbar */
+    left: 0;
+    width: 100%;
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 10px 2rem;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
-.nav-brand h1 {
+.page-title {
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(45deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--text-white);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    margin: 0;
+    text-align: center;
+    flex: 1;
 }
 
 .connection-status {
@@ -100,10 +160,41 @@ body {
     50% { opacity: 0.5; }
 }
 
+/* Navbar Animation */
+@keyframes pan-navbar {
+    from { background-position: center top; }
+    to { background-position: bottom; }
+}
+
+/* Background Animation */
+@keyframes pan-bg {
+    0% {
+        background-size: 140%;
+        background-position: 50% 50%;
+    }
+    25% {
+        background-size: 140%;
+        background-position: 30% 30%;
+    }
+    50% {
+        background-size: 140%;
+        background-position: 70% 70%;
+    }
+    75% {
+        background-size: 100%;
+        background-position: 50% 50%;
+    }
+    100% {
+        background-size: 140%;
+        background-position: 50% 50%;
+    }
+}
+
 /* Main Dashboard Layout */
 .dashboard-main {
     display: flex;
     min-height: calc(100vh - 80px);
+    margin-top: 120px; /* Space for fixed navbar and connection status bar */
 }
 
 /* Sidebar */
@@ -788,8 +879,8 @@ body {
     .sidebar {
         position: fixed;
         left: 0;
-        top: 80px;
-        height: calc(100vh - 80px);
+        top: 120px; /* Updated for new navbar layout */
+        height: calc(100vh - 120px);
         transform: translateX(-100%);
         z-index: 1500;
     }
@@ -807,18 +898,29 @@ body {
         gap: 1rem;
     }
 
-    .nav-links {
-        display: none;
+    .connection-status-bar {
+        padding: 10px 1rem;
+    }
+    
+    .page-title {
+        font-size: 1.25rem;
     }
 }
 
 @media (max-width: 768px) {
-    .nav-header {
-        padding: 1rem;
+    .connection-status-bar {
+        padding: 8px 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        top: 50px; /* Adjusted for smaller navbar */
+    }
+    
+    .dashboard-main {
+        margin-top: 140px; /* Extra space for stacked connection bar */
     }
 
-    .nav-brand h1 {
-        font-size: 1.25rem;
+    .page-title {
+        font-size: 1.1rem;
     }
 
     .content-area {
@@ -839,6 +941,14 @@ body {
 
     .search-box {
         max-width: none;
+    }
+}
+
+/* Mobile background optimization */
+@media only screen and (max-width: 600px) {
+    body {
+        animation: none;
+        background-size: cover;
     }
 }
 
@@ -881,4 +991,32 @@ body {
 .col-last-watched, .col-series-length {
     text-align: center;
     font-weight: 600;
+}
+
+/* ErgoSphere Theme Integration */
+.data-card, .card {
+    text-shadow: 0px 3px 5px rgb(19, 80, 28);
+    box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.6);
+}
+
+.sidebar, .content-area {
+    border: 2px solid purple;
+    border-radius: 20px;
+    box-shadow: -1px -4px 10px rgba(169, 175, 185, 0.6);
+}
+
+.category-btn {
+    text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+    box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(128, 0, 128, 0.7);
+}
+
+.category-btn:hover {
+    transform: scale(1.02);
+}
+
+/* Make headings match ErgoSphere style */
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0px 3px 5px rgb(19, 80, 28);
+    color: white;
 }
