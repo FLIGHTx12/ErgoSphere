@@ -10,14 +10,16 @@ class AdminDashboard {
         this.modifiedItems = new Set();
         this.selectedItems = new Set();
         this.isConnected = false;
-        this.websocket = null;
-          // Category-specific field configurations
-        this.categoryConfigs = {            movies: {
-                fields: ['STATUS', 'ACTIVE', 'WATCHED'],
+        this.websocket = null;        
+        // Category-specific field configurations
+        this.categoryConfigs = {
+            movies: {
+                fields: ['STATUS', 'WATCHED'],
                 timesSeenField: 'WATCHED',
                 watchedField: 'WATCHED',
-                activeField: 'ACTIVE',
-                showCopies: false            },anime: {
+                showCopies: false
+            },
+            anime: {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
@@ -27,27 +29,34 @@ class AdminDashboard {
                 timesSeenField: 'WATCHED',
                 watchedField: 'WATCHED',
                 showCopies: false
-            },            singleplayer: {
+            },
+            singleplayer: {
                 fields: ['STATUS', 'COMPLETED?'],
                 completedField: 'COMPLETED?',
                 showCopies: false
-            },            coop: {
+            },
+            coop: {
                 fields: ['COMPLETED?', 'copies'],
                 completedField: 'COMPLETED?',
                 showCopies: true
-            },            pvp: {
+            },
+            pvp: {
                 fields: ['COMPLETED?', 'copies'],
                 completedField: 'COMPLETED?',
                 showCopies: true
-            },            loot: {
+            },
+            loot: {
                 fields: ['copies', 'cost'],
                 copiesField: 'copies',
                 costField: 'cost',
-                showCopies: true},            sundaymorning: {
+                showCopies: true
+            },
+            sundaymorning: {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
-            },            sundaynight: {
+            },
+            sundaynight: {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
@@ -110,7 +119,9 @@ class AdminDashboard {
             refreshBtn.addEventListener('click', () => {
                 this.refreshCurrentCategory();
             });
-        }        // Save all changes
+        }
+
+        // Save all changes
         const saveBtn = document.getElementById('save-all-btn');
         if (saveBtn) {
             saveBtn.addEventListener('click', () => {
@@ -135,13 +146,17 @@ class AdminDashboard {
             bulkActionsBtn.addEventListener('click', () => {
                 this.showBulkModal();
             });
-        }        // Bulk modal buttons
+        }
+
+        // Bulk modal buttons
         const closeBulkModal = document.querySelector('.modal-close');
         if (closeBulkModal) {
             closeBulkModal.addEventListener('click', () => {
                 this.hideBulkModal();
             });
-        }        const bulkActionButtons = document.querySelectorAll('[data-action]');
+        }
+
+        const bulkActionButtons = document.querySelectorAll('[data-action]');
         bulkActionButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const action = e.target.dataset.action;
@@ -221,7 +236,9 @@ class AdminDashboard {
                 text.textContent = 'Disconnected';
             }
         }
-    }    async loadCategoryData(category) {
+    }
+
+    async loadCategoryData(category) {
         this.showLoading();
         
         try {
@@ -261,7 +278,9 @@ class AdminDashboard {
         } finally {
             this.hideLoading();
         }
-    }    renderTable() {
+    }
+
+    renderTable() {
         const tbody = document.getElementById('table-body');
         if (!tbody) return;
         
@@ -284,7 +303,9 @@ class AdminDashboard {
             const row = this.createTableRow(item, index, dataType);
             tbody.appendChild(row);
         });
-    }    updateTableHeaders() {
+    }
+
+    updateTableHeaders() {
         const headersRow = document.getElementById('table-headers');
         if (!headersRow) return;
         
@@ -329,12 +350,9 @@ class AdminDashboard {
         if (config.timeField && this.currentCategory === 'singleplayer') {
             headersHTML += `<th class="col-time">Time to Beat</th>`;
         }
-        
-        if (config.costField && isLoot) {
+          if (config.costField && isLoot) {
             headersHTML += `<th class="col-cost">Cost 💰</th>`;
         }
-        
-        headersHTML += `<th class="col-actions">Actions</th>`;
         
         headersRow.innerHTML = headersHTML;
           // Re-setup select all functionality
@@ -459,8 +477,7 @@ class AdminDashboard {
                 <span class="time-value">${timeValue}</span>
             </td>`;
         }
-        
-        // Add cost field for loot
+          // Add cost field for loot
         if (config.costField && isLoot) {
             const cost = item[config.costField] || 0;
             rowContent += `
@@ -469,17 +486,12 @@ class AdminDashboard {
             </td>`;
         }
         
-        // Actions column
-        rowContent += `
-            <td class="actions-cell">
-                <button class="edit-btn" data-index="${index}">✏️</button>
-            </td>
-        `;
-        
         row.innerHTML = rowContent;
         this.attachRowEventListeners(row, index);
         return row;
-    }    attachRowEventListeners(row, index) {
+    }
+
+    attachRowEventListeners(row, index) {
         // Checkbox
         const checkbox = row.querySelector('.item-checkbox');
         if (checkbox) {
@@ -499,7 +511,9 @@ class AdminDashboard {
             statusToggle.addEventListener('click', () => {
                 this.toggleItemStatus(index);
             });
-        }        // Completion toggle (for games)
+        }
+
+        // Completion toggle (for games)
         const completedToggle = row.querySelector('.completed-toggle');
         if (completedToggle) {
             completedToggle.addEventListener('click', () => {
@@ -521,13 +535,7 @@ class AdminDashboard {
                 const action = e.target.dataset.action;
                 this.handleNumberControl(action, index);
             });
-        });        // Edit button
-        const editBtn = row.querySelector('.edit-btn');
-        if (editBtn) {
-            editBtn.addEventListener('click', () => {
-                this.editItem(index);
-            });
-        }
+        });
         
         // Editable fields (for Last Watched and Series Length)
         row.querySelectorAll('.editable-field').forEach(field => {
@@ -545,7 +553,9 @@ class AdminDashboard {
         if (copies <= 2) return 'low';
         if (copies <= 5) return 'medium';
         return 'high';
-    }    toggleItemStatus(index) {
+    }
+
+    toggleItemStatus(index) {
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
@@ -589,7 +599,9 @@ class AdminDashboard {
         
         this.markAsModified(index);
         this.renderTable();
-    }    handleNumberControl(action, index) {
+    }
+
+    handleNumberControl(action, index) {
         console.log('DEBUG: handleNumberControl called with action =', action, 'index =', index);
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
@@ -646,7 +658,9 @@ class AdminDashboard {
             this.markAsModified(index);
             this.updateStats();
         }
-    }    updateStats() {
+    }
+
+    updateStats() {
         const totalItems = this.currentData.length;
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
@@ -711,7 +725,9 @@ class AdminDashboard {
 
     async refreshCurrentCategory() {
         await this.loadCategoryData(this.currentCategory);
-    }    async saveAllChanges() {
+    }
+
+    async saveAllChanges() {
         console.log('DEBUG: saveAllChanges called');
         console.log('DEBUG: modifiedItems.size =', this.modifiedItems.size);
         console.log('DEBUG: modifiedItems contents =', Array.from(this.modifiedItems));
@@ -897,7 +913,9 @@ class AdminDashboard {
 
     handleSyncStatusUpdate(syncData) {
         this.updateSyncStatus(syncData);
-    }    showLoading() {
+    }
+
+    showLoading() {
         const loading = document.getElementById('loading-state');
         if (loading) {
             loading.classList.remove('hidden');
@@ -985,7 +1003,9 @@ class AdminDashboard {
                 }
             });
         }
-    }    showMessage(message) {
+    }
+
+    showMessage(message) {
         console.log(message);
         const toast = document.getElementById('status-toast');
         const toastMessage = document.getElementById('toast-message');
@@ -1063,7 +1083,9 @@ class AdminDashboard {
             mobileToggle.setAttribute('aria-expanded', 'false');
             categoryNav.setAttribute('aria-hidden', 'true');
         }
-    }    // Enhanced category switching for mobile
+    }
+
+    // Enhanced category switching for mobile
     async switchCategory(category) {
         // Update active button
         document.querySelectorAll('.category-btn').forEach(btn => {

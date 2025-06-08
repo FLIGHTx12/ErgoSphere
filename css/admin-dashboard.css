@@ -611,11 +611,6 @@ body {
     text-align: center;
 }
 
-.col-actions {
-    width: 150px;
-    text-align: center;
-}
-
 /* Status indicators */
 .status-active {
     color: var(--success-color);
