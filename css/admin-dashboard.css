@@ -7,8 +7,7 @@
     --warning-color: #f59e0b;
     --error-color: #ef4444;
     --background-dark: #1f2937;
-    --background-light: #f9fafb;
-    --card-background: rgba(128, 0, 128, 0.1); /* Purple tint for glass effect */
+    --background-light: #f9fafb;    --card-background: rgba(64, 64, 64, 0.1); /* Gun metal black tint for glass effect */
     --text-primary: #1f2937;
     --text-secondary: #6b7280;
     --text-white: #ffffff;
@@ -17,7 +16,7 @@
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --glass-bg: rgba(128, 0, 128, 0.15); /* Purple-tinted glass effect */
+    --glass-bg: rgba(47, 49, 54, 0.15); /* Gun metal black glass effect */
     --glass-border: rgba(169, 175, 185, 0.3); /* Match ErgoSphere border colors */
 }
 
@@ -328,11 +327,32 @@ body {
     transition: all 0.3s ease;
     font-weight: 500;
     white-space: nowrap;
+    /* Embossed/haptic button effect */
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+    text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
+    border: 1px solid rgba(128, 0, 128, 0.7);
+    position: relative;
+    transform: translateY(0);
 }
 
 .category-btn:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateX(5px);
+    transform: translateX(3px) translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.category-btn:active {
+    transform: translateX(1px) translateY(1px);
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.35),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .category-btn.active {
@@ -490,6 +510,22 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    /* Embossed/haptic button effect */
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transform: translateY(0);
+}
+
+.action-btn:active {
+    transform: translateY(2px);
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .refresh-btn {
@@ -499,7 +535,11 @@ body {
 
 .refresh-btn:hover {
     background: var(--primary-dark);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .save-btn {
@@ -509,7 +549,11 @@ body {
 
 .save-btn:hover {
     background: #059669;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .sync-btn {
@@ -519,7 +563,11 @@ body {
 
 .sync-btn:hover {
     background: #d97706;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .bulk-btn {
@@ -529,7 +577,11 @@ body {
 
 .bulk-btn:hover {
     background: #7c3aed;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Data Table Container */
@@ -869,11 +921,30 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    /* Embossed/haptic button effect */
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform: translateY(0);
 }
 
 .bulk-action-btn:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bulk-action-btn:active {
+    transform: translateY(1px);
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.35),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Toast Notifications */
@@ -1128,12 +1199,15 @@ body {
 
 .category-btn {
     text-shadow: 0px 2px 4px rgba(169, 175, 185, 0.6);
-    box-shadow: -1px -2px 5px rgba(255, 255, 255, 0.3), 1px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+        0 3px 6px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(128, 0, 128, 0.7);
 }
 
 .category-btn:hover {
-    transform: scale(1.02);
+    transform: translateX(3px) translateY(-1px) scale(1.02);
 }
 
 /* Make headings match ErgoSphere style */
