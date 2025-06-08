@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Admin Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: white; }
+        .test-section { margin-bottom: 30px; padding: 20px; border: 2px solid #333; border-radius: 10px; }
+        .success { color: #2ecc71; }
+        .error { color: #e74c3c; }
+        .loading { color: #f39c12; }
+        button { padding: 10px 20px; margin: 5px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        .log { background: #2c2c2c; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+        #websocket-status { padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .connected { background: #27ae60; }
+        .disconnected { background: #e74c3c; }
+    </style>
+</head>
+<body>
+    <h1>ErgoSphere Database & Admin Dashboard Test</h1>
+
+    <div class="test-section">
+        <h2>Database Connectivity Test</h2>
+        <button onclick="testDatabaseConnection()">Test Database Connection</button>
+        <div id="db-test-result" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>WebSocket Real-time Updates Test</h2>
+        <div id="websocket-status" class="disconnected">WebSocket: Disconnected</div>
+        <button onclick="testWebSocket()">Test WebSocket Connection</button>
+        <button onclick="sendTestUpdate()">Send Test Update</button>
+        <div id="websocket-log" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Admin Dashboard Data Loading Test</h2>
+        <button onclick="testLoadData('coop')">Test Load CO-OP Data</button>
+        <button onclick="testLoadData('loot')">Test Load LOOT Data</button>
+        <button onclick="testLoadData('movies')">Test Load Movies Data</button>
+        <div id="data-test-result" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Save Data Test</h2>
+        <button onclick="testSaveData()">Test Save Data</button>
+        <div id="save-test-result" class="log"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>API Health Check</h2>
+        <button onclick="testHealthCheck()">Test API Health</button>
+        <div id="health-test-result" class="log"></div>
+    </div>
+
+    <script>
+        let websocket = null;
+
+        function log(elementId, message, className = '') {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            element.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            element.scrollTop = element.scrollHeight;
+        }
+
+        async function testDatabaseConnection() {
+            log('db-test-result', 'Testing database connection...', 'loading');
+            
+            try {
+                const response = await fetch('/api/health');
+                const result = await response.json();
+                
+                if (result.database && result.database.status === 'connected') {
+                    log('db-test-result', `✅ Database connected successfully!`, 'success');
+                    log('db-test-result', `Response time: ${result.database.responseTime}ms`, 'success');
+                    log('db-test-result', `Tables found: ${JSON.stringify(result.database.tables)}`, 'success');
+                } else {
+                    log('db-test-result', `❌ Database connection failed: ${JSON.stringify(result)}`, 'error');
+                }
+            } catch (error) {
+                log('db-test-result', `❌ Error testing database: ${error.message}`, 'error');
+            }
+        }
+
+        function testWebSocket() {
+            log('websocket-log', 'Connecting to WebSocket...', 'loading');
+            
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}`;
+            
+            websocket = new WebSocket(wsUrl);
+            
+            websocket.onopen = function() {
+                log('websocket-log', '✅ WebSocket connected!', 'success');
+                document.getElementById('websocket-status').innerHTML = 'WebSocket: Connected';
+                document.getElementById('websocket-status').className = 'connected';
+            };
+            
+            websocket.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                log('websocket-log', `📩 Received: ${JSON.stringify(data)}`, 'success');
+            };
+            
+            websocket.onclose = function() {
+                log('websocket-log', '❌ WebSocket disconnected', 'error');
+                document.getElementById('websocket-status').innerHTML = 'WebSocket: Disconnected';
+                document.getElementById('websocket-status').className = 'disconnected';
+            };
+            
+            websocket.onerror = function(error) {
+                log('websocket-log', `❌ WebSocket error: ${error}`, 'error');
+            };
+        }
+
+        function sendTestUpdate() {
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                const testMessage = {
+                    type: 'test',
+                    message: 'Test update from admin dashboard',
+                    timestamp: Date.now()
+                };
+                websocket.send(JSON.stringify(testMessage));
+                log('websocket-log', `📤 Sent test message: ${JSON.stringify(testMessage)}`, 'loading');
+            } else {
+                log('websocket-log', '❌ WebSocket not connected', 'error');
+            }
+        }
+
+        async function testLoadData(category) {
+            log('data-test-result', `Testing data load for category: ${category}...`, 'loading');
+            
+            try {
+                const response = await fetch(`/api/data/${category}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    log('data-test-result', `✅ ${category} data loaded successfully! ${Array.isArray(data) ? data.length : 'Object'} items`, 'success');
+                    if (Array.isArray(data) && data.length > 0) {
+                        log('data-test-result', `Sample item: ${JSON.stringify(data[0])}`, 'success');
+                    }
+                } else {
+                    log('data-test-result', `❌ Failed to load ${category} data: ${JSON.stringify(data)}`, 'error');
+                }
+            } catch (error) {
+                log('data-test-result', `❌ Error loading ${category} data: ${error.message}`, 'error');
+            }
+        }
+
+        async function testSaveData() {
+            log('save-test-result', 'Testing data save functionality...', 'loading');
+            
+            // Create test data
+            const testData = [
+                { name: 'Test Item 1', copies: 1, STATUS: '🟢' },
+                { name: 'Test Item 2', copies: 0, STATUS: '🔴' }
+            ];
+            
+            try {
+                const response = await fetch('/api/data/test-category', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    log('save-test-result', `✅ Test data saved successfully!`, 'success');
+                    log('save-test-result', `Response: ${JSON.stringify(result)}`, 'success');
+                } else {
+                    log('save-test-result', `❌ Failed to save test data: ${JSON.stringify(result)}`, 'error');
+                }
+            } catch (error) {
+                log('save-test-result', `❌ Error saving test data: ${error.message}`, 'error');
+            }
+        }
+
+        async function testHealthCheck() {
+            log('health-test-result', 'Testing API health check...', 'loading');
+            
+            try {
+                const response = await fetch('/api/health');
+                const result = await response.json();
+                
+                if (response.ok) {
+                    log('health-test-result', `✅ API Health Check passed!`, 'success');
+                    log('health-test-result', `Status: ${result.status}`, 'success');
+                    log('health-test-result', `Version: ${result.version}`, 'success');
+                    log('health-test-result', `Database: ${result.database.status}`, 'success');
+                    log('health-test-result', `Response time: ${result.database.responseTime}ms`, 'success');
+                } else {
+                    log('health-test-result', `❌ API Health Check failed: ${JSON.stringify(result)}`, 'error');
+                }
+            } catch (error) {
+                log('health-test-result', `❌ Error with health check: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                testDatabaseConnection();
+                testWebSocket();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

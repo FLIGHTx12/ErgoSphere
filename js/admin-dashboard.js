@@ -985,16 +985,40 @@ class AdminDashboard {
                 }
             });
         }
-    }
-
-    showMessage(message) {
+    }    showMessage(message) {
         console.log(message);
-        // TODO: Implement toast notification system
+        const toast = document.getElementById('status-toast');
+        const toastMessage = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+        
+        if (toast && toastMessage && toastIcon) {
+            toastMessage.textContent = message;
+            toastIcon.textContent = '✅';
+            toast.classList.remove('hidden');
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
     }
 
     showError(message) {
         console.error(message);
-        // TODO: Implement error notification system
+        const toast = document.getElementById('status-toast');
+        const toastMessage = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+        
+        if (toast && toastMessage && toastIcon) {
+            toastMessage.textContent = message;
+            toastIcon.textContent = '❌';
+            toast.classList.remove('hidden');
+            
+            // Auto-hide after 5 seconds for errors (longer to ensure user sees it)
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
     }
 
     // Mobile Category Navigation Methods
