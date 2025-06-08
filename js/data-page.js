@@ -823,14 +823,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getDataFile() {
     const path = window.location.pathname;
-    const filename = path.split('/').pop().replace('.html', '.json');
-    return `../../data/${filename}`;
+    const category = path.split('/').pop().replace('.html', '');
+    // Use API endpoint instead of direct file access
+    return `/api/data/${category}`;
   }
 
   function loadItems(file, containerId) {
     fetch(file)
-      .then(response => response.json())
-      .then(data => {
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })      .then(data => {
+        console.log(`Successfully loaded data with ${Array.isArray(data) ? data.length : 0} items`);
+        
         // Check if data has LAST WATCHED entries
         hasWatchedData = Array.isArray(data) && checkForWatchedData(data);
         hasCompletedData = Array.isArray(data) && checkForCompletedData(data);
@@ -1352,9 +1359,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply initial filters and sort
         applyAllFilters();
         if (searchInput) searchInput.value = '';
-        refreshAllItemRows();
-      })
-      .catch(error => console.error('Error loading data:', error));
+        refreshAllItemRows();      })
+      .catch(error => {
+        console.error('Error loading data:', error);
+        const container = document.getElementById(containerId);
+        container.innerHTML = `
+          <div class="error-message" style="padding: 20px; text-align: center; color: red;">
+            <h3>Error Loading Data</h3>
+            <p>${error.message || 'Failed to load data. Please try again or contact support.'}</p>
+            <button onclick="location.reload()">Retry</button>
+          </div>
+        `;
+      });
   }
 
   
