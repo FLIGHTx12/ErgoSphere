@@ -194,53 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
     e.stopPropagation();
     genreDropdown.classList.toggle('show');
   });
-
   function populateGenreDropdown(data) {
-    const genres = new Set();
-    
-    // Clear existing options
-    while (genreDropdown.firstChild) {
-      genreDropdown.removeChild(genreDropdown.firstChild);
-    }
-    
-    // Extract only non-empty genres
-    data.forEach(item => {
-      const genreString = item.GENRE || item.genre || '';
-      if (genreString.trim() !== '') {
-        genreString.split(/[,&-]/).forEach(genre => {
-          const trimmedGenre = genre.trim();
-          if (trimmedGenre) genres.add(trimmedGenre);
-        });
-      }
-    });
-
-    // Only show genre filter if we have genres
-    if (genres.size > 0) {
-      const allOption = document.createElement('div');
-      allOption.className = 'genre-option';
-      allOption.textContent = 'All';
-      allOption.addEventListener('click', () => {
-        genreBtn.textContent = 'Genre: All';
-        genreDropdown.classList.remove('show');
-        filterByGenre('all');
-      });
-      genreDropdown.appendChild(allOption);
-
-      Array.from(genres).sort().forEach(genre => {
-        const option = document.createElement('div');
-        option.className = 'genre-option';
-        option.textContent = genre;
-        option.addEventListener('click', () => {
-          genreBtn.textContent = `Genre: ${genre}`;
-          genreDropdown.classList.remove('show');
-          filterByGenre(genre);
-        });
-        genreDropdown.appendChild(option);
-      });
-      genreBtn.style.display = 'block';
-    } else {
-      genreBtn.style.display = 'none';
-    }
+    // Genre filtering disabled - always hide genre button
+    genreBtn.style.display = 'none';
   }
 
   function filterByGenre(selectedGenre) {

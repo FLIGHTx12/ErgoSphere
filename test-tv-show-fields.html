@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TV Show Fields Test</title>
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .test-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .test-table th, .test-table td {
+            padding: 10px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+        .test-table th {
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>TV Show Fields Test</h1>
+    
+    <div class="test-section">
+        <h2>Editable Fields Test</h2>
+        <table class="test-table">
+            <thead>
+                <tr>
+                    <th>Show Name</th>
+                    <th class="col-last-watched">Last Watched</th>
+                    <th class="col-series-length">Series Length</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Attack on Titan</td>
+                    <td class="last-watched-cell">
+                        <input type="text" class="editable-field" value="se4" placeholder="e.g. se1, se2">
+                    </td>
+                    <td class="series-length-cell">
+                        <input type="text" class="editable-field" value="4 seasons, 75 episodes" placeholder="e.g. 3 season, 10 episodes">
+                    </td>
+                </tr>
+                <tr>
+                    <td>One Piece</td>
+                    <td class="last-watched-cell">
+                        <input type="text" class="editable-field" value="ep1050" placeholder="e.g. se1, se2">
+                    </td>
+                    <td class="series-length-cell">
+                        <input type="text" class="editable-field" value="1000+ episodes" placeholder="e.g. 3 season, 10 episodes">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="test-section">
+        <h2>Category Configuration Test</h2>
+        <pre id="category-config"></pre>
+    </div>
+
+    <script src="../js/admin-dashboard.js"></script>
+    <script>
+        // Test the category configurations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create a test instance to access configurations
+            const testDashboard = new AdminDashboard();
+            
+            // Display category configurations
+            const configElement = document.getElementById('category-config');
+            configElement.textContent = JSON.stringify({
+                anime: testDashboard.categoryConfigs.anime,
+                sundaymorning: testDashboard.categoryConfigs.sundaymorning,
+                sundaynight: testDashboard.categoryConfigs.sundaynight
+            }, null, 2);
+
+            // Test editable field functionality
+            document.querySelectorAll('.editable-field').forEach((field, index) => {
+                field.addEventListener('change', (e) => {
+                    console.log(`Field ${index} changed to: ${e.target.value}`);
+                    e.target.classList.add('modified');
+                });
+                
+                field.addEventListener('focus', () => {
+                    console.log(`Field ${index} focused`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
