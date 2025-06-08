@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Entertainment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #000;
+            color: #fff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { background: #0d4d2d; border: 1px solid #28a745; }
+        .error { background: #4d0d0d; border: 1px solid #dc3545; }
+        .loading { background: #4d4d0d; border: 1px solid #ffc107; }
+        button {
+            background: #6f42c1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #8a63d2;
+        }
+    </style>
+</head>
+<body>
+    <h1>ErgoSphere Entertainment Page Test</h1>
+    
+    <div class="test-section">
+        <h2>API Endpoint Tests</h2>
+        <div id="api-tests"></div>
+        <button onclick="testAllAPIs()">Test All APIs</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Page Navigation Test</h2>
+        <div id="nav-test"></div>
+        <button onclick="testNavigation()">Test Entertainment Page</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Data Structure Test</h2>
+        <div id="data-tests"></div>
+        <button onclick="testDataStructure()">Test Data Formats</button>
+    </div>
+
+    <script>
+        async function testAllAPIs() {
+            const apiContainer = document.getElementById('api-tests');
+            apiContainer.innerHTML = '<div class="test-result loading">Testing APIs...</div>';
+            
+            const apis = [
+                { name: 'Movies', endpoint: '/api/data/movies' },
+                { name: 'Anime', endpoint: '/api/data/anime' },
+                { name: 'CO-OP Games', endpoint: '/api/data/coop' },
+                { name: 'PVP Games', endpoint: '/api/data/pvp' },
+                { name: 'Single Player', endpoint: '/api/data/singleplayer' },
+                { name: 'YouTube', endpoint: '/api/data/youtube' },
+                { name: 'Sunday Morning', endpoint: '/api/data/sundaymorning' },
+                { name: 'Sunday Night', endpoint: '/api/data/sundaynight' },
+                { name: 'Loot', endpoint: '/api/loot' }
+            ];
+            
+            let results = '';
+            
+            for (const api of apis) {
+                try {
+                    const response = await fetch(api.endpoint);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const count = Array.isArray(data) ? data.length : Object.keys(data).length;
+                        results += `<div class="test-result success">✅ ${api.name}: ${count} items loaded</div>`;
+                    } else {
+                        results += `<div class="test-result error">❌ ${api.name}: HTTP ${response.status}</div>`;
+                    }
+                } catch (error) {
+                    results += `<div class="test-result error">❌ ${api.name}: ${error.message}</div>`;
+                }
+            }
+            
+            apiContainer.innerHTML = results;
+        }
+        
+        function testNavigation() {
+            const navContainer = document.getElementById('nav-test');
+            navContainer.innerHTML = '<div class="test-result loading">Testing navigation...</div>';
+            
+            // Test if Entertainment page exists
+            fetch('/pages/Entertainment.html')
+                .then(response => {
+                    if (response.ok) {
+                        navContainer.innerHTML = `
+                            <div class="test-result success">✅ Entertainment page exists and is accessible</div>
+                            <div><a href="/pages/Entertainment.html" target="_blank" style="color: #6f42c1;">🔗 Open Entertainment Page</a></div>
+                        `;
+                    } else {
+                        navContainer.innerHTML = `<div class="test-result error">❌ Entertainment page not accessible (HTTP ${response.status})</div>`;
+                    }
+                })
+                .catch(error => {
+                    navContainer.innerHTML = `<div class="test-result error">❌ Navigation test failed: ${error.message}</div>`;
+                });
+        }
+        
+        async function testDataStructure() {
+            const dataContainer = document.getElementById('data-tests');
+            dataContainer.innerHTML = '<div class="test-result loading">Testing data structure...</div>';
+            
+            try {
+                // Test movies data structure
+                const response = await fetch('/api/data/movies');
+                if (response.ok) {
+                    const movies = await response.json();
+                    if (Array.isArray(movies) && movies.length > 0) {
+                        const sample = movies[0];
+                        const hasTitle = sample.Title || sample.TITLE || sample.name;
+                        const hasImage = sample.imageUrl || sample.image;
+                        const hasDescription = sample.DESCRIPTION || sample.description;
+                        
+                        dataContainer.innerHTML = `
+                            <div class="test-result success">✅ Movies data loaded: ${movies.length} items</div>
+                            <div class="test-result ${hasTitle ? 'success' : 'error'}">${hasTitle ? '✅' : '❌'} Title field: ${hasTitle || 'Missing'}</div>
+                            <div class="test-result ${hasImage ? 'success' : 'error'}">${hasImage ? '✅' : '❌'} Image field: ${hasImage ? 'Present' : 'Missing'}</div>
+                            <div class="test-result ${hasDescription ? 'success' : 'error'}">${hasDescription ? '✅' : '❌'} Description field: ${hasDescription ? 'Present' : 'Missing'}</div>
+                        `;
+                    } else {
+                        dataContainer.innerHTML = '<div class="test-result error">❌ Movies data is empty or not an array</div>';
+                    }
+                } else {
+                    dataContainer.innerHTML = `<div class="test-result error">❌ Failed to load movies data (HTTP ${response.status})</div>`;
+                }
+            } catch (error) {
+                dataContainer.innerHTML = `<div class="test-result error">❌ Data structure test failed: ${error.message}</div>`;
+            }
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            testNavigation();
+        });
+    </script>
+</body>
+</html>

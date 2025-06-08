@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErgoSphere Entertainment</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>">    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/entertainment.css">
+</head>
+<body>
+    <!-- Moving Stars Background -->
+    <div class="moving-stars"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <button><a href="../index.html">HOME</a></button>
+        <button><a href="admin/coop.html">CO-OP</a></button>
+        <button><a href="admin/loot.html">LOOT</a></button>
+        <button><a href="admin/pvp.html">PVP</a></button>
+        <button><a href="admin/youtube.html">YOUTUBE</a></button>
+        <button><a href="admin/anime.html">ANIME</a></button>
+        <button><a href="admin/sundaymorning.html">SUNDAY MORNING</a></button>
+        <button><a href="admin/sundaynight.html">SUNDAY NIGHT</a></button>
+        <button><a href="admin/singleplayer.html">SINGLE PLAYER</a></button>
+    </nav>
+
+    <hr>
+    <header>
+        <h1>🎬 ErgoSphere Entertainment</h1>
+        <p class="subtitle">Discover your next adventure</p>
+    </header>
+    <hr>    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-info">
+                <h2 id="hero-title">Welcome to Entertainment Hub</h2>
+                <p id="hero-description">Explore movies, anime, games, and YouTube content curated just for you.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="hero-play">▶ Explore Now</button>
+                    <button class="btn-secondary" id="hero-info">ℹ More Info</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <main class="entertainment-main">
+        <!-- Data Pages Carousel -->
+        <section class="carousel-section">
+            <h2 class="section-title">📚 Browse Categories</h2>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" data-carousel="categories">‹</button>
+                <div class="carousel" id="categories-carousel">
+                    <div class="category-card" data-category="movies">
+                        <div class="category-image">
+                            <img src="https://images.alphacoders.com/804/804427.jpg" alt="Movies" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🎬 Movies</h3>
+                            <p>Blockbusters, classics, and hidden gems</p>
+                            <a href="admin/movies.html" class="category-link">Browse Movies</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="anime">
+                        <div class="category-image">
+                            <img src="https://4kwallpapers.com/images/wallpapers/secret-level-prime-3840x2160-19884.jpg" alt="Anime" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🎌 Anime</h3>
+                            <p>Japanese animation series and films</p>
+                            <a href="admin/anime.html" class="category-link">Browse Anime</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="coop">
+                        <div class="category-image">
+                            <img src="https://images.alphacoders.com/132/1321822.jpeg" alt="CO-OP Games" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🎮 CO-OP Games</h3>
+                            <p>Cooperative gaming experiences</p>
+                            <a href="admin/coop.html" class="category-link">Browse CO-OP</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="pvp">
+                        <div class="category-image">
+                            <img src="https://images4.alphacoders.com/132/1321822.jpeg" alt="PVP Games" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>⚔️ PVP Games</h3>
+                            <p>Competitive multiplayer battles</p>
+                            <a href="admin/pvp.html" class="category-link">Browse PVP</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="singleplayer">
+                        <div class="category-image">
+                            <img src="https://images.alphacoders.com/804/804427.jpg" alt="Single Player Games" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🕹️ Single Player</h3>
+                            <p>Solo gaming adventures</p>
+                            <a href="admin/singleplayer.html" class="category-link">Browse Single Player</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="youtube">
+                        <div class="category-image">
+                            <img src="https://4kwallpapers.com/images/wallpapers/secret-level-prime-3840x2160-19884.jpg" alt="YouTube" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>📺 YouTube</h3>
+                            <p>Curated video content and channels</p>
+                            <a href="admin/youtube.html" class="category-link">Browse YouTube</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="loot">
+                        <div class="category-image">
+                            <img src="https://images.alphacoders.com/132/1321822.jpeg" alt="LOOT Boxes" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>📦 LOOT Boxes</h3>
+                            <p>Collectibles and special items</p>
+                            <a href="admin/loot.html" class="category-link">Browse LOOT</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="sundaymorning">
+                        <div class="category-image">
+                            <img src="https://images.justwatch.com/backdrop/319480290/s1440/7seeds.avif" alt="Sunday Morning" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🌅 Sunday Morning</h3>
+                            <p>Weekend morning entertainment</p>
+                            <a href="admin/sundaymorning.html" class="category-link">Browse Sunday Morning</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="sundaynight">
+                        <div class="category-image">
+                            <img src="https://4kwallpapers.com/images/wallpapers/secret-level-prime-3840x2160-19884.jpg" alt="Sunday Night" loading="lazy">
+                        </div>
+                        <div class="category-info">
+                            <h3>🌙 Sunday Night</h3>
+                            <p>Weekend evening entertainment</p>
+                            <a href="admin/sundaynight.html" class="category-link">Browse Sunday Night</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="categories">›</button>
+            </div>
+        </section>
+
+        <!-- Featured Content Carousel -->
+        <section class="carousel-section">
+            <h2 class="section-title">⭐ Featured Content</h2>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" data-carousel="featured">‹</button>
+                <div class="carousel horizontal-scroll" id="featured-carousel">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <button class="carousel-nav next" data-carousel="featured">›</button>
+            </div>
+        </section>
+
+        <!-- Recently Active Carousel -->
+        <section class="carousel-section">
+            <h2 class="section-title">🔄 Recently Active</h2>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" data-carousel="recent">‹</button>
+                <div class="carousel horizontal-scroll" id="recent-carousel">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <button class="carousel-nav next" data-carousel="recent">›</button>
+            </div>
+        </section>
+
+        <!-- My List Carousel -->
+        <section class="carousel-section">
+            <h2 class="section-title">📋 Continue Watching</h2>
+            <div class="carousel-container">
+                <button class="carousel-nav prev" data-carousel="continue">‹</button>
+                <div class="carousel horizontal-scroll" id="continue-carousel">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <button class="carousel-nav next" data-carousel="continue">›</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Content Modal -->
+    <div class="modal" id="content-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <div class="modal-details">
+                        <span id="modal-genre"></span>
+                        <span id="modal-runtime"></span>
+                        <span id="modal-status"></span>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="btn-primary" id="modal-view">View Details</button>
+                        <button class="btn-secondary" id="modal-add">+ My List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    <script src="../js/entertainment.js"></script>
+    <script src="../js/entertainment-validation.js"></script>
+    <script>
+        // Initialize Entertainment Hub when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎬 DOM loaded, initializing Entertainment Hub...');
+            // Validation script will handle initialization
+        });
+        
+        // Handle any loading errors
+        window.addEventListener('error', (e) => {
+            console.error('❌ Entertainment page error:', e.error);
+        });
+    </script>
+</body>
+</html>

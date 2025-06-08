@@ -172,6 +172,148 @@
     "link": null
   },
   {
+    "id": 13,
+    "text": "CRITICAL FAILURE!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg"
+    ],
+    "copies": 15,
+    "details": "⚠ Flawed Particle ⚠, HCMC has encountered a critical error.",
+    "genre": "hazzard",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 14,
+    "text": "CHARGED UP!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png"
+    ],
+    "copies": 1,
+    "details": "You forget who, but someone thought it was a good idea to snort a god particle... GREAT IDEA!! Gain +10 💖 to all party members.",
+    "genre": "helper",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 15,
+    "text": "HABITICAN HEALERS!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers2.png",
+      "../assets/img/Spin The Wheel Photos/Loot/Habitican healers3.png"
+    ],
+    "copies": 5,
+    "details": "Habitican Healers have come to your aid! Gain +5 💖 to all party members. ",
+    "genre": "helper",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 16,
+    "text": "SNACK-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png"
+    ],
+    "copies": 5,
+    "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week for everyone",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 17,
+    "text": "GAME-A-THON!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png"
+    ],
+    "copies": 5,
+    "details": "For the rest of the week, all freetime games cost no coins for everyone",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 18,
+    "text": "GOLDEN TICKET!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png"
+    ],
+    "copies": 4,
+    "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit for everyone)",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": null,
+    "link": null
+  },
+  {
+    "id": 19,
+    "text": "FEAST!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/feast.png"
+    ],
+    "copies": 2,
+    "details": "Gained FEAST! the upcoming Friday or Sunday dinner can be changed to a Takout!!",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 20,
+    "text": "KIND ERGO DJINN!",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png"
+    ],
+    "copies": 2,
+    "details": "You've brought forth a Kind ERGO DJINN!, Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear. 🧞🧞🧞",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 21,
+    "text": "BECKONING HAND",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png"
+    ],
+    "copies": 1,
+    "details": "A portal opens up and a hand reaches out beckoning. Add 4 new probabilities to any Entertaiment pool.",
+    "genre": "week modifiers",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remains",
+    "link": null
+  },
+  {
+    "id": 22,
+    "text": "1 XBOX series X's",
+    "image": [
+      "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg"
+    ],
+    "copies": 0,
+    "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
+    "genre": "Want",
+    "type": "loot",
+    "cost": null,
+    "after_spin": "Remove after 2 both party members have found one",
+    "link": "https://a.co/d/6VWXgqg"
+  },
+  {
     "id": 23,
     "text": "Mattress topper",
     "image": [

@@ -9,10 +9,10 @@
 </head>
 <body>    <!-- Navigation Header -->
     <nav id="navbar">
-        <button><a href="../../index.html">🏠 HOME</a></button>
-        <button><a href="../HCMC.html">📊 HCMC</a></button>
-        <button><a href="../admin/manage-selections.html">📅 SELECTIONS</a></button>
-        <button><a href="../admin/admin.html">📊 ADMIN</a></button>
+        <button><a href="../../index.html">HOME</a></button>
+        <button><a href="../HCMC.html">HCMC</a></button>
+        <button><a href="../admin/manage-selections.html">SELECTIONS</a></button>
+        <button><a href="../admin/admin.html">ADMIN</a></button>
     </nav>
     
     <!-- Connection Status Bar -->
@@ -21,53 +21,52 @@
             <span id="connection-indicator" class="status-indicator">🔄</span>
             <span id="connection-text">Connecting...</span>
         </div>
-        <h1 class="page-title">🌟 ErgoSphere Admin Dashboard</h1>
-    </div><!-- Main Dashboard Content -->
+        <h1 class="page-title">ErgoSphere Admin Dashboard</h1>
+    </div>    <!-- Main Dashboard Content -->
     <main class="dashboard-main">
-        <!-- Sidebar for Categories -->
-        <aside class="sidebar" id="sidebar">
+        <!-- Desktop Category Sidebar -->
+        <aside class="category-sidebar" id="category-sidebar">
             <div class="sidebar-header">
-                <h3>📚 Data Categories</h3>
-                <button id="sidebar-toggle" class="sidebar-toggle">📋</button>
+                <h3>Data Categories</h3>
             </div>
             <div class="category-list">
                 <button class="category-btn active" data-category="coop" data-table="json_data" data-type="copies">
-                    🎮 CO-OP Games
+                    CO-OP Games
                 </button>
                 <button class="category-btn" data-category="loot" data-table="loot_items" data-type="copies">
-                    📦 LOOT Boxes
+                    LOOT Boxes
                 </button>
                 <button class="category-btn" data-category="pvp" data-table="json_data" data-type="copies">
-                    ⚔️ PVP Games
+                    PVP Games
                 </button>
                 <button class="category-btn" data-category="movies" data-table="json_data" data-type="status">
-                    🎬 Movies
+                    Movies
                 </button>
                 <button class="category-btn" data-category="anime" data-table="json_data" data-type="status">
-                    🎌 Anime
+                    Anime
                 </button>
                 <button class="category-btn" data-category="youtube" data-table="json_data" data-type="status">
-                    📺 YouTube
+                    YouTube
                 </button>
                 <button class="category-btn" data-category="sundaymorning" data-table="json_data" data-type="status">
-                    🌅 Sunday Morning
+                    Sunday Morning
                 </button>
                 <button class="category-btn" data-category="sundaynight" data-table="json_data" data-type="status">
-                    🌙 Sunday Night
+                    Sunday Night
                 </button>
                 <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
-                    🎯 Single Player
+                    Single Player
                 </button>
-            </div>        </aside>
-
+            </div>
+        </aside>
+        
         <!-- Content Area -->
         <section class="content-area">
             <!-- Controls Panel -->
             <div class="controls-panel">
-                <div class="search-section">
-                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="🔍 Search items..." autocomplete="off">
-                        <button id="clear-search" class="clear-btn">✖️</button>
+                <div class="search-section">                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
+                        <button id="clear-search" class="clear-btn">✕</button>
                     </div>
                 </div>
                 <div class="filter-section">
@@ -84,16 +83,52 @@
                     </select>
                 </div>                <div class="action-section">
                     <button id="refresh-btn" class="action-btn refresh-btn">
-                        🔄 Refresh
+                        Refresh
                     </button>
                     <button id="manual-sync-btn" class="action-btn sync-btn">
-                        🔗 Sync DB → JSON
+                        Sync DB → JSON
                     </button>
                     <button id="save-all-btn" class="action-btn save-btn">
-                        💾 Save All
+                        Save All
+                    </button>                    <button id="bulk-actions-btn" class="action-btn bulk-btn">
+                        Bulk Edit
                     </button>
-                    <button id="bulk-actions-btn" class="action-btn bulk-btn">
-                        📦 Bulk Edit
+                </div>
+            </div>
+
+            <!-- Mobile Category Navigation -->
+            <div class="mobile-category-nav-container">
+                <button class="mobile-category-toggle" id="mobile-category-toggle" aria-expanded="false" aria-controls="category-nav">
+                    Categories <span class="toggle-arrow">▼</span>
+                </button>
+                
+                <div class="mobile-category-nav" id="mobile-category-nav" aria-hidden="true" role="navigation" aria-label="Category selection">
+                    <button class="category-btn active" data-category="coop" data-table="json_data" data-type="copies">
+                        CO-OP Games
+                    </button>
+                    <button class="category-btn" data-category="loot" data-table="loot_items" data-type="copies">
+                        LOOT Boxes
+                    </button>
+                    <button class="category-btn" data-category="pvp" data-table="json_data" data-type="copies">
+                        PVP Games
+                    </button>
+                    <button class="category-btn" data-category="movies" data-table="json_data" data-type="status">
+                        Movies
+                    </button>
+                    <button class="category-btn" data-category="anime" data-table="json_data" data-type="status">
+                        Anime
+                    </button>
+                    <button class="category-btn" data-category="youtube" data-table="json_data" data-type="status">
+                        YouTube
+                    </button>
+                    <button class="category-btn" data-category="sundaymorning" data-table="json_data" data-type="status">
+                        Sunday Morning
+                    </button>
+                    <button class="category-btn" data-category="sundaynight" data-table="json_data" data-type="status">
+                        Sunday Night
+                    </button>
+                    <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
+                        Single Player
                     </button>
                 </div>
             </div>
@@ -139,9 +174,7 @@
                 <div id="empty-state" class="empty-state hidden">
                     <div class="empty-icon">📭</div>
                     <h3>No items found</h3>
-                    <p>Try adjusting your search or filter criteria.</p>
-                </div>
-            </div>
+                    <p>Try adjusting your search or filter criteria.</p>                </div>            </div>
         </section>
     </main>
 

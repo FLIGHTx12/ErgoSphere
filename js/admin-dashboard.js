@@ -149,13 +149,22 @@ class AdminDashboard {
             });
         });
 
-        // Manual sync button
-        const syncBtn = document.getElementById('manual-sync-btn');
-        if (syncBtn) {
-            syncBtn.addEventListener('click', () => {
-                this.performManualSync();
+        // Mobile category toggle
+        const mobileCategoryToggle = document.getElementById('mobile-category-toggle');
+        if (mobileCategoryToggle) {
+            mobileCategoryToggle.addEventListener('click', () => {
+                this.toggleMobileCategoryNav();
             });
         }
+
+        // Close mobile category nav when clicking outside
+        document.addEventListener('click', (e) => {
+            const categoryNavContainer = document.querySelector('.category-nav-container');
+            const categoryNav = document.getElementById('category-nav');
+            if (categoryNavContainer && !categoryNavContainer.contains(e.target) && categoryNav.classList.contains('expanded')) {
+                this.closeMobileCategoryNav();
+            }
+        });
     }
 
     async establishConnection() {
@@ -212,37 +221,7 @@ class AdminDashboard {
                 text.textContent = 'Disconnected';
             }
         }
-    }
-
-    async switchCategory(category) {
-        // Update active button
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelector(`[data-category="${category}"]`).classList.add('active');
-        
-        this.currentCategory = category;
-        await this.loadCategoryData(category);
-        
-        // Update title
-        const titles = {
-            coop: '🎮 CO-OP Games',
-            loot: '📦 LOOT Boxes',
-            pvp: '⚔️ PVP Games',
-            movies: '🎬 Movies',
-            anime: '🎌 Anime',
-            youtube: '📺 YouTube',
-            sundaymorning: '🌅 Sunday Morning',
-            sundaynight: '🌙 Sunday Night',
-            singleplayer: '🎯 Single Player'
-        };
-        const categoryTitle = document.getElementById('category-title');
-        if (categoryTitle) {
-            categoryTitle.textContent = titles[category] || category;
-        }
-    }
-
-    async loadCategoryData(category) {
+    }    async loadCategoryData(category) {
         this.showLoading();
         
         try {
@@ -1016,6 +995,88 @@ class AdminDashboard {
     showError(message) {
         console.error(message);
         // TODO: Implement error notification system
+    }
+
+    // Mobile Category Navigation Methods
+    toggleMobileCategoryNav() {
+        const categoryNav = document.getElementById('category-nav');
+        const mobileToggle = document.getElementById('mobile-category-toggle');
+        
+        if (categoryNav && mobileToggle) {
+            const isExpanded = categoryNav.classList.contains('expanded');
+            
+            if (isExpanded) {
+                this.closeMobileCategoryNav();
+            } else {
+                this.openMobileCategoryNav();
+            }
+        }
+    }
+
+    openMobileCategoryNav() {
+        const categoryNav = document.getElementById('category-nav');
+        const mobileToggle = document.getElementById('mobile-category-toggle');
+        
+        if (categoryNav && mobileToggle) {
+            categoryNav.classList.add('expanded');
+            mobileToggle.classList.add('expanded');
+            
+            // Update aria attributes for accessibility
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            categoryNav.setAttribute('aria-hidden', 'false');
+        }
+    }
+
+    closeMobileCategoryNav() {
+        const categoryNav = document.getElementById('category-nav');
+        const mobileToggle = document.getElementById('mobile-category-toggle');
+        
+        if (categoryNav && mobileToggle) {
+            categoryNav.classList.remove('expanded');
+            mobileToggle.classList.remove('expanded');
+            
+            // Update aria attributes for accessibility
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            categoryNav.setAttribute('aria-hidden', 'true');
+        }
+    }    // Enhanced category switching for mobile
+    async switchCategory(category) {
+        // Update active button
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeBtn = document.querySelector(`[data-category="${category}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+        
+        this.currentCategory = category;
+        
+        // Close mobile nav after selection
+        if (window.innerWidth <= 1024) {
+            this.closeMobileCategoryNav();
+        }
+        
+        // Load category data
+        await this.loadCategoryData(category);
+        
+        // Update title
+        const titles = {
+            coop: '🎮 CO-OP Games',
+            loot: '📦 LOOT Boxes',
+            pvp: '⚔️ PVP Games',
+            movies: '🎬 Movies',
+            anime: '🎌 Anime',
+            youtube: '📺 YouTube',
+            sundaymorning: '🌅 Sunday Morning',
+            sundaynight: '🌙 Sunday Night',
+            singleplayer: '🎯 Single Player'
+        };
+        const categoryTitle = document.getElementById('category-title');
+        if (categoryTitle) {
+            categoryTitle.textContent = titles[category] || category;
+        }
     }
 }
 
