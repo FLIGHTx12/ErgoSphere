@@ -1,19 +1,5 @@
 [
   {
-    "id": 1,
-    "text": "Test Updated Item",
-    "image": [
-      "../assets/img/test.png"
-    ],
-    "copies": 7,
-    "details": "Updated test item",
-    "genre": "test",
-    "type": "loot",
-    "cost": 0,
-    "after_spin": "",
-    "link": ""
-  },
-  {
     "id": 2,
     "text": "CRITICAL FAILURE!",
     "image": [
@@ -177,7 +163,7 @@
     "image": [
       "https://www.cnet.com/a/img/resize/878c211441c1754593fb771e73de2ae2029f8686/hub/2023/12/04/8ceeb8e3-501b-4c36-b4b7-83631750593a/gettyimages-1568167702.jpg?auto=webp&fit=crop&height=1200&width=1200"
     ],
-    "copies": 1,
+    "copies": 4,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -191,7 +177,7 @@
     "image": [
       "https://c1.wallpaperflare.com/preview/145/422/486/stove-cooking-zone-electric-cooker-glove.jpg"
     ],
-    "copies": 1,
+    "copies": 2,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -205,7 +191,7 @@
     "image": [
       "https://cdn.thewirecutter.com/wp-content/media/2024/11/spatula-2048px-4566.jpg?auto=webp&quality=75&width=1024"
     ],
-    "copies": 1,
+    "copies": 3,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -219,7 +205,7 @@
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Bathroom clock (hide after spin).jpg"
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "JENLYSTIME 12 Inch Indoor/Outdoor Retro Waterproof Wall Clock with Thermometer Silent Round Quartz Battery Operated Easy to Read Decorative for Kitchen Patio,Bathroom,Deck,Porch,Pool(Blue)",
     "genre": "Want",
     "type": "loot",
@@ -233,7 +219,7 @@
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Ping-pong set.jpg"
     ],
-    "copies": 1,
+    "copies": 2,
     "details": "Professional Ping Pong Net for Any Table | Portable Anywhere Table Tennis Set with Retractable Net, 2 and 4 Paddle Set, 3-Star Balls, Fitted Storage Case",
     "genre": "Want",
     "type": "loot",
@@ -247,7 +233,7 @@
     "image": [
       "https://images.pexels.com/photos/100733/pexels-photo-100733.jpeg?cs=srgb&dl=pexels-monoar-rahman-22660-100733.jpg&fm=jpg"
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "found",
@@ -261,7 +247,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "Astercook Heavy Duty Kitchen Shears with Serrated Blade, Ergonomic Handle - For Poultry, Herbs, Vegetables",
     "genre": "Want",
     "type": "loot",
@@ -275,7 +261,7 @@
     "image": [
       "https://m.media-amazon.com/images/I/61NOJil79KL._AC_SL1500_.jpg"
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! RENPHO Massage Gun Deep Tissue, FSA HSA Eligible Portable Percussion Massager for Back and Neck, Gifts for Men and Women, Handheld Device with Carry Case, Active Green",
     "genre": "Want",
     "type": "loot",
@@ -289,7 +275,7 @@
     "image": [
       "https://w0.peakpx.com/wallpaper/631/407/HD-wallpaper-white-bed-comforter-set-and-brown-wooden-bed-frame-beside-brown-wooden-nightstand.jpg"
     ],
-    "copies": 2,
+    "copies": 1,
     "details": "YOU FOUND!! CozyLux Dark Grey Bed in a Bag - King Size Comforter Set, All Season Quilted Comforter, Flat & Fitted Sheets, Pillowcases",
     "genre": "Want",
     "type": "loot",
@@ -303,7 +289,7 @@
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/New bed sheets.jpg"
     ],
-    "copies": 2,
+    "copies": 3,
     "details": "YOU FOUND!! LANE LINEN 100% Egyptian Cotton Queen Sheet Set (4 PC)  1000 Thread Count  Sateen Weave  Luxury Hotel Bedding Ultra Soft Queen Size Sheets Set Bed Sheets with 15” Deep Pocket  Charcoal",
     "genre": "Want",
     "type": "loot",
@@ -331,7 +317,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 6,
     "details": "YOU FOUND!! New living room TV! (hide after spin)",
     "genre": "Want",
     "type": "loot",
@@ -345,7 +331,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! New Robes",
     "genre": "Want",
     "type": "loot",
@@ -359,7 +345,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! New Salt rock light",
     "genre": "Want",
     "type": "loot",
@@ -373,7 +359,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -387,7 +373,7 @@
     "image": [
       "YOU FOUND!! New yoga mats"
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -401,7 +387,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! Poached egg maker cozilife",
     "genre": "Want",
     "type": "loot",
@@ -415,7 +401,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! Splatoon 3",
     "genre": "Want",
     "type": "loot",
@@ -443,7 +429,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! Switch SPORTS equipment pack",
     "genre": "Want",
     "type": "loot",
@@ -457,7 +443,7 @@
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/VASAGLE Laundry Hamper.JPG"
     ],
-    "copies": 4,
+    "copies": 0,
     "details": "VASAGLE Laundry Hamper, Laundry Basket, Laundry Sorter with 2 Pull-Out and Removable Bags, Shelf, Metal Frame, 2 x 12.1 Gallons (46L), 28.8 x 13 x 28.4 Inches, Rustic Brown and Black UBLH201B01",
     "genre": "Want",
     "type": "loot",
@@ -471,7 +457,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!!: Dimmable front room lights",
     "genre": "Want",
     "type": "loot",
@@ -485,7 +471,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! 10 or 20-gallon fish tank, 30x15 max ",
     "genre": "found",
     "type": "loot",
@@ -499,7 +485,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! Bathroom rugs",
     "genre": "Want",
     "type": "loot",
@@ -513,7 +499,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -527,7 +513,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -541,7 +527,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -555,7 +541,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -569,7 +555,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "loot",
@@ -583,7 +569,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "Want",
     "type": "loot",
@@ -597,7 +583,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -611,7 +597,7 @@
     "image": [
       ""
     ],
-    "copies": 1,
+    "copies": 0,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",

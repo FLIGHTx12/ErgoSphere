@@ -1,19 +1,5 @@
 [
   {
-    "id": 1,
-    "text": "Test Updated Item",
-    "image": [
-      "../assets/img/test.png"
-    ],
-    "copies": 7,
-    "details": "Updated test item",
-    "genre": "test",
-    "type": "loot",
-    "cost": 0,
-    "after_spin": "",
-    "link": ""
-  },
-  {
     "id": 2,
     "text": "CRITICAL FAILURE!",
     "image": [
@@ -23,9 +9,9 @@
     "details": "⚠ Flawed Particle ⚠, HCMC has encountered a critical error.",
     "genre": "hazzard",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 3,
@@ -37,9 +23,9 @@
     "details": "You forget who, but someone thought it was a good idea to snort a god particle... GREAT IDEA!! Gain +10 💖 to all party members.",
     "genre": "helper",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 4,
@@ -53,9 +39,9 @@
     "details": "Habitican Healers have come to your aid! Gain +5 💖 to all party members. ",
     "genre": "helper",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 5,
@@ -67,9 +53,9 @@
     "details": "Gain 1 free snack per day on Friday, Saturday, and Sunday of this week for everyone",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 6,
@@ -81,9 +67,9 @@
     "details": "For the rest of the week, all freetime games cost no coins for everyone",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 7,
@@ -95,9 +81,9 @@
     "details": "Gained Saturday Matinée!! (Errand and clean times magically disappear to make way for Movie theatre visit for everyone)",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 8,
@@ -109,9 +95,9 @@
     "details": "Gained FEAST! the upcoming Friday or Sunday dinner can be changed to a Takout!!",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remains",
-    "link": null
+    "link": ""
   },
   {
     "id": 9,
@@ -123,9 +109,9 @@
     "details": "You've brought forth a Kind ERGO DJINN!, Your wishes are granted! The party leader gets 3 free rewards that must be used before weeks end or they disappear. 🧞🧞🧞",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remains",
-    "link": null
+    "link": ""
   },
   {
     "id": 10,
@@ -137,9 +123,9 @@
     "details": "A portal opens up and a hand reaches out beckoning. Add 4 new probabilities to any Entertaiment pool.",
     "genre": "week modifiers",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remains",
-    "link": null
+    "link": ""
   },
   {
     "id": 11,
@@ -151,7 +137,7 @@
     "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove after 2 both party members have found one",
     "link": "https://a.co/d/6VWXgqg"
   },
@@ -167,9 +153,9 @@
     "details": "You've brought forth a treacherous ERGO DJINN! Take -5 💔 damage to all party members.",
     "genre": "hazzard",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 23,
@@ -178,7 +164,7 @@
       "https://www.cnet.com/a/img/resize/878c211441c1754593fb771e73de2ae2029f8686/hub/2023/12/04/8ceeb8e3-501b-4c36-b4b7-83631750593a/gettyimages-1568167702.jpg?auto=webp&fit=crop&height=1200&width=1200"
     ],
     "copies": 1,
-    "details": null,
+    "details": "",
     "genre": "Want",
     "type": "loot",
     "cost": 150,
@@ -192,7 +178,7 @@
       "https://c1.wallpaperflare.com/preview/145/422/486/stove-cooking-zone-electric-cooker-glove.jpg"
     ],
     "copies": 1,
-    "details": null,
+    "details": "",
     "genre": "Want",
     "type": "loot",
     "cost": 20,
@@ -205,8 +191,8 @@
     "image": [
       "https://cdn.thewirecutter.com/wp-content/media/2024/11/spatula-2048px-4566.jpg?auto=webp&quality=75&width=1024"
     ],
-    "copies": 1,
-    "details": null,
+    "copies": 3,
+    "details": "",
     "genre": "Want",
     "type": "loot",
     "cost": 14,
@@ -223,7 +209,7 @@
     "details": "JENLYSTIME 12 Inch Indoor/Outdoor Retro Waterproof Wall Clock with Thermometer Silent Round Quartz Battery Operated Easy to Read Decorative for Kitchen Patio,Bathroom,Deck,Porch,Pool(Blue)",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
     "link": "https://a.co/d/ebytpwT"
   },
@@ -253,7 +239,7 @@
     "type": "found",
     "cost": 1891,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 29,
@@ -265,9 +251,9 @@
     "details": "Astercook Heavy Duty Kitchen Shears with Serrated Blade, Ergonomic Handle - For Poultry, Herbs, Vegetables",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 30,
@@ -303,7 +289,7 @@
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/New bed sheets.jpg"
     ],
-    "copies": 2,
+    "copies": 3,
     "details": "YOU FOUND!! LANE LINEN 100% Egyptian Cotton Queen Sheet Set (4 PC)  1000 Thread Count  Sateen Weave  Luxury Hotel Bedding Ultra Soft Queen Size Sheets Set Bed Sheets with 15” Deep Pocket  Charcoal",
     "genre": "Want",
     "type": "loot",
@@ -335,9 +321,9 @@
     "details": "YOU FOUND!! New living room TV! (hide after spin)",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 35,
@@ -349,9 +335,9 @@
     "details": "YOU FOUND!! New Robes",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove after 2 both party members have found one",
-    "link": null
+    "link": ""
   },
   {
     "id": 36,
@@ -363,9 +349,9 @@
     "details": "YOU FOUND!! New Salt rock light",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 37,
@@ -374,12 +360,12 @@
       ""
     ],
     "copies": 1,
-    "details": null,
+    "details": "",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 38,
@@ -388,12 +374,12 @@
       "YOU FOUND!! New yoga mats"
     ],
     "copies": 1,
-    "details": null,
+    "details": "",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 39,
@@ -405,9 +391,9 @@
     "details": "YOU FOUND!! Poached egg maker cozilife",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 40,
@@ -419,9 +405,9 @@
     "details": "YOU FOUND!! Splatoon 3",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   },
   {
     "id": 41,
@@ -434,7 +420,7 @@
     "genre": "Want",
     "type": "loot",
     "cost": 20,
-    "after_spin": null,
+    "after_spin": "",
     "link": "https://www.amazon.com/dp/B07WNHR1JT/?coliid=I17RAGA2LWVJ0X&colid=3UL61GOF3BU6J&ref_=list_c_wl_lv_ov_lig_dp_it&th=1"
   },
   {
@@ -447,9 +433,9 @@
     "details": "YOU FOUND!! Switch SPORTS equipment pack",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 43,
@@ -475,9 +461,9 @@
     "details": "YOU FOUND!!: Dimmable front room lights",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 45,
@@ -489,9 +475,9 @@
     "details": "YOU FOUND!! 10 or 20-gallon fish tank, 30x15 max ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 46,
@@ -503,9 +489,9 @@
     "details": "YOU FOUND!! Bathroom rugs",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 47,
@@ -517,9 +503,9 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 48,
@@ -531,9 +517,9 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 49,
@@ -545,9 +531,9 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 50,
@@ -559,9 +545,9 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 51,
@@ -573,9 +559,9 @@
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 52,
@@ -587,9 +573,9 @@
     "details": "YOU FOUND!! ",
     "genre": "Want",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 53,
@@ -601,9 +587,9 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
+    "cost": 0,
     "after_spin": "Remove",
-    "link": null
+    "link": ""
   },
   {
     "id": 54,
@@ -615,8 +601,8 @@
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
-    "cost": null,
-    "after_spin": null,
-    "link": null
+    "cost": 0,
+    "after_spin": "",
+    "link": ""
   }
 ]
