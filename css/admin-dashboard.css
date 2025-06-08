@@ -211,13 +211,15 @@ body {
     width: 280px;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
-    border-right: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
+    border-radius: var(--border-radius);
     padding: 1.5rem;
     overflow-y: auto;
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
     order: 1; /* Sidebar comes first (left side) */
+    margin: 1rem;
 }
 
 .sidebar-header {
