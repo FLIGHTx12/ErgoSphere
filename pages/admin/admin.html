@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ErgoSphere Admin Dashboard</title>
     <link rel="stylesheet" href="../../css/admin-dashboard.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-inline-controls.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
 </head>
 <body>    <!-- Navigation Header -->
@@ -53,46 +53,52 @@
                 </button>
                 <button class="category-btn" data-category="sundaynight" data-table="json_data" data-type="status">
                     Sunday Night
-                </button>
-                <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
+                </button>                <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
                     Single Player
+                </button>
+                <button class="category-btn" data-category="mods" data-table="json_data" data-type="copies">
+                    Mods
                 </button>
             </div>
         </aside>
         
         <!-- Content Area -->
-        <section class="content-area">
-            <!-- Controls Panel -->
+        <section class="content-area">            <!-- Controls Panel -->
             <div class="controls-panel">
-                <div class="search-section">                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
-                        <button id="clear-search" class="clear-btn">✕</button>
+                <!-- Combined Controls in a single container -->
+                <div class="controls-container">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
+                            <button id="clear-search" class="clear-btn">✕</button>
+                        </div>
                     </div>
-                </div>
-                <div class="filter-section">
-                    <select id="status-filter" class="filter-select">
-                        <option value="all">All Items</option>
-                        <option value="active">Active Only</option>
-                        <option value="inactive">Inactive Only</option>
-                    </select>
-                    <select id="sort-options" class="filter-select">
-                        <option value="name">Sort by Name</option>
-                        <option value="status">Sort by Status</option>
-                        <option value="copies">Sort by Copies</option>
-                        <option value="watched">Sort by Times Seen</option>
-                    </select>
-                </div>                <div class="action-section">
-                    <button id="refresh-btn" class="action-btn refresh-btn">
-                        Refresh
-                    </button>
-                    <button id="manual-sync-btn" class="action-btn sync-btn">
-                        Sync DB → JSON
-                    </button>
-                    <button id="save-all-btn" class="action-btn save-btn">
-                        Save All
-                    </button>                    <button id="bulk-actions-btn" class="action-btn bulk-btn">
-                        Bulk Edit
-                    </button>
+                    <div class="filter-section">
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">All Items</option>
+                            <option value="active">Active Only</option>
+                            <option value="inactive">Inactive Only</option>
+                        </select>
+                        <select id="sort-options" class="filter-select">
+                            <option value="name">Sort by Name</option>
+                            <option value="status">Sort by Status</option>
+                            <option value="copies">Sort by Copies</option>
+                            <option value="watched">Sort by Times Seen</option>
+                        </select>
+                    </div>
+                    <div class="action-section">                        <button id="refresh-btn" class="action-btn refresh-btn">
+                            Refresh
+                        </button>
+                        <button id="manual-sync-btn" class="action-btn sync-btn">
+                            Sync DB→JSON
+                        </button>
+                        <button id="save-all-btn" class="action-btn save-btn">
+                            Save All
+                        </button>
+                        <button id="bulk-actions-btn" class="action-btn bulk-btn">
+                            Bulk Edit
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -125,9 +131,11 @@
                     </button>
                     <button class="category-btn" data-category="sundaynight" data-table="json_data" data-type="status">
                         Sunday Night
-                    </button>
-                    <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
+                    </button>                    <button class="category-btn" data-category="singleplayer" data-table="json_data" data-type="status">
                         Single Player
+                    </button>
+                    <button class="category-btn" data-category="mods" data-table="json_data" data-type="copies">
+                        Mods
                     </button>
                 </div>
             </div>

@@ -56,11 +56,16 @@ class AdminDashboard {    constructor() {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
-            },
-            sundaynight: {
+            },            sundaynight: {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
+            },
+            mods: {
+                fields: ['copies', 'genre'],
+                copiesField: 'copies',
+                genreField: 'genre',
+                showCopies: true
             }
         };
         
@@ -266,8 +271,34 @@ class AdminDashboard {    constructor() {
                     data = await jsonResponse.json();
                 }
             }
+              this.currentData = Array.isArray(data) ? data : [];
             
-            this.currentData = Array.isArray(data) ? data : [];
+            // Handle the "mods" category by filtering from loot and coop data
+            if (category === 'mods') {
+                try {
+                    // Get ERGOvillians from coop.json
+                    const coopResponse = await fetch(`/data/coop.json`);
+                    const coopData = await coopResponse.json();
+                    const ergoVillains = coopData.filter(item => item.genre === 'ERGOvillians');
+                    
+                    // Get week modifiers and helper from loot.json
+                    const lootResponse = await fetch(`/data/loot.json`);
+                    const lootData = await lootResponse.json();
+                    const modItems = lootData.filter(item => 
+                        item.genre === 'week modifiers' || 
+                        item.genre === 'helper' || 
+                        item.genre === 'hazzard');
+                    
+                    // Combine these items
+                    this.currentData = [...ergoVillains, ...modItems];
+                } catch (error) {
+                    console.error('Failed to load mods data:', error);
+                }
+            }
+            
+            // Sort alphabetically by default
+            this.sortData('name');
+            
             this.renderTable();
             this.updateStats();
             
@@ -337,13 +368,16 @@ class AdminDashboard {    constructor() {
         if (config.timesSeenField) {
             headersHTML += `<th class="col-watched">Times Seen</th>`;
         }
-        
-        if (config.lastWatchedField) {
+          if (config.lastWatchedField) {
             headersHTML += `<th class="col-last-watched">Last Watched</th>`;
         }
         
         if (config.seriesLengthField) {
             headersHTML += `<th class="col-series-length">Series Length</th>`;
+        }
+        
+        if (config.genreField && this.currentCategory === 'mods') {
+            headersHTML += `<th class="col-genre">Genre</th>`;
         }
           if (config.timeField && this.currentCategory === 'singleplayer') {
             headersHTML += `<th class="col-time">Time to Beat</th>`;
@@ -461,6 +495,13 @@ class AdminDashboard {    constructor() {
                     <span class="watched-count">${timesSeen}${eyeDisplay}</span>
                     <button class="control-btn plus" data-action="watched-plus" data-index="${index}">+</button>
                 </div>
+            </td>`;
+        }        // Add genre field for mods category
+        if (config.genreField && this.currentCategory === 'mods') {
+            const genre = item[config.genreField] || '';
+            rowContent += `
+            <td class="genre-cell">
+                <span class="genre-value" data-genre="${genre}">${genre}</span>
             </td>`;
         }
         
@@ -1175,15 +1216,14 @@ class AdminDashboard {    constructor() {
                     <input type="number" id="edit-copies" class="form-control" value="${copies}" min="0" data-field="copies">
                 </div>
             `;
-        }
-
-        // Add completion field for games
+        }        // Add completion field for games
         if (config.completedField) {
             const completed = item[config.completedField] || '';
             formHTML += `
                 <div class="form-group">
                     <label for="edit-completed">Completed:</label>
                     <select id="edit-completed" class="form-control" data-field="${config.completedField}">
+                        <option value="" ${completed === '' ? 'selected' : ''}>Not completed</option>
                         <option value="✅" ${completed === '✅' ? 'selected' : ''}>✅ Yes</option>
                         <option value="❌" ${completed === '❌' ? 'selected' : ''}>❌ No</option>
                         <option value="⏳" ${completed === '⏳' ? 'selected' : ''}>⏳ In Progress</option>
@@ -1572,8 +1612,7 @@ class AdminDashboard {    constructor() {
         
         // Load category data
         await this.loadCategoryData(category);
-        
-        // Update title
+          // Update title
         const titles = {
             coop: '🎮 CO-OP Games',
             loot: '📦 LOOT Boxes',
@@ -1583,7 +1622,8 @@ class AdminDashboard {    constructor() {
             youtube: '📺 YouTube',
             sundaymorning: '🌅 Sunday Morning',
             sundaynight: '🌙 Sunday Night',
-            singleplayer: '🎯 Single Player'
+            singleplayer: '🎯 Single Player',
+            mods: '🧩 Mods'
         };
         const categoryTitle = document.getElementById('category-title');
         if (categoryTitle) {
