@@ -627,6 +627,14 @@ body {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Add vertical column dividers */
+    border-right: 1px solid rgba(169, 175, 185, 0.2);
+}
+
+/* Remove border from last column */
+.data-table th:last-child,
+.data-table td:last-child {
+    border-right: none;
 }
 
 .data-table th {
@@ -635,14 +643,69 @@ body {
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    /* Enhanced header dividers */
+    border-right: 1px solid rgba(169, 175, 185, 0.3);
+}
+
+/* Remove border from last header column */
+.data-table th:last-child {
+    border-right: none;
 }
 
 .data-table tbody tr {
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.data-table tbody tr:not(:last-child) {
+    border-bottom: 1px solid rgba(169, 175, 185, 0.2);
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(169, 175, 185, 0.1) 45%, 
+        rgba(169, 175, 185, 0.15) 50%, 
+        rgba(169, 175, 185, 0.1) 55%, 
+        transparent 100%
+    );
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .data-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(169, 175, 185, 0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced column dividers on hover */
+.data-table tbody tr:hover td {
+    border-right-color: rgba(169, 175, 185, 0.3);
+}
+
+/* Additional column divider styling for better visibility */
+.data-table td.col-checkbox,
+.data-table td.col-name,
+.data-table td.col-status,
+.data-table td.col-copies,
+.data-table td.col-watched,
+.data-table td.col-completed,
+.data-table td.col-time,
+.data-table td.col-active,
+.data-table td.col-last-watched,
+.data-table td.col-series-length {
+    border-right: 1px solid rgba(169, 175, 185, 0.15);
+}
+
+/* Make dividers more prominent on alternating rows */
+.data-table tbody tr:nth-child(even) td {
+    border-right-color: rgba(169, 175, 185, 0.18);
+}
+
+/* Stronger dividers for header row */
+.data-table thead th {
+    border-right: 1px solid rgba(169, 175, 185, 0.25);
+}
+
+.data-table thead th:last-child {
+    border-right: none;
 }
 
 .col-checkbox {
@@ -653,16 +716,56 @@ body {
     min-width: 200px;
 }
 
-.col-status,
+.col-status {
+    width: 65px;
+    text-align: center;
+}
+
 .col-copies,
 .col-watched,
 .col-completed,
 .col-time,
-.col-cost {
+.col-cost,
+.col-actions {
     width: 120px;
     text-align: center;
 }
 
+.col-last-watched {
+    width: 100px;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.col-series-length {
+    width: 140px;
+    text-align: center;
+}
+
+/* Last Watched column specific styling */
+.last-watched-cell {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    width: 100px;
+}
+
+.last-watched-cell .editable-field {
+    max-width: 80px;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
+}
+
+.series-length-cell {
+    text-align: center;
+    padding: 0.75rem;
+}
+
+.series-length-cell .editable-field {
+    max-width: 120px;
+    text-align: center;
+    font-size: 0.875rem;
+}
 /* Status indicators */
 .status-active {
     color: var(--success-color);
@@ -710,6 +813,95 @@ body {
 .completed-toggle:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-1px);
+}
+
+/* Center all table cell content for specific columns */
+.col-status,
+.col-copies,
+.col-watched,
+.col-completed,
+.col-time,
+.col-cost,
+.col-actions {
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+/* Center content within status, copies, completed, and actions cells */
+.status-cell,
+.copies-cell,
+.completed-cell,
+.actions-cell,
+.watched-cell,
+.time-cell {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+/* Number controls centered layout */
+.number-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* 3D embossed status buttons with no background for emojis */
+.status-toggle {
+    background: transparent !important;
+    border: none;
+    color: var(--text-white);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.2rem;
+    transition: all 0.3s ease;
+    min-width: 28px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    position: relative;
+    margin: 0 auto;
+    /* 3D embossed effect */
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.6),
+        0 0 0 rgba(255, 255, 255, 0.1);
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
+    /* Embossed button effect */
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.status-toggle:hover {
+    transform: translateY(-2px) scale(1.05);
+    text-shadow: 
+        1px 1px 3px rgba(0, 0, 0, 0.9),
+        2px 2px 6px rgba(0, 0, 0, 0.7),
+        0 0 8px rgba(255, 255, 255, 0.2);
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.6));
+    box-shadow: 
+        inset 0 3px 6px rgba(255, 255, 255, 0.15),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.25),
+        0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.status-toggle:active {
+    transform: translateY(1px) scale(0.98);
+    text-shadow: 
+        0px 0px 2px rgba(0, 0, 0, 0.9),
+        1px 1px 3px rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.8));
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 -1px 3px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Active field styles for movies category */
@@ -798,6 +990,40 @@ body {
 
 .toggle-btn:hover {
     background: #d97706;
+}
+
+/* Center copies and watched counts */
+.copies-cell,
+.watched-cell {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.copies-count,
+.watched-count {
+    display: inline-block;
+    text-align: center;
+    min-width: 40px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    font-weight: 500;
+}
+
+/* Actions column centered content */
+.actions-cell {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.actions-cell .edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Loading and Empty States */
@@ -1542,3 +1768,6 @@ select.form-control {
         width: 100%;
     }
 }
+
+/* Status button styling enhancements - 3D embossed with no background */
+/* Note: The old background-based status styling has been replaced with 3D embossed effects */

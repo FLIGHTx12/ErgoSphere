@@ -335,7 +335,7 @@ class AdminDashboard {    constructor() {
         }
         
         if (config.timesSeenField) {
-            headersHTML += `<th class="col-watched">Times Seen 👀</th>`;
+            headersHTML += `<th class="col-watched">Times Seen</th>`;
         }
         
         if (config.lastWatchedField) {
@@ -345,12 +345,13 @@ class AdminDashboard {    constructor() {
         if (config.seriesLengthField) {
             headersHTML += `<th class="col-series-length">Series Length</th>`;
         }
-        
-        if (config.timeField && this.currentCategory === 'singleplayer') {
+          if (config.timeField && this.currentCategory === 'singleplayer') {
             headersHTML += `<th class="col-time">Time to Beat</th>`;
-        }        if (config.costField && isLoot) {
-            headersHTML += `<th class="col-cost">Cost 💰</th>`;
-        }
+        }        
+        // Cost column removed for loot boxes as requested
+        // if (config.costField && isLoot) {
+        //     headersHTML += `<th class="col-cost">Cost 💰</th>`;
+        // }
         
         // Add actions column header
         headersHTML += `<th class="col-actions">Actions</th>`;
@@ -398,13 +399,24 @@ class AdminDashboard {    constructor() {
             <td>
                 <input type="checkbox" class="item-checkbox" data-index="${index}">
             </td>
-            <td class="item-name">${name}</td>`;
-        
-        // Only include STATUS column for categories that don't have copies determining status
+            <td class="item-name">${name}</td>`;        // Only include STATUS column for categories that don't have copies determining status
         if (!config.showCopies) {
+            // Provide a default status indicator when STATUS field is empty - treat as inactive
+            const displayStatus = status || '🔴'; // Use red circle (inactive) if status is empty
+            
+            // Add tooltip to explain status meanings
+            let statusTitle = '';
+            switch (displayStatus) {
+                case '🔴': statusTitle = 'Inactive / Not Active'; break;
+                case '🟢': statusTitle = 'Active'; break;
+                case '🟡': statusTitle = 'Warning / In Progress'; break;
+                case '⚪': statusTitle = 'Neutral'; break;
+                default: statusTitle = 'Click to change status';
+            }
+            
             rowContent += `
             <td class="status-cell">
-                <button class="status-toggle" data-index="${index}">${status}</button>
+                <button class="status-toggle" data-index="${index}" title="${statusTitle}">${displayStatus}</button>
             </td>`;
         }
         
@@ -469,8 +481,7 @@ class AdminDashboard {    constructor() {
                 <input type="text" class="editable-field" data-field="${config.seriesLengthField}" data-index="${index}" value="${seriesLength}" placeholder="e.g. 3 season, 10 episodes">
             </td>`;
         }
-        
-        // Add time to beat field for single player games
+          // Add time to beat field for single player games
         if (config.timeField && this.currentCategory === 'singleplayer') {
             const timeValue = item[config.timeField] || '';
             rowContent += `
@@ -478,13 +489,15 @@ class AdminDashboard {    constructor() {
                 <span class="time-value">${timeValue}</span>
             </td>`;
         }
-          // Add cost field for loot
-        if (config.costField && isLoot) {
-            const cost = item[config.costField] || 0;
-            rowContent += `
-            <td class="cost-cell">
-                <span class="cost-value">${cost} 💰</span>
-            </td>`;        }
+          
+        // Cost field removed for loot boxes as requested
+        // if (config.costField && isLoot) {
+        //     const cost = item[config.costField] || 0;
+        //     rowContent += `
+        //     <td class="cost-cell">
+        //         <span class="cost-value">${cost} 💰</span>
+        //     </td>`;
+        // }
         
         // Add edit button column
         rowContent += `
@@ -598,9 +611,7 @@ class AdminDashboard {    constructor() {
         if (copies <= 2) return 'low';
         if (copies <= 5) return 'medium';
         return 'high';
-    }
-
-    toggleItemStatus(index) {
+    }    toggleItemStatus(index) {
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
@@ -609,8 +620,9 @@ class AdminDashboard {    constructor() {
             item.copies = item.copies > 0 ? 0 : 1;
         } else {
             // For other categories, cycle through status options
-            const statuses = ['⚪', '🟢', '🟡', '🔴'];
-            const currentIndex = statuses.indexOf(item.STATUS || '⚪');
+            // Treat empty status as inactive (red)
+            const statuses = ['🔴', '🟢', '🟡', '⚪'];
+            const currentIndex = statuses.indexOf(item.STATUS || '🔴');
             item.STATUS = statuses[(currentIndex + 1) % statuses.length];
         }
         
