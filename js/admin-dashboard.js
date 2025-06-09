@@ -537,11 +537,44 @@ class AdminDashboard {
         
         // Editable fields (for Last Watched and Series Length)
         row.querySelectorAll('.editable-field').forEach(field => {
+            // Store original value for comparison
+            field.dataset.originalValue = field.value;
+            
+            field.addEventListener('focus', (e) => {
+                e.target.classList.add('editing');
+            });
+            
+            field.addEventListener('blur', (e) => {
+                e.target.classList.remove('editing');
+            });
+            
+            field.addEventListener('input', (e) => {
+                const fieldName = e.target.dataset.field;
+                const newValue = e.target.value;
+                const originalValue = e.target.dataset.originalValue;
+                
+                // Add or remove staging class based on whether value changed
+                if (newValue !== originalValue) {
+                    e.target.classList.add('modified', 'staged');
+                } else {
+                    e.target.classList.remove('modified', 'staged');
+                }
+            });
+            
             field.addEventListener('change', (e) => {
                 const fieldName = e.target.dataset.field;
                 const newValue = e.target.value;
-                this.updateItemField(index, fieldName, newValue);
-                e.target.classList.add('modified');
+                const originalValue = e.target.dataset.originalValue;
+                
+                // Only mark as modified if value actually changed
+                if (newValue !== originalValue) {
+                    this.updateItemField(index, fieldName, newValue);
+                    e.target.classList.add('modified', 'staged');
+                } else {
+                    e.target.classList.remove('modified', 'staged');
+                    // If no changes, remove from modified items
+                    this.checkIfRowStillModified(index);
+                }
             });
         });
     }
@@ -639,13 +672,63 @@ class AdminDashboard {
         console.log('DEBUG: markAsModified called with index =', index);
         this.modifiedItems.add(index);
         console.log('DEBUG: modifiedItems.size after add =', this.modifiedItems.size);
-        // Add visual indicator
+        
+        // Add visual indicators with enhanced staging
         const row = document.querySelector(`tr[data-index="${index}"]`);
         if (row) {
-            row.classList.add('modified');
-            console.log('DEBUG: Added modified class to row');
+            row.classList.add('modified', 'staged');
+            console.log('DEBUG: Added modified and staged classes to row');
+            
+            // Add staging indicator to any modified fields in this row
+            const editableFields = row.querySelectorAll('.editable-field');
+            editableFields.forEach(field => {
+                if (field.dataset.originalValue !== field.value) {
+                    field.classList.add('staged');
+                }
+            });
+            
+            // Mark any control buttons and values as modified
+            const controlElements = row.querySelectorAll('.status-toggle, .completed-toggle, .active-toggle, .copies-count, .watched-count');
+            controlElements.forEach(element => {
+                if (element.dataset.modified === 'true') {
+                    element.classList.add('modified');
+                }
+            });
         } else {
             console.log('DEBUG: Row not found for index', index);
+        }
+        
+        // Update save button state
+        this.updateSaveButtonState();
+        this.updateStagingIndicator();
+    }
+
+    checkIfRowStillModified(index) {
+        const row = document.querySelector(`tr[data-index="${index}"]`);
+        if (!row) return;
+        
+        // Check if any editable fields in this row are still modified
+        const editableFields = row.querySelectorAll('.editable-field');
+        let hasModifiedFields = false;
+        
+        editableFields.forEach(field => {
+            if (field.dataset.originalValue !== field.value) {
+                hasModifiedFields = true;
+            }
+        });
+        
+        // Check if any control buttons are marked as modified
+        const controlElements = row.querySelectorAll('.status-toggle.modified, .completed-toggle.modified, .active-toggle.modified, .control-btn.modified');
+        const hasModifiedControls = controlElements.length > 0;
+        
+        // If no modifications remain, remove from modified items and clear styling
+        if (!hasModifiedFields && !hasModifiedControls) {
+            this.modifiedItems.delete(index);
+            row.classList.remove('modified', 'staged');
+            
+            // Update save button and staging indicator
+            this.updateSaveButtonState();
+            this.updateStagingIndicator();
         }
     }
 
@@ -655,6 +738,33 @@ class AdminDashboard {
             item[fieldName] = newValue;
             this.markAsModified(index);
             this.updateStats();
+        }
+    }
+
+    updateSaveButtonState() {
+        const saveBtn = document.getElementById('save-all-btn');
+        if (saveBtn) {
+            if (this.modifiedItems.size > 0) {
+                saveBtn.classList.add('has-changes');
+                saveBtn.textContent = `💾 Save All (${this.modifiedItems.size})`;
+            } else {
+                saveBtn.classList.remove('has-changes');
+                saveBtn.textContent = '💾 Save All';
+            }
+        }
+    }
+
+    updateStagingIndicator() {
+        // Update stats to show staging information
+        const modifiedCount = this.modifiedItems.size;
+        const modifiedElement = document.getElementById('modified-items');
+        
+        if (modifiedElement) {
+            if (modifiedCount > 0) {
+                modifiedElement.innerHTML = `${modifiedCount} staged <span class="staging-indicator">Unsaved</span>`;
+            } else {
+                modifiedElement.textContent = '0 modified';
+            }
         }
     }
 

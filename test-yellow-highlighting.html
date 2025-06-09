@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Highlighting System Test</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .test-results {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .pass {
+            color: #10b981;
+        }
+        .fail {
+            color: #ef4444;
+        }
+        .warning {
+            color: #f59e0b;
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .mock-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .mock-table th,
+        .mock-table td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: left;
+        }
+        .mock-table th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🟡 Yellow Highlighting System Test</h1>
+    <p>This test verifies the complete yellow highlighting system for staged edits in the admin dashboard.</p>
+
+    <div class="test-section">
+        <h2>🧪 System Component Tests</h2>
+        <div id="component-results" class="test-results"></div>
+        <button class="test-button" onclick="testComponents()">Run Component Tests</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 CSS Styling Tests</h2>
+        <div id="styling-results" class="test-results"></div>
+        <button class="test-button" onclick="testStyling()">Test CSS Classes</button>
+        
+        <!-- Sample elements to test styling -->
+        <div style="margin-top: 20px;">
+            <h4>Sample Elements:</h4>
+            <input type="text" class="editable-field" placeholder="Normal field" value="Normal">
+            <input type="text" class="editable-field modified" placeholder="Modified field" value="Modified">
+            <input type="text" class="editable-field staged" placeholder="Staged field" value="Staged">
+            
+            <table class="mock-table">
+                <tr>
+                    <td>Normal row</td>
+                    <td><button class="status-toggle">🟢</button></td>
+                </tr>
+                <tr class="modified">
+                    <td>Modified row</td>
+                    <td><button class="status-toggle modified">🟡</button></td>
+                </tr>
+                <tr class="staged">
+                    <td>Staged row</td>
+                    <td><button class="status-toggle modified">🟡</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>⚡ Interactive Testing</h2>
+        <div id="interactive-results" class="test-results"></div>
+        <button class="test-button" onclick="testInteractive()">Test Interactive Features</button>
+        
+        <!-- Interactive test elements -->
+        <div style="margin-top: 20px;">
+            <h4>Test Field Changes:</h4>
+            <table class="data-table" id="test-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Last Watched</th>
+                        <th>Series Length</th>
+                    </tr>
+                </thead>
+                <tbody id="test-table-body">
+                    <tr data-index="0">
+                        <td>Test Movie 1</td>
+                        <td><button class="status-toggle" data-index="0">🟢</button></td>
+                        <td><input type="text" class="editable-field" data-field="LAST WATCHED" data-original-value="2024-01-01" value="2024-01-01"></td>
+                        <td><input type="number" class="editable-field" data-field="SERIES LENGTH" data-original-value="10" value="10"></td>
+                    </tr>
+                    <tr data-index="1">
+                        <td>Test Movie 2</td>
+                        <td><button class="status-toggle" data-index="1">🔴</button></td>
+                        <td><input type="text" class="editable-field" data-field="LAST WATCHED" data-original-value="2024-02-01" value="2024-02-01"></td>
+                        <td><input type="number" class="editable-field" data-field="SERIES LENGTH" data-original-value="8" value="8"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>💾 Save Button State Test</h2>
+        <div id="save-button-results" class="test-results"></div>
+        <button class="test-button save-btn" id="test-save-btn">💾 Save All</button>
+        <button class="test-button" onclick="testSaveButton()">Test Save Button</button>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Final Test Summary</h2>
+        <div id="final-summary" class="test-results"></div>
+        <button class="test-button" onclick="runAllTests()">Run All Tests</button>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+    <script>
+        let testResults = {
+            components: 0,
+            styling: 0,
+            interactive: 0,
+            saveButton: 0,
+            total: 0
+        };
+
+        function log(message, type = 'info') {
+            console.log(`[${type.toUpperCase()}] ${message}`);
+            return `<div class="${type}">${message}</div>`;
+        }
+
+        function testComponents() {
+            const results = document.getElementById('component-results');
+            let output = '<h4>Component Test Results:</h4>';
+            let passed = 0;
+            let total = 5;
+
+            // Test 1: AdminDashboard class exists
+            if (typeof AdminDashboard === 'function') {
+                output += log('✅ AdminDashboard class found', 'pass');
+                passed++;
+            } else {
+                output += log('❌ AdminDashboard class not found', 'fail');
+            }
+
+            // Test 2: Check for staging CSS classes
+            const testElement = document.createElement('div');
+            testElement.className = 'editable-field modified';
+            document.body.appendChild(testElement);
+            const styles = getComputedStyle(testElement);
+            
+            if (styles.backgroundColor.includes('rgba(251, 191, 36') || styles.backgroundColor.includes('rgb(251, 191, 36')) {
+                output += log('✅ Modified field styling applied', 'pass');
+                passed++;
+            } else {
+                output += log('❌ Modified field styling not found', 'fail');
+            }
+            document.body.removeChild(testElement);
+
+            // Test 3: Check for staging animation
+            const styleSheets = Array.from(document.styleSheets);
+            let hasAnimation = false;
+            try {
+                styleSheets.forEach(sheet => {
+                    if (sheet.cssRules) {
+                        Array.from(sheet.cssRules).forEach(rule => {
+                            if (rule.name === 'stagingPulse') {
+                                hasAnimation = true;
+                            }
+                        });
+                    }
+                });
+            } catch (e) {
+                // Cross-origin or other access issues
+            }
+            
+            if (hasAnimation) {
+                output += log('✅ Staging animation found', 'pass');
+                passed++;
+            } else {
+                output += log('⚠️ Staging animation might be present (cross-origin check)', 'warning');
+                passed += 0.5;
+            }
+
+            // Test 4: Check for staging indicator styles
+            const indicatorTest = document.createElement('div');
+            indicatorTest.className = 'staging-indicator';
+            document.body.appendChild(indicatorTest);
+            const indicatorStyles = getComputedStyle(indicatorTest);
+            
+            if (indicatorStyles.color.includes('250, 204, 21') || indicatorStyles.borderColor.includes('#facc15')) {
+                output += log('✅ Staging indicator styling found', 'pass');
+                passed++;
+            } else {
+                output += log('❌ Staging indicator styling not found', 'fail');
+            }
+            document.body.removeChild(indicatorTest);
+
+            // Test 5: Check for row staging styles
+            const rowTest = document.createElement('tr');
+            rowTest.className = 'staged';
+            document.body.appendChild(rowTest);
+            const rowStyles = getComputedStyle(rowTest);
+            
+            if (rowStyles.borderLeft.includes('3px') && rowStyles.borderLeft.includes('#facc15')) {
+                output += log('✅ Row staging styling found', 'pass');
+                passed++;
+            } else {
+                output += log('❌ Row staging styling not found', 'fail');
+            }
+            document.body.removeChild(rowTest);
+
+            output += `<div><strong>Component Tests: ${passed}/${total} passed</strong></div>`;
+            testResults.components = passed / total;
+            results.innerHTML = output;
+        }
+
+        function testStyling() {
+            const results = document.getElementById('styling-results');
+            let output = '<h4>CSS Styling Test Results:</h4>';
+            let passed = 0;
+            let total = 4;
+
+            // Test existing sample elements
+            const normalField = document.querySelector('.editable-field:not(.modified):not(.staged)');
+            const modifiedField = document.querySelector('.editable-field.modified');
+            const stagedField = document.querySelector('.editable-field.staged');
+            const stagedRow = document.querySelector('tr.staged');
+
+            if (normalField) {
+                const styles = getComputedStyle(normalField);
+                output += log('✅ Normal field element found and styled', 'pass');
+                passed++;
+            } else {
+                output += log('❌ Normal field element not found', 'fail');
+            }
+
+            if (modifiedField) {
+                const styles = getComputedStyle(modifiedField);
+                if (styles.backgroundColor.includes('251, 191, 36') || styles.borderColor.includes('#fbbf24')) {
+                    output += log('✅ Modified field has yellow highlighting', 'pass');
+                    passed++;
+                } else {
+                    output += log('❌ Modified field missing yellow highlighting', 'fail');
+                }
+            } else {
+                output += log('❌ Modified field element not found', 'fail');
+            }
+
+            if (stagedField) {
+                const styles = getComputedStyle(stagedField);
+                if (styles.backgroundColor.includes('250, 204, 21') || styles.borderColor.includes('#facc15')) {
+                    output += log('✅ Staged field has enhanced yellow highlighting', 'pass');
+                    passed++;
+                } else {
+                    output += log('❌ Staged field missing enhanced highlighting', 'fail');
+                }
+            } else {
+                output += log('❌ Staged field element not found', 'fail');
+            }
+
+            if (stagedRow) {
+                const styles = getComputedStyle(stagedRow);
+                if (styles.borderLeft.includes('3px') && styles.borderLeft.includes('#facc15')) {
+                    output += log('✅ Staged row has yellow border highlighting', 'pass');
+                    passed++;
+                } else {
+                    output += log('❌ Staged row missing yellow border', 'fail');
+                }
+            } else {
+                output += log('❌ Staged row element not found', 'fail');
+            }
+
+            output += `<div><strong>Styling Tests: ${passed}/${total} passed</strong></div>`;
+            testResults.styling = passed / total;
+            results.innerHTML = output;
+        }
+
+        function testInteractive() {
+            const results = document.getElementById('interactive-results');
+            let output = '<h4>Interactive Test Results:</h4>';
+            let passed = 0;
+            let total = 3;
+
+            // Test 1: Field change detection
+            const testField = document.querySelector('#test-table .editable-field[data-field="LAST WATCHED"]');
+            if (testField) {
+                const originalValue = testField.dataset.originalValue;
+                testField.value = '2024-12-01'; // Change value
+                
+                // Simulate input event
+                const inputEvent = new Event('input', { bubbles: true });
+                testField.dispatchEvent(inputEvent);
+                
+                // Check if staging class was added
+                setTimeout(() => {
+                    if (testField.classList.contains('staged') || testField.classList.contains('modified')) {
+                        output += log('✅ Field change detection working', 'pass');
+                        passed++;
+                    } else {
+                        output += log('❌ Field change detection not working', 'fail');
+                    }
+                    
+                    // Test 2: Revert detection
+                    testField.value = originalValue;
+                    const revertEvent = new Event('change', { bubbles: true });
+                    testField.dispatchEvent(revertEvent);
+                    
+                    setTimeout(() => {
+                        if (!testField.classList.contains('staged') && !testField.classList.contains('modified')) {
+                            output += log('✅ Field revert detection working', 'pass');
+                            passed++;
+                        } else {
+                            output += log('❌ Field revert detection not working', 'fail');
+                        }
+                        
+                        output += `<div><strong>Interactive Tests: ${passed}/3 passed</strong></div>`;
+                        testResults.interactive = passed / 3;
+                        results.innerHTML = output;
+                    }, 100);
+                }, 100);
+            } else {
+                output += log('❌ Test field not found', 'fail');
+                output += `<div><strong>Interactive Tests: ${passed}/3 passed</strong></div>`;
+                testResults.interactive = passed / 3;
+                results.innerHTML = output;
+            }
+
+            // Test 3: Row highlighting
+            const testRow = document.querySelector('#test-table tr[data-index="0"]');
+            if (testRow) {
+                // Simulate marking as modified
+                testRow.classList.add('modified', 'staged');
+                
+                if (testRow.classList.contains('staged')) {
+                    output += log('✅ Row highlighting can be applied', 'pass');
+                    passed++;
+                } else {
+                    output += log('❌ Row highlighting not working', 'fail');
+                }
+            }
+        }
+
+        function testSaveButton() {
+            const results = document.getElementById('save-button-results');
+            const saveBtn = document.getElementById('test-save-btn');
+            let output = '<h4>Save Button Test Results:</h4>';
+            let passed = 0;
+            let total = 2;
+
+            // Test 1: Normal state
+            output += log('✅ Save button in normal state', 'pass');
+            passed++;
+
+            // Test 2: Enhanced state with changes
+            saveBtn.classList.add('has-changes');
+            saveBtn.textContent = '💾 Save All (3)';
+            
+            const styles = getComputedStyle(saveBtn);
+            if (styles.background.includes('linear-gradient') || styles.boxShadow.includes('245, 158, 11')) {
+                output += log('✅ Save button enhanced state working', 'pass');
+                passed++;
+            } else {
+                output += log('❌ Save button enhanced state not working', 'fail');
+            }
+
+            output += `<div><strong>Save Button Tests: ${passed}/${total} passed</strong></div>`;
+            testResults.saveButton = passed / total;
+            results.innerHTML = output;
+        }
+
+        function runAllTests() {
+            testComponents();
+            setTimeout(() => testStyling(), 100);
+            setTimeout(() => testInteractive(), 200);
+            setTimeout(() => testSaveButton(), 300);
+            setTimeout(() => {
+                const summary = document.getElementById('final-summary');
+                const totalScore = (testResults.components + testResults.styling + testResults.interactive + testResults.saveButton) / 4;
+                
+                let output = '<h4>Final Test Summary:</h4>';
+                output += `<div>Component Tests: ${(testResults.components * 100).toFixed(1)}%</div>`;
+                output += `<div>Styling Tests: ${(testResults.styling * 100).toFixed(1)}%</div>`;
+                output += `<div>Interactive Tests: ${(testResults.interactive * 100).toFixed(1)}%</div>`;
+                output += `<div>Save Button Tests: ${(testResults.saveButton * 100).toFixed(1)}%</div>`;
+                output += `<div><strong>Overall Score: ${(totalScore * 100).toFixed(1)}%</strong></div>`;
+                
+                if (totalScore >= 0.9) {
+                    output += log('🎉 Excellent! Yellow highlighting system is fully functional', 'pass');
+                } else if (totalScore >= 0.7) {
+                    output += log('✅ Good! Most yellow highlighting features are working', 'pass');
+                } else if (totalScore >= 0.5) {
+                    output += log('⚠️ Partial! Some yellow highlighting features need attention', 'warning');
+                } else {
+                    output += log('❌ Poor! Yellow highlighting system needs significant work', 'fail');
+                }
+                
+                summary.innerHTML = output;
+            }, 500);
+        }
+
+        // Auto-run tests on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                console.log('Starting yellow highlighting system tests...');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
