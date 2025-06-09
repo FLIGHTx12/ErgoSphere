@@ -137,4 +137,80 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Bulk update all loot items (for admin dashboard)
+router.put('/', async (req, res) => {
+  try {
+    const lootItems = req.body;
+    
+    if (!Array.isArray(lootItems)) {
+      return res.status(400).json({ error: 'Request body must be an array of loot items' });
+    }
+    
+    console.log(`📦 Bulk update: Received ${lootItems.length} loot items`);
+    
+    // Create backup before bulk update
+    const backupResult = await pool.query('SELECT * FROM loot_items ORDER BY id');
+    if (backupResult.rows.length > 0) {
+      await createDatabaseBackup('loot_bulk_update_before', backupResult.rows);
+    }
+    
+    // Clear existing loot items
+    await pool.query('DELETE FROM loot_items');
+    console.log('🗑️ Cleared existing loot items');
+    
+    // Insert all updated loot items
+    let successCount = 0;
+    for (const item of lootItems) {
+      try {
+        const imageArray = Array.isArray(item.image) ? item.image : [item.image || ''];
+        
+        await pool.query(
+          `INSERT INTO loot_items (id, text, image, copies, details, genre, type, cost, after_spin, link)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+           ON CONFLICT (id) DO UPDATE SET
+           text = EXCLUDED.text,
+           image = EXCLUDED.image,
+           copies = EXCLUDED.copies,
+           details = EXCLUDED.details,
+           genre = EXCLUDED.genre,
+           type = EXCLUDED.type,
+           cost = EXCLUDED.cost,
+           after_spin = EXCLUDED.after_spin,
+           link = EXCLUDED.link`,
+          [
+            item.id,
+            item.text || '',
+            JSON.stringify(imageArray),
+            item.copies || 0,
+            item.details || '',
+            item.genre || '',
+            item.type || 'loot',
+            item.cost || 0,
+            item.after_spin || '',
+            item.link || ''
+          ]
+        );
+        successCount++;
+      } catch (itemError) {
+        console.error(`⚠️ Error updating loot item ${item.id}:`, itemError.message);
+      }
+    }
+    
+    // Auto-sync to JSON file
+    const syncSuccess = await syncLootToJSON();
+    console.log(`✅ Bulk updated ${successCount}/${lootItems.length} loot items with auto-sync: ${syncSuccess}`);
+    
+    res.json({
+      message: `Successfully updated ${successCount}/${lootItems.length} loot items`,
+      successCount,
+      totalCount: lootItems.length,
+      syncStatus: syncSuccess
+    });
+    
+  } catch (err) {
+    console.error('Error in bulk loot update:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
