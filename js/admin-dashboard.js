@@ -12,6 +12,7 @@ class AdminDashboard {    constructor() {
         this.websocket = null;
         this.editingIndex = null;
         this.editingItem = null;
+        this.searchValue = ''; // Add property to track search value
         // Category-specific field configurations
         this.categoryConfigs = {
             movies: {
@@ -333,9 +334,7 @@ class AdminDashboard {    constructor() {
             const row = this.createTableRow(item, index, dataType);
             tbody.appendChild(row);
         });
-    }
-
-    updateTableHeaders() {
+    }    updateTableHeaders() {
         const headersRow = document.getElementById('table-headers');
         if (!headersRow) return;
         
@@ -346,42 +345,39 @@ class AdminDashboard {    constructor() {
             <th class="col-checkbox">
                 <input type="checkbox" id="select-all">
             </th>
-            <th class="col-name">Name</th>`;
+            <th class="col-name sortable" data-sort="name">Name</th>`;
         
         // Only include STATUS column for categories that don't have copies determining status
         if (!config.showCopies) {
-            headersHTML += `<th class="col-status">Status</th>`;
+            headersHTML += `<th class="col-status sortable" data-sort="status">Status</th>`;
         }
         
         // Add category-specific headers
         if (config.showCopies) {
-            headersHTML += `<th class="col-copies">Copies</th>`;
-        }
-          if (config.completedField) {
-            headersHTML += `<th class="col-completed">Completed?</th>`;
+            headersHTML += `<th class="col-copies sortable" data-sort="copies">Copies</th>`;
+        }          if (config.completedField) {
+            headersHTML += `<th class="col-completed sortable" data-sort="completed">Completed?</th>`;
         }
         
         if (config.activeField) {
-            headersHTML += `<th class="col-active">Active</th>`;
+            headersHTML += `<th class="col-active sortable" data-sort="active">Active</th>`;
         }
         
         if (config.timesSeenField) {
-            headersHTML += `<th class="col-watched">Times Seen</th>`;
-        }
-          if (config.lastWatchedField) {
-            headersHTML += `<th class="col-last-watched">Last Watched</th>`;
+            headersHTML += `<th class="col-watched sortable" data-sort="watched">Times Seen</th>`;
+        }          if (config.lastWatchedField) {
+            headersHTML += `<th class="col-last-watched sortable" data-sort="lastWatched">Last Watched</th>`;
         }
         
         if (config.seriesLengthField) {
-            headersHTML += `<th class="col-series-length">Series Length</th>`;
+            headersHTML += `<th class="col-series-length sortable" data-sort="seriesLength">Series Length</th>`;
         }
         
         if (config.genreField && this.currentCategory === 'mods') {
-            headersHTML += `<th class="col-genre">Genre</th>`;
+            headersHTML += `<th class="col-genre sortable" data-sort="genre">Genre</th>`;
+        }          if (config.timeField && this.currentCategory === 'singleplayer') {
+            headersHTML += `<th class="col-time sortable" data-sort="time">Time to Beat</th>`;
         }
-          if (config.timeField && this.currentCategory === 'singleplayer') {
-            headersHTML += `<th class="col-time">Time to Beat</th>`;
-        }        
         // Cost column removed for loot boxes as requested
         // if (config.costField && isLoot) {
         //     headersHTML += `<th class="col-cost">Cost 💰</th>`;
@@ -417,6 +413,22 @@ class AdminDashboard {    constructor() {
                 });
             }
         }
+        
+        // Set up sorting by column header clicks
+        const sortableHeaders = document.querySelectorAll('th.sortable');
+        sortableHeaders.forEach(header => {
+            header.addEventListener('click', (e) => {
+                const sortBy = e.target.dataset.sort;
+                if (sortBy) {
+                    this.sortData(sortBy);
+                }
+            });
+            // Add a visual indicator that the column is clickable
+            header.style.cursor = 'pointer';
+            if (!header.querySelector('.sort-indicator')) {
+                header.innerHTML += ' <span class="sort-indicator">↕️</span>';
+            }
+        });
     }createTableRow(item, index, dataType) {
         const row = document.createElement('tr');
         row.dataset.index = index;
@@ -529,8 +541,7 @@ class AdminDashboard {    constructor() {
             <td class="time-cell">
                 <span class="time-value">${timeValue}</span>
             </td>`;
-        }
-          
+        }          
         // Cost field removed for loot boxes as requested
         // if (config.costField && isLoot) {
         //     const cost = item[config.costField] || 0;
@@ -888,9 +899,10 @@ class AdminDashboard {    constructor() {
                 element.textContent = value;
             }
         });
-    }
-
-    filterData(searchTerm) {
+    }    filterData(searchTerm) {
+        // Save the current search term
+        this.searchValue = searchTerm;
+        
         const rows = document.querySelectorAll('#table-body tr');
         rows.forEach(row => {
             const name = row.querySelector('.item-name').textContent.toLowerCase();
@@ -986,12 +998,23 @@ class AdminDashboard {    constructor() {
         
         // Update the current data with sorted version
         this.currentData = sortedData;
+          // Update sorting indicator in the UI
+        document.querySelectorAll('th.sortable').forEach(header => {
+            const headerSortBy = header.dataset.sort;
+            if (headerSortBy === sortBy) {
+                header.classList.add('active-sort');
+            } else {
+                header.classList.remove('active-sort');
+            }
+        });
         
         // Re-render the table with sorted data
         this.renderTable();
-        
-        // Show feedback message
-        this.showMessage(`📊 Sorted by ${sortBy}`);
+          // Only show feedback message when sorting is triggered by user action, not on initial load
+        const isUserAction = new Error().stack.includes('HTMLTableCellElement.addEventListener');
+        if (isUserAction) {
+            this.showMessage(`📊 Sorted by ${sortBy}`);
+        }
         
         console.log(`Data sorted by ${sortBy}, ${this.currentData.length} items`);
     }
@@ -1318,13 +1341,20 @@ class AdminDashboard {    constructor() {
         const closeBtn = editModal.querySelector('.modal-close');
 
         // Save changes
-        saveBtn.onclick = () => this.saveItemChanges();
-
-        // Cancel editing
+        saveBtn.onclick = () => this.saveItemChanges();        // Cancel editing
         const cancelEdit = () => {
             editModal.classList.add('hidden');
             this.editingIndex = null;
             this.editingItem = null;
+            
+            // Restore search value if it exists
+            if (this.searchValue) {
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) {
+                    searchInput.value = this.searchValue;
+                    this.filterData(this.searchValue);
+                }
+            }
         };
 
         cancelBtn.onclick = cancelEdit;
@@ -1388,12 +1418,19 @@ class AdminDashboard {    constructor() {
         this.updateStats();
 
         // Show success message
-        this.showMessage('Item updated successfully! Remember to save your changes.');
-
-        // Close modal
+        this.showMessage('Item updated successfully! Remember to save your changes.');        // Close modal
         document.getElementById('edit-modal').classList.add('hidden');
         this.editingIndex = null;
         this.editingItem = null;
+        
+        // Restore search value if it exists
+        if (this.searchValue) {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = this.searchValue;
+                this.filterData(this.searchValue);
+            }
+        }
     }
 
     refreshTableRow(index) {
