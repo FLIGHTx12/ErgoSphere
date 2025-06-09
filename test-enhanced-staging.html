@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Staging System Test</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .test-results {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .pass { color: #10b981; }
+        .fail { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .demo-table th,
+        .demo-table td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: left;
+        }
+        .demo-table th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .stats-panel {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .control-panel {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>🟡 Enhanced Staging System Test</h1>
+    <p>This test verifies the enhanced yellow highlighting system with improved row highlighting, save functionality, and staging clearing.</p>
+
+    <div class="stats-panel">
+        <h3>📊 Staging Statistics</h3>
+        <div>Modified Items: <span id="modified-items">0 modified</span></div>
+        <div>Save Button State: <span id="save-button-state">Normal</span></div>
+    </div>
+
+    <div class="control-panel">
+        <button class="test-button save-btn" id="save-all-btn">💾 Save All</button>
+        <button class="test-button" onclick="clearAllHighlights()">🧹 Clear All Highlights</button>
+        <button class="test-button" onclick="addTestData()">📝 Add Test Data</button>
+        <button class="test-button" onclick="runComprehensiveTest()">🧪 Run Full Test</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 Interactive Demo Table</h2>
+        <p>Make changes to the fields below to see enhanced staging highlights:</p>
+        
+        <table class="demo-table data-table" id="demo-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Last Watched</th>
+                    <th>Series Length</th>
+                    <th>Copies</th>
+                </tr>
+            </thead>
+            <tbody id="demo-table-body">
+                <tr data-index="0">
+                    <td>Test Movie 1</td>
+                    <td><button class="status-toggle" data-index="0">🟢</button></td>
+                    <td><input type="text" class="editable-field" data-field="LAST WATCHED" data-original-value="Season 1" value="Season 1"></td>
+                    <td><input type="number" class="editable-field" data-field="SERIES LENGTH" data-original-value="10" value="10"></td>
+                    <td>
+                        <div class="control-group">
+                            <button class="control-btn" data-action="copies-minus" data-index="0">-</button>
+                            <span class="copies-count" data-index="0">3</span>
+                            <button class="control-btn" data-action="copies-plus" data-index="0">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-index="1">
+                    <td>Test Movie 2</td>
+                    <td><button class="status-toggle" data-index="1">🔴</button></td>
+                    <td><input type="text" class="editable-field" data-field="LAST WATCHED" data-original-value="Episode 5" value="Episode 5"></td>
+                    <td><input type="number" class="editable-field" data-field="SERIES LENGTH" data-original-value="20" value="20"></td>
+                    <td>
+                        <div class="control-group">
+                            <button class="control-btn" data-action="copies-minus" data-index="1">-</button>
+                            <span class="copies-count" data-index="1">1</span>
+                            <button class="control-btn" data-action="copies-plus" data-index="1">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-index="2">
+                    <td>Test Movie 3</td>
+                    <td><button class="status-toggle" data-index="2">🟢</button></td>
+                    <td><input type="text" class="editable-field" data-field="LAST WATCHED" data-original-value="Complete" value="Complete"></td>
+                    <td><input type="number" class="editable-field" data-field="SERIES LENGTH" data-original-value="15" value="15"></td>
+                    <td>
+                        <div class="control-group">
+                            <button class="control-btn" data-action="copies-minus" data-index="2">-</button>
+                            <span class="copies-count" data-index="2">0</span>
+                            <button class="control-btn" data-action="copies-plus" data-index="2">+</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 Test Results</h2>
+        <div id="test-results" class="test-results">
+            <p>Click "Run Full Test" to start automated testing...</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Enhancement Features</h2>
+        <ul>
+            <li><strong>Enhanced Row Highlighting:</strong> Staged rows now have more prominent yellow borders with edit icons</li>
+            <li><strong>Improved Save Button:</strong> Enhanced scaling and glow effects when changes are staged</li>
+            <li><strong>Comprehensive Clearing:</strong> All staging highlights are properly removed after saving</li>
+            <li><strong>Better Animations:</strong> Smooth pulsing effects for both rows and save button</li>
+            <li><strong>Icon Indicators:</strong> Edit icons appear on staged rows and fields</li>
+        </ul>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+    <script>
+        let testDashboard;
+        let testResults = {
+            rowHighlighting: 0,
+            saveButtonEnhancement: 0,
+            stagingClearing: 0,
+            animations: 0
+        };
+
+        // Initialize test environment
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initializing enhanced staging test...');
+            
+            // Create AdminDashboard instance for testing
+            if (typeof AdminDashboard !== 'undefined') {
+                testDashboard = new AdminDashboard();
+                testDashboard.currentCategory = 'movies';
+                testDashboard.currentData = [
+                    { name: 'Test Movie 1', STATUS: '🟢', 'LAST WATCHED': 'Season 1', 'SERIES LENGTH': 10, copies: 3 },
+                    { name: 'Test Movie 2', STATUS: '🔴', 'LAST WATCHED': 'Episode 5', 'SERIES LENGTH': 20, copies: 1 },
+                    { name: 'Test Movie 3', STATUS: '🟢', 'LAST WATCHED': 'Complete', 'SERIES LENGTH': 15, copies: 0 }
+                ];
+                
+                // Set up event listeners for demo table
+                setupDemoEventListeners();
+                console.log('✅ Test dashboard initialized');
+            } else {
+                console.error('❌ AdminDashboard class not found');
+            }
+        });
+
+        function setupDemoEventListeners() {
+            // Editable fields
+            document.querySelectorAll('.editable-field').forEach((field, index) => {
+                field.addEventListener('input', (e) => {
+                    const originalValue = e.target.dataset.originalValue;
+                    const newValue = e.target.value;
+                    const rowIndex = parseInt(e.target.closest('tr').dataset.index);
+                    
+                    if (newValue !== originalValue) {
+                        e.target.classList.add('modified', 'staged');
+                        markRowAsStaged(rowIndex);
+                    } else {
+                        e.target.classList.remove('modified', 'staged');
+                        checkRowStaging(rowIndex);
+                    }
+                    
+                    updateStats();
+                });
+            });
+
+            // Status toggles
+            document.querySelectorAll('.status-toggle').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const rowIndex = parseInt(e.target.dataset.index);
+                    e.target.textContent = e.target.textContent === '🟢' ? '🔴' : '🟢';
+                    e.target.classList.add('modified');
+                    markRowAsStaged(rowIndex);
+                    updateStats();
+                });
+            });
+
+            // Control buttons
+            document.querySelectorAll('.control-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const action = e.target.dataset.action;
+                    const rowIndex = parseInt(e.target.dataset.index);
+                    const copiesSpan = document.querySelector(`.copies-count[data-index="${rowIndex}"]`);
+                    let currentValue = parseInt(copiesSpan.textContent);
+                    
+                    if (action === 'copies-plus') {
+                        copiesSpan.textContent = currentValue + 1;
+                    } else if (action === 'copies-minus' && currentValue > 0) {
+                        copiesSpan.textContent = currentValue - 1;
+                    }
+                    
+                    copiesSpan.classList.add('modified');
+                    markRowAsStaged(rowIndex);
+                    updateStats();
+                });
+            });
+
+            // Save button
+            document.getElementById('save-all-btn').addEventListener('click', function() {
+                simulateSave();
+            });
+        }
+
+        function markRowAsStaged(index) {
+            const row = document.querySelector(`tr[data-index="${index}"]`);
+            if (row) {
+                row.classList.add('modified', 'staged');
+                if (testDashboard) {
+                    testDashboard.modifiedItems.add(index);
+                }
+            }
+        }
+
+        function checkRowStaging(index) {
+            const row = document.querySelector(`tr[data-index="${index}"]`);
+            if (row) {
+                const hasModifiedFields = row.querySelectorAll('.modified').length > 0;
+                if (!hasModifiedFields) {
+                    row.classList.remove('modified', 'staged');
+                    if (testDashboard) {
+                        testDashboard.modifiedItems.delete(index);
+                    }
+                }
+            }
+        }
+
+        function updateStats() {
+            const modifiedCount = testDashboard ? testDashboard.modifiedItems.size : 0;
+            const modifiedElement = document.getElementById('modified-items');
+            const saveButtonState = document.getElementById('save-button-state');
+            const saveBtn = document.getElementById('save-all-btn');
+            
+            if (modifiedElement) {
+                if (modifiedCount > 0) {
+                    modifiedElement.innerHTML = `${modifiedCount} staged <span class="staging-indicator">Unsaved</span>`;
+                } else {
+                    modifiedElement.textContent = '0 modified';
+                }
+            }
+            
+            if (saveBtn) {
+                if (modifiedCount > 0) {
+                    saveBtn.classList.add('has-changes');
+                    saveBtn.textContent = `💾 Save All (${modifiedCount})`;
+                    saveButtonState.textContent = 'Enhanced (with changes)';
+                } else {
+                    saveBtn.classList.remove('has-changes');
+                    saveBtn.textContent = '💾 Save All';
+                    saveButtonState.textContent = 'Normal';
+                }
+            }
+        }
+
+        function simulateSave() {
+            console.log('Simulating save...');
+            
+            // Clear all staging highlights using the enhanced method
+            if (testDashboard && typeof testDashboard.clearAllStagingHighlights === 'function') {
+                testDashboard.clearAllStagingHighlights();
+                updateStats();
+                console.log('✅ Enhanced staging clear method used');
+            } else {
+                // Fallback manual clearing
+                clearAllHighlights();
+                console.log('⚠️ Fallback manual clearing used');
+            }
+            
+            // Show success message
+            setTimeout(() => {
+                alert('✅ Changes saved successfully! All staging highlights cleared.');
+            }, 100);
+        }
+
+        function clearAllHighlights() {
+            // Remove all staging classes
+            document.querySelectorAll('.modified, .staged').forEach(element => {
+                element.classList.remove('modified', 'staged');
+            });
+            
+            if (testDashboard) {
+                testDashboard.modifiedItems.clear();
+            }
+            
+            updateStats();
+        }
+
+        function addTestData() {
+            // Simulate adding changes to test staging
+            const fields = document.querySelectorAll('.editable-field');
+            const toggles = document.querySelectorAll('.status-toggle');
+            
+            // Modify first field
+            if (fields[0]) {
+                fields[0].value = 'Modified Season 2';
+                fields[0].classList.add('modified', 'staged');
+                markRowAsStaged(0);
+            }
+            
+            // Modify second toggle
+            if (toggles[1]) {
+                toggles[1].textContent = '🟢';
+                toggles[1].classList.add('modified');
+                markRowAsStaged(1);
+            }
+            
+            updateStats();
+            console.log('✅ Test data added');
+        }
+
+        function runComprehensiveTest() {
+            const results = document.getElementById('test-results');
+            let output = '<h4>Comprehensive Enhanced Staging Test Results:</h4>';
+            let totalPassed = 0;
+            let totalTests = 0;
+
+            // Test 1: Row highlighting enhancement
+            output += '<h5>🎯 Row Highlighting Enhancement Test:</h5>';
+            addTestData();
+            const stagedRows = document.querySelectorAll('tr.staged');
+            if (stagedRows.length > 0) {
+                const firstRow = stagedRows[0];
+                const styles = getComputedStyle(firstRow);
+                
+                if (styles.borderLeft.includes('4px') && styles.borderLeft.includes('#facc15')) {
+                    output += '<div class="pass">✅ Enhanced row border thickness (4px)</div>';
+                    totalPassed++;
+                } else {
+                    output += '<div class="fail">❌ Row border enhancement not found</div>';
+                }
+                totalTests++;
+                
+                if (styles.animation.includes('stagingPulse')) {
+                    output += '<div class="pass">✅ Row pulsing animation active</div>';
+                    totalPassed++;
+                } else {
+                    output += '<div class="fail">❌ Row animation not active</div>';
+                }
+                totalTests++;
+            }
+
+            // Test 2: Save button enhancement
+            output += '<h5>💾 Save Button Enhancement Test:</h5>';
+            const saveBtn = document.getElementById('save-all-btn');
+            if (saveBtn.classList.contains('has-changes')) {
+                const styles = getComputedStyle(saveBtn);
+                
+                if (styles.transform.includes('scale')) {
+                    output += '<div class="pass">✅ Save button scaling effect active</div>';
+                    totalPassed++;
+                } else {
+                    output += '<div class="fail">❌ Save button scaling not found</div>';
+                }
+                totalTests++;
+                
+                if (styles.animation.includes('saveButtonPulse')) {
+                    output += '<div class="pass">✅ Save button pulsing animation active</div>';
+                    totalPassed++;
+                } else {
+                    output += '<div class="fail">❌ Save button animation not active</div>';
+                }
+                totalTests++;
+            }
+
+            // Test 3: Staging clearing
+            output += '<h5>🧹 Staging Clearing Test:</h5>';
+            const initialStaged = document.querySelectorAll('.staged').length;
+            if (initialStaged > 0) {
+                output += `<div class="pass">✅ Found ${initialStaged} staged elements before clearing</div>';
+                
+                simulateSave();
+                
+                setTimeout(() => {
+                    const remainingStaged = document.querySelectorAll('.staged').length;
+                    if (remainingStaged === 0) {
+                        output += '<div class="pass">✅ All staging highlights cleared after save</div>';
+                        totalPassed++;
+                    } else {
+                        output += `<div class="fail">❌ ${remainingStaged} staging highlights remain after save</div>`;
+                    }
+                    totalTests++;
+                    
+                    // Final score
+                    const score = ((totalPassed / totalTests) * 100).toFixed(1);
+                    output += `<h5>📊 Final Score: ${totalPassed}/${totalTests} (${score}%)</h5>`;
+                    
+                    if (score >= 90) {
+                        output += '<div class="pass">🎉 Excellent! Enhanced staging system is fully functional</div>';
+                    } else if (score >= 70) {
+                        output += '<div class="warning">✅ Good! Most enhancements are working</div>';
+                    } else {
+                        output += '<div class="fail">❌ Enhancement system needs attention</div>';
+                    }
+                    
+                    results.innerHTML = output;
+                }, 200);
+            } else {
+                totalTests++;
+                output += '<div class="fail">❌ No staged elements found for testing</div>';
+                results.innerHTML = output;
+            }
+        }
+
+        // Log system status
+        console.log('Enhanced staging test page loaded');
+    </script>
+</body>
+</html>

@@ -173,9 +173,7 @@
                     <h3>No items found</h3>
                     <p>Try adjusting your search or filter criteria.</p>                </div>            </div>
         </section>
-    </main>
-
-    <!-- Bulk Actions Modal -->
+    </main>    <!-- Bulk Actions Modal -->
     <div id="bulk-modal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
@@ -190,6 +188,25 @@
                     <button class="bulk-action-btn" data-action="reset-watched">👁️ Reset Times Seen</button>
                     <button class="bulk-action-btn" data-action="mark-completed">✅ Mark Completed</button>
                     <button class="bulk-action-btn" data-action="mark-incomplete">⏳ Mark Incomplete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Individual Edit Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Edit Item</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="edit-form" class="edit-form">
+                    <!-- Form fields will be dynamically populated -->
+                </div>
+                <div class="modal-actions">
+                    <button id="save-item-btn" class="btn btn-primary">💾 Save Changes</button>
+                    <button id="cancel-edit-btn" class="btn btn-secondary">❌ Cancel</button>
                 </div>
             </div>
         </div>

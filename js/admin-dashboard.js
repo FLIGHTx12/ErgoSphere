@@ -3,14 +3,15 @@
  * Modern admin interface for managing STATUS, copies, WATCHED, and TIMES SEEN data
  */
 
-class AdminDashboard {
-    constructor() {
+class AdminDashboard {    constructor() {
         this.currentCategory = 'coop';
         this.currentData = [];
         this.modifiedItems = new Set();
         this.selectedItems = new Set();
         this.isConnected = false;
-        this.websocket = null;        
+        this.websocket = null;
+        this.editingIndex = null;
+        this.editingItem = null;
         // Category-specific field configurations
         this.categoryConfigs = {
             movies: {
@@ -347,10 +348,12 @@ class AdminDashboard {
         
         if (config.timeField && this.currentCategory === 'singleplayer') {
             headersHTML += `<th class="col-time">Time to Beat</th>`;
-        }
-          if (config.costField && isLoot) {
+        }        if (config.costField && isLoot) {
             headersHTML += `<th class="col-cost">Cost 💰</th>`;
         }
+        
+        // Add actions column header
+        headersHTML += `<th class="col-actions">Actions</th>`;
         
         headersRow.innerHTML = headersHTML;
           // Re-setup select all functionality
@@ -481,8 +484,13 @@ class AdminDashboard {
             rowContent += `
             <td class="cost-cell">
                 <span class="cost-value">${cost} 💰</span>
-            </td>`;
-        }
+            </td>`;        }
+        
+        // Add edit button column
+        rowContent += `
+        <td class="actions-cell">
+            <button class="edit-btn" data-index="${index}" title="Edit item">✏️</button>
+        </td>`;
         
         row.innerHTML = rowContent;
         this.attachRowEventListeners(row, index);
@@ -525,15 +533,21 @@ class AdminDashboard {
             activeToggle.addEventListener('click', () => {
                 this.toggleItemActive(index);
             });
-        }
-
-        // Number controls
+        }        // Number controls
         row.querySelectorAll('.control-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const action = e.target.dataset.action;
                 this.handleNumberControl(action, index);
             });
         });
+        
+        // Edit button
+        const editBtn = row.querySelector('.edit-btn');
+        if (editBtn) {
+            editBtn.addEventListener('click', () => {
+                this.editItem(index);
+            });
+        }
         
         // Editable fields (for Last Watched and Series Length)
         row.querySelectorAll('.editable-field').forEach(field => {
@@ -768,6 +782,31 @@ class AdminDashboard {
         }
     }
 
+    clearAllStagingHighlights() {
+        // Remove all staging and modified classes from rows
+        document.querySelectorAll('tr.modified, tr.staged').forEach(row => {
+            row.classList.remove('modified', 'staged');
+        });
+        
+        // Remove all staging and modified classes from editable fields
+        document.querySelectorAll('.editable-field.modified, .editable-field.staged').forEach(field => {
+            field.classList.remove('modified', 'staged');
+        });
+        
+        // Remove modified classes from control elements
+        document.querySelectorAll('.status-toggle.modified, .completed-toggle.modified, .active-toggle.modified, .control-btn.modified, .copies-count.modified, .watched-count.modified').forEach(element => {
+            element.classList.remove('modified');
+            // Also remove any dataset flags
+            delete element.dataset.modified;
+        });
+        
+        // Update save button state to normal
+        this.updateSaveButtonState();
+        this.updateStagingIndicator();
+        
+        console.log('DEBUG: All staging highlights cleared');
+    }
+
     updateStats() {
         const totalItems = this.currentData.length;
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
@@ -823,12 +862,85 @@ class AdminDashboard {
             
             row.style.display = show ? '' : 'none';
         });
-    }
+    }    sortData(sortBy) {
+        if (!this.currentData || this.currentData.length === 0) {
+            console.log('No data to sort');
+            return;
+        }
 
-    sortData(sortBy) {
-        // Implementation for sorting data
         console.log('Sorting by:', sortBy);
-        // TODO: Implement sorting logic
+        
+        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
+        
+        // Create a copy of the data to avoid mutating the original during sort
+        const sortedData = [...this.currentData];
+        
+        sortedData.sort((a, b) => {
+            switch (sortBy) {
+                case 'name':
+                    const nameA = (a.TITLE || a.Title || a.text || '').toLowerCase();
+                    const nameB = (b.TITLE || b.Title || b.text || '').toLowerCase();
+                    return nameA.localeCompare(nameB);
+                
+                case 'status':
+                    if (config.showCopies) {
+                        // For categories with copies, sort by copies count
+                        const copiesA = a.copies || 0;
+                        const copiesB = b.copies || 0;
+                        return copiesB - copiesA; // Descending order (highest first)
+                    } else {
+                        // For status-based categories, sort by status
+                        const statusA = a.STATUS || '';
+                        const statusB = b.STATUS || '';
+                        const statusOrder = { '🟢': 4, '🟡': 3, '⚪': 2, '🔴': 1, '': 0 };
+                        return (statusOrder[statusB] || 0) - (statusOrder[statusA] || 0);
+                    }
+                
+                case 'copies':
+                    if (config.showCopies) {
+                        const copiesA = a.copies || 0;
+                        const copiesB = b.copies || 0;
+                        return copiesB - copiesA; // Descending order
+                    }
+                    return 0; // No change if category doesn't have copies
+                
+                case 'watched':
+                    if (config.timesSeenField) {
+                        const watchedA = a[config.timesSeenField] || 0;
+                        const watchedB = b[config.timesSeenField] || 0;
+                        return watchedB - watchedA; // Descending order
+                    } else if (config.lastWatchedField) {
+                        // Sort by last watched date if available
+                        const lastWatchedA = a[config.lastWatchedField] || '';
+                        const lastWatchedB = b[config.lastWatchedField] || '';
+                        return lastWatchedB.localeCompare(lastWatchedA);
+                    }
+                    return 0;
+                
+                case 'completed':
+                    if (config.completedField) {
+                        const completedA = a[config.completedField] || '';
+                        const completedB = b[config.completedField] || '';
+                        const completedOrder = { '✅': 2, '⏳': 1, '': 0 };
+                        return (completedOrder[completedB] || 0) - (completedOrder[completedA] || 0);
+                    }
+                    return 0;
+                
+                default:
+                    return 0; // No sorting
+            }
+        });
+        
+        // Update the current data with sorted version
+        this.currentData = sortedData;
+        
+        // Re-render the table with sorted data
+        this.renderTable();
+        
+        // Show feedback message
+        this.showMessage(`📊 Sorted by ${sortBy}`);
+        
+        console.log(`Data sorted by ${sortBy}, ${this.currentData.length} items`);
     }
 
     async refreshCurrentCategory() {
@@ -880,15 +992,12 @@ class AdminDashboard {
                     throw new Error('Failed to save data');
                 }
             }
-            
-            this.modifiedItems.clear();
+              this.modifiedItems.clear();
             this.broadcastUpdate();
             this.showMessage('✅ Changes saved successfully');
             
-            // Remove modified styling
-            document.querySelectorAll('.modified').forEach(row => {
-                row.classList.remove('modified');
-            });
+            // Remove all staging highlighting
+            this.clearAllStagingHighlights();
             
         } catch (error) {
             console.error('Save failed:', error);
@@ -1002,12 +1111,251 @@ class AdminDashboard {
             console.error('Bulk action failed:', error);
             this.showError(`Bulk action failed: ${error.message}`);
         }
+    }    editItem(index) {
+        // Get the item data
+        const item = this.currentData[index];
+        if (!item) {
+            console.error('Item not found at index:', index);
+            return;
+        }
+
+        // Get category configuration
+        const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
+        const isLoot = this.currentCategory === 'loot';
+
+        // Store current editing context
+        this.editingIndex = index;
+        this.editingItem = { ...item }; // Create a copy
+
+        // Build the edit form
+        const editForm = document.getElementById('edit-form');
+        const itemName = isLoot ? item.text : (item.TITLE || item.Title || item.text || 'Unknown');
+        
+        let formHTML = `
+            <div class="form-group">
+                <label for="edit-name">Name:</label>
+                <input type="text" id="edit-name" class="form-control" value="${itemName}" ${isLoot ? 'data-field="text"' : 'data-field="TITLE"'}>
+            </div>
+        `;
+
+        // Add status field for non-loot items
+        if (!config.showCopies) {
+            const status = item.STATUS || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status" class="form-control" data-field="STATUS">
+                        <option value="🟢" ${status === '🟢' ? 'selected' : ''}>🟢 Active</option>
+                        <option value="🔴" ${status === '🔴' ? 'selected' : ''}>🔴 Inactive</option>
+                        <option value="⏳" ${status === '⏳' ? 'selected' : ''}>⏳ Pending</option>
+                        <option value="✅" ${status === '✅' ? 'selected' : ''}>✅ Completed</option>
+                    </select>
+                </div>
+            `;
+        }
+
+        // Add copies field
+        if (config.showCopies) {
+            const copies = item.copies || 0;
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-copies">Copies:</label>
+                    <input type="number" id="edit-copies" class="form-control" value="${copies}" min="0" data-field="copies">
+                </div>
+            `;
+        }
+
+        // Add completion field for games
+        if (config.completedField) {
+            const completed = item[config.completedField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-completed">Completed:</label>
+                    <select id="edit-completed" class="form-control" data-field="${config.completedField}">
+                        <option value="✅" ${completed === '✅' ? 'selected' : ''}>✅ Yes</option>
+                        <option value="❌" ${completed === '❌' ? 'selected' : ''}>❌ No</option>
+                        <option value="⏳" ${completed === '⏳' ? 'selected' : ''}>⏳ In Progress</option>
+                    </select>
+                </div>
+            `;
+        }
+
+        // Add active field for movies
+        if (config.activeField) {
+            const active = item[config.activeField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-active">Active:</label>
+                    <select id="edit-active" class="form-control" data-field="${config.activeField}">
+                        <option value="🟢" ${active === '🟢' ? 'selected' : ''}>🟢 Active</option>
+                        <option value="🔴" ${active === '🔴' ? 'selected' : ''}>🔴 Inactive</option>
+                    </select>
+                </div>
+            `;
+        }
+
+        // Add times seen field
+        if (config.timesSeenField) {
+            const timesSeen = item[config.timesSeenField] || item.watched || 0;
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-times-seen">Times Seen:</label>
+                    <input type="number" id="edit-times-seen" class="form-control" value="${timesSeen}" min="0" data-field="${config.timesSeenField}">
+                </div>
+            `;
+        }
+
+        // Add last watched field for anime/TV shows
+        if (config.lastWatchedField) {
+            const lastWatched = item[config.lastWatchedField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-last-watched">Last Watched:</label>
+                    <input type="text" id="edit-last-watched" class="form-control" value="${lastWatched}" placeholder="e.g. se1, ep3" data-field="${config.lastWatchedField}">
+                    <small class="form-help">Format: se1 (season 1), ep5 (episode 5), etc.</small>
+                </div>
+            `;
+        }
+
+        // Add series length field for anime/TV shows
+        if (config.seriesLengthField) {
+            const seriesLength = item[config.seriesLengthField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-series-length">Series Length:</label>
+                    <input type="text" id="edit-series-length" class="form-control" value="${seriesLength}" placeholder="e.g. 3 seasons, 24 episodes" data-field="${config.seriesLengthField}">
+                    <small class="form-help">Format: e.g. "3 seasons, 24 episodes" or "150 episodes"</small>
+                </div>
+            `;
+        }
+
+        // Add time to beat field for single player games
+        if (config.timeField && this.currentCategory === 'singleplayer') {
+            const timeValue = item[config.timeField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-time">Time to Beat:</label>
+                    <input type="text" id="edit-time" class="form-control" value="${timeValue}" placeholder="e.g. 15 hours" data-field="${config.timeField}">
+                </div>
+            `;
+        }
+
+        // Add cost field for loot
+        if (config.costField && isLoot) {
+            const cost = item[config.costField] || '';
+            formHTML += `
+                <div class="form-group">
+                    <label for="edit-cost">Cost:</label>
+                    <input type="text" id="edit-cost" class="form-control" value="${cost}" placeholder="e.g. $10.99" data-field="${config.costField}">
+                </div>
+            `;
+        }
+
+        editForm.innerHTML = formHTML;
+
+        // Show the modal
+        const editModal = document.getElementById('edit-modal');
+        editModal.classList.remove('hidden');        // Set up modal event listeners
+        this.setupEditModalListeners();
     }
 
-    editItem(index) {
-        // Implementation for editing individual items
-        console.log('Editing item:', index);
-        // TODO: Implement item editing modal
+    setupEditModalListeners() {
+        const editModal = document.getElementById('edit-modal');
+        const saveBtn = document.getElementById('save-item-btn');
+        const cancelBtn = document.getElementById('cancel-edit-btn');
+        const closeBtn = editModal.querySelector('.modal-close');
+
+        // Save changes
+        saveBtn.onclick = () => this.saveItemChanges();
+
+        // Cancel editing
+        const cancelEdit = () => {
+            editModal.classList.add('hidden');
+            this.editingIndex = null;
+            this.editingItem = null;
+        };
+
+        cancelBtn.onclick = cancelEdit;
+        closeBtn.onclick = cancelEdit;
+
+        // Close on background click
+        editModal.onclick = (e) => {
+            if (e.target === editModal) {
+                cancelEdit();
+            }
+        };
+
+        // ESC key to close
+        const handleEscape = (e) => {
+            if (e.key === 'Escape' && !editModal.classList.contains('hidden')) {
+                cancelEdit();
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+    }
+
+    saveItemChanges() {
+        if (this.editingIndex === null || !this.editingItem) {
+            console.error('No item being edited');
+            return;
+        }
+
+        // Collect form data
+        const editForm = document.getElementById('edit-form');
+        const formControls = editForm.querySelectorAll('[data-field]');
+        const updatedItem = { ...this.editingItem };
+
+        let hasChanges = false;
+
+        formControls.forEach(control => {
+            const fieldName = control.dataset.field;
+            const newValue = control.type === 'number' ? parseInt(control.value) || 0 : control.value;
+            const originalValue = this.editingItem[fieldName];
+
+            if (newValue !== originalValue) {
+                updatedItem[fieldName] = newValue;
+                hasChanges = true;
+            }
+        });        if (!hasChanges) {
+            this.showMessage('No changes detected');
+            document.getElementById('edit-modal').classList.add('hidden');
+            return;
+        }
+
+        // Update the item in current data
+        this.currentData[this.editingIndex] = updatedItem;
+
+        // Update the item in modifiedItems for saving
+        this.modifiedItems.set(this.editingIndex, updatedItem);
+
+        // Refresh the table row
+        this.refreshTableRow(this.editingIndex);
+
+        // Update stats
+        this.updateStats();
+
+        // Show success message
+        this.showMessage('Item updated successfully! Remember to save your changes.');
+
+        // Close modal
+        document.getElementById('edit-modal').classList.add('hidden');
+        this.editingIndex = null;
+        this.editingItem = null;
+    }
+
+    refreshTableRow(index) {
+        const tbody = document.getElementById('table-body');
+        const existingRow = tbody.querySelector(`tr[data-index="${index}"]`);
+        
+        if (existingRow) {
+            const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
+            const dataType = categoryBtn ? categoryBtn.dataset.type : null;
+            const newRow = this.createTableRow(this.currentData[index], index, dataType);
+            
+            // Replace the existing row
+            tbody.replaceChild(newRow, existingRow);
+        }
     }
 
     handleRealTimeUpdate(data) {
