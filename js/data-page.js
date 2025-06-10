@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize robust data loader
+  const dataLoader = new window.RobustDataLoader();
+  
   // Add navbar scroll behavior
   let lastScrollTop = 0;
   const navbar = document.getElementById('navbar');
@@ -23,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
   filterBtn.style.height = '24px';     // Explicit height
   filterBtn.style.minWidth = '80px';   // Minimum width
   navbar.appendChild(filterBtn);
-
   // After creating the filter button, add the genre filter with smaller size
   const genreFilter = document.createElement('div');
   genreFilter.className = 'genre-filter';
@@ -42,6 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
   genreFilter.appendChild(genreBtn);
   genreFilter.appendChild(genreDropdown);
   navbar.appendChild(genreFilter);
+
+  // Add sort filter with smaller size
+  const sortFilter = document.createElement('div');
+  sortFilter.className = 'sort-filter';
+  
+  const sortBtn = document.createElement('button');
+  sortBtn.className = 'sort-btn';
+  sortBtn.textContent = 'Sort By: None';
+  sortBtn.style.padding = '3px 6px';  // Smaller padding
+  sortBtn.style.fontSize = '0.85em';  // Smaller font
+  sortBtn.style.height = '24px';     // Explicit height
+  sortBtn.style.minWidth = '100px';   // Minimum width
+  sortBtn.style.display = 'none';     // Initially hidden
+  
+  const sortDropdown = document.createElement('div');
+  sortDropdown.className = 'sort-dropdown';
+  
+  sortFilter.appendChild(sortBtn);
+  sortFilter.appendChild(sortDropdown);
+  navbar.appendChild(sortFilter);
 
   // Move search field to the right of the genre filter with smaller size
   const searchInput = document.createElement('input');
@@ -80,12 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (this.value.trim() !== '') {
       this.style.boxShadow = '0 0 2px #4682B4, 0 0 3px #4682B4'; // Smaller shadow
       this.style.borderColor = '#87CEFA';
-      this.style.width = '100px'; // Keep expanded while text is present
-    } else {
+      this.style.width = '100px'; // Keep expanded while text is present    } else {
       this.style.boxShadow = 'none';
       this.style.borderColor = '#4682B4';
       // Don't shrink while focused
-      if (!document.activeElement === this) {
+      if (document.activeElement !== this) {
         this.style.width = '60px';
       }
     }
@@ -93,6 +114,73 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Insert after genreFilter
   navbar.insertBefore(searchInput, genreFilter.nextSibling);
+
+  // Add data source status indicator
+  const dataSourceIndicator = document.createElement('div');
+  dataSourceIndicator.id = 'data-source-indicator';
+  dataSourceIndicator.style.cssText = `
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: white;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: none;
+  `;
+  dataSourceIndicator.title = 'Click for data source details';
+  document.body.appendChild(dataSourceIndicator);
+
+  // Listen for data source status updates
+  document.addEventListener('dataSourceStatusUpdate', (event) => {
+    updateDataSourceIndicator(event.detail);
+  });
+
+  function updateDataSourceIndicator(status) {
+    const colors = {
+      connected: '#4CAF50',
+      degraded: '#FF9800', 
+      error: '#F44336',
+      unknown: '#9E9E9E'
+    };
+
+    const labels = {
+      postgres: 'DB',
+      server: 'API', 
+      jsonFiles: 'Files',
+      cache: 'Cache'
+    };
+
+    dataSourceIndicator.style.backgroundColor = colors[status.status] || colors.unknown;
+    dataSourceIndicator.textContent = `${labels[status.source] || status.source}: ${status.status.toUpperCase()}`;
+    dataSourceIndicator.style.display = 'block';
+
+    // Show details on click
+    dataSourceIndicator.onclick = () => {
+      const loaderStatus = dataLoader.getStatus();
+      console.log('Data Loader Status:', loaderStatus);
+      
+      const details = `
+Data Sources Status:
+• PostgreSQL: ${loaderStatus.connectionStatus.postgres}
+• Server API: ${loaderStatus.connectionStatus.server}  
+• JSON Files: ${loaderStatus.connectionStatus.jsonFiles}
+
+Usage Statistics:
+• Total Requests: ${loaderStatus.metrics.totalRequests}
+• Success Rate: ${Math.round((loaderStatus.metrics.successfulRequests / loaderStatus.metrics.totalRequests) * 100)}%
+• Avg Response Time: ${Math.round(loaderStatus.metrics.avgResponseTime)}ms
+
+Cache: ${loaderStatus.cacheSize} items stored
+      `.trim();
+      
+      alert(details);
+    };
+  }
 
   let currentFilter = 'all'; // Possible values: 'all', 'active', 'inactive', 'watched', 'ergo'
   let hasWatchedData = false;
@@ -154,12 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
       item.style.backgroundImage = '';
       item.style.color = '';
       item.style.textShadow = '';
-      
-      // Restore original details view
+        // Restore original details view
       const detailsDiv = item.querySelector('.item-details');
       if (detailsDiv && typeof item._originalDetailsHTML === 'string') {
         detailsDiv.innerHTML = item._originalDetailsHTML;
-      }      // Remove wheel event listener
+      }
+      
+      // Remove wheel event listener
       item.onwheel = null;
     });
     
@@ -173,11 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide the Collapse All button since nothing is expanded now
     collapseAllBtn.style.display = 'none';
   });
-
   // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
     if (!genreFilter.contains(e.target)) {
       genreDropdown.classList.remove('show');
+    }
+    if (!sortFilter.contains(e.target)) {
+      sortDropdown.classList.remove('show');
     }
   });
 
@@ -189,10 +280,22 @@ document.addEventListener('DOMContentLoaded', () => {
     e.stopPropagation();
   });
 
+  sortDropdown.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+  });
+  sortDropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
   // Toggle dropdown
   genreBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     genreDropdown.classList.toggle('show');
+  });
+
+  sortBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sortDropdown.classList.toggle('show');
   });
   function populateGenreDropdown(data) {
     // Genre filtering disabled - always hide genre button
@@ -332,15 +435,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       return 9999; // Default value for items without year
-    };
-
-    items.sort((a, b) => {
+    };    items.sort((a, b) => {
       const aTitle = a.querySelector('.item-title').textContent;
-      const bTitle = a.querySelector('.item-title').textContent;
+      const bTitle = b.querySelector('.item-title').textContent;
       const aDetails = a.querySelector('.item-details').textContent;
-      const bDetails = a.querySelector('.item-details').textContent;
+      const bDetails = b.querySelector('.item-details').textContent;
       const aFullText = aTitle + " " + aDetails;
-      const bFullText = aTitle + " " + bDetails;
+      const bFullText = bTitle + " " + bDetails;
       
       switch(criteria) {
         case 'year':
@@ -827,15 +928,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use API endpoint instead of direct file access
     return `/api/data/${category}`;
   }
-
   function loadItems(file, containerId) {
-    fetch(file)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })      .then(data => {
+    // Get category from the file path for robust loading
+    const category = file.split('/').pop().replace('.json', '').split('?')[0];
+    
+    // Use robust data loader instead of direct fetch
+    dataLoader.loadData(category, {
+      timeout: 15000,
+      retryOnFailure: true,
+      preferredSource: 'postgres'
+    })
+      .then(data => {
         console.log(`Successfully loaded data with ${Array.isArray(data) ? data.length : 0} items`);
         
         // Check if data has LAST WATCHED entries
@@ -1351,15 +1454,16 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
           });
-        }
-
-        // Populate genre dropdown
+        }        // Populate genre dropdown
         populateGenreDropdown(data);
+        
+        // Populate sort options dropdown
+        populateSortOptions(data);
 
         // Apply initial filters and sort
         applyAllFilters();
         if (searchInput) searchInput.value = '';
-        refreshAllItemRows();      })
+        refreshAllItemRows();})
       .catch(error => {
         console.error('Error loading data:', error);
         const container = document.getElementById(containerId);

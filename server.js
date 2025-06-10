@@ -783,3 +783,179 @@ app.post('/api/sync/:category', async (req, res) => {
     });
   }
 });
+
+// Backup endpoints for robust data loading fallback system
+app.get('/api/backup/:category', async (req, res) => {
+  const category = req.params.category;
+  console.log(`🔄 Backup endpoint requested for: ${category}`);
+  
+  try {
+    // Try to get the most recent backup from database
+    const backupResult = await pool.query(
+      'SELECT data FROM json_backups WHERE category = $1 ORDER BY backup_date DESC LIMIT 1',
+      [category]
+    );
+    
+    if (backupResult.rows.length > 0) {
+      console.log(`✅ Found backup data for ${category}`);
+      res.setHeader('X-Data-Source', 'database-backup');
+      return res.json(backupResult.rows[0].data);
+    }
+    
+    // Fallback to current database data
+    const currentResult = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (currentResult.rows.length > 0) {
+      console.log(`✅ Found current database data for ${category}`);
+      res.setHeader('X-Data-Source', 'database-current');
+      return res.json(currentResult.rows[0].data);
+    }
+    
+    // Final fallback to JSON file
+    const filePath = path.join(__dirname, 'data', `${category}.json`);
+    const data = await fs.readFile(filePath, 'utf8');
+    console.log(`✅ Loaded backup JSON file for ${category}`);
+    res.setHeader('X-Data-Source', 'json-file');
+    res.json(JSON.parse(data));
+    
+  } catch (err) {
+    console.error(`❌ Backup endpoint error for ${category}:`, err);
+    res.status(500).json({ 
+      error: 'Backup data unavailable',
+      category: category,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Fallback endpoint with source parameter
+app.get('/api/data/:category', async (req, res) => {
+  const category = req.params.category;
+  const requestedSource = req.query.source;
+  console.log(`📊 Loading data for category: ${category}, source: ${requestedSource || 'auto'}`);
+  
+  try {
+    // If specific source requested
+    if (requestedSource === 'backup') {
+      return res.redirect(`/api/backup/${category}`);
+    }
+    
+    // Try to get from database first (PostgreSQL)
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (result.rows.length > 0) {
+      console.log(`✅ Found data in database for ${category}`);
+      res.setHeader('X-Data-Source', 'postgres');
+      res.setHeader('X-Data-Freshness', 'current');
+      return res.json(result.rows[0].data);
+    }
+    
+    console.log(`📁 No database data found, trying JSON file for ${category}`);
+    // Fallback to JSON file if not in database yet
+    const filePath = path.join(__dirname, 'data', `${category}.json`);
+    const data = await fs.readFile(filePath, 'utf8');
+    console.log(`✅ Successfully loaded JSON file for ${category}`);
+    res.setHeader('X-Data-Source', 'json-file');
+    res.setHeader('X-Data-Freshness', 'backup');
+    res.json(JSON.parse(data));
+  } catch (err) {
+    console.error(`❌ Error retrieving data for ${category}:`, err);
+    res.status(500).json({ 
+      error: 'Error retrieving data',
+      category: category,
+      availableSources: ['postgres', 'backup', 'json-file'],
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Additional fallback endpoint
+app.get('/api/fallback/:category', async (req, res) => {
+  const category = req.params.category;
+  console.log(`🆘 Emergency fallback requested for: ${category}`);
+  
+  try {
+    // Emergency mode - try any available data source
+    const sources = [
+      // Try backup data first
+      async () => {
+        const result = await pool.query(
+          'SELECT data FROM json_backups WHERE category = $1 ORDER BY backup_date DESC LIMIT 1',
+          [category]
+        );
+        if (result.rows.length > 0) {
+          return { data: result.rows[0].data, source: 'backup-db' };
+        }
+        throw new Error('No backup data');
+      },
+      
+      // Try JSON file
+      async () => {
+        const filePath = path.join(__dirname, 'data', `${category}.json`);
+        const data = await fs.readFile(filePath, 'utf8');
+        return { data: JSON.parse(data), source: 'json-file' };
+      },
+      
+      // Try alternative paths
+      async () => {
+        const paths = [
+          path.join(__dirname, 'data', 'backups', `${category}.json`),
+          path.join(__dirname, 'assets', 'data', `${category}.json`)
+        ];
+        
+        for (const filePath of paths) {
+          try {
+            const data = await fs.readFile(filePath, 'utf8');
+            return { data: JSON.parse(data), source: `json-alt-${filePath}` };
+          } catch (e) {
+            continue;
+          }
+        }
+        throw new Error('No alternative files found');
+      }
+    ];
+    
+    // Try each source until one works
+    for (const sourceFunction of sources) {
+      try {
+        const result = await sourceFunction();
+        console.log(`✅ Emergency fallback successful: ${result.source}`);
+        res.setHeader('X-Data-Source', result.source);
+        res.setHeader('X-Data-Mode', 'emergency');
+        return res.json(result.data);
+      } catch (e) {
+        console.log(`Emergency source failed: ${e.message}`);
+        continue;
+      }
+    }
+    
+    // All emergency sources failed
+    throw new Error('All emergency data sources failed');
+    
+  } catch (err) {
+    console.error(`❌ Emergency fallback failed for ${category}:`, err);
+    res.status(503).json({ 
+      error: 'All data sources unavailable',
+      category: category,
+      message: 'Service temporarily unavailable',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Server status endpoint for health checks
+app.get('/api/status', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
+    fallbacksAvailable: true
+  });
+});
