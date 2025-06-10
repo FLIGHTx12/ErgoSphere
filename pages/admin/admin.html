@@ -2,9 +2,13 @@
 <html lang="en">
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ErgoSphere Admin Dashboard</title>    <link rel="stylesheet" href="../../css/admin-dashboard.css">
-    <link rel="stylesheet" href="../../css/admin-dashboard-inline-controls.css">
+    <title>ErgoSphere Admin Dashboard</title>    <link rel="stylesheet" href="../../css/admin-dashboard.css">    <link rel="stylesheet" href="../../css/admin-dashboard-inline-controls.css">
     <link rel="stylesheet" href="../../css/admin-dashboard-sortable.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-update.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-colored-buttons-fixed.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-postgres-indicator.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-enhanced-connection-status.css">
+    <link rel="stylesheet" href="../../css/admin-dashboard-sync-queue.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22black%22/><circle cx=%2280%22 cy=%2220%22 r=%2212%22 fill=%22lime%22 opacity=%220.4%22/><circle cx=%2275%22 cy=%2225%22 r=%228%22 fill=%22lime%22/><circle cx=%2220%22 cy=%2280%22 r=%2212%22 fill=%22purple%22 opacity=%220.4%22/><circle cx=%2225%22 cy=%2275%22 r=%228%22 fill=%22purple%22/></svg>" />
 </head>
 <body>    <!-- Navigation Header -->
@@ -13,16 +17,15 @@
         <button><a href="../HCMC.html">HCMC</a></button>
         <button><a href="../admin/manage-selections.html">SELECTIONS</a></button>
         <button><a href="../admin/admin.html">ADMIN</a></button>
-    </nav>
-    
-    <!-- Connection Status Bar -->
+    </nav>    <!-- Connection Status Bar -->
     <div class="connection-status-bar">
         <div class="connection-status">
-            <span id="connection-indicator" class="status-indicator">🔄</span>
-            <span id="connection-text">Connecting...</span>
+            <span id="connection-indicator" class="status-indicator"></span>
+            <span id="connection-text">Connecting to Heroku PostgreSQL...</span>
+            <span id="database-type" class="database-type">PostgreSQL</span>
         </div>
         <h1 class="page-title">ErgoSphere Admin Dashboard</h1>
-    </div>    <!-- Main Dashboard Content -->
+    </div><!-- Main Dashboard Content -->
     <main class="dashboard-main">
         <!-- Desktop Category Sidebar -->
         <aside class="category-sidebar" id="category-sidebar">
@@ -63,27 +66,27 @@
         </aside>
         
         <!-- Content Area -->
-        <section class="content-area">            <!-- Controls Panel -->
-            <div class="controls-panel">
+        <section class="content-area">            <!-- Controls Panel -->            <div class="controls-panel">
                 <!-- Combined Controls in a single container -->
-                <div class="controls-container">                    <div class="search-section">
+                <div class="controls-container">
+                    <div class="search-and-actions">
                         <div class="search-box">
-                            <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
+                            <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
                             <button id="clear-search" class="clear-btn">✕</button>
                         </div>
-                    </div>
-                    <div class="action-section">                        <button id="refresh-btn" class="action-btn refresh-btn">
-                            Refresh
-                        </button>
-                        <button id="manual-sync-btn" class="action-btn sync-btn">
-                            Sync DB→JSON
-                        </button>
-                        <button id="save-all-btn" class="action-btn save-btn">
-                            Save All
-                        </button>
-                        <button id="bulk-actions-btn" class="action-btn bulk-btn">
-                            Bulk Edit
-                        </button>
+                        <div class="action-section">                            <button id="refresh-btn" class="action-btn refresh-btn glass-btn">
+                                Refresh
+                            </button>
+                            <button id="manual-sync-btn" class="action-btn sync-btn glass-btn">
+                                Sync DB→JSON
+                            </button>
+                            <button id="save-all-btn" class="action-btn save-btn glass-btn">
+                                Save All
+                            </button>
+                            <button id="bulk-actions-btn" class="action-btn bulk-btn glass-btn">
+                                Bulk Edit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,7 +132,7 @@
             <!-- Data Table -->
             <div class="data-table-container">
                 <div class="table-header">
-                    <h2 id="category-title">🎮 CO-OP Games</h2>
+                    <h2 id="category-title">CO-OP Games</h2>
                     <div class="table-stats">
                         <span id="total-items">0 items</span>
                         <span id="active-items">0 active</span>
@@ -158,29 +161,27 @@
                 <div id="loading-state" class="loading-state">
                     <div class="loading-spinner"></div>
                     <p>Loading data...</p>
-                </div>
-
-                <!-- Empty State -->
+                </div>                <!-- Empty State -->
                 <div id="empty-state" class="empty-state hidden">
-                    <div class="empty-icon">📭</div>
+                    <div class="empty-icon"></div>
                     <h3>No items found</h3>
-                    <p>Try adjusting your search or filter criteria.</p>                </div>            </div>
+                    <p>Try adjusting your search or filter criteria.</p>                </div></div>
         </section>
     </main>    <!-- Bulk Actions Modal -->
     <div id="bulk-modal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>📦 Bulk Actions</h3>
+                <h3>Bulk Actions</h3>
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
                 <p>Apply actions to <span id="selected-count">0</span> selected items:</p>                <div class="bulk-actions">
-                    <button class="bulk-action-btn" data-action="activate">🟢 Activate All</button>
-                    <button class="bulk-action-btn" data-action="deactivate">🔴 Deactivate All</button>
-                    <button class="bulk-action-btn" data-action="reset-copies">🔄 Reset Copies</button>
-                    <button class="bulk-action-btn" data-action="reset-watched">👁️ Reset Times Seen</button>
-                    <button class="bulk-action-btn" data-action="mark-completed">✅ Mark Completed</button>
-                    <button class="bulk-action-btn" data-action="mark-incomplete">⏳ Mark Incomplete</button>
+                    <button class="bulk-action-btn" data-action="activate">Activate All</button>
+                    <button class="bulk-action-btn" data-action="deactivate">Deactivate All</button>
+                    <button class="bulk-action-btn" data-action="reset-copies">Reset Copies</button>
+                    <button class="bulk-action-btn" data-action="reset-watched">Reset Times Seen</button>
+                    <button class="bulk-action-btn" data-action="mark-completed">Mark Completed</button>
+                    <button class="bulk-action-btn" data-action="mark-incomplete">Mark Incomplete</button>
                 </div>
             </div>
         </div>
@@ -190,34 +191,34 @@
     <div id="edit-modal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>✏️ Edit Item</h3>
+                <h3>Edit Item</h3>
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
                 <div id="edit-form" class="edit-form">
                     <!-- Form fields will be dynamically populated -->
-                </div>
-                <div class="modal-actions">
-                    <button id="save-item-btn" class="btn btn-primary">💾 Save Changes</button>
-                    <button id="cancel-edit-btn" class="btn btn-secondary">❌ Cancel</button>
+                </div>                <div class="modal-actions">
+                    <button id="save-item-btn" class="btn btn-primary">Save Changes</button>
+                    <button id="cancel-edit-btn" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Status Toast -->
+    </div>    <!-- Status Toast -->
     <div id="status-toast" class="toast hidden">
         <div class="toast-content">
-            <span id="toast-icon">✅</span>
             <span id="toast-message">Action completed successfully</span>
         </div>
-    </div>
-
-    <!-- Real-time Updates Indicator -->
+    </div>    <!-- Real-time Updates Indicator -->
     <div id="sync-indicator" class="sync-indicator hidden">
         <div class="sync-pulse"></div>
-        <span>Syncing with HCMC...</span>
-    </div>    <!-- Scripts -->
+        <span>Syncing with Heroku PostgreSQL...</span>
+    </div><!-- Scripts -->
     <script src="../../js/admin-dashboard.js"></script>
+    <!-- Enhanced PostgreSQL Loader with robust fallback mechanisms -->
+    <script src="../../js/admin-dashboard-enhanced-postgres-loader.js"></script>
+    <script src="../../js/admin-dashboard-enhanced-integration.js"></script>
+    <script src="../../js/admin-dashboard-postgres-sync.js"></script>
+    <script src="../../js/admin-dashboard-sync-button-handler.js"></script>
+<script src="../../js/admin-dashboard-sync-queue-manager.js"></script>
 </body>
 </html>

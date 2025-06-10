@@ -103,28 +103,32 @@ class AdminDashboard {    constructor() {
                 if (searchInput) searchInput.value = '';
                 this.filterData('');
             });
-        }
-
-        // Filter and sort
-        const statusFilter = document.getElementById('status-filter');
-        if (statusFilter) {
-            statusFilter.addEventListener('change', () => {
-                this.applyFilters();
-            });
-        }
-
-        const sortOptions = document.getElementById('sort-options');
-        if (sortOptions) {
-            sortOptions.addEventListener('change', (e) => {
-                this.sortData(e.target.value);
-            });
-        }
+        }        // Filter and sort dropdowns have been removed
+        // Filtering now happens through search box only
+        // Sorting now happens through table headers
 
         // Refresh button
         const refreshBtn = document.getElementById('refresh-btn');
         if (refreshBtn) {
             refreshBtn.addEventListener('click', () => {
                 this.refreshCurrentCategory();
+            });
+        }
+        
+        // Manual sync button for PostgreSQL→JSON sync
+        const manualSyncBtn = document.getElementById('manual-sync-btn');
+        if (manualSyncBtn) {
+            manualSyncBtn.addEventListener('click', () => {
+                // Check if PostgreSQL sync method is available
+                if (typeof AdminDashboardDataLoader !== 'undefined' && 
+                    typeof AdminDashboardDataLoader.syncPostgresToJson === 'function' &&
+                    typeof this.syncPostgresToJson === 'function') {
+                    // Use PostgreSQL sync method
+                    this.syncPostgresToJson();
+                } else {
+                    // Fall back to original manual sync method
+                    this.performManualSync();
+                }
             });
         }
 
@@ -241,61 +245,102 @@ class AdminDashboard {    constructor() {
                 text.textContent = 'Disconnected';
             }
         }
-    }
-
-    async loadCategoryData(category) {
+    }    async loadCategoryData(category) {
         this.showLoading();
         
         try {
             let data;
-            const categoryBtn = document.querySelector(`[data-category="${category}"]`);
-            const table = categoryBtn ? categoryBtn.dataset.table : null;
             
-            if (table === 'loot_items') {
-                // Load from loot_items table
-                const response = await fetch('/api/loot');
-                data = await response.json();
+            // Check if AdminDashboardDataLoader is available for PostgreSQL loading
+            if (typeof AdminDashboardDataLoader !== 'undefined') {
+                console.log(`Using AdminDashboardDataLoader for ${category}`);
+                
+                if (category === 'mods') {
+                    // Use specialized mods loader if available
+                    data = await AdminDashboardDataLoader.loadModsData();
+                } else {
+                    // Use PostgreSQL loader for all other categories
+                    data = await AdminDashboardDataLoader.loadCategoryData(category);
+                }
+                
+                console.log(`Data loaded from PostgreSQL for ${category}: ${data ? 'success' : 'failed'}`);
             } else {
-                // Load from json_data table or fallback to JSON files
-                try {
-                    const response = await fetch(`/api/data/${category}`);
-                    if (response.ok) {
-                        data = await response.json();
-                    } else {
-                        // Fallback to JSON file
-                        const jsonResponse = await fetch(`/data/${category}.json`);
-                        data = await jsonResponse.json();
+                // Fall back to original loading method if loader not available
+                console.warn("PostgreSQL loader not found. Falling back to original loading method.");
+                
+                const categoryBtn = document.querySelector(`[data-category="${category}"]`);
+                const table = categoryBtn ? categoryBtn.dataset.table : null;
+                
+                if (table === 'loot_items') {
+                    // Load from loot_items table
+                    const response = await fetch('/api/loot');
+                    data = await response.json();
+                } else {
+                    // Load from json_data table or fallback to JSON files
+                    try {
+                        const response = await fetch(`/api/data/${category}`);
+                        if (response.ok) {
+                            data = await response.json();
+                        } else {
+                            // Fallback to JSON file - try with and without leading slash
+                            try {
+                                const jsonResponse = await fetch(`/data/${category}.json`);
+                                data = await jsonResponse.json();
+                            } catch (innerError) {
+                                // Try without leading slash
+                                const localJsonResponse = await fetch(`data/${category}.json`);
+                                data = await localJsonResponse.json();
+                            }
+                        }
+                    } catch (error) {
+                        // Fallback to JSON file - try with and without leading slash
+                        try {
+                            const jsonResponse = await fetch(`/data/${category}.json`);
+                            data = await jsonResponse.json();
+                        } catch (innerError) {
+                            // Try without leading slash
+                            const localJsonResponse = await fetch(`data/${category}.json`);
+                            data = await localJsonResponse.json();
+                        }
                     }
-                } catch (error) {
-                    // Fallback to JSON file
-                    const jsonResponse = await fetch(`/data/${category}.json`);
-                    data = await jsonResponse.json();
+                }
+                
+                // Handle the "mods" category by filtering from loot and coop data if not loaded above
+                if (category === 'mods' && (!data || data.length === 0)) {
+                    try {
+                        let coopData, lootData;
+                        
+                        // Get ERGOvillians from coop.json - try with and without leading slash
+                        try {
+                            const coopResponse = await fetch(`/data/coop.json`);
+                            coopData = await coopResponse.json();
+                        } catch (error) {
+                            const coopResponse = await fetch(`data/coop.json`);
+                            coopData = await coopResponse.json();
+                        }
+                        const ergoVillains = coopData.filter(item => item.genre === 'ERGOvillians');
+                        
+                        // Get week modifiers and helper from loot.json - try with and without leading slash
+                        try {
+                            const lootResponse = await fetch(`/data/loot.json`);
+                            lootData = await lootResponse.json();
+                        } catch (error) {
+                            const lootResponse = await fetch(`data/loot.json`);
+                            lootData = await lootResponse.json();
+                        }
+                        const modItems = lootData.filter(item => 
+                            item.genre === 'week modifiers' || 
+                            item.genre === 'helper' || 
+                            item.genre === 'hazzard');
+                        
+                        // Combine these items
+                        data = [...ergoVillains, ...modItems];
+                    } catch (error) {
+                        console.error('Failed to load mods data:', error);
+                    }
                 }
             }
               this.currentData = Array.isArray(data) ? data : [];
-            
-            // Handle the "mods" category by filtering from loot and coop data
-            if (category === 'mods') {
-                try {
-                    // Get ERGOvillians from coop.json
-                    const coopResponse = await fetch(`/data/coop.json`);
-                    const coopData = await coopResponse.json();
-                    const ergoVillains = coopData.filter(item => item.genre === 'ERGOvillians');
-                    
-                    // Get week modifiers and helper from loot.json
-                    const lootResponse = await fetch(`/data/loot.json`);
-                    const lootData = await lootResponse.json();
-                    const modItems = lootData.filter(item => 
-                        item.genre === 'week modifiers' || 
-                        item.genre === 'helper' || 
-                        item.genre === 'hazzard');
-                    
-                    // Combine these items
-                    this.currentData = [...ergoVillains, ...modItems];
-                } catch (error) {
-                    console.error('Failed to load mods data:', error);
-                }
-            }
             
             // Sort alphabetically by default
             this.sortData('name');
@@ -909,25 +954,13 @@ class AdminDashboard {    constructor() {
             const matches = name.includes(searchTerm.toLowerCase());
             row.style.display = matches ? '' : 'none';
         });
-    }
-
-    applyFilters() {
-        const statusFilter = document.getElementById('status-filter');
-        const filterValue = statusFilter ? statusFilter.value : 'all';
-        
-        const rows = document.querySelectorAll('#table-body tr');
-        rows.forEach(row => {
-            const statusButton = row.querySelector('.status-toggle');
-            const status = statusButton ? statusButton.textContent : '';
-            
-            let show = true;
-            if (filterValue !== 'all') {
-                show = status === filterValue;
-            }
-            
-            row.style.display = show ? '' : 'none';
-        });
-    }    sortData(sortBy) {
+    }    applyFilters() {
+        // Since status filter has been removed, this method
+        // now just applies the search filter (handled by filterData)
+        if (this.searchValue) {
+            this.filterData(this.searchValue);
+        }
+    }sortData(sortBy) {
         if (!this.currentData || this.currentData.length === 0) {
             console.log('No data to sort');
             return;
@@ -1021,9 +1054,7 @@ class AdminDashboard {    constructor() {
 
     async refreshCurrentCategory() {
         await this.loadCategoryData(this.currentCategory);
-    }
-
-    async saveAllChanges() {
+    }    async saveAllChanges() {
         console.log('DEBUG: saveAllChanges called');
         console.log('DEBUG: modifiedItems.size =', this.modifiedItems.size);
         console.log('DEBUG: modifiedItems contents =', Array.from(this.modifiedItems));
@@ -1038,6 +1069,31 @@ class AdminDashboard {    constructor() {
         try {
             this.showSyncIndicator();
             
+            // Check if PostgreSQL loader is available
+            if (typeof AdminDashboardDataLoader !== 'undefined') {
+                console.log('Using PostgreSQL loader to save data');
+                
+                // Save to PostgreSQL database
+                try {
+                    const saveResult = await AdminDashboardDataLoader.saveData(this.currentCategory, this.currentData);
+                    
+                    if (saveResult) {
+                        console.log('Successfully saved data to PostgreSQL database');
+                        this.modifiedItems.clear();
+                        this.broadcastUpdate();
+                        this.showMessage('✅ Changes saved successfully to PostgreSQL database');
+                        this.clearAllStagingHighlights();
+                        return;
+                    } else {
+                        console.warn('Failed to save to PostgreSQL, falling back to original save method');
+                    }
+                } catch (pgError) {
+                    console.error('Error saving to PostgreSQL:', pgError);
+                    console.warn('Falling back to original save method...');
+                }
+            }
+            
+            // Fall back to original saving method
             const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
             const table = categoryBtn ? categoryBtn.dataset.table : null;
             
@@ -1548,17 +1604,13 @@ class AdminDashboard {    constructor() {
                 }
             });
         }
-    }
-
-    showMessage(message) {
+    }    showMessage(message) {
         console.log(message);
         const toast = document.getElementById('status-toast');
         const toastMessage = document.getElementById('toast-message');
-        const toastIcon = document.getElementById('toast-icon');
         
-        if (toast && toastMessage && toastIcon) {
+        if (toast && toastMessage) {
             toastMessage.textContent = message;
-            toastIcon.textContent = '✅';
             toast.classList.remove('hidden');
             
             // Auto-hide after 3 seconds
@@ -1566,22 +1618,20 @@ class AdminDashboard {    constructor() {
                 toast.classList.add('hidden');
             }, 3000);
         }
-    }
-
-    showError(message) {
+    }    showError(message) {
         console.error(message);
         const toast = document.getElementById('status-toast');
         const toastMessage = document.getElementById('toast-message');
-        const toastIcon = document.getElementById('toast-icon');
         
-        if (toast && toastMessage && toastIcon) {
+        if (toast && toastMessage) {
             toastMessage.textContent = message;
-            toastIcon.textContent = '❌';
+            toast.classList.add('error'); // Add an error class for styling
             toast.classList.remove('hidden');
             
             // Auto-hide after 5 seconds for errors (longer to ensure user sees it)
             setTimeout(() => {
                 toast.classList.add('hidden');
+                toast.classList.remove('error');
             }, 5000);
         }
     }    // Mobile Category Navigation Methods

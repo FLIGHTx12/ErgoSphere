@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Queue Manager - Integration Tests</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .test-container {
+            background-color: #f7f9fb;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        #test-results {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            height: 400px;
+            overflow: auto;
+            border: 1px solid #ddd;
+        }
+        
+        .log {
+            margin: 5px 0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sync Queue Manager - Integration Tests</h1>
+    
+    <div class="test-container">
+        <h2>Integration Test Suite</h2>
+        <p>This page runs integration tests for the Sync Queue Manager, verifying core functionality including:</p>
+        <ul>
+            <li>Change queueing when PostgreSQL is unavailable</li>
+            <li>Persistence of queued changes across page reloads</li>
+            <li>Automatic and manual synchronization</li>
+            <li>Conflict resolution between local and remote changes</li>
+        </ul>
+        <button id="run-tests-btn">Run Tests</button>
+    </div>
+    
+    <h2>Test Results</h2>
+    <div id="test-results"></div>
+    
+    <script>
+        // Custom console logger that outputs to the test-results div
+        const resultsDiv = document.getElementById('test-results');
+        
+        // Store the original console methods
+        const originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error
+        };
+        
+        // Override console methods to display output in the results div
+        console.log = function(...args) {
+            originalConsole.log(...args);
+            
+            const message = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg) : arg
+            ).join(' ');
+            
+            if (message.startsWith('[TEST]')) {
+                appendLog(message, 'success');
+            } else {
+                appendLog(message, 'info');
+            }
+        };
+        
+        console.error = function(...args) {
+            originalConsole.error(...args);
+            
+            const message = args.map(arg => 
+                typeof arg === 'object' && arg !== null ? JSON.stringify(arg) : String(arg)
+            ).join(' ');
+            
+            appendLog(message, 'error');
+        };
+        
+        function appendLog(message, type) {
+            const logElement = document.createElement('div');
+            logElement.classList.add('log', type);
+            logElement.textContent = message;
+            resultsDiv.appendChild(logElement);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+        
+        // Set up run button
+        document.getElementById('run-tests-btn').addEventListener('click', function() {
+            // Clear previous results
+            resultsDiv.innerHTML = '';
+            appendLog('Starting tests...', 'info');
+            
+            // Load and run the tests
+            const script = document.createElement('script');
+            script.src = '../tests/sync-queue-manager.test.js';
+            document.head.appendChild(script);
+        });
+    </script>
+</body>
+</html>

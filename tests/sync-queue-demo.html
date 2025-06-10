@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Queue Manager Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        .demo-section {
+            background-color: #f7f9fb;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .action-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .action-card h4 {
+            margin-top: 0;
+            color: #3498db;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin: 5px 0;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button.warning {
+            background-color: #e74c3c;
+        }
+        
+        button.warning:hover {
+            background-color: #c0392b;
+        }
+        
+        button.secondary {
+            background-color: #95a5a6;
+        }
+        
+        button.secondary:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .log-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 3px 0;
+            border-bottom: 1px solid #34495e;
+        }
+        
+        .log-entry.success {
+            color: #2ecc71;
+        }
+        
+        .log-entry.error {
+            color: #e74c3c;
+        }
+        
+        .log-entry.warn {
+            color: #f39c12;
+        }
+        
+        .switches {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        
+        .switch {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background: #eee;
+            border-radius: 20px;
+        }
+        
+        .switch input {
+            margin-right: 5px;
+        }
+        
+        .data-display {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .status-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .status-indicator.online {
+            background-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+        
+        .status-indicator.offline {
+            background-color: #e74c3c;
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+        }
+        
+        .status-text {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sync Queue Manager Demo</h1>
+    
+    <div class="connection-status">
+        <div class="status-indicator" id="connection-indicator"></div>
+        <span class="status-text" id="connection-text">Checking connection...</span>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Simulating Server Conditions</h2>
+        <p>Use these controls to simulate different server conditions to test the Sync Queue Manager:</p>
+        
+        <div class="switches">
+            <label class="switch">
+                <input type="checkbox" id="postgres-available" checked>
+                <span>PostgreSQL Available</span>
+            </label>
+            
+            <label class="switch">
+                <input type="checkbox" id="simulate-latency">
+                <span>Simulate High Latency</span>
+            </label>
+            
+            <label class="switch">
+                <input type="checkbox" id="random-failures">
+                <span>Random Failures</span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="control-panel">
+        <div class="action-card">
+            <h4>Test Data Management</h4>
+            <button id="generate-data">Generate Test Data</button>
+            <button id="save-data">Save Data (Test Queue)</button>
+            <button id="clear-data" class="secondary">Clear Test Data</button>
+            <div class="data-display" id="data-preview"></div>
+        </div>
+        
+        <div class="action-card">
+            <h4>Queue Operations</h4>
+            <button id="show-queue">Show Queue Contents</button>
+            <button id="force-sync">Force Sync All Changes</button>
+            <button id="clear-queue" class="warning">Clear All Queued Changes</button>
+        </div>
+        
+        <div class="action-card">
+            <h4>Status Information</h4>
+            <button id="check-status">Check Sync Status</button>
+            <button id="check-connection">Check Connection</button>
+            <div class="data-display" id="status-display"></div>
+        </div>
+    </div>
+    
+    <h2>Activity Log</h2>
+    <div class="log-container" id="log-container"></div>
+    
+    <script>
+        // Mock data for demo
+        let testData = [];
+        let postgresAvailable = true;
+        let simulateLatency = false;
+        let randomFailures = false;
+        
+        // Mock loader class compatible with the Sync Queue Manager
+        class MockLoader {
+            constructor() {
+                this.config = {
+                    primaryEndpoints: {
+                        heroku: 'https://ergosphere-api.herokuapp.com/api'
+                    },
+                    fallbackEndpoints: [
+                        '../../data',
+                        '../data',
+                        './data'
+                    ],
+                    timeout: 8000,
+                    retryAttempts: 2,
+                    retryDelay: 1000
+                };
+                
+                this.connectionStatus = 'checking';
+                this.cachedData = new Map();
+                this.dataSource = 'unknown';
+            }
+            
+            async loadFromPostgreSQL(category) {
+                checkConnection();
+                
+                if (!postgresAvailable) {
+                    throw new Error('PostgreSQL unavailable (simulated)');
+                }
+                
+                if (simulateLatency) {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
+                
+                if (randomFailures && Math.random() < 0.3) {
+                    throw new Error('Random failure (simulated)');
+                }
+                
+                log(`Loading from PostgreSQL: ${category}`, 'info');
+                return testData;
+            }
+            
+            async saveToPostgreSQL(category, data) {
+                checkConnection();
+                
+                if (!postgresAvailable) {
+                    throw new Error('PostgreSQL unavailable (simulated)');
+                }
+                
+                if (simulateLatency) {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
+                
+                if (randomFailures && Math.random() < 0.3) {
+                    throw new Error('Random failure (simulated)');
+                }
+                
+                log(`Saving to PostgreSQL: ${category} (${data.length} items)`, 'success');
+                testData = [...data];
+                return true;
+            }
+            
+            async saveData(category, data) {
+                try {
+                    await this.saveToPostgreSQL(category, data);
+                    return true;
+                } catch (error) {
+                    log(`Error saving data: ${error.message}`, 'error');
+                    return false;
+                }
+            }
+            
+            async performHealthCheck() {
+                return {
+                    postgresql: postgresAvailable,
+                    jsonFiles: true,
+                    cached: testData.length > 0
+                };
+            }
+        }
+        
+        // Initialize mock and load scripts
+        window.AdminDashboardDataLoader = new MockLoader();
+        
+        // Load the sync queue manager script
+        const script = document.createElement('script');
+        script.src = '../../js/admin-dashboard-sync-queue-manager.js';
+        document.head.appendChild(script);
+        
+        // Utility functions
+        function log(message, type = 'info') {
+            const logContainer = document.getElementById('log-container');
+            const entry = document.createElement('div');
+            entry.classList.add('log-entry', type);
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        function updateDataPreview() {
+            const preview = document.getElementById('data-preview');
+            if (testData.length === 0) {
+                preview.textContent = 'No data';
+            } else {
+                preview.textContent = JSON.stringify(testData.slice(0, 3), null, 2) + 
+                    (testData.length > 3 ? `\n... (${testData.length - 3} more items)` : '');
+            }
+        }
+        
+        function checkConnection() {
+            const indicator = document.getElementById('connection-indicator');
+            const text = document.getElementById('connection-text');
+            
+            if (postgresAvailable) {
+                indicator.className = 'status-indicator online';
+                text.textContent = 'PostgreSQL Online';
+            } else {
+                indicator.className = 'status-indicator offline';
+                text.textContent = 'PostgreSQL Offline';
+            }
+        }
+        
+        function updateStatusDisplay(data) {
+            const display = document.getElementById('status-display');
+            display.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        // Set up event handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for sync queue manager to load
+            setTimeout(() => {
+                log('Demo initialized', 'success');
+                checkConnection();
+                updateDataPreview();
+                
+                // Connection toggles
+                document.getElementById('postgres-available').addEventListener('change', function() {
+                    postgresAvailable = this.checked;
+                    log(`PostgreSQL availability set to: ${postgresAvailable}`, postgresAvailable ? 'success' : 'warn');
+                    checkConnection();
+                });
+                
+                document.getElementById('simulate-latency').addEventListener('change', function() {
+                    simulateLatency = this.checked;
+                    log(`Latency simulation set to: ${simulateLatency}`, simulateLatency ? 'info' : 'info');
+                });
+                
+                document.getElementById('random-failures').addEventListener('change', function() {
+                    randomFailures = this.checked;
+                    log(`Random failures set to: ${randomFailures}`, randomFailures ? 'warn' : 'info');
+                });
+                
+                // Data operations
+                document.getElementById('generate-data').addEventListener('click', () => {
+                    const count = Math.floor(Math.random() * 10) + 5; // 5-15 items
+                    testData = [];
+                    
+                    for (let i = 0; i < count; i++) {
+                        testData.push({
+                            id: i + 1,
+                            name: `Test Item ${i + 1}`,
+                            value: Math.floor(Math.random() * 1000),
+                            timestamp: new Date().toISOString()
+                        });
+                    }
+                    
+                    log(`Generated ${count} test data items`, 'success');
+                    updateDataPreview();
+                });
+                
+                document.getElementById('save-data').addEventListener('click', async () => {
+                    if (testData.length === 0) {
+                        log('No data to save', 'warn');
+                        return;
+                    }
+                    
+                    log('Attempting to save data...', 'info');
+                    try {
+                        const result = await window.AdminDashboardDataLoader.saveData('demo', testData);
+                        if (result) {
+                            log('Data saved successfully', 'success');
+                        } else {
+                            log('Save operation returned failure', 'error');
+                        }
+                    } catch (error) {
+                        log(`Save error: ${error.message}`, 'error');
+                    }
+                });
+                
+                document.getElementById('clear-data').addEventListener('click', () => {
+                    testData = [];
+                    log('Test data cleared', 'info');
+                    updateDataPreview();
+                });
+                
+                // Queue operations
+                document.getElementById('show-queue').addEventListener('click', async () => {
+                    if (!window.SyncQueueManager) {
+                        log('Sync Queue Manager not loaded', 'error');
+                        return;
+                    }
+                    
+                    const status = window.SyncQueueManager.getSyncStatus();
+                    log(`Queue status: ${status.pendingItems} pending items`, 'info');
+                    updateStatusDisplay(status);
+                });
+                
+                document.getElementById('force-sync').addEventListener('click', async () => {
+                    if (!window.SyncQueueManager) {
+                        log('Sync Queue Manager not loaded', 'error');
+                        return;
+                    }
+                    
+                    log('Forcing sync of all changes...', 'info');
+                    try {
+                        const result = await window.SyncQueueManager.forceSyncAllChanges();
+                        log(`Sync result: ${result.success ? 'Success' : 'Failure'} - ${result.message}`, 
+                            result.success ? 'success' : 'error');
+                    } catch (error) {
+                        log(`Sync error: ${error.message}`, 'error');
+                    }
+                });
+                
+                document.getElementById('clear-queue').addEventListener('click', async () => {
+                    if (!window.SyncQueueManager) {
+                        log('Sync Queue Manager not loaded', 'error');
+                        return;
+                    }
+                    
+                    if (confirm('Are you sure you want to clear all queued changes?')) {
+                        await window.SyncQueueManager.clearPendingChanges();
+                        log('All queued changes cleared', 'warn');
+                    }
+                });
+                
+                // Status information
+                document.getElementById('check-status').addEventListener('click', async () => {
+                    if (!window.SyncQueueManager) {
+                        log('Sync Queue Manager not loaded', 'error');
+                        return;
+                    }
+                    
+                    const status = window.SyncQueueManager.getSyncStatus();
+                    log(`Queue status: ${status.pendingItems} pending items`, 'info');
+                    updateStatusDisplay(status);
+                });
+                
+                document.getElementById('check-connection').addEventListener('click', async () => {
+                    try {
+                        const health = await window.AdminDashboardDataLoader.performHealthCheck();
+                        log(`PostgreSQL: ${health.postgresql ? 'Available' : 'Unavailable'}`, 
+                            health.postgresql ? 'success' : 'error');
+                        updateStatusDisplay(health);
+                    } catch (error) {
+                        log(`Health check error: ${error.message}`, 'error');
+                    }
+                });
+                
+                // Enable debug mode for the demo
+                if (window.SyncQueueManager) {
+                    window.SyncQueueManager.config.debug = true;
+                    window.SyncQueueManager.config.checkInterval = 10000; // 10 seconds for demo
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
