@@ -101,65 +101,6 @@ app.use((req, res, next) => {
   }  next();
 });
 
-// Enhanced health check endpoint with detailed system status
-app.get('/api/health', async (req, res) => {
-  let dbStatus = 'unknown';
-  let dbResponseTime = null;
-  let dbTableStatus = {};
-  
-  // Check database connectivity
-  const dbStartTime = Date.now();
-  try {
-    // Try a simple query to test database connection
-    const dbResult = await pool.query('SELECT NOW()');
-    dbStatus = 'connected';
-    dbResponseTime = Date.now() - dbStartTime;
-    
-    // Check for critical tables
-    try {
-      const tablesResult = await pool.query(`
-        SELECT table_name 
-        FROM information_schema.tables 
-        WHERE table_schema = 'public' 
-        AND table_name IN ('purchases', 'user_metrics')
-      `);
-      
-      const existingTables = tablesResult.rows.map(row => row.table_name);
-      
-      dbTableStatus = {
-        purchases: existingTables.includes('purchases'),
-        user_metrics: existingTables.includes('user_metrics')
-      };
-    } catch (tableError) {
-      console.error('Health check - Table check error:', tableError);
-      dbTableStatus = { error: tableError.message };
-    }
-  } catch (error) {
-    console.error('Health check - Database error:', error);
-    dbStatus = 'error';
-  }
-    // Get system info
-  const systemInfo = {
-    nodeVersion: process.version,
-    platform: process.platform,
-    memory: process.memoryUsage(),
-    uptime: process.uptime()
-  };
-  
-  // Build the detailed health response
-  res.json({ 
-    status: dbStatus === 'connected' ? 'ok' : 'degraded', 
-    timestamp: new Date().toISOString(),
-    version: '1.0.2',
-    database: {
-      status: dbStatus,
-      responseTime: dbResponseTime,
-      tables: dbTableStatus
-    },
-    system: systemInfo
-  });
-});
-
 // Import selection routes
 const selectionsRoute = require('./routes/selections');
 app.use('/api/selections', selectionsRoute);
@@ -831,49 +772,7 @@ app.get('/api/backup/:category', async (req, res) => {
   }
 });
 
-// Fallback endpoint with source parameter
-app.get('/api/data/:category', async (req, res) => {
-  const category = req.params.category;
-  const requestedSource = req.query.source;
-  console.log(`📊 Loading data for category: ${category}, source: ${requestedSource || 'auto'}`);
-  
-  try {
-    // If specific source requested
-    if (requestedSource === 'backup') {
-      return res.redirect(`/api/backup/${category}`);
-    }
-    
-    // Try to get from database first (PostgreSQL)
-    const result = await pool.query(
-      'SELECT data FROM json_data WHERE category = $1',
-      [category]
-    );
-    
-    if (result.rows.length > 0) {
-      console.log(`✅ Found data in database for ${category}`);
-      res.setHeader('X-Data-Source', 'postgres');
-      res.setHeader('X-Data-Freshness', 'current');
-      return res.json(result.rows[0].data);
-    }
-    
-    console.log(`📁 No database data found, trying JSON file for ${category}`);
-    // Fallback to JSON file if not in database yet
-    const filePath = path.join(__dirname, 'data', `${category}.json`);
-    const data = await fs.readFile(filePath, 'utf8');
-    console.log(`✅ Successfully loaded JSON file for ${category}`);
-    res.setHeader('X-Data-Source', 'json-file');
-    res.setHeader('X-Data-Freshness', 'backup');
-    res.json(JSON.parse(data));
-  } catch (err) {
-    console.error(`❌ Error retrieving data for ${category}:`, err);
-    res.status(500).json({ 
-      error: 'Error retrieving data',
-      category: category,
-      availableSources: ['postgres', 'backup', 'json-file'],
-      timestamp: new Date().toISOString()
-    });
-  }
-});
+
 
 // Additional fallback endpoint
 app.get('/api/fallback/:category', async (req, res) => {
