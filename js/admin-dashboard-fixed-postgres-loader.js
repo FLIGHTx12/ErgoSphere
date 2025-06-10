@@ -3,25 +3,31 @@
  * This addresses the connection issues and ensures reliable data loading
  */
 
-class FixedPostgreSQLLoader {
-    constructor() {
+class FixedPostgreSQLLoader {    constructor() {
+        // Detect if we're running on Heroku or locally
+        const isHeroku = window.location.hostname.includes('herokuapp.com');
+        const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+        
         this.config = {
-            // Primary PostgreSQL endpoints - Updated to use working URL patterns
+            // Primary PostgreSQL endpoints - Updated to work on both Heroku and local
             primaryEndpoints: {
-                local: '/api/data',  // Local server endpoint
-                backup: '/api/backup', // Backup endpoint
-                fallback: '/api/fallback' // Additional fallback
+                data: `${baseUrl}/api/data`,      // Main data endpoint
+                backup: `${baseUrl}/api/backup`,  // Backup endpoint  
+                fallback: `${baseUrl}/api/fallback`, // Emergency fallback
+                ergoshop: `${baseUrl}/api/ergoshop`, // Specific ErgoShop endpoint
+                ergobazaar: `${baseUrl}/api/ergobazaar` // ErgoBazaar endpoints
             },
-            // Fallback JSON endpoints
+            // Fallback JSON endpoints (for file fallback)
             fallbackEndpoints: [
                 './data',
-                '../data',
+                '../data', 
                 '../../data'
             ],
             // Connection settings
             timeout: 8000,
             retryAttempts: 2,
-            retryDelay: 1000
+            retryDelay: 1000,
+            isHeroku: isHeroku
         };
         
         this.connectionStatus = 'checking';
@@ -31,15 +37,13 @@ class FixedPostgreSQLLoader {
 
     async loadCategoryData(category) {
         console.log(`🔄 Loading category data: ${category}`);
-        
-        try {
-            // Try local API endpoints first (these work since database is working)
+          try {
+            // Try API endpoints first (PostgreSQL database)
             const data = await this.loadFromLocalAPI(category);
-            this.updateConnectionStatus('connected', 'Local PostgreSQL');
+            this.updateConnectionStatus('connected', this.config.isHeroku ? 'Heroku PostgreSQL' : 'Local PostgreSQL');
             this.cacheData(category, data);
-            return data;
-        } catch (apiError) {
-            console.warn('Local API failed, trying JSON fallback:', apiError.message);
+            return data;        } catch (apiError) {
+            console.warn('API failed, trying JSON fallback:', apiError.message);
             
             try {
                 // Try JSON files as fallback
@@ -62,18 +66,26 @@ class FixedPostgreSQLLoader {
                 return [];
             }
         }
-    }
-
-    async loadFromLocalAPI(category) {
+    }    async loadFromLocalAPI(category) {
+        // Build the endpoints based on category and server type
         const endpoints = [
-            `/api/data/${category}`,
-            `/api/backup/${category}`,
-            `/api/fallback/${category}`
+            `${this.config.primaryEndpoints.data}/${category}`,
+            `${this.config.primaryEndpoints.backup}/${category}`,
+            `${this.config.primaryEndpoints.fallback}/${category}`
         ];
+        
+        // Add category-specific endpoints for special cases
+        if (category === 'ErgoShop') {
+            endpoints.unshift(this.config.primaryEndpoints.ergoshop);
+        } else if (['coop', 'pvp', 'singleplayer', 'loot', 'movies', 'anime', 'youtube', 'sundaymorning', 'sundaynight'].includes(category)) {
+            endpoints.unshift(`${this.config.primaryEndpoints.ergobazaar}/${category}`);
+        }
+        
+        console.log(`🔄 Trying API endpoints for ${category}:`, endpoints);
         
         for (const endpoint of endpoints) {
             try {
-                console.log(`Trying local endpoint: ${endpoint}`);
+                console.log(`Trying API endpoint: ${endpoint}`);
                 
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
@@ -98,9 +110,8 @@ class FixedPostgreSQLLoader {
                 if (!Array.isArray(data)) {
                     throw new Error('Invalid data format received');
                 }
-                
-                console.log(`✅ Loaded ${data.length} items from ${endpoint}`);
-                this.dataSource = 'Local PostgreSQL';
+                  console.log(`✅ Loaded ${data.length} items from ${endpoint}`);
+                this.dataSource = this.config.isHeroku ? 'Heroku PostgreSQL' : 'Local PostgreSQL';
                 return data;
                 
             } catch (error) {
@@ -183,12 +194,12 @@ class FixedPostgreSQLLoader {
                 return [];
             }
         }
-    }
-
-    async saveData(category, data) {
+    }    async saveData(category, data) {
         try {
-            // Try to save to local API
-            const response = await fetch(`/api/data/${category}`, {
+            // Build the correct save endpoint URL
+            const saveEndpoint = `${this.config.primaryEndpoints.data}/${category}`;
+            
+            const response = await fetch(saveEndpoint, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -201,7 +212,7 @@ class FixedPostgreSQLLoader {
                 throw new Error(`Save failed: HTTP ${response.status}`);
             }
             
-            console.log(`✅ Successfully saved ${data.length} items to PostgreSQL`);
+            console.log(`✅ Successfully saved ${data.length} items to ${this.config.isHeroku ? 'Heroku' : 'Local'} PostgreSQL`);
             this.cacheData(category, data);
             return true;
             
@@ -263,31 +274,39 @@ class FixedPostgreSQLLoader {
                 dbType.textContent = 'Checking...';
                 dbType.className = 'database-type checking';
         }
-    }
-
-    async performHealthCheck() {
+    }    async performHealthCheck() {
         const results = {
             postgresql: false,
             jsonFiles: false,
             cached: this.cachedData.size > 0
         };
         
-        // Quick check of local API
+        // Check the appropriate API endpoints based on environment
+        const healthEndpoint = this.config.isHeroku ? '/api/health' : '/api/status';
+        
         try {
-            const response = await fetch('/api/status', { 
+            const response = await fetch(healthEndpoint, { 
                 signal: AbortSignal.timeout(3000) 
             });
             results.postgresql = response.ok;
+            
+            if (response.ok) {
+                const healthData = await response.json();
+                console.log(`✅ Health check passed: ${JSON.stringify(healthData)}`);
+            }
         } catch (error) {
+            console.warn(`❌ Health check failed for ${healthEndpoint}:`, error.message);
             results.postgresql = false;
         }
         
-        // Quick check of JSON files
-        try {
-            const response = await fetch('./data/coop.json');
-            results.jsonFiles = response.ok;
-        } catch (error) {
-            results.jsonFiles = false;
+        // Quick check of JSON files (only for local testing)
+        if (!this.config.isHeroku) {
+            try {
+                const response = await fetch('./data/coop.json');
+                results.jsonFiles = response.ok;
+            } catch (error) {
+                results.jsonFiles = false;
+            }
         }
         
         return results;
