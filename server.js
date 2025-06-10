@@ -949,6 +949,91 @@ app.get('/api/fallback/:category', async (req, res) => {
   }
 });
 
+// ErgoShop robust data loading endpoint
+app.get('/api/ergoshop', async (req, res) => {
+  console.log('🛍️ ErgoShop data requested');
+  
+  try {
+    // Try PostgreSQL first
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      ['ErgoShop']
+    );
+    
+    if (result.rows.length > 0) {
+      console.log('✅ ErgoShop data loaded from PostgreSQL');
+      res.setHeader('X-Data-Source', 'postgres');
+      return res.json(result.rows[0].data);
+    }
+    
+    // Fallback to JSON file
+    const filePath = path.join(__dirname, 'data', 'ErgoShop.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    console.log('✅ ErgoShop data loaded from JSON file');
+    res.setHeader('X-Data-Source', 'json-file');
+    res.json(JSON.parse(data));
+    
+  } catch (err) {
+    console.error('❌ ErgoShop data loading error:', err);
+    res.status(500).json({ 
+      error: 'ErgoShop data unavailable',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// ErgoBazaar robust data loading endpoints for each category
+const ergoBazaarCategories = [
+  { category: 'singleplayer', file: 'singleplayer.json' },
+  { category: 'pvp', file: 'pvp.json' },
+  { category: 'coop', file: 'coop.json' },
+  { category: 'loot', file: 'loot.json' },
+  { category: 'movies', file: 'movies.json' },
+  { category: 'youtube', file: 'youtube.json' },
+  { category: 'anime', file: 'anime.json' },
+  { category: 'sundaymorning', file: 'sundaymorning.json' },
+  { category: 'sundaynight', file: 'sundaynight.json' }
+];
+
+// Generic ErgoBazaar endpoint
+app.get('/api/ergobazaar/:category', async (req, res) => {
+  const category = req.params.category;
+  console.log(`🎮 ErgoBazaar data requested for: ${category}`);
+  
+  const categoryInfo = ergoBazaarCategories.find(cat => cat.category === category);
+  if (!categoryInfo) {
+    return res.status(404).json({ error: 'Category not found' });
+  }
+  
+  try {
+    // Try PostgreSQL first
+    const result = await pool.query(
+      'SELECT data FROM json_data WHERE category = $1',
+      [category]
+    );
+    
+    if (result.rows.length > 0) {
+      console.log(`✅ ErgoBazaar ${category} data loaded from PostgreSQL`);
+      res.setHeader('X-Data-Source', 'postgres');
+      return res.json(result.rows[0].data);
+    }
+    
+    // Fallback to JSON file
+    const filePath = path.join(__dirname, 'data', categoryInfo.file);
+    const data = await fs.readFile(filePath, 'utf8');
+    console.log(`✅ ErgoBazaar ${category} data loaded from JSON file`);
+    res.setHeader('X-Data-Source', 'json-file');
+    res.json(JSON.parse(data));
+    
+  } catch (err) {
+    console.error(`❌ ErgoBazaar ${category} data loading error:`, err);
+    res.status(500).json({ 
+      error: `ErgoBazaar ${category} data unavailable`,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // Server status endpoint for health checks
 app.get('/api/status', (req, res) => {
   res.json({

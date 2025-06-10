@@ -1,3 +1,4 @@
+// Enhanced ErgoBazaar with Robust Data Loading
 // Define the mapping of categories to their respective JSON file paths
 const categoryFileMap = {
   "Single Player Games": "data/singleplayer.json",
@@ -11,8 +12,25 @@ const categoryFileMap = {
   "Sunday Night Shows": "data/sundaynight.json"
 };
 
+// Robust data loading configuration for ErgoBazaar
+const categoryApiMap = {
+  "Single Player Games": "singleplayer",
+  "Spin the wheel PVP Games": "pvp",
+  "Spin the wheel Co-op Games": "coop",
+  "Spin the wheel Loot Boxes": "loot",
+  "Bingwa Movie Night": "movies",
+  "YouTube Theater": "youtube",
+  "Anime Shows": "anime",
+  "Sunday Morning Shows": "sundaymorning",
+  "Sunday Night Shows": "sundaynight"
+};
+
 // Set default user type
 let userType = "KUSHINDWA";
+
+// Initialize robust data loader for ErgoBazaar
+let ergoBazaarDataLoader = null;
+let ergoBazaarDataCache = new Map();
 
 // Cache object to store last modified timestamps
 const fileCache = {};
@@ -21,14 +39,153 @@ const fileCache = {};
 let isDropdownActive = false;
 
 // Add a counter to track additional dropdowns per category
-const categoryDropdownCounts = {}
+const categoryDropdownCounts = {};
 
-// Function to fetch options from JSON file with cache validation
-const fetchOptions = async (filePath) => {
+// Initialize robust data loader
+function initializeErgoBazaarLoader() {
+  if (window.RobustDataLoader) {
+    ergoBazaarDataLoader = new window.RobustDataLoader();
+    console.log('✅ ErgoBazaar robust data loader initialized');
+    
+    // Add status indicator to the page
+    addErgoBazaarStatusIndicator();
+  } else {
+    console.warn('⚠️ RobustDataLoader not available, falling back to basic loading');
+  }
+}
+
+// Add data source status indicator for ErgoBazaar
+function addErgoBazaarStatusIndicator() {
+  const indicator = document.createElement('div');
+  indicator.id = 'ergobazaar-status-indicator';
+  indicator.style.cssText = `
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  `;
+  
+  indicator.innerHTML = `
+    <div class="status-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #888;"></div>
+    <span class="status-text">Ready</span>
+  `;
+  
+  // Make it less intrusive
+  indicator.addEventListener('mouseenter', () => {
+    indicator.style.opacity = '1';
+  });
+  
+  indicator.addEventListener('mouseleave', () => {
+    indicator.style.opacity = '0.8';
+  });
+  
+  document.body.appendChild(indicator);
+}
+
+// Update status indicator for ErgoBazaar
+function updateErgoBazaarStatusIndicator(source, isHealthy = true) {
+  const indicator = document.getElementById('ergobazaar-status-indicator');
+  if (!indicator) return;
+  
+  const dot = indicator.querySelector('.status-dot');
+  const text = indicator.querySelector('.status-text');
+  
+  const sourceNames = {
+    'postgres': 'Database',
+    'server-backup': 'Server Backup',
+    'json-file': 'Local Files',
+    'cache': 'Cached Data',
+    'loading': 'Loading...'
+  };
+  
+  const colors = {
+    'postgres': '#4CAF50',
+    'server-backup': '#FF9800',
+    'json-file': '#2196F3',
+    'cache': '#9C27B0',
+    'loading': '#888'
+  };
+  
+  dot.style.background = isHealthy ? colors[source] || '#888' : '#f44336';
+  text.textContent = sourceNames[source] || source;
+}
+
+// Enhanced fetchOptions function with robust loading
+const fetchOptions = async (filePath, categoryName = null) => {
   try {
+    // Use robust loader if available and category is known
+    if (ergoBazaarDataLoader && categoryName && categoryApiMap[categoryName]) {
+      const apiCategory = categoryApiMap[categoryName];
+      
+      // Check if we already have cached data for this category
+      if (ergoBazaarDataCache.has(apiCategory)) {
+        console.log(`🔄 Using cached data for ${categoryName}`);
+        return ergoBazaarDataCache.get(apiCategory);
+      }
+      
+      console.log(`🔄 Loading ${categoryName} data with robust loader...`);
+      updateErgoBazaarStatusIndicator('loading');
+      
+      const robustConfig = {
+        sources: [
+          {
+            name: 'postgres',
+            url: `/api/ergobazaar/${apiCategory}`,
+            priority: 1
+          },
+          {
+            name: 'server-backup',
+            url: `/api/backup/${apiCategory}`,
+            priority: 2
+          },
+          {
+            name: 'json-file',
+            url: `../${filePath}`,
+            priority: 3
+          }
+        ],
+        cacheKey: `ergobazaar-${apiCategory}`,
+        retryConfig: {
+          maxRetries: 3,
+          baseDelay: 1000,
+          maxDelay: 5000
+        }
+      };
+      
+      const data = await ergoBazaarDataLoader.loadData(apiCategory, robustConfig);
+      
+      // Cache the data
+      ergoBazaarDataCache.set(apiCategory, data);
+      
+      // Update status based on source
+      const metadata = ergoBazaarDataLoader.getLastLoadMetadata();
+      updateErgoBazaarStatusIndicator(metadata.source, metadata.success);
+      
+      console.log(`✅ ${categoryName} data loaded from: ${metadata.source}`);
+      return data;
+    }
+    
+    // Fallback to original loading method
+    console.log(`📁 Using fallback loading method for ${filePath}`);
+    updateErgoBazaarStatusIndicator('json-file');
+    
     // Add cache-busting query parameter
     const timestamp = Date.now();
     const response = await fetch(`../${filePath}?t=${timestamp}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
     
     // Get last modified header
     const lastModified = response.headers.get('last-modified');
@@ -48,18 +205,34 @@ const fetchOptions = async (filePath) => {
 
     return data;
   } catch (error) {
-    console.error(`Error fetching data from ${filePath}:`, error);
+    console.error(`❌ Error fetching data from ${filePath}:`, error);
+    updateErgoBazaarStatusIndicator('error', false);
+    
+    // Try to use cached data as last resort
+    if (categoryName && categoryApiMap[categoryName]) {
+      const apiCategory = categoryApiMap[categoryName];
+      const cachedData = localStorage.getItem(`ergobazaar-${apiCategory}`);
+      if (cachedData) {
+        console.log(`🔄 Using emergency cached data for ${categoryName}`);
+        updateErgoBazaarStatusIndicator('cache');
+        const parsedData = JSON.parse(cachedData);
+        ergoBazaarDataCache.set(apiCategory, parsedData);
+        return parsedData;
+      }
+    }
+    
+    // Fallback to file cache or empty array
     return fileCache[filePath]?.data || [];
   }
 };
 
-// Function to refresh options for a category
+// Function to refresh options for a category with robust loading
 const refreshCategoryOptions = async (category) => {
   const catName = category.getAttribute('data-category');
   const filePath = categoryFileMap[catName];
 
   if (filePath) {
-    let optionsArray = await fetchOptions(filePath); // Use let instead of const    // Sort options alphabetically specifically for Bingwa Movie Night
+    let optionsArray = await fetchOptions(filePath, catName); // Pass category name for robust loading// Sort options alphabetically specifically for Bingwa Movie Night
     if (catName === "Bingwa Movie Night") {
       optionsArray.sort((a, b) => {
         const titleA = (a.Title || a.TITLE || '').toLowerCase();
@@ -355,6 +528,11 @@ function updateAllCategoryTotalsAndOverall() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize robust data loader with a small delay to ensure it's loaded
+  setTimeout(() => {
+    initializeErgoBazaarLoader();
+  }, 100);
+  
   restoreErgoBazaarState();
 
   // Initial population of dropdowns
