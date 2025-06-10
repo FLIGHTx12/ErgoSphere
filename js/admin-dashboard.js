@@ -354,9 +354,7 @@ class AdminDashboard {    constructor() {
         } finally {
             this.hideLoading();
         }
-    }
-
-    renderTable() {
+    }    renderTable() {
         const tbody = document.getElementById('table-body');
         if (!tbody) return;
         
@@ -379,7 +377,12 @@ class AdminDashboard {    constructor() {
             const row = this.createTableRow(item, index, dataType);
             tbody.appendChild(row);
         });
-    }    updateTableHeaders() {
+        
+        // Reapply search filter if one exists
+        if (this.searchValue) {
+            this.filterData(this.searchValue);
+        }
+    }updateTableHeaders() {
         const headersRow = document.getElementById('table-headers');
         if (!headersRow) return;
         
@@ -724,7 +727,10 @@ class AdminDashboard {    constructor() {
         }
         
         this.markAsModified(index);
-        this.renderTable();
+        
+        // Instead of re-rendering the entire table, just update this specific row
+        this.refreshTableRow(index);
+        this.updateStats();
     }toggleItemCompletion(index) {
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
@@ -737,10 +743,11 @@ class AdminDashboard {    constructor() {
         }
         
         this.markAsModified(index);
-        this.renderTable();
-    }
-
-    toggleItemActive(index) {
+        
+        // Just update the specific row instead of re-rendering the entire table
+        this.refreshTableRow(index);
+        this.updateStats();
+    }    toggleItemActive(index) {
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
@@ -752,10 +759,11 @@ class AdminDashboard {    constructor() {
         }
         
         this.markAsModified(index);
-        this.renderTable();
-    }
-
-    handleNumberControl(action, index) {
+        
+        // Just update the specific row instead of re-rendering the entire table
+        this.refreshTableRow(index);
+        this.updateStats();
+    }    handleNumberControl(action, index) {
         console.log('DEBUG: handleNumberControl called with action =', action, 'index =', index);
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
@@ -790,7 +798,10 @@ class AdminDashboard {    constructor() {
         
         console.log('DEBUG: item after change =', JSON.stringify(item));
         this.markAsModified(index);
-        this.renderTable();
+        
+        // Just update the specific row instead of re-rendering the entire table
+        this.refreshTableRow(index);
+        this.updateStats();
     }markAsModified(index) {
         console.log('DEBUG: markAsModified called with index =', index);
         this.modifiedItems.add(index);
@@ -1038,12 +1049,12 @@ class AdminDashboard {    constructor() {
                 header.classList.add('active-sort');
             } else {
                 header.classList.remove('active-sort');
-            }
-        });
+            }        });
         
         // Re-render the table with sorted data
-        this.renderTable();
-          // Only show feedback message when sorting is triggered by user action, not on initial load
+        this.renderTable(); // This will automatically reapply search filter via the code in renderTable()
+          
+        // Only show feedback message when sorting is triggered by user action, not on initial load
         const isUserAction = new Error().stack.includes('HTMLTableCellElement.addEventListener');
         if (isUserAction) {
             this.showMessage(`📊 Sorted by ${sortBy}`);
@@ -1232,10 +1243,15 @@ class AdminDashboard {    constructor() {
                         break;
                 }
                 
-                this.markAsModified(index);
+                this.markAsModified(index);            });
+            
+            // Instead of rendering the entire table, refresh each modified row individually
+            const selectedIndices = Array.from(this.selectedItems);
+            selectedIndices.forEach(index => {
+                this.refreshTableRow(index);
             });
             
-            this.renderTable();
+            this.updateStats(); // Update statistics after bulk changes
             this.hideBulkModal();
             this.showMessage(`✅ Bulk action applied to ${this.selectedItems.size} items`);
             
@@ -1487,16 +1503,22 @@ class AdminDashboard {    constructor() {
                 this.filterData(this.searchValue);
             }
         }
-    }
-
-    refreshTableRow(index) {
+    }    refreshTableRow(index) {
         const tbody = document.getElementById('table-body');
         const existingRow = tbody.querySelector(`tr[data-index="${index}"]`);
         
         if (existingRow) {
+            // Store the current visibility state of the row
+            const wasHidden = existingRow.style.display === 'none';
+            
             const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
             const dataType = categoryBtn ? categoryBtn.dataset.type : null;
             const newRow = this.createTableRow(this.currentData[index], index, dataType);
+            
+            // Preserve visibility state
+            if (wasHidden) {
+                newRow.style.display = 'none';
+            }
             
             // Replace the existing row
             tbody.replaceChild(newRow, existingRow);
