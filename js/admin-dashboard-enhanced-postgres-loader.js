@@ -280,9 +280,7 @@ class EnhancedPostgreSQLLoader {
     cacheData(category, data) {
         this.cachedData.set(category, data);
         this.cachedData.set(`${category}_timestamp`, new Date());
-    }
-
-    updateConnectionStatus(status, source) {
+    }    updateConnectionStatus(status, source) {
         this.connectionStatus = status;
         this.dataSource = source;
         
@@ -292,33 +290,36 @@ class EnhancedPostgreSQLLoader {
         
         if (!indicator || !text || !dbType) return;
         
+        // Clear any text content and use CSS classes instead
+        indicator.textContent = '';
+        
         switch (status) {
             case 'connected':
-                indicator.textContent = '🟢';
+                indicator.className = 'status-indicator connected';
                 text.textContent = `Connected to ${source}`;
                 dbType.textContent = source;
                 dbType.className = 'database-type connected';
                 break;
             case 'fallback':
-                indicator.textContent = '🟠';
+                indicator.className = 'status-indicator connecting';
                 text.textContent = `Using fallback: ${source}`;
                 dbType.textContent = `Fallback: ${source}`;
                 dbType.className = 'database-type fallback';
                 break;
             case 'cached':
-                indicator.textContent = '🔵';
+                indicator.className = 'status-indicator connecting';
                 text.textContent = `Using cached data`;
                 dbType.textContent = 'Cached Data';
                 dbType.className = 'database-type cached';
                 break;
             case 'disconnected':
-                indicator.textContent = '🔴';
+                indicator.className = 'status-indicator disconnected';
                 text.textContent = 'No data source available';
                 dbType.textContent = 'Disconnected';
                 dbType.className = 'database-type disconnected';
                 break;
             default:
-                indicator.textContent = '⚪';
+                indicator.className = 'status-indicator connecting';
                 text.textContent = 'Checking connection...';
                 dbType.textContent = 'Checking...';
                 dbType.className = 'database-type checking';

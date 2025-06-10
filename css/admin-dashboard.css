@@ -150,13 +150,40 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     animation: pulse 2s infinite;
+    position: relative;
+    background-color: #6b7280; /* Default gray */
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-indicator.connected {
+    background-color: #10b981; /* Green */
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.status-indicator.disconnected {
+    background-color: #ef4444; /* Red */
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+.status-indicator.connecting {
+    background-color: #f59e0b; /* Orange/Yellow */
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.1);
+    }
 }
 
 /* Navbar Animation */
@@ -898,6 +925,95 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    flex-wrap: wrap; /* Allow wrapping for mobile */
+}
+
+/* Eye display container for Times Seen */
+.eye-display-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    margin: 0.25rem 0;
+    line-height: 1.2;
+    min-height: 1.5rem;
+}
+
+.eye-row {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.1;
+    margin: 1px 0;
+    text-align: center;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.eye-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 0.85rem;
+}
+
+.eye-multiplier {
+    font-size: 0.7rem;
+    color: var(--warning-color);
+    font-weight: 600;
+    background: rgba(245, 158, 11, 0.2);
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-left: 3px;
+}
+
+/* Mobile responsive adjustments for eye display */
+@media (max-width: 768px) {
+    .eye-display-container {
+        max-width: 150px;
+        font-size: 0.8rem;
+    }
+    
+    .eye-row {
+        font-size: 0.75rem;
+        line-height: 1;
+    }
+    
+    .eye-compact {
+        font-size: 0.7rem;
+    }
+    
+    .eye-multiplier {
+        font-size: 0.6rem;
+        padding: 1px 2px;
+    }
+    
+    .number-control {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .watched-count {
+        font-size: 0.9rem;
+        margin: 0.25rem 0;
+    }
+}
+
+/* Very small mobile screens */
+@media (max-width: 480px) {
+    .eye-display-container {
+        max-width: 120px;
+    }
+    
+    .eye-row {
+        font-size: 0.7rem;
+        margin: 0;
+    }
+    
+    .eye-compact {
+        font-size: 0.65rem;
+    }
 }
 
 /* 3D embossed status buttons with no background for emojis */

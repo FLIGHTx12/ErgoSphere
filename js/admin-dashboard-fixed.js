@@ -158,18 +158,19 @@ class AdminDashboard {
         } catch (error) {
             console.error('WebSocket setup failed:', error);
         }
-    }
-
-    updateConnectionStatus() {
+    }    updateConnectionStatus() {
         const indicator = document.getElementById('connection-indicator');
         const text = document.getElementById('connection-text');
         
         if (indicator && text) {
+            // Clear any text content and use CSS classes instead
+            indicator.textContent = '';
+            
             if (this.isConnected) {
-                indicator.textContent = '🟢';
+                indicator.className = 'status-indicator connected';
                 text.textContent = 'Connected';
             } else {
-                indicator.textContent = '🔴';
+                indicator.className = 'status-indicator disconnected';
                 text.textContent = 'Disconnected';
             }
         }

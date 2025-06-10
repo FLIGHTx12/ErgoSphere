@@ -230,22 +230,23 @@ class AdminDashboard {    constructor() {
         } catch (error) {
             console.error('WebSocket setup failed:', error);
         }
-    }
-
-    updateConnectionStatus() {
+    }    updateConnectionStatus() {
         const indicator = document.getElementById('connection-indicator');
         const text = document.getElementById('connection-text');
         
         if (indicator && text) {
+            // Clear any text content and use CSS classes instead
+            indicator.textContent = '';
+            
             if (this.isConnected) {
-                indicator.textContent = '🟢';
+                indicator.className = 'status-indicator connected';
                 text.textContent = 'Connected';
             } else {
-                indicator.textContent = '🔴';
+                indicator.className = 'status-indicator disconnected';
                 text.textContent = 'Disconnected';
             }
         }
-    }    async loadCategoryData(category) {
+    }async loadCategoryData(category) {
         this.showLoading();
         
         try {
@@ -403,8 +404,8 @@ class AdminDashboard {    constructor() {
         // Add category-specific headers
         if (config.showCopies) {
             headersHTML += `<th class="col-copies sortable" data-sort="copies">Copies</th>`;
-        }          if (config.completedField) {
-            headersHTML += `<th class="col-completed sortable" data-sort="completed">Completed?</th>`;
+        }        if (config.completedField) {
+            headersHTML += `<th class="col-completed sortable" data-sort="completed">Progress</th>`;
         }
         
         if (config.activeField) {
@@ -470,11 +471,10 @@ class AdminDashboard {    constructor() {
                 if (sortBy) {
                     this.sortData(sortBy);
                 }
-            });
-            // Add a visual indicator that the column is clickable
+            });            // Add a visual indicator that the column is clickable
             header.style.cursor = 'pointer';
             if (!header.querySelector('.sort-indicator')) {
-                header.innerHTML += ' <span class="sort-indicator">↕️</span>';
+                header.innerHTML += ' <span class="sort-indicator"></span>';
             }
         });
     }createTableRow(item, index, dataType) {
@@ -543,16 +543,16 @@ class AdminDashboard {    constructor() {
                 <button class="active-toggle" data-index="${index}">${active}</button>
             </td>`;
         }
-        
-        // Add times seen field for movies/anime/youtube
+          // Add times seen field for movies/anime/youtube
         if (config.timesSeenField) {
             const timesSeen = item[config.timesSeenField] || item.watched || 0;
-            const eyeDisplay = timesSeen > 0 ? ` 👀` : '';
+            const eyeDisplay = this.generateEyeDisplay(timesSeen);
             rowContent += `
             <td class="watched-cell">
                 <div class="number-control">
                     <button class="control-btn minus" data-action="watched-minus" data-index="${index}">-</button>
-                    <span class="watched-count">${timesSeen}${eyeDisplay}</span>
+                    <span class="watched-count">${timesSeen}</span>
+                    <div class="eye-display-container">${eyeDisplay}</div>
                     <button class="control-btn plus" data-action="watched-plus" data-index="${index}">+</button>
                 </div>
             </td>`;
@@ -704,14 +704,54 @@ class AdminDashboard {    constructor() {
                 }
             });
         });
-    }
-
-    getCopiesClass(copies) {
+    }    getCopiesClass(copies) {
         if (copies === 0) return 'zero';
         if (copies <= 2) return 'low';
         if (copies <= 5) return 'medium';
         return 'high';
-    }    toggleItemStatus(index) {
+    }
+
+    generateEyeDisplay(count) {
+        if (!count || count <= 0) return '';
+        
+        // For mobile-friendly display, we'll show eyes in rows
+        // Large numbers get a more compact representation
+        if (count <= 10) {
+            // For 1-10, show individual eye emojis
+            return '👀'.repeat(count);
+        } else if (count <= 20) {
+            // For 11-20, show in two rows
+            const firstRow = '👀'.repeat(10);
+            const secondRow = '👀'.repeat(count - 10);
+            return `<div class="eye-row">${firstRow}</div><div class="eye-row">${secondRow}</div>`;
+        } else if (count <= 50) {
+            // For 21-50, show multiple rows of 10
+            const fullRows = Math.floor(count / 10);
+            const remainder = count % 10;
+            let display = '';
+            
+            for (let i = 0; i < fullRows; i++) {
+                display += `<div class="eye-row">${'👀'.repeat(10)}</div>`;
+            }
+            if (remainder > 0) {
+                display += `<div class="eye-row">${'👀'.repeat(remainder)}</div>`;
+            }
+            return display;
+        } else {
+            // For very large numbers (50+), show a compact representation
+            const eyePairs = Math.floor(count / 10);
+            const remainder = count % 10;
+            let display = `<div class="eye-compact">${'👀'.repeat(Math.min(eyePairs, 10))}`;
+            if (eyePairs > 10) {
+                display += `<span class="eye-multiplier">×${Math.ceil(eyePairs / 10)}</span>`;
+            }
+            display += '</div>';
+            if (remainder > 0) {
+                display += `<div class="eye-row">${'👀'.repeat(remainder)}</div>`;
+            }
+            return display;
+        }
+    }toggleItemStatus(index) {
         const item = this.currentData[index];
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
         
