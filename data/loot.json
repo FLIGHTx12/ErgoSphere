@@ -1,6 +1,6 @@
 [
   {
-    "id": 2,
+    "id": 78,
     "text": "CRITICAL FAILURE!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/error-message.jpg"
@@ -14,7 +14,7 @@
     "link": ""
   },
   {
-    "id": 3,
+    "id": 79,
     "text": "CHARGED UP!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/CHARGED UP.png"
@@ -28,7 +28,7 @@
     "link": ""
   },
   {
-    "id": 4,
+    "id": 80,
     "text": "HABITICAN HEALERS!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Habitican healers1.png",
@@ -44,7 +44,7 @@
     "link": ""
   },
   {
-    "id": 5,
+    "id": 81,
     "text": "SNACK-A-THON!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Snack-a-thon.png"
@@ -58,7 +58,7 @@
     "link": ""
   },
   {
-    "id": 6,
+    "id": 82,
     "text": "GAME-A-THON!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Game_a_Thon.png"
@@ -72,7 +72,7 @@
     "link": ""
   },
   {
-    "id": 7,
+    "id": 83,
     "text": "GOLDEN TICKET!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Golden ticket.png"
@@ -86,7 +86,7 @@
     "link": ""
   },
   {
-    "id": 8,
+    "id": 84,
     "text": "FEAST!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/feast.png"
@@ -100,7 +100,7 @@
     "link": ""
   },
   {
-    "id": 9,
+    "id": 85,
     "text": "KIND ERGO DJINN!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Ergo Djinn.png"
@@ -114,7 +114,7 @@
     "link": ""
   },
   {
-    "id": 10,
+    "id": 86,
     "text": "BECKONING HAND",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Portal_hand.png"
@@ -128,12 +128,12 @@
     "link": ""
   },
   {
-    "id": 11,
+    "id": 87,
     "text": "1 XBOX series X's",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/XBOX series X (Remove after Spinning).jpg"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! Xbox Series X 1TB SSD Console - Includes Xbox Wireless Controller - Up to 120 frames per second - 16 GB RAM - 1 TB SSD Storage - Experience True 4K Gaming - Xbox Velocity Architecture",
     "genre": "Want",
     "type": "loot",
@@ -142,7 +142,7 @@
     "link": "https://a.co/d/6VWXgqg"
   },
   {
-    "id": 12,
+    "id": 88,
     "text": "EVIL ERGO DJINN!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Evil Ergo Djinn.png",
@@ -158,7 +158,7 @@
     "link": ""
   },
   {
-    "id": 23,
+    "id": 89,
     "text": "Mattress topper",
     "image": [
       "https://www.cnet.com/a/img/resize/878c211441c1754593fb771e73de2ae2029f8686/hub/2023/12/04/8ceeb8e3-501b-4c36-b4b7-83631750593a/gettyimages-1568167702.jpg?auto=webp&fit=crop&height=1200&width=1200"
@@ -172,7 +172,7 @@
     "link": "https://www.amazon.com/s?k=Mattress+topper"
   },
   {
-    "id": 24,
+    "id": 90,
     "text": "Oven Mitten",
     "image": [
       "https://c1.wallpaperflare.com/preview/145/422/486/stove-cooking-zone-electric-cooker-glove.jpg"
@@ -186,7 +186,7 @@
     "link": "https://www.amazon.com/s?k=Oven+Mitten&crid=23QTB5O9XAQRX&sprefix=oven+mitten%2Caps%2C144&ref=nb_sb_noss_1"
   },
   {
-    "id": 25,
+    "id": 91,
     "text": "Spatula",
     "image": [
       "https://cdn.thewirecutter.com/wp-content/media/2024/11/spatula-2048px-4566.jpg?auto=webp&quality=75&width=1024"
@@ -200,12 +200,12 @@
     "link": "https://www.amazon.com/s?k=spatula&crid=STQ4Y512EC09&sprefix=Spatu%2Caps%2C143&ref=nb_sb_ss_ts-doa-p_1_5"
   },
   {
-    "id": 26,
+    "id": 92,
     "text": "Bathroom clock",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Bathroom clock (hide after spin).jpg"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "JENLYSTIME 12 Inch Indoor/Outdoor Retro Waterproof Wall Clock with Thermometer Silent Round Quartz Battery Operated Easy to Read Decorative for Kitchen Patio,Bathroom,Deck,Porch,Pool(Blue)",
     "genre": "Want",
     "type": "loot",
@@ -214,7 +214,7 @@
     "link": "https://a.co/d/ebytpwT"
   },
   {
-    "id": 27,
+    "id": 93,
     "text": "PING PONG SET!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Ping-pong set.jpg"
@@ -228,12 +228,12 @@
     "link": "https://a.co/d/5m0KWR4"
   },
   {
-    "id": 28,
+    "id": 94,
     "text": "1st floor clock",
     "image": [
       "https://images.pexels.com/photos/100733/pexels-photo-100733.jpeg?cs=srgb&dl=pexels-monoar-rahman-22660-100733.jpg&fm=jpg"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "found",
@@ -242,12 +242,12 @@
     "link": ""
   },
   {
-    "id": 29,
+    "id": 95,
     "text": "Kitchen scissors",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "Astercook Heavy Duty Kitchen Shears with Serrated Blade, Ergonomic Handle - For Poultry, Herbs, Vegetables",
     "genre": "Want",
     "type": "loot",
@@ -256,12 +256,12 @@
     "link": ""
   },
   {
-    "id": 30,
+    "id": 96,
     "text": "MASSAGE GUN!",
     "image": [
       "https://m.media-amazon.com/images/I/61NOJil79KL._AC_SL1500_.jpg"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! RENPHO Massage Gun Deep Tissue, FSA HSA Eligible Portable Percussion Massager for Back and Neck, Gifts for Men and Women, Handheld Device with Carry Case, Active Green",
     "genre": "Want",
     "type": "loot",
@@ -270,7 +270,7 @@
     "link": "https://a.co/d/e0zlhsk"
   },
   {
-    "id": 31,
+    "id": 97,
     "text": "BED COMFORTER!",
     "image": [
       "https://w0.peakpx.com/wallpaper/631/407/HD-wallpaper-white-bed-comforter-set-and-brown-wooden-bed-frame-beside-brown-wooden-nightstand.jpg"
@@ -284,7 +284,7 @@
     "link": "https://a.co/d/1nKPet3"
   },
   {
-    "id": 32,
+    "id": 98,
     "text": "BED SHEETS!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/New bed sheets.jpg"
@@ -298,7 +298,7 @@
     "link": "https://a.co/d/gMwcQtc"
   },
   {
-    "id": 33,
+    "id": 99,
     "text": "COMPUTER MONITOR!",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Computer Monitor.JPG"
@@ -312,7 +312,7 @@
     "link": "https://a.co/d/4kdU5ER"
   },
   {
-    "id": 34,
+    "id": 100,
     "text": "SMART TV!",
     "image": [
       ""
@@ -326,12 +326,12 @@
     "link": ""
   },
   {
-    "id": 35,
+    "id": 101,
     "text": "NEW ROBES!",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! New Robes",
     "genre": "Want",
     "type": "loot",
@@ -340,12 +340,12 @@
     "link": ""
   },
   {
-    "id": 36,
+    "id": 102,
     "text": "SALT ROCK LIGHT",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! New Salt rock light",
     "genre": "Want",
     "type": "loot",
@@ -354,12 +354,12 @@
     "link": ""
   },
   {
-    "id": 37,
+    "id": 103,
     "text": "YOU FOUND!! New treadmill",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -368,12 +368,12 @@
     "link": ""
   },
   {
-    "id": 38,
+    "id": 104,
     "text": "New yoga mats",
     "image": [
       "YOU FOUND!! New yoga mats"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "",
     "genre": "Want",
     "type": "loot",
@@ -382,12 +382,12 @@
     "link": ""
   },
   {
-    "id": 39,
+    "id": 105,
     "text": "POACHED EGG MAKER",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! Poached egg maker cozilife",
     "genre": "Want",
     "type": "loot",
@@ -396,12 +396,12 @@
     "link": ""
   },
   {
-    "id": 40,
+    "id": 106,
     "text": "SPLATOON 3",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! Splatoon 3",
     "genre": "Want",
     "type": "loot",
@@ -410,7 +410,7 @@
     "link": ""
   },
   {
-    "id": 41,
+    "id": 107,
     "text": "STEERING WHEEL COVER",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/Steering wheel cover (hide after spin).jpg"
@@ -424,12 +424,12 @@
     "link": "https://www.amazon.com/dp/B07WNHR1JT/?coliid=I17RAGA2LWVJ0X&colid=3UL61GOF3BU6J&ref_=list_c_wl_lv_ov_lig_dp_it&th=1"
   },
   {
-    "id": 42,
+    "id": 108,
     "text": "Switch SPORTS equipment pack",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! Switch SPORTS equipment pack",
     "genre": "Want",
     "type": "loot",
@@ -438,12 +438,12 @@
     "link": ""
   },
   {
-    "id": 43,
+    "id": 109,
     "text": "LAUNDRY HAMPER",
     "image": [
       "../assets/img/Spin The Wheel Photos/Loot/VASAGLE Laundry Hamper.JPG"
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "VASAGLE Laundry Hamper, Laundry Basket, Laundry Sorter with 2 Pull-Out and Removable Bags, Shelf, Metal Frame, 2 x 12.1 Gallons (46L), 28.8 x 13 x 28.4 Inches, Rustic Brown and Black UBLH201B01",
     "genre": "Want",
     "type": "loot",
@@ -452,12 +452,12 @@
     "link": "https://a.co/d/iD1Y6N9"
   },
   {
-    "id": 44,
+    "id": 110,
     "text": "Dimmable front room lights",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!!: Dimmable front room lights",
     "genre": "Want",
     "type": "loot",
@@ -466,12 +466,12 @@
     "link": ""
   },
   {
-    "id": 45,
+    "id": 111,
     "text": "20gal fish tank",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! 10 or 20-gallon fish tank, 30x15 max ",
     "genre": "found",
     "type": "loot",
@@ -480,12 +480,12 @@
     "link": ""
   },
   {
-    "id": 46,
+    "id": 112,
     "text": "Bathroom rugs",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! Bathroom rugs",
     "genre": "Want",
     "type": "loot",
@@ -494,12 +494,12 @@
     "link": ""
   },
   {
-    "id": 47,
+    "id": 113,
     "text": "Cupping Therapy Set",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -508,12 +508,12 @@
     "link": ""
   },
   {
-    "id": 48,
+    "id": 114,
     "text": "Golf wedge",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -522,12 +522,12 @@
     "link": ""
   },
   {
-    "id": 49,
+    "id": 115,
     "text": "New Basketball",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -536,12 +536,12 @@
     "link": ""
   },
   {
-    "id": 50,
+    "id": 116,
     "text": "New Kitchen mat",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -550,12 +550,12 @@
     "link": ""
   },
   {
-    "id": 51,
+    "id": 117,
     "text": "New Microphone for RockBand",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!!",
     "genre": "Want",
     "type": "loot",
@@ -564,12 +564,12 @@
     "link": ""
   },
   {
-    "id": 52,
+    "id": 118,
     "text": "Outlet extender/adapter",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "Want",
     "type": "loot",
@@ -578,12 +578,12 @@
     "link": ""
   },
   {
-    "id": 53,
+    "id": 119,
     "text": "Samsung Soundbar",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",
@@ -592,12 +592,12 @@
     "link": ""
   },
   {
-    "id": 54,
+    "id": 120,
     "text": "Storage Freezer for the basement ",
     "image": [
       ""
     ],
-    "copies": 0,
+    "copies": 1,
     "details": "YOU FOUND!! ",
     "genre": "found",
     "type": "loot",

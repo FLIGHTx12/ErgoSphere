@@ -38,101 +38,29 @@ function initializeErgoShopLoader() {
   if (window.RobustDataLoader) {
     ergoShopDataLoader = new window.RobustDataLoader();
     console.log('✅ ErgoShop robust data loader initialized');
-    
-    // Add status indicator to the page
-    addDataSourceIndicator();
   } else {
     console.warn('⚠️ RobustDataLoader not available, falling back to basic loading');
   }
-}
-
-// Add data source status indicator
-function addDataSourceIndicator() {
-  const indicator = document.createElement('div');
-  indicator.id = 'ergoshop-status-indicator';
-  indicator.style.cssText = `
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  `;
-  
-  indicator.innerHTML = `
-    <div class="status-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #888;"></div>
-    <span class="status-text">Loading...</span>
-  `;
-  
-  // Make it less intrusive
-  indicator.addEventListener('mouseenter', () => {
-    indicator.style.opacity = '1';
-  });
-  
-  indicator.addEventListener('mouseleave', () => {
-    indicator.style.opacity = '0.8';
-  });
-  
-  document.body.appendChild(indicator);
-}
-
-// Update status indicator
-function updateStatusIndicator(source, isHealthy = true) {
-  const indicator = document.getElementById('ergoshop-status-indicator');
-  if (!indicator) return;
-  
-  const dot = indicator.querySelector('.status-dot');
-  const text = indicator.querySelector('.status-text');
-  
-  const sourceNames = {
-    'postgres': 'Database',
-    'server-backup': 'Server Backup',
-    'json-file': 'Local Files',
-    'cache': 'Cached Data'
-  };
-  
-  const colors = {
-    'postgres': '#4CAF50',
-    'server-backup': '#FF9800',
-    'json-file': '#2196F3',
-    'cache': '#9C27B0'
-  };
-  
-  dot.style.background = isHealthy ? colors[source] || '#888' : '#f44336';
-  text.textContent = sourceNames[source] || source;
 }
 
 // Enhanced loadOptions function with robust loading
 async function loadOptions(containerId) {
   try {
     // Use robust loader if available
-    if (ergoShopDataLoader) {
-      if (!ergoShopData) {
+    if (ergoShopDataLoader) {    if (!ergoShopData) {
         console.log('🔄 Loading ErgoShop data with robust loader...');
-        updateStatusIndicator('loading');
         
         ergoShopData = await ergoShopDataLoader.loadData('ErgoShop', ergoShopRobustConfig);
         
         // Update status based on source
         const metadata = ergoShopDataLoader.getLastLoadMetadata();
-        updateStatusIndicator(metadata.source, metadata.success);
         
         console.log(`✅ ErgoShop data loaded from: ${metadata.source}`);
       }
       
-      return ergoShopData[containerId];
-    } else {
+      return ergoShopData[containerId];    } else {
       // Fallback to original loading method
       console.log('📁 Using fallback loading method');
-      updateStatusIndicator('json-file');
       
       const response = await fetch(optionsFile);
       if (!response.ok) {
@@ -142,16 +70,13 @@ async function loadOptions(containerId) {
       const optionsData = await response.json();
       ergoShopData = optionsData;
       return optionsData[containerId];
-    }
-  } catch (error) {
+    }  } catch (error) {
     console.error('❌ Error loading ErgoShop options:', error);
-    updateStatusIndicator('error', false);
     
     // Try to use cached data as last resort
     const cachedData = localStorage.getItem('ergoShop-data');
     if (cachedData) {
       console.log('🔄 Using emergency cached data');
-      updateStatusIndicator('cache');
       const parsedData = JSON.parse(cachedData);
       return parsedData[containerId] || [];
     }

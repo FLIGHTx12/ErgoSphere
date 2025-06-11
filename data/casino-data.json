@@ -1,435 +1,1279 @@
 {
-  "metadata": {
-    "version": "2.0.0",
-    "lastUpdated": "2025-05-26",
-    "description": "Casino betting data for ErgoSphere gaming platform",
-    "maintainer": "ErgoSphere Development Team"
+  "teams": {
+    "nba": [
+      {
+        "name": "Minnesota Timberwolves",
+        "primaryColor": "#0C2340",
+        "secondaryColor": "#236192"
+      },
+      {
+        "name": "Denver Nuggets",
+        "primaryColor": "#0E2240",
+        "secondaryColor": "#FEC524"
+      },
+      {
+        "name": "Oklahoma City Thunder",
+        "primaryColor": "#007AC1",
+        "secondaryColor": "#EF3B24"
+      },
+      {
+        "name": "Phoenix Suns",
+        "primaryColor": "#1D1160",
+        "secondaryColor": "#E56020"
+      },
+      {
+        "name": "Los Angeles Clippers",
+        "primaryColor": "#C8102E",
+        "secondaryColor": "#1D428A"
+      },
+      {
+        "name": "Dallas Mavericks",
+        "primaryColor": "#00538C",
+        "secondaryColor": "#002B5E"
+      },
+      {
+        "name": "New Orleans Pelicans",
+        "primaryColor": "#0C2340",
+        "secondaryColor": "#C8102E"
+      },
+      {
+        "name": "Los Angeles Lakers",
+        "primaryColor": "#552583",
+        "secondaryColor": "#FDB927"
+      },
+      {
+        "name": "Sacramento Kings",
+        "primaryColor": "#5A2D81",
+        "secondaryColor": "#63727A"
+      },
+      {
+        "name": "Golden State Warriors",
+        "primaryColor": "#1D428A",
+        "secondaryColor": "#FFC72C"
+      },
+      {
+        "name": "Utah Jazz",
+        "primaryColor": "#002B5C",
+        "secondaryColor": "#00471B"
+      },
+      {
+        "name": "Portland Trail Blazers",
+        "primaryColor": "#E03A3E",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "San Antonio Spurs",
+        "primaryColor": "#C4CED4",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Memphis Grizzlies",
+        "primaryColor": "#5D76A9",
+        "secondaryColor": "#12173F"
+      },
+      {
+        "name": "Houston Rockets",
+        "primaryColor": "#CE1141",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Boston Celtics",
+        "primaryColor": "#007A33",
+        "secondaryColor": "#BA9653"
+      },
+      {
+        "name": "New York Knicks",
+        "primaryColor": "#006BB6",
+        "secondaryColor": "#F58426"
+      },
+      {
+        "name": "Milwaukee Bucks",
+        "primaryColor": "#00471B",
+        "secondaryColor": "#EEE1C6"
+      },
+      {
+        "name": "Cleveland Cavaliers",
+        "primaryColor": "#860038",
+        "secondaryColor": "#FDBB30"
+      },
+      {
+        "name": "Orlando Magic",
+        "primaryColor": "#0077C0",
+        "secondaryColor": "#C4CED4"
+      },
+      {
+        "name": "Indiana Pacers",
+        "primaryColor": "#002D62",
+        "secondaryColor": "#FDBB30"
+      },
+      {
+        "name": "Philadelphia 76ers",
+        "primaryColor": "#006BB6",
+        "secondaryColor": "#ED174C"
+      },
+      {
+        "name": "Miami Heat",
+        "primaryColor": "#98002E",
+        "secondaryColor": "#F9A01B"
+      },
+      {
+        "name": "Chicago Bulls",
+        "primaryColor": "#CE1141",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Atlanta Hawks",
+        "primaryColor": "#E03A3E",
+        "secondaryColor": "#C1D32F"
+      },
+      {
+        "name": "Brooklyn Nets",
+        "primaryColor": "#000000",
+        "secondaryColor": "#FFFFFF"
+      },
+      {
+        "name": "Toronto Raptors",
+        "primaryColor": "#CE1141",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Charlotte Hornets",
+        "primaryColor": "#1D1160",
+        "secondaryColor": "#00788C"
+      },
+      {
+        "name": "Washington Wizards",
+        "primaryColor": "#002B5C",
+        "secondaryColor": "#E31837"
+      },
+      {
+        "name": "Detroit Pistons",
+        "primaryColor": "#C8102E",
+        "secondaryColor": "#1D42BA"
+      }
+    ],
+    "nfl": [
+      {
+        "name": "Minnesota Vikings",
+        "primaryColor": "#4F2683",
+        "secondaryColor": "#FFC62F"
+      },
+      {
+        "name": "Green Bay Packers",
+        "primaryColor": "#203731",
+        "secondaryColor": "#FFB612"
+      },
+      {
+        "name": "Chicago Bears",
+        "primaryColor": "#0B162A",
+        "secondaryColor": "#C83803"
+      },
+      {
+        "name": "Detroit Lions",
+        "primaryColor": "#0076B6",
+        "secondaryColor": "#B0B7BC"
+      },
+      {
+        "name": "Philadelphia Eagles",
+        "primaryColor": "#004C54",
+        "secondaryColor": "#A5ACAF"
+      },
+      {
+        "name": "Dallas Cowboys",
+        "primaryColor": "#003594",
+        "secondaryColor": "#869397"
+      },
+      {
+        "name": "New York Giants",
+        "primaryColor": "#0F2692",
+        "secondaryColor": "#A71930"
+      },
+      {
+        "name": "Washington Commanders",
+        "primaryColor": "#5A1414",
+        "secondaryColor": "#FFB612"
+      },
+      {
+        "name": "Tampa Bay Buccaneers",
+        "primaryColor": "#D50A0A",
+        "secondaryColor": "#FF7900"
+      },
+      {
+        "name": "Atlanta Falcons",
+        "primaryColor": "#A71930",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Carolina Panthers",
+        "primaryColor": "#0085CA",
+        "secondaryColor": "#BFC0BF"
+      },
+      {
+        "name": "New Orleans Saints",
+        "primaryColor": "#D3BC8D",
+        "secondaryColor": "#101820"
+      },
+      {
+        "name": "San Francisco 49ers",
+        "primaryColor": "#AA0000",
+        "secondaryColor": "#B3995D"
+      },
+      {
+        "name": "Seattle Seahawks",
+        "primaryColor": "#002244",
+        "secondaryColor": "#69BE28"
+      },
+      {
+        "name": "Los Angeles Rams",
+        "primaryColor": "#003594",
+        "secondaryColor": "#FFA300"
+      },
+      {
+        "name": "Arizona Cardinals",
+        "primaryColor": "#97233F",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Buffalo Bills",
+        "primaryColor": "#00338D",
+        "secondaryColor": "#C60C30"
+      },
+      {
+        "name": "Miami Dolphins",
+        "primaryColor": "#008E97",
+        "secondaryColor": "#FC4C02"
+      },
+      {
+        "name": "New England Patriots",
+        "primaryColor": "#002244",
+        "secondaryColor": "#C60C30"
+      },
+      {
+        "name": "New York Jets",
+        "primaryColor": "#125740",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Pittsburgh Steelers",
+        "primaryColor": "#FFB612",
+        "secondaryColor": "#101820"
+      },
+      {
+        "name": "Baltimore Ravens",
+        "primaryColor": "#241773",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Cleveland Browns",
+        "primaryColor": "#311D00",
+        "secondaryColor": "#FF3C00"
+      },
+      {
+        "name": "Cincinnati Bengals",
+        "primaryColor": "#FB4F14",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Indianapolis Colts",
+        "primaryColor": "#002C5F",
+        "secondaryColor": "#A2AAAD"
+      },
+      {
+        "name": "Houston Texans",
+        "primaryColor": "#03202F",
+        "secondaryColor": "#A71930"
+      },
+      {
+        "name": "Tennessee Titans",
+        "primaryColor": "#0C2340",
+        "secondaryColor": "#4B92DB"
+      },
+      {
+        "name": "Jacksonville Jaguars",
+        "primaryColor": "#101820",
+        "secondaryColor": "#D7A22A"
+      },
+      {
+        "name": "Kansas City Chiefs",
+        "primaryColor": "#E31837",
+        "secondaryColor": "#FFB81C"
+      },
+      {
+        "name": "Las Vegas Raiders",
+        "primaryColor": "#000000",
+        "secondaryColor": "#A5ACAF"
+      },
+      {
+        "name": "Los Angeles Chargers",
+        "primaryColor": "#0080C6",
+        "secondaryColor": "#FFC20E"
+      },
+      {
+        "name": "Denver Broncos",
+        "primaryColor": "#FB4F14",
+        "secondaryColor": "#002244"
+      }
+    ],
+    "wnba": [
+      {
+        "name": "Minnesota Lynx",
+        "primaryColor": "#236192",
+        "secondaryColor": "#0C2340"
+      },
+      {
+        "name": "Las Vegas Aces",
+        "primaryColor": "#000000",
+        "secondaryColor": "#C8102E"
+      },
+      {
+        "name": "New York Liberty",
+        "primaryColor": "#6ECEB2",
+        "secondaryColor": "#000000"
+      },
+      {
+        "name": "Connecticut Sun",
+        "primaryColor": "#E03A3E",
+        "secondaryColor": "#FDB927"
+      },
+      {
+        "name": "Seattle Storm",
+        "primaryColor": "#2C5234",
+        "secondaryColor": "#FDB927"
+      },
+      {
+        "name": "Phoenix Mercury",
+        "primaryColor": "#201747",
+        "secondaryColor": "#E56020"
+      },
+      {
+        "name": "Los Angeles Sparks",
+        "primaryColor": "#552583",
+        "secondaryColor": "#FDB927"
+      },
+      {
+        "name": "Indiana Fever",
+        "primaryColor": "#002D62",
+        "secondaryColor": "#FDBB30"
+      },
+      {
+        "name": "Chicago Sky",
+        "primaryColor": "#418FDE",
+        "secondaryColor": "#FDB927"
+      },
+      {
+        "name": "Atlanta Dream",
+        "primaryColor": "#E03A3E",
+        "secondaryColor": "#C4CED4"
+      },
+      {
+        "name": "Dallas Wings",
+        "primaryColor": "#C4CED4",
+        "secondaryColor": "#0053BC"
+      },
+      {
+        "name": "Washington Mystics",
+        "primaryColor": "#002B5C",
+        "secondaryColor": "#E03A3E"
+      },
+      {
+        "name": "Golden State Valkyries",
+        "primaryColor": "#5A2D81",
+        "secondaryColor": "#FFD700"
+      }
+    ],
+    "ergoball": [
+      {
+        "name": "Team FLIGHTx12!",
+        "primaryColor": "#FF6B35",
+        "secondaryColor": "#004E89"
+      },
+      {
+        "name": "Team Jaybers8",
+        "primaryColor": "#9A031E",
+        "secondaryColor": "#FB8500"
+      }
+    ],
+    "ergogolf": [
+      {
+        "name": "Team FLIGHTx12!",
+        "primaryColor": "#2E8B57",
+        "secondaryColor": "#FFD700"
+      },
+      {
+        "name": "Team Jaybers8",
+        "primaryColor": "#8B0000",
+        "secondaryColor": "#F0E68C"
+      }
+    ]
   },
   "config": {
     "riskLevels": {
       "Low": {
-        "multiplier": 1.5,
         "color": "#4CAF50",
+        "multiplier": 1.5,
         "description": "Safe bets with lower payouts"
       },
-      "Medium": {
-        "multiplier": 2.0,
-        "color": "#FF9800",
-        "description": "Moderate risk with balanced payouts"
-      },
       "High": {
-        "multiplier": 3.0,
         "color": "#F44336",
+        "multiplier": 3,
         "description": "Higher risk with increased payouts"
       },
+      "Medium": {
+        "color": "#FF9800",
+        "multiplier": 2,
+        "description": "Moderate risk with balanced payouts"
+      },
       "Extreme": {
-        "multiplier": 5.0,
         "color": "#9C27B0",
+        "multiplier": 5,
         "description": "Maximum risk with highest payouts"
       }
     },
-    "defaultBetAmount": 100,
     "maxBetAmount": 10000,
-    "minBetAmount": 10  },  "teams": {
-    "nfl": [
-      {"name": "Minnesota Vikings", "primaryColor": "#4F2683", "secondaryColor": "#FFC62F"},
-      {"name": "Green Bay Packers", "primaryColor": "#203731", "secondaryColor": "#FFB612"},
-      {"name": "Chicago Bears", "primaryColor": "#0B162A", "secondaryColor": "#C83803"},
-      {"name": "Detroit Lions", "primaryColor": "#0076B6", "secondaryColor": "#B0B7BC"},
-      {"name": "Philadelphia Eagles", "primaryColor": "#004C54", "secondaryColor": "#A5ACAF"},
-      {"name": "Dallas Cowboys", "primaryColor": "#003594", "secondaryColor": "#869397"},
-      {"name": "New York Giants", "primaryColor": "#0F2692", "secondaryColor": "#A71930"},
-      {"name": "Washington Commanders", "primaryColor": "#5A1414", "secondaryColor": "#FFB612"},
-      {"name": "Tampa Bay Buccaneers", "primaryColor": "#D50A0A", "secondaryColor": "#FF7900"},
-      {"name": "Atlanta Falcons", "primaryColor": "#A71930", "secondaryColor": "#000000"},
-      {"name": "Carolina Panthers", "primaryColor": "#0085CA", "secondaryColor": "#BFC0BF"},
-      {"name": "New Orleans Saints", "primaryColor": "#D3BC8D", "secondaryColor": "#101820"},
-      {"name": "San Francisco 49ers", "primaryColor": "#AA0000", "secondaryColor": "#B3995D"},
-      {"name": "Seattle Seahawks", "primaryColor": "#002244", "secondaryColor": "#69BE28"},
-      {"name": "Los Angeles Rams", "primaryColor": "#003594", "secondaryColor": "#FFA300"},
-      {"name": "Arizona Cardinals", "primaryColor": "#97233F", "secondaryColor": "#000000"},
-      {"name": "Buffalo Bills", "primaryColor": "#00338D", "secondaryColor": "#C60C30"},
-      {"name": "Miami Dolphins", "primaryColor": "#008E97", "secondaryColor": "#FC4C02"},
-      {"name": "New England Patriots", "primaryColor": "#002244", "secondaryColor": "#C60C30"},
-      {"name": "New York Jets", "primaryColor": "#125740", "secondaryColor": "#000000"},
-      {"name": "Pittsburgh Steelers", "primaryColor": "#FFB612", "secondaryColor": "#101820"},
-      {"name": "Baltimore Ravens", "primaryColor": "#241773", "secondaryColor": "#000000"},
-      {"name": "Cleveland Browns", "primaryColor": "#311D00", "secondaryColor": "#FF3C00"},
-      {"name": "Cincinnati Bengals", "primaryColor": "#FB4F14", "secondaryColor": "#000000"},
-      {"name": "Indianapolis Colts", "primaryColor": "#002C5F", "secondaryColor": "#A2AAAD"},
-      {"name": "Houston Texans", "primaryColor": "#03202F", "secondaryColor": "#A71930"},
-      {"name": "Tennessee Titans", "primaryColor": "#0C2340", "secondaryColor": "#4B92DB"},
-      {"name": "Jacksonville Jaguars", "primaryColor": "#101820", "secondaryColor": "#D7A22A"},
-      {"name": "Kansas City Chiefs", "primaryColor": "#E31837", "secondaryColor": "#FFB81C"},
-      {"name": "Las Vegas Raiders", "primaryColor": "#000000", "secondaryColor": "#A5ACAF"},
-      {"name": "Los Angeles Chargers", "primaryColor": "#0080C6", "secondaryColor": "#FFC20E"},
-      {"name": "Denver Broncos", "primaryColor": "#FB4F14", "secondaryColor": "#002244"}
-    ],
-    "nba": [
-      {"name": "Minnesota Timberwolves", "primaryColor": "#0C2340", "secondaryColor": "#236192"},
-      {"name": "Denver Nuggets", "primaryColor": "#0E2240", "secondaryColor": "#FEC524"},
-      {"name": "Oklahoma City Thunder", "primaryColor": "#007AC1", "secondaryColor": "#EF3B24"},
-      {"name": "Phoenix Suns", "primaryColor": "#1D1160", "secondaryColor": "#E56020"},
-      {"name": "Los Angeles Clippers", "primaryColor": "#C8102E", "secondaryColor": "#1D428A"},
-      {"name": "Dallas Mavericks", "primaryColor": "#00538C", "secondaryColor": "#002B5E"},
-      {"name": "New Orleans Pelicans", "primaryColor": "#0C2340", "secondaryColor": "#C8102E"},
-      {"name": "Los Angeles Lakers", "primaryColor": "#552583", "secondaryColor": "#FDB927"},
-      {"name": "Sacramento Kings", "primaryColor": "#5A2D81", "secondaryColor": "#63727A"},
-      {"name": "Golden State Warriors", "primaryColor": "#1D428A", "secondaryColor": "#FFC72C"},
-      {"name": "Utah Jazz", "primaryColor": "#002B5C", "secondaryColor": "#00471B"},
-      {"name": "Portland Trail Blazers", "primaryColor": "#E03A3E", "secondaryColor": "#000000"},
-      {"name": "San Antonio Spurs", "primaryColor": "#C4CED4", "secondaryColor": "#000000"},
-      {"name": "Memphis Grizzlies", "primaryColor": "#5D76A9", "secondaryColor": "#12173F"},
-      {"name": "Houston Rockets", "primaryColor": "#CE1141", "secondaryColor": "#000000"},
-      {"name": "Boston Celtics", "primaryColor": "#007A33", "secondaryColor": "#BA9653"},
-      {"name": "New York Knicks", "primaryColor": "#006BB6", "secondaryColor": "#F58426"},
-      {"name": "Milwaukee Bucks", "primaryColor": "#00471B", "secondaryColor": "#EEE1C6"},
-      {"name": "Cleveland Cavaliers", "primaryColor": "#860038", "secondaryColor": "#FDBB30"},
-      {"name": "Orlando Magic", "primaryColor": "#0077C0", "secondaryColor": "#C4CED4"},
-      {"name": "Indiana Pacers", "primaryColor": "#002D62", "secondaryColor": "#FDBB30"},
-      {"name": "Philadelphia 76ers", "primaryColor": "#006BB6", "secondaryColor": "#ED174C"},
-      {"name": "Miami Heat", "primaryColor": "#98002E", "secondaryColor": "#F9A01B"},
-      {"name": "Chicago Bulls", "primaryColor": "#CE1141", "secondaryColor": "#000000"},
-      {"name": "Atlanta Hawks", "primaryColor": "#E03A3E", "secondaryColor": "#C1D32F"},
-      {"name": "Brooklyn Nets", "primaryColor": "#000000", "secondaryColor": "#FFFFFF"},
-      {"name": "Toronto Raptors", "primaryColor": "#CE1141", "secondaryColor": "#000000"},
-      {"name": "Charlotte Hornets", "primaryColor": "#1D1160", "secondaryColor": "#00788C"},
-      {"name": "Washington Wizards", "primaryColor": "#002B5C", "secondaryColor": "#E31837"},
-      {"name": "Detroit Pistons", "primaryColor": "#C8102E", "secondaryColor": "#1D42BA"}
-    ],
-    "wnba": [
-      {"name": "Minnesota Lynx", "primaryColor": "#236192", "secondaryColor": "#0C2340"},
-      {"name": "Las Vegas Aces", "primaryColor": "#000000", "secondaryColor": "#C8102E"},
-      {"name": "New York Liberty", "primaryColor": "#6ECEB2", "secondaryColor": "#000000"},
-      {"name": "Connecticut Sun", "primaryColor": "#E03A3E", "secondaryColor": "#FDB927"},
-      {"name": "Seattle Storm", "primaryColor": "#2C5234", "secondaryColor": "#FDB927"},
-      {"name": "Phoenix Mercury", "primaryColor": "#201747", "secondaryColor": "#E56020"},
-      {"name": "Los Angeles Sparks", "primaryColor": "#552583", "secondaryColor": "#FDB927"},
-      {"name": "Indiana Fever", "primaryColor": "#002D62", "secondaryColor": "#FDBB30"},
-      {"name": "Chicago Sky", "primaryColor": "#418FDE", "secondaryColor": "#FDB927"},
-      {"name": "Atlanta Dream", "primaryColor": "#E03A3E", "secondaryColor": "#C4CED4"},
-      {"name": "Dallas Wings", "primaryColor": "#C4CED4", "secondaryColor": "#0053BC"},
-      {"name": "Washington Mystics", "primaryColor": "#002B5C", "secondaryColor": "#E03A3E"},
-      {"name": "Golden State Valkyries", "primaryColor": "#5A2D81", "secondaryColor": "#FFD700"}
-    ],
-    "ergoball": [
-      {"name": "Team FLIGHTx12!", "primaryColor": "#FF6B35", "secondaryColor": "#004E89"},
-      {"name": "Team Jaybers8", "primaryColor": "#9A031E", "secondaryColor": "#FB8500"}
-    ],
-    "ergogolf": [
-      {"name": "Team FLIGHTx12!", "primaryColor": "#2E8B57", "secondaryColor": "#FFD700"},
-      {"name": "Team Jaybers8", "primaryColor": "#8B0000", "secondaryColor": "#F0E68C"}
-    ]
+    "minBetAmount": 10,
+    "defaultBetAmount": 100
+  },
+  "metadata": {
+    "version": "2.0.0",
+    "maintainer": "ErgoSphere Development Team",
+    "description": "Casino betting data for ErgoSphere gaming platform",
+    "lastUpdated": "2025-05-26"
   },
   "leagueData": {
+    "NBA": {
+      "players": [
+        {
+          "players": [
+            {
+              "name": "Anthony Edwards",
+              "starred": true
+            },
+            {
+              "name": "Donte DiVincenzo",
+              "starred": false
+            },
+            {
+              "name": "Jaylen Clark",
+              "starred": false
+            },
+            {
+              "name": "Joe Ingles",
+              "starred": false
+            },
+            {
+              "name": "Mike Conley",
+              "starred": false
+            },
+            {
+              "name": "Nickeil Alexander-Walker",
+              "starred": false
+            },
+            {
+              "name": "Rob Dillingham",
+              "starred": false
+            },
+            {
+              "name": "Terrence Shannon Jr.",
+              "starred": false
+            },
+            {
+              "name": "Tristen Newton",
+              "starred": false
+            }
+          ],
+          "category": "G"
+        },
+        {
+          "players": [
+            {
+              "name": "Jaden McDaniels",
+              "starred": false
+            },
+            {
+              "name": "Josh Minott",
+              "starred": false
+            },
+            {
+              "name": "Julius Randle",
+              "starred": true
+            },
+            {
+              "name": "Leonard Miller",
+              "starred": false
+            }
+          ],
+          "category": "F"
+        },
+        {
+          "players": [
+            {
+              "name": "Jesse Edwards",
+              "starred": false
+            },
+            {
+              "name": "Luka Garza",
+              "starred": false
+            },
+            {
+              "name": "Naz Reid",
+              "starred": false
+            },
+            {
+              "name": "Rudy Gobert",
+              "starred": true
+            }
+          ],
+          "category": "C"
+        }
+      ],
+      "categories": [
+        "INDIVIDUAL",
+        "STAT_HUNTING",
+        "TEAM",
+        "WILD_CARD"
+      ]
+    },
     "NFL": {
+      "players": [
+        {
+          "players": [
+            {
+              "name": "Sam Darnold Q",
+              "starred": true
+            },
+            {
+              "name": "Nick Mullens",
+              "starred": false
+            },
+            {
+              "name": "Brett Rypien",
+              "starred": false
+            }
+          ],
+          "category": "QB"
+        },
+        {
+          "players": [
+            {
+              "name": "Aaron Jones (G)",
+              "starred": false
+            },
+            {
+              "name": "Ty Chandler",
+              "starred": false
+            },
+            {
+              "name": "Myles Gaskin",
+              "starred": false
+            },
+            {
+              "name": "Cam Akers",
+              "starred": true
+            }
+          ],
+          "category": "RB"
+        },
+        {
+          "players": [
+            {
+              "name": "C.J. Ham (FB)",
+              "starred": true
+            }
+          ],
+          "category": "FB"
+        },
+        {
+          "players": [
+            {
+              "name": "Jalen Nailor",
+              "starred": true
+            },
+            {
+              "name": "Jordan Addison A",
+              "starred": true
+            },
+            {
+              "name": "Justin Jefferson",
+              "starred": true
+            },
+            {
+              "name": "Brandon Powell",
+              "starred": false
+            },
+            {
+              "name": "Trent Sherfield Sr.",
+              "starred": true
+            },
+            {
+              "name": "Lucky Jackson",
+              "starred": true
+            }
+          ],
+          "category": "WR"
+        },
+        {
+          "players": [
+            {
+              "name": "T.J. Hockenson",
+              "starred": true
+            },
+            {
+              "name": "Josh Oliver",
+              "starred": true
+            },
+            {
+              "name": "Johnny Mundt",
+              "starred": false
+            }
+          ],
+          "category": "TE"
+        },
+        {
+          "players": [
+            {
+              "name": "Will Reichard",
+              "starred": true
+            }
+          ],
+          "category": "K"
+        },
+        {
+          "players": [
+            {
+              "name": "Ryan Wright",
+              "starred": false
+            }
+          ],
+          "category": "P"
+        },
+        {
+          "players": [
+            {
+              "name": "Andrew DePaola",
+              "starred": false
+            }
+          ],
+          "category": "LS"
+        },
+        {
+          "players": [
+            {
+              "name": "Cam Robinson",
+              "starred": false
+            },
+            {
+              "name": "Walter Rouse",
+              "starred": false
+            },
+            {
+              "name": "Marcellus Johnson",
+              "starred": false
+            },
+            {
+              "name": "Leroy Watson IV",
+              "starred": false
+            }
+          ],
+          "category": "LT"
+        },
+        {
+          "players": [
+            {
+              "name": "Blake Brandel",
+              "starred": false
+            },
+            {
+              "name": "Dalton Risner",
+              "starred": false
+            },
+            {
+              "name": "Michael Jurgens",
+              "starred": false
+            }
+          ],
+          "category": "LG"
+        },
+        {
+          "players": [
+            {
+              "name": "Dan Feeney",
+              "starred": false
+            },
+            {
+              "name": "Garrett Bradbury",
+              "starred": false
+            },
+            {
+              "name": "Henry Byrd",
+              "starred": false
+            }
+          ],
+          "category": "C"
+        },
+        {
+          "players": [
+            {
+              "name": "Dalton Risner",
+              "starred": false
+            },
+            {
+              "name": "Ed Ingram",
+              "starred": false
+            }
+          ],
+          "category": "RG"
+        },
+        {
+          "players": [
+            {
+              "name": "Brian O'Neill Q",
+              "starred": false
+            },
+            {
+              "name": "David Quessenberry",
+              "starred": false
+            },
+            {
+              "name": "Trevor Reid",
+              "starred": false
+            }
+          ],
+          "category": "RT"
+        },
+        {
+          "players": [
+            {
+              "name": "Christian Darrisaw 71",
+              "starred": false
+            }
+          ],
+          "category": "OT"
+        }
+      ],
       "categories": {
-        "INDIVIDUAL": [
-          {"text": "Most catches", "value": "High"},
-          {"text": "Most TDs Scored (non QB)", "value": "High"},
-          {"text": "Most INTs", "value": "High"},
-          {"text": "Most Sacks", "value": "High"},
-          {"text": "Most yards Overall", "value": "High"},
-          {"text": "Most Tackles", "value": "High"}
-        ],
-        "STAT_HUNTING": [
-          {"text": "Reach 220 Passing", "value": "Medium"},
-          {"text": "Reach 50 Rushing", "value": "Medium"},
-          {"text": "Reach 2 FG made (non extra point)", "value": "Medium"},
-          {"text": "Reach 1 Sack", "value": "Medium"},
-          {"text": "Reach 1 INT", "value": "Medium"},
-          {"text": "Reach 320 Passing", "value": "High"},
-          {"text": "Reach 100 Rushing", "value": "High"},
-          {"text": "Reach 4 FG made", "value": "High"},
-          {"text": "Reach 2 Sacks", "value": "High"},
-          {"text": "Reach 2 INT", "value": "High"}
-        ],
         "TEAM": [
-          {"text": "Team Running Yards", "value": "Medium"},
-          {"text": "Team Passing Yards", "value": "Medium"},
-          {"text": "Team Yards Overall", "value": "Medium"},
-          {"text": "Team Interceptions (def)", "value": "Medium"},
-          {"text": "Team Sacks (def)", "value": "Medium"},
-          {"text": "Team Most Possession Time", "value": "Medium"}
+          {
+            "text": "Team Running Yards",
+            "value": "Medium"
+          },
+          {
+            "text": "Team Passing Yards",
+            "value": "Medium"
+          },
+          {
+            "text": "Team Yards Overall",
+            "value": "Medium"
+          },
+          {
+            "text": "Team Interceptions (def)",
+            "value": "Medium"
+          },
+          {
+            "text": "Team Sacks (def)",
+            "value": "Medium"
+          },
+          {
+            "text": "Team Most Possession Time",
+            "value": "Medium"
+          }
         ],
         "WILD_CARD": [
-          {"text": "Other team misses a Field goal in the 4th", "value": "High"},
-          {"text": "1st TD is a run play", "value": "High"},
-          {"text": "Other team does the Griddy at some point during game (on tv)", "value": "High"},
-          {"text": "Team with ball first gets TD first", "value": "High"},
-          {"text": "Team that receives 2nd half kick off wins game", "value": "High"},
-          {"text": "MN wins by 7+ points", "value": "Medium"},
-          {"text": "Game goes into overtime", "value": "High"},
-          {"text": "MN wins by 14+ points", "value": "Extreme"},
-          {"text": "Defensive touchdown", "value": "Extreme"}
+          {
+            "text": "Other team misses a Field goal in the 4th",
+            "value": "High"
+          },
+          {
+            "text": "1st TD is a run play",
+            "value": "High"
+          },
+          {
+            "text": "Other team does the Griddy at some point during game (on tv)",
+            "value": "High"
+          },
+          {
+            "text": "Team with ball first gets TD first",
+            "value": "High"
+          },
+          {
+            "text": "Team that receives 2nd half kick off wins game",
+            "value": "High"
+          },
+          {
+            "text": "MN wins by 7+ points",
+            "value": "Medium"
+          },
+          {
+            "text": "Game goes into overtime",
+            "value": "High"
+          },
+          {
+            "text": "MN wins by 14+ points",
+            "value": "Extreme"
+          },
+          {
+            "text": "Defensive touchdown",
+            "value": "Extreme"
+          }
+        ],
+        "INDIVIDUAL": [
+          {
+            "text": "Most catches",
+            "value": "High"
+          },
+          {
+            "text": "Most TDs Scored (non QB)",
+            "value": "High"
+          },
+          {
+            "text": "Most INTs",
+            "value": "High"
+          },
+          {
+            "text": "Most Sacks",
+            "value": "High"
+          },
+          {
+            "text": "Most yards Overall",
+            "value": "High"
+          },
+          {
+            "text": "Most Tackles",
+            "value": "High"
+          }
+        ],
+        "STAT_HUNTING": [
+          {
+            "text": "Reach 220 Passing",
+            "value": "Medium"
+          },
+          {
+            "text": "Reach 50 Rushing",
+            "value": "Medium"
+          },
+          {
+            "text": "Reach 2 FG made (non extra point)",
+            "value": "Medium"
+          },
+          {
+            "text": "Reach 1 Sack",
+            "value": "Medium"
+          },
+          {
+            "text": "Reach 1 INT",
+            "value": "Medium"
+          },
+          {
+            "text": "Reach 320 Passing",
+            "value": "High"
+          },
+          {
+            "text": "Reach 100 Rushing",
+            "value": "High"
+          },
+          {
+            "text": "Reach 4 FG made",
+            "value": "High"
+          },
+          {
+            "text": "Reach 2 Sacks",
+            "value": "High"
+          },
+          {
+            "text": "Reach 2 INT",
+            "value": "High"
+          }
         ]
-      },      "players": [
-        {
-          "category": "QB",
-          "players": [
-            {"name": "Sam Darnold Q", "starred": true},
-            {"name": "Nick Mullens", "starred": false},
-            {"name": "Brett Rypien", "starred": false}
-          ]
-        },
-        {
-          "category": "RB",
-          "players": [
-            {"name": "Aaron Jones (G)", "starred": false},
-            {"name": "Ty Chandler", "starred": false},
-            {"name": "Myles Gaskin", "starred": false},
-            {"name": "Cam Akers", "starred": true}
-          ]
-        },
-        {
-          "category": "FB",
-          "players": [
-            {"name": "C.J. Ham (FB)", "starred": true}
-          ]
-        },
-        {
-          "category": "WR",
-          "players": [
-            {"name": "Jalen Nailor", "starred": true},
-            {"name": "Jordan Addison A", "starred": true},
-            {"name": "Justin Jefferson", "starred": true},
-            {"name": "Brandon Powell", "starred": false},
-            {"name": "Trent Sherfield Sr.", "starred": true},
-            {"name": "Lucky Jackson", "starred": true}
-          ]
-        },
-        {
-          "category": "TE",
-          "players": [
-            {"name": "T.J. Hockenson", "starred": true},
-            {"name": "Josh Oliver", "starred": true},
-            {"name": "Johnny Mundt", "starred": false}
-          ]
-        },
-        {
-          "category": "K",
-          "players": [
-            {"name": "Will Reichard", "starred": true}
-          ]
-        },
-        {
-          "category": "P",
-          "players": [
-            {"name": "Ryan Wright", "starred": false}
-          ]
-        },
-        {
-          "category": "LS",
-          "players": [
-            {"name": "Andrew DePaola", "starred": false}
-          ]
-        },
-        {
-          "category": "LT",
-          "players": [
-            {"name": "Cam Robinson", "starred": false},
-            {"name": "Walter Rouse", "starred": false},
-            {"name": "Marcellus Johnson", "starred": false},
-            {"name": "Leroy Watson IV", "starred": false}
-          ]
-        },
-        {
-          "category": "LG",
-          "players": [
-            {"name": "Blake Brandel", "starred": false},
-            {"name": "Dalton Risner", "starred": false},
-            {"name": "Michael Jurgens", "starred": false}
-          ]
-        },
-        {
-          "category": "C",
-          "players": [
-            {"name": "Dan Feeney", "starred": false},
-            {"name": "Garrett Bradbury", "starred": false},
-            {"name": "Henry Byrd", "starred": false}
-          ]
-        },
-        {
-          "category": "RG",
-          "players": [
-            {"name": "Dalton Risner", "starred": false},
-            {"name": "Ed Ingram", "starred": false}
-          ]
-        },
-        {
-          "category": "RT",
-          "players": [
-            {"name": "Brian O'Neill Q", "starred": false},
-            {"name": "David Quessenberry", "starred": false},
-            {"name": "Trevor Reid", "starred": false}
-          ]
-        },
-        {
-          "category": "OT",
-          "players": [
-            {"name": "Christian Darrisaw 71", "starred": false}
-          ]
-        }
-      ]
-    },    "WNBA": {
-      "categories": ["INDIVIDUAL", "STAT_HUNTING", "TEAM", "WILD_CARD"],
+      }
+    },
+    "WNBA": {
       "players": [
         {
-          "category": "G",
           "players": [
-            {"name": "Courtney Williams #10", "starred": true},
-            {"name": "Kayla McBride", "starred": true},
-            {"name": "Natisha Hiedeman", "starred": false},
-            {"name": "Olivia Epoupa", "starred": false}
-          ]
+            {
+              "name": "Courtney Williams #10",
+              "starred": true
+            },
+            {
+              "name": "Kayla McBride",
+              "starred": true
+            },
+            {
+              "name": "Natisha Hiedeman",
+              "starred": false
+            },
+            {
+              "name": "Olivia Epoupa",
+              "starred": false
+            }
+          ],
+          "category": "G"
         },
         {
-          "category": "F",
           "players": [
-            {"name": "Alissa Pili", "starred": false},
-            {"name": "Bridget Carleton", "starred": false},
-            {"name": "Diamond Miller", "starred": false},
-            {"name": "Napheesa Collier", "starred": true}
-          ]
+            {
+              "name": "Alissa Pili",
+              "starred": false
+            },
+            {
+              "name": "Bridget Carleton",
+              "starred": false
+            },
+            {
+              "name": "Diamond Miller",
+              "starred": false
+            },
+            {
+              "name": "Napheesa Collier",
+              "starred": true
+            }
+          ],
+          "category": "F"
         },
         {
-          "category": "C",
           "players": [
-            {"name": "Alanna Smith", "starred": true},
-            {"name": "Dorka Juhasz", "starred": false},
-            {"name": "Jessica Shepard", "starred": false},
-            {"name": "Marieme Badiane", "starred": false}
-          ]
+            {
+              "name": "Alanna Smith",
+              "starred": true
+            },
+            {
+              "name": "Dorka Juhasz",
+              "starred": false
+            },
+            {
+              "name": "Jessica Shepard",
+              "starred": false
+            },
+            {
+              "name": "Marieme Badiane",
+              "starred": false
+            }
+          ],
+          "category": "C"
         }
-      ]
-    },    "NBA": {
-      "categories": ["INDIVIDUAL", "STAT_HUNTING", "TEAM", "WILD_CARD"],
-      "players": [
-        {
-          "category": "G",
-          "players": [
-            {"name": "Anthony Edwards", "starred": true},
-            {"name": "Donte DiVincenzo", "starred": false},
-            {"name": "Jaylen Clark", "starred": false},
-            {"name": "Joe Ingles", "starred": false},
-            {"name": "Mike Conley", "starred": false},
-            {"name": "Nickeil Alexander-Walker", "starred": false},
-            {"name": "Rob Dillingham", "starred": false},
-            {"name": "Terrence Shannon Jr.", "starred": false},
-            {"name": "Tristen Newton", "starred": false}
-          ]
-        },
-        {
-          "category": "F",
-          "players": [
-            {"name": "Jaden McDaniels", "starred": false},
-            {"name": "Josh Minott", "starred": false},
-            {"name": "Julius Randle", "starred": true},
-            {"name": "Leonard Miller", "starred": false}
-          ]
-        },
-        {
-          "category": "C",
-          "players": [
-            {"name": "Jesse Edwards", "starred": false},
-            {"name": "Luka Garza", "starred": false},
-            {"name": "Naz Reid", "starred": false},
-            {"name": "Rudy Gobert", "starred": true}
-          ]
-        }
+      ],
+      "categories": [
+        "INDIVIDUAL",
+        "STAT_HUNTING",
+        "TEAM",
+        "WILD_CARD"
       ]
     },
     "ErgoBall": {
+      "players": [
+        "Jaybers8",
+        "FLIGHTx12!"
+      ],
       "categories": {
         "LINES": [
-          {"text": "NO SWEAT", "value": "Low", "desc": "Win by 3 or more"},
-          {"text": "VOLLEYBALL", "value": "Medium", "desc": "Get 2 or more blocks"},
-          {"text": "LONG DISTANCE CALL", "value": "High", "desc": "3 or more 2 pointers made"},
-          {"text": "FORGOT SOMETHIN?", "value": "Medium", "desc": "Get at least 2 steals"},
-          {"text": "SNIPER WATCH", "value": "Medium", "desc": "Go full game using only jumpers and fades."},
-          {"text": "FLOOR GENERAL", "value": "High", "desc": "No turnovers or airballs. Every shot must either be a make or hit rim."},
-          {"text": "SUPREME VICTORY", "value": "Extreme", "desc": "Opponent scores no points"},
-          {"text": "ORBITAL CANNON", "value": "Extreme", "desc": "Make a half court shot before the end of the game."}
+          {
+            "desc": "Win by 3 or more",
+            "text": "NO SWEAT",
+            "value": "Low"
+          },
+          {
+            "desc": "Get 2 or more blocks",
+            "text": "VOLLEYBALL",
+            "value": "Medium"
+          },
+          {
+            "desc": "3 or more 2 pointers made",
+            "text": "LONG DISTANCE CALL",
+            "value": "High"
+          },
+          {
+            "desc": "Get at least 2 steals",
+            "text": "FORGOT SOMETHIN?",
+            "value": "Medium"
+          },
+          {
+            "desc": "Go full game using only jumpers and fades.",
+            "text": "SNIPER WATCH",
+            "value": "Medium"
+          },
+          {
+            "desc": "No turnovers or airballs. Every shot must either be a make or hit rim.",
+            "text": "FLOOR GENERAL",
+            "value": "High"
+          },
+          {
+            "desc": "Opponent scores no points",
+            "text": "SUPREME VICTORY",
+            "value": "Extreme"
+          },
+          {
+            "desc": "Make a half court shot before the end of the game.",
+            "text": "ORBITAL CANNON",
+            "value": "Extreme"
+          }
         ]
-      },
-      "players": ["Jaybers8", "FLIGHTx12!"]
+      }
     },
     "ErgoGolf": {
+      "players": [
+        "Jaybers8",
+        "FLIGHTx12!"
+      ],
       "categories": {
         "LINES": [
-          {"text": "NO SWEAT", "value": "Low", "desc": "Must win by 3 or more"},
-          {"text": "NO BATHS", "value": "Medium", "desc": "Must go full game without hitting water. Water traps are instant loss."},
-          {"text": "ACE", "value": "High", "desc": "Must hit hole in one at any point during the game."},
-          {"text": "EAGLES NEST", "value": "High", "desc": "Must hit eagle at any point during the game."},
-          {"text": "BIRDIE WATCHING", "value": "Medium", "desc": "Must hit 4 or more birdies."},
-          {"text": "18-HOLE SPECIAL", "value": "Extreme", "desc": "Go full game WITHOUT bogeys and finish game with negative par."},
-          {"text": "SUPREME VICTORY", "value": "Extreme", "desc": "Opponent scores no points"}
+          {
+            "desc": "Must win by 3 or more",
+            "text": "NO SWEAT",
+            "value": "Low"
+          },
+          {
+            "desc": "Must go full game without hitting water. Water traps are instant loss.",
+            "text": "NO BATHS",
+            "value": "Medium"
+          },
+          {
+            "desc": "Must hit hole in one at any point during the game.",
+            "text": "ACE",
+            "value": "High"
+          },
+          {
+            "desc": "Must hit eagle at any point during the game.",
+            "text": "EAGLES NEST",
+            "value": "High"
+          },
+          {
+            "desc": "Must hit 4 or more birdies.",
+            "text": "BIRDIE WATCHING",
+            "value": "Medium"
+          },
+          {
+            "desc": "Go full game WITHOUT bogeys and finish game with negative par.",
+            "text": "18-HOLE SPECIAL",
+            "value": "Extreme"
+          },
+          {
+            "desc": "Opponent scores no points",
+            "text": "SUPREME VICTORY",
+            "value": "Extreme"
+          }
         ]
-      },
-      "players": ["Jaybers8", "FLIGHTx12!"]
+      }
     }
   },
   "basketballCategories": {
-    "INDIVIDUAL": [
-      {"text": "Most FG attempted", "value": "High"},
-      {"text": "Most FG made", "value": "High"},
-      {"text": "Most blocks", "value": "High"},
-      {"text": "Most Points", "value": "High"}, 
-      {"text": "Most Rebounds", "value": "High"},
-      {"text": "Most Threes Made", "value": "High"},
-      {"text": "Most Assist", "value": "High"},
-      {"text": "Most Steals", "value": "Extreme"}
-    ],
-    "STAT_HUNTING": [
-      {"text": "Reach 1 Steal", "value": "Low"},
-      {"text": "Reach 1 Block", "value": "Low"},
-      {"text": "Reach +/- over 0", "value": "Low"},
-      {"text": "Reach 20 points", "value": "Medium"},
-      {"text": "Reach 6 rebounds", "value": "Medium"},
-      {"text": "Reach 3 Three Pointers Made", "value": "Medium"},
-      {"text": "Reach 6 assists", "value": "Medium"},
-      {"text": "Reach 2 Blocks", "value": "Medium"},
-      {"text": "Reach +/- over 10", "value": "Medium"},
-      {"text": "Reach 2 Steals", "value": "Medium"},
-      {"text": "Reach a Doubling double", "value": "High"},
-      {"text": "Reach 30 points", "value": "High"},
-      {"text": "Reach 11 rebounds", "value": "High"},
-      {"text": "Reach 4 Three Pointers Made", "value": "High"},
-      {"text": "Reach +/- over 20", "value": "High"},
-      {"text": "Reach 10 assists", "value": "High"},
-      {"text": "Reach 3 Blocks", "value": "High"},
-      {"text": "Reach 3 Steals", "value": "High"},
-      {"text": "Reach a Triple double", "value": "Extreme"}
-    ],
     "TEAM": [
-      {"text": "Team Field goal attempts", "value": "Medium"},
-      {"text": "Team Total Rebounds", "value": "Medium"},
-      {"text": "Team Field Goal %", "value": "Medium"},
-      {"text": "Team Def. Rebounds", "value": "Medium"},
-      {"text": "Team Off. Rebounds", "value": "Medium"},
-      {"text": "Team Free-throws taken", "value": "Medium"},
-      {"text": "Team steals", "value": "Medium"},
-      {"text": "Team blocks", "value": "Medium"},
-      {"text": "Team assists", "value": "Medium"},
-      {"text": "Team Points in the Paint", "value": "Medium"},
-      {"text": "Team Points off Turnovers", "value": "Medium"},
-      {"text": "Team Fast Break Points", "value": "Medium"},
-      {"text": "Team Turnovers (less wins)", "value": "Medium"},
-      {"text": "Team fouls (less wins)", "value": "Medium"}
+      {
+        "text": "Team Field goal attempts",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Total Rebounds",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Field Goal %",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Def. Rebounds",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Off. Rebounds",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Free-throws taken",
+        "value": "Medium"
+      },
+      {
+        "text": "Team steals",
+        "value": "Medium"
+      },
+      {
+        "text": "Team blocks",
+        "value": "Medium"
+      },
+      {
+        "text": "Team assists",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Points in the Paint",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Points off Turnovers",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Fast Break Points",
+        "value": "Medium"
+      },
+      {
+        "text": "Team Turnovers (less wins)",
+        "value": "Medium"
+      },
+      {
+        "text": "Team fouls (less wins)",
+        "value": "Medium"
+      }
     ],
     "WILD_CARD": [
-      {"text": "MN win tip off", "value": "High"},
-      {"text": "MN wins by 5+ points", "value": "Medium"},
-      {"text": "Other team misses 2 free-throws in a row", "value": "High"},
-      {"text": "MN has the biggest lead of the game", "value": "High"},
-      {"text": "First MN FG is a 2 pointer.", "value": "Medium"},
-      {"text": "First MN FG is a 3 pointer", "value": "High"},
-      {"text": "MN wins by 10+ points", "value": "High"},
-      {"text": "Technical foul is called this game (either team)", "value": "High"},
-      {"text": "Flagrant foul is called this game (either team)", "value": "Extreme"},
-      {"text": "Game goes into overtime", "value": "Extreme"},
-      {"text": "MN wins by 20+ points", "value": "Extreme"},
-      {"text": "Half+ court shot made", "value": "Extreme"}
+      {
+        "text": "MN win tip off",
+        "value": "High"
+      },
+      {
+        "text": "MN wins by 5+ points",
+        "value": "Medium"
+      },
+      {
+        "text": "Other team misses 2 free-throws in a row",
+        "value": "High"
+      },
+      {
+        "text": "MN has the biggest lead of the game",
+        "value": "High"
+      },
+      {
+        "text": "First MN FG is a 2 pointer.",
+        "value": "Medium"
+      },
+      {
+        "text": "First MN FG is a 3 pointer",
+        "value": "High"
+      },
+      {
+        "text": "MN wins by 10+ points",
+        "value": "High"
+      },
+      {
+        "text": "Technical foul is called this game (either team)",
+        "value": "High"
+      },
+      {
+        "text": "Flagrant foul is called this game (either team)",
+        "value": "Extreme"
+      },
+      {
+        "text": "Game goes into overtime",
+        "value": "Extreme"
+      },
+      {
+        "text": "MN wins by 20+ points",
+        "value": "Extreme"
+      },
+      {
+        "text": "Half+ court shot made",
+        "value": "Extreme"
+      }
+    ],
+    "INDIVIDUAL": [
+      {
+        "text": "Most FG attempted",
+        "value": "High"
+      },
+      {
+        "text": "Most FG made",
+        "value": "High"
+      },
+      {
+        "text": "Most blocks",
+        "value": "High"
+      },
+      {
+        "text": "Most Points",
+        "value": "High"
+      },
+      {
+        "text": "Most Rebounds",
+        "value": "High"
+      },
+      {
+        "text": "Most Threes Made",
+        "value": "High"
+      },
+      {
+        "text": "Most Assist",
+        "value": "High"
+      },
+      {
+        "text": "Most Steals",
+        "value": "Extreme"
+      }
+    ],
+    "STAT_HUNTING": [
+      {
+        "text": "Reach 1 Steal",
+        "value": "Low"
+      },
+      {
+        "text": "Reach 1 Block",
+        "value": "Low"
+      },
+      {
+        "text": "Reach +/- over 0",
+        "value": "Low"
+      },
+      {
+        "text": "Reach 20 points",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach 6 rebounds",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach 3 Three Pointers Made",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach 6 assists",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach 2 Blocks",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach +/- over 10",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach 2 Steals",
+        "value": "Medium"
+      },
+      {
+        "text": "Reach a Doubling double",
+        "value": "High"
+      },
+      {
+        "text": "Reach 30 points",
+        "value": "High"
+      },
+      {
+        "text": "Reach 11 rebounds",
+        "value": "High"
+      },
+      {
+        "text": "Reach 4 Three Pointers Made",
+        "value": "High"
+      },
+      {
+        "text": "Reach +/- over 20",
+        "value": "High"
+      },
+      {
+        "text": "Reach 10 assists",
+        "value": "High"
+      },
+      {
+        "text": "Reach 3 Blocks",
+        "value": "High"
+      },
+      {
+        "text": "Reach 3 Steals",
+        "value": "High"
+      },
+      {
+        "text": "Reach a Triple double",
+        "value": "Extreme"
+      }
     ]
   }
 }
