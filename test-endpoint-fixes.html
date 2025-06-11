@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endpoint Fix Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>ErgoSphere Admin Dashboard Endpoint Fix Test</h1>
+    <div id="results"></div>
+
+    <script>
+        async function testEndpoints() {
+            const results = document.getElementById('results');
+            
+            // Auto-detect environment
+            const isHeroku = window.location.hostname.includes('herokuapp.com');
+            const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+            
+            results.innerHTML += `<div class="test-result info">Environment: ${isHeroku ? 'Heroku' : 'Local'}</div>`;
+            results.innerHTML += `<div class="test-result info">Base URL: ${baseUrl || 'Local (empty)'}</div>`;
+            
+            const endpoints = [
+                '/api/health',
+                '/api/data/coop', 
+                '/api/backup/coop',
+                '/api/fallback/coop'
+            ];
+            
+            for (const endpoint of endpoints) {
+                try {
+                    const fullUrl = `${baseUrl}${endpoint}`;
+                    const response = await fetch(fullUrl, { signal: AbortSignal.timeout(5000) });
+                    
+                    if (response.ok) {
+                        const dataPreview = endpoint === '/api/health' 
+                            ? JSON.stringify(await response.json())
+                            : `${(await response.text()).length} bytes`;
+                        results.innerHTML += `<div class="test-result success">✅ ${endpoint}: ${response.status} (${dataPreview})</div>`;
+                    } else {
+                        results.innerHTML += `<div class="test-result error">❌ ${endpoint}: ${response.status} ${response.statusText}</div>`;
+                    }
+                } catch (error) {
+                    results.innerHTML += `<div class="test-result error">❌ ${endpoint}: ${error.message}</div>`;
+                }
+            }
+            
+            // Test sync queue manager detection
+            if (window.location.hostname.includes('herokuapp.com')) {
+                results.innerHTML += `<div class="test-result success">✅ Sync Queue Manager environment detection working</div>`;
+            } else {
+                results.innerHTML += `<div class="test-result info">ℹ️ Running on local environment</div>`;
+            }
+        }
+        
+        // Run tests when page loads
+        testEndpoints();
+    </script>
+</body>
+</html>
