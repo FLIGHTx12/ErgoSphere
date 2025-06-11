@@ -86,17 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.hideSyncIndicator();
                 }
             };
-            
-            // Add health check functionality (non-intrusive)
+              // Add health check functionality (non-intrusive) with error handling
             dashboardInstance.performHealthCheck = async function() {
-                const results = await window.AdminDashboardDataLoader.performHealthCheck();
-                
-                // Only show health status if there are issues (reduce visual noise)
-                if (!results.postgresql && !results.jsonFiles && !results.cached) {
-                    this.displayHealthStatus(results);
+                try {
+                    const results = await window.AdminDashboardDataLoader.performHealthCheck();
+                    
+                    // Only show health status if there are issues (reduce visual noise)
+                    if (!results.postgresql && !results.jsonFiles && !results.cached) {
+                        this.displayHealthStatus(results);
+                    }
+                    
+                    return results;
+                } catch (error) {
+                    console.error('Health check failed:', error);
+                    // Return fallback results to prevent further errors
+                    return { postgresql: false, jsonFiles: false, cached: false };
                 }
-                
-                return results;
             };
             
             dashboardInstance.displayHealthStatus = function(results) {
@@ -146,14 +151,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Store dashboard instance globally for access
             window.dashboard = dashboardInstance;
-            
-            // Perform initial health check only if needed (reduce startup noise)
-            setTimeout(() => {
-                window.AdminDashboardDataLoader.performHealthCheck().then(results => {
-                    if (!results.postgresql) {
-                        console.warn('PostgreSQL not available, using fallback data sources');
+              // Perform initial health check only if needed (reduce startup noise)
+            setTimeout(async () => {
+                try {
+                    // Added safeguards to prevent potential recursion
+                    if (window.AdminDashboardDataLoader && typeof window.AdminDashboardDataLoader.performHealthCheck === 'function') {
+                        const results = await window.AdminDashboardDataLoader.performHealthCheck();
+                        if (!results.postgresql) {
+                            console.warn('PostgreSQL not available, using fallback data sources');
+                        }
                     }
-                });
+                } catch (error) {
+                    console.error('Health check failed:', error);
+                }
             }, 3000);
             
             console.log('Enhanced PostgreSQL loader integration complete');

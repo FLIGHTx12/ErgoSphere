@@ -24,14 +24,16 @@ The issue was caused by hardcoded API endpoints throughout the codebase that poi
 - ✅ Added environment detection for sync endpoints
 - ✅ Dynamic endpoint configuration for both category-specific and bulk sync operations
 
-### 4. Enhanced PostgreSQL Loader (`js/admin-dashboard-enhanced-postgres-loader.js`)
+### 4. Enhanced PostgreSQL Loader (REMOVED - Functionality merged into fixed-postgres-loader.js)
 - ✅ Fixed hardcoded primary endpoints to use environment detection
 - ✅ Updated health check URLs to use correct endpoints
+- ⚠️ File removed during cleanup (June 2025) as functionality was merged
 
-### 5. Original PostgreSQL Loader (`js/admin-dashboard-postgres-loader.js`)
+### 5. Original PostgreSQL Loader (REMOVED - Replaced by fixed-postgres-loader.js)
 - ✅ Fixed hardcoded API URLs in data loading methods
 - ✅ Updated health check endpoint to use environment detection
-- ✅ Fixed alternate API endpoint URLs
+- ✅ Fixed alternate API endpoint URLs  
+- ⚠️ File removed during cleanup (June 2025) as functionality was replaced
 
 ## Verification Tests Completed
 

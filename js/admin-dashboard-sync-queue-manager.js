@@ -602,18 +602,14 @@ class SyncQueueManager {
             return false;
         }
     }
-      /**
+    /**
      * Private: Check if PostgreSQL is available
      * @returns {Promise<Object>} - Health check results
      * @private
      */
     async _checkConnection() {
         try {
-            if (window.AdminDashboardDataLoader && typeof window.AdminDashboardDataLoader.performHealthCheck === 'function') {
-                return await window.AdminDashboardDataLoader.performHealthCheck();
-            }
-            
-            // Fallback implementation with environment detection
+            // Direct health check implementation without calling AdminDashboardDataLoader to avoid circular dependency
             const result = { postgresql: false, jsonFiles: false, cached: false };
             
             try {
@@ -627,6 +623,11 @@ class SyncQueueManager {
                 });
                 
                 result.postgresql = response.ok;
+                
+                // Check if there's cached data available
+                result.cached = window.AdminDashboardDataLoader && 
+                               window.AdminDashboardDataLoader.cachedData &&
+                               window.AdminDashboardDataLoader.cachedData.size > 0;
             } catch (error) {
                 result.postgresql = false;
             }
