@@ -4,11 +4,12 @@
  */
 
 class EnhancedPostgreSQLLoader {
-    constructor() {
-        this.config = {
-            // Primary PostgreSQL endpoints
+    constructor() {        this.config = {
+            // Primary PostgreSQL endpoints with environment detection
             primaryEndpoints: {
-                heroku: 'https://ergosphere-api.herokuapp.com/api',
+                heroku: window.location.hostname.includes('herokuapp.com') 
+                    ? 'https://ergosphere-02b692b18f50.herokuapp.com/api' 
+                    : 'https://ergosphere-api.herokuapp.com/api',
                 // Add backup endpoint if you have one
                 // backup: 'https://backup-postgres-server.com/api'
             },
@@ -249,13 +250,18 @@ class EnhancedPostgreSQLLoader {
             jsonFiles: false,
             cached: this.cachedData.size > 0
         };
-        
-        // Check PostgreSQL - quick check only
+          // Check PostgreSQL - quick check only
         try {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 3000); // Quick timeout
             
-            const response = await fetch(`${this.config.primaryEndpoints.heroku}/health`, {
+            // Auto-detect environment for health check
+            const isHeroku = window.location.hostname.includes('herokuapp.com');
+            const healthUrl = isHeroku 
+                ? 'https://ergosphere-02b692b18f50.herokuapp.com/api/health'
+                : `${this.config.primaryEndpoints.heroku}/health`;
+            
+            const response = await fetch(healthUrl, {
                 signal: controller.signal
             });
             

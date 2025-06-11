@@ -10,10 +10,14 @@ if (!AdminDashboardDataLoader.syncPostgresToJson) {
     try {
         console.log(`Initiating PostgreSQL to JSON sync for ${category || 'all categories'}`);
         
+        // Auto-detect environment and use appropriate base URL
+        const isHeroku = window.location.hostname.includes('herokuapp.com');
+        const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+        
         // Specify category in the URL if provided, otherwise sync all
         const endpoint = category 
-            ? `https://ergosphere-api.herokuapp.com/api/sync/${category}`
-            : 'https://ergosphere-api.herokuapp.com/api/sync/all';
+            ? `${baseUrl}/api/sync/${category}`
+            : `${baseUrl}/api/sync/all`;
         
         const response = await fetch(endpoint, {
             method: 'POST',

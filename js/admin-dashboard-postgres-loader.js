@@ -13,11 +13,14 @@ class AdminDashboardDataLoader {
     static async loadCategoryData(category) {
         console.log(`Loading data for category: ${category}`);
         
-        try {
-            // Primary approach: Try API first (Heroku PostgreSQL)
+        try {            // Primary approach: Try API first (Heroku PostgreSQL)
             try {
                 console.log(`Trying to load from API: /api/data/${category}`);
-                const apiUrl = `https://ergosphere-api.herokuapp.com/api/data/${category}`;
+                // Auto-detect environment and use appropriate base URL
+                const isHeroku = window.location.hostname.includes('herokuapp.com');
+                const apiUrl = isHeroku 
+                    ? `https://ergosphere-02b692b18f50.herokuapp.com/api/data/${category}`
+                    : `https://ergosphere-api.herokuapp.com/api/data/${category}`;
                 console.log(`Connecting to: ${apiUrl}`);
                 
                 const response = await fetch(apiUrl, {
@@ -37,10 +40,13 @@ class AdminDashboardDataLoader {
             } catch (error) {
                 console.warn(`Error loading from API:`, error);
             }
-            
-            // Fallback: Try another API endpoint format
+              // Fallback: Try another API endpoint format
             try {
-                const altApiUrl = `https://ergosphere-api.herokuapp.com/api/${category}`;
+                // Auto-detect environment for alternate endpoint
+                const isHeroku = window.location.hostname.includes('herokuapp.com');
+                const altApiUrl = isHeroku 
+                    ? `https://ergosphere-02b692b18f50.herokuapp.com/api/${category}`
+                    : `https://ergosphere-api.herokuapp.com/api/${category}`;
                 console.log(`Trying alternate API endpoint: ${altApiUrl}`);
                 
                 const response = await fetch(altApiUrl, {
@@ -172,16 +178,18 @@ class AdminDashboardDataLoader {
             return false;
         }
     }
-    
-    /**
+      /**
      * Check if PostgreSQL connection is available
      * @returns {Promise<boolean>} - Whether the connection is available
      */
     static async checkPostgresConnection() {
         try {
             console.log('Checking PostgreSQL connection...');
-            // Try to fetch a simple health check endpoint
-            const apiUrl = 'https://ergosphere-api.herokuapp.com/api/health';
+            // Auto-detect environment for health check endpoint
+            const isHeroku = window.location.hostname.includes('herokuapp.com');
+            const apiUrl = isHeroku 
+                ? 'https://ergosphere-02b692b18f50.herokuapp.com/api/health'
+                : 'https://ergosphere-api.herokuapp.com/api/health';
             
             const response = await fetch(apiUrl, {
                 method: 'GET',

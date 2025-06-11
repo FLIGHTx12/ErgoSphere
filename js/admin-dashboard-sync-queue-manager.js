@@ -508,8 +508,7 @@ class SyncQueueManager {
         
         return Array.from(resultById.values());
     }
-    
-    /**
+      /**
      * Private: Fetch latest data from PostgreSQL for a category
      * @param {string} category - The category to fetch
      * @returns {Promise<Array>} - The latest data
@@ -521,14 +520,14 @@ class SyncQueueManager {
                 return await window.AdminDashboardDataLoader.loadFromPostgreSQL(category);
             }
             
-            // Fallback to fetch method
-            const endpoints = Object.values(window.AdminDashboardDataLoader?.config?.primaryEndpoints || {
-                heroku: 'https://ergosphere-api.herokuapp.com/api'
-            });
+            // Fallback to fetch method with environment detection
+            const isHeroku = window.location.hostname.includes('herokuapp.com');
+            const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+            const endpoints = [`${baseUrl}/api/data`];
             
             for (const endpoint of endpoints) {
                 try {
-                    const response = await fetch(`${endpoint}/data/${category}`, {
+                    const response = await fetch(`${endpoint}/${category}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -569,15 +568,14 @@ class SyncQueueManager {
                 await window.AdminDashboardDataLoader.saveToPostgreSQL(category, data);
                 return true;
             }
-            
-            // Fallback to fetch method
-            const endpoints = Object.values(window.AdminDashboardDataLoader?.config?.primaryEndpoints || {
-                heroku: 'https://ergosphere-api.herokuapp.com/api'
-            });
+              // Fallback to fetch method with environment detection
+            const isHeroku = window.location.hostname.includes('herokuapp.com');
+            const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+            const endpoints = [`${baseUrl}/api/data`];
             
             for (const endpoint of endpoints) {
                 try {
-                    const response = await fetch(`${endpoint}/data/${category}`, {
+                    const response = await fetch(`${endpoint}/${category}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -604,8 +602,7 @@ class SyncQueueManager {
             return false;
         }
     }
-    
-    /**
+      /**
      * Private: Check if PostgreSQL is available
      * @returns {Promise<Object>} - Health check results
      * @private
@@ -616,14 +613,16 @@ class SyncQueueManager {
                 return await window.AdminDashboardDataLoader.performHealthCheck();
             }
             
-            // Fallback implementation
+            // Fallback implementation with environment detection
             const result = { postgresql: false, jsonFiles: false, cached: false };
             
             try {
-                const endpoint = window.AdminDashboardDataLoader?.config?.primaryEndpoints?.heroku || 
-                    'https://ergosphere-api.herokuapp.com/api';
+                // Auto-detect environment
+                const isHeroku = window.location.hostname.includes('herokuapp.com');
+                const baseUrl = isHeroku ? 'https://ergosphere-02b692b18f50.herokuapp.com' : '';
+                const healthEndpoint = isHeroku ? '/api/health' : '/api/status';
                 
-                const response = await fetch(`${endpoint}/health`, { 
+                const response = await fetch(`${baseUrl}${healthEndpoint}`, { 
                     signal: AbortSignal.timeout(3000) // 3 second timeout
                 });
                 
