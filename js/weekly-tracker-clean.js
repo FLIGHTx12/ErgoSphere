@@ -594,7 +594,6 @@ class WeeklyTracker {
       }
     });
   }
-
   /**
    * Update user theme
    */
@@ -605,9 +604,9 @@ class WeeklyTracker {
     
     setTimeout(() => {
       if (username === 'FLIGHTx12') {
-        root.style.setProperty('--active-user-theme', '#ff6b35');
+        root.style.setProperty('--active-user-theme', '#00ff00');
       } else if (username === 'Jaybers8') {
-        root.style.setProperty('--active-user-theme', '#4ecdc4');
+        root.style.setProperty('--active-user-theme', '#9932cc');
       }
       
       setTimeout(() => {
