@@ -1,331 +1,383 @@
 /**
- * This file contains updates for the weekly-tracker-addon.js file
- * to use the proxiedFetch function for API requests and add alcohol tracking.
+ * Weekly Tracker Enhancement Module - Clean Version
+ * Provides alcohol tracking and proxied fetch integration
  */
 
-// Global variable to store ErgoShop data for alcohol detection
-let ergoShopData = null;
-
-/**
- * Load ErgoShop data for alcohol detection
- */
-async function loadErgoShopData() {
-  if (ergoShopData) return ergoShopData;
-  
-  try {
-    const response = await fetch('/data/ErgoShop.json');
-    ergoShopData = await response.json();
-    console.log('ErgoShop data loaded for alcohol detection');
-    return ergoShopData;
-  } catch (error) {
-    console.error('Failed to load ErgoShop data:', error);
-    return null;
+class WeeklyTrackerEnhancer {
+  constructor() {
+    this.ergoShopData = null;
   }
-}
 
-/**
- * Check if an item has alcohol rating based on ErgoShop data
- */
-function isAlcoholItem(itemName) {
-  if (!ergoShopData) return false;
-  
-  // Clean the purchased item name by removing quantity info like "(x2)"
-  const cleanItemName = itemName.replace(/\s*\(x\d+\)\s*$/, '').trim();
-  
-  // Search through all categories in ErgoShop data
-  for (const category in ergoShopData) {
-    if (Array.isArray(ergoShopData[category])) {
-      for (const item of ergoShopData[category]) {
+  /**
+   * Initialize the enhancement
+   */
+  async init() {
+    await this.loadErgoShopData();
+    this.enhanceWeeklyTracker();
+    this.setupUserVisibility();
+  }
+
+  /**
+   * Load ErgoShop data for alcohol detection
+   */
+  async loadErgoShopData() {
+    if (this.ergoShopData) return this.ergoShopData;
+    
+    try {
+      const response = await fetch('/data/ErgoShop.json');
+      this.ergoShopData = await response.json();
+      console.log('ErgoShop data loaded for alcohol detection');
+      return this.ergoShopData;
+    } catch (error) {
+      console.error('Failed to load ErgoShop data:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Check if an item has alcohol rating
+   */
+  isAlcoholItem(itemName) {
+    if (!this.ergoShopData || !itemName) return false;
+    
+    const cleanItemName = itemName.replace(/\s*\(x\d+\)\s*$/, '').trim();
+    
+    for (const category in this.ergoShopData) {
+      if (!Array.isArray(this.ergoShopData[category])) continue;
+      
+      for (const item of this.ergoShopData[category]) {
         if (item.rating === 'Alcohol') {
-          // Get the item name from ErgoShop text (before the price)
           const shopItemName = item.text.split(' - ')[0].trim();
           
-          // Direct comparison first
-          if (cleanItemName === shopItemName) {
-            return true;
-          }
-          
-          // Also try partial matching for cases where names might vary slightly
-          if (cleanItemName.includes(shopItemName) || shopItemName.includes(cleanItemName)) {
+          if (cleanItemName === shopItemName || 
+              cleanItemName.includes(shopItemName) || 
+              shopItemName.includes(cleanItemName)) {
             return true;
           }
         }
       }
     }
+    
+    return false;
   }
-  
-  return false;
-}
 
-// Once the DOM is loaded, enhance the weekly tracker with proxied fetch
-document.addEventListener('DOMContentLoaded', () => {
-  // Load ErgoShop data first, then enhance the weekly tracker
-  loadErgoShopData().then(() => {
-    // Wait for all scripts to load
-    setTimeout(enhanceWeeklyTracker, 1000);
-  });
-  
-  // Force visibility for the current user's purchase section after a delay
-  setTimeout(() => {
-    if (typeof window.currentUser !== 'undefined') {
-      const user = window.currentUser;
-      const userSection = document.querySelector(`#${user}-purchases`);
-      if (userSection) {
-        console.log(`Force showing ${user} purchases section`);
-        userSection.style.display = 'block';
-        userSection.classList.add('active');
-      }
+  /**
+   * Enhance the weekly tracker with proxied fetch and alcohol tracking
+   */
+  enhanceWeeklyTracker() {
+    if (typeof window.proxiedFetch === 'undefined') {
+      console.error('proxiedFetch not available, cannot enhance weekly tracker');
+      return;
     }
-  }, 1500);
-});
 
-/**
- * Enhance the weekly tracker to use proxied fetch and add alcohol tracking
- */
-function enhanceWeeklyTracker() {
-  // Make sure weekly tracker and proxiedFetch are available
-  if (typeof window.proxiedFetch === 'undefined') {
-    console.error('proxiedFetch not available, cannot enhance weekly tracker');
-    return;
+    console.log('Enhancing weekly tracker with proxiedFetch and alcohol tracking...');
+    
+    this.enhanceLoadPurchases();
+    this.enhanceDeletePurchase();
   }
-  
-  console.log('Enhancing weekly tracker with proxiedFetch...');
-  
-  // Replace fetch calls with proxiedFetch in loadPurchasesForWeek
-  if (typeof window.loadPurchasesForWeek === 'function') {
+
+  /**
+   * Enhance loadPurchasesForWeek function
+   */
+  enhanceLoadPurchases() {
+    if (typeof window.loadPurchasesForWeek !== 'function') return;
+    
     const originalLoadPurchases = window.loadPurchasesForWeek;
     
-    window.loadPurchasesForWeek = async function(weekKey) {
-      // Show loading state in purchase container for current user only
-      if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
-        const user = window.currentUser;
-        const purchaseList = document.querySelector(`#${user}-purchases ul`);
-        if (purchaseList && typeof window.showLoading === 'function') {
-          window.showLoading(purchaseList);
-        }
-      }
-      
+    window.loadPurchasesForWeek = async (weekKey) => {
       try {
-        // Get purchases from server using proxiedFetch
-        let purchases = [];
-        try {
-          console.log(`Fetching purchases for week ${weekKey} with proxiedFetch`);
-          const purchasesResponse = await window.proxiedFetch(`/api/purchases/${weekKey}`);
-          purchases = await purchasesResponse.json();
-          console.log(`Loaded ${purchases.length} purchases for week ${weekKey}`);
-          
-          // If we get here, we're online and server is working
-          if (window.offlineMode && typeof window.offlineMode.isOffline === 'function' && 
-              window.offlineMode.isOffline()) {
-            // We were offline, but now we're online
-            if (typeof window.offlineMode.checkConnectivity === 'function') {
-              window.offlineMode.checkConnectivity();
-            }
-          }
-        } catch (purchaseErr) {
-          console.warn(`Failed to load purchases: ${purchaseErr.message || purchaseErr}`);
-          
-          // If we're getting network errors, show offline mode banner
-          if (window.offlineMode && typeof window.offlineMode.isOffline === 'function' && 
-              !window.offlineMode.isOffline()) {
-            if (typeof window.offlineMode.checkConnectivity === 'function') {
-              window.offlineMode.checkConnectivity();
-            }
-          }
-        }
-        
-        // Initialize empty metrics array (keeping this for compatibility)
-        let metrics = [];
-        
-        // Continue with the original processing of purchases and metrics
-        if (typeof window.users !== 'undefined' && typeof window.currentUser !== 'undefined') {
-          // Group purchases by user, but we only care about the current user
-          const purchasesByUser = {};
-          purchasesByUser[window.currentUser] = [];
-          
-          // Organize purchases for the current user only
-          purchases.forEach(purchase => {
-            if (purchase.username === window.currentUser) {
-              purchasesByUser[window.currentUser].push(purchase);
-            }
-          });
-          
-          // Only update the current user's display
-          const user = window.currentUser;
-          const userPurchases = purchasesByUser[user] || [];
-          const purchaseList = document.querySelector(`#${user}-purchases ul`);
-          const totalElement = document.querySelector(`#${user}-purchases .weekly-total`);
-          const statsElement = document.querySelector(`#${user}-purchases .weekly-stats`);
-            
-          if (purchaseList && totalElement) {
-            // Clear existing content
-            purchaseList.innerHTML = '';
-            
-            // Calculate totals
-            let userTotal = 0;
-            let userCalories = 0;
-            
-            // Add each purchase
-            userPurchases.forEach(purchase => {
-              userTotal += purchase.total_value;
-              userCalories += purchase.total_calories || 0;
-              
-              // Format date
-              const purchaseDate = new Date(purchase.purchase_date);
-              const dateStr = purchaseDate.toLocaleDateString() + ' ' + 
-                            purchaseDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-              
-              // Parse items from JSON
-              const items = typeof purchase.items === 'string' ? 
-                JSON.parse(purchase.items) : purchase.items;
-              
-              // Create list item for each item in the purchase
-              items.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'purchase-item';
-                li.dataset.purchaseId = purchase.id;
-                
-                // Extract just the item name without the price
-                const itemName = typeof item === 'string' ? item.split(' - ')[0] : item.name;
-                const icon = typeof window.getItemIcon === 'function' ? 
-                  window.getItemIcon(itemName) : '📦';
-                
-                // Create content container
-                const contentSpan = document.createElement('span');
-                contentSpan.className = 'item-content';
-                contentSpan.innerHTML = `${icon} ${itemName} <span class="date-display">(${dateStr})</span>`;
-                li.appendChild(contentSpan);
-                
-                // Create delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-purchase-btn';
-                deleteBtn.innerHTML = '×';
-                deleteBtn.title = 'Remove this purchase';
-                deleteBtn.addEventListener('click', (e) => {
-                  e.stopPropagation();
-                  if (confirm(`Are you sure you want to remove "${itemName}"?`)) {
-                    if (typeof window.deletePurchase === 'function') {
-                      window.deletePurchase(purchase.id);
-                    }
-                  }
-                });
-                li.appendChild(deleteBtn);
-                
-                purchaseList.appendChild(li);
-              });
-            });
-            
-            // Update total display
-            totalElement.textContent = `Total: ${userTotal} 💷`;
-            
-            // Calculate alcohol count
-            const alcoholCount = userPurchases.reduce((count, purchase) => {
-              const items = typeof purchase.items === 'string' ? JSON.parse(purchase.items) : purchase.items;
-              const alcoholItems = items.filter(item => {
-                const itemName = typeof item === 'string' ? item.split(' - ')[0] : item.name;
-                const isAlcohol = isAlcoholItem(itemName);
-                if (isAlcohol) {
-                  console.log(`Detected alcohol item: ${itemName}`);
-                }
-                return isAlcohol;
-              });
-              return count + alcoholItems.length;
-            }, 0);
-              // Update or create stats element
-            if (!statsElement) {
-              const stats = document.createElement('div');
-              stats.className = 'weekly-stats';
-              
-              stats.innerHTML = `
-                <p>Cal: ${userCalories}</p>
-                <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
-                <p>Alcohol: ${alcoholCount}</p>
-              `;
-              
-              totalElement.parentNode.insertBefore(stats, totalElement.nextSibling);
-            } else {
-              // Update existing stats
-              statsElement.innerHTML = `
-                <p>Cal: ${userCalories}</p>
-                <p>Items: ${userPurchases.reduce((sum, p) => sum + (typeof p.items === 'string' ? JSON.parse(p.items).length : p.items.length), 0)}</p>
-                <p>Alcohol: ${alcoholCount}</p>
-              `;
-            }
-          }
-          
-          // Show/hide user sections based on current user
-          window.users.forEach(otherUser => {
-            // Handle purchase sections
-            const userSection = document.querySelector(`#${otherUser}-purchases`);
-            if (userSection) {
-              if (otherUser === window.currentUser) {
-                userSection.classList.add('active');
-              } else {
-                userSection.classList.remove('active');
-              }
-            }
-          });
-        }
+        await this.loadPurchasesWithEnhancements(weekKey);
       } catch (error) {
         console.error('Error in enhanced loadPurchasesForWeek:', error);
-        
-        // Fall back to original implementation
         return originalLoadPurchases(weekKey);
       }
     };
-    console.log('Successfully enhanced loadPurchasesForWeek with proxiedFetch');
   }
-  
-  // Enhance deletePurchase function
-  if (typeof window.deletePurchase === 'function') {
+
+  /**
+   * Load purchases with enhancements
+   */
+  async loadPurchasesWithEnhancements(weekKey) {
+    const user = window.currentUser;
+    if (!user) return;
+
+    this.showLoadingForUser(user);
+
+    try {
+      const purchases = await this.fetchPurchasesWithProxy(weekKey);
+      this.displayEnhancedPurchases(user, purchases, weekKey);
+      this.updateOfflineStatus(true);
+    } catch (error) {
+      console.warn(`Failed to load purchases: ${error.message}`);
+      this.updateOfflineStatus(false);
+    }
+  }
+
+  /**
+   * Fetch purchases using proxied fetch
+   */
+  async fetchPurchasesWithProxy(weekKey) {
+    console.log(`Fetching purchases for week ${weekKey} with proxiedFetch`);
+    const response = await window.proxiedFetch(`/api/purchases/${weekKey}`);
+    const purchases = await response.json();
+    console.log(`Loaded ${purchases.length} purchases for week ${weekKey}`);
+    return purchases;
+  }
+
+  /**
+   * Display enhanced purchases with alcohol tracking
+   */
+  displayEnhancedPurchases(user, purchases, weekKey) {
+    const userPurchases = purchases.filter(p => p.username === user);
+    const purchaseList = document.querySelector(`#${user}-purchases ul`);
+    const totalElement = document.querySelector(`#${user}-purchases .weekly-total`);
+    const statsElement = document.querySelector(`#${user}-purchases .weekly-stats`);
+    
+    if (!purchaseList || !totalElement) return;
+    
+    purchaseList.innerHTML = '';
+    
+    let userTotal = 0;
+    let userCalories = 0;
+    
+    userPurchases.forEach(purchase => {
+      userTotal += purchase.total_value;
+      userCalories += purchase.total_calories || 0;
+      
+      const purchaseDate = new Date(purchase.purchase_date);
+      const dateStr = this.formatDate(purchaseDate);
+      const items = this.parseItems(purchase.items);
+      
+      this.renderEnhancedItems(purchaseList, purchase, items, dateStr);
+    });
+    
+    totalElement.textContent = `Total: ${userTotal} 💷`;
+    this.updateEnhancedStats(statsElement, totalElement, userCalories, userPurchases);
+    this.updateUserSectionVisibility();
+  }
+
+  /**
+   * Render enhanced items with delete buttons
+   */
+  renderEnhancedItems(purchaseList, purchase, items, dateStr) {
+    items.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'purchase-item';
+      li.dataset.purchaseId = purchase.id;
+      
+      const itemName = this.extractItemName(item);
+      const icon = this.getItemIcon(itemName);
+      
+      li.innerHTML = `
+        <span class="item-content">
+          ${icon} ${itemName} <span class="date-display">(${dateStr})</span>
+        </span>
+        <button class="delete-purchase-btn" title="Remove this purchase">×</button>
+      `;
+      
+      this.attachDeleteHandler(li, purchase.id, itemName);
+      purchaseList.appendChild(li);
+    });
+  }
+
+  /**
+   * Update enhanced stats with alcohol count
+   */
+  updateEnhancedStats(statsElement, totalElement, userCalories, userPurchases) {
+    const itemCount = this.countItems(userPurchases);
+    const alcoholCount = this.countAlcoholItems(userPurchases);
+    
+    const statsHTML = `
+      <p>Calories: ${userCalories} cal</p>
+      <p>Items: ${itemCount}</p>
+      <p>Alcohol: ${alcoholCount} 🍸</p>
+    `;
+    
+    if (!statsElement) {
+      const stats = document.createElement('div');
+      stats.className = 'weekly-stats';
+      stats.innerHTML = statsHTML;
+      totalElement.parentNode.insertBefore(stats, totalElement.nextSibling);
+    } else {
+      statsElement.innerHTML = statsHTML;
+    }
+  }
+
+  /**
+   * Count alcohol items in purchases
+   */
+  countAlcoholItems(userPurchases) {
+    return userPurchases.reduce((count, purchase) => {
+      const items = this.parseItems(purchase.items);
+      const alcoholItems = items.filter(item => {
+        const itemName = this.extractItemName(item);
+        const isAlcohol = this.isAlcoholItem(itemName);
+        if (isAlcohol) {
+          console.log(`Detected alcohol item: ${itemName}`);
+        }
+        return isAlcohol;
+      });
+      return count + alcoholItems.length;
+    }, 0);
+  }
+
+  /**
+   * Enhance deletePurchase function
+   */
+  enhanceDeletePurchase() {
+    if (typeof window.deletePurchase !== 'function') return;
+    
     const originalDeletePurchase = window.deletePurchase;
     
-    window.deletePurchase = async function(purchaseId) {
+    window.deletePurchase = async (purchaseId) => {
       try {
-        // Show loading spinner
-        const purchaseLi = document.querySelector(`li[data-purchase-id="${purchaseId}"]`);
-        if (purchaseLi) {
-          purchaseLi.classList.add('deleting');
-        }
-        
-        // Use proxiedFetch to delete the purchase
-        console.log(`Deleting purchase ${purchaseId} with proxiedFetch`);
-        const response = await window.proxiedFetch(`/api/purchases/${purchaseId}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        // Reload purchases to update the display
-        if (typeof window.currentDisplayWeek !== 'undefined' && 
-            typeof window.loadPurchasesForWeek === 'function') {
-          window.loadPurchasesForWeek(window.currentDisplayWeek);
-        }
-        
-        // Show success feedback
-        if (typeof window.showToast === 'function') {
-          window.showToast('Purchase removed successfully', 'success');
-        }
+        await this.deleteWithEnhancements(purchaseId);
       } catch (error) {
         console.error('Error in enhanced deletePurchase:', error);
-        
-        if (typeof window.showToast === 'function') {
-          window.showToast('Failed to delete purchase', 'error');
-        }
-        
-        // Remove the loading state
-        const purchaseLi = document.querySelector(`li[data-purchase-id="${purchaseId}"]`);
-        if (purchaseLi) {
-          purchaseLi.classList.remove('deleting');
-        }
-        
-        // Fall back to original implementation
         return originalDeletePurchase(purchaseId);
       }
     };
-    console.log('Successfully enhanced deletePurchase with proxiedFetch');
   }
-  
-  console.log('Weekly tracker enhancement complete!');
+
+  /**
+   * Delete purchase with enhancements
+   */
+  async deleteWithEnhancements(purchaseId) {
+    const purchaseLi = document.querySelector(`li[data-purchase-id="${purchaseId}"]`);
+    if (purchaseLi) {
+      purchaseLi.classList.add('deleting');
+    }
+    
+    try {
+      console.log(`Deleting purchase ${purchaseId} with proxiedFetch`);
+      await window.proxiedFetch(`/api/purchases/${purchaseId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (window.currentDisplayWeek && window.loadPurchasesForWeek) {
+        window.loadPurchasesForWeek(window.currentDisplayWeek);
+      }
+      
+      this.showToast('Purchase removed successfully', 'success');
+    } catch (error) {
+      console.error('Delete failed:', error);
+      
+      if (purchaseLi) {
+        purchaseLi.classList.remove('deleting');
+      }
+      
+      this.showToast('Failed to delete purchase', 'error');
+      throw error;
+    }
+  }
+
+  /**
+   * Setup user visibility
+   */
+  setupUserVisibility() {
+    setTimeout(() => {
+      if (window.currentUser) {
+        const userSection = document.querySelector(`#${window.currentUser}-purchases`);
+        if (userSection) {
+          console.log(`Force showing ${window.currentUser} purchases section`);
+          userSection.style.display = 'block';
+          userSection.classList.add('active');
+        }
+      }
+    }, 1500);
+  }
+
+  /**
+   * Update user section visibility
+   */
+  updateUserSectionVisibility() {
+    if (!window.users || !window.currentUser) return;
+    
+    window.users.forEach(user => {
+      const userSection = document.querySelector(`#${user}-purchases`);
+      if (userSection) {
+        if (user === window.currentUser) {
+          userSection.classList.add('active');
+          userSection.style.display = 'block';
+        } else {
+          userSection.classList.remove('active');
+          userSection.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Utility methods
+
+  showLoadingForUser(user) {
+    const purchaseList = document.querySelector(`#${user}-purchases ul`);
+    if (purchaseList && window.showLoading) {
+      window.showLoading(purchaseList);
+    }
+  }
+
+  updateOfflineStatus(isOnline) {
+    if (!window.offlineMode) return;
+    
+    if (isOnline && window.offlineMode.isOffline?.()) {
+      window.offlineMode.checkConnectivity?.();
+    } else if (!isOnline && !window.offlineMode.isOffline?.()) {
+      window.offlineMode.checkConnectivity?.();
+    }
+  }
+
+  formatDate(date) {
+    return date.toLocaleDateString() + ' ' + 
+           date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  }
+
+  parseItems(items) {
+    return typeof items === 'string' ? JSON.parse(items) : items;
+  }
+
+  extractItemName(item) {
+    return typeof item === 'string' ? item.split(' - ')[0] : item.name;
+  }
+
+  getItemIcon(itemName) {
+    return window.getItemIcon ? window.getItemIcon(itemName) : '📦';
+  }
+
+  countItems(userPurchases) {
+    return userPurchases.reduce((sum, p) => {
+      const items = this.parseItems(p.items);
+      return sum + items.length;
+    }, 0);
+  }
+
+  attachDeleteHandler(li, purchaseId, itemName) {
+    const deleteBtn = li.querySelector('.delete-purchase-btn');
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (confirm(`Are you sure you want to remove "${itemName}"?`)) {
+        window.deletePurchase?.(purchaseId);
+      }
+    });
+  }
+
+  showToast(message, type) {
+    if (window.showToast) {
+      window.showToast(message, type);
+    } else {
+      console.log(`Toast: ${message} (${type})`);
+    }
+  }
 }
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', async () => {
+  const enhancer = new WeeklyTrackerEnhancer();
+  
+  try {
+    await enhancer.init();
+    console.log('Weekly tracker enhancement complete!');
+  } catch (error) {
+    console.error('Failed to initialize weekly tracker enhancements:', error);
+  }
+});
