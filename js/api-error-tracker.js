@@ -65,6 +65,24 @@ function trackApiError(options) {
         }
       }
     }
+    
+    // Additional filtering for common expected errors
+    const pathname = urlObj.pathname;
+    
+    // Skip tracking 404s for health and status endpoints - these are expected during startup
+    if ((pathname.includes('/api/health') || pathname.includes('/api/status')) && options.status === 404) {
+      return;
+    }
+    
+    // Skip tracking 404s for purchases/metrics on current or future dates that might not have data yet
+    if (pathname.includes('/api/purchases') && options.status === 404) {
+      const currentDate = new Date();
+      const currentWeekKey = currentDate.toISOString().slice(0, 10);
+      if (weekKeyMatch && weekKeyMatch[1] >= currentWeekKey) {
+        console.info(`Ignoring 404 for current/future date purchases: ${weekKeyMatch[1]}`);
+        return;
+      }
+    }
   }
 
   const {

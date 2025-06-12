@@ -225,32 +225,6 @@ app.put('/api/data/:category', async (req, res) => {
   }
 });
 
-/* Updated API endpoints for ErgoShop using database */
-app.get('/api/ErgoShop', (req, res) => {
-  // Query the database for the ErgoShop JSON stored for id=1
-  pool.query("SELECT data FROM ErgoShop WHERE id = 1", (err, result) => {
-    if (err) {
-      console.error('Database error:', err);
-      return res.status(500).json({ error: 'Database error.' });
-    }
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'No ErgoShop data found.' });
-    }
-    // Log the keys to confirm structure matches containerMapping
-    console.log('Fetched ErgoShop data keys:', Object.keys(result.rows[0].data));
-    res.json(result.rows[0].data);
-  });
-});
-  
-app.post('/api/ErgoShop', (req, res) => {
-  const newData = req.body;
-  // Update the single row in the "ErgoShop" table.
-  pool.query("UPDATE ErgoShop SET data = $1", [newData], (err) => {
-    if (err) return res.status(500).json({ error: 'Failed to update data.' });
-    res.json({ success: true });
-  });
-});
-
 // New endpoint to fetch all dropdown options
 app.get('/api/options', (req, res) => {
   pool.query('SELECT * FROM dropdown_options ORDER BY category', (err, result) => {
@@ -294,32 +268,6 @@ app.post('/api/options/:category/remove', (req, res) => {
       if (updErr) return res.status(500).json({ error: 'Database error.' });
       res.json({ success: true, options: currentOptions });
     });
-  });
-});
-
-// Endpoint to fetch all refreshment options
-app.get('/api/admin/ErgoShop', (req, res) => {
-  pool.query('SELECT * FROM refreshment_options ORDER BY category', (err, result) => {
-    if (err) return res.status(500).json({ error: 'Database error.' });
-    res.json(result.rows);
-  });
-});
-
-// Endpoint to add a new refreshment option
-app.post('/api/admin/ErgoShop/add', (req, res) => {
-  const { category, option, cost } = req.body;
-  pool.query('INSERT INTO refreshment_options (category, option, cost) VALUES ($1, $2, $3)', [category, option, cost], (err) => {
-    if (err) return res.status(500).json({ error: 'Database error.' });
-    res.json({ success: true });
-  });
-});
-
-// Endpoint to remove a refreshment option
-app.post('/api/admin/ErgoShop/remove', (req, res) => {
-  const { category, option } = req.body;
-  pool.query('DELETE FROM refreshment_options WHERE category = $1 AND option = $2', [category, option], (err) => {
-    if (err) return res.status(500).json({ error: 'Database error.' });
-    res.json({ success: true });
   });
 });
 

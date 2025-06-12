@@ -1,0 +1,28 @@
+# GitHub Actions Auto-Deploy to Heroku
+# This file should be placed at: .github/workflows/deploy.yml
+
+name: Deploy to Heroku
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "ergosphere"
+        heroku_email: "vcdillard@gmail.com"
+        
+# To set this up:
+# 1. Go to GitHub repo settings > Secrets and variables > Actions
+# 2. Add HEROKU_API_KEY secret (get from: heroku auth:token)
+# 3. Commit this file to .github/workflows/deploy.yml
+# 4. Future GitHub commits will auto-deploy to Heroku

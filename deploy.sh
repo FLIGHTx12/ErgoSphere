@@ -1,13 +1,30 @@
 #!/bin/bash
 
-echo "Setting up environment..."
-export DATABASE_URL="postgres://u4g8i73g8n411i:pe1e6c500adc040cb7e7258a1e379628c5629a9289aabc73ec65a4fdcaa5c76e0@ccpa7stkruda3o.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/db9op7pb0ol2v4"
+echo "=== ErgoSphere Heroku Deployment ==="
+echo ""
 
-echo "Starting database initialization..."
-node db/init.js
+# Set Git environment to avoid pager issues
+export GIT_PAGER=""
+export PAGER=""
 
-# Import data
-echo "Migrating JSON files..."
-node scripts/migrateJsonFiles.js
+echo "1. Checking current Git status..."
+git status --short
 
-echo "Database setup completed successfully!"
+echo ""
+echo "2. Adding all changes..."
+git add .
+
+echo ""
+echo "3. Committing changes..."
+git commit -m "Add Procfile and deploy ErgoShop improvements to Heroku" || echo "No changes to commit"
+
+echo ""
+echo "4. Pushing to Heroku..."
+git push heroku main
+
+echo ""
+echo "5. Checking Heroku app status..."
+heroku ps --app ergosphere
+
+echo ""
+echo "Deployment complete! App should be available at: https://ergosphere.herokuapp.com"
