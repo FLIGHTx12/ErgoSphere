@@ -1,6 +1,6 @@
 /**
  * Enhanced Integration Script for PostgreSQL Loader
- * Integrates with existing dashboard without breaking functionality
+ * Integrates with existing dashboard without breaking functionality..
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Return fallback results to prevent further errors
                     return { postgresql: false, jsonFiles: false, cached: false };
                 }
-            };
+            }; 
             
             dashboardInstance.displayHealthStatus = function(results) {
                 // Remove existing status

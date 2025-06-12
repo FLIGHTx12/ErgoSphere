@@ -1,6 +1,6 @@
 /**
  * Enhanced PostgreSQL Data Loader with Robust Endpoint Validation and Fallback
- * This replaces the existing postgres loader with improved error handling and fallback mechanisms
+ * This replaces the existing postgres loader with improved error handling and fallback mechanisms..
  */
 
 class EnhancedPostgreSQLLoader {
