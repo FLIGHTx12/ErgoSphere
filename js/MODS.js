@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Fallguys ", "Fight Night Champion ", "Guilty Gear Strive ", "⛳Golf ", "Halo Infinite ", "Injustice 2 ", "Killer Instinct ",
     "Killer Instinct 2 ", "Killer Instinct Classic ", "Marvel Vs. Capcom 3 ", "Marvel Vs. Capcom Infinite ", "Mortal Kombat 1 ",
     "Mortal Kombat 11 ", "Mortal Kombat 2011 ", "Mortal Kombat X ", "Nidhogg 2 ", "⚽Soccer ", "Smash Brothers ", "Super Street Fighter IV ",
-    "Tekken 6 ", "Tekken 7 ", "Tekken Tag Tournament 2 ", "🎾Tennis ", "Tetris", "The King Of Fighters XIII ", "UFC ", "Virtua Fighters 5 ",
+    "Tekken 6 ", "Tekken 7 ", "Tekken Tag Tournament 2 ", "🎾Tennis ", "Tetris", "The King Of Fighters XIII ", "UFC 4 ", "Virtua Fighters 5 ",
     "🏐Volleyball "];
   
     function populateSelect(selectElement) {
