@@ -22,7 +22,7 @@ class CasinoSyncManager {
     this.lastKnownWeekKey = null;
     this.connectionAttempts = 0;
     
-    // Track if we're currently rendering to avoid duplicate calls
+    // Track if we're currently rendering to avoid duplicate calls.
     this.isRendering = false;
     
     this.init();

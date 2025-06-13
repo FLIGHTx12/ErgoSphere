@@ -1,6 +1,7 @@
 {
     "name": "ergosphere",
-    "version": "1.0.0",    "description": "ErgoSphere the game",
+    "version": "1.0.0",
+    "description": "ErgoSphere the game",
     "main": "index.html",
     "scripts": {
         "start": "node server.js",
@@ -9,7 +10,9 @@
         "migrate-loot": "node scripts/migrateLoot.js",
         "migrate-json": "node scripts/migrateJsonFiles.js",
         "validate-json": "node scripts/validateJsonFiles.js",
-        "fix-and-migrate": "node scripts/validateJsonFiles.js && node scripts/migrateJsonFiles.js"
+        "fix-and-migrate": "node scripts/validateJsonFiles.js && node scripts/migrateJsonFiles.js",
+        "sync": "node scripts/sync.js",
+        "dev-with-sync": "node scripts/sync.js & npm run dev"
     },
     "repository": {
         "type": "git",
@@ -34,6 +37,7 @@
         "ws": "^8.17.0"
     },
     "devDependencies": {
+        "chokidar": "^4.0.3",
         "nodemon": "^3.1.9"
     }
 }

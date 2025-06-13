@@ -155,6 +155,14 @@ app.get('/api/data/:category', async (req, res) => {
     
     if (result.rows.length > 0) {
       console.log(`✅ Found data in database for ${category}`);
+      // Set Last-Modified header for sync
+      const filePath = path.join(__dirname, 'data', `${category}.json`);
+      try {
+        const stats = await fs.stat(filePath);
+        res.set('Last-Modified', new Date(stats.mtime).toUTCString());
+      } catch (err) {
+        // If file doesn't exist, skip header
+      }
       return res.json(result.rows[0].data);
     }
     
@@ -162,10 +170,13 @@ app.get('/api/data/:category', async (req, res) => {
     // Fallback to JSON file if not in database yet
     const filePath = path.join(__dirname, 'data', `${category}.json`);
     const data = await fs.readFile(filePath, 'utf8');
-    console.log(`✅ Successfully loaded JSON file for ${category}`);
+    try {
+      const stats = await fs.stat(filePath);
+      res.set('Last-Modified', new Date(stats.mtime).toUTCString());
+    } catch (err) {}
     res.json(JSON.parse(data));
   } catch (err) {
-    console.error(`❌ Error retrieving data for ${category}:`, err);
+    console.error('Error retrieving data:', err);
     res.status(500).json({ error: 'Error retrieving data' });
   }
 });
