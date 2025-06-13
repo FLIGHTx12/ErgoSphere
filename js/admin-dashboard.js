@@ -63,6 +63,10 @@ class AdminDashboard {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
+            },
+            mods: {
+                fields: ['copies'],
+                showCopies: true
             }
         };
 
@@ -382,57 +386,45 @@ class AdminDashboard {
     }updateTableHeaders() {
         const headersRow = document.getElementById('table-headers');
         if (!headersRow) return;
-        
         const config = this.categoryConfigs[this.currentCategory] || this.categoryConfigs.movies;
-        const isLoot = this.currentCategory === 'loot';
-        
         let headersHTML = `
             <th class="col-checkbox">
                 <input type="checkbox" id="select-all">
             </th>
             <th class="col-name sortable" data-sort="name">Name</th>`;
-        
-        // Only include STATUS column for categories that don't have copies determining status
-        if (!config.showCopies) {
-            headersHTML += `<th class="col-status sortable" data-sort="status">Status</th>`;
-        }
-        
-        // Add category-specific headers
-        if (config.showCopies) {
+        if (this.currentCategory === 'mods') {
             headersHTML += `<th class="col-copies sortable" data-sort="copies">Copies</th>`;
-        }        if (config.completedField) {
-            headersHTML += `<th class="col-completed sortable" data-sort="completed">Progress</th>`;
+        } else {
+            if (!config.showCopies) {
+                headersHTML += `<th class="col-status sortable" data-sort="status">Status</th>`;
+            }
+            if (config.showCopies) {
+                headersHTML += `<th class="col-copies sortable" data-sort="copies">Copies</th>`;
+            }
+            if (config.completedField) {
+                headersHTML += `<th class="col-completed sortable" data-sort="completed">Progress</th>`;
+            }
+            if (config.activeField) {
+                headersHTML += `<th class="col-active sortable" data-sort="active">Active</th>`;
+            }
+            if (config.timesSeenField) {
+                headersHTML += `<th class="col-watched sortable" data-sort="watched">Times Seen</th>`;
+            }
+            if (config.lastWatchedField) {
+                headersHTML += `<th class="col-last-watched sortable" data-sort="lastWatched">Last Watched</th>`;
+            }
+            if (config.seriesLengthField) {
+                headersHTML += `<th class="col-series-length sortable" data-sort="seriesLength">Series Length</th>`;
+            }
+            if (config.genreField && this.currentCategory === 'mods') {
+                headersHTML += `<th class="col-genre sortable" data-sort="genre">Genre</th>`;
+            }
+            if (config.timeField && this.currentCategory === 'singleplayer') {
+                headersHTML += `<th class="col-time sortable" data-sort="time">Time to Beat</th>`;
+            }
         }
-        
-        if (config.activeField) {
-            headersHTML += `<th class="col-active sortable" data-sort="active">Active</th>`;
-        }
-        
-        if (config.timesSeenField) {
-            headersHTML += `<th class="col-watched sortable" data-sort="watched">Times Seen</th>`;
-        }          if (config.lastWatchedField) {
-            headersHTML += `<th class="col-last-watched sortable" data-sort="lastWatched">Last Watched</th>`;
-        }
-        
-        if (config.seriesLengthField) {
-            headersHTML += `<th class="col-series-length sortable" data-sort="seriesLength">Series Length</th>`;
-        }
-        
-        if (config.genreField && this.currentCategory === 'mods') {
-            headersHTML += `<th class="col-genre sortable" data-sort="genre">Genre</th>`;
-        }          if (config.timeField && this.currentCategory === 'singleplayer') {
-            headersHTML += `<th class="col-time sortable" data-sort="time">Time to Beat</th>`;
-        }
-        // Cost column removed for loot boxes as requested
-        // if (config.costField && isLoot) {
-        //     headersHTML += `<th class="col-cost">Cost 💰</th>`;
-        // }
-        
-        // Add actions column header
         headersHTML += `<th class="col-actions">Actions</th>`;
-        
         headersRow.innerHTML = headersHTML;
-          // Re-setup select all functionality
         this.setupSelectAllCheckbox();
     }
 
@@ -489,29 +481,8 @@ class AdminDashboard {
             <td>
                 <input type="checkbox" class="item-checkbox" data-index="${index}">
             </td>
-            <td class="item-name">${name}</td>`;        // Only include STATUS column for categories that don't have copies determining status
-        if (!config.showCopies) {
-            // Provide a default status indicator when STATUS field is empty - treat as inactive
-            const displayStatus = status || '🔴'; // Use red circle (inactive) if status is empty
-            
-            // Add tooltip to explain status meanings
-            let statusTitle = '';
-            switch (displayStatus) {
-                case '🔴': statusTitle = 'Inactive / Not Active'; break;
-                case '🟢': statusTitle = 'Active'; break;
-                case '🟡': statusTitle = 'Warning / In Progress'; break;
-                case '⚪': statusTitle = 'Neutral'; break;
-                default: statusTitle = 'Click to change status';
-            }
-            
-            rowContent += `
-            <td class="status-cell">
-                <button class="status-toggle" data-index="${index}" title="${statusTitle}">${displayStatus}</button>
-            </td>`;
-        }
-        
-        // Add category-specific columns
-        if (config.showCopies) {
+            <td class="item-name">${name}</td>`;
+        if (this.currentCategory === 'mods') {
             const copies = item.copies || 0;
             rowContent += `
             <td class="copies-cell">
@@ -521,9 +492,42 @@ class AdminDashboard {
                     <button class="control-btn plus" data-action="plus" data-index="${index}">+</button>
                 </div>
             </td>`;
-        }
+        } else {
+            // Only include STATUS column for categories that don't have copies determining status
+            if (!config.showCopies) {
+                // Provide a default status indicator when STATUS field is empty - treat as inactive
+                const displayStatus = status || '🔴'; // Use red circle (inactive) if status is empty
+                
+                // Add tooltip to explain status meanings
+                let statusTitle = '';
+                switch (displayStatus) {
+                    case '🔴': statusTitle = 'Inactive / Not Active'; break;
+                    case '🟢': statusTitle = 'Active'; break;
+                    case '🟡': statusTitle = 'Warning / In Progress'; break;
+                    case '⚪': statusTitle = 'Neutral'; break;
+                    default: statusTitle = 'Click to change status';
+                }
+                
+                rowContent += `
+                <td class="status-cell">
+                    <button class="status-toggle" data-index="${index}" title="${statusTitle}">${displayStatus}</button>
+                </td>`;
+            }
+            
+            // Add category-specific columns
+            if (config.showCopies) {
+                const copies = item.copies || 0;
+                rowContent += `
+                <td class="copies-cell">
+                    <div class="number-control">
+                        <button class="control-btn minus" data-action="minus" data-index="${index}">-</button>
+                        <span class="copies-count ${this.getCopiesClass(copies)}">${copies}</span>
+                        <button class="control-btn plus" data-action="plus" data-index="${index}">+</button>
+                    </div>
+                </td>`;
+            }
           // Add completion field for games
-        if (config.completedField) {
+          if (config.completedField) {
             const completed = item[config.completedField] || '';
             rowContent += `
             <td class="completed-cell">
@@ -540,7 +544,7 @@ class AdminDashboard {
             </td>`;
         }
           // Add times seen field for movies/anime/youtube
-        if (config.timesSeenField) {
+          if (config.timesSeenField) {
             const timesSeen = item[config.timesSeenField] || item.watched || 0;
             const eyeDisplay = this.generateEyeDisplay(timesSeen);
             rowContent += `
@@ -579,31 +583,23 @@ class AdminDashboard {
             </td>`;
         }
           // Add time to beat field for single player games
-        if (config.timeField && this.currentCategory === 'singleplayer') {
+          if (config.timeField && this.currentCategory === 'singleplayer') {
             const timeValue = item[config.timeField] || '';
             rowContent += `
             <td class="time-cell">
                 <span class="time-value">${timeValue}</span>
             </td>`;
-        }          
-        // Cost field removed for loot boxes as requested
-        // if (config.costField && isLoot) {
-        //     const cost = item[config.costField] || 0;
-        //     rowContent += `
-        //     <td class="cost-cell">
-        //         <span class="cost-value">${cost} 💰</span>
-        //     </td>`;
-        // }
-        
-        // Add edit button column
-        rowContent += `
-        <td class="actions-cell">
-            <button class="edit-btn" data-index="${index}" title="Edit item">✏️</button>
-        </td>`;
-        
-        row.innerHTML = rowContent;
-        this.attachRowEventListeners(row, index);
-        return row;
+        }
+    }
+    // Add edit button column
+    rowContent += `
+    <td class="actions-cell">
+        <button class="edit-btn" data-index="${index}" title="Edit item">✏️</button>
+    </td>`;
+    
+    row.innerHTML = rowContent;
+    this.attachRowEventListeners(row, index);
+    return row;
     }
 
     attachRowEventListeners(row, index) {
