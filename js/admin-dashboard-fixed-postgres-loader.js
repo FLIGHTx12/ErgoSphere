@@ -167,29 +167,35 @@ class FixedPostgreSQLLoader {    constructor() {
     async loadModsData() {
         try {
             // Try loading mods directly first
-            return await this.loadCategoryData('mods');
+            const direct = await this.loadCategoryData('mods');
+            if (Array.isArray(direct) && direct.length > 0) {
+                return direct;
+            }
         } catch (error) {
             console.warn('Direct mods loading failed, trying combination approach');
-            try {
-                // Combine coop, loot, and pvp data for mods
-                const [coopData, lootData, pvpData] = await Promise.all([
-                    this.loadCategoryData('coop'),
-                    this.loadCategoryData('loot'),
-                    this.loadCategoryData('pvp')
-                ]);
-                const genres = ['ERGOvillians', 'week modifiers', 'helper', 'hazzard'];
-                const filterMods = item => genres.includes((item.genre || '').trim());
-                const modItems = [
-                    ...coopData.filter(filterMods),
-                    ...lootData.filter(filterMods),
-                    ...pvpData.filter(filterMods)
-                ];
-                console.log(`✅ Combined mods data: ${modItems.length} items`);
-                return modItems;
-            } catch (combineError) {
-                console.error('Failed to combine mods data:', combineError);
-                return [];
+        }
+        try {
+            // Combine coop, loot, and pvp data for mods
+            const [coopData, lootData, pvpData] = await Promise.all([
+                this.loadCategoryData('coop'),
+                this.loadCategoryData('loot'),
+                this.loadCategoryData('pvp')
+            ]);
+            const genres = ['ERGOvillians', 'week modifiers', 'helper', 'hazzard'];
+            const filterMods = item => item && genres.includes((item.genre || '').trim());
+            const modItems = [
+                ...coopData.filter(filterMods),
+                ...lootData.filter(filterMods),
+                ...pvpData.filter(filterMods)
+            ];
+            console.log('[MODS DEBUG] coop:', coopData.length, 'loot:', lootData.length, 'pvp:', pvpData.length, 'mods:', modItems.length);
+            if (modItems.length === 0) {
+                console.warn('[MODS DEBUG] No mod items found. Check source files and genres.');
             }
+            return modItems;
+        } catch (combineError) {
+            console.error('Failed to combine mods data:', combineError);
+            return [];
         }
     }    async saveData(category, data) {
         try {

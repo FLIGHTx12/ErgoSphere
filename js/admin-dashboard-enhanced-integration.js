@@ -5,11 +5,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Wait for the main dashboard to initialize
-    setTimeout(() => {
+    let integrationAttempts = 0;
+    function tryIntegrateEnhancedLoader() {
+        integrationAttempts++;
         const dashboardInstance = window.dashboard || 
             Object.values(window).find(val => val && typeof val.loadCategoryData === 'function');
-        
-        if (dashboardInstance && window.AdminDashboardDataLoader) {
+        if (
+            dashboardInstance &&
+            typeof dashboardInstance.loadCategoryData === 'function' &&
+            typeof dashboardInstance.saveAllChanges === 'function'
+        ) {
             console.log('Integrating enhanced PostgreSQL loader...');
             
             // Backup original methods
@@ -167,8 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 3000);
             
             console.log('Enhanced PostgreSQL loader integration complete');
+        } else if (integrationAttempts < 10) {
+            setTimeout(tryIntegrateEnhancedLoader, 500);
         } else {
-            console.warn('Enhanced integration failed: Required components not found');
+            console.error('Enhanced integration failed: Required dashboard methods not found after multiple attempts');
         }
-    }, 1500); // Slightly longer wait to ensure dashboard is fully initialized
+    }
+    setTimeout(tryIntegrateEnhancedLoader, 1500);
 });
