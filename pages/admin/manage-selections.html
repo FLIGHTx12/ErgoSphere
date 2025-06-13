@@ -200,6 +200,25 @@
           <div id="youtube-runtime-warning" style="color:#f00; display:none; font-size:0.95em; margin-top:4px;"></div>
         </div>
         
+        <div class="form-group">
+          <label for="animeSelection">Anime Selection:</label>
+          <select id="animeSelection" name="animeSelection" required>
+            <option value="">-- Select Anime --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sundayMorningSelection">Sunday Morning Cinema:</label>
+          <select id="sundayMorningSelection" name="sundayMorningSelection" required>
+            <option value="">-- Select Show --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sundayNightSelection">Sunday Night:</label>
+          <select id="sundayNightSelection" name="sundayNightSelection" required>
+            <option value="">-- Select Show --</option>
+          </select>
+        </div>
+        
         <div class="form-group section-separator">
           <h3>Quarterly Games & Art</h3>
         </div>
@@ -245,6 +264,9 @@
             <p><strong>Bingwa Banquet:</strong> <span id="preview-banquet"></span></p>
             <p><strong>Bingwa Brunch:</strong> <span id="preview-brunch"></span></p>
             <p><strong>YouTube Theater:</strong> <span id="preview-youtube"></span></p>
+            <p><strong>Anime:</strong> <span id="preview-anime"></span></p>
+            <p><strong>Sunday Morning Cinema:</strong> <span id="preview-sunday-morning"></span></p>
+            <p><strong>Sunday Night:</strong> <span id="preview-sunday-night"></span></p>
             <hr>
             <p><strong>Next Bingwa Challenge:</strong> <span id="preview-next-bingwa"></span></p>
             <p><strong>Atletico Workout:</strong> <span id="preview-atletico-workout"></span></p>
@@ -421,6 +443,51 @@
               }
             });
           });
+          // Load anime options from anime.json (only active)
+      fetch('../../data/anime.json')
+        .then(response => response.json())
+        .then(data => {
+          const animeSelect = document.getElementById('animeSelection');
+          animeSelect.innerHTML = '<option value="">-- Select Anime --</option>';
+          data.forEach(anime => {
+            if (anime.TITLE && anime.STATUS === '🟢') {
+              const option = document.createElement('option');
+              option.value = anime.TITLE;
+              option.textContent = anime.TITLE;
+              animeSelect.appendChild(option);
+            }
+          });
+        });
+      // Load Sunday Morning Cinema options (only active)
+      fetch('../../data/sundaymorning.json')
+        .then(response => response.json())
+        .then(data => {
+          const smSelect = document.getElementById('sundayMorningSelection');
+          smSelect.innerHTML = '<option value="">-- Select Show --</option>';
+          data.forEach(show => {
+            if (show.TITLE && show.STATUS === '🟢') {
+              const option = document.createElement('option');
+              option.value = show.TITLE;
+              option.textContent = show.TITLE;
+              smSelect.appendChild(option);
+            }
+          });
+        });
+      // Load Sunday Night options (only active)
+      fetch('../../data/sundaynight.json')
+        .then(response => response.json())
+        .then(data => {
+          const snSelect = document.getElementById('sundayNightSelection');
+          snSelect.innerHTML = '<option value="">-- Select Show --</option>';
+          data.forEach(show => {
+            if (show.TITLE && show.STATUS === '🟢') {
+              const option = document.createElement('option');
+              option.value = show.TITLE;
+              option.textContent = show.TITLE;
+              snSelect.appendChild(option);
+            }
+          });
+        });
           loadCurrentSelections();
         })
         .catch(error => {
@@ -457,6 +524,11 @@
         // Get ErgoArt subject
         const ergoArtSubject = document.getElementById('ergoArtSubject').value;
         
+        // Get Anime, Sunday Morning Cinema, and Sunday Night values
+        const animeSelection = document.getElementById('animeSelection').value;
+        const sundayMorningSelection = document.getElementById('sundayMorningSelection').value;
+        const sundayNightSelection = document.getElementById('sundayNightSelection').value;
+        
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
         const originalBtnText = submitBtn.textContent;
@@ -483,7 +555,10 @@
             ergoArtSubject,
             nextBingwaChallenge,
             atleticoWorkout,
-            weeklyErrand
+            weeklyErrand,
+            anime: animeSelection,
+            sundayMorning: sundayMorningSelection,
+            sundayNight: sundayNightSelection
           })
         })
         .then(response => {
@@ -739,6 +814,64 @@
               }
             }
             
+            // Anime
+            if (ergosphereData.anime) {
+              const animeSelect = document.getElementById('animeSelection');
+              let found = false;
+              for (let i = 0; i < animeSelect.options.length; i++) {
+                if (animeSelect.options[i].value === ergosphereData.anime) {
+                  animeSelect.value = ergosphereData.anime;
+                  found = true;
+                  break;
+                }
+              }
+              if (!found) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.anime;
+                option.textContent = ergosphereData.anime;
+                animeSelect.appendChild(option);
+                animeSelect.value = ergosphereData.anime;
+              }
+            }
+            // Sunday Morning
+            if (ergosphereData.sundayMorning) {
+              const smSelect = document.getElementById('sundayMorningSelection');
+              let found = false;
+              for (let i = 0; i < smSelect.options.length; i++) {
+                if (smSelect.options[i].value === ergosphereData.sundayMorning) {
+                  smSelect.value = ergosphereData.sundayMorning;
+                  found = true;
+                  break;
+                }
+              }
+              if (!found) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.sundayMorning;
+                option.textContent = ergosphereData.sundayMorning;
+                smSelect.appendChild(option);
+                smSelect.value = ergosphereData.sundayMorning;
+              }
+            }
+            // Sunday Night
+            if (ergosphereData.sundayNight) {
+              const snSelect = document.getElementById('sundayNightSelection');
+              let found = false;
+              for (let i = 0; i < snSelect.options.length; i++) {
+                if (snSelect.options[i].value === ergosphereData.sundayNight) {
+                  snSelect.value = ergosphereData.sundayNight;
+                  found = true;
+                  break;
+                }
+              }
+              if (!found) {
+                const option = document.createElement('option');
+                option.value = ergosphereData.sundayNight;
+                option.textContent = ergosphereData.sundayNight;
+                snSelect.appendChild(option);
+                snSelect.value = ergosphereData.sundayNight;
+              }
+            }
+
             // Update last updated time if available
             if (ergosphereData.lastUpdated) {
               const lastUpdated = new Date(ergosphereData.lastUpdated);
@@ -799,6 +932,10 @@
           const secs = totalSeconds % 60;
           document.getElementById('preview-youtube').textContent += ` (Total: ${mins}:${secs.toString().padStart(2, '0')})`;
         }
+        
+        document.getElementById('preview-anime').textContent = document.getElementById('animeSelection').value;
+        document.getElementById('preview-sunday-morning').textContent = document.getElementById('sundayMorningSelection').value;
+        document.getElementById('preview-sunday-night').textContent = document.getElementById('sundayNightSelection').value;
       }
       
       function checkYouTubeRuntimeLimit() {

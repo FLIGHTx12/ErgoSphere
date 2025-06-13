@@ -124,6 +124,14 @@ function initializeCountdowns() {
         const atleticoWorkoutElement = document.getElementById('atletico-workout');
         const weeklyErrandElement = document.getElementById('weekly-errand');
 
+        // --- New Panels: Anime, Sunday Morning, Sunday Night ---
+        const animeElement = document.getElementById('current-anime');
+        const animeEndDateElement = document.getElementById('anime-end-date');
+        const sundayMorningElement = document.getElementById('current-sunday-morning');
+        const sundayMorningEndDateElement = document.getElementById('sunday-morning-end-date');
+        const sundayNightElement = document.getElementById('current-sunday-night');
+        const sundayNightEndDateElement = document.getElementById('sunday-night-end-date');
+
         if (bingwaElement) bingwaElement.textContent = ergosphereData.bingwaChampion || defaultData.bingwaChampion;
         if (atleticoElement) atleticoElement.textContent = ergosphereData.atleticoChamp || defaultData.atleticoChamp;
         if (movieElement) movieElement.textContent = ergosphereData.movieNight || defaultData.movieNight;
@@ -134,6 +142,28 @@ function initializeCountdowns() {
         if (nextBingwaChallengeElement) nextBingwaChallengeElement.textContent = ergosphereData.nextBingwaChallenge || 'SELECT A CHALLENGE';
         if (atleticoWorkoutElement) atleticoWorkoutElement.textContent = ergosphereData.atleticoWorkout || 'SELECT A WORKOUT';
         if (weeklyErrandElement) weeklyErrandElement.textContent = ergosphereData.weeklyErrand || 'SELECT AN ERRAND';
+        
+        // Anime
+        if (animeElement) {
+          animeElement.textContent = ergosphereData.anime || (ergosphereData.animeTitle || 'SELECT AN ANIME');
+        }
+        if (animeEndDateElement) {
+          animeEndDateElement.textContent = getShowEndDateString('anime', ergosphereData.animeEndDate);
+        }
+        // Sunday Morning
+        if (sundayMorningElement) {
+          sundayMorningElement.textContent = ergosphereData.sundayMorning || (ergosphereData.sundayMorningTitle || 'SELECT A SHOW');
+        }
+        if (sundayMorningEndDateElement) {
+          sundayMorningEndDateElement.textContent = getShowEndDateString('sundayMorning', ergosphereData.sundayMorningEndDate);
+        }
+        // Sunday Night
+        if (sundayNightElement) {
+          sundayNightElement.textContent = ergosphereData.sundayNight || (ergosphereData.sundayNightTitle || 'SELECT A SHOW');
+        }
+        if (sundayNightEndDateElement) {
+          sundayNightEndDateElement.textContent = getShowEndDateString('sundayNight', ergosphereData.sundayNightEndDate);
+        }
         
         if (youtubeElement) {
           let youtubeHTML = defaultData.youtubeTheater; // Default to a string
@@ -178,6 +208,14 @@ function applyDefaultSelections(defaultData) {
   const atleticoWorkoutElement = document.getElementById('atletico-workout');
   const weeklyErrandElement = document.getElementById('weekly-errand');
   
+  // --- New Panels: Anime, Sunday Morning, Sunday Night ---
+  const animeElement = document.getElementById('current-anime');
+  const animeEndDateElement = document.getElementById('anime-end-date');
+  const sundayMorningElement = document.getElementById('current-sunday-morning');
+  const sundayMorningEndDateElement = document.getElementById('sunday-morning-end-date');
+  const sundayNightElement = document.getElementById('current-sunday-night');
+  const sundayNightEndDateElement = document.getElementById('sunday-night-end-date');
+  
   if (bingwaElement) {
     bingwaElement.textContent = defaultData.bingwaChampion;
   }
@@ -211,9 +249,44 @@ function applyDefaultSelections(defaultData) {
     weeklyErrandElement.textContent = defaultData.weeklyErrand || 'SELECT AN ERRAND';
   }
 
+  // Anime
+  if (animeElement) {
+    animeElement.textContent = defaultData.anime || 'SELECT AN ANIME';
+  }
+  if (animeEndDateElement) {
+    animeEndDateElement.textContent = getShowEndDateString('anime');
+  }
+  // Sunday Morning
+  if (sundayMorningElement) {
+    sundayMorningElement.textContent = defaultData.sundayMorning || 'SELECT A SHOW';
+  }
+  if (sundayMorningEndDateElement) {
+    sundayMorningEndDateElement.textContent = getShowEndDateString('sundayMorning');
+  }
+  // Sunday Night
+  if (sundayNightElement) {
+    sundayNightElement.textContent = defaultData.sundayNight || 'SELECT A SHOW';
+  }
+  if (sundayNightEndDateElement) {
+    sundayNightEndDateElement.textContent = getShowEndDateString('sundayNight');
+  }
+
   if (youtubeElement) { // Set default YouTube
     youtubeElement.innerHTML = defaultData.youtubeTheater; // Use innerHTML for default as well
   }
+}
+
+// Helper to get show end date string (1 week from now or use provided date)
+function getShowEndDateString(type, overrideDate) {
+  let endDate;
+  if (overrideDate) {
+    endDate = new Date(overrideDate);
+  } else {
+    // Default: 1 week from now
+    const now = new Date();
+    endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+  }
+  return `Ends: ${endDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}`;
 }
 
 function updateCountdowns() {
@@ -678,4 +751,36 @@ function showMessage(message, type = 'success') {
       messageElement.remove();
     }, 6000); // 3s display + 3s fadeout
   }
+}
+
+/**
+ * Get the end date for a show
+ * @param {string} type - The type of show (anime, sundayMorning, sundayNight)
+ * @param {string} endDate - The end date in ISO format
+ * @returns {string} - The formatted end date string
+ */
+function getShowEndDateString(type, endDate) {
+  if (!endDate) return '';
+
+  const now = new Date();
+  const end = new Date(endDate);
+
+  // If the end date is in the past, show as "Ended"
+  if (end < now) {
+    return 'Ended';
+  }
+
+  // Calculate the time difference
+  const diff = end - now;
+
+  // If less than 24 hours, show as hours and minutes
+  if (diff < 24 * 60 * 60 * 1000) {
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    return `${hours}h ${minutes}m`;
+  }
+
+  // Otherwise, show as days
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  return `${days}d`;
 }
