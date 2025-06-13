@@ -1142,18 +1142,26 @@ Cache: ${loaderStatus.cacheSize} items stored
               if (value === null || value === undefined) {
                 return;
               }
-              
-              // Only call trim if value is a string
-              if (typeof value === 'string' && value.trim() !== '') {
-                // Special handling for descriptions to preserve paragraphs
-                if (label.toLowerCase() === 'description') {
-                  detailsHTML += `<p class="description-text"><strong>${label}:</strong> ${value}</p>`;
-                } else {
-                  detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+              // Always convert value to string for trim check
+              if (typeof value === 'string') {
+                if (value.trim() !== '') {
+                  // Special handling for descriptions to preserve paragraphs
+                  if (label.toLowerCase() === 'description') {
+                    detailsHTML += `<p class="description-text"><strong>${label}:</strong> ${value}</p>`;
+                  } else {
+                    detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+                  }
                 }
-              } else if (value && typeof value !== 'string') {
-                // For non-string values (numbers, arrays, etc.)
+              } else if (typeof value === 'number' || typeof value === 'boolean') {
                 detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+              } else if (Array.isArray(value)) {
+                const arrStr = value.map(v => typeof v === 'string' ? v.trim() : String(v)).join(', ');
+                if (arrStr.trim() !== '') {
+                  detailsHTML += `<p><strong>${label}:</strong> ${arrStr}</p>`;
+                }
+              } else if (typeof value === 'object') {
+                // For objects, JSON stringify
+                detailsHTML += `<p><strong>${label}:</strong> ${JSON.stringify(value)}</p>`;
               }
             } catch (error) {
               console.error(`Error in addDetail for ${label}:`, error, 'Value:', value, 'Type:', typeof value);
@@ -1162,7 +1170,9 @@ Cache: ${loaderStatus.cacheSize} items stored
 
           let genreValue = item.genre || item.GENRE || '';
           if (typeof genreValue === 'string') {
-            genreValue = genreValue.split(',').map(genre => genre.trim());
+            genreValue = genreValue.split(',').map(genre => typeof genre === 'string' ? genre.trim() : String(genre));
+          } else if (Array.isArray(genreValue)) {
+            genreValue = genreValue.map(genre => typeof genre === 'string' ? genre.trim() : String(genre));
           }
           addDetail('Genre', Array.isArray(genreValue) ? genreValue.join(', ') : genreValue);
           addDetail('Mode', item.mode);
