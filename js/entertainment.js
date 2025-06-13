@@ -218,6 +218,7 @@ class EntertainmentHub {
         } else {
             imageUrl = item.imageUrl || item.image || '';
             if (!imageUrl) imageUrl = '/assets/img/no-image.png';
+            imageUrl = String(imageUrl);
             if (imageUrl && !/^https?:\/\//.test(imageUrl) && !imageUrl.startsWith('/')) {
                 imageUrl = '/assets/img/' + imageUrl.replace(/^\.?\/?assets\/?img\/?/, '');
             }
@@ -398,6 +399,7 @@ class EntertainmentHub {
             }
         } else {
             imageUrl = item.imageUrl || item.image || 'https://via.placeholder.com/400x600?text=No+Image';
+            imageUrl = String(imageUrl);
             if (imageUrl && !/^https?:\/\//.test(imageUrl) && !imageUrl.startsWith('/')) {
                 imageUrl = '/assets/img/' + imageUrl.replace(/^\.?\/?assets\/?img\/?/, '');
             }
@@ -528,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     imageUrl = randomItem.imageUrl || randomItem.image || '';
                     if (!imageUrl) imageUrl = '/assets/img/no-image.png';
+                    imageUrl = String(imageUrl);
                     if (imageUrl && !/^https?:\/\//.test(imageUrl) && !imageUrl.startsWith('/')) {
                         imageUrl = '/assets/img/' + imageUrl.replace(/^\.?\/?assets\/?img\/?/, '');
                     }

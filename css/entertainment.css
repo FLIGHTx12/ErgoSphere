@@ -281,6 +281,7 @@ header h1 {
   justify-content: center;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
   overflow: hidden;
+  position: relative;
 }
 .category-image img, .content-image img {
   width: 100%;
@@ -306,24 +307,28 @@ header h1 {
   height: auto;
   box-sizing: border-box;
 }
-.category-info h3, .category-info p {
-  display: none;
+.category-info {
+  display: none !important;
+}
+.category-image {
+  position: relative;
 }
 .category-link {
-  color: #fff;
-  text-decoration: none;
+  position: absolute;
+  left: 50%;
+  bottom: 0.7rem;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: auto;
+  margin: 0;
+  background: rgba(127,63,255,0.12);
+  border-radius: 6px;
+  padding: 0.25em 0.8em;
   font-weight: 600;
   font-size: 0.98rem;
-  transition: color var(--transition);
-  display: inline-block;
-  margin: 0.2rem auto 0.1rem auto;
-  text-align: center;
-  padding: 0.25em 0.8em;
-  border-radius: 6px;
-  background: rgba(127,63,255,0.12);
+  color: #fff;
   box-shadow: 0 1px 4px #0002;
-  white-space: nowrap;
-  overflow: visible;
+  transition: color var(--transition), background var(--transition);
 }
 .category-link:hover, .category-link:focus {
   color: var(--accent);
