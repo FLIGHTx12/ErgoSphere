@@ -170,25 +170,22 @@ class FixedPostgreSQLLoader {    constructor() {
             return await this.loadCategoryData('mods');
         } catch (error) {
             console.warn('Direct mods loading failed, trying combination approach');
-            
             try {
-                // Fallback to combining coop and loot data
-                const [coopData, lootData] = await Promise.all([
+                // Combine coop, loot, and pvp data for mods
+                const [coopData, lootData, pvpData] = await Promise.all([
                     this.loadCategoryData('coop'),
-                    this.loadCategoryData('loot')
+                    this.loadCategoryData('loot'),
+                    this.loadCategoryData('pvp')
                 ]);
-                
-                const ergoVillains = coopData.filter(item => item.genre === 'ERGOvillians');
-                const modItems = lootData.filter(item => 
-                    item.genre === 'week modifiers' || 
-                    item.genre === 'helper' || 
-                    item.genre === 'hazzard'
-                );
-                
-                const combinedData = [...ergoVillains, ...modItems];
-                console.log(`✅ Combined mods data: ${combinedData.length} items`);
-                return combinedData;
-                
+                const genres = ['ERGOvillians', 'week modifiers', 'helper', 'hazzard'];
+                const filterMods = item => genres.includes((item.genre || '').trim());
+                const modItems = [
+                    ...coopData.filter(filterMods),
+                    ...lootData.filter(filterMods),
+                    ...pvpData.filter(filterMods)
+                ];
+                console.log(`✅ Combined mods data: ${modItems.length} items`);
+                return modItems;
             } catch (combineError) {
                 console.error('Failed to combine mods data:', combineError);
                 return [];

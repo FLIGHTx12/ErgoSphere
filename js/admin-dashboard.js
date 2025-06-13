@@ -3,7 +3,8 @@
  * Modern admin interface for managing STATUS, copies, WATCHED, and TIMES SEEN data
  */
 
-class AdminDashboard {    constructor() {
+class AdminDashboard {
+    constructor() {
         this.currentCategory = 'coop';
         this.currentData = [];
         this.modifiedItems = new Set();
@@ -57,19 +58,14 @@ class AdminDashboard {    constructor() {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
-            },            sundaynight: {
+            },
+            sundaynight: {
                 fields: ['STATUS', 'LAST WATCHED'],
                 lastWatchedField: 'LAST WATCHED',
                 showCopies: false
-            },
-            mods: {
-                fields: ['copies', 'genre'],
-                copiesField: 'copies',
-                genreField: 'genre',
-                showCopies: true
             }
         };
-        
+
         this.init();
     }
 
@@ -114,7 +110,7 @@ class AdminDashboard {    constructor() {
                 this.refreshCurrentCategory();
             });
         }
-        
+
         // Manual sync button for PostgreSQL→JSON sync
         const manualSyncBtn = document.getElementById('manual-sync-btn');
         if (manualSyncBtn) {
