@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('data-page.js DOMContentLoaded fired');
+  console.log('window.RobustDataLoader available:', typeof window.RobustDataLoader);
+  
   // Initialize robust data loader
+  if (!window.RobustDataLoader) {
+    console.error('RobustDataLoader not available!');
+    return;
+  }
+  
   const dataLoader = new window.RobustDataLoader();
+  console.log('RobustDataLoader initialized:', dataLoader);
   
   // Add navbar scroll behavior
   let lastScrollTop = 0;
@@ -120,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   dataSourceIndicator.id = 'data-source-indicator';
   dataSourceIndicator.style.cssText = `
     position: fixed;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
     padding: 4px 8px;
     border-radius: 4px;
@@ -131,9 +140,35 @@ document.addEventListener('DOMContentLoaded', () => {
     transition: all 0.3s ease;
     cursor: pointer;
     display: none;
+    opacity: 0.7;
+    background-color: #222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   `;
   dataSourceIndicator.title = 'Click for data source details';
   document.body.appendChild(dataSourceIndicator);
+
+  // Responsive adjustment for small screens
+  function updateDataSourceIndicatorPosition() {
+    if (window.innerWidth <= 600) {
+      dataSourceIndicator.style.bottom = '10px';
+      dataSourceIndicator.style.top = '';
+      dataSourceIndicator.style.right = '10px';
+      dataSourceIndicator.style.left = '';
+      dataSourceIndicator.style.opacity = '0.6';
+      dataSourceIndicator.style.fontSize = '0.8em';
+      dataSourceIndicator.style.backgroundColor = '#222';
+    } else {
+      dataSourceIndicator.style.bottom = '10px';
+      dataSourceIndicator.style.top = '';
+      dataSourceIndicator.style.right = '10px';
+      dataSourceIndicator.style.left = '';
+      dataSourceIndicator.style.opacity = '0.7';
+      dataSourceIndicator.style.fontSize = '0.7em';
+      dataSourceIndicator.style.backgroundColor = '#222';
+    }
+  }
+  updateDataSourceIndicatorPosition();
+  window.addEventListener('resize', updateDataSourceIndicatorPosition);
 
   // Listen for data source status updates
   document.addEventListener('dataSourceStatusUpdate', (event) => {
@@ -321,22 +356,19 @@ Cache: ${loaderStatus.cacheSize} items stored
     });
     
     // Check for runtime data - FIX: Added missing closing parenthesis
-    const hasRuntimeData = data.some(item => {
-      const runtime = item.RUNTIME || '';
-      return runtime.trim() !== '' || /\d+(?:h|min)/.test(item.Title || '');
+    const hasRuntimeData = data.some(item => {      const runtime = item.RUNTIME || '';
+      return (typeof runtime === 'string' && runtime.trim() !== '') || /\d+(?:h|min)/.test(item.Title || '');
     });
-    
-    // Check for specific fields
+      // Check for specific fields
     const hasTimeTobeat = data.some(item => 
       (item['TIME TO BEAT'] || item['time to beat']) && 
-      (item['TIME TO BEAT']?.trim() !== '' || item['time to beat']?.trim() !== '')
+      ((typeof item['TIME TO BEAT'] === 'string' && item['TIME TO BEAT']?.trim() !== '') || 
+       (typeof item['time to beat'] === 'string' && item['time to beat']?.trim() !== ''))
     );
-    
-    const hasCost = data.some(item => 
-      item.cost && item.cost.trim() !== ''
+      const hasCost = data.some(item => 
+      item.cost && (typeof item.cost === 'string' ? item.cost.trim() !== '' : item.cost !== 0)
     );
-    
-    const hasCopies = data.some(item => 
+      const hasCopies = data.some(item => 
       typeof item.copies === 'number' || 
       (typeof item.copies === 'string' && item.copies.trim() !== '')
     );
@@ -916,10 +948,11 @@ Cache: ${loaderStatus.cacheSize} items stored
       refreshSearchFilter();
     }, 0);
   });
-  
-  const dataFile = getDataFile();
+    const dataFile = getDataFile();
   const containerId = 'data-container';
 
+  console.log('Initializing data page with:', { dataFile, containerId });
+  
   loadItems(dataFile, containerId);
 
   function getDataFile() {
@@ -927,10 +960,11 @@ Cache: ${loaderStatus.cacheSize} items stored
     const category = path.split('/').pop().replace('.html', '');
     // Use API endpoint instead of direct file access
     return `/api/data/${category}`;
-  }
-  function loadItems(file, containerId) {
+  }  function loadItems(file, containerId) {
     // Get category from the file path for robust loading
     const category = file.split('/').pop().replace('.json', '').split('?')[0];
+    
+    console.log('loadItems called with:', { file, containerId, category });
     
     // Use robust data loader instead of direct fetch
     dataLoader.loadData(category, {
@@ -986,8 +1020,7 @@ Cache: ${loaderStatus.cacheSize} items stored
 
           // Extract YouTube video ID and thumbnail URL if available
           let backgroundImage = '';
-          
-          if (item.imageUrl && item.imageUrl.trim() !== '') {
+            if (item.imageUrl && typeof item.imageUrl === 'string' && item.imageUrl.trim() !== '') {
             // Use existing image URL if present
             backgroundImage = item.imageUrl;
           } else if (item.image) {
@@ -1073,15 +1106,14 @@ Cache: ${loaderStatus.cacheSize} items stored
               indicator += ' ' + '👀'.repeat(seasonCount);
             }
           }
-          
-          // Handle TIMES SEEN for YouTube videos and other items
+            // Handle TIMES SEEN for YouTube videos and other items
           if (item['TIMES SEEN']) {
             // If TIMES SEEN already contains 👀 emoji, use it directly
-            if (item['TIMES SEEN'].includes('👀')) {
+            if (typeof item['TIMES SEEN'] === 'string' && item['TIMES SEEN'].includes('👀')) {
               // Count how many 👀 are in the string
               const emojiCount = (item['TIMES SEEN'].match(/👀/g) || []).length;
               indicator += ' ' + '👀'.repeat(emojiCount);
-            } else {
+            } else if (typeof item['TIMES SEEN'] === 'string') {
               // Try to extract a number from TIMES SEEN
               const match = item['TIMES SEEN'].match(/\d+/);
               if (match) {
@@ -1091,6 +1123,9 @@ Cache: ${loaderStatus.cacheSize} items stored
                 // If there's a value but no number, add a single 👀
                 indicator += ' 👀';
               }
+            } else if (typeof item['TIMES SEEN'] === 'number' && item['TIMES SEEN'] > 0) {
+              // Handle numeric TIMES SEEN values
+              indicator += ' ' + '👀'.repeat(item['TIMES SEEN']);
             }
           }
           
@@ -1101,16 +1136,27 @@ Cache: ${loaderStatus.cacheSize} items stored
             : `${itemText}${indicator}`;
 
           // Build details HTML with property checks
-          let detailsHTML = '';
-
-          function addDetail(label, value) {
-            if (value && value.trim() !== '') {
-              // Special handling for descriptions to preserve paragraphs
-              if (label.toLowerCase() === 'description') {
-                detailsHTML += `<p class="description-text"><strong>${label}:</strong> ${value}</p>`;
-              } else {
+          let detailsHTML = '';          function addDetail(label, value) {
+            try {
+              // Handle null, undefined, or empty values
+              if (value === null || value === undefined) {
+                return;
+              }
+              
+              // Only call trim if value is a string
+              if (typeof value === 'string' && value.trim() !== '') {
+                // Special handling for descriptions to preserve paragraphs
+                if (label.toLowerCase() === 'description') {
+                  detailsHTML += `<p class="description-text"><strong>${label}:</strong> ${value}</p>`;
+                } else {
+                  detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
+                }
+              } else if (value && typeof value !== 'string') {
+                // For non-string values (numbers, arrays, etc.)
                 detailsHTML += `<p><strong>${label}:</strong> ${value}</p>`;
               }
+            } catch (error) {
+              console.error(`Error in addDetail for ${label}:`, error, 'Value:', value, 'Type:', typeof value);
             }
           }
 
@@ -1124,14 +1170,14 @@ Cache: ${loaderStatus.cacheSize} items stored
           addDetail('Playability', item.playability);
           addDetail('Console', item.console || item.CONSOLE);
           addDetail('Time to beat', item['time to beat'] || item["TIME TO BEAT"]);
-          addDetail('Completed', item.completed || item["COMPLETED?"]);
-          if ((item.description && item.description.trim() !== '') || (item.DESCRIPTION && item.DESCRIPTION.trim() !== '')) {
+          addDetail('Completed', item.completed || item["COMPLETED?"]);          if ((item.description && typeof item.description === 'string' && item.description.trim() !== '') || 
+              (item.DESCRIPTION && typeof item.DESCRIPTION === 'string' && item.DESCRIPTION.trim() !== '')) {
             const desc = item.description || item.DESCRIPTION;
             addDetail('Description', desc);
           }
           addDetail('Details', item.details); // Add this line
           addDetail('Cost', item.cost);
-          addDetail('After Spin', item['after spin']);
+          addDetail('After Spin', item['after_spin'] || item['after spin']);
           addDetail('Series Length', item['Series Length']);
           addDetail('Last Watched', item['LAST WATCHED']);
           addDetail('Ownership', item['OwnerShip']);
@@ -1451,10 +1497,11 @@ Cache: ${loaderStatus.cacheSize} items stored
                 content.style.display = 'none';
               } else {
                 content.style.display = 'block';
-              }
-            });
+              }            });
           });
-        }        // Populate genre dropdown
+        }
+        
+        // Populate genre dropdown
         populateGenreDropdown(data);
         
         // Populate sort options dropdown
@@ -1463,7 +1510,8 @@ Cache: ${loaderStatus.cacheSize} items stored
         // Apply initial filters and sort
         applyAllFilters();
         if (searchInput) searchInput.value = '';
-        refreshAllItemRows();})
+        refreshAllItemRows();
+      })
       .catch(error => {
         console.error('Error loading data:', error);
         const container = document.getElementById(containerId);

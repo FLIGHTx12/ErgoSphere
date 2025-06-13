@@ -58,13 +58,21 @@ class RobustDataLoader {
     async loadData(category, options = {}) {
         const startTime = performance.now();
         this.metrics.totalRequests++;
-        
+
+        function isValidLootItem(item) {
+            // Require at least a text property for loot
+            return item && typeof item === 'object' && typeof item.text === 'string' && item.text.trim() !== '';
+        }
+
         try {
             console.log(`🔄 Loading data for category: ${category}`);
-            
+            let data;
             // Try PostgreSQL first
             try {
-                const data = await this.loadFromPostgreSQL(category, options);
+                data = await this.loadFromPostgreSQL(category, options);
+                if (category === 'loot') {
+                    data = data.filter(isValidLootItem);
+                }
                 if (data && data.length > 0) {
                     this.updateConnectionStatus('postgres', 'connected');
                     this.cacheData(category, data);
@@ -79,7 +87,10 @@ class RobustDataLoader {
 
             // Fallback to server API
             try {
-                const data = await this.loadFromServerAPI(category, options);
+                data = await this.loadFromServerAPI(category, options);
+                if (category === 'loot') {
+                    data = data.filter(isValidLootItem);
+                }
                 if (data && data.length > 0) {
                     this.updateConnectionStatus('server', 'connected');
                     this.cacheData(category, data);
@@ -94,7 +105,10 @@ class RobustDataLoader {
 
             // Fallback to JSON files
             try {
-                const data = await this.loadFromJSONFiles(category, options);
+                data = await this.loadFromJSONFiles(category, options);
+                if (category === 'loot') {
+                    data = data.filter(isValidLootItem);
+                }
                 if (data && data.length > 0) {
                     this.updateConnectionStatus('jsonFiles', 'connected');
                     this.cacheData(category, data);
