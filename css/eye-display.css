@@ -1,0 +1,30 @@
+/* Responsive 👀 display for Times Seen/Watched columns */
+.eye-display {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1px;
+  min-width: 0;
+  max-width: 100px;
+  overflow-x: auto;
+}
+.eye {
+  display: inline-block;
+  line-height: 1;
+  margin: 0 1px;
+  transition: font-size 0.2s;
+}
+.eye-count-1 .eye { font-size: 1.5em; }
+.eye-count-2 .eye { font-size: 1.3em; }
+.eye-count-4 .eye { font-size: 1.1em; }
+.eye-count-7 .eye { font-size: 1em; }
+.eye-count-10 .eye { font-size: 0.9em; }
+.eye-count-20 .eye { font-size: 0.7em; }
+.eye-count-50plus .eye { font-size: 0.5em; }
+.eye-multiplier {
+  font-size: 0.7em;
+  color: #4682B4;
+  margin-left: 2px;
+  font-weight: bold;
+}
