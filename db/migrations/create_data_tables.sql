@@ -86,3 +86,4 @@ ALTER TABLE youtube_videos ADD CONSTRAINT valid_status CHECK (status IN ('🟢',
 ALTER TABLE sunday_shows ADD CONSTRAINT valid_status CHECK (status IN ('🟢', '🟣', '', NULL));
 ALTER TABLE singleplayer_games ADD CONSTRAINT valid_status CHECK (status IN ('🟢', '🟣', '', NULL));
 ALTER TABLE movies ADD CONSTRAINT valid_status CHECK (status IN ('🟢', '🟣', '', NULL));
+ALTER TABLE movies ADD CONSTRAINT unique_title UNIQUE (title);

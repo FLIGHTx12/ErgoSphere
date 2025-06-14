@@ -13,6 +13,14 @@ SELECT
   m->>'DESCRIPTION',
   m->>'imageUrl'
 FROM jsonb_array_elements(
-  (SELECT jsonb_array_elements(content::jsonb)
-   FROM pg_read_file('c:\Users\fligh\OneDrive\ErgoSphere\data\movies.json') content)
-) m;
+  (SELECT content::jsonb FROM pg_read_file('c:\\Users\\fligh\\OneDrive\\ErgoSphere\\data\\movies.json')) 
+) m
+ON CONFLICT (title) DO UPDATE SET
+  status = EXCLUDED.status,
+  watched = EXCLUDED.watched,
+  ownership = EXCLUDED.ownership,
+  genre = EXCLUDED.genre,
+  runtime = EXCLUDED.runtime,
+  link = EXCLUDED.link,
+  description = EXCLUDED.description,
+  image_url = EXCLUDED.image_url;
