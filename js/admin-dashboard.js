@@ -545,7 +545,15 @@ class AdminDashboard {
         }
           // Add times seen field for movies/anime/youtube
           if (config.timesSeenField) {
-            const timesSeen = item[config.timesSeenField] || item.watched || 0;
+            let timesSeen;
+            // Explicitly check for undefined to handle 0 correctly
+            if (typeof item[config.timesSeenField] !== 'undefined') {
+                timesSeen = item[config.timesSeenField];
+            } else if (typeof item.watched !== 'undefined') {
+                timesSeen = item.watched;
+            } else {
+                timesSeen = 0;
+            }
             const eyeDisplay = this.generateEyeDisplay(timesSeen);
             rowContent += `
             <td class="watched-cell">
@@ -1104,4 +1112,174 @@ class AdminDashboard {
                 try {
                     const saveResult = await AdminDashboardDataLoader.saveData(this.currentCategory, this.currentData);
                     
-                    if
+                    if (saveResult && saveResult.success) {
+                        this.modifiedItems.clear();
+                        this.clearAllStagingHighlights();
+                        this.showMessage('✅ All changes saved successfully');
+                    } else {
+                        this.showError('❌ Save failed: Invalid response from server');
+                    }
+                } catch (saveError) {
+                    console.error('PostgreSQL save error:', saveError);
+                    this.showError('❌ Save failed: Error saving to database');
+                }
+            } else {
+                // Fall back to original save method if loader not available
+                console.warn("AdminDashboardDataLoader not found. Falling back to original save method.");
+                
+                // Prepare data for saving - only include modified items
+                const itemsToSave = this.currentData.filter((item, index) => this.modifiedItems.has(index));
+                
+                // Send updated data to server
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        category: this.currentCategory,
+                        items: itemsToSave
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Save result:', result);
+                    
+                    if (result.success) {
+                        this.modifiedItems.clear();
+                        this.clearAllStagingHighlights();
+                        this.showMessage('✅ All changes saved successfully');
+                    } else {
+                        this.showError('❌ Save failed: ' + (result.message || 'Unknown error'));
+                    }
+                } else {
+                    this.showError('❌ Save failed: Server error ' + response.status);
+                }
+            }
+        } catch (error) {
+            console.error('Unexpected error during save:', error);
+            this.showError('❌ Save failed: ' + error.message);
+        } finally {
+            this.hideSyncIndicator();
+        }
+    }
+
+    showLoading() {
+        const loading = document.getElementById('loading-indicator');
+        if (loading) loading.style.display = '';
+    }
+    hideLoading() {
+        const loading = document.getElementById('loading-indicator');
+        if (loading) loading.style.display = 'none';
+    }
+
+    showEmpty() {
+        // Show a message or element when there is no data to display
+        const emptyElement = document.getElementById('empty-message');
+        if (emptyElement) emptyElement.style.display = '';
+    }
+
+    hideEmpty() {
+        // Hide the empty message or element
+        const emptyElement = document.getElementById('empty-message');
+        if (emptyElement) emptyElement.style.display = 'none';
+    }
+
+    showError(message) {
+        // Display an error message to the user
+        const errorElement = document.getElementById('error-message');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = '';
+        } else {
+            alert(message); // fallback if no error element exists
+        }
+    }
+
+    switchCategory(category) {
+        if (category === this.currentCategory) return;
+
+        // Optionally warn if there are unsaved changes
+        if (this.modifiedItems.size > 0) {
+            if (!confirm('You have unsaved changes. Switch category and discard them?')) {
+                return;
+            }
+            this.modifiedItems.clear();
+            this.clearAllStagingHighlights();
+        }
+
+        this.currentCategory = category;
+        this.selectedItems.clear();
+        this.searchValue = '';
+
+        // Update active button UI
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            if (btn.dataset.category === category) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Update category title if present
+        const title = document.getElementById('category-title');
+        if (title) {
+            title.textContent = btnLabelForCategory(category);
+        }
+
+        // Clear search box
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) searchInput.value = '';
+
+        // Load new category data
+        this.loadCategoryData(category);
+    }
+
+    refreshTableRow(index) {
+        const tbody = document.getElementById('table-body');
+        if (!tbody) return;
+        const oldRow = tbody.querySelector(`tr[data-index="${index}"]`);
+        if (!oldRow) return;
+        // Create a new row for the updated item
+        const categoryBtn = document.querySelector(`[data-category="${this.currentCategory}"]`);
+        const dataType = categoryBtn ? categoryBtn.dataset.type : null;
+        // Patch: For movies, ensure both WATCHED and watched are considered for Times Seen
+        if (this.currentCategory === 'movies') {
+            const item = this.currentData[index];
+            // If one is missing, copy from the other
+            if (item.WATCHED === undefined && item.watched !== undefined) {
+                item.WATCHED = item.watched;
+            } else if (item.watched === undefined && item.WATCHED !== undefined) {
+                item.watched = item.WATCHED;
+            }
+        }
+        const newRow = this.createTableRow(this.currentData[index], index, dataType);
+        tbody.replaceChild(newRow, oldRow);
+    }
+}
+
+// Helper for pretty category names
+function btnLabelForCategory(category) {
+    const map = {
+        coop: 'CO-OP Games',
+        loot: 'LOOT Boxes',
+        pvp: 'PVP Games',
+        movies: 'Movies',
+        anime: 'Anime',
+        youtube: 'YouTube',
+        singleplayer: 'Single Player',
+        sundaymorning: 'Sunday Morning',
+        sundaynight: 'Sunday Night',
+        mods: 'Mods'
+    };
+    return map[category] || category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+// End of AdminDashboard class
+
+// Initialize the admin dashboard when the DOM is loaded
+
+document.addEventListener('DOMContentLoaded', () => {
+    new AdminDashboard();
+});
