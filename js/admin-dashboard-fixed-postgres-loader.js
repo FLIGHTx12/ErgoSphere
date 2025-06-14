@@ -98,20 +98,21 @@ class FixedPostgreSQLLoader {    constructor() {
                     },
                     signal: controller.signal
                 });
-                
+
                 clearTimeout(timeoutId);
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    throw new Error(`API response not OK: ${response.status} ${response.statusText}`);
                 }
                 
                 const data = await response.json();
                 
-                if (!Array.isArray(data)) {
-                    throw new Error('Invalid data format received');
+                // Validate movie data if it's the movies category
+                if (category === 'movies' && Array.isArray(data) && window.DataValidators) {
+                    console.log('Validating movie WATCHED fields...');
+                    return window.DataValidators.validateMoviesData(data);
                 }
-                  console.log(`✅ Loaded ${data.length} items from ${endpoint}`);
-                this.dataSource = this.config.isHeroku ? 'Heroku PostgreSQL' : 'Local PostgreSQL';
+                
                 return data;
                 
             } catch (error) {
@@ -198,11 +199,22 @@ class FixedPostgreSQLLoader {    constructor() {
             return [];
         }
     }    async saveData(category, data) {
+        // Validate data if it's movies category
+        if (category === 'movies' && Array.isArray(data) && window.DataValidators) {
+            console.log('Validating movie WATCHED fields before saving...');
+            data = window.DataValidators.validateMoviesData(data);
+        }
+
+        // Build the endpoint URL
+        const endpoint = `${this.config.primaryEndpoints.data}/${category}`;
+        
         try {
-            // Build the correct save endpoint URL
-            const saveEndpoint = `${this.config.primaryEndpoints.data}/${category}`;
+            // Validate data before saving
+            if (!Array.isArray(data)) {
+                throw new Error('Invalid data format: Expected an array');
+            }
             
-            const response = await fetch(saveEndpoint, {
+            const response = await fetch(endpoint, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

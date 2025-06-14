@@ -78,6 +78,12 @@ class SyncQueueManager {
         }
         
         try {
+            // Validate movie data if it's the movies category
+            if (category === 'movies' && window.DataValidators) {
+                console.log('Validating movie WATCHED fields before queuing...');
+                changes = window.DataValidators.validateMoviesData(changes);
+            }
+            
             // Add timestamp and device identifier
             const queueItem = {
                 data: changes,

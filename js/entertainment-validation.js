@@ -1,6 +1,75 @@
 // Entertainment Page Validation Script
 console.log('🎬 Starting Entertainment Page Validation...');
 
+// Data validators for ensuring proper WATCHED field formatting
+window.DataValidators = {
+    /**
+     * Ensures that movie data has consistent WATCHED fields with proper eye emoji
+     * @param {Object} movie - Movie object to validate
+     * @returns {Object} - Validated movie object
+     */
+    validateMovieWatchedField(movie) {
+        if (!movie) return movie;
+        
+        // Ensure both uppercase and lowercase keys exist for compatibility
+        if (movie.WATCHED !== undefined) {
+            movie.watched = movie.WATCHED;
+        } else if (movie.watched !== undefined) {
+            movie.WATCHED = movie.watched;
+        }
+        
+        // If the field exists but isn't properly formatted
+        const watchedStr = movie.WATCHED || '';
+        
+        // Convert to proper eye emoji format if it's a number or different format
+        if (typeof watchedStr === 'number') {
+            // Convert number to eye emojis
+            let eyeStr = '';
+            for (let i = 0; i < watchedStr; i++) {
+                eyeStr += '👀';
+            }
+            movie.WATCHED = eyeStr;
+            movie.watched = eyeStr;
+        }
+        
+        return movie;
+    },
+
+    /**
+     * Validates an entire array of movie data for proper WATCHED field formatting
+     * @param {Array} movies - Array of movie objects
+     * @returns {Array} - Validated movie objects
+     */
+    validateMoviesData(movies) {
+        if (!Array.isArray(movies)) return movies;
+        
+        return movies.map(this.validateMovieWatchedField);
+    }
+};
+
+// Extend the EntertainmentHub class to use validators when available
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof EntertainmentHub === 'function' && EntertainmentHub.prototype.loadAllData) {
+        const originalLoadAllData = EntertainmentHub.prototype.loadAllData;
+        
+        // Override the loadAllData method to add validation
+        EntertainmentHub.prototype.loadAllData = async function() {
+            // Call the original method
+            const result = await originalLoadAllData.call(this);
+            
+            // If movies data was loaded, validate it
+            if (this.data && this.data.movies) {
+                console.log('Validating movie WATCHED fields for Entertainment Hub...');
+                this.data.movies = window.DataValidators.validateMoviesData(this.data.movies);
+            }
+            
+            return result;
+        };
+        
+        console.log('✅ Entertainment Hub data validation initialized');
+    }
+});
+
 // Test 1: Check if all required HTML elements exist
 function validateHTMLElements() {
     console.log('📋 Validating HTML elements...');

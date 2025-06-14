@@ -6,10 +6,21 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const pool = require('./db');
+const { Pool } = require('pg');
+
+// Create a new pool connection using the same settings from db.js
+const connectionString = process.env.DATABASE_URL || 
+  'postgres://u4g8i73g8n411i:pe1e6c500adc040cb7e7258a1e379628c5629a9289aabc73ec65a4fdcaa5c76e0@ccpa7stkruda3o.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/db9op7pb0ol2v4';
+
+const pool = new Pool({
+  connectionString,
+  ssl: {
+    rejectUnauthorized: false // Required for Heroku PostgreSQL connections
+  }
+});
 
 // Categories to restore
-const categories = ['movies']; // Add more categories if needed
+const categories = ['movies']; // Focus only on movies
 
 async function restoreJsonToPostgres(category) {
   try {
@@ -24,8 +35,30 @@ async function restoreJsonToPostgres(category) {
       console.error(`❌ Error: Invalid data format in ${category}.json. Expected array.`);
       return false;
     }
+      console.log(`📊 Found ${data.length} items in ${category}.json`);
     
-    console.log(`📊 Found ${data.length} items in ${category}.json`);
+    // Validate WATCHED field for movies
+    if (category === 'movies') {
+      let watchedFieldCount = 0;
+      for (const movie of data) {
+        if (movie.WATCHED || movie.watched) {
+          watchedFieldCount++;
+          // Make sure both lowercase and uppercase keys exist for compatibility
+          if (movie.WATCHED) {
+            movie.watched = movie.WATCHED;
+          } else if (movie.watched) {
+            movie.WATCHED = movie.watched;
+          }
+          
+          // Validate that the WATCHED field contains proper eye emoji
+          const watchedStr = movie.WATCHED || '';
+          if (!watchedStr.includes('👀') && watchedStr.trim() !== '') {
+            console.warn(`⚠️ Warning: Movie "${movie.Title}" has WATCHED value without eye emoji: "${watchedStr}"`);
+          }
+        }
+      }
+      console.log(`👀 Verified ${watchedFieldCount} movies with WATCHED field`);
+    }
     
     // Check if record exists in json_data table
     const existingResult = await pool.query(
