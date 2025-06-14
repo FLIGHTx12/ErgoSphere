@@ -30,21 +30,140 @@ if (!direction || !category || !['json-to-db', 'db-to-json'].includes(direction)
 function log(msg) { console.log(`[${new Date().toISOString()}] ${msg}`); }
 
 async function validateDataArray(data, label) {
-  if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
-  let seen = new Set();
-  let errors = 0;
-  data.forEach((item, idx) => {
-    if (!item.Title || typeof item.Title !== 'string') {
-      log(`❌ [${label}] Entry ${idx} missing or invalid Title`);
-      errors++;
+  if (category === 'weekly-errands' || category === 'bingwa-challenges' || category === 'atletico-workouts') {
+    if (!Array.isArray(data) || data.some(item => typeof item !== 'string')) {
+      throw new Error(`${label} must be an array of strings`);
     }
-    if (seen.has(item.Title)) {
-      log(`⚠️ [${label}] Duplicate Title: ${item.Title}`);
-    } else {
-      seen.add(item.Title);
-    }
-  });
-  if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'meals') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.meal || typeof item.meal !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid meal`);
+        errors++;
+      }
+      if (seen.has(item.meal)) {
+        log(`⚠️ [${label}] Duplicate meal: ${item.meal}`);
+      } else {
+        seen.add(item.meal);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'workouts') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.title || typeof item.title !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid title`);
+        errors++;
+      }
+      if (seen.has(item.title)) {
+        log(`⚠️ [${label}] Duplicate title: ${item.title}`);
+      } else {
+        seen.add(item.title);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'pvp' || category === 'coop') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.text || typeof item.text !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid text`);
+        errors++;
+      }
+      if (seen.has(item.text)) {
+        log(`⚠️ [${label}] Duplicate text: ${item.text}`);
+      } else {
+        seen.add(item.text);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'singleplayer') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.TITLE || typeof item.TITLE !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid TITLE`);
+        errors++;
+      }
+      if (seen.has(item.TITLE)) {
+        log(`⚠️ [${label}] Duplicate TITLE: ${item.TITLE}`);
+      } else {
+        seen.add(item.TITLE);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'anime' || category === 'youtube') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.TITLE || typeof item.TITLE !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid TITLE`);
+        errors++;
+      }
+      if (seen.has(item.TITLE)) {
+        log(`⚠️ [${label}] Duplicate TITLE: ${item.TITLE}`);
+      } else {
+        seen.add(item.TITLE);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'loot') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.text || typeof item.text !== 'string' || !item.text.trim()) {
+        log(`❌ [${label}] Entry ${idx} missing or invalid text`);
+        errors++;
+      }
+      if (seen.has(item.text)) {
+        log(`⚠️ [${label}] Duplicate text: ${item.text}`);
+      } else {
+        seen.add(item.text);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  if (category === 'movies') {
+    if (!Array.isArray(data)) throw new Error(`${label} is not an array`);
+    let seen = new Set();
+    let errors = 0;
+    data.forEach((item, idx) => {
+      if (!item.Title || typeof item.Title !== 'string') {
+        log(`❌ [${label}] Entry ${idx} missing or invalid Title`);
+        errors++;
+      }
+      if (seen.has(item.Title)) {
+        log(`⚠️ [${label}] Duplicate Title: ${item.Title}`);
+      } else {
+        seen.add(item.Title);
+      }
+    });
+    if (errors > 0) throw new Error(`${label} has ${errors} critical errors`);
+    return;
+  }
+  // For all other categories, just log and skip validation
+  log(`[${label}] No validation rule for this category, skipping validation.`);
 }
 
 async function backupDb(category) {
