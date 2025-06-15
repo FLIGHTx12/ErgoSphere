@@ -607,6 +607,14 @@
       document.getElementById('atleticoWorkout').addEventListener('change', updatePreview);
       document.getElementById('weeklyErrand').addEventListener('change', updatePreview);
       
+      // Add event listeners for Anime, Sunday Morning, Sunday Night and their end dates
+      document.getElementById('animeSelection').addEventListener('change', updatePreview);
+      document.getElementById('animeEndDate').addEventListener('change', updatePreview);
+      document.getElementById('sundayMorningSelection').addEventListener('change', updatePreview);
+      document.getElementById('sundayMorningEndDate').addEventListener('change', updatePreview);
+      document.getElementById('sundayNightSelection').addEventListener('change', updatePreview);
+      document.getElementById('sundayNightEndDate').addEventListener('change', updatePreview);
+      
       // Add event listeners for quarterly games and ErgoArt subject
       document.getElementById('q1Game').addEventListener('change', updatePreview);
       document.getElementById('q2Game').addEventListener('change', updatePreview);
@@ -625,11 +633,15 @@
         fetch('/api/selections')
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw new Error(`HTTP error! Status: ${response.status}`);
             }
             return response.json();
           })
-          .then(ergosphereData => {            // Load quarterly games if available
+          .then(ergosphereData => {
+            console.log('Loaded selections data:', ergosphereData);
+            
+            // Populate fields with current values
+            // Quarterly games
             if (ergosphereData.quarterlyGames) {
               if (ergosphereData.quarterlyGames.q1 && !ergosphereData.quarterlyGames.q1.includes('No Q1 Game')) {
                 document.getElementById('q1Game').value = ergosphereData.quarterlyGames.q1;
@@ -760,7 +772,8 @@
                 }
               });
             }
-              // Handle Weekly Choices
+            
+            // Handle Weekly Choices
             // Next Bingwa Challenge
             if (ergosphereData.nextBingwaChallenge) {
               const nextBingwaChallengeSelect = document.getElementById('nextBingwaChallenge');
@@ -885,31 +898,85 @@
               }
             }
 
+            // Anime date
+            if (ergosphereData.animeEndDate) {
+              document.getElementById('animeEndDate').value = formatDateForInput(ergosphereData.animeEndDate);
+            }
+            
+            // Sunday Morning date
+            if (ergosphereData.sundayMorningEndDate) {
+              document.getElementById('sundayMorningEndDate').value = formatDateForInput(ergosphereData.sundayMorningEndDate);
+            }
+            
+            // Sunday Night date
+            if (ergosphereData.sundayNightEndDate) {
+              document.getElementById('sundayNightEndDate').value = formatDateForInput(ergosphereData.sundayNightEndDate);
+            }
+
+            // Update preview
+            updatePreview();
+            
             // Update last updated time if available
             if (ergosphereData.lastUpdated) {
               const lastUpdated = new Date(ergosphereData.lastUpdated);
               document.getElementById('last-updated').textContent = lastUpdated.toLocaleString();
             }
-
-            updatePreview();
           })
           .catch(error => {
             console.error('Error loading selections:', error);
-            showNotification('Error loading current selections', 'error');
+            showNotification('Error loading current selections: ' + error.message, 'error');
           });
-      }        function updatePreview() {
+      }        // Helper to format dates for input fields (YYYY-MM-DD)
+      function formatDateForInput(dateString) {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return '';
+        return date.toISOString().split('T')[0];
+      }
+      
+      function updatePreview() {
         document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
         document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
         document.getElementById('preview-movie').textContent = document.getElementById('movieNight').value;
         document.getElementById('preview-banquet').textContent = document.getElementById('banquetMeal').value;
         document.getElementById('preview-brunch').textContent = document.getElementById('bingwaBrunch').value;
         
-        // Update Weekly Choices preview
+        // Anime with end date
+        const animeValue = document.getElementById('animeSelection').value;
+        const animeEndDateValue = document.getElementById('animeEndDate').value;
+        let animeDisplay = animeValue || 'None selected';
+        if (animeValue && animeEndDateValue) {
+          const formattedDate = new Date(animeEndDateValue).toLocaleDateString();
+          animeDisplay += ` (until ${formattedDate})`;
+        }
+        document.getElementById('preview-anime').textContent = animeDisplay;
+        
+        // Sunday Morning with end date
+        const sundayMorningValue = document.getElementById('sundayMorningSelection').value;
+        const sundayMorningEndDateValue = document.getElementById('sundayMorningEndDate').value;
+        let sundayMorningDisplay = sundayMorningValue || 'None selected';
+        if (sundayMorningValue && sundayMorningEndDateValue) {
+          const formattedDate = new Date(sundayMorningEndDateValue).toLocaleDateString();
+          sundayMorningDisplay += ` (until ${formattedDate})`;
+        }
+        document.getElementById('preview-sunday-morning').textContent = sundayMorningDisplay;
+        
+        // Sunday Night with end date
+        const sundayNightValue = document.getElementById('sundayNightSelection').value;
+        const sundayNightEndDateValue = document.getElementById('sundayNightEndDate').value;
+        let sundayNightDisplay = sundayNightValue || 'None selected';
+        if (sundayNightValue && sundayNightEndDateValue) {
+          const formattedDate = new Date(sundayNightEndDateValue).toLocaleDateString();
+          sundayNightDisplay += ` (until ${formattedDate})`;
+        }
+        document.getElementById('preview-sunday-night').textContent = sundayNightDisplay;
+        
+        // Weekly Choices
         document.getElementById('preview-next-bingwa').textContent = document.getElementById('nextBingwaChallenge').value || 'None selected';
         document.getElementById('preview-atletico-workout').textContent = document.getElementById('atleticoWorkout').value || 'None selected';
         document.getElementById('preview-weekly-errand').textContent = document.getElementById('weeklyErrand').value || 'None selected';
         
-        // Update quarterly games preview
+        // Quarterly games preview
         document.getElementById('preview-q1game').textContent = document.getElementById('q1Game').value || 'None selected';
         document.getElementById('preview-q2game').textContent = document.getElementById('q2Game').value || 'None selected';
         document.getElementById('preview-q3game').textContent = document.getElementById('q3Game').value || 'None selected';
@@ -945,10 +1012,6 @@
           const secs = totalSeconds % 60;
           document.getElementById('preview-youtube').textContent += ` (Total: ${mins}:${secs.toString().padStart(2, '0')})`;
         }
-        
-        document.getElementById('preview-anime').textContent = document.getElementById('animeSelection').value;
-        document.getElementById('preview-sunday-morning').textContent = document.getElementById('sundayMorningSelection').value;
-        document.getElementById('preview-sunday-night').textContent = document.getElementById('sundayNightSelection').value;
       }
       
       function checkYouTubeRuntimeLimit() {
