@@ -19,13 +19,13 @@ async function syncSelectionsToDb() {
       q3: "",
       q4: ""
     };
-    
     // Insert into the database
     const result = await pool.query(
       `INSERT INTO weekly_selections 
         (bingwa_champion, atletico_champ, movie_night, banquet_meal, brunch_meal, youtube_theater, 
-         q1_game, q2_game, q3_game, q4_game, ergoart_subject)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+         q1_game, q2_game, q3_game, q4_game, ergoart_subject, 
+         anime, anime_end_date, sunday_morning, sunday_morning_end_date, sunday_night, sunday_night_end_date)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *`,
       [
         selections.bingwaChampion,
         selections.atleticoChamp,
@@ -37,7 +37,13 @@ async function syncSelectionsToDb() {
         quarterlyGames.q2 || null,
         quarterlyGames.q3 || null,
         quarterlyGames.q4 || null,
-        selections.ergoArtSubject || null
+        selections.ergoArtSubject || null,
+        selections.anime || null,
+        selections.animeEndDate || null,
+        selections.sundayMorning || null,
+        selections.sundayMorningEndDate || null,
+        selections.sundayNight || null,
+        selections.sundayNightEndDate || null
       ]
     );
     

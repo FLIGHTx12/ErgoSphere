@@ -4,7 +4,8 @@ const pool = require('../db');
 
 // GET endpoint to retrieve the current selections
 router.get('/', async (req, res) => {
-  try {    const result = await pool.query(
+  try {
+    const result = await pool.query(
       `SELECT 
         bingwa_champion AS "bingwaChampion",
         atletico_champ AS "atleticoChamp",
@@ -20,6 +21,12 @@ router.get('/', async (req, res) => {
         next_bingwa_challenge AS "nextBingwaChallenge",
         atletico_workout AS "atleticoWorkout",
         weekly_errand AS "weeklyErrand",
+        anime AS "anime",
+        anime_end_date AS "animeEndDate",
+        sunday_morning AS "sundayMorning",
+        sunday_morning_end_date AS "sundayMorningEndDate",
+        sunday_night AS "sundayNight",
+        sunday_night_end_date AS "sundayNightEndDate",
         updated_at AS "lastUpdated"
       FROM weekly_selections ORDER BY id DESC LIMIT 1`
     );
@@ -31,7 +38,6 @@ router.get('/', async (req, res) => {
       } else {
         row.youtubeTheater = [];
       }
-      
       // Format quarterly games into an object
       const quarterlyGames = {
         q1: row.q1 || "",
@@ -39,18 +45,16 @@ router.get('/', async (req, res) => {
         q3: row.q3 || "",
         q4: row.q4 || ""
       };
-      
       // Delete individual quarter fields from response
       delete row.q1;
       delete row.q2;
       delete row.q3;
       delete row.q4;
-      
       // Add the quarterlyGames object
       row.quarterlyGames = quarterlyGames;
-      
       res.json(row);
-    } else {      // Return default values if no data found
+    } else {
+      // Return default values if no data found
       const defaultData = {
         bingwaChampion: 'JAYBERS8',
         atleticoChamp: 'FLIGHTx12!',
@@ -68,6 +72,12 @@ router.get('/', async (req, res) => {
         nextBingwaChallenge: '',
         atleticoWorkout: '',
         weeklyErrand: '',
+        anime: '',
+        animeEndDate: '',
+        sundayMorning: '',
+        sundayMorningEndDate: '',
+        sundayNight: '',
+        sundayNightEndDate: '',
         lastUpdated: new Date().toISOString()
       };
       res.json(defaultData);
@@ -79,8 +89,9 @@ router.get('/', async (req, res) => {
 });
 
 // POST endpoint to update the selections
-router.post('/', async (req, res) => {  try {
-    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater, quarterlyGames, ergoArtSubject, nextBingwaChallenge, atleticoWorkout, weeklyErrand } = req.body;
+router.post('/', async (req, res) => {
+  try {
+    const { bingwaChampion, atleticoChamp, movieNight, banquetMeal, brunchMeal, youtubeTheater, quarterlyGames, ergoArtSubject, nextBingwaChallenge, atleticoWorkout, weeklyErrand, anime, animeEndDate, sundayMorning, sundayMorningEndDate, sundayNight, sundayNightEndDate } = req.body;
     // Validate required fields
     if (!bingwaChampion || !atleticoChamp || !movieNight) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -89,8 +100,9 @@ router.post('/', async (req, res) => {  try {
     const result = await pool.query(
       `INSERT INTO weekly_selections 
         (bingwa_champion, atletico_champ, movie_night, banquet_meal, brunch_meal, youtube_theater, 
-         q1_game, q2_game, q3_game, q4_game, ergoart_subject, next_bingwa_challenge, atletico_workout, weekly_errand)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+         q1_game, q2_game, q3_game, q4_game, ergoart_subject, next_bingwa_challenge, atletico_workout, weekly_errand, 
+         anime, anime_end_date, sunday_morning, sunday_morning_end_date, sunday_night, sunday_night_end_date)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING *`,
       [
         bingwaChampion,
         atleticoChamp,
@@ -105,10 +117,15 @@ router.post('/', async (req, res) => {  try {
         ergoArtSubject || null,
         nextBingwaChallenge || null,
         atleticoWorkout || null,
-        weeklyErrand || null
+        weeklyErrand || null,
+        anime || null,
+        animeEndDate || null,
+        sundayMorning || null,
+        sundayMorningEndDate || null,
+        sundayNight || null,
+        sundayNightEndDate || null
       ]
     );
-    
     // Format quarterly games into an object for response
     const formattedQuarterlyGames = {
       q1: result.rows[0].q1_game || "",
@@ -116,7 +133,7 @@ router.post('/', async (req, res) => {  try {
       q3: result.rows[0].q3_game || "",
       q4: result.rows[0].q4_game || ""
     };
-      res.json({ 
+    res.json({ 
       success: true, 
       message: 'Selections updated successfully',
       data: {
@@ -131,6 +148,12 @@ router.post('/', async (req, res) => {  try {
         nextBingwaChallenge: result.rows[0].next_bingwa_challenge || "",
         atleticoWorkout: result.rows[0].atletico_workout || "",
         weeklyErrand: result.rows[0].weekly_errand || "",
+        anime: result.rows[0].anime || "",
+        animeEndDate: result.rows[0].anime_end_date || "",
+        sundayMorning: result.rows[0].sunday_morning || "",
+        sundayMorningEndDate: result.rows[0].sunday_morning_end_date || "",
+        sundayNight: result.rows[0].sunday_night || "",
+        sundayNightEndDate: result.rows[0].sunday_night_end_date || "",
         lastUpdated: result.rows[0].updated_at
       }
     });

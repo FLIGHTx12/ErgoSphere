@@ -21,6 +21,12 @@ async function syncSelectionsFromDb() {
         q3_game AS "q3", 
         q4_game AS "q4",
         ergoart_subject AS "ergoArtSubject",
+        anime AS "anime",
+        anime_end_date AS "animeEndDate",
+        sunday_morning AS "sundayMorning",
+        sunday_morning_end_date AS "sundayMorningEndDate",
+        sunday_night AS "sundayNight",
+        sunday_night_end_date AS "sundayNightEndDate",
         updated_at AS "lastUpdated"
       FROM weekly_selections ORDER BY id DESC LIMIT 1`
     );
@@ -54,10 +60,8 @@ async function syncSelectionsFromDb() {
     
     // Add the quarterlyGames object
     row.quarterlyGames = quarterlyGames;
-    
     // Convert the data to pretty JSON
     const jsonData = JSON.stringify(row, null, 2);
-    
     // Write to selections.json
     const filePath = path.join(__dirname, '../data/selections.json');
     await fs.writeFile(filePath, jsonData);

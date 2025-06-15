@@ -205,18 +205,24 @@
           <select id="animeSelection" name="animeSelection" required>
             <option value="">-- Select Anime --</option>
           </select>
+          <label for="animeEndDate">End Date:</label>
+          <input type="date" id="animeEndDate" name="animeEndDate">
         </div>
         <div class="form-group">
           <label for="sundayMorningSelection">Sunday Morning Cinema:</label>
           <select id="sundayMorningSelection" name="sundayMorningSelection" required>
             <option value="">-- Select Show --</option>
           </select>
+          <label for="sundayMorningEndDate">End Date:</label>
+          <input type="date" id="sundayMorningEndDate" name="sundayMorningEndDate">
         </div>
         <div class="form-group">
           <label for="sundayNightSelection">Sunday Night:</label>
           <select id="sundayNightSelection" name="sundayNightSelection" required>
             <option value="">-- Select Show --</option>
           </select>
+          <label for="sundayNightEndDate">End Date:</label>
+          <input type="date" id="sundayNightEndDate" name="sundayNightEndDate">
         </div>
         
         <div class="form-group section-separator">
@@ -524,10 +530,13 @@
         // Get ErgoArt subject
         const ergoArtSubject = document.getElementById('ergoArtSubject').value;
         
-        // Get Anime, Sunday Morning Cinema, and Sunday Night values
+        // Add Anime, Sunday Morning, Sunday Night to POST body
         const animeSelection = document.getElementById('animeSelection').value;
+        const animeEndDate = document.getElementById('animeEndDate').value || null;
         const sundayMorningSelection = document.getElementById('sundayMorningSelection').value;
+        const sundayMorningEndDate = document.getElementById('sundayMorningEndDate').value || null;
         const sundayNightSelection = document.getElementById('sundayNightSelection').value;
+        const sundayNightEndDate = document.getElementById('sundayNightEndDate').value || null;
         
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
@@ -544,7 +553,8 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-          },          body: JSON.stringify({
+          },
+          body: JSON.stringify({
             bingwaChampion,
             atleticoChamp,
             movieNight,
@@ -557,8 +567,11 @@
             atleticoWorkout,
             weeklyErrand,
             anime: animeSelection,
+            animeEndDate,
             sundayMorning: sundayMorningSelection,
-            sundayNight: sundayNightSelection
+            sundayMorningEndDate,
+            sundayNight: sundayNightSelection,
+            sundayNightEndDate
           })
         })
         .then(response => {
