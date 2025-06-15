@@ -1061,6 +1061,33 @@ hr {
   font-weight: normal;
 }
 
+/* Styling for show end dates */
+.end-date {
+  font-size: 0.9rem;
+  color: var(--neon-blue);
+  margin-top: 5px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+/* Glowing effect for final week */
+.end-date[data-final-week="true"] {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  opacity: 1;
+  font-weight: bold;
+  animation: pulse-glow 1.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  }
+  to {
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+  }
+}
+
 .yt-selected-video .movie-title {
   font-size: .9em !important;
   font-weight: normal;

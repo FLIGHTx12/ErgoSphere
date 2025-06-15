@@ -101,6 +101,18 @@
       border-top: 1px solid rgba(0,255,255,0.2);
       padding-top: 10px;
     }
+
+    @keyframes pulse {
+      0% { background-color: rgba(255, 255, 255, 0.1); }
+      50% { background-color: rgba(255, 255, 255, 0.3); }
+      100% { background-color: rgba(255, 255, 255, 0.1); }
+    }
+
+    .end-date-warning {
+      animation: pulse 1.5s infinite;
+      color: #f00;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -934,6 +946,47 @@
         return date.toISOString().split('T')[0];
       }
       
+      // Add event listeners for date pickers
+      document.getElementById('animeEndDate').addEventListener('change', updatePreview);
+      document.getElementById('sundayMorningEndDate').addEventListener('change', updatePreview);
+      document.getElementById('sundayNightEndDate').addEventListener('change', updatePreview);
+      
+      // Format date for preview with weeks remaining
+      function formatEndDateForPreview(dateString) {
+        if (!dateString) return '';
+        
+        try {
+          const dateObj = new Date(dateString);
+          if (isNaN(dateObj.getTime())) return '';
+          
+          // Format as MM/DD
+          const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+          const day = String(dateObj.getDate()).padStart(2, '0');
+          const formattedDate = `${month}/${day}`;
+          
+          // Calculate weeks remaining
+          const now = new Date();
+          const diffTime = dateObj.getTime() - now.getTime();
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          const diffWeeks = Math.ceil(diffDays / 7);
+          
+          // Format the weeks text
+          let weeksText = '';
+          if (diffDays <= 0) {
+            weeksText = 'Ended';
+          } else if (diffWeeks === 1) {
+            weeksText = '1 week left';
+          } else {
+            weeksText = `${diffWeeks} weeks left`;
+          }
+          
+          return `${formattedDate} - ${weeksText}`;
+        } catch (error) {
+          console.error('Error formatting preview date:', error);
+          return '';
+        }
+      }
+      
       function updatePreview() {
         document.getElementById('preview-bingwa').textContent = document.getElementById('bingwaChampion').value;
         document.getElementById('preview-atletico').textContent = document.getElementById('atleticoChamp').value;
@@ -946,8 +999,8 @@
         const animeEndDateValue = document.getElementById('animeEndDate').value;
         let animeDisplay = animeValue || 'None selected';
         if (animeValue && animeEndDateValue) {
-          const formattedDate = new Date(animeEndDateValue).toLocaleDateString();
-          animeDisplay += ` (until ${formattedDate})`;
+          const formattedDate = formatEndDateForPreview(animeEndDateValue);
+          animeDisplay += ` (${formattedDate})`;
         }
         document.getElementById('preview-anime').textContent = animeDisplay;
         
@@ -956,8 +1009,8 @@
         const sundayMorningEndDateValue = document.getElementById('sundayMorningEndDate').value;
         let sundayMorningDisplay = sundayMorningValue || 'None selected';
         if (sundayMorningValue && sundayMorningEndDateValue) {
-          const formattedDate = new Date(sundayMorningEndDateValue).toLocaleDateString();
-          sundayMorningDisplay += ` (until ${formattedDate})`;
+          const formattedDate = formatEndDateForPreview(sundayMorningEndDateValue);
+          sundayMorningDisplay += ` (${formattedDate})`;
         }
         document.getElementById('preview-sunday-morning').textContent = sundayMorningDisplay;
         
@@ -966,8 +1019,8 @@
         const sundayNightEndDateValue = document.getElementById('sundayNightEndDate').value;
         let sundayNightDisplay = sundayNightValue || 'None selected';
         if (sundayNightValue && sundayNightEndDateValue) {
-          const formattedDate = new Date(sundayNightEndDateValue).toLocaleDateString();
-          sundayNightDisplay += ` (until ${formattedDate})`;
+          const formattedDate = formatEndDateForPreview(sundayNightEndDateValue);
+          sundayNightDisplay += ` (${formattedDate})`;
         }
         document.getElementById('preview-sunday-night').textContent = sundayNightDisplay;
         

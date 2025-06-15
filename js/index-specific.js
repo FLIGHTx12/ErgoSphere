@@ -278,15 +278,62 @@ function applyDefaultSelections(defaultData) {
 
 // Helper to get show end date string (1 week from now or use provided date)
 function getShowEndDateString(type, overrideDate) {
-  let endDate;
-  if (overrideDate) {
-    endDate = new Date(overrideDate);
-  } else {
-    // Default: 1 week from now
-    const now = new Date();
-    endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+  try {
+    // If we have an endDate from the database, use it
+    if (overrideDate) {
+      const dateObj = new Date(overrideDate);
+      if (isNaN(dateObj.getTime())) {
+        return ''; // Invalid date
+      }
+
+      // Format as MM/DD
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const formattedDate = `${month}/${day}`;
+      
+      // Calculate weeks remaining
+      const now = new Date();
+      const diffTime = dateObj.getTime() - now.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffWeeks = Math.ceil(diffDays / 7);
+      
+      // Format the weeks text
+      let weeksText = '';
+      if (diffDays <= 0) {
+        weeksText = 'Ended';
+      } else if (diffWeeks === 1) {
+        weeksText = '1 week left';
+      } else {
+        weeksText = `${diffWeeks} weeks left`;
+      }
+      
+      // Get the correct element ID
+      // Convert camelCase to kebab-case and add -end-date
+      const elementId = type === 'anime' ? 'anime-end-date' :
+                      type === 'sundayMorning' ? 'sunday-morning-end-date' :
+                      type === 'sundayNight' ? 'sunday-night-end-date' : null;
+      
+      // Add a data attribute to the element to mark if it's the last week
+      if (elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+          if (diffWeeks === 1) {
+            element.setAttribute('data-final-week', 'true');
+          } else {
+            element.setAttribute('data-final-week', 'false');
+          }
+        }
+      }
+      
+      return `${formattedDate} - ${weeksText}`;
+    }
+    
+    // Fallback to showing a generic "End date TBD" message
+    return '';
+  } catch (error) {
+    console.error('Error formatting end date:', error);
+    return '';
   }
-  return `Ends: ${endDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}`;
 }
 
 function updateCountdowns() {
@@ -754,33 +801,66 @@ function showMessage(message, type = 'success') {
 }
 
 /**
- * Get the end date for a show
+ * Get the end date for a show formatted as MM/DD with weeks remaining
  * @param {string} type - The type of show (anime, sundayMorning, sundayNight)
  * @param {string} endDate - The end date in ISO format
- * @returns {string} - The formatted end date string
+ * @returns {string} - The formatted end date string with weeks remaining
  */
 function getShowEndDateString(type, endDate) {
-  if (!endDate) return '';
+  try {
+    // If we have an endDate from the database, use it
+    if (endDate) {
+      const dateObj = new Date(endDate);
+      if (isNaN(dateObj.getTime())) {
+        return ''; // Invalid date
+      }
 
-  const now = new Date();
-  const end = new Date(endDate);
-
-  // If the end date is in the past, show as "Ended"
-  if (end < now) {
-    return 'Ended';
+      // Format as MM/DD
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const formattedDate = `${month}/${day}`;
+      
+      // Calculate weeks remaining
+      const now = new Date();
+      const diffTime = dateObj.getTime() - now.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffWeeks = Math.ceil(diffDays / 7);
+      
+      // Format the weeks text
+      let weeksText = '';
+      if (diffDays <= 0) {
+        weeksText = 'Ended';
+      } else if (diffWeeks === 1) {
+        weeksText = '1 week left';
+      } else {
+        weeksText = `${diffWeeks} weeks left`;
+      }
+      
+      // Get the correct element ID
+      // Convert camelCase to kebab-case and add -end-date
+      const elementId = type === 'anime' ? 'anime-end-date' :
+                      type === 'sundayMorning' ? 'sunday-morning-end-date' :
+                      type === 'sundayNight' ? 'sunday-night-end-date' : null;
+      
+      // Add a data attribute to the element to mark if it's the last week
+      if (elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+          if (diffWeeks === 1) {
+            element.setAttribute('data-final-week', 'true');
+          } else {
+            element.setAttribute('data-final-week', 'false');
+          }
+        }
+      }
+      
+      return `${formattedDate} - ${weeksText}`;
+    }
+    
+    // Fallback to showing a generic "End date TBD" message
+    return '';
+  } catch (error) {
+    console.error('Error formatting end date:', error);
+    return '';
   }
-
-  // Calculate the time difference
-  const diff = end - now;
-
-  // If less than 24 hours, show as hours and minutes
-  if (diff < 24 * 60 * 60 * 1000) {
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    return `${hours}h ${minutes}m`;
-  }
-
-  // Otherwise, show as days
-  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  return `${days}d`;
 }
